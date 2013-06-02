@@ -6,5 +6,6 @@
     <string name="battery_style_title">Battery indicator style</string>	
     <string name="battery_style_stock">Stock battery indicator</string>
     <string name="battery_style_circle">Circle battery with percentage</string>
+    <string name="battery_style_none">None</string>
 
 </resources>

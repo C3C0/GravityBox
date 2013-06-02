@@ -10,8 +10,9 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 
 public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_BATTERY_STYLE = "pref_battery_style";
-    public static final int BATTERY_STYLE_STOCK = 0;
-    public static final int BATTERY_STYLE_CIRCLE = 1;
+    public static final int BATTERY_STYLE_STOCK = 1;
+    public static final int BATTERY_STYLE_CIRCLE = 2;
+    public static final int BATTERY_STYLE_NONE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

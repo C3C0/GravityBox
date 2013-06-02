@@ -16,26 +16,35 @@ public class ModBatteryStyle {
         if (!resparam.packageName.equals(PACKAGE_NAME))
             return;
 
-        XposedBridge.log("ModBatteryStock: " + PACKAGE_NAME + " found");
+        XposedBridge.log("ModBatteryStyle: " + PACKAGE_NAME + " found");
         
         resparam.res.hookLayout(PACKAGE_NAME, "layout", LAYOUT, new XC_LayoutInflated() {
 
             @Override
             public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
 
-                boolean stockBattery = 
-                        (Integer.valueOf(prefs.getString(GravityBoxSettings.PREF_KEY_BATTERY_STYLE, "0")) == 0);
+                int batteryStyle = 
+                        Integer.valueOf(prefs.getString(GravityBoxSettings.PREF_KEY_BATTERY_STYLE, "1"));
 
-                XposedBridge.log("ModBatteryStock: StatusBar inflated; stockBattery: " + stockBattery);
+                XposedBridge.log("ModBatteryStyle: StatusBar inflated; batteryStyle = " + batteryStyle);
 
-                if (stockBattery) {
-                    ImageView batteryViewStock = (ImageView) liparam.view.findViewById(
+                ImageView batteryViewStock = (ImageView) liparam.view.findViewById(
                               liparam.res.getIdentifier("battery", "id", PACKAGE_NAME));
-                    ImageView batteryViewCircle = (ImageView) liparam.view.findViewById(
+                ImageView batteryViewCircle = (ImageView) liparam.view.findViewById(
                               liparam.res.getIdentifier("circle_battery", "id", PACKAGE_NAME));
 
-                    batteryViewStock.setVisibility(View.VISIBLE);
-                    batteryViewCircle.setVisibility(View.GONE);
+                switch(batteryStyle) {
+                    case GravityBoxSettings.BATTERY_STYLE_NONE:
+                        batteryViewStock.setVisibility(View.GONE);
+                        batteryViewCircle.setVisibility(View.GONE);
+                        break;
+                    case GravityBoxSettings.BATTERY_STYLE_CIRCLE:
+                        batteryViewStock.setVisibility(View.GONE);
+                        batteryViewCircle.setVisibility(View.VISIBLE);
+                        break;
+                    default:
+                        batteryViewStock.setVisibility(View.VISIBLE);
+                        batteryViewCircle.setVisibility(View.GONE);                        
                 }
             }
         });
