@@ -1,8 +1,13 @@
 package com.ceco.gm2.gravitybox;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
+import android.widget.Toast;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,6 +25,11 @@ public class GravityBoxSettings extends Activity {
 
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
 
+    private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
+            PREF_KEY_BATTERY_STYLE,
+            PREF_KEY_VOL_MUSIC_CONTROLS
+    ));
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +81,10 @@ public class GravityBoxSettings extends Activity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-            updatePreferences();			
+            updatePreferences();
+
+            if (rebootKeys.contains(key))
+                Toast.makeText(getActivity(), getString(R.string.reboot_required), Toast.LENGTH_SHORT).show();
         }
     }
 }
