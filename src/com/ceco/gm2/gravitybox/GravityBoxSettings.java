@@ -14,6 +14,10 @@ public class GravityBoxSettings extends Activity {
     public static final int BATTERY_STYLE_CIRCLE = 2;
     public static final int BATTERY_STYLE_NONE = 0;
 
+    public static final String PREF_KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
+    public static final int BATTERY_WARNING_POPUP = 1;
+    public static final int BATTERY_WARNING_SOUND = 2;
+
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
 
     @Override
@@ -26,6 +30,7 @@ public class GravityBoxSettings extends Activity {
 
     public static class PrefsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
         private ListPreference mBatteryStyle;
+        private ListPreference mLowBatteryWarning;
         private SharedPreferences mPrefs;
 
         @SuppressWarnings("deprecation")
@@ -41,6 +46,7 @@ public class GravityBoxSettings extends Activity {
             mPrefs = getPreferenceScreen().getSharedPreferences();
 
             mBatteryStyle = (ListPreference) findPreference(PREF_KEY_BATTERY_STYLE);
+            mLowBatteryWarning = (ListPreference) findPreference(PREF_KEY_LOW_BATTERY_WARNING_POLICY);
         }
 
         @Override
@@ -60,6 +66,7 @@ public class GravityBoxSettings extends Activity {
 
         private void updatePreferences() {
             mBatteryStyle.setSummary(mBatteryStyle.getEntry());
+            mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
         }
 
         @Override

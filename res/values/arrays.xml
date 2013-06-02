@@ -13,4 +13,18 @@
         <item>0</item>
     </string-array>
 
+    <string-array name="low_battery_warning_policy_entries">
+        <item>Pop-up and sound</item>
+        <item>Pop-up only</item>
+        <item>Sound only</item>
+        <item>Off</item>
+    </string-array>
+    
+    <string-array name="low_battery_warning_policy_values">
+        <item>3</item>
+        <item>1</item>
+        <item>2</item>
+        <item>0</item>
+    </string-array>
+
 </resources>

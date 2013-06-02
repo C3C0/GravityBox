@@ -11,4 +11,6 @@
     <string name="vol_music_controls_title">Volume keys skip track</string>
     <string name="vol_music_controls_summary">Skip tracks on volume keys long-press while screen is off</string>
 
+    <string name="low_battery_warning_policy_title">Low battery warning</string>
+
 </resources>
