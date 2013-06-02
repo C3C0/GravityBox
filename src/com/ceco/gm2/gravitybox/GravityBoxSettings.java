@@ -14,6 +14,8 @@ public class GravityBoxSettings extends Activity {
     public static final int BATTERY_STYLE_CIRCLE = 2;
     public static final int BATTERY_STYLE_NONE = 0;
 
+    public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

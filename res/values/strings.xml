@@ -8,4 +8,7 @@
     <string name="battery_style_circle">Circle battery with percentage</string>
     <string name="battery_style_none">None</string>
 
+    <string name="vol_music_controls_title">Volume keys skip track</string>
+    <string name="vol_music_controls_summary">Skip tracks on volume keys long-press while screen is off</string>
+
 </resources>

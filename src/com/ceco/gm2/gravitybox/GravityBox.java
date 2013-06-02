@@ -12,10 +12,13 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
         prefs = new XSharedPreferences(PACKAGE_NAME);
+
+        if(prefs.getBoolean(GravityBoxSettings.PREF_KEY_VOL_MUSIC_CONTROLS, true))
+            ModVolumeKeySkipTrack.init();
     }
 
     @Override
     public void handleInitPackageResources(InitPackageResourcesParam resparam) throws Throwable {
-        ModBatteryStyle.init(prefs, resparam);
+        ModBatteryStyle.init(prefs, resparam);        
     }
 }

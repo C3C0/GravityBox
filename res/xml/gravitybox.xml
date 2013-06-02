@@ -6,6 +6,12 @@
         android:title="@string/battery_style_title" 
         android:entries="@array/battery_style_entries"
         android:entryValues="@array/battery_style_values"
-        android:defaultValue="0" />
+        android:defaultValue="1" />
+
+    <CheckBoxPreference 
+        android:key="pref_vol_music_controls"
+        android:title="@string/vol_music_controls_title"
+        android:summary="@string/vol_music_controls_summary"
+        android:defaultValue="true" />
 
 </PreferenceScreen>
