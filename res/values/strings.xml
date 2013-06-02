@@ -12,6 +12,10 @@
     <string name="vol_music_controls_summary">Skip tracks on volume keys long-press while screen is off</string>
 
     <string name="low_battery_warning_policy_title">Low battery warning</string>
+    <string name="low_battery_warning_full">Pop-up and sound</string>
+    <string name="low_battery_warning_popup">Pop-up only</string>
+    <string name="low_battery_warning_sound">Sound only</string>
+    <string name="low_battery_warning_off">Off</string>
 
     <string name="reboot_required">Change will be applied after the reboot</string>
 

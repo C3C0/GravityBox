@@ -14,12 +14,12 @@
     </string-array>
 
     <string-array name="low_battery_warning_policy_entries">
-        <item>Pop-up and sound</item>
-        <item>Pop-up only</item>
-        <item>Sound only</item>
-        <item>Off</item>
+        <item>@string/low_battery_warning_full</item>
+        <item>@string/low_battery_warning_popup</item>
+        <item>@string/low_battery_warning_sound</item>
+        <item>@string/low_battery_warning_off</item>
     </string-array>
-    
+
     <string-array name="low_battery_warning_policy_values">
         <item>3</item>
         <item>1</item>
