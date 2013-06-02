@@ -8,13 +8,10 @@ import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResou
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 
 public class ModBatteryStyle {
-    private static final String PACKAGE_NAME = "com.android.systemui";
+    public static final String PACKAGE_NAME = "com.android.systemui";
     private static final String LAYOUT = "gemini_super_status_bar";
 
     public static void init(final XSharedPreferences prefs, InitPackageResourcesParam resparam) {
-
-        if (!resparam.packageName.equals(PACKAGE_NAME))
-            return;
 
         XposedBridge.log("ModBatteryStyle: " + PACKAGE_NAME + " found");
         
