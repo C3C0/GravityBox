@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <ListPreference
+        android:key="pref_battery_style" 
+        android:title="@string/battery_style_title" 
+        android:entries="@array/battery_style_entries"
+        android:entryValues="@array/battery_style_values"
+        android:defaultValue="0" />
+
+</PreferenceScreen>

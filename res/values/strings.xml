@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Battery indicator style</string>	
+    <string name="battery_style_stock">Stock battery indicator</string>
+    <string name="battery_style_circle">Circle battery with percentage</string>
+
+</resources>
