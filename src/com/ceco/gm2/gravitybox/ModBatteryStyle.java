@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
@@ -74,20 +75,15 @@ public class ModBatteryStyle {
 
                     @SuppressWarnings("unchecked")
                     ArrayList<ImageView> mIconViews = (ArrayList<ImageView>) XposedHelpers.getObjectField(param.thisObject, "mIconViews");
+                    @SuppressWarnings("unchecked")
+                    ArrayList<TextView> mLabelViews = (ArrayList<TextView>) XposedHelpers.getObjectField(param.thisObject, "mLabelViews");
 
-                    switch(mBatteryStyle) {
-                        case GravityBoxSettings.BATTERY_STYLE_NONE:
-                            mIconViews.get(0).setVisibility(View.GONE);
-                            mIconViews.get(1).setVisibility(View.GONE);
-                            break;
-                        case GravityBoxSettings.BATTERY_STYLE_CIRCLE:
-                            mIconViews.get(0).setVisibility(View.GONE);
-                            mIconViews.get(1).setVisibility(View.VISIBLE);
-                            break;
-                        default:
-                            mIconViews.get(0).setVisibility(View.VISIBLE);
-                            mIconViews.get(1).setVisibility(View.GONE);                        
-                    }
+                    mIconViews.get(0).setVisibility(mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_STOCK ?
+                            View.VISIBLE : View.GONE);
+                    mIconViews.get(1).setVisibility(mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE ?
+                            View.VISIBLE : View.GONE);
+                    mLabelViews.get(0).setVisibility(mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_PERCENT ?
+                            View.VISIBLE : View.GONE);
                 }
             });
         }
