@@ -1,7 +1,6 @@
 package com.ceco.gm2.gravitybox;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import android.os.Bundle;
@@ -27,9 +26,7 @@ public class GravityBoxSettings extends Activity {
 
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
 
-    private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
-            PREF_KEY_VOL_MUSIC_CONTROLS
-    ));
+    private static final List<String> rebootKeys = new ArrayList<String>();
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -19,10 +19,13 @@ import de.robv.android.xposed.callbacks.XCallback;
 
 public class ModVolumeKeySkipTrack {
     private static boolean mIsLongPress = false;
+    private static XSharedPreferences mPrefs;
 
-    static void init() {
+    static void init(XSharedPreferences prefs) {
         try {
             XposedBridge.log("ModVolumeKeySkipTrack: init");
+
+            mPrefs = prefs;
 
             Class<?> classPhoneWindowManager = findClass("com.android.internal.policy.impl.PhoneWindowManager", null);
             XposedBridge.hookAllConstructors(classPhoneWindowManager, handleConstructPhoneWindowManager);
@@ -35,8 +38,10 @@ public class ModVolumeKeySkipTrack {
     private static XC_MethodHook handleInterceptKeyBeforeQueueing = new XC_MethodHook(XCallback.PRIORITY_HIGHEST) {
         @Override
         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+            mPrefs.reload();
             final boolean isScreenOn = (Boolean) param.args[2];
-            if (!isScreenOn) {
+            if (!isScreenOn && 
+                  mPrefs.getBoolean(GravityBoxSettings.PREF_KEY_VOL_MUSIC_CONTROLS, false)) {
                 final KeyEvent event = (KeyEvent) param.args[0];
                 final int keyCode = event.getKeyCode();
                 if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN || keyCode == KeyEvent.KEYCODE_VOLUME_UP)

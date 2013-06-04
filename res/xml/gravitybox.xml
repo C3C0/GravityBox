@@ -19,6 +19,6 @@
         android:key="pref_vol_music_controls"
         android:title="@string/vol_music_controls_title"
         android:summary="@string/vol_music_controls_summary"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
 </PreferenceScreen>
