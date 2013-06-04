@@ -7,20 +7,58 @@ import java.util.ArrayList;
 
 import android.content.Intent;
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
+import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 
 public class ModBatteryStyle {
     public static final String PACKAGE_NAME = "com.android.systemui";
     public static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     public static final String CLASS_BATTERY_CONTROLLER = "com.android.systemui.statusbar.policy.BatteryController";
     public static final String ACTION_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
+
+    public static void initResources(XSharedPreferences prefs, InitPackageResourcesParam resparam) {
+        try {
+            resparam.res.hookLayout(PACKAGE_NAME, "layout", "gemini_super_status_bar", new XC_LayoutInflated() {
+
+                @Override
+                public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
+
+                    ViewGroup vg = (ViewGroup) liparam.view.findViewById(
+                            liparam.res.getIdentifier("signal_battery_cluster", "id", PACKAGE_NAME));
+
+                    // GM2 specific - if there's already view with id "circle_battery", remove it
+                    ImageView exView = (ImageView) vg.findViewById(liparam.res.getIdentifier("circle_battery", "id", PACKAGE_NAME));
+                    if (exView != null) {
+                        XposedBridge.log("ModBatteryStyle: circle_battery view found - removing");
+                        vg.removeView(exView);
+                    }
+
+                    // inject circle battery view
+                    CmCircleBattery circleBattery = new CmCircleBattery(vg.getContext());
+                    circleBattery.setTag("circle_battery");
+                    LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(
+                            LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                    circleBattery.setLayoutParams(lParams);
+                    circleBattery.setPadding(4, 0, 0, 0);
+                    vg.addView(circleBattery);
+                    XposedBridge.log("ModBatteryStyle: CmCircleBattery injected");
+                }
+                
+            });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+    }
 
     public static void init(final XSharedPreferences prefs, ClassLoader classLoader) {
 
@@ -38,10 +76,7 @@ public class ModBatteryStyle {
 
                     Object mBatteryController = XposedHelpers.getObjectField(param.thisObject, "mBatteryController");
                     View mStatusBarView = (View) XposedHelpers.getObjectField(param.thisObject, "mStatusBarView");
-
-                    Resources r = ((Context) XposedHelpers.getObjectField(param.thisObject, "mContext")).getResources();
-                    ImageView circleBattery = (ImageView) mStatusBarView.findViewById(r.getIdentifier("circle_battery", "id", PACKAGE_NAME));
-
+                    ImageView circleBattery = (ImageView) mStatusBarView.findViewWithTag("circle_battery");
                     XposedHelpers.callMethod(mBatteryController, "addIconView", circleBattery);
                     XposedBridge.log("ModBatteryStyle: BatteryController.addIconView(circleBattery)");
                 }
