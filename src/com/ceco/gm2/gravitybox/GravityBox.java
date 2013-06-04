@@ -22,12 +22,13 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
     @Override
     public void handleInitPackageResources(InitPackageResourcesParam resparam) throws Throwable {
 
-        if (resparam.packageName.equals(ModBatteryStyle.PACKAGE_NAME))
-            ModBatteryStyle.init(prefs, resparam);
     }
 
     @Override
     public void handleLoadPackage(LoadPackageParam lpparam) throws Throwable {
+
+        if (lpparam.packageName.equals(ModBatteryStyle.PACKAGE_NAME))
+            ModBatteryStyle.init(prefs, lpparam.classLoader);
 
         if (lpparam.packageName.equals(ModLowBatteryWarning.PACKAGE_NAME))
             ModLowBatteryWarning.init(prefs, lpparam.classLoader);

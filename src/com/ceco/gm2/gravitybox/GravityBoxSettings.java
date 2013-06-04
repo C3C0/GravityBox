@@ -10,6 +10,7 @@ import android.preference.PreferenceFragment;
 import android.widget.Toast;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 
@@ -26,7 +27,6 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
 
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
-            PREF_KEY_BATTERY_STYLE,
             PREF_KEY_VOL_MUSIC_CONTROLS
     ));
     
@@ -70,7 +70,7 @@ public class GravityBoxSettings extends Activity {
         @Override
         public void onPause() {
             mPrefs.unregisterOnSharedPreferenceChangeListener(this);
-            
+
             super.onPause();
         }
 
@@ -82,6 +82,13 @@ public class GravityBoxSettings extends Activity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
             updatePreferences();
+
+            if (key.equals(PREF_KEY_BATTERY_STYLE)) {
+                int batteryStyle = Integer.valueOf(prefs.getString(PREF_KEY_BATTERY_STYLE, "1"));
+                Intent i = new Intent(ModBatteryStyle.ACTION_BATTERY_STYLE_CHANGED);
+                i.putExtra("batteryStyle", batteryStyle);
+                getActivity().sendBroadcast(i);
+            }
 
             if (rebootKeys.contains(key))
                 Toast.makeText(getActivity(), getString(R.string.reboot_required), Toast.LENGTH_SHORT).show();
