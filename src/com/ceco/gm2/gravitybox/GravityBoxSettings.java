@@ -2,9 +2,11 @@ package com.ceco.gm2.gravitybox;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.MultiSelectListPreference;
 import android.preference.PreferenceFragment;
 import android.widget.Toast;
 import android.app.Activity;
@@ -24,7 +26,10 @@ public class GravityBoxSettings extends Activity {
     public static final int BATTERY_WARNING_POPUP = 1;
     public static final int BATTERY_WARNING_SOUND = 2;
 
+    public static final String PREF_KEY_SIGNAL_ICON_AUTOHIDE = "pref_signal_icon_autohide";
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
+
+    public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
     private static final List<String> rebootKeys = new ArrayList<String>();
     
@@ -39,6 +44,7 @@ public class GravityBoxSettings extends Activity {
     public static class PrefsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
         private ListPreference mBatteryStyle;
         private ListPreference mLowBatteryWarning;
+        private MultiSelectListPreference mSignalIconAutohide;
         private SharedPreferences mPrefs;
 
         @SuppressWarnings("deprecation")
@@ -55,6 +61,7 @@ public class GravityBoxSettings extends Activity {
 
             mBatteryStyle = (ListPreference) findPreference(PREF_KEY_BATTERY_STYLE);
             mLowBatteryWarning = (ListPreference) findPreference(PREF_KEY_LOW_BATTERY_WARNING_POLICY);
+            mSignalIconAutohide = (MultiSelectListPreference) findPreference(PREF_KEY_SIGNAL_ICON_AUTOHIDE);
         }
 
         @Override
@@ -75,18 +82,34 @@ public class GravityBoxSettings extends Activity {
         private void updatePreferences() {
             mBatteryStyle.setSummary(mBatteryStyle.getEntry());
             mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
+
+            Set<String> autoHide =  mSignalIconAutohide.getValues();
+            String summary = getString(R.string.signal_icon_autohide_summary);
+            if (autoHide != null && autoHide.size() > 0) {
+                summary = "";
+                for (String str: autoHide) {
+                    if (!summary.isEmpty()) summary += ", ";
+                    summary += str.equals("sim1") ? getString(R.string.sim_slot_1) : getString(R.string.sim_slot_2);
+                }
+            }
+            mSignalIconAutohide.setSummary(summary);
         }
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
             updatePreferences();
 
+            Intent intent = new Intent();
             if (key.equals(PREF_KEY_BATTERY_STYLE)) {
+                intent.setAction(ModBatteryStyle.ACTION_BATTERY_STYLE_CHANGED);
                 int batteryStyle = Integer.valueOf(prefs.getString(PREF_KEY_BATTERY_STYLE, "1"));
-                Intent i = new Intent(ModBatteryStyle.ACTION_BATTERY_STYLE_CHANGED);
-                i.putExtra("batteryStyle", batteryStyle);
-                getActivity().sendBroadcast(i);
+                intent.putExtra("batteryStyle", batteryStyle);                
+            } else if (key.equals(PREF_KEY_SIGNAL_ICON_AUTOHIDE)) {
+                intent.setAction(ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED);
+                String[] autohidePrefs = mSignalIconAutohide.getValues().toArray(new String[0]);
+                intent.putExtra("autohidePrefs", autohidePrefs);
             }
+            getActivity().sendBroadcast(intent);
 
             if (rebootKeys.contains(key))
                 Toast.makeText(getActivity(), getString(R.string.reboot_required), Toast.LENGTH_SHORT).show();

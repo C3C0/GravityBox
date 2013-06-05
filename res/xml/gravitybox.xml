@@ -15,6 +15,13 @@
         android:entryValues="@array/low_battery_warning_policy_values"
         android:defaultValue="3" />
 
+	<MultiSelectListPreference
+	    android:key="pref_signal_icon_autohide"
+	    android:title="@string/signal_icon_autohide_title"
+	    android:entries="@array/signal_icon_autohide_entries"
+	    android:entryValues="@array/signal_icon_autohide_values"
+	    android:defaultValue="@array/empty_array" />
+
     <CheckBoxPreference 
         android:key="pref_vol_music_controls"
         android:title="@string/vol_music_controls_title"

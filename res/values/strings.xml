@@ -20,4 +20,9 @@
 
     <string name="reboot_required">Change will be applied after the reboot</string>
 
+    <string name="signal_icon_autohide_title">Auto-hide signal icons</string>
+    <string name="signal_icon_autohide_summary">Auto-hides signal icons for selected SIM slots when SIM card is not inserted</string>
+    <string name="sim_slot_1">SIM Slot 1</string>
+    <string name="sim_slot_2">SIM Slot 2</string>
+
 </resources>
