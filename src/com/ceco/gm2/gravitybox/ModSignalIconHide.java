@@ -1,5 +1,7 @@
 package com.ceco.gm2.gravitybox;
 
+import static de.robv.android.xposed.XposedHelpers.findClass;
+
 import java.util.Set;
 
 import android.content.BroadcastReceiver;
@@ -17,6 +19,7 @@ import de.robv.android.xposed.XposedHelpers;
 public class ModSignalIconHide {
     public static final String PACKAGE_NAME = "com.android.systemui";
     private static final String CLASS_SIGNAL_CLUSTER_VIEW = "com.android.systemui.statusbar.SignalClusterViewGemini";
+    private static final String CLASS_UICC_CONTROLLER = "com.android.internal.telephony.uicc.UiccController";
     private static boolean autohideSlot1;
     private static boolean autohideSlot2;
 
@@ -85,7 +88,29 @@ public class ModSignalIconHide {
                     }
                 }
             });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+    }
 
+    public static void initZygote(final XSharedPreferences prefs) {
+        XposedBridge.log("ModSignalIconHide: initZygote");
+
+        try {
+            Class<?> uiccControllerClass = findClass(CLASS_UICC_CONTROLLER, null);
+    
+            XposedHelpers.findAndHookMethod(uiccControllerClass, "setNotification", int.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    XposedBridge.log("ModSignalIconHide: UiccController.setNotification(" + param.args[0] + ")");
+
+                    Set<String> autohidePrefs = prefs.getStringSet(GravityBoxSettings.PREF_KEY_SIGNAL_ICON_AUTOHIDE, null);
+                    if (autohidePrefs != null && autohidePrefs.contains("notifications_disabled")) {
+                        XposedBridge.log("ModSignalIconHide: SIM not inserted notifications disabled - skipping method");
+                        param.setResult(null);
+                    }
+                }
+            });
         } catch (Exception e) {
             XposedBridge.log(e);
         }

@@ -85,13 +85,20 @@ public class GravityBoxSettings extends Activity {
             mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
 
             Set<String> autoHide =  mSignalIconAutohide.getValues();
-            String summary = getString(R.string.signal_icon_autohide_summary);
-            if (autoHide != null && autoHide.size() > 0) {
-                summary = "";
-                for (String str: autoHide) {
-                    if (!summary.isEmpty()) summary += ", ";
-                    summary += str.equals("sim1") ? getString(R.string.sim_slot_1) : getString(R.string.sim_slot_2);
-                }
+            String summary = "";
+            if (autoHide.contains("notifications_disabled")) {
+                summary += getString(R.string.sim_disable_notifications_summary);
+            }
+            if (autoHide.contains("sim1")) {
+                if (!summary.isEmpty()) summary += ", ";
+                summary += getString(R.string.sim_slot_1);
+            }
+            if (autoHide.contains("sim2")) {
+                if (!summary.isEmpty()) summary += ", ";
+                summary += getString(R.string.sim_slot_2);
+            }
+            if (summary.isEmpty()) {
+                summary = getString(R.string.signal_icon_autohide_summary);
             }
             mSignalIconAutohide.setSummary(summary);
         }

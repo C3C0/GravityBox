@@ -21,8 +21,10 @@
     <string name="reboot_required">Change will be applied after the reboot</string>
 
     <string name="signal_icon_autohide_title">Auto-hide signal icons</string>
-    <string name="signal_icon_autohide_summary">Auto-hides signal icons for selected SIM slots when SIM card is not inserted</string>
-    <string name="sim_slot_1">SIM Slot 1</string>
-    <string name="sim_slot_2">SIM Slot 2</string>
+    <string name="signal_icon_autohide_summary">Auto-hides signal icons for selected SIM slots when SIM card is not inserted, disables \"SIM not inserted\" notifications</string>
+    <string name="sim_slot_1">Auto-hide SIM Slot 1</string>
+    <string name="sim_slot_2">Auto-hide SIM Slot 2</string>
+    <string name="sim_disable_notifications">Disable notifications</string>
+    <string name="sim_disable_notifications_summary">\"SIM not inserted\" notifications disabled</string>
 
 </resources>

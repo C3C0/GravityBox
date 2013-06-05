@@ -32,11 +32,13 @@
     <string-array name="signal_icon_autohide_entries"  translatable="false">
         <item>@string/sim_slot_1</item>
         <item>@string/sim_slot_2</item>
+        <item>@string/sim_disable_notifications</item>
     </string-array>
 
     <string-array name="signal_icon_autohide_values" translatable="false">
         <item>sim1</item>
         <item>sim2</item>
+        <item>notifications_disabled</item>
     </string-array>
 
     <string-array name="empty_array" />
