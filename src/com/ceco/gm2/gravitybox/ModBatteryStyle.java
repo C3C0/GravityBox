@@ -24,7 +24,6 @@ public class ModBatteryStyle {
     public static final String PACKAGE_NAME = "com.android.systemui";
     public static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     public static final String CLASS_BATTERY_CONTROLLER = "com.android.systemui.statusbar.policy.BatteryController";
-    public static final String ACTION_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
 
     public static void initResources(XSharedPreferences prefs, InitPackageResourcesParam resparam) {
         try {
@@ -102,7 +101,8 @@ public class ModBatteryStyle {
 
                     int mBatteryStyle = (Integer) XposedHelpers.getAdditionalInstanceField(param.thisObject, "mBatteryStyle");
 
-                    if (intent.getAction().equals(ACTION_BATTERY_STYLE_CHANGED) && intent.hasExtra("batteryStyle")) {
+                    if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_BATTERY_STYLE_CHANGED) && 
+                            intent.hasExtra("batteryStyle")) {
                         mBatteryStyle = intent.getIntExtra("batteryStyle", 1);
                         XposedHelpers.setAdditionalInstanceField(param.thisObject, "mBatteryStyle", mBatteryStyle);
                         XposedBridge.log("ModBatteryStyle: mBatteryStyle changed to: " + mBatteryStyle);

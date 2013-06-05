@@ -29,6 +29,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_SIGNAL_ICON_AUTOHIDE = "pref_signal_icon_autohide";
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
 
+    public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
     private static final List<String> rebootKeys = new ArrayList<String>();
@@ -101,7 +102,7 @@ public class GravityBoxSettings extends Activity {
 
             Intent intent = new Intent();
             if (key.equals(PREF_KEY_BATTERY_STYLE)) {
-                intent.setAction(ModBatteryStyle.ACTION_BATTERY_STYLE_CHANGED);
+                intent.setAction(ACTION_PREF_BATTERY_STYLE_CHANGED);
                 int batteryStyle = Integer.valueOf(prefs.getString(PREF_KEY_BATTERY_STYLE, "1"));
                 intent.putExtra("batteryStyle", batteryStyle);                
             } else if (key.equals(PREF_KEY_SIGNAL_ICON_AUTOHIDE)) {
