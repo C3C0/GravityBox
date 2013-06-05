@@ -19,16 +19,26 @@ import de.robv.android.xposed.callbacks.XCallback;
 
 public class ModVolumeKeySkipTrack {
     private static boolean mIsLongPress = false;
-    private static XSharedPreferences mPrefs;
+    private static boolean allowSkipTrack;
 
-    static void init(XSharedPreferences prefs) {
+    static void init(final XSharedPreferences prefs) {
         try {
             XposedBridge.log("ModVolumeKeySkipTrack: init");
 
-            mPrefs = prefs;
+            updatePreference(prefs);
 
             Class<?> classPhoneWindowManager = findClass("com.android.internal.policy.impl.PhoneWindowManager", null);
             XposedBridge.hookAllConstructors(classPhoneWindowManager, handleConstructPhoneWindowManager);
+
+            // take advantage of screenTurnedOff method for refreshing state of allowSkipTrack preference
+            findAndHookMethod(classPhoneWindowManager, "screenTurnedOff", int.class, new XC_MethodHook() {
+
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    XposedBridge.log("ModVolumeKeySkipTrack: screenTurnedOff");
+                    updatePreference(prefs);
+                }
+            });
 
             findAndHookMethod(classPhoneWindowManager, "interceptKeyBeforeQueueing",
                     KeyEvent.class, int.class, boolean.class, handleInterceptKeyBeforeQueueing);
@@ -38,10 +48,8 @@ public class ModVolumeKeySkipTrack {
     private static XC_MethodHook handleInterceptKeyBeforeQueueing = new XC_MethodHook(XCallback.PRIORITY_HIGHEST) {
         @Override
         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-            mPrefs.reload();
             final boolean isScreenOn = (Boolean) param.args[2];
-            if (!isScreenOn && 
-                  mPrefs.getBoolean(GravityBoxSettings.PREF_KEY_VOL_MUSIC_CONTROLS, false)) {
+            if (!isScreenOn && allowSkipTrack) { 
                 final KeyEvent event = (KeyEvent) param.args[0];
                 final int keyCode = event.getKeyCode();
                 if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN || keyCode == KeyEvent.KEYCODE_VOLUME_UP)
@@ -135,5 +143,11 @@ public class ModVolumeKeySkipTrack {
 
         mHandler.removeCallbacks(mVolumeUpLongPress);
         mHandler.removeCallbacks(mVolumeDownLongPress);
+    }
+
+    private static void updatePreference(final XSharedPreferences prefs) {
+        prefs.reload();
+        allowSkipTrack = prefs.getBoolean(GravityBoxSettings.PREF_KEY_VOL_MUSIC_CONTROLS, false);
+        XposedBridge.log("ModVolumeKeySkipTrack: allowSkipTrack = " + allowSkipTrack);
     }
 }
