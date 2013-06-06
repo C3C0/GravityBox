@@ -8,7 +8,7 @@ import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResou
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackageResources, IXposedHookLoadPackage {
-    private static final String PACKAGE_NAME = GravityBox.class.getPackage().getName();
+    public static final String PACKAGE_NAME = GravityBox.class.getPackage().getName();
     private static XSharedPreferences prefs;
 
     @Override
@@ -40,5 +40,8 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         if (lpparam.packageName.equals(ModClearAllRecents.PACKAGE_NAME))
             ModClearAllRecents.init(lpparam.classLoader);
+
+        if (lpparam.packageName.equals(ModRebootMenu.PACKAGE_NAME))
+            ModRebootMenu.init(prefs, lpparam.classLoader);
     }
 }

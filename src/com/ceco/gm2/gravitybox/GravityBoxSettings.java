@@ -27,6 +27,7 @@ public class GravityBoxSettings extends Activity {
     public static final int BATTERY_WARNING_SOUND = 2;
 
     public static final String PREF_KEY_SIGNAL_ICON_AUTOHIDE = "pref_signal_icon_autohide";
+    public static final String PREF_KEY_POWEROFF_ADVANCED = "pref_poweroff_advanced";
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
 
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
