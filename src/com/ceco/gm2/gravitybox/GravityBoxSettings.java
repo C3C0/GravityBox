@@ -30,6 +30,11 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_POWEROFF_ADVANCED = "pref_poweroff_advanced";
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
 
+    public static final String PREF_KEY_VOL_KEY_CURSOR_CONTROL = "pref_vol_key_cursor_control";
+    public static final int VOL_KEY_CURSOR_CONTROL_OFF = 0;
+    public static final int VOL_KEY_CURSOR_CONTROL_ON = 1;
+    public static final int VOL_KEY_CURSOR_CONTROL_ON_REVERSE = 2;
+
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 

@@ -31,4 +31,10 @@
     <string name="poweroff_advanced_summary">Enables advanced power-off menu with option to reboot to recovery</string>
     <string name="poweroff_recovery">Recovery</string>    
 
+    <string name="vol_key_cursor_control_title">Volume key cursor control</string>
+    <string name="vol_key_cursor_control_summary">Controls cursor using volume keys in text fields</string>
+    <string name="vol_key_cursor_control_off">Disabled</string>
+    <string name="vol_key_cursor_control_on">Volume up/down moves cursor left/right</string>
+    <string name="vol_key_cursor_control_on_reverse">Volume up/down moves cursor right/left</string>
+
 </resources>

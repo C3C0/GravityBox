@@ -17,6 +17,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         
         ModVolumeKeySkipTrack.init(prefs);
         ModSignalIconHide.initZygote(prefs);
+        ModVolKeyCursor.initZygote(prefs);
     }
 
     @Override

@@ -28,6 +28,14 @@
         android:summary="@string/poweroff_advanced_summary"
         android:defaultValue="false" />
 
+    <ListPreference
+        android:key="pref_vol_key_cursor_control"
+        android:title="@string/vol_key_cursor_control_title"
+        android:summary="@string/vol_key_cursor_control_summary"
+        android:entries="@array/vol_key_cursor_control_entries"
+        android:entryValues="@array/vol_key_cursor_control_values"
+        android:defaultValue="0" />
+
     <CheckBoxPreference 
         android:key="pref_vol_music_controls"
         android:title="@string/vol_music_controls_title"
