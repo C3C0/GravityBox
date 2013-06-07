@@ -53,10 +53,11 @@ public class ModClearAllRecents {
                     // otherwise create and inject new ImageView and set onClick listener to handle action
                     ImageView imgView = new ImageView(vg.getContext());
                     imgView.setImageDrawable(res.getDrawable(res.getIdentifier("ic_notify_clear", "drawable", PACKAGE_NAME)));
+                    int sizeDp = (int)(50 * res.getDisplayMetrics().density);
                     FrameLayout.LayoutParams lParams = new FrameLayout.LayoutParams(
-                            50, 50, Gravity.TOP | Gravity.RIGHT);
-                    lParams.topMargin = 20;
-                    lParams.rightMargin = 25;
+                            sizeDp, sizeDp, Gravity.TOP | Gravity.RIGHT);
+                    lParams.topMargin = 10;
+                    lParams.rightMargin = 10;
                     imgView.setLayoutParams(lParams);
                     imgView.setScaleType(ScaleType.CENTER);
                     imgView.setClickable(true);
