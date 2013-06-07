@@ -104,12 +104,12 @@ public class ModClearAllRecents {
         XposedBridge.log("ModClearAllRecents: handleDismissChild - removing all views");
 
         LinearLayout mLinearLayout = (LinearLayout) XposedHelpers.getObjectField(param.thisObject, "mLinearLayout");
-        Handler mHandler = (Handler) XposedHelpers.getObjectField(param.thisObject, "mHandler");
+        Handler handler = new Handler();
 
         int count = mLinearLayout.getChildCount();
         for (int i = 0; i < count; i++) {
             final View child = mLinearLayout.getChildAt(i);
-            mHandler.postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     try {
