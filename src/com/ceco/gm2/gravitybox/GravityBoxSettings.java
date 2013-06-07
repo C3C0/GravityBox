@@ -1,6 +1,7 @@
 package com.ceco.gm2.gravitybox;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -10,7 +11,9 @@ import android.preference.MultiSelectListPreference;
 import android.preference.PreferenceFragment;
 import android.widget.Toast;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -35,11 +38,17 @@ public class GravityBoxSettings extends Activity {
     public static final int VOL_KEY_CURSOR_CONTROL_ON = 1;
     public static final int VOL_KEY_CURSOR_CONTROL_ON_REVERSE = 2;
 
+    public static final String PREF_KEY_FIX_CALLER_ID_PHONE = "pref_fix_caller_id_phone";
+    public static final String PREF_KEY_FIX_CALLER_ID_MMS = "pref_fix_caller_id_mms";
+    public static final String PREF_KEY_FIX_CALENDAR = "pref_fix_calendar";
+
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
-    private static final List<String> rebootKeys = new ArrayList<String>();
-    
+    private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
+            PREF_KEY_FIX_CALENDAR
+    ));
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +62,7 @@ public class GravityBoxSettings extends Activity {
         private ListPreference mLowBatteryWarning;
         private MultiSelectListPreference mSignalIconAutohide;
         private SharedPreferences mPrefs;
+        private AlertDialog mDialog;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -82,6 +92,11 @@ public class GravityBoxSettings extends Activity {
         @Override
         public void onPause() {
             mPrefs.unregisterOnSharedPreferenceChangeListener(this);
+
+            if (mDialog != null && mDialog.isShowing()) {
+                mDialog.dismiss();
+                mDialog = null;
+            }
 
             super.onPause();
         }
@@ -124,6 +139,25 @@ public class GravityBoxSettings extends Activity {
                 intent.putExtra("autohidePrefs", autohidePrefs);
             }
             getActivity().sendBroadcast(intent);
+
+            if (key.equals(PREF_KEY_FIX_CALLER_ID_PHONE) ||
+                    key.equals(PREF_KEY_FIX_CALLER_ID_MMS)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.important);
+                int msgId = (key.equals(PREF_KEY_FIX_CALLER_ID_PHONE)) ?
+                        R.string.fix_caller_id_phone_alert : R.string.fix_caller_id_mms_alert;
+                builder.setMessage(msgId);
+                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Toast.makeText(getActivity(), getString(R.string.reboot_required), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                mDialog = builder.create();
+                mDialog.show();
+            }
 
             if (rebootKeys.contains(key))
                 Toast.makeText(getActivity(), getString(R.string.reboot_required), Toast.LENGTH_SHORT).show();

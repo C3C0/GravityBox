@@ -18,7 +18,7 @@
     <string name="low_battery_warning_sound">Sound only</string>
     <string name="low_battery_warning_off">Off</string>
 
-    <string name="reboot_required">Change will be applied after the reboot</string>
+    <string name="reboot_required">Change will be applied after reboot</string>
 
     <string name="signal_icon_autohide_title">Auto-hide signal icons</string>
     <string name="signal_icon_autohide_summary">Auto-hides signal icons for selected SIM slots when SIM card is not inserted, disables \"SIM not inserted\" notifications</string>
@@ -36,5 +36,21 @@
     <string name="vol_key_cursor_control_off">Disabled</string>
     <string name="vol_key_cursor_control_on">Volume up/down moves cursor left/right</string>
     <string name="vol_key_cursor_control_on_reverse">Volume up/down moves cursor right/left</string>
+
+    <string name="pref_group_mods_title">Mods</string>
+    <string name="pref_group_fixes_title">Fixes - use only if needed</string>
+
+    <string name="fix_caller_id_phone_title">Fix caller ID for phone</string>
+    <string name="fix_caller_id_phone_summary">Enable in case your contact is not matched when receiving call (requires reboot)</string>
+    <string name="fix_caller_id_phone_alert">After reboot, you should clear and re-add your contacts for change to take effect! Use Settings / Applications / All - to clear data of Contacts provider.</string>
+
+    <string name="fix_caller_id_mms_title">Fix caller ID for messages</string>
+    <string name="fix_caller_id_mms_summary">Enable in case you experience splitted conversation threads for the same contact (requires reboot)</string>
+    <string name="fix_caller_id_mms_alert">After reboot, you should delete all splitted threads in messaging app for change to take effect!</string>
+
+    <string name="fix_calendar_title">Fix calendar app</string>
+    <string name="fix_calendar_summary">Enable in case you experience periodic self-turning on of the screen (requires reboot)</string>
+
+    <string name="important">Important</string>
 
 </resources>

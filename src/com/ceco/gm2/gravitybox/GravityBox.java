@@ -18,7 +18,9 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         ModVolumeKeySkipTrack.init(prefs);
         ModSignalIconHide.initZygote(prefs);
         ModVolKeyCursor.initZygote(prefs);
-        FixCallerIdPhone.initZygote(prefs);
+
+        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALLER_ID_PHONE, false))
+            FixCallerIdPhone.initZygote(prefs);
     }
 
     @Override
@@ -46,10 +48,12 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         if (lpparam.packageName.equals(ModRebootMenu.PACKAGE_NAME))
             ModRebootMenu.init(prefs, lpparam.classLoader);
 
-        if (lpparam.packageName.equals(FixCallerIdMms.PACKAGE_NAME))
+        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALLER_ID_MMS, false) &&
+                lpparam.packageName.equals(FixCallerIdMms.PACKAGE_NAME))
             FixCallerIdMms.init(prefs, lpparam.classLoader);
 
-        if (lpparam.packageName.equals(FixCalendar.PACKAGE_NAME))
+        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALENDAR, false) &&
+                lpparam.packageName.equals(FixCalendar.PACKAGE_NAME))
             FixCalendar.init(prefs, lpparam.classLoader);
     }
 }
