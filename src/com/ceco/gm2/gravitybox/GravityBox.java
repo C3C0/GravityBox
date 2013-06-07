@@ -56,5 +56,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALENDAR, false) &&
                 lpparam.packageName.equals(FixCalendar.PACKAGE_NAME))
             FixCalendar.init(prefs, lpparam.classLoader);
+
+        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_DATETIME_CRASH, false) &&
+                lpparam.packageName.equals(FixDateTimeCrash.PACKAGE_NAME)) {
+            FixDateTimeCrash.init(prefs, lpparam.classLoader);
+        }
     }
 }

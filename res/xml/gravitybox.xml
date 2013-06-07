@@ -51,6 +51,12 @@
         android:title="@string/pref_group_fixes_title">
 
         <CheckBoxPreference
+            android:key="pref_fix_datetime_crash"
+            android:title="@string/fix_datetime_crash_title"
+            android:summary="@string/fix_datetime_crash_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="pref_fix_caller_id_phone"
             android:title="@string/fix_caller_id_phone_title"
             android:summary="@string/fix_caller_id_phone_summary"

@@ -38,6 +38,7 @@ public class GravityBoxSettings extends Activity {
     public static final int VOL_KEY_CURSOR_CONTROL_ON = 1;
     public static final int VOL_KEY_CURSOR_CONTROL_ON_REVERSE = 2;
 
+    public static final String PREF_KEY_FIX_DATETIME_CRASH = "pref_fix_datetime_crash";
     public static final String PREF_KEY_FIX_CALLER_ID_PHONE = "pref_fix_caller_id_phone";
     public static final String PREF_KEY_FIX_CALLER_ID_MMS = "pref_fix_caller_id_mms";
     public static final String PREF_KEY_FIX_CALENDAR = "pref_fix_calendar";
@@ -46,6 +47,7 @@ public class GravityBoxSettings extends Activity {
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
+            PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR
     ));
 

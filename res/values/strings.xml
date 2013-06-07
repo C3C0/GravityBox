@@ -40,6 +40,9 @@
     <string name="pref_group_mods_title">Mods</string>
     <string name="pref_group_fixes_title">Fixes - use only if needed</string>
 
+    <string name="fix_datetime_crash_title">Fix Date&amp;Time settings crash</string>
+    <string name="fix_datetime_crash_summary">Enable in case you experience crash while accessing Date&amp;Time settings (requires reboot)</string>
+
     <string name="fix_caller_id_phone_title">Fix caller ID for phone</string>
     <string name="fix_caller_id_phone_summary">Enable in case your contact is not matched when receiving call (requires reboot)</string>
     <string name="fix_caller_id_phone_alert">After reboot, you should clear and re-add your contacts for change to take effect! Use Settings / Applications / All - to clear data of Contacts provider.</string>
