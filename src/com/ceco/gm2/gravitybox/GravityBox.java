@@ -44,7 +44,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
             ModSignalIconHide.init(prefs, lpparam.classLoader);
 
         if (lpparam.packageName.equals(ModClearAllRecents.PACKAGE_NAME))
-            ModClearAllRecents.init(lpparam.classLoader);
+            ModClearAllRecents.init(prefs, lpparam.classLoader);
 
         if (lpparam.packageName.equals(ModRebootMenu.PACKAGE_NAME))
             ModRebootMenu.init(prefs, lpparam.classLoader);

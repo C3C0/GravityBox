@@ -45,6 +45,12 @@
             android:summary="@string/vol_music_controls_summary"
             android:defaultValue="false" />
 
+    <CheckBoxPreference 
+            android:key="pref_recents_clear_all"
+            android:title="@string/recents_clear_all_title"
+            android:summary="@string/recents_clear_all_summary"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory 

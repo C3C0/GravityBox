@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ImageView.ScaleType;
 
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.XC_MethodHook.MethodHookParam;
@@ -21,7 +22,7 @@ public class ModClearAllRecents {
     public static final String CLASS_RECENT_HORIZONTAL_SCROLL_VIEW = "com.android.systemui.recent.RecentsHorizontalScrollView";
     public static final String CLASS_RECENT_PANEL_VIEW = "com.android.systemui.recent.RecentsPanelView";
 
-    public static void init(ClassLoader classLoader) {
+    public static void init(final XSharedPreferences prefs, ClassLoader classLoader) {
         XposedBridge.log("ModClearAllRecents: init");
 
         try {
@@ -33,6 +34,10 @@ public class ModClearAllRecents {
             XposedHelpers.findAndHookMethod(recentPanelViewClass, "onFinishInflate", new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    prefs.reload();
+                    if (!prefs.getBoolean(GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_ALL, false))
+                        return;
+                    
                     XposedBridge.log("ModClearAllRecents: RecentsPanelView onFinishInflate");
 
                     View view = (View) param.thisObject;
