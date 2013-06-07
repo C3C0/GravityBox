@@ -48,5 +48,8 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         if (lpparam.packageName.equals(FixCallerIdMms.PACKAGE_NAME))
             FixCallerIdMms.init(prefs, lpparam.classLoader);
+
+        if (lpparam.packageName.equals(FixCalendar.PACKAGE_NAME))
+            FixCalendar.init(prefs, lpparam.classLoader);
     }
 }
