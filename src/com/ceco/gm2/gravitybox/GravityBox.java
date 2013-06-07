@@ -14,7 +14,8 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
         prefs = new XSharedPreferences(PACKAGE_NAME);
-        
+
+        FixTraceFlood.initZygote();
         ModVolumeKeySkipTrack.init(prefs);
         ModSignalIconHide.initZygote(prefs);
         ModVolKeyCursor.initZygote(prefs);
