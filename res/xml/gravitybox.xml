@@ -39,16 +39,22 @@
             android:entryValues="@array/vol_key_cursor_control_values"
             android:defaultValue="0" />
 
-    <CheckBoxPreference 
+        <CheckBoxPreference 
             android:key="pref_vol_music_controls"
             android:title="@string/vol_music_controls_title"
             android:summary="@string/vol_music_controls_summary"
             android:defaultValue="false" />
 
-    <CheckBoxPreference 
+        <CheckBoxPreference 
             android:key="pref_recents_clear_all"
             android:title="@string/recents_clear_all_title"
             android:summary="@string/recents_clear_all_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
+            android:key="pref_caller_fullscreen_photo"
+            android:title="@string/caller_fullscreen_photo_title"
+            android:summary="@string/caller_fullscreen_photo_summary"
             android:defaultValue="false" />
 
     </PreferenceCategory>

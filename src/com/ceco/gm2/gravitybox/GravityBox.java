@@ -22,6 +22,8 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALLER_ID_PHONE, false))
             FixCallerIdPhone.initZygote(prefs);
+
+        ModCallCard.initZygote();
     }
 
     @Override
@@ -61,5 +63,8 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
                 lpparam.packageName.equals(FixDateTimeCrash.PACKAGE_NAME)) {
             FixDateTimeCrash.init(prefs, lpparam.classLoader);
         }
+
+        if (lpparam.packageName.equals(ModCallCard.PACKAGE_NAME))
+            ModCallCard.init(prefs, lpparam.classLoader);
     }
 }

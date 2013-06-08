@@ -59,4 +59,7 @@
 
     <string name="important">Important</string>
 
+    <string name="caller_fullscreen_photo_title">Fullscreen caller photo</string>
+    <string name="caller_fullscreen_photo_summary">Displays fullscreen caller photo on incoming call screen</string>
+
 </resources>
