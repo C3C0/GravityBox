@@ -1,15 +1,21 @@
 package com.ceco.gm2.gravitybox;
 
+import java.util.ArrayList;
+
 import android.app.AlertDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.PowerManager;
 import android.view.WindowManager;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+
+import com.ceco.gm2.gravitybox.adapters.*;
 
 public class ModRebootMenu {
     public static final String PACKAGE_NAME = "android";
@@ -54,16 +60,50 @@ public class ModRebootMenu {
                     int powerOffStrId = res.getIdentifier("power_off", "string", PACKAGE_NAME);
                     int rebootStrId = res.getIdentifier("factorytest_reboot", "string", PACKAGE_NAME);
                     int recoveryStrId = gbRes.getIdentifier("poweroff_recovery", "string", GravityBox.PACKAGE_NAME);
+                    Drawable powerOffIcon = gbRes.getDrawable(
+                            gbRes.getIdentifier("ic_lock_power_off", "drawable", GravityBox.PACKAGE_NAME));
+                    Drawable rebootIcon = gbRes.getDrawable(
+                            gbRes.getIdentifier("ic_lock_reboot", "drawable", GravityBox.PACKAGE_NAME));
+                    Drawable recoveryIcon = gbRes.getDrawable(
+                            gbRes.getIdentifier("ic_lock_recovery", "drawable", GravityBox.PACKAGE_NAME));
 
                     String[] items = new String[3];
                     items[0] = (powerOffStrId == 0) ? "Power off" : res.getString(powerOffStrId);
                     items[1] = (rebootStrId == 0) ? "Reboot" : res.getString(rebootStrId);
                     items[2] = (recoveryStrId == 0) ? "Recovery" : gbRes.getString(recoveryStrId);
 
+                    ArrayList<IIconListAdapterItem> itemList = new ArrayList<IIconListAdapterItem>();
+                    itemList.add(new BasicIconListItem(items[0], null, powerOffIcon, null));
+                    itemList.add(new BasicIconListItem(items[1], null, rebootIcon, null));
+                    itemList.add(new BasicIconListItem(items[2], null, recoveryIcon, null));
+
                     XposedBridge.log("ModRebootMenu: about to build power off dialog");
                     AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
                         .setTitle(items[0])
-                        .setSingleChoiceItems(items, 0, null)
+                        .setAdapter(new IconListAdapter(mContext, itemList), new DialogInterface.OnClickListener() {
+                            
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+                                XposedBridge.log("ModRebootMenu: onClick() item = " + which);
+                                switch (which) {
+                                    case 0: // power off - fall back to original method
+                                        try {
+                                            XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
+                                        } catch (Exception e) {
+                                            XposedBridge.log(e);
+                                        }
+                                        break;
+                                    case 1: // reboot
+                                        pm.reboot(null);
+                                        break;
+                                    case 2: // reboot recovery
+                                        pm.reboot("recovery");
+                                        break;
+                                }
+                            }
+                        })
                         .setNegativeButton(res.getString(res.getIdentifier("no", "string", PACKAGE_NAME)),
                                 new DialogInterface.OnClickListener() {
 
@@ -71,33 +111,7 @@ public class ModRebootMenu {
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.dismiss();
                                     }
-                                })
-                        .setPositiveButton(res.getString(res.getIdentifier("ok", "string", PACKAGE_NAME)),
-                                new DialogInterface.OnClickListener() {
-                                    
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                        PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-                                        int itemIndex = ((AlertDialog)dialog).getListView().getCheckedItemPosition();
-                                        XposedBridge.log("ModRebootMenu: onClick() item = " + itemIndex);
-                                        switch (itemIndex) {
-                                            case 0: // power off - fall back to original method
-                                                try {
-                                                    XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
-                                                } catch (Exception e) {
-                                                    XposedBridge.log(e);
-                                                }
-                                                break;
-                                            case 1: // reboot
-                                                pm.reboot(null);
-                                                break;
-                                            case 2: // reboot recovery
-                                                pm.reboot("recovery");
-                                                break;
-                                        }
-                                    }
-                                });
+                        });
                     AlertDialog dialog = builder.create();
                     dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
                     dialog.show();
