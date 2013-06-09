@@ -21,7 +21,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
@@ -308,9 +311,24 @@ public class CmCircleBattery extends ImageView {
     }
 
     /***
-     * we use XHDPI as a base resolution
+     * we need to measure the size of the circle battery by checking another
+     * resource. unfortunately, those resources have transparent/empty borders
+     * so we have to count the used pixel manually and deduct the size from
+     * it. quiet complicated, but the only way to fit properly into the
+     * statusbar for all resolutions
      */
     private void initSizeMeasureIconHeight() {
-        mCircleSize = 32;
+        int wifiIconId = 
+                getResources().getIdentifier("stat_sys_wifi_signal_4_fully", "drawable", "com.android.systemui");
+        final Bitmap measure = BitmapFactory.decodeResource(getResources(), wifiIconId);
+        final int x = measure.getWidth() / 2;
+
+        mCircleSize = 2;
+        for (int y = 0; y < measure.getHeight(); y++) {
+            int alpha = Color.alpha(measure.getPixel(x, y));
+            if (alpha > 5) {
+                mCircleSize++;
+            }
+        }
     }
 }
