@@ -103,7 +103,7 @@ public class ModSignalIconHide {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     XposedBridge.log("ModSignalIconHide: UiccController.setNotification(" + param.args[0] + ")");
-
+                    prefs.reload();
                     Set<String> autohidePrefs = prefs.getStringSet(GravityBoxSettings.PREF_KEY_SIGNAL_ICON_AUTOHIDE, null);
                     if (autohidePrefs != null && autohidePrefs.contains("notifications_disabled")) {
                         XposedBridge.log("ModSignalIconHide: SIM not inserted notifications disabled - skipping method");
