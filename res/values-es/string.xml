@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Indicador de batería</string>	
+    <string name="battery_style_stock">Indicador por defecto</string>
+    <string name="battery_style_circle">Circular con porcentaje</string>
+    <string name="battery_style_percent">Solo texto grande</string>
+    <string name="battery_style_none">Ninguno</string>
+
+    <string name="vol_music_controls_title">Teclas de volumen para cambiar la pista</string>
+    <string name="vol_music_controls_summary">Pulsación larga de las teclas de volumen cambia la pista, mientras la pantalla está apagada</string>
+
+    <string name="low_battery_warning_policy_title">Alarma de batería baja</string>
+    <string name="low_battery_warning_full">Notificación y sonido</string>
+    <string name="low_battery_warning_popup">Solo notificación</string>
+    <string name="low_battery_warning_sound">Solo sonido</string>
+    <string name="low_battery_warning_off">Desactivado</string>
+
+    <string name="reboot_required">Los cambios se aplicarán después de reiniciar</string>
+
+    <string name="signal_icon_autohide_title">Ocultar iconos de señal</string>
+    <string name="signal_icon_autohide_summary">Ocultar iconos de señal para las ranuras SIM cuando no hay SIM insertada, desactiva las notificaciones \"SIM no insertada\"</string>
+    <string name="sim_slot_1">Ocultar ranura SIM 1</string>
+    <string name="sim_slot_2">Ocultar ranura SIM 2</string>
+    <string name="sim_disable_notifications">Desactivar notificaciones</string>
+    <string name="sim_disable_notifications_summary">Desactivar las notificaciones \"SIM no insertada\"</string>
+
+    <string name="poweroff_advanced_title">Menú avanzado de apagado</string>
+    <string name="poweroff_advanced_summary">Habilita el menú avanzado de apagado, con la opción de reiniciar en modo recuperación</string>
+    <string name="poweroff_recovery">Modo recuperación</string>    
+
+    <string name="vol_key_cursor_control_title">Control del cursor con las teclas de volumen</string>
+    <string name="vol_key_cursor_control_summary">Controlar el cursor con las teclas de volumen, en campos de texto</string>
+    <string name="vol_key_cursor_control_off">Deshabilitado</string>
+    <string name="vol_key_cursor_control_on">El cursor se mueve izquierda/derecha</string>
+    <string name="vol_key_cursor_control_on_reverse">El cursor se mueve derecha/izquierda</string>
+
+    <string name="recents_clear_all_title">Borrado de tareas recientes</string>
+    <string name="recents_clear_all_summary">Habilita el botón para borrar todas las tareas recientes a la vez</string>
+
+    <string name="pref_group_mods_title">Personalizaciones</string>
+    <string name="pref_group_fixes_title">Parches - Activar solo en caso necesario</string>
+
+    <string name="fix_datetime_crash_title">Parche para el error de Fecha y Hora</string>
+    <string name="fix_datetime_crash_summary">Habilitar en caso de experimentar errores al acceder a la configuración de Fecha y Hora (requiere reiniciar)</string>
+
+    <string name="fix_caller_id_phone_title">Parche para el ID de llamada</string>
+    <string name="fix_caller_id_phone_summary">Habilitar si no se muestra correctamente el contacto al recibir una llamada (requiere reiniciar)</string>
+    <string name="fix_caller_id_phone_alert">¡Después de reiniciar, se deben borrar y restaurar los contactos para que el cambio haga efecto!  Seleccione Ajustes / Aplicaciones / Todas y borre los datos de la aplicación de contactos.</string>
+
+    <string name="fix_caller_id_mms_title">Parche para el ID de contacto en mensajes</string>
+    <string name="fix_caller_id_mms_summary">Habilitar en caso de experimentar conversaciones separadas para un mismo contacto (requiere reiniciar)</string>
+    <string name="fix_caller_id_mms_alert">¡Después de reiniciar, debe borrar todas las conversaciones en la aplicación de mensajería para que se apliquen los cambios!</string>
+
+    <string name="fix_calendar_title">Parche para el calendario</string>
+    <string name="fix_calendar_summary">Habilitar en caso de experimentar encendidos esporádicos de la pantalla (requiere reiniciar)</string>
+
+    <string name="important">Importante</string>
+
+    <string name="caller_fullscreen_photo_title">Fotografía a pantalla completa del contacto</string>
+    <string name="caller_fullscreen_photo_summary">Muestra la fotografía del contacto a pantalla completa en la pantalla de llamada entrante</string>
+
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Štýl indikátora batérie</string>	
+    <string name="battery_style_stock">Základný</string>
+    <string name="battery_style_circle">Kruhový s percentami</string>
+    <string name="battery_style_percent">Textový s percentami</string>
+    <string name="battery_style_none">Žiadny</string>
+
+    <string name="vol_music_controls_title">Ovládanie hudby tlačidlami hlasitosti</string>
+    <string name="vol_music_controls_summary">Umožní prepínanie skladieb dlhým podržaním tlačidiel hlasitosti pri vypnutej obrazovke</string>
+
+    <string name="low_battery_warning_policy_title">Upozornenie vybitia batérie</string>
+    <string name="low_battery_warning_full">Dialóg a zvuk</string>
+    <string name="low_battery_warning_popup">Len dialóg</string>
+    <string name="low_battery_warning_sound">Len zvuk</string>
+    <string name="low_battery_warning_off">Vypnuté</string>
+
+    <string name="reboot_required">Zmena sa prejaví po reštarte</string>
+
+    <string name="signal_icon_autohide_title">Zobrazenie ikon signálu</string>
+    <string name="signal_icon_autohide_summary">Umožní zapnutie automatického skrývania ikon signálu pre prázdne SIM sloty, umožňí vypnúť \"SIM nie je vložená\" hlásenia</string>
+    <string name="sim_slot_1">Automaticky skryť pre SIM 1</string>
+    <string name="sim_slot_2">Automaticky skryť pre SIM 2</string>
+    <string name="sim_disable_notifications">Vypnúť \"SIM nie je vložená\" hlásenia</string>
+    <string name="sim_disable_notifications_summary">\"SIM nie je vložená\" hlásenia vypnuté</string>
+
+    <string name="poweroff_advanced_title">Rozšírené menu napájania</string>
+    <string name="poweroff_advanced_summary">Umožní rozšírené menu napájania s možnosťou reštartu a reštartu do recovery</string>
+    <string name="poweroff_recovery">Recovery</string>    
+
+    <string name="vol_key_cursor_control_title">Pohyb kurzora tlačidlami hlasitosti</string>
+    <string name="vol_key_cursor_control_summary">Umožní pohyb kurzora pomocou tlačidiel hlasitosti v textových poliach</string>
+    <string name="vol_key_cursor_control_off">Vypnuté</string>
+    <string name="vol_key_cursor_control_on">Tlačidlo hore/dole pohybuje kurzorom doľava/doprava</string>
+    <string name="vol_key_cursor_control_on_reverse">Tlačidlo hore/dole pohybuje kurzorom doprava/doľava</string>
+
+    <string name="recents_clear_all_title">Ukončenie aktuálnych aplikácií</string>
+    <string name="recents_clear_all_summary">Zobrazí tlačidlo, ktoré umožní ukončenie všetkých aplikácií naraz, v zozname aktuálnych aplikácií</string>
+
+    <string name="pref_group_mods_title">Modifikácie</string>
+    <string name="pref_group_fixes_title">Opravy - použiť len ak je nutné</string>
+
+    <string name="fix_datetime_crash_title">Opraviť padanie dátumu a času</string>
+    <string name="fix_datetime_crash_summary">Použiť v prípade, ak nastavenie dátumu a času padá (vyžaduje reštart)</string>
+
+    <string name="fix_caller_id_phone_title">Opraviť identifikátor volajúceho</string>
+    <string name="fix_caller_id_phone_summary">Použiť v prípade, ak nie je číslo volajúceho identifikované počas prijímania hovoru (vyžaduje reštart)</string>
+    <string name="fix_caller_id_phone_alert">Aby sa oprava prejavila, je potrebné po reštarte vymazať a znova pridať kontakty! V Nastavenia / Aplikácie / Všetky, vyhľadajte \"Úložisko kontaktov\" a zvoľte vymazanie údajov. Uistite sa najprv, že máte zálohu kontaktov.</string>
+
+    <string name="fix_caller_id_mms_title">Opraviť identifikátor odosielateľa SMS</string>
+    <string name="fix_caller_id_mms_summary">Použiť v prípade ak dochádza pri prijatí SMS k vytváraniu duplicitných vlákien konverzácií pre ten istý kontakt (vyžaduje reštart)</string>
+    <string name="fix_caller_id_mms_alert">Aby sa oprava prejavila, je potrebné vymazať všetky existujúce duplicitné vlákna konverzácií!</string>
+
+    <string name="fix_calendar_title">Opraviť kalendár</string>
+    <string name="fix_calendar_summary">Použiť v prípade, ak dochádza k pravidelnému samozapínaniu sa obrazovky (vyžaduje reštart)</string>
+
+    <string name="important">Dôležité</string>
+
+    <string name="caller_fullscreen_photo_title">Foto volajúceho na celú obrazovku</string>
+    <string name="caller_fullscreen_photo_summary">Zobrazí foto volajúceho na celú obrazovku počas prijímania hovoru</string>
+
+</resources>
