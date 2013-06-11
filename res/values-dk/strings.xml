@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Valg af batteriindikator</string>	
+    <string name="battery_style_stock">Standard batteriindikator</string>
+    <string name="battery_style_circle">Cirkel-batteriindikator med procenttal</string>
+    <string name="battery_style_percent">Store procenttal</string>
+    <string name="battery_style_none">Ingen</string>
+
+    <string name="vol_music_controls_title">Volumentaster skifter melodi</string>
+    <string name="vol_music_controls_summary">Lang-tryk på volumentaster skifter melodi når skærmen er slukket</string>
+
+    <string name="low_battery_warning_policy_title">Advarsel om lav batteristand</string>
+    <string name="low_battery_warning_full">Pop-op og lyd</string>
+    <string name="low_battery_warning_popup">Kun pop-op</string>
+    <string name="low_battery_warning_sound">Kun lyd</string>
+    <string name="low_battery_warning_off">Fra</string>
+
+    <string name="reboot_required">Ændringen træder i kraft efter genstart</string>
+
+    <string name="signal_icon_autohide_title">Skjul signalstyrkeikoner automatisk</string>
+    <string name="signal_icon_autohide_summary">Skjuler automatisk signalstyrkeikoner for de valgte SIM slots når der ikke er isat SIM kort, \"SIM ikke isat\" notifikationer slået fra</string>
+    <string name="sim_slot_1">Skjul automatisk for SIM slot 1</string>
+    <string name="sim_slot_2">Skjul automatisk for SIM slot 2</string>
+    <string name="sim_disable_notifications">Slå notifikationer fra</string>
+    <string name="sim_disable_notifications_summary">\"SIM ikke isat\" notifikationer slået fra</string>
+
+    <string name="poweroff_advanced_title">Udvidet Power-Off menu</string>
+    <string name="poweroff_advanced_summary">Aktiverer udvidet Power-Off menu med menupunkt for reboot til systemgendannelse</string>
+    <string name="poweroff_recovery">Systemgendannelse</string>    
+
+    <string name="vol_key_cursor_control_title">Styring af markøren med volumentasten</string>
+    <string name="vol_key_cursor_control_summary">Styrer markøren i tekstfelter med volumentasten</string>
+    <string name="vol_key_cursor_control_off">Slået fra</string>
+    <string name="vol_key_cursor_control_on">Volumen op/ned bevæger markøren til venstre/højre</string>
+    <string name="vol_key_cursor_control_on_reverse">Volumen op/ned bevæger markøren til højre/venstre</string>
+
+    <string name="recents_clear_all_title">Ryd alle seneste apps</string>
+    <string name="recents_clear_all_summary">Aktiverer knap som rydder alle seneste opgaver i \"seneste apps\"-dialogen</string>
+
+    <string name="pref_group_mods_title">Mods</string>
+    <string name="pref_group_fixes_title">Fejlrettelser - benyt kun hvis nødvendigt</string>
+
+    <string name="fix_datetime_crash_title">Fix crash i indstillinger for dato og tid</string>
+    <string name="fix_datetime_crash_summary">Slå til hvis du oplever crash mens du tilgår indstillinger for dato og tid</string>
+
+    <string name="fix_caller_id_phone_title">Fix opkaldsinfo for telefonen</string>
+    <string name="fix_caller_id_phone_summary">Slå til hvis opkaldsinfo ikke matcher korrekt til kontakter (kræver genstart)</string>
+    <string name="fix_caller_id_phone_alert">Efter genstart skal kontaktlisten ryddes og kontakterne tilføjes igen, før ændringen virker. Benyt Indstillinger / Apps / Alle for at rydde kontaktforsynerens data</string>
+
+    <string name="fix_caller_id_mms_title">Fix afsender ID for beskeder</string>
+    <string name="fix_caller_id_mms_summary">Slå til hvis du oplever flere beskedtråde for den samme kontakt (kræver genstart)</string>
+    <string name="fix_caller_id_mms_alert">Efter genstart skal de berørte beskedtråde slettes, før ændringen virker</string>
+
+    <string name="fix_calendar_title">Fix kalender-app</string>
+    <string name="fix_calendar_summary">Slå til hvis du oplever at skærmen tænder periodisk af sig selv (kræver genstart)</string>
+
+    <string name="important">Vigtigt</string>
+
+    <string name="caller_fullscreen_photo_title">Fuldskærmsbillede af den, som ringer</string>
+    <string name="caller_fullscreen_photo_summary">Viser fuldskærmsbillede af den som ringer ved indgående kald</string>
+
+</resources>
