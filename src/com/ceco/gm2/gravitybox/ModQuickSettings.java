@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.ceco.gm2.gravitybox.quicksettings.AQuickSettingsTile;
 import com.ceco.gm2.gravitybox.quicksettings.GravityBoxTile;
 import com.ceco.gm2.gravitybox.quicksettings.SyncTile;
+import com.ceco.gm2.gravitybox.quicksettings.WifiApTile;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,7 +21,7 @@ public class ModQuickSettings {
     private static final String CLASS_QUICK_SETTINGS = "com.android.systemui.statusbar.phone.QuickSettings";
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     private static final String CLASS_PANEL_BAR = "com.android.systemui.statusbar.phone.PanelBar";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     private static XSharedPreferences mPrefs;
     private static Context mContext;
@@ -101,6 +102,10 @@ public class ModQuickSettings {
             SyncTile syncTile = new SyncTile(mContext, mGbContext, mStatusBar, mPanelBar);
             syncTile.setupQuickSettingsTile(mContainerView, inflater);
             mTiles.add(syncTile);
+
+            WifiApTile wifiApTile = new WifiApTile(mContext, mGbContext, mStatusBar, mPanelBar);
+            wifiApTile.setupQuickSettingsTile(mContainerView, inflater);
+            mTiles.add(wifiApTile);
         }
     };
 

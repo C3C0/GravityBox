@@ -65,5 +65,7 @@
     <!-- QuickSettings strings -->
     <string name="quick_settings_sync_on">Sync on</string>
     <string name="quick_settings_sync_off">Sync off</string>
+    <string name="quick_settings_wifi_ap_on">WiFi AP on</string>
+    <string name="quick_settings_wifi_ap_off">WiFi AP off</string>
 
 </resources>
