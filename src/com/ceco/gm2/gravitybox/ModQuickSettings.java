@@ -3,6 +3,7 @@ package com.ceco.gm2.gravitybox;
 import java.util.ArrayList;
 
 import com.ceco.gm2.gravitybox.quicksettings.AQuickSettingsTile;
+import com.ceco.gm2.gravitybox.quicksettings.GravityBoxTile;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -91,6 +92,11 @@ public class ModQuickSettings {
             LayoutInflater inflater = (LayoutInflater) param.args[1];
 
             mTiles = new ArrayList<AQuickSettingsTile>();
+
+            GravityBoxTile gbTile = new GravityBoxTile(mContext, mGbContext, mStatusBar, mPanelBar);
+            gbTile.setupQuickSettingsTile(mContainerView, inflater);
+            mTiles.add(gbTile);
+
         }
     };
 
