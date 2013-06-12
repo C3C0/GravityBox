@@ -42,12 +42,16 @@ public abstract class AQuickSettingsTile implements OnClickListener {
         mTile = (FrameLayout) inflater.inflate(layoutId, viewGroup, false);
         onTileCreate();
         viewGroup.addView(mTile);
-        updateTile();
+        updateResources();
         mTile.setOnClickListener(mOnClick);
         mTile.setOnLongClickListener(mOnLongClick);
+        onTilePostCreate();
     }
 
     protected abstract void onTileCreate();
+
+    protected void onTilePostCreate() {
+    }
 
     protected abstract void updateTile();
 
