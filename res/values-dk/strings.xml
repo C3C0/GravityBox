@@ -21,11 +21,11 @@
     <string name="reboot_required">Ændringen træder i kraft efter genstart</string>
 
     <string name="signal_icon_autohide_title">Skjul signalstyrkeikoner automatisk</string>
-    <string name="signal_icon_autohide_summary">Skjuler automatisk signalstyrkeikoner for de valgte SIM slots når der ikke er isat SIM kort, \"SIM ikke isat\" notifikationer slået fra</string>
+    <string name="signal_icon_autohide_summary">Skjuler automatisk signalstyrkeikoner for de valgte SIM slots når der ikke er isat SIM kort, \"No SIM card detected\" notifikationer slået fra</string>
     <string name="sim_slot_1">Skjul automatisk for SIM slot 1</string>
     <string name="sim_slot_2">Skjul automatisk for SIM slot 2</string>
     <string name="sim_disable_notifications">Slå notifikationer fra</string>
-    <string name="sim_disable_notifications_summary">\"SIM ikke isat\" notifikationer slået fra</string>
+    <string name="sim_disable_notifications_summary">\"No SIM card detected\" notifikationer slået fra</string>
 
     <string name="poweroff_advanced_title">Udvidet Power-Off menu</string>
     <string name="poweroff_advanced_summary">Aktiverer udvidet Power-Off menu med menupunkt for reboot til systemgendannelse</string>
