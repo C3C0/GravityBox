@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.ceco.gm2.gravitybox.quicksettings.AQuickSettingsTile;
 import com.ceco.gm2.gravitybox.quicksettings.GravityBoxTile;
+import com.ceco.gm2.gravitybox.quicksettings.SyncTile;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -63,7 +64,7 @@ public class ModQuickSettings {
             log("QuickSettings constructed - initializing local members");
 
             mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
-            mGbContext.createPackageContext(GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
+            mGbContext = mContext.createPackageContext(GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
             mContainerView = (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mContainerView");
         }
     };
@@ -97,6 +98,9 @@ public class ModQuickSettings {
             gbTile.setupQuickSettingsTile(mContainerView, inflater);
             mTiles.add(gbTile);
 
+            SyncTile syncTile = new SyncTile(mContext, mGbContext, mStatusBar, mPanelBar);
+            syncTile.setupQuickSettingsTile(mContainerView, inflater);
+            mTiles.add(syncTile);
         }
     };
 
