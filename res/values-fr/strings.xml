@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+ <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Style de l\'indicateur de batterie</string>	
+    <string name="battery_style_stock">Indicateur de batterie par défaut</string>
+    <string name="battery_style_circle">Indicateur circulaire avec pourcentage</string>
+    <string name="battery_style_percent">Pourcentage uniquement (texte)</string>
+    <string name="battery_style_none">Aucun</string>
+
+    <string name="vol_music_controls_title">Touche de volume pour changer de pistes audio</string>
+    <string name="vol_music_controls_summary">Changer de pistes audio par un appui long sur ces touches (écran éteint)</string>
+
+    <string name="low_battery_warning_policy_title">Avertissement de batterie faible</string>
+    <string name="low_battery_warning_full">Message et son</string>
+    <string name="low_battery_warning_popup">Message seulement</string>
+    <string name="low_battery_warning_sound">Son seulement</string>
+    <string name="low_battery_warning_off">Aucun</string>
+
+    <string name="reboot_required">Le changement sera pris en compte après redémarrage.</string>
+
+    <string name="signal_icon_autohide_title">Cacher automatiquement les icônes de signal</string>
+    <string name="signal_icon_autohide_summary">Cache automatiquement les icônes de signal pour l\'emplacement SIM sélectionné lorsque la carte SIM n\'est pas insérée, désactive la notification  \"SIM non insérée\"</string>
+    <string name="sim_slot_1">Cacher automatiquement la carte SIM n°1</string>
+    <string name="sim_slot_2">Cacher automatiquement la carte SIM n°2</string>
+    <string name="sim_disable_notifications">Désactiver les notifications</string>
+    <string name="sim_disable_notifications_summary">Message \"SIM non insérée\" désactivé</string>
+
+    <string name="poweroff_advanced_title">Menu avancé d\'extinction</string>
+    <string name="poweroff_advanced_summary">Active le menu avancé d\'extinction avec la possibilité de redémarrer en mode Recovery</string>
+    <string name="poweroff_recovery">Recovery</string>    
+
+    <string name="vol_key_cursor_control_title">Touche de volume pour contrôler le curseur</string>
+    <string name="vol_key_cursor_control_summary">Permet le contrôle du curseur dans un champ textuel grâce aux touches de volume</string>
+    <string name="vol_key_cursor_control_off">Désactivé</string>
+    <string name="vol_key_cursor_control_on">Volume haut/bas déplace le curseur à gauche/droite</string>
+    <string name="vol_key_cursor_control_on_reverse">Volume haut/bas déplace le curseur à droite/gauche</string>
+
+    <string name="recents_clear_all_title">Effacer toutes les tâches récentes</string>
+    <string name="recents_clear_all_summary">Active un bouton unique pour supprimer toutes les tâches dans la liste des applications récentes</string>
+
+    <string name="pref_group_mods_title">Modifications</string>
+    <string name="pref_group_fixes_title">Corrections de bugs - à n\'utiliser que si nécessaire</string>
+
+    <string name="fix_datetime_crash_title">Correction du bug de l\'item Date et heure dans les paramètres</string>
+    <string name="fix_datetime_crash_summary">Activer si vous constatez un plantage lorsque vous accédez au paramètres Date et heure (redémarrage nécessaire)</string>
+
+    <string name="fix_caller_id_phone_title">Correction du bug de l\'identification de l\'appelant en téléphonie</string>
+    <string name="fix_caller_id_phone_summary">Activer si vous constatez qu\'un contact enregistré n\'est pas identifié lord d\'un appel entrant (redémarrage nécessaire)</string>
+    <string name="fix_caller_id_phone_alert">Après redémarrage, vous devrez supprimer puis ajouter de nouveau vos contacts pour que le changement prenne effet. Allez dans Paramètres / Applications / Toutes / Liste des contacts / Effacer les données.</string>
+
+    <string name="fix_caller_id_mms_title">Correction du bug de l\'identification de l\'émetteur d\'un message</string>
+    <string name="fix_caller_id_mms_summary">Activer si vous constatez plusieurs fils de discussion pour un même contact enregistré (redémarrage nécessaire)</string>
+    <string name="fix_caller_id_mms_alert">Après redémarrage, vous devrez supprimer tous les fils de discussion séparés dans votre messagerie pour que le changement prenne effet.</string>
+
+    <string name="fix_calendar_title">Correction du bug de l\'application Agenda</string>
+    <string name="fix_calendar_summary">Activer si vous constatez que votre écran s\'allume de lui-même périodiquement (redémarrage nécessaire)</string>
+
+    <string name="important">Important</string>
+
+    <string name="caller_fullscreen_photo_title">Photo de l\'appelant en plein écran</string>
+    <string name="caller_fullscreen_photo_summary">Affiche la photo du correspondant en plein écran lors d\'un appel entrant</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Synchro on</string>
+    <string name="quick_settings_sync_off">Synchro off</string>
+    <string name="quick_settings_wifi_ap_on">Hotspot Wi-Fi on</string>
+    <string name="quick_settings_wifi_ap_off">Hotspot Wi-Fi off</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">Gestion des paramètres rapides depuis la barre de status</string>
+    <string name="quick_settings_summary">Permet d\'afficher ou masquer les touches de paramètres rapides depuis la barre de status</string>
+    <string name="qs_tile_user_profile">Profile utilisateur</string>
+    <string name="qs_tile_airplane_mode">Mode avion</string>
+    <string name="qs_tile_battery">Niveau de batterie</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">Connexion de données</string>
+    <string name="qs_tile_data_usage">Consommation de données</string>
+    <string name="qs_tile_audio">Profils audio</string>
+    <string name="qs_tile_brightness">Luminosité</string>
+    <string name="qs_tile_screen_timeout">Délai d\'attente</string>
+    <string name="qs_tile_autorotation">Rotation automatique</string>
+    <string name="qs_tile_sync">Synchronisation</string>
+    <string name="qs_tile_wifi_ap">Hotspot Wi-Fi</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+
+</resources>
