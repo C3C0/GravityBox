@@ -55,4 +55,40 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="qs_tile_entries" translatable="false">
+        <item>@string/qs_tile_user_profile</item>
+        <item>@string/qs_tile_airplane_mode</item>
+        <item>@string/qs_tile_battery</item>
+        <item>@string/qs_tile_wifi</item>
+        <item>@string/qs_tile_bluetooth</item>
+        <item>@string/qs_tile_gps</item>
+        <item>@string/qs_tile_mobile_data</item>
+        <item>@string/qs_tile_data_usage</item>
+        <item>@string/qs_tile_audio</item>
+        <item>@string/qs_tile_brightness</item>
+        <item>@string/qs_tile_screen_timeout</item>
+        <item>@string/qs_tile_autorotation</item>
+        <item>@string/qs_tile_sync</item>
+        <item>@string/qs_tile_wifi_ap</item>
+        <item>@string/qs_tile_gravitybox</item>
+    </string-array>
+
+    <string-array name="qs_tile_values" translatable="false">
+        <item>user_textview</item>
+        <item>airplane_mode_textview</item>
+        <item>battery_textview</item>
+        <item>wifi_textview</item>
+        <item>bluetooth_textview</item>
+        <item>gps_textview</item>
+        <item>data_conn_textview</item>
+        <item>rssi_textview</item>
+        <item>audio_profile_textview</item>
+        <item>brightness_textview</item>
+        <item>timeout_textview</item>
+        <item>auto_rotate_textview</item>
+        <item>sync_tileview</item>
+        <item>wifi_ap_tileview</item>
+        <item>gravitybox_tileview</item>
+    </string-array>
+
 </resources>

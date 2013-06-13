@@ -4,6 +4,14 @@
     <PreferenceCategory
         android:title="@string/pref_group_mods_title">
 
+        <MultiSelectListPreference 
+            android:key="pref_quick_settings"
+            android:title="@string/quick_settings_title"
+            android:summary="@string/quick_settings_summary" 
+            android:entries="@array/qs_tile_entries"
+            android:entryValues="@array/qs_tile_values"
+            android:defaultValue="@array/qs_tile_values" />
+
         <ListPreference
             android:key="pref_battery_style" 
             android:title="@string/battery_style_title" 

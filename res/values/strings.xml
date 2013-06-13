@@ -65,7 +65,26 @@
     <!-- QuickSettings strings -->
     <string name="quick_settings_sync_on">Sync on</string>
     <string name="quick_settings_sync_off">Sync off</string>
-    <string name="quick_settings_wifi_ap_on">WiFi AP on</string>
-    <string name="quick_settings_wifi_ap_off">WiFi AP off</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP on</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP off</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">Statusbar QuickSettings tiles</string>
+    <string name="quick_settings_summary">Allows to show or hide QuickSettings tiles in statusbar</string>
+    <string name="qs_tile_user_profile">User profile</string>
+    <string name="qs_tile_airplane_mode">Airplane mode</string>
+    <string name="qs_tile_battery">Battery status</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">Mobile data</string>
+    <string name="qs_tile_data_usage">Data usage</string>
+    <string name="qs_tile_audio">Audio profiles</string>
+    <string name="qs_tile_brightness">Brightness</string>
+    <string name="qs_tile_screen_timeout">Screen timeout</string>
+    <string name="qs_tile_autorotation">Auto rotation</string>
+    <string name="qs_tile_sync">Synchronization</string>
+    <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
 
 </resources>

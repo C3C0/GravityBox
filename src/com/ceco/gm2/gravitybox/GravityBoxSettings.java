@@ -19,6 +19,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 
 public class GravityBoxSettings extends Activity {
+    public static final String PREF_KEY_QUICK_SETTINGS = "pref_quick_settings";
+
     public static final String PREF_KEY_BATTERY_STYLE = "pref_battery_style";
     public static final int BATTERY_STYLE_STOCK = 1;
     public static final int BATTERY_STYLE_CIRCLE = 2;
@@ -48,6 +50,9 @@ public class GravityBoxSettings extends Activity {
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
+    public static final String ACTION_PREF_QUICKSETTINGS_CHANGED = "gravitybox.intent.action.QUICKSETTINGS_CHANGED";
+    public static final String EXTRA_QS_PREFS = "qsPrefs";
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR
@@ -67,6 +72,7 @@ public class GravityBoxSettings extends Activity {
         private MultiSelectListPreference mSignalIconAutohide;
         private SharedPreferences mPrefs;
         private AlertDialog mDialog;
+        private MultiSelectListPreference mQuickSettings;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -83,6 +89,7 @@ public class GravityBoxSettings extends Activity {
             mBatteryStyle = (ListPreference) findPreference(PREF_KEY_BATTERY_STYLE);
             mLowBatteryWarning = (ListPreference) findPreference(PREF_KEY_LOW_BATTERY_WARNING_POLICY);
             mSignalIconAutohide = (MultiSelectListPreference) findPreference(PREF_KEY_SIGNAL_ICON_AUTOHIDE);
+            mQuickSettings = (MultiSelectListPreference) findPreference(PREF_KEY_QUICK_SETTINGS);
         }
 
         @Override
@@ -141,6 +148,10 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED);
                 String[] autohidePrefs = mSignalIconAutohide.getValues().toArray(new String[0]);
                 intent.putExtra("autohidePrefs", autohidePrefs);
+            } else if (key.equals(PREF_KEY_QUICK_SETTINGS)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                String[] qsPrefs = mQuickSettings.getValues().toArray(new String[0]);
+                intent.putExtra(EXTRA_QS_PREFS, qsPrefs);
             }
             getActivity().sendBroadcast(intent);
 
