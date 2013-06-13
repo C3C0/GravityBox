@@ -62,4 +62,29 @@
     <string name="caller_fullscreen_photo_title">Foto volajúceho na celú obrazovku</string>
     <string name="caller_fullscreen_photo_summary">Zobrazí foto volajúceho na celú obrazovku počas prijímania hovoru</string>
 
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Synch on</string>
+    <string name="quick_settings_sync_off">Synch off</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP on</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP off</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">Dlaždice QuickSettings panelu</string>
+    <string name="quick_settings_summary">Umožní zobrazenie/skrytie jednotlivých dlaždíc v QuickSettings panely stavového riadku</string>
+    <string name="qs_tile_user_profile">Profil používateľa</string>
+    <string name="qs_tile_airplane_mode">Režim v lietadle</string>
+    <string name="qs_tile_battery">Stav batérie</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">Mobilné dáta</string>
+    <string name="qs_tile_data_usage">Využitie dát</string>
+    <string name="qs_tile_audio">Zvukové profily</string>
+    <string name="qs_tile_brightness">Jas</string>
+    <string name="qs_tile_screen_timeout">Časovač obrazovky</string>
+    <string name="qs_tile_autorotation">Automatické otáčanie obrazovky</string>
+    <string name="qs_tile_sync">Synchronizácia</string>
+    <string name="qs_tile_wifi_ap">Wi-Fi Prístupový Bod</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+
 </resources>
