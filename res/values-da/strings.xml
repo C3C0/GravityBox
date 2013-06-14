@@ -62,4 +62,29 @@
     <string name="caller_fullscreen_photo_title">Fuldskærmsbillede af den, som ringer</string>
     <string name="caller_fullscreen_photo_summary">Viser fuldskærmsbillede af den som ringer ved indgående kald</string>
 
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Synkronisering til</string>
+    <string name="quick_settings_sync_off">Synkronisering fra</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP til</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP fra</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">QuickSettings-felter i statusbjælken</string>
+    <string name="quick_settings_summary">Tillader at vise eller skjule QuickSettings-felter i statusbjælken</string>
+    <string name="qs_tile_user_profile">Brugerprofil</string>
+    <string name="qs_tile_airplane_mode">Flytilstand</string>
+    <string name="qs_tile_battery">Batteristatus</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">Mobildata</string>
+    <string name="qs_tile_data_usage">Dataforbrug</string>
+    <string name="qs_tile_audio">Lydprofiler</string>
+    <string name="qs_tile_brightness">Lysstyrke</string>
+    <string name="qs_tile_screen_timeout">Skærm-timeout</string>
+    <string name="qs_tile_autorotation">Autorotation</string>
+    <string name="qs_tile_sync">Synkronisering</string>
+    <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+
 </resources>
