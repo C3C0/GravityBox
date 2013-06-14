@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Вид индикатора заряда</string>	
+    <string name="battery_style_stock">Стоковый индикатор</string>
+    <string name="battery_style_circle">Круглый индикатор с процентами</string>
+    <string name="battery_style_percent">Большой текст (проценты)</string>
+    <string name="battery_style_none">Не показывать</string>
+
+    <string name="vol_music_controls_title">Пропуск трека с помощь клавиш громкости</string>
+    <string name="vol_music_controls_summary">Пропускать треки длинным нажатием клавиш громкости при выключенном экране</string>
+
+    <string name="low_battery_warning_policy_title">Предупреждение о низком заряде</string>
+    <string name="low_battery_warning_full">Уведомление и звук</string>
+    <string name="low_battery_warning_popup">Только уведомление</string>
+    <string name="low_battery_warning_sound">Только звук</string>
+    <string name="low_battery_warning_off">Не предупреждать</string>
+
+    <string name="reboot_required">Изменения вступят в силу после перезагрузки</string>
+
+    <string name="signal_icon_autohide_title">Автоматически скрывать иконку антенны</string>
+    <string name="signal_icon_autohide_summary">Автоматически скрывает иконку антенны для выбранного SIM-слота когда SIM-карта в этом слоте отсутствует, отключает уведомление \"Отсутствует SIM\"</string>
+    <string name="sim_slot_1">Скрывать первый слот</string>
+    <string name="sim_slot_2">Скрывать второй слот</string>
+    <string name="sim_disable_notifications">Отключить уведомления</string>
+    <string name="sim_disable_notifications_summary">Уведомления \"Отсутствует SIM\" отключены</string>
+
+    <string name="poweroff_advanced_title">Расширенное меню выключения</string>
+    <string name="poweroff_advanced_summary">Расширяет меню выключения устройства опцией перезагрузки в Recovery</string>
+    <string name="poweroff_recovery">Recovery</string>    
+
+    <string name="vol_key_cursor_control_title">Управление курсором клавишами громкости</string>
+    <string name="vol_key_cursor_control_summary">Позволяет управлять курсором в текстовых полях клавишами громкости</string>
+    <string name="vol_key_cursor_control_off">Отключено</string>
+    <string name="vol_key_cursor_control_on">Звук вверх/вниз для перемещения курсора влево/вправо</string>
+    <string name="vol_key_cursor_control_on_reverse">Звук вверх/вниз для перемещения курсора вправо/влево</string>
+
+    <string name="recents_clear_all_title">Закрыть все текущие задачи</string>
+    <string name="recents_clear_all_summary">Включает кнопку для закрытия всех текущих задач в диалоге \"Недавние приложения\"</string>
+
+    <string name="pref_group_mods_title">Моды</string>
+    <string name="pref_group_fixes_title">Исправления - только если необходимы</string>
+
+    <string name="fix_datetime_crash_title">Исправление падения диалога Дата и время</string>
+    <string name="fix_datetime_crash_summary">Включить, если при входе в настройки Даты и времени происходит падение (Необходима перезагрузка)</string>
+
+    <string name="fix_caller_id_phone_title">Исправление определения номера для звонка</string>
+    <string name="fix_caller_id_phone_summary">Включить, если номер звонящего не сопоставляется с контактом при входящем звонке (Необходима перезагрузка)</string>
+    <string name="fix_caller_id_phone_alert">После перезагрузки необходимо удалить и заново добавить контакты, чтобы изменения вступили в силу! Используйте Настройки - Приложения - Хранилище контактов - Стереть данные.</string>
+
+    <string name="fix_caller_id_mms_title">Исправление определителя номера для сообщений</string>
+    <string name="fix_caller_id_mms_summary">Включить, если наблюдается проблема нескольких веток сообщений для одного контакта (Необходима перезагрузка)</string>
+    <string name="fix_caller_id_mms_alert">После перезагрузки необходимо удалить все раздельные ветки в приложении Сообщения, чтобы изменения вступили в силу!</string>
+
+    <string name="fix_calendar_title">Исправить приложение Календарь</string>
+    <string name="fix_calendar_summary">Включить, если есть проблема с периодически включающимся экраном в спящем режиме</string>
+
+    <string name="important">Важно</string>
+
+    <string name="caller_fullscreen_photo_title">Фото звонящего на весь экран</string>
+    <string name="caller_fullscreen_photo_summary">Отображать фото звонящего на весь экран при вызовах</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_title">Иконки быстрых настроек в статусбаре</string>
+    <string name="quick_settings_summary">Позволяет включать/отключать иконки быстрых настроек в статусбаре</string>
+    <string name="qs_tile_user_profile">Профиль пользователя</string>
+    <string name="qs_tile_airplane_mode">Режим полета</string>
+    <string name="qs_tile_battery">Заряд батареи</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">Мобильный интернет</string>
+    <string name="qs_tile_data_usage">Передача данных (статистика)</string>
+    <string name="qs_tile_audio">Профили звука</string>
+    <string name="qs_tile_brightness">Яркость</string>
+    <string name="qs_tile_screen_timeout">Таймер отключения экрана</string>
+    <string name="qs_tile_autorotation">Автоповорот</string>
+    <string name="qs_tile_sync">Синхронизация</string>
+    <string name="qs_tile_wifi_ap">Точка доступа Wi-Fi</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+
+</resources>
