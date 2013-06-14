@@ -65,8 +65,8 @@
     <!-- QuickSettings strings -->
     <string name="quick_settings_sync_on">Synchro on</string>
     <string name="quick_settings_sync_off">Synchro off</string>
-    <string name="quick_settings_wifi_ap_on">Hotspot Wi-Fi on</string>
-    <string name="quick_settings_wifi_ap_off">Hotspot Wi-Fi off</string>
+    <string name="quick_settings_wifi_ap_on">Hotspot on</string>
+    <string name="quick_settings_wifi_ap_off">Hotspot off</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Gestion des paramètres rapides depuis la barre de status</string>
