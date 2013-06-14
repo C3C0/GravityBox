@@ -1,0 +1,15 @@
+Changelog 1.1.0 - 14/06/2013
+--------------------------------------
+- status bar quick settings management
+--- allows to show/hide quicksettings tiles
+--- added Sync on/off tile
+--- added WiFi AP (hotspot) on/off tile (long-touch opens Tether settings)
+--- added GravityBox tile (opens GravityBox app)
+- added Danish translations (thanks to Mr. Premise)
+- added Czech tranalstions (thanks to unavix)
+- added French translations (thanks to ch-vox)
+- added Russian translations (thanks to romashko)
+- added Spanish translations (thanks to peptonib)
+- added Catalan translations (thanks to peptonib)
+- updated Italian translations (thanks to kidmar)
+- updated Slovak translations
