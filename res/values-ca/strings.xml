@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Indicador de la bateria</string>
+    <string name="battery_style_stock">Indicador predeterminat</string>
+    <string name="battery_style_circle">Cercle amb percentatge</string>
+    <string name="battery_style_percent">Text gran amb el percentatge</string>
+    <string name="battery_style_none">No mostrar cap</string>
+
+    <string name="vol_music_controls_title">Tecles de volum per canviar la pista</string>
+    <string name="vol_music_controls_summary">Canvia la pista amb una pressió llarga de les tecles de volum si la pantalla està apagada</string>
+
+    <string name="low_battery_warning_policy_title">Avís de bateria baixa</string>
+    <string name="low_battery_warning_full">Notificació i so</string>
+    <string name="low_battery_warning_popup">Només notificació</string>
+    <string name="low_battery_warning_sound">Només so</string>
+    <string name="low_battery_warning_off">Desactivat</string>
+
+    <string name="reboot_required">Es necessari arrencar de nou</string>
+
+    <string name="signal_icon_autohide_title">Auto-amagar les icones de senyal</string>
+    <string name="signal_icon_autohide_summary">Amaga les icones de senyal de les ranures SIM quan no hi ha cap SIM inserida.  Desactiva les notificacions \"SIM no inserida\"</string>
+    <string name="sim_slot_1">Auto-amaga l\'icona de la ranura SIM 1</string>
+    <string name="sim_slot_2">Auto-amaga l\'icona de la ranura SIM 2</string>
+    <string name="sim_disable_notifications">Desactiva les notificacions</string>
+    <string name="sim_disable_notifications_summary">Desactiva les notificacions \"SIM no inserida\"</string>
+
+    <string name="poweroff_advanced_title">Menú d\'apagat avançat</string>
+    <string name="poweroff_advanced_summary">Habilita el menú d\'apagat avançat i l\'opció de d\'arrencar en mode de recuperació</string>
+    <string name="poweroff_recovery">Mode de recuperació</string>    
+
+    <string name="vol_key_cursor_control_title">Control del cursor amb les tecles de volum</string>
+    <string name="vol_key_cursor_control_summary">Controlar el cursor en els camps de text amb les tecles de volum</string>
+    <string name="vol_key_cursor_control_off">Desactivat</string>
+    <string name="vol_key_cursor_control_on">Volum superior/inferior mou el cursor esquerra/dreta</string>
+    <string name="vol_key_cursor_control_on_reverse">Volum superior/inferior mou el cursor dreta/esquerra</string>
+
+    <string name="recents_clear_all_title">Suprimir totes les tasques recents</string>
+    <string name="recents_clear_all_summary">Habilita un botó per suprimir totes les tasques recents d\'un sol cop, a la finestra de tasques</string>
+
+    <string name="pref_group_mods_title">Personalitzacions</string>
+    <string name="pref_group_fixes_title">Pedaços - emprau-los només si es necessari</string>
+
+    <string name="fix_datetime_crash_title">Fixa una aturada del sistema quan es canvia la Data/Hora</string>
+    <string name="fix_datetime_crash_summary">Activau en cas d\'aturada del sistema en entrar a la configuració de Data/hora (Heu d\'arrencar de nou)</string>
+
+    <string name="fix_caller_id_phone_title">Fixa l\'ID de trucada</string>
+    <string name="fix_caller_id_phone_summary">Activau si no es mostra correctament el contacte en rebre una trucada (Heu d\'arrencar de nou)</string>
+    <string name="fix_caller_id_phone_alert">Després d\'arrencar de nou, heu d\'esborrar i tornar a afegir els contactes per que el pedaç faci efecte! Configuració - Aplicacions - Totes i triar l\'aplicació Contactes.</string>
+
+    <string name="fix_caller_id_mms_title">Fixa l\'ID de l\'emissor dels missatges</string>
+    <string name="fix_caller_id_mms_summary">Activau si les converses de missatges d\'un mateix emissor compareixen separades (Heu d\'arrencar de nou)</string>
+    <string name="fix_caller_id_mms_alert">Després d\'arrencar de nou, heu d\'esborrar les converses separades per que el pedaç faci efecte!</string>
+
+    <string name="fix_calendar_title">Fixa el Calendari</string>
+    <string name="fix_calendar_summary">Activau si, de tant en tant, la pantalla s\'engega tot sola (Heu d\'arrencar de nou)</string>
+
+    <string name="important">Important</string>
+
+    <string name="caller_fullscreen_photo_title">Fotografia del contacte a pantalla sencera</string>
+    <string name="caller_fullscreen_photo_summary">Mostra la fotografia del contacte a la pantalla de trucada entrant</string>
+
+ <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Sincronització activada</string>
+    <string name="quick_settings_sync_off">Sincronització desactivada</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP activat</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP desactivat</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">Configuració de l\'aplicació calaix"</string>
+    <string name="quick_settings_summary">Permet triar les dreceres que es mostre al calaix</string>
+    <string name="qs_tile_user_profile">Dades de l\'usuari</string>
+    <string name="qs_tile_airplane_mode">Mode avió</string>
+    <string name="qs_tile_battery">Estat de la bateria</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">Dades mòbils</string>
+    <string name="qs_tile_data_usage">Estadistiques de dades</string>
+    <string name="qs_tile_audio">Perfils de so</string>
+    <string name="qs_tile_brightness">Brillantor</string>
+    <string name="qs_tile_screen_timeout">Temps d\'apagat de pantalla</string>
+    <string name="qs_tile_autorotation">Auto rotació</string>
+    <string name="qs_tile_sync">Sincronització</string>
+    <string name="qs_tile_wifi_ap">Punt d\'accés Wi-Fi</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+
+</resources>
