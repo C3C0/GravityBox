@@ -3,7 +3,7 @@
 
     <string name="app_name">GravityBox</string>
 
-    <string name="battery_style_title">Indicador de batería</string>	
+    <string name="battery_style_title">Indicador de batería</string>
     <string name="battery_style_stock">Indicador por defecto</string>
     <string name="battery_style_circle">Circular con porcentaje</string>
     <string name="battery_style_percent">Solo texto grande</string>
@@ -61,5 +61,30 @@
 
     <string name="caller_fullscreen_photo_title">Fotografía a pantalla completa del contacto</string>
     <string name="caller_fullscreen_photo_summary">Muestra la fotografía del contacto a pantalla completa en la pantalla de llamada entrante</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Sincronización activada</string>
+    <string name="quick_settings_sync_off">Sincronización desactivada</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP activado</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP desactivado</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">Ajuste de los íconos del cajón"</string>
+    <string name="quick_settings_summary">Permite seleccionar los íconos que se muestran en el cajón</string>
+    <string name="qs_tile_user_profile">Perfil de usuario</string>
+    <string name="qs_tile_airplane_mode">Airplane mode</string>
+    <string name="qs_tile_battery">Estado de la batería</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">Datos móviles</string>
+    <string name="qs_tile_data_usage">Uso de datos</string>
+    <string name="qs_tile_audio">Perfiles de audio</string>
+    <string name="qs_tile_brightness">Brillo</string>
+    <string name="qs_tile_screen_timeout">Auto-apagado de pantalla</string>
+    <string name="qs_tile_autorotation">Auto rotación</string>
+    <string name="qs_tile_sync">Sincronización</string>
+    <string name="qs_tile_wifi_ap">Punto de acceso Wi-Fi</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
 
 </resources>
