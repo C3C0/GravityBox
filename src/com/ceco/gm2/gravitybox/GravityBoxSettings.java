@@ -17,6 +17,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.graphics.Color;
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_QUICK_SETTINGS = "pref_quick_settings";
@@ -46,9 +48,13 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_FIX_CALLER_ID_PHONE = "pref_fix_caller_id_phone";
     public static final String PREF_KEY_FIX_CALLER_ID_MMS = "pref_fix_caller_id_mms";
     public static final String PREF_KEY_FIX_CALENDAR = "pref_fix_calendar";
+    public static final String PREF_KEY_STATUSBAR_BGCOLOR = "pref_statusbar_bgcolor";
 
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
+
+    public static final String ACTION_PREF_STATUSBAR_BGCOLOR_CHANGED = "gravitybox.intent.action.STATUSBAR_BGCOLOR_CHANGED";
+    public static final String EXTRA_SB_BGCOLOR = "bgColor";
 
     public static final String ACTION_PREF_QUICKSETTINGS_CHANGED = "gravitybox.intent.action.QUICKSETTINGS_CHANGED";
     public static final String EXTRA_QS_PREFS = "qsPrefs";
@@ -73,6 +79,7 @@ public class GravityBoxSettings extends Activity {
         private SharedPreferences mPrefs;
         private AlertDialog mDialog;
         private MultiSelectListPreference mQuickSettings;
+        private ColorPickerPreference mStatusbarBgColor;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -90,6 +97,8 @@ public class GravityBoxSettings extends Activity {
             mLowBatteryWarning = (ListPreference) findPreference(PREF_KEY_LOW_BATTERY_WARNING_POLICY);
             mSignalIconAutohide = (MultiSelectListPreference) findPreference(PREF_KEY_SIGNAL_ICON_AUTOHIDE);
             mQuickSettings = (MultiSelectListPreference) findPreference(PREF_KEY_QUICK_SETTINGS);
+            mStatusbarBgColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_BGCOLOR);
+            mStatusbarBgColor.setAlphaSliderEnabled(true);
         }
 
         @Override
@@ -152,6 +161,9 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
                 String[] qsPrefs = mQuickSettings.getValues().toArray(new String[0]);
                 intent.putExtra(EXTRA_QS_PREFS, qsPrefs);
+            } else if (key.equals(PREF_KEY_STATUSBAR_BGCOLOR)) {
+                intent.setAction(ACTION_PREF_STATUSBAR_BGCOLOR_CHANGED);
+                intent.putExtra(EXTRA_SB_BGCOLOR, prefs.getInt(PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK));
             }
             getActivity().sendBroadcast(intent);
 

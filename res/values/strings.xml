@@ -87,4 +87,12 @@
     <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
 
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Color Picker</string>
+    <string name="press_color_to_apply">Press on Color to apply</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Statusbar background color</string>
+    <string name="statusbar_bgcolor_summary">Allows to set statusbar background color and transparency</string>
+
 </resources>
