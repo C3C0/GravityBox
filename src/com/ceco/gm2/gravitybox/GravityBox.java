@@ -73,5 +73,11 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         if (lpparam.packageName.equals(ModStatusbarColor.PACKAGE_NAME))
             ModStatusbarColor.init(prefs, lpparam.classLoader);
+
+        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_TTS_SETTINGS, false) &&
+                lpparam.packageName.equals(FixTtsSettings.PACKAGE_NAME)) {
+            FixTtsSettings.init(prefs, lpparam.classLoader);
+        }
+
     }
 }

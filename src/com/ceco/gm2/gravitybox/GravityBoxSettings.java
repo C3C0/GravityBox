@@ -49,6 +49,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_FIX_CALLER_ID_MMS = "pref_fix_caller_id_mms";
     public static final String PREF_KEY_FIX_CALENDAR = "pref_fix_calendar";
     public static final String PREF_KEY_STATUSBAR_BGCOLOR = "pref_statusbar_bgcolor";
+    public static final String PREF_KEY_FIX_TTS_SETTINGS = "pref_fix_tts_settings";
 
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";

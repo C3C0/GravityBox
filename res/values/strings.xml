@@ -95,4 +95,8 @@
     <string name="statusbar_bgcolor_title">Statusbar background color</string>
     <string name="statusbar_bgcolor_summary">Allows to set statusbar background color and transparency</string>
 
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Fix speech settings</string>
+    <string name="fix_tts_settings_summary">Unlocks voice search and text-to-speech settings in Language&amp;Input (requires reboot)</string>
+
 </resources>
