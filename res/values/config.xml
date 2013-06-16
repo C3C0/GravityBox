@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="url_gravitybox">http://forum.xda-developers.com/showthread.php?t=2316070</string>
+    <string name="url_xposed">http://forum.xda-developers.com/showthread.php?t=1574401</string>
+    <string name="url_donate">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=9MZNBXYEN5S68&amp;lc=SK&amp;item_name=GravityBox&amp;currency_code=EUR&amp;bn=PP%%2dDonationsBF%%3abtn_donateCC_LG\%2egif%%3aNonHosted</string>
+</resources>

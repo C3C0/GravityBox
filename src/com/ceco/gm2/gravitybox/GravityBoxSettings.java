@@ -5,18 +5,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceScreen;
 import android.widget.Toast;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
@@ -51,6 +57,9 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_STATUSBAR_BGCOLOR = "pref_statusbar_bgcolor";
     public static final String PREF_KEY_FIX_TTS_SETTINGS = "pref_fix_tts_settings";
     public static final String PREF_KEY_FIX_DEV_OPTS = "pref_fix_dev_opts";
+    public static final String PREF_KEY_ABOUT_GRAVITYBOX = "pref_about_gb";
+    public static final String PREF_KEY_ABOUT_XPOSED = "pref_about_xposed";
+    public static final String PREF_KEY_ABOUT_DONATE = "pref_about_donate";
 
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
@@ -86,6 +95,9 @@ public class GravityBoxSettings extends Activity {
         private AlertDialog mDialog;
         private MultiSelectListPreference mQuickSettings;
         private ColorPickerPreference mStatusbarBgColor;
+        private Preference mPrefAboutGb;
+        private Preference mPrefAboutXposed;
+        private Preference mPrefAboutDonate;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -105,6 +117,21 @@ public class GravityBoxSettings extends Activity {
             mQuickSettings = (MultiSelectListPreference) findPreference(PREF_KEY_QUICK_SETTINGS);
             mStatusbarBgColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_BGCOLOR);
             mStatusbarBgColor.setAlphaSliderEnabled(true);
+
+            mPrefAboutGb = (Preference) findPreference(PREF_KEY_ABOUT_GRAVITYBOX);
+            
+            String version = "";
+            try {
+                PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+                version = " v" + pInfo.versionName;
+            } catch (NameNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                mPrefAboutGb.setTitle(getActivity().getTitle() + version);
+            }
+
+            mPrefAboutXposed = (Preference) findPreference(PREF_KEY_ABOUT_XPOSED);
+            mPrefAboutDonate = (Preference) findPreference(PREF_KEY_ABOUT_DONATE);
         }
 
         @Override
@@ -194,6 +221,30 @@ public class GravityBoxSettings extends Activity {
 
             if (rebootKeys.contains(key))
                 Toast.makeText(getActivity(), getString(R.string.reboot_required), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public boolean onPreferenceTreeClick(PreferenceScreen prefScreen, Preference pref) {
+            Intent intent = null;
+
+            if (pref == mPrefAboutGb) {
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_gravitybox)));
+            } else if (pref == mPrefAboutXposed) {
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_xposed)));
+            } else if (pref == mPrefAboutDonate) {
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_donate)));
+            }
+            
+            if (intent != null) {
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
+                }
+                return true;
+            }
+
+            return super.onPreferenceTreeClick(prefScreen, pref);
         }
     }
 }

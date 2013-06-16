@@ -125,4 +125,24 @@
 
     </PreferenceScreen>
 
+    <PreferenceScreen 
+        android:key="pref_cat_about"
+        android:title="@string/pref_cat_about_title">
+
+        <Preference
+            android:key="pref_about_gb" 
+            android:summary="@string/about_gb_summary" />
+
+        <Preference
+            android:key="pref_about_xposed"
+            android:title="@string/about_xposed_title"
+            android:summary="@string/about_xposed_summary" />"
+
+        <Preference
+            android:key="pref_about_donate"
+            android:title="@string/about_donate_title"
+            android:summary="@string/about_donate_summary" />
+
+    </PreferenceScreen>
+
 </PreferenceScreen>
