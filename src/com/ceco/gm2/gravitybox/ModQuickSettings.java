@@ -3,6 +3,7 @@ package com.ceco.gm2.gravitybox;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.ceco.gm2.gravitybox.quicksettings.AQuickSettingsTile;
@@ -14,6 +15,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +43,27 @@ public class ModQuickSettings {
 
     private static ArrayList<AQuickSettingsTile> mTiles;
 
+    private static List<String> mCustomSystemTileKeys = new ArrayList<String>(Arrays.asList(
+            "user_textview",
+            "airplane_mode_textview",
+            "battery_textview",
+            "wifi_textview",
+            "bluetooth_textview",
+            "gps_textview",
+            "data_conn_textview",
+            "rssi_textview",
+            "audio_profile_textview",
+            "brightness_textview",
+            "timeout_textview",
+            "auto_rotate_textview"
+    ));
+
+    private static List<String> mCustomGbTileKeys = new ArrayList<String>(Arrays.asList(
+            "sync_tileview",
+            "wifi_ap_tileview",
+            "gravitybox_tileview"
+    ));
+
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
     }
@@ -59,6 +82,27 @@ public class ModQuickSettings {
         }
     };
 
+    // TODO: quickfix that needs some optimizations
+    private static boolean isCustomizableTile(View view) {
+        Resources res = mContext.getResources();
+        for (String key : mCustomSystemTileKeys) {
+            int resId = res.getIdentifier(key, "id", PACKAGE_NAME);
+            if (view.findViewById(resId) != null) {
+                return true;
+            }
+        }
+
+        res = mGbContext.getResources();
+        for (String key : mCustomGbTileKeys) {
+            int resId = res.getIdentifier(key, "id", GravityBox.PACKAGE_NAME);
+            if (view.findViewById(resId) != null) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private static void updateTileVisibility() {
 
         if (mActiveTileKeys == null) {
@@ -71,7 +115,7 @@ public class ModQuickSettings {
         // hide all tiles first
         for(int i = 0; i < tileCount; i++) {
             View view = mContainerView.getChildAt(i);
-            if (view != null) {
+            if (view != null && isCustomizableTile(view)) {
                 view.setVisibility(View.GONE);
             }
         }
