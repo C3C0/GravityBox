@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ceco.gm2.gravitybox"
-    android:versionCode="4"
-    android:versionName="1.1.0" >
+    android:versionCode="5"
+    android:versionName="1.2.0" >
 
     <uses-sdk
         android:minSdkVersion="17"
@@ -40,7 +40,7 @@
             android:value="2.1*" />
         <meta-data
             android:name="xposeddescription"
-            android:value="GravityBox - Tweak Box by C3C076@XDA" />
+            android:value="GravityBox - MTK6589 Tweaks by C3C076@XDA" />
     </application>
 
 </manifest>

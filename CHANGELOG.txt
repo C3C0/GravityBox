@@ -1,3 +1,15 @@
+Changelog 1.2.0 - 16/06/2013
+--------------------------------------
+- option to set statusbar color and transparency 
+--- thanks to Sergey Margaritov for ColorPickerPreference
+- option to unlock Voice search and TTS settings in Language&Input
+- option to unlock advanced developer options
+- revamped preference screen
+- added About section with links to relevant threads
+- fixed bug in QuickSettings that caused dynamic tiles to become invisible
+- added reboot confirmation dialogs
+- added Hungarian translations (thanks to Indiant)
+
 Changelog 1.1.0 - 14/06/2013
 --------------------------------------
 - status bar quick settings management
