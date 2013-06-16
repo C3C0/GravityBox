@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Akkumulátor kijelző stílusa</string>	
+    <string name="battery_style_stock">Gyári akkumulátor kijelző</string>
+    <string name="battery_style_circle">Kör akkumulátor százalékkal</string>
+    <string name="battery_style_percent">Nagy százalék kijelzés</string>
+    <string name="battery_style_none">Semmilyen</string>
+
+    <string name="vol_music_controls_title">Hangerő gombok kihagyják a számot</string>
+    <string name="vol_music_controls_summary">Léptetik a számot a hangerő gombok, kikapcsolt képernyőnél hosszan kell nyomni</string>
+
+    <string name="low_battery_warning_policy_title">Alacsony akkumulátor figyelmeztetés</string>
+    <string name="low_battery_warning_full">Felugró szöveg és hang</string>
+    <string name="low_battery_warning_popup">Csak felugró szöveg</string>
+    <string name="low_battery_warning_sound">Csak hang</string>
+    <string name="low_battery_warning_off">Ki</string>
+
+    <string name="reboot_required">A változás csak az újraindítás után lesz alkalmazva</string>
+
+    <string name="signal_icon_autohide_title">Jelszint ikonok automatikus elrejtése</string>
+    <string name="signal_icon_autohide_summary">A kiválasztott SIM foglalat jelszint ikonjának automatikus elrejtése ha a SIM kártya hiányzik, letiltja a \"SIM nem található\" figyelmeztetést</string>
+    <string name="sim_slot_1">SIM 1 foglalat automatikus elrejtése</string>
+    <string name="sim_slot_2">SIM 2 foglalat automatikus elrejtése</string>
+    <string name="sim_disable_notifications">Figyelmeztetés letiltása</string>
+    <string name="sim_disable_notifications_summary">\"SIM nem található\" figyelmeztetés letiltva</string>
+
+    <string name="poweroff_advanced_title">Haladó kikapcsoló menü</string>
+    <string name="poweroff_advanced_summary">Engedélyezi a haladó kikapcsoló menüt újraindítás a recovery-be opcióval</string>
+    <string name="poweroff_recovery">Recovery</string>    
+
+    <string name="vol_key_cursor_control_title">Hangerő gombos kurzor irányítás</string>
+    <string name="vol_key_cursor_control_summary">Irányítja a kurzort a hangerő gombokkal a szöveg mezőkben</string>
+    <string name="vol_key_cursor_control_off">Letiltva</string>
+    <string name="vol_key_cursor_control_on">Hangerő fel/le mozgatja a kurzort balra/jobbra</string>
+    <string name="vol_key_cursor_control_on_reverse">Hangerő fel/le mozgatja a kurzort jobbra/balra</string>
+
+    <string name="recents_clear_all_title">Töröl minden új feladatot</string>
+    <string name="recents_clear_all_summary">A gombbal törölheti az összes új feladatot egyszerre a legújabb alkalmazások ablakban</string>
+
+    <string name="fix_datetime_crash_title">Javítja a dátum&amp;idő beállítás hibáját</string>
+    <string name="fix_datetime_crash_summary">Engedélyezze abban az esetben, ha azt tapasztalja, hogy összeomlik a Dátum&amp;idő beállítása közben (újraindítás szükséges)</string>
+
+    <string name="fix_caller_id_phone_title">Javítja a telefon hívóazonosítóját</string>
+    <string name="fix_caller_id_phone_summary">Engedélyezze, ha a hívó nem egyezik a hívás fogadásakor (újraindítás szükséges)</string>
+    <string name="fix_caller_id_phone_alert">Újraindítás után, törölni és újra hozzáadni kell a kapcsolatokat a változás érvényesítéséhez! Használja a  Beállítások / Alkalmazások / Összes - menüpontot a névjegyzék szolgáltató adatainak törléséhez.</string>
+
+    <string name="fix_caller_id_mms_title">Javítja az üzenetek hívóazonosítóját</string>
+    <string name="fix_caller_id_mms_summary">Engedélyezze abban az esetben, ha azt tapasztalja, hogy osztott beszélgetés szálak vannak egyazon partneről (újraindítás szükséges)</string>
+    <string name="fix_caller_id_mms_alert">Újraindítás után, törölni kell az összes osztott szálat az üzenetküldő alkalmazásban a változás érvényesítéséhez!</string>
+
+    <string name="fix_calendar_title">Naptár prog. javítása</string>
+    <string name="fix_calendar_summary">Engedélyezze abban az esetben, ha azt tapasztalja, hogy a képernyő rendszeresen bekapcsolja magát (újraindítás szükséges)</string>
+
+    <string name="important">Fontos</string>
+
+    <string name="caller_fullscreen_photo_title">Teljes képernyős hívó fotó</string>
+    <string name="caller_fullscreen_photo_summary">Teljes képernyőn mutatja a hívó fotóját a bejövő hívás képernyőn</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Szinkronizálás be</string>
+    <string name="quick_settings_sync_off">Szinkronizálás ki</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP be</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP ki</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">Statusbar gyorsbeállítás csempék</string>
+    <string name="quick_settings_summary">Mutatja vagy elrejti a gyorsbeállítás csempéket a statusbar-on</string>
+    <string name="qs_tile_user_profile">Felhasználói profil</string>
+    <string name="qs_tile_airplane_mode">Repülő mód</string>
+    <string name="qs_tile_battery">Akkumulátor infó</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">Mobil adat</string>
+    <string name="qs_tile_data_usage">Adat használat</string>
+    <string name="qs_tile_audio">Hang profilok</string>
+    <string name="qs_tile_brightness">Fényerő</string>
+    <string name="qs_tile_screen_timeout">Képernyő időtúllépés</string>
+    <string name="qs_tile_autorotation">Automatikus forgatás</string>
+    <string name="qs_tile_sync">Szinkronizálás</string>
+    <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+
+</resources>
