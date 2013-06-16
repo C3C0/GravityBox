@@ -62,7 +62,10 @@ public class GravityBoxSettings extends Activity {
 
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
-            PREF_KEY_FIX_CALENDAR
+            PREF_KEY_FIX_CALENDAR,
+            PREF_KEY_FIX_CALLER_ID_PHONE,
+            PREF_KEY_FIX_CALLER_ID_MMS,
+            PREF_KEY_FIX_TTS_SETTINGS
     ));
 
     @Override
