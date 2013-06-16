@@ -106,5 +106,11 @@
             android:summary="@string/fix_tts_settings_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference
+            android:key="pref_fix_dev_opts"
+            android:title="@string/fix_dev_opts_title"
+            android:summary="@string/fix_dev_opts_summary"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 </PreferenceScreen>
