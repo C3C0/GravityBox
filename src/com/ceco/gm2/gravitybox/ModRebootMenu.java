@@ -67,7 +67,7 @@ public class ModRebootMenu {
                     Drawable recoveryIcon = gbRes.getDrawable(
                             gbRes.getIdentifier("ic_lock_recovery", "drawable", GravityBox.PACKAGE_NAME));
 
-                    String[] items = new String[3];
+                    final String[] items = new String[3];
                     items[0] = (powerOffStrId == 0) ? "Power off" : res.getString(powerOffStrId);
                     items[1] = (rebootStrId == 0) ? "Reboot" : res.getString(rebootStrId);
                     items[2] = (recoveryStrId == 0) ? "Recovery" : gbRes.getString(recoveryStrId);
@@ -85,7 +85,6 @@ public class ModRebootMenu {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
-                                PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
                                 XposedBridge.log("ModRebootMenu: onClick() item = " + which);
                                 switch (which) {
                                     case 0: // power off - fall back to original method
@@ -95,12 +94,8 @@ public class ModRebootMenu {
                                             XposedBridge.log(e);
                                         }
                                         break;
-                                    case 1: // reboot
-                                        pm.reboot(null);
-                                        break;
-                                    case 2: // reboot recovery
-                                        pm.reboot("recovery");
-                                        break;
+                                    default: // reboot or reboot to recovery
+                                        handleReboot(mContext, items[1], which);
                                 }
                             }
                         })
@@ -118,6 +113,46 @@ public class ModRebootMenu {
                     param.setResult(null);
                 }
             });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+    }
+
+    private static void handleReboot(Context context, String caption, final int mode) {
+        try {
+            final PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+            Resources gbRes = mContext.createPackageContext(
+                    GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY).getResources();
+            String message = "";
+            if (mode == 1) {
+                message = gbRes.getString(gbRes.getIdentifier(
+                        "reboot_confirm", "string", GravityBox.PACKAGE_NAME));
+            } else if (mode == 2) {
+                message = gbRes.getString(gbRes.getIdentifier(
+                        "reboot_confirm_recovery", "string", GravityBox.PACKAGE_NAME));
+            }
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
+                .setTitle(caption)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        pm.reboot((mode == 1) ? null : "recovery");
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+            AlertDialog dialog = builder.create();
+            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+            dialog.show();
         } catch (Exception e) {
             XposedBridge.log(e);
         }
