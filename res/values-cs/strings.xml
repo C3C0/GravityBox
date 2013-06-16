@@ -40,9 +40,6 @@
     <string name="recents_clear_all_title">Ukončení aktuálních aplikací</string>
     <string name="recents_clear_all_summary">Zobrazí tlačítko, které umožní ukončení všech aplikací najednou, v seznamu aktuálních aplikací</string>
 
-    <string name="pref_group_mods_title">Modifikace</string>
-    <string name="pref_group_fixes_title">Opravy - použít jen pokud je to nutné</string>
-
     <string name="fix_datetime_crash_title">Opravit padání datumu a času</string>
     <string name="fix_datetime_crash_summary">Použít v případě, když nastavení datumu a času padá (vyžaduje restart)</string>
 

@@ -40,9 +40,6 @@
     <string name="recents_clear_all_title">Suprimir totes les tasques recents</string>
     <string name="recents_clear_all_summary">Habilita un botó per suprimir totes les tasques recents d\'un sol cop, a la finestra de tasques</string>
 
-    <string name="pref_group_mods_title">Personalitzacions</string>
-    <string name="pref_group_fixes_title">Pedaços - emprau-los només si es necessari</string>
-
     <string name="fix_datetime_crash_title">Fixa una aturada del sistema quan es canvia la Data/Hora</string>
     <string name="fix_datetime_crash_summary">Activau en cas d\'aturada del sistema en entrar a la configuració de Data/hora (Heu d\'arrencar de nou)</string>
 

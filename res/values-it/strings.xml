@@ -40,9 +40,6 @@
     <string name="recents_clear_all_title">Pulisci tutte le attività recenti</string>
     <string name="recents_clear_all_summary">Abilita il bottone per pulire tutte le attività recenti nella finestra \"Attività recenti\"</string>
  
-    <string name="pref_group_mods_title">Mods</string>
-    <string name="pref_group_fixes_title">Fix - Usa solo se necessario</string>
- 
     <string name="fix_datetime_crash_title">Fix crash nell\'impostazione Data&amp;ora</string>
     <string name="fix_datetime_crash_summary">Abilita nel caso si verifichi un crash durante l\'accesso alle impostazione Data&amp;Ora (richiede riavvio)</string>
  

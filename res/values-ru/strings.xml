@@ -40,9 +40,6 @@
     <string name="recents_clear_all_title">Закрыть все текущие задачи</string>
     <string name="recents_clear_all_summary">Включает кнопку для закрытия всех текущих задач в диалоге \"Недавние приложения\"</string>
 
-    <string name="pref_group_mods_title">Моды</string>
-    <string name="pref_group_fixes_title">Исправления - только если необходимы</string>
-
     <string name="fix_datetime_crash_title">Исправление падения диалога Дата и время</string>
     <string name="fix_datetime_crash_summary">Включить, если при входе в настройки Даты и времени происходит падение (Необходима перезагрузка)</string>
 

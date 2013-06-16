@@ -40,9 +40,6 @@
     <string name="recents_clear_all_title">Ryd alle seneste apps</string>
     <string name="recents_clear_all_summary">Aktiverer knap som rydder alle seneste opgaver i \"seneste apps\"-dialogen</string>
 
-    <string name="pref_group_mods_title">Mods</string>
-    <string name="pref_group_fixes_title">Fejlrettelser - benyt kun hvis nødvendigt</string>
-
     <string name="fix_datetime_crash_title">Fix crash i indstillinger for dato og tid</string>
     <string name="fix_datetime_crash_summary">Slå til hvis du oplever crash mens du tilgår indstillinger for dato og tid</string>
 

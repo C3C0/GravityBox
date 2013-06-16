@@ -40,9 +40,6 @@
     <string name="recents_clear_all_title">Effacer toutes les tâches récentes</string>
     <string name="recents_clear_all_summary">Active un bouton unique pour supprimer toutes les tâches dans la liste des applications récentes</string>
 
-    <string name="pref_group_mods_title">Modifications</string>
-    <string name="pref_group_fixes_title">Corrections de bugs - à n\'utiliser que si nécessaire</string>
-
     <string name="fix_datetime_crash_title">Correction du bug de l\'item Date et heure dans les paramètres</string>
     <string name="fix_datetime_crash_summary">Activer si vous constatez un plantage lorsque vous accédez au paramètres Date et heure (redémarrage nécessaire)</string>
 

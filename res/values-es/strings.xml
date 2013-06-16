@@ -40,9 +40,6 @@
     <string name="recents_clear_all_title">Borrado de tareas recientes</string>
     <string name="recents_clear_all_summary">Habilita el botón para borrar todas las tareas recientes a la vez</string>
 
-    <string name="pref_group_mods_title">Personalizaciones</string>
-    <string name="pref_group_fixes_title">Parches - Activar solo en caso necesario</string>
-
     <string name="fix_datetime_crash_title">Parche para el error de Fecha y Hora</string>
     <string name="fix_datetime_crash_summary">Habilitar en caso de experimentar errores al acceder a la configuración de Fecha y Hora (requiere reiniciar)</string>
 

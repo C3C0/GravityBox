@@ -40,9 +40,6 @@
     <string name="recents_clear_all_title">Clear all recent tasks</string>
     <string name="recents_clear_all_summary">Enables button to clear all recent tasks at once in recent apps dialog</string>
 
-    <string name="pref_group_mods_title">Mods</string>
-    <string name="pref_group_fixes_title">Fixes - use only if needed</string>
-
     <string name="fix_datetime_crash_title">Fix Date&amp;Time settings crash</string>
     <string name="fix_datetime_crash_summary">Enable in case you experience crash while accessing Date&amp;Time settings (requires reboot)</string>
 
@@ -102,5 +99,13 @@
     <!--  Advanced developer options -->
     <string name="fix_dev_opts_title">Advanced developer options</string>
     <string name="fix_dev_opts_summary">Unlocks advanced developer options (requires reboot)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Statusbar tweaks</string>
+    <string name="pref_cat_statusbar_summary">Contains various statusbar tweaks</string>
+    <string name="pref_cat_misc_title">Miscellaneous tweaks</string>
+    <string name="pref_cat_misc_summary">Contains all other tweaks not falling into specific category</string>
+    <string name="pref_cat_fixes_title">General fixes</string>
+    <string name="pref_cat_fixes_summary">Contains general MTK6589 specific fixes. Use only if needed.</string>
 
 </resources>
