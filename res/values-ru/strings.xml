@@ -64,6 +64,9 @@
     <string name="quick_settings_sync_off">Синхр. выкл.</string>
     <string name="quick_settings_wifi_ap_on">ТД Wi-Fi вкл.</string>
     <string name="quick_settings_wifi_ap_off">ТД Wi-Fi выкл.</string>
+    <string name="quick_settings_torch_on">Фонарик вкл.</string>
+    <string name="quick_settings_torch_off">Фонарик выкл</string>
+    <string name="quick_settings_torch_off_notif">Нажмите для выключения</string>
     
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Иконки быстрых настроек в статусбаре</string>
@@ -82,6 +85,7 @@
     <string name="qs_tile_autorotation">Автоповорот</string>
     <string name="qs_tile_sync">Синхронизация</string>
     <string name="qs_tile_wifi_ap">Точка доступа Wi-Fi</string>
+    <string name="qs_tile_torch">Фонарик</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
 
      <!-- Color Picker -->
