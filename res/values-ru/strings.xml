@@ -60,6 +60,15 @@
     <string name="caller_fullscreen_photo_summary">Отображать фото звонящего на весь экран при вызовах</string>
 
     <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Синхр. вкл.</string>
+    <string name="quick_settings_sync_off">Синхр. выкл.</string>
+    <string name="quick_settings_wifi_ap_on">ТД Wi-Fi вкл.</string>
+    <string name="quick_settings_wifi_ap_off">ТД Wi-Fi выкл.</string>
+    <string name="quick_settings_torch_on">Фонарик вкл.</string>
+    <string name="quick_settings_torch_off">Фонарик выкл</string>
+    <string name="quick_settings_torch_off_notif">Нажмите для выключения</string>
+    
+    <!--  QuickSettings settings -->
     <string name="quick_settings_title">Иконки быстрых настроек в статусбаре</string>
     <string name="quick_settings_summary">Позволяет включать/отключать иконки быстрых настроек в статусбаре</string>
     <string name="qs_tile_user_profile">Профиль пользователя</string>
@@ -76,6 +85,43 @@
     <string name="qs_tile_autorotation">Автоповорот</string>
     <string name="qs_tile_sync">Синхронизация</string>
     <string name="qs_tile_wifi_ap">Точка доступа Wi-Fi</string>
+    <string name="qs_tile_torch">Фонарик</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
 
+     <!-- Color Picker -->
+    <string name="dialog_color_picker">Выбор цвета</string>
+    <string name="press_color_to_apply">Нажмите на цвет для применения</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Цвет панели уведомлений</string>
+    <string name="statusbar_bgcolor_summary">Позволяет задать цвет и прозрачность панели уведомлений</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Исправление речевых настроек</string>
+    <string name="fix_tts_settings_summary">Разблокирует голосовой поиск и распознавание речи в настройках Язык и ввод (Необходима перезагрузка)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">Расширенные параметры Для разработчика</string>
+    <string name="fix_dev_opts_summary">Разблокирует расширенные параметры Для разработчика (Необходима перезагрузка)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Настройки статусбара</string>
+    <string name="pref_cat_statusbar_summary">Содержит некоторые настройки статусбара</string>
+    <string name="pref_cat_misc_title">Различные настройки</string>
+    <string name="pref_cat_misc_summary">Содержит настройки, не относящиеся к другим категориям</string>
+    <string name="pref_cat_fixes_title">Общие настройки</string>
+    <string name="pref_cat_fixes_summary">Содержит общие настройки, относящиеся к MTK6589. Использовать только при необходимости.</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">О программе</string>
+    <string name="about_gb_summary">Coded by C3C076@XDA. Нажмите для перехода к официальной теме.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Coded by rovo89@XDA. Нажмите для перехода к официальной теме.</string>
+    <string name="about_donate_title">Пожертвовать</string>
+    <string name="about_donate_summary">Пожертвуйте, если считаете, что приложение стоит того! Также задумайтесь о пожертвовании rovo89 за его великолепный Xposed framework.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">Телефон будет перезагружен</string>
+    <string name="reboot_confirm_recovery">Телефон будет перезагружен в recovery</string>
+    
 </resources>
