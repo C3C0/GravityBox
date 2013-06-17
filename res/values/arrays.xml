@@ -70,6 +70,7 @@
         <item>@string/qs_tile_autorotation</item>
         <item>@string/qs_tile_sync</item>
         <item>@string/qs_tile_wifi_ap</item>
+        <item>@string/qs_tile_torch</item>
         <item>@string/qs_tile_gravitybox</item>
     </string-array>
 
@@ -88,6 +89,7 @@
         <item>auto_rotate_textview</item>
         <item>sync_tileview</item>
         <item>wifi_ap_tileview</item>
+        <item>torch_tileview</item>
         <item>gravitybox_tileview</item>
     </string-array>
 
