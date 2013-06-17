@@ -7,6 +7,7 @@
     <string name="battery_style_stock">Stock battery indicator</string>
     <string name="battery_style_circle">Circle battery with percentage</string>
     <string name="battery_style_percent">Large percent text</string>
+    <string name="battery_style_percent_stock">Large percent text with stock icon</string>
     <string name="battery_style_none">None</string>
 
     <string name="vol_music_controls_title">Volume keys skip track</string>
