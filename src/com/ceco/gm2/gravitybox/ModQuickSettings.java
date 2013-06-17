@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.ceco.gm2.gravitybox.quicksettings.AQuickSettingsTile;
+import com.ceco.gm2.gravitybox.quicksettings.TorchTile;
 import com.ceco.gm2.gravitybox.quicksettings.GravityBoxTile;
 import com.ceco.gm2.gravitybox.quicksettings.SyncTile;
 import com.ceco.gm2.gravitybox.quicksettings.WifiApTile;
@@ -61,7 +62,8 @@ public class ModQuickSettings {
     private static List<String> mCustomGbTileKeys = new ArrayList<String>(Arrays.asList(
             "sync_tileview",
             "wifi_ap_tileview",
-            "gravitybox_tileview"
+            "gravitybox_tileview",
+            "torch_tileview"
     ));
 
     private static void log(String message) {
@@ -229,6 +231,10 @@ public class ModQuickSettings {
             WifiApTile wifiApTile = new WifiApTile(mContext, mGbContext, mStatusBar, mPanelBar);
             wifiApTile.setupQuickSettingsTile(mContainerView, inflater);
             mTiles.add(wifiApTile);
+
+            TorchTile torchTile = new TorchTile(mContext, mGbContext, mStatusBar, mPanelBar);
+            torchTile.setupQuickSettingsTile(mContainerView, inflater);
+            mTiles.add(torchTile);
 
             GravityBoxTile gbTile = new GravityBoxTile(mContext, mGbContext, mStatusBar, mPanelBar);
             gbTile.setupQuickSettingsTile(mContainerView, inflater);

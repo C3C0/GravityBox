@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
- <string name="app_name">GravityBox</string>
+ 	<string name="app_name">GravityBox</string>
+
 
     <string name="battery_style_title">Style de l\'indicateur de batterie</string>	
-    <string name="battery_style_stock">Indicateur de batterie par défaut</string>
-    <string name="battery_style_circle">Indicateur circulaire avec pourcentage</string>
-    <string name="battery_style_percent">Pourcentage uniquement (texte)</string>
+    <string name="battery_style_stock">Incateur par défaut</string>
+    <string name="battery_style_circle">Cercle avec pourcentage</string>
+    <string name="battery_style_percent">Texte uniquement</string>
     <string name="battery_style_none">Aucun</string>
 
-    <string name="vol_music_controls_title">Touche de volume pour changer de pistes audio</string>
+    <string name="vol_music_controls_title">Touches de volume et pistes audio</string>
     <string name="vol_music_controls_summary">Changer de pistes audio par un appui long sur ces touches (écran éteint)</string>
 
     <string name="low_battery_warning_policy_title">Avertissement de batterie faible</string>
@@ -20,7 +21,7 @@
 
     <string name="reboot_required">Le changement sera pris en compte après redémarrage.</string>
 
-    <string name="signal_icon_autohide_title">Cacher automatiquement les icônes de signal</string>
+    <string name="signal_icon_autohide_title">Masquer les icônes de signal</string>
     <string name="signal_icon_autohide_summary">Cache automatiquement les icônes de signal pour l\'emplacement SIM sélectionné lorsque la carte SIM n\'est pas insérée, désactive la notification  \"SIM non insérée\"</string>
     <string name="sim_slot_1">Cacher automatiquement la carte SIM n°1</string>
     <string name="sim_slot_2">Cacher automatiquement la carte SIM n°2</string>
@@ -28,35 +29,35 @@
     <string name="sim_disable_notifications_summary">Message \"SIM non insérée\" désactivé</string>
 
     <string name="poweroff_advanced_title">Menu avancé d\'extinction</string>
-    <string name="poweroff_advanced_summary">Active le menu avancé d\'extinction avec la possibilité de redémarrer en mode Recovery</string>
-    <string name="poweroff_recovery">Recovery</string>    
+    <string name="poweroff_advanced_summary">Active le menu avancé d\'extinction avec la possibilité de redémarrer en mode récupération</string>
+    <string name="poweroff_recovery">Récupération</string>    
 
-    <string name="vol_key_cursor_control_title">Touche de volume pour contrôler le curseur</string>
+    <string name="vol_key_cursor_control_title">Touches de volume et curseur</string>
     <string name="vol_key_cursor_control_summary">Permet le contrôle du curseur dans un champ textuel grâce aux touches de volume</string>
     <string name="vol_key_cursor_control_off">Désactivé</string>
     <string name="vol_key_cursor_control_on">Volume haut/bas déplace le curseur à gauche/droite</string>
     <string name="vol_key_cursor_control_on_reverse">Volume haut/bas déplace le curseur à droite/gauche</string>
 
-    <string name="recents_clear_all_title">Effacer toutes les tâches récentes</string>
+    <string name="recents_clear_all_title">Effacer les tâches récentes</string>
     <string name="recents_clear_all_summary">Active un bouton unique pour supprimer toutes les tâches dans la liste des applications récentes</string>
 
-    <string name="fix_datetime_crash_title">Correction du bug de l\'item Date et heure dans les paramètres</string>
+    <string name="fix_datetime_crash_title">Paramètre Date et heure</string>
     <string name="fix_datetime_crash_summary">Activer si vous constatez un plantage lorsque vous accédez au paramètres Date et heure (redémarrage nécessaire)</string>
 
-    <string name="fix_caller_id_phone_title">Correction du bug de l\'identification de l\'appelant en téléphonie</string>
+    <string name="fix_caller_id_phone_title">Identification de l\'appelant en téléphonie</string>
     <string name="fix_caller_id_phone_summary">Activer si vous constatez qu\'un contact enregistré n\'est pas identifié lord d\'un appel entrant (redémarrage nécessaire)</string>
     <string name="fix_caller_id_phone_alert">Après redémarrage, vous devrez supprimer puis ajouter de nouveau vos contacts pour que le changement prenne effet. Allez dans Paramètres / Applications / Toutes / Liste des contacts / Effacer les données.</string>
 
-    <string name="fix_caller_id_mms_title">Correction du bug de l\'identification de l\'émetteur d\'un message</string>
+    <string name="fix_caller_id_mms_title">Identification de l\'émetteur d\'un message</string>
     <string name="fix_caller_id_mms_summary">Activer si vous constatez plusieurs fils de discussion pour un même contact enregistré (redémarrage nécessaire)</string>
     <string name="fix_caller_id_mms_alert">Après redémarrage, vous devrez supprimer tous les fils de discussion séparés dans votre messagerie pour que le changement prenne effet.</string>
 
-    <string name="fix_calendar_title">Correction du bug de l\'application Agenda</string>
+    <string name="fix_calendar_title">Application Agenda</string>
     <string name="fix_calendar_summary">Activer si vous constatez que votre écran s\'allume de lui-même périodiquement (redémarrage nécessaire)</string>
 
     <string name="important">Important</string>
 
-    <string name="caller_fullscreen_photo_title">Photo de l\'appelant en plein écran</string>
+    <string name="caller_fullscreen_photo_title">Photo de l\'appelant plein écran</string>
     <string name="caller_fullscreen_photo_summary">Affiche la photo du correspondant en plein écran lors d\'un appel entrant</string>
 
     <!-- QuickSettings strings -->
@@ -64,9 +65,12 @@
     <string name="quick_settings_sync_off">Synchro off</string>
     <string name="quick_settings_wifi_ap_on">Hotspot on</string>
     <string name="quick_settings_wifi_ap_off">Hotspot off</string>
+    <string name="quick_settings_torch_on">Lampe on</string>
+    <string name="quick_settings_torch_off">Lampe off</string>
+    <string name="quick_settings_torch_off_notif">Toucher pour éteindre</string>
 
     <!--  QuickSettings settings -->
-    <string name="quick_settings_title">Gestion des paramètres rapides depuis la barre de status</string>
+    <string name="quick_settings_title">Gestion des paramètres rapides</string>
     <string name="quick_settings_summary">Permet d\'afficher ou masquer les touches de paramètres rapides depuis la barre de status</string>
     <string name="qs_tile_user_profile">Profile utilisateur</string>
     <string name="qs_tile_airplane_mode">Mode avion</string>
@@ -82,6 +86,44 @@
     <string name="qs_tile_autorotation">Rotation automatique</string>
     <string name="qs_tile_sync">Synchronisation</string>
     <string name="qs_tile_wifi_ap">Hotspot Wi-Fi</string>
+    <string name="qs_tile_torch">Lampe</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+    
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Sélecteur de couleur</string>
+    <string name="press_color_to_apply">Sélectionner votre couleur pour l\'appliquer</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Couleur barre de status</string>
+    <string name="statusbar_bgcolor_summary">Permet de choisir la couleur de fond de la barre de status et sa transparence</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Paramètres liés à la parole</string>
+    <string name="fix_tts_settings_summary">Donne accès à la recherche vocale et au paramètre de saisie vocale dans les paramètres Langage et saisie (redémarrage nécessaire)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">Options avancées (développeurs)</string>
+    <string name="fix_dev_opts_summary">Donne accès aux options avancées pour les développeurs (redémarrage nécessaire)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Arrangements barre de status</string>
+    <string name="pref_cat_statusbar_summary">Regroupe divers arrangements de la barre de status</string>
+    <string name="pref_cat_misc_title">Divers arrangements</string>
+    <string name="pref_cat_misc_summary">Regroupe tous les autres arrangements ne correspondant pas aux autres catégories</string>
+    <string name="pref_cat_fixes_title">Corrections générales de bugs</string>
+    <string name="pref_cat_fixes_summary">Regroupe les corrections générales de bugs spécifiques au MTK6589</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">À propos</string>
+    <string name="about_gb_summary">Encodé par C3C076@XDA. Touchez pour accéder au fil de discussion officiel.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Encodé par rovo89@XDA. Touchez pour accéder au fil de discussion officiel.</string>
+    <string name="about_donate_title">Donations</string>
+    <string name="about_donate_summary">Faîtes un don si vous pensez que cette application en vaut la peine ! Faîtes également un don à rovo89 pour son excellent Xposed framework.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">Votre téléphone va redémarrer.</string>
+    <string name="reboot_confirm_recovery">Votre téléphone va redémarrer en mode récupération.</string>
+
 
 </resources>
