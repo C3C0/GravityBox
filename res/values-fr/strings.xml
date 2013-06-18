@@ -65,8 +65,8 @@
     <string name="quick_settings_sync_off">Synchro off</string>
     <string name="quick_settings_wifi_ap_on">Hotspot on</string>
     <string name="quick_settings_wifi_ap_off">Hotspot off</string>
-    <string name="quick_settings_torch_on">Lampe on</string>
-    <string name="quick_settings_torch_off">Lampe off</string>
+    <string name="quick_settings_torch_on">Torche on</string>
+    <string name="quick_settings_torch_off">Torche off</string>
     <string name="quick_settings_torch_off_notif">Toucher pour éteindre</string>
 
     <!--  QuickSettings settings -->
@@ -79,6 +79,7 @@
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_mobile_data">Connexion de données</string>
+    <string name="qs_tile_network_mode">Mode réseau</string>
     <string name="qs_tile_data_usage">Consommation de données</string>
     <string name="qs_tile_audio">Profils audio</string>
     <string name="qs_tile_brightness">Luminosité</string>
@@ -86,7 +87,7 @@
     <string name="qs_tile_autorotation">Rotation automatique</string>
     <string name="qs_tile_sync">Synchronisation</string>
     <string name="qs_tile_wifi_ap">Hotspot Wi-Fi</string>
-    <string name="qs_tile_torch">Lampe</string>
+    <string name="qs_tile_torch">Torche</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
     
     <!-- Color Picker -->
