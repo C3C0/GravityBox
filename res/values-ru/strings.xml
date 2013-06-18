@@ -7,6 +7,7 @@
     <string name="battery_style_stock">Стоковый индикатор</string>
     <string name="battery_style_circle">Круглый индикатор с процентами</string>
     <string name="battery_style_percent">Большой текст (проценты)</string>
+    <string name="battery_style_percent_stock">Большие проценты и стоковый индикатор</string>
     <string name="battery_style_none">Не показывать</string>
 
     <string name="vol_music_controls_title">Пропуск трека с помощь клавиш громкости</string>
