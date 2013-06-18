@@ -7,6 +7,7 @@
     <string name="battery_style_stock">Základný</string>
     <string name="battery_style_circle">Kruhový s percentami</string>
     <string name="battery_style_percent">Textový s percentami</string>
+    <string name="battery_style_percent_stock">Textový s percentami a ikonou</string>
     <string name="battery_style_none">Žiadny</string>
 
     <string name="vol_music_controls_title">Ovládanie hudby tlačidlami hlasitosti</string>
@@ -60,10 +61,13 @@
     <string name="caller_fullscreen_photo_summary">Zobrazí foto volajúceho na celú obrazovku počas prijímania hovoru</string>
 
     <!-- QuickSettings strings -->
-    <string name="quick_settings_sync_on">Synch on</string>
-    <string name="quick_settings_sync_off">Synch off</string>
-    <string name="quick_settings_wifi_ap_on">Wi-Fi AP on</string>
-    <string name="quick_settings_wifi_ap_off">Wi-Fi AP off</string>
+    <string name="quick_settings_sync_on">Synch zap</string>
+    <string name="quick_settings_sync_off">Synch vyp</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP zap</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP vyp</string>
+    <string name="quick_settings_torch_on">Svetlo zap</string>
+    <string name="quick_settings_torch_off">Svetlo vyp</string>
+    <string name="quick_settings_torch_off_notif">Dotykom vypnete svetlo</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Dlaždice QuickSettings panelu</string>
@@ -75,6 +79,7 @@
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_mobile_data">Mobilné dáta</string>
+    <string name="qs_tile_network_mode">Typ siete</string>
     <string name="qs_tile_data_usage">Využitie dát</string>
     <string name="qs_tile_audio">Zvukové profily</string>
     <string name="qs_tile_brightness">Jas</string>
@@ -82,6 +87,43 @@
     <string name="qs_tile_autorotation">Automatické otáčanie obrazovky</string>
     <string name="qs_tile_sync">Synchronizácia</string>
     <string name="qs_tile_wifi_ap">Wi-Fi Prístupový Bod</string>
+    <string name="qs_tile_torch">Svetlo</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Výber farby</string>
+    <string name="press_color_to_apply">Dotykom potvrdíte farbu</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Farba pozadia stavového riadku</string>
+    <string name="statusbar_bgcolor_summary">Umožní nastavenie farby a priehľadnosti pozadia stavového riadku</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Opraviť nastavenia reči</string>
+    <string name="fix_tts_settings_summary">Odomkne nastavenia výstupu prevodu textu na reč v nastaveniach Jazyk&amp;vstup (vyžaduje reštart)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">Rozšírené možnosti pre vývojárov</string>
+    <string name="fix_dev_opts_summary">Odomkne rozšírené nastavenia pre vývojárov (vyžaduje reštart)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Nastavenia stavového riadku</string>
+    <string name="pref_cat_statusbar_summary">Obsahuje rôzne nastavenia stavového riadku</string>
+    <string name="pref_cat_misc_title">Rôzne nastavenia</string>
+    <string name="pref_cat_misc_summary">Obsahuje všetky ostatné nastavenia nespadajúce do inej špecifickej kategórie</string>
+    <string name="pref_cat_fixes_title">Všeobecné opravy</string>
+    <string name="pref_cat_fixes_summary">Obsahuje všeobecné opravy špecifické pre MTK6589. Použiť len v prípade potreby</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">O aplikácii</string>
+    <string name="about_gb_summary">Naprogramoval C3C076@XDA. Dotykom otvoríte oficiálnu stránku.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Naprogramoval rovo89@XDA. Dotykom otvoríte oficiálnu stránku.</string>
+    <string name="about_donate_title">Prispieť</string>
+    <string name="about_donate_summary">Prispejte cez PayPal ak si myslíte, že táto aplikácia za to stojí! Zvážte tiež príspevok pre rovo89 za jeho excelentný Xposed framework.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">Váš telefón bude reštartovaný</string>
+    <string name="reboot_confirm_recovery">Váš telefón bude reštartovaný do režimu Recovery</string>
 
 </resources>
