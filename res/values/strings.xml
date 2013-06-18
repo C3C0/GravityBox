@@ -79,6 +79,7 @@
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_mobile_data">Mobile data</string>
+    <string name="qs_tile_network_mode">Network mode</string>
     <string name="qs_tile_data_usage">Data usage</string>
     <string name="qs_tile_audio">Audio profiles</string>
     <string name="qs_tile_brightness">Brightness</string>

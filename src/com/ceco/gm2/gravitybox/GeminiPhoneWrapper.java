@@ -1,16 +1,11 @@
 package com.ceco.gm2.gravitybox;
 
-import java.util.ArrayList;
-
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.ContentObserver;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Settings;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -34,15 +29,9 @@ public class GeminiPhoneWrapper {
     private static Class<?> mClsPhoneFactory;
     private static Class<?> mClsPhoneGemini;
     private static Context mContext;
-    private static boolean pendingInit = false;
 
     private static void log(String msg) {
         XposedBridge.log(TAG + ": " + msg);
-    }
-
-    public interface GeminiPhoneEventListener {
-        void onInitialize(int networkType);
-        void onNetworkTypeChanged(int networkType);
     }
 
     private static Handler mHandler;
@@ -60,44 +49,9 @@ public class GeminiPhoneWrapper {
         }
     };
 
-    private static class SettingsObserver extends ContentObserver {
+    public static void initZygote() {
 
-        public SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        public void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(
-                    Settings.Global.getUriFor(PREFERRED_NETWORK_MODE), false, this);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            int nt = Settings.Global.getInt(mContext.getContentResolver(), 
-                    PREFERRED_NETWORK_MODE, NT_WCDMA_PREFERRED);
-            onNetworkTypeChanged(nt);
-        }
-    }
-
-    private static ArrayList<GeminiPhoneEventListener> mListeners;
-
-    public static void init(GeminiPhoneEventListener listener) {
-
-        if (isInitialized() || pendingInit) {
-            if (listener != null) {
-                addEventListener(listener);
-                if (!pendingInit) {
-                    listener.onInitialize(getPreferredNetworkType());
-                }
-            }
-            return;
-        }
-
-        log("Entering pending init state");
-        pendingInit = true;
-        mListeners = new ArrayList<GeminiPhoneEventListener>();
-        addEventListener(listener);
+        log("Entering init state");
         
         mClsPhoneFactory = XposedHelpers.findClass("com.android.internal.telephony.PhoneFactory", null);
         mClsPhoneGemini = XposedHelpers.findClass("com.android.internal.telephony.gemini.GeminiPhone", null);
@@ -106,8 +60,7 @@ public class GeminiPhoneWrapper {
             @Override
             protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                 mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "f");
-                log("GeminiPhone constructed. Leaving pending init state.");
-                pendingInit = false;
+                log("GeminiPhone constructed");
                 onInitialize();
             }
         });
@@ -116,52 +69,13 @@ public class GeminiPhoneWrapper {
     private static void onInitialize() {
         mHandler = new Handler();
 
-        SettingsObserver settingsObserver = new SettingsObserver(mHandler);
-        settingsObserver.observe();
-
         if (mContext != null) {
             IntentFilter intentFilter = new IntentFilter(ACTION_CHANGE_NETWORK_TYPE);
             mContext.registerReceiver(mBroadcastReceiver, intentFilter);
         }
-
-        int networkType = getPreferredNetworkType();
-        log("onInitialize: preferredNetworkType = " + networkType);
-
-        for (GeminiPhoneEventListener listener : mListeners) {
-            listener.onInitialize(networkType);
-        }
     }
 
-    private static void onNetworkTypeChanged(int networkType) {
-        log("onNetworkTypeChanged; networkType = " + networkType);
-        if (mListeners == null) return;
-        
-        for (GeminiPhoneEventListener listener : mListeners) {
-            listener.onNetworkTypeChanged(networkType);
-        }
-    }
-
-    public static Context getContext() {
-        return mContext;
-    }
-
-    public static boolean isInitialized() {
-        return (mContext != null);
-    }
-
-    public static void addEventListener(GeminiPhoneEventListener listener) {
-        if (mListeners == null || listener == null) return;
-
-        mListeners.add(listener);
-    }
-
-    public static int getPreferredNetworkType() {
-        int networkType = Settings.Global.getInt(mContext.getContentResolver(),
-                PREFERRED_NETWORK_MODE, NT_WCDMA_PREFERRED);
-        return networkType;
-    }
-
-    public static void setPreferredNetworkType(int networkType) {
+    private static void setPreferredNetworkType(int networkType) {
         Object defPhone = XposedHelpers.callStaticMethod(mClsPhoneFactory, "getDefaultPhone");
         if (defPhone == null) return;
 

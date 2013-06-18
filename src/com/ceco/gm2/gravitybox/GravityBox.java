@@ -28,6 +28,8 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_DEV_OPTS, false))
             FixDevOptions.initZygote();
+
+        GeminiPhoneWrapper.initZygote();
     }
 
     @Override
