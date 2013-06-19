@@ -130,4 +130,8 @@
     <string name="crt_off_effect_title">CRT screen off effect</string>
     <string name="crt_off_effect_summary">Enables animation that simulates old CRT off effect when turning off the screen</string>
 
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Engineering mode</string>
+    <string name="engineering_mode_summary">Launches Engineering mode application</string>
+
 </resources>

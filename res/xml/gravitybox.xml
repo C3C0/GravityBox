@@ -131,6 +131,11 @@
 
     </PreferenceScreen>
 
+    <Preference
+        android:key="pref_engineering_mode"
+        android:title="@string/engineering_mode_title"
+        android:summary="@string/engineering_mode_summary" />"
+
     <PreferenceScreen 
         android:key="pref_cat_about"
         android:title="@string/pref_cat_about_title">
