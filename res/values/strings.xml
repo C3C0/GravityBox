@@ -126,4 +126,8 @@
     <string name="reboot_confirm">Your phone will reboot</string>
     <string name="reboot_confirm_recovery">Your phone will reboot into recovery</string>
 
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">CRT screen off effect</string>
+    <string name="crt_off_effect_summary">Enables animation that simulates old CRT off effect when turning off the screen</string>
+
 </resources>

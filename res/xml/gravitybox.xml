@@ -80,6 +80,12 @@
             android:summary="@string/caller_fullscreen_photo_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_crt_off_effect"
+            android:title="@string/crt_off_effect_title"
+            android:summary="@string/crt_off_effect_summary"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 

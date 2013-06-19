@@ -1,5 +1,6 @@
 package com.ceco.gm2.gravitybox;
 
+import android.content.res.XResources;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
@@ -14,6 +15,8 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
         prefs = new XSharedPreferences(PACKAGE_NAME);
+
+        XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
 
         FixTraceFlood.initZygote();
         ModVolumeKeySkipTrack.init(prefs);
@@ -30,6 +33,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
             FixDevOptions.initZygote();
 
         GeminiPhoneWrapper.initZygote();
+        ModElectronBeam.initZygote(prefs);
     }
 
     @Override

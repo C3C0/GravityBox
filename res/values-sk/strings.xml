@@ -126,4 +126,8 @@
     <string name="reboot_confirm">Váš telefón bude reštartovaný</string>
     <string name="reboot_confirm_recovery">Váš telefón bude reštartovaný do režimu Recovery</string>
 
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">CRT efekt vypnutia obrazovky</string>
+    <string name="crt_off_effect_summary">Zapne animáciu, ktorá simuluje efekt vypnutia CRT obrazovky</string>
+
 </resources>
