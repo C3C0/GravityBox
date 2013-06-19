@@ -134,4 +134,8 @@
     <string name="engineering_mode_title">Engineering mode</string>
     <string name="engineering_mode_summary">Launches Engineering mode application</string>
 
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Dual SIM Ringer</string>
+    <string name="dual_sim_ringer_summary">Launches application that allows to set ringtone and notification sounds separately for each SIM</string>
+
 </resources>

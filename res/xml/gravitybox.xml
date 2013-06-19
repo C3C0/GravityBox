@@ -132,6 +132,11 @@
     </PreferenceScreen>
 
     <Preference
+        android:key="pref_dual_sim_ringer"
+        android:title="@string/dual_sim_ringer_title"
+        android:summary="@string/dual_sim_ringer_summary" />"
+
+    <Preference
         android:key="pref_engineering_mode"
         android:title="@string/engineering_mode_title"
         android:summary="@string/engineering_mode_summary" />"

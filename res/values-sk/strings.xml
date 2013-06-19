@@ -134,4 +134,8 @@
     <string name="engineering_mode_title">Režim technika</string>
     <string name="engineering_mode_summary">Spustí aplikáciu Režim technika</string>
 
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Dual SIM vyzváňač</string>
+    <string name="dual_sim_ringer_summary">Spustí aplikáciu, ktorá umožňuje nastavenie zvukov zvonenia a notifikácií samostatne pre každú SIM</string>
+
 </resources>
