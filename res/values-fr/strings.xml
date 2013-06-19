@@ -125,6 +125,10 @@
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">Votre téléphone va redémarrer.</string>
     <string name="reboot_confirm_recovery">Votre téléphone va redémarrer en mode récupération.</string>
+    
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">Effet écran CRT</string>
+    <string name="crt_off_effect_summary">Active l\'animation qui simule l\'extinction des vieux moniteurs cathodiques lorsque vous éteignez l\'écran.</string>
 
 
 </resources>
