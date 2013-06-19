@@ -126,4 +126,8 @@
     <string name="reboot_confirm">Телефон будет перезагружен</string>
     <string name="reboot_confirm_recovery">Телефон будет перезагружен в recovery</string>
     
+     <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">CRT-эффект выключения экрана</string>
+    <string name="crt_off_effect_summary">Включает анимацию, имитирующую выключение старых ЭЛТ-мониторов, при выключении экрана</string>
+        
 </resources>
