@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
@@ -62,6 +63,12 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_ABOUT_XPOSED = "pref_about_xposed";
     public static final String PREF_KEY_ABOUT_DONATE = "pref_about_donate";
     public static final String PREF_KEY_CRT_OFF_EFFECT = "pref_crt_off_effect";
+    public static final String PREF_KEY_ENGINEERING_MODE = "pref_engineering_mode";
+    public static final String APP_ENGINEERING_MODE = "com.mediatek.engineermode";
+    public static final String APP_ENGINEERING_MODE_CLASS = "com.mediatek.engineermode.EngineerMode";
+    public static final String PREF_KEY_DUAL_SIM_RINGER = "pref_dual_sim_ringer";
+    public static final String APP_DUAL_SIM_RINGER = "dualsim.ringer";
+    public static final String APP_DUAL_SIM_RINGER_CLASS = "dualsim.ringer.main";
 
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
@@ -100,6 +107,8 @@ public class GravityBoxSettings extends Activity {
         private Preference mPrefAboutGb;
         private Preference mPrefAboutXposed;
         private Preference mPrefAboutDonate;
+        private Preference mPrefEngMode;
+        private Preference mPrefDualSimRinger;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -134,6 +143,16 @@ public class GravityBoxSettings extends Activity {
 
             mPrefAboutXposed = (Preference) findPreference(PREF_KEY_ABOUT_XPOSED);
             mPrefAboutDonate = (Preference) findPreference(PREF_KEY_ABOUT_DONATE);
+
+            mPrefEngMode = (Preference) findPreference(PREF_KEY_ENGINEERING_MODE);
+            if (!isAppInstalled(APP_ENGINEERING_MODE)) {
+                getPreferenceScreen().removePreference(mPrefEngMode);
+            }
+
+            mPrefDualSimRinger = (Preference) findPreference(PREF_KEY_DUAL_SIM_RINGER);
+            if (!isAppInstalled(APP_DUAL_SIM_RINGER)) {
+                getPreferenceScreen().removePreference(mPrefDualSimRinger);
+            }
         }
 
         @Override
@@ -235,6 +254,12 @@ public class GravityBoxSettings extends Activity {
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_xposed)));
             } else if (pref == mPrefAboutDonate) {
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_donate)));
+            } else if (pref == mPrefEngMode) {
+                intent = new Intent(Intent.ACTION_MAIN);
+                intent.setClassName(APP_ENGINEERING_MODE, APP_ENGINEERING_MODE_CLASS);
+            } else if (pref == mPrefDualSimRinger) {
+                intent = new Intent(Intent.ACTION_MAIN);
+                intent.setClassName(APP_DUAL_SIM_RINGER, APP_DUAL_SIM_RINGER_CLASS);
             }
             
             if (intent != null) {
@@ -247,6 +272,16 @@ public class GravityBoxSettings extends Activity {
             }
 
             return super.onPreferenceTreeClick(prefScreen, pref);
+        }
+
+        private boolean isAppInstalled(String appUri) {
+            PackageManager pm = getActivity().getPackageManager();
+            try {
+                pm.getPackageInfo(appUri, PackageManager.GET_ACTIVITIES);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
         }
     }
 }
