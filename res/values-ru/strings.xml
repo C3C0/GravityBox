@@ -79,6 +79,7 @@
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_mobile_data">Мобильный интернет</string>
+    <string name="qs_tile_network_mode">Режим сети (2g/3g)</string>
     <string name="qs_tile_data_usage">Передача данных (статистика)</string>
     <string name="qs_tile_audio">Профили звука</string>
     <string name="qs_tile_brightness">Яркость</string>
