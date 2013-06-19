@@ -3,10 +3,11 @@
 
     <string name="app_name">GravityBox</string>
 
-    <string name="battery_style_title">Styl indikátoru baterie</string>
+    <string name="battery_style_title">Styl indikátoru baterie</string>	
     <string name="battery_style_stock">Základní</string>
     <string name="battery_style_circle">Kruhový s procenty</string>
     <string name="battery_style_percent">Textový s procenty</string>
+	<string name="battery_style_percent_stock">Textový s procenty a ikonou</string>
     <string name="battery_style_none">Žádný</string>
 
     <string name="vol_music_controls_title">Ovládání hudby tlačítky hlasitosti</string>
@@ -29,7 +30,7 @@
 
     <string name="poweroff_advanced_title">Rozšířené menu napájení</string>
     <string name="poweroff_advanced_summary">Umožní rozšířené menu napájení s možností restartu a restartu do recovery</string>
-    <string name="poweroff_recovery">Recovery</string>
+    <string name="poweroff_recovery">Recovery</string>    
 
     <string name="vol_key_cursor_control_title">Pohyb kurzoru tlačítky hlasitosti</string>
     <string name="vol_key_cursor_control_summary">Umožní pohyb kurzoru pomocí tlačítek hlasitosti v textových polích</string>
@@ -39,6 +40,9 @@
 
     <string name="recents_clear_all_title">Ukončení aktuálních aplikací</string>
     <string name="recents_clear_all_summary">Zobrazí tlačítko, které umožní ukončení všech aplikací najednou, v seznamu aktuálních aplikací</string>
+
+    <string name="pref_group_mods_title">Modifikace</string>
+    <string name="pref_group_fixes_title">Opravy - použít jen pokud je to nutné</string>
 
     <string name="fix_datetime_crash_title">Opravit padání datumu a času</string>
     <string name="fix_datetime_crash_summary">Použít v případě, když nastavení datumu a času padá (vyžaduje restart)</string>
@@ -59,11 +63,14 @@
     <string name="caller_fullscreen_photo_title">Foto volajícího na celou obrazovku</string>
     <string name="caller_fullscreen_photo_summary">Zobrazí foto volajícího na celou obrazovku během přijímání hovoru</string>
 
-    <!-- QuickSettings strings -->
+	 <!-- QuickSettings strings -->
     <string name="quick_settings_sync_on">Synch on</string>
     <string name="quick_settings_sync_off">Synch off</string>
     <string name="quick_settings_wifi_ap_on">Wi-Fi AP on</string>
     <string name="quick_settings_wifi_ap_off">Wi-Fi AP off</string>
+    <string name="quick_settings_torch_on">Světlo zap</string>
+    <string name="quick_settings_torch_off">Světlo vyp</string>
+    <string name="quick_settings_torch_off_notif">Dotykem vypněte světlo</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Dlaždice QuickSettings panelu</string>
@@ -75,6 +82,7 @@
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_mobile_data">Mobilní data</string>
+    <string name="qs_tile_network_mode">Typ síte</string>
     <string name="qs_tile_data_usage">Využití dat</string>
     <string name="qs_tile_audio">Zvukové profily</string>
     <string name="qs_tile_brightness">Jas</string>
@@ -82,6 +90,43 @@
     <string name="qs_tile_autorotation">Automatické otáčení obrazovky</string>
     <string name="qs_tile_sync">Synchronizace</string>
     <string name="qs_tile_wifi_ap">Wi-Fi Přístupový bod</string>
+	<string name="qs_tile_torch">Světlo</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+	
+	<!-- Color Picker -->
+    <string name="dialog_color_picker">Výběr barvy</string>
+    <string name="press_color_to_apply">Dotykem potvrdíte barvu</string>
 
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Barva pozadí stavového řádku</string>
+    <string name="statusbar_bgcolor_summary">Umožní nastavení barvy a průhlednosti pozadí stavového řádku</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Opravit nastavení řeči</string>
+    <string name="fix_tts_settings_summary">Odemkne nastavení výstupu převodu textu na řeč v nastavení Jazyk&amp;vstup (vyžaduje restart)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">Rozšířené možnosti pro vývojáře</string>
+    <string name="fix_dev_opts_summary">Odemkne rozšířené nastavení pro vývojáře (vyžaduje restart)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Nastavení stavového řádku</string>
+    <string name="pref_cat_statusbar_summary">Obsahuje různé nastavení stavového řádku</string>
+    <string name="pref_cat_misc_title">Různé nastavení</string>
+    <string name="pref_cat_misc_summary">Obsahuje všechny ostatní nastavení nespadající do jiné specifické kategorie</string>
+    <string name="pref_cat_fixes_title">Všeobecné opravy</string>
+    <string name="pref_cat_fixes_summary">Obsahuje všeobecné opravy specifické pro MTK6589. Použít jen v případě potřeby</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">O aplikaci</string>
+    <string name="about_gb_summary">Naprogramoval C3C076@XDA. Dotykem otevřete oficiální stránku.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Naprogramoval rovo89@XDA. Dotykem otevřete oficiální stránku.</string>
+    <string name="about_donate_title">Přispět</string>
+    <string name="about_donate_summary">Přispějte přes PayPal pokud si myslíte, že tato aplikace za to stojí! Zvažte též příspěvek pro rovo89 za jeho excelentní Xposed framework.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">Váš telefon bude restartovaný</string>
+    <string name="reboot_confirm_recovery">Váš telefon bude restartovaný do režimu Recovery</string>
+	
 </resources>
