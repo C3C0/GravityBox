@@ -7,6 +7,7 @@
     <string name="battery_style_stock">Standard batteriindikator</string>
     <string name="battery_style_circle">Cirkel-batteriindikator med procenttal</string>
     <string name="battery_style_percent">Store procenttal</string>
+    <string name="battery_style_percent_stock">Store procenttal med standard batteriikon</string>
     <string name="battery_style_none">Ingen</string>
 
     <string name="vol_music_controls_title">Volumentaster skifter melodi</string>
@@ -64,6 +65,9 @@
     <string name="quick_settings_sync_off">Synkronisering fra</string>
     <string name="quick_settings_wifi_ap_on">Wi-Fi AP til</string>
     <string name="quick_settings_wifi_ap_off">Wi-Fi AP fra</string>
+    <string name="quick_settings_torch_on">Tænd lygte</string>
+    <string name="quick_settings_torch_off">Sluk lygte</string>
+    <string name="quick_settings_torch_off_notif">Tryk for at slukke</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">QuickSettings-felter i statusbjælken</string>
@@ -74,6 +78,7 @@
     <string name="qs_tile_wifi">Wi-Fi</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_network_mode">Netværkstype</string>
     <string name="qs_tile_mobile_data">Mobildata</string>
     <string name="qs_tile_data_usage">Dataforbrug</string>
     <string name="qs_tile_audio">Lydprofiler</string>
@@ -82,6 +87,47 @@
     <string name="qs_tile_autorotation">Autorotation</string>
     <string name="qs_tile_sync">Synkronisering</string>
     <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
+    <string name="qs_tile_torch">Lygte</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Farvevælger</string>
+    <string name="press_color_to_apply">Tryk på Farve for at ændre</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Baggrundsfarve for statusbjælken</string>
+    <string name="statusbar_bgcolor_summary">Tillader indstilling af statusbjælkens baggrundsfarve samt transparens</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Fix taleindstillinger</string>
+    <string name="fix_tts_settings_summary">Oplåser indstillinger for for talestyret søgning samt tekst-til-tale i Sprog &amp; Input (kræver genstart)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">Avancerede muligheder for udviklere</string>
+    <string name="fix_dev_opts_summary">Oplåser avancerede muligheder for udviklere (kræver genstart)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Statusbjælke-tweaks</string>
+    <string name="pref_cat_statusbar_summary">Indeholder forskellige statusbjælke-tweaks</string>
+    <string name="pref_cat_misc_title">Diverse tweaks</string>
+    <string name="pref_cat_misc_summary">Indeholder øvrige tweaks uden for specifikke kategorier</string>
+    <string name="pref_cat_fixes_title">Almene fix</string>
+    <string name="pref_cat_fixes_summary">Indeholder almene MTK6589 specifikke fix. Benyt kun hvis nødvendigt.</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">Om</string>
+    <string name="about_gb_summary">Kodet af C3C076@XDA. Tryk for at gå til officiel tråd.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Kodet af rovo89@XDA. Tryk for at gå til officiel tråd.</string>
+    <string name="about_donate_title">Bidrag</string>
+    <string name="about_donate_summary">Giv mig et bidrag hvis du synes denne app er det værd! Overvej også bidrag til rovo89 for hans fremragende Xposed framework.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">Din telefon vil genstarte</string>
+    <string name="reboot_confirm_recovery">Din telefon vil genstarte i systemgendannelsestilstand</string>
+
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">Billedrørsskærms-slukkeeffekt</string>
+    <string name="crt_off_effect_summary">Slår animation til som simulerer gammeldags billedrørs-slukkeeffekt når skærmen slukkes</string>
 
 </resources>
