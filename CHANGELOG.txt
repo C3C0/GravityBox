@@ -1,3 +1,15 @@
+Changelog 1.3.0 - 20/06/2013
+--------------------------------------
+- QuickSettings Torch tile (flashlight)
+- QuickSettings Network mode tile (2G/3G/2G+3G switch)
+- new battery style: Large percent text with stock icon
+- option for CRT screen off animation
+- added shortcut for launching Engineering mode
+- added shortcut for launching Dual Sim Ringer settings
+--- allows setting ringtone and notification sounds separately for each SIM
+--- requires 3rd party Dual Sim Ringer app for this option to be visible
+- updated translations 
+
 Changelog 1.2.0 - 16/06/2013
 --------------------------------------
 - option to set statusbar color and transparency 
