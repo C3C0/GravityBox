@@ -130,5 +130,12 @@
     <string name="crt_off_effect_title">Effet écran CRT</string>
     <string name="crt_off_effect_summary">Active l\'animation qui simule l\'extinction des vieux moniteurs cathodiques lorsque vous éteignez l\'écran.</string>
 
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Mode ingénierie</string>
+    <string name="engineering_mode_summary">Lance l\'application du mode ingénierie</string>
+    
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Sonnerie double SIM</string>
+    <string name="dual_sim_ringer_summary">Lance l\'application qui permet de configurer la sonnerie et les sons de notification indépendamment pour chaque carte SIM.</string>
 
 </resources>
