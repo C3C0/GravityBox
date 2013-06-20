@@ -130,4 +130,12 @@
     <string name="crt_off_effect_title">CRT-эффект выключения экрана</string>
     <string name="crt_off_effect_summary">Включает анимацию, имитирующую выключение старых ЭЛТ-мониторов, при выключении экрана</string>
         
+        <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Инженерное меню</string>
+    <string name="engineering_mode_summary">Запускает Инженерное меню</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Мелодия звонка для 2-х SIM</string>
+    <string name="dual_sim_ringer_summary">Запускает приложение, которое позволяет установить мелодию звонка и уведомлений отдельно для каждой SIM-карты</string>
+    
 </resources>
