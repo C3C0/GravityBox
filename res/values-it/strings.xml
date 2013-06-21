@@ -3,85 +3,140 @@
 
     <string name="app_name">GravityBox</string>
  
-    <string name="battery_style_title">Stile indicatore batteria</string>
-    <string name="battery_style_stock">Indicatore batteria stock</string>
-    <string name="battery_style_circle">Batteria circolare con percentuale</string>
-    <string name="battery_style_percent">Testo percentuale largo</string>
-    <string name="battery_style_none">Nessuno</string>
+	<string name="battery_style_title">Stile indicatore batteria</string>      
+	<string name="battery_style_stock">Indicatore batteria stock</string>
+	<string name="battery_style_circle">Batteria circolare con percentuale</string>
+	<string name="battery_style_percent">Testo percentuale largo</string>
+	<string name="battery_style_none">Nessuno</string>
  
-    <string name="vol_music_controls_title">Tasti volume cambiano traccia</string>
-    <string name="vol_music_controls_summary">Cambia traccia alla pressione dei tasti volume prolungata a schermo spento</string>
+	<string name="vol_music_controls_title">Tasti volume cambiano traccia</string>
+	<string name="vol_music_controls_summary">Cambia traccia alla pressione dei tasti volume prolungata a schermo spento</string>
  
-    <string name="low_battery_warning_policy_title">Avviso per poca batteria</string>
-    <string name="low_battery_warning_full">Pop-up e suono</string>
-    <string name="low_battery_warning_popup">Solo Pop-up</string>
-    <string name="low_battery_warning_sound">Solo suono</string>
-    <string name="low_battery_warning_off">Off</string>
+	<string name="low_battery_warning_policy_title">Avviso per poca batteria</string>
+	<string name="low_battery_warning_full">Pop-up e suono</string>
+	<string name="low_battery_warning_popup">Solo Pop-up</string>
+	<string name="low_battery_warning_sound">Solo suono</string>
+	<string name="low_battery_warning_off">Off</string>
  
-    <string name="reboot_required">Le modifiche saranno applicate dopo il riavvio</string>
+	<string name="reboot_required">Le modifiche saranno applicate dopo il riavvio</string>
  
-    <string name="signal_icon_autohide_title">Auto-nascondi icone di segnalazione</string>
-    <string name="signal_icon_autohide_summary">Nascondi automaticamente le icone di segnalazione per gli slot SIM selezionati se la SIM non è inserita, Disabilita la notifica \"SIM non inserita\"</string>
-    <string name="sim_slot_1">Nascondi automaticamente lo slot SIM 1</string>
-    <string name="sim_slot_2">Nascondi automaticamente lo slot SIM 2</string>
-    <string name="sim_disable_notifications">Disabilita le notifiche</string>
-    <string name="sim_disable_notifications_summary">Notifica di \"SIM non inserita\" disabilitata</string>
+	<string name="signal_icon_autohide_title">Auto-nascondi icone di segnalazione</string>
+	<string name="signal_icon_autohide_summary">Nascondi automaticamente le icone di segnalazione per gli slot SIM selezionati se la SIM non è inserita, Disabilita la notifica \"SIM non inserita\"</string>
+	<string name="sim_slot_1">Nascondi automaticamente lo slot SIM 1</string>
+	<string name="sim_slot_2">Nascondi automaticamente lo slot SIM 2</string>
+	<string name="sim_disable_notifications">Disabilita le notifiche</string>
+	<string name="sim_disable_notifications_summary">Notifica di \"SIM non inserita\" disabilitata</string>
  
-    <string name="poweroff_advanced_title">Menu Power-off avanzato</string>
-    <string name="poweroff_advanced_summary">Abilita il menu power-off avanzato con l\'opzione per riavviare in ripristino</string>
-    <string name="poweroff_recovery">Ripristino</string>    
+	<string name="poweroff_advanced_title">Menu Power-off avanzato</string>
+	<string name="poweroff_advanced_summary">Abilita il menu power-off avanzato con l\'opzione per riavviare in ripristino</string>
+	<string name="poweroff_recovery">Ripristino</string>    
  
-    <string name="vol_key_cursor_control_title">Controllo cursore tramite tasti volume</string>
-    <string name="vol_key_cursor_control_summary">Controlla il cursore usando i tasti volume nei campi di testo</string>
-    <string name="vol_key_cursor_control_off">Disabilitato</string>
-    <string name="vol_key_cursor_control_on">Volume su/giu muove il cursore a sinistra/destra</string>
-    <string name="vol_key_cursor_control_on_reverse">Volume su/giu muove il cursore a destra/sinistra</string>
+	<string name="vol_key_cursor_control_title">Controllo cursore con tasti volume</string>
+	<string name="vol_key_cursor_control_summary">Controlla il cursore usando i tasti volume nei campi di testo</string>
+	<string name="vol_key_cursor_control_off">Disabilitato</string>
+	<string name="vol_key_cursor_control_on">Volume su/giu muove il cursore a sinistra/destra</string>
+	<string name="vol_key_cursor_control_on_reverse">Volume su/giu muove il cursore a destra/sinistra</string>
  
-    <string name="recents_clear_all_title">Pulisci tutte le attività recenti</string>
-    <string name="recents_clear_all_summary">Abilita il bottone per pulire tutte le attività recenti nella finestra \"Attività recenti\"</string>
+	<string name="recents_clear_all_title">Pulisci tutte le attività recenti</string>
+	<string name="recents_clear_all_summary">Abilita il bottone per pulire tutte le attività recenti nella finestra \"Attività recenti\"</string>
  
-    <string name="fix_datetime_crash_title">Fix crash nell\'impostazione Data&amp;ora</string>
-    <string name="fix_datetime_crash_summary">Abilita nel caso si verifichi un crash durante l\'accesso alle impostazione Data&amp;Ora (richiede riavvio)</string>
+	<string name="pref_group_mods_title">Mods</string>
+	<string name="pref_group_fixes_title">Fix - Usa solo se necessario</string>
  
-    <string name="fix_caller_id_phone_title">Fix ID chiamante per il telefono</string>
-    <string name="fix_caller_id_phone_summary">Abilita nel caso in cui il tuo contatto non corrisponda durante la ricezione di chiamate (richiede riavvio)</string>
-    <string name="fix_caller_id_phone_alert">Dopo il riavvio, dovresti pulire e riaggiungere i tuoi contatti affinchè la modifica abbia affetto! Usa Impostazioni / Applicazioni / Tutte - per pulire i dati del fornitore di contatti.</string>
+	<string name="fix_datetime_crash_title">Fix crash in modifica Data&amp;ora</string>
+	<string name="fix_datetime_crash_summary">Abilita nel caso si verifichi un crash durante l\'accesso alle impostazione Data&amp;Ora (richiede riavvio)</string>
  
-    <string name="fix_caller_id_mms_title">Fix ID chiamante nei messaggi</string>
-    <string name="fix_caller_id_mms_summary">Abilita nel caso in cui ci siano più conversazioni divise per lo stesso contatto (richiede riavvio)</string>
-    <string name="fix_caller_id_mms_alert">Dopo il riavvio, dovresti eliminare tutti la conversazioni divise nelle applicazioni di messaggistica affinchè la modifica abbia effetto!</string>
+	<string name="fix_caller_id_phone_title">Fix ID chiamante per il telefono</string>
+	<string name="fix_caller_id_phone_summary">Abilita nel caso in cui il tuo contatto non corrisponda durante la ricezione di chiamate (richiede riavvio)</string>
+	<string name="fix_caller_id_phone_alert">Dopo il riavvio, dovresti pulire e riaggiungere i tuoi contatti affinchè la modifica abbia affetto! Usa Impostazioni / Applicazioni / Tutte - per pulire i dati del fornitore di contatti.</string>
  
-    <string name="fix_calendar_title">Fix app calendario</string>
-    <string name="fix_calendar_summary">Abilita nel caso in cui si verifichino periodiche accensioni automatiche dello schermo (richiede riavvio)</string>
+	<string name="fix_caller_id_mms_title">Fix ID chiamante nei messaggi</string>
+	<string name="fix_caller_id_mms_summary">Abilita nel caso in cui ci siano più conversazioni divise per lo stesso contatto (richiede riavvio)</string>
+	<string name="fix_caller_id_mms_alert">Dopo il riavvio, dovresti eliminare tutti la conversazioni divise nelle applicazioni di messaggistica affinchè la modifica abbia effetto!</string>
  
-    <string name="important">Importante</string>
+	<string name="fix_calendar_title">Fix app calendario</string>
+	<string name="fix_calendar_summary">Abilita nel caso in cui si verifichino periodiche accensioni automatiche dello schermo (richiede riavvio)</string>
  
-    <string name="caller_fullscreen_photo_title">Foto chiamante a tutto schermo</string>
-    <string name="caller_fullscreen_photo_summary">Mostra la foto del chiamante a tutto schermo per le chiamate in arrivo</string>
+	<string name="important">Importante</string>
+ 
+	<string name="caller_fullscreen_photo_title">Foto chiamante tutto schermo</string>
+	<string name="caller_fullscreen_photo_summary">Mostra la foto del chiamante a tutto schermo per le chiamate in arrivo</string>
  
  <!-- QuickSettings strings -->
-    <string name="quick_settings_sync_on">Sync on</string>
-    <string name="quick_settings_sync_off">Sync off</string>
-    <string name="quick_settings_wifi_ap_on">Wi-Fi AP on</string>
-    <string name="quick_settings_wifi_ap_off">Wi-Fi AP off</string>
+	<string name="quick_settings_sync_on">Sync on</string>
+	<string name="quick_settings_sync_off">Sync off</string>
+	<string name="quick_settings_wifi_ap_on">Wi-Fi AP on</string>
+	<string name="quick_settings_wifi_ap_off">Wi-Fi AP off</string>
+	<string name="quick_settings_torch_on">Torcia accesa</string>
+	<string name="quick_settings_torch_off">Torcia spenta</string>
+	<string name="quick_settings_torch_off_notif">Tocca per spegnere</string>
 
-    <!-- QuickSettings settings -->
-    <string name="quick_settings_title">Caselle Statusbar QuickSettings</string>
-    <string name="quick_settings_summary">Permette di mostrare o nascondere la caselle QuickSettings nella statusbar</string>
-    <string name="qs_tile_user_profile">Profilo utente</string>
-    <string name="qs_tile_airplane_mode">Modo Areo</string>
-    <string name="qs_tile_battery">Stato batteria</string>
-    <string name="qs_tile_wifi">Wi-Fi</string>
-    <string name="qs_tile_bluetooth">Bluetooth</string>
-    <string name="qs_tile_gps">GPS</string>
-    <string name="qs_tile_mobile_data">Dati mobili</string>
-    <string name="qs_tile_data_usage">Utilizzo dati</string>
-    <string name="qs_tile_audio">Profili audio</string>
-    <string name="qs_tile_brightness">Luminosità</string>
-    <string name="qs_tile_screen_timeout">Timout schermo</string>
-    <string name="qs_tile_autorotation">Rotazione automatica</string>
-    <string name="qs_tile_sync">Sincronia</string>
-    <string name="qs_tile_wifi_ap">Punto d\'accesso Wi-Fi</string>
-    <string name="qs_tile_gravitybox">GravityBox</string>
+	<!-- QuickSettings settings -->
+	<string name="quick_settings_title">Caselle Statusbar QuickSettings</string>
+	<string name="quick_settings_summary">Permette di mostrare o nascondere la caselle QuickSettings nella statusbar</string>
+	<string name="qs_tile_user_profile">Profilo utente</string>
+	<string name="qs_tile_airplane_mode">Modo Areo</string>
+	<string name="qs_tile_battery">Stato batteria</string>
+	<string name="qs_tile_wifi">Wi-Fi</string>
+	<string name="qs_tile_bluetooth">Bluetooth</string>
+	<string name="qs_tile_gps">GPS</string>
+	<string name="qs_tile_mobile_data">Dati mobili</string>
+	<string name="qs_tile_data_usage">Utilizzo dati</string>
+	<string name="qs_tile_audio">Profili audio</string>
+	<string name="qs_tile_brightness">Luminosità</string>
+	<string name="qs_tile_screen_timeout">Timout schermo</string>
+	<string name="qs_tile_autorotation">Rotazione automatica</string>
+	<string name="qs_tile_sync">Sincronia</string>
+	<string name="qs_tile_wifi_ap">Punto d\'accesso Wi-Fi</string>
+	<string name="qs_tile_torch">Torcia</string>
+    	<string name="qs_tile_gravitybox">GravityBox</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Scegli colore</string>
+    <string name="press_color_to_apply">Premi sul colore per applicare</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Colore sfondo statusbar</string>
+    <string name="statusbar_bgcolor_summary">Permette di impostare il colore di sfondo della statusbar e la trasparenza</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Fix impostazioni voce</string>
+    <string name="fix_tts_settings_summary">Sblocca la ricerca vocale e le impostazioni text-to-speech in \"Lingua e immissione\" (richiede riavvio)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">Opzioni sviluppatore avanzate</string>
+    <string name="fix_dev_opts_summary">Sblocca impostazioni sviluppatore avanzate (richiede riavvio)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Modifiche statusbar</string>
+    <string name="pref_cat_statusbar_summary">Contiene varie modifiche alla statusbar</string>
+    <string name="pref_cat_misc_title">Modifiche varie</string>
+    <string name="pref_cat_misc_summary">Contiene tutte le altre modifiche che non ricadono in categorie specifiche</string>
+    <string name="pref_cat_fixes_title">Fix generali</string>
+    <string name="pref_cat_fixes_summary">Contiene fix generali per MTK6589. Usa solo se necessario.</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">About</string>
+    <string name="about_gb_summary">Codificato da C3C076@XDA. Tocca per vedere il thread ufficiale.</string>
+    <string name="about_xposed_title">Framework Xposed</string>
+    <string name="about_xposed_summary">Codificato da rovo89@XDA. Tocca per vedere il thread ufficiale.</string>
+    <string name="about_donate_title">Danazione</string>
+    <string name="about_donate_summary">Fai una donazione a me se credi che questa app se la meriti! Considera anche una donazione a rovo89 per il suo eccellente framework Xposed.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">Il telefono si riavvierà</string>
+    <string name="reboot_confirm_recovery">Il telefono si riavvierà in ripristino</string>
+
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">Effetto spegni schermo CRT</string>
+    <string name="crt_off_effect_summary">Abilita un\'animazione che simula l\'effetto spegnimento dei vecchi schermi CRT</string>
+
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Modo ingegnere</string>
+    <string name="engineering_mode_summary">Lancia l\'applicazione Modo Ingegnere</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Suoneria Dual SIM</string>
+    <string name="dual_sim_ringer_summary">Lancia l\'applicazione che consente di impostare suonerie e notifiche specifiche per ogni SIM</string>
 
 </resources>
