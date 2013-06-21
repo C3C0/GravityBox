@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GravityBox</string>
+	<string name="app_name">GravityBox</string>
  
-	<string name="battery_style_title">Stile indicatore batteria</string>      
+	<string name="battery_style_title">Stile indicatore batteria</string>	  
 	<string name="battery_style_stock">Indicatore batteria stock</string>
 	<string name="battery_style_circle">Batteria circolare con percentuale</string>
 	<string name="battery_style_percent">Testo percentuale largo</string>
@@ -29,7 +29,7 @@
  
 	<string name="poweroff_advanced_title">Menu Power-off avanzato</string>
 	<string name="poweroff_advanced_summary">Abilita il menu power-off avanzato con l\'opzione per riavviare in ripristino</string>
-	<string name="poweroff_recovery">Ripristino</string>    
+	<string name="poweroff_recovery">Ripristino</string>	
  
 	<string name="vol_key_cursor_control_title">Controllo cursore con tasti volume</string>
 	<string name="vol_key_cursor_control_summary">Controlla il cursore usando i tasti volume nei campi di testo</string>
@@ -62,7 +62,7 @@
 	<string name="caller_fullscreen_photo_title">Foto chiamante tutto schermo</string>
 	<string name="caller_fullscreen_photo_summary">Mostra la foto del chiamante a tutto schermo per le chiamate in arrivo</string>
  
- <!-- QuickSettings strings -->
+	<!-- QuickSettings strings -->
 	<string name="quick_settings_sync_on">Sync on</string>
 	<string name="quick_settings_sync_off">Sync off</string>
 	<string name="quick_settings_wifi_ap_on">Wi-Fi AP on</string>
@@ -89,54 +89,54 @@
 	<string name="qs_tile_sync">Sincronia</string>
 	<string name="qs_tile_wifi_ap">Punto d\'accesso Wi-Fi</string>
 	<string name="qs_tile_torch">Torcia</string>
-    	<string name="qs_tile_gravitybox">GravityBox</string>
+		<string name="qs_tile_gravitybox">GravityBox</string>
 
-    <!-- Color Picker -->
-    <string name="dialog_color_picker">Scegli colore</string>
-    <string name="press_color_to_apply">Premi sul colore per applicare</string>
+	<!-- Color Picker -->
+	<string name="dialog_color_picker">Scegli colore</string>
+	<string name="press_color_to_apply">Premi sul colore per applicare</string>
 
-    <!--  Statusbar background color -->
-    <string name="statusbar_bgcolor_title">Colore sfondo statusbar</string>
-    <string name="statusbar_bgcolor_summary">Permette di impostare il colore di sfondo della statusbar e la trasparenza</string>
+	<!--  Statusbar background color -->
+	<string name="statusbar_bgcolor_title">Colore sfondo statusbar</string>
+	<string name="statusbar_bgcolor_summary">Permette di impostare il colore di sfondo della statusbar e la trasparenza</string>
 
-    <!--  Fix speech settings -->
-    <string name="fix_tts_settings_title">Fix impostazioni voce</string>
-    <string name="fix_tts_settings_summary">Sblocca la ricerca vocale e le impostazioni text-to-speech in \"Lingua e immissione\" (richiede riavvio)</string>
+	<!--  Fix speech settings -->
+	<string name="fix_tts_settings_title">Fix impostazioni voce</string>
+	<string name="fix_tts_settings_summary">Sblocca la ricerca vocale e le impostazioni text-to-speech in \"Lingua e immissione\" (richiede riavvio)</string>
 
-    <!--  Advanced developer options -->
-    <string name="fix_dev_opts_title">Opzioni sviluppatore avanzate</string>
-    <string name="fix_dev_opts_summary">Sblocca impostazioni sviluppatore avanzate (richiede riavvio)</string>
+	<!--  Advanced developer options -->
+	<string name="fix_dev_opts_title">Opzioni sviluppatore avanzate</string>
+	<string name="fix_dev_opts_summary">Sblocca impostazioni sviluppatore avanzate (richiede riavvio)</string>
 
-    <!-- Main preference categories -->
-    <string name="pref_cat_statusbar_title">Modifiche statusbar</string>
-    <string name="pref_cat_statusbar_summary">Contiene varie modifiche alla statusbar</string>
-    <string name="pref_cat_misc_title">Modifiche varie</string>
-    <string name="pref_cat_misc_summary">Contiene tutte le altre modifiche che non ricadono in categorie specifiche</string>
-    <string name="pref_cat_fixes_title">Fix generali</string>
-    <string name="pref_cat_fixes_summary">Contiene fix generali per MTK6589. Usa solo se necessario.</string>
+	<!-- Main preference categories -->
+	<string name="pref_cat_statusbar_title">Modifiche statusbar</string>
+	<string name="pref_cat_statusbar_summary">Contiene varie modifiche alla statusbar</string>
+	<string name="pref_cat_misc_title">Modifiche varie</string>
+	<string name="pref_cat_misc_summary">Contiene tutte le altre modifiche che non ricadono in categorie specifiche</string>
+	<string name="pref_cat_fixes_title">Fix generali</string>
+	<string name="pref_cat_fixes_summary">Contiene fix generali per MTK6589. Usa solo se necessario.</string>
 
-    <!-- About -->
-    <string name="pref_cat_about_title">About</string>
-    <string name="about_gb_summary">Codificato da C3C076@XDA. Tocca per vedere il thread ufficiale.</string>
-    <string name="about_xposed_title">Framework Xposed</string>
-    <string name="about_xposed_summary">Codificato da rovo89@XDA. Tocca per vedere il thread ufficiale.</string>
-    <string name="about_donate_title">Danazione</string>
-    <string name="about_donate_summary">Fai una donazione a me se credi che questa app se la meriti! Considera anche una donazione a rovo89 per il suo eccellente framework Xposed.</string>
+	<!-- About -->
+	<string name="pref_cat_about_title">About</string>
+	<string name="about_gb_summary">Codificato da C3C076@XDA. Tocca per vedere il thread ufficiale.</string>
+	<string name="about_xposed_title">Framework Xposed</string>
+	<string name="about_xposed_summary">Codificato da rovo89@XDA. Tocca per vedere il thread ufficiale.</string>
+	<string name="about_donate_title">Danazione</string>
+	<string name="about_donate_summary">Fai una donazione a me se credi che questa app se la meriti! Considera anche una donazione a rovo89 per il suo eccellente framework Xposed.</string>
 
-    <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Il telefono si riavvierà</string>
-    <string name="reboot_confirm_recovery">Il telefono si riavvierà in ripristino</string>
+	<!-- Reboot confirmation -->
+	<string name="reboot_confirm">Il telefono si riavvierà</string>
+	<string name="reboot_confirm_recovery">Il telefono si riavvierà in ripristino</string>
 
-    <!-- CRT effect screen off animation -->
-    <string name="crt_off_effect_title">Effetto spegni schermo CRT</string>
-    <string name="crt_off_effect_summary">Abilita un\'animazione che simula l\'effetto spegnimento dei vecchi schermi CRT</string>
+	<!-- CRT effect screen off animation -->
+	<string name="crt_off_effect_title">Effetto spegni schermo CRT</string>
+	<string name="crt_off_effect_summary">Abilita un\'animazione che simula l\'effetto spegnimento dei vecchi schermi CRT</string>
 
-    <!-- Engineering mode shortcut -->
-    <string name="engineering_mode_title">Modo ingegnere</string>
-    <string name="engineering_mode_summary">Lancia l\'applicazione Modo Ingegnere</string>
+	<!-- Engineering mode shortcut -->
+	<string name="engineering_mode_title">Modo ingegnere</string>
+	<string name="engineering_mode_summary">Lancia l\'applicazione Modo Ingegnere</string>
 
-    <!-- Dual SIM ringer -->
-    <string name="dual_sim_ringer_title">Suoneria Dual SIM</string>
-    <string name="dual_sim_ringer_summary">Lancia l\'applicazione che consente di impostare suonerie e notifiche specifiche per ogni SIM</string>
+	<!-- Dual SIM ringer -->
+	<string name="dual_sim_ringer_title">Suoneria Dual SIM</string>
+	<string name="dual_sim_ringer_summary">Lancia l\'applicazione che consente di impostare suonerie e notifiche specifiche per ogni SIM</string>
 
 </resources>
