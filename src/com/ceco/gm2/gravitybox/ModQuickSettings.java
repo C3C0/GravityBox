@@ -1,5 +1,6 @@
 package com.ceco.gm2.gravitybox;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -18,10 +19,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.os.IBinder;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -33,6 +37,7 @@ public class ModQuickSettings {
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     private static final String CLASS_PANEL_BAR = "com.android.systemui.statusbar.phone.PanelBar";
     private static final String CLASS_QS_TILEVIEW = "com.android.systemui.statusbar.phone.QuickSettingsTileView";
+    private static final String CLASS_NOTIF_PANELVIEW = "com.android.systemui.statusbar.phone.NotificationPanelView";
     private static final boolean DEBUG = false;
 
     private static Context mContext;
@@ -67,6 +72,11 @@ public class ModQuickSettings {
             "torch_tileview",
             "network_mode_tileview"
     ));
+
+    private enum RemoveNotificationMethodState {
+        METHOD_ENTERED,
+        METHOD_EXITED
+    }
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -163,6 +173,9 @@ public class ModQuickSettings {
         log("init");
 
         try {
+            final ThreadLocal<RemoveNotificationMethodState> removeNotificationState = 
+                    new ThreadLocal<RemoveNotificationMethodState>();
+
             prefs.reload();
             mActiveTileKeys = prefs.getStringSet(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS, null);
             log("got tile prefs: mActiveTileKeys = " + (mActiveTileKeys == null ? "null" : mActiveTileKeys.toString()));
@@ -171,6 +184,7 @@ public class ModQuickSettings {
             final Class<?> phoneStatusBarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
             final Class<?> panelBarClass = XposedHelpers.findClass(CLASS_PANEL_BAR, classLoader);
             mQuickSettingsTileViewClass = XposedHelpers.findClass(CLASS_QS_TILEVIEW, classLoader);
+            final Class<?> notifPanelViewClass = XposedHelpers.findClass(CLASS_NOTIF_PANELVIEW, classLoader);
 
             XposedBridge.hookAllConstructors(quickSettingsClass, quickSettingsConstructHook);
             XposedHelpers.findAndHookMethod(quickSettingsClass, "setBar", 
@@ -180,7 +194,50 @@ public class ModQuickSettings {
             XposedHelpers.findAndHookMethod(quickSettingsClass, "addSystemTiles", 
                     ViewGroup.class, LayoutInflater.class, quickSettingsAddSystemTilesHook);
             XposedHelpers.findAndHookMethod(quickSettingsClass, "updateResources", quickSettingsUpdateResourcesHook);
+            XposedHelpers.findAndHookMethod(notifPanelViewClass, "onTouchEvent", 
+                    MotionEvent.class, notificationPanelViewOnTouchEvent);
 
+            XposedHelpers.findAndHookMethod(phoneStatusBarClass, "removeNotification", IBinder.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (DEBUG) {
+                        log("removeNotification method ENTER");
+                    }
+                    removeNotificationState.set(RemoveNotificationMethodState.METHOD_ENTERED);
+                }
+
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (DEBUG) {
+                        log("removeNotification method EXIT");
+                    }
+                    removeNotificationState.set(RemoveNotificationMethodState.METHOD_EXITED);
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(phoneStatusBarClass, "animateCollapsePanels", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (removeNotificationState.get() != null && 
+                            removeNotificationState.get().equals(RemoveNotificationMethodState.METHOD_ENTERED)) {
+                        log("animateCollapsePanels called from removeNotification method");
+
+                        boolean hasFlipSettings = XposedHelpers.getBooleanField(param.thisObject, "mHasFlipSettings");
+                        boolean animating = XposedHelpers.getBooleanField(param.thisObject, "mAnimating");
+                        View flipSettingsView = (View) XposedHelpers.getObjectField(param.thisObject, "mFlipSettingsView");
+                        Object notificationData = XposedHelpers.getObjectField(mStatusBar, "mNotificationData");
+                        int ndSize = (Integer) XposedHelpers.callMethod(notificationData, "size");
+                        boolean isShowingSettings = hasFlipSettings && flipSettingsView.getVisibility() == View.VISIBLE;
+
+                        if (ndSize == 0 && !animating && !isShowingSettings) {
+                            // let the original method finish its work
+                        } else {
+                            log("animateCollapsePanels: all notifications removed but showing QuickSettings - do nothing");
+                            param.setResult(null);
+                        }
+                    }
+                }
+            });
         } catch (Exception e) {
             XposedBridge.log(e);
         }
@@ -260,6 +317,55 @@ public class ModQuickSettings {
             for (AQuickSettingsTile t : mTiles) {
                 t.updateResources();
             }
+        }
+    };
+
+    private static XC_MethodReplacement notificationPanelViewOnTouchEvent = new XC_MethodReplacement() {
+
+        @Override
+        protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+            MotionEvent event = (MotionEvent) param.args[0];
+
+            if (mStatusBar != null && XposedHelpers.getBooleanField(mStatusBar, "mHasFlipSettings")) {
+                boolean shouldFlip = false;
+                boolean okToFlip = false;
+                Object notificationData = XposedHelpers.getObjectField(mStatusBar, "mNotificationData");
+                float handleBarHeight = XposedHelpers.getFloatField(param.thisObject, "mHandleBarHeight");
+                Method getExpandedHeight = param.thisObject.getClass().getSuperclass().getMethod("getExpandedHeight");
+                switch (event.getActionMasked()) {
+                    case MotionEvent.ACTION_DOWN:
+                        okToFlip = ((Float) getExpandedHeight.invoke(param.thisObject)) == 0;
+                        if ((Integer)XposedHelpers.callMethod(notificationData, "size") == 0) {
+                            shouldFlip = true;
+                        }
+                        break;
+                    case MotionEvent.ACTION_POINTER_DOWN:
+                        if (okToFlip) {
+                            float miny = event.getY(0);
+                            float maxy = miny;
+                            for (int i = 1; i < event.getPointerCount(); i++) {
+                                final float y = event.getY(i);
+                                if (y < miny) miny = y;
+                                if (y > maxy) maxy = y;
+                            }
+                            if (maxy - miny < handleBarHeight) {
+                                shouldFlip = true;
+                            }
+                        }
+                        break;
+                }
+                if (okToFlip && shouldFlip) {
+                    if (((View)param.thisObject).getMeasuredHeight() < handleBarHeight) {
+                        XposedHelpers.callMethod(mStatusBar, "switchToSettings");
+                    } else {
+                        XposedHelpers.callMethod(mStatusBar, "flipToSettings");
+                    }
+                    okToFlip = false;
+                }
+            }
+
+            View handleView = (View) XposedHelpers.getObjectField(param.thisObject, "mHandleView"); 
+            return handleView.dispatchTouchEvent(event);
         }
     };
 }

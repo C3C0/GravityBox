@@ -1,3 +1,25 @@
+Changelog 1.3.1 - 20/06/2013
+--------------------------------------
+- SystemUI: avoid "phantom" statusbar collapsing
+--- more info: https://github.com/C3C0/GravityBox/commit/4a2f875814ed344bf692cfcfc1df4c6d7f9ad3d3
+- Open QuickSettings instead of empty notification panel when there are no notifications
+- updated Danish translations (thanks to Mr. Premise)
+- updated French translations (thanks to ch-vox)
+- updated Spanish translations (thanks to peptonib)
+- updated Italian translations (thanks to kidmar)
+
+Changelog 1.3.0 - 20/06/2013
+--------------------------------------
+- QuickSettings Torch tile (flashlight)
+- QuickSettings Network mode tile (2G/3G/2G+3G switch)
+- new battery style: Large percent text with stock icon
+- option for CRT screen off animation
+- added shortcut for launching Engineering mode
+- added shortcut for launching Dual Sim Ringer settings
+--- allows setting ringtone and notification sounds separately for each SIM
+--- requires 3rd party Dual Sim Ringer app for this option to be visible
+- updated translations 
+
 Changelog 1.2.0 - 16/06/2013
 --------------------------------------
 - option to set statusbar color and transparency 

@@ -8,6 +8,7 @@
     <string name="battery_style_stock">Incateur par défaut</string>
     <string name="battery_style_circle">Cercle avec pourcentage</string>
     <string name="battery_style_percent">Texte uniquement</string>
+    <string name="battery_style_percent_stock">Texte et indicateur par défaut</string>
     <string name="battery_style_none">Aucun</string>
 
     <string name="vol_music_controls_title">Touches de volume et pistes audio</string>
@@ -42,7 +43,7 @@
     <string name="recents_clear_all_summary">Active un bouton unique pour supprimer toutes les tâches dans la liste des applications récentes</string>
 
     <string name="fix_datetime_crash_title">Paramètre Date et heure</string>
-    <string name="fix_datetime_crash_summary">Activer si vous constatez un plantage lorsque vous accédez au paramètres Date et heure (redémarrage nécessaire)</string>
+    <string name="fix_datetime_crash_summary">Activer si vous constatez un plantage lorsque vous accédez au paramètre Date et heure (redémarrage nécessaire)</string>
 
     <string name="fix_caller_id_phone_title">Identification de l\'appelant en téléphonie</string>
     <string name="fix_caller_id_phone_summary">Activer si vous constatez qu\'un contact enregistré n\'est pas identifié lord d\'un appel entrant (redémarrage nécessaire)</string>
@@ -130,5 +131,12 @@
     <string name="crt_off_effect_title">Effet écran CRT</string>
     <string name="crt_off_effect_summary">Active l\'animation qui simule l\'extinction des vieux moniteurs cathodiques lorsque vous éteignez l\'écran.</string>
 
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Mode ingénierie</string>
+    <string name="engineering_mode_summary">Lance l\'application du mode ingénierie</string>
+    
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Sonnerie double SIM</string>
+    <string name="dual_sim_ringer_summary">Lance l\'application qui permet de configurer la sonnerie et les sons de notification indépendamment pour chaque carte SIM.</string>
 
 </resources>
