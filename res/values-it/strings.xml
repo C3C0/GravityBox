@@ -89,7 +89,7 @@
     <string name="qs_tile_sync">Sincronia</string>
     <string name="qs_tile_wifi_ap">Punto d\'accesso Wi-Fi</string>
     <string name="qs_tile_torch">Torcia</string>
-        <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Scegli colore</string>
