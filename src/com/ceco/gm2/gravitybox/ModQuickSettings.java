@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class ModQuickSettings {
     public static final String PACKAGE_NAME = "com.android.systemui";
     private static final String CLASS_QUICK_SETTINGS = "com.android.systemui.statusbar.phone.QuickSettings";
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
+    private static final String CLASS_BASE_STATUSBAR = "com.android.systemui.statusbar.BaseStatusBar";
     private static final String CLASS_PANEL_BAR = "com.android.systemui.statusbar.phone.PanelBar";
     private static final String CLASS_QS_TILEVIEW = "com.android.systemui.statusbar.phone.QuickSettingsTileView";
     private static final boolean DEBUG = false;
@@ -67,6 +69,11 @@ public class ModQuickSettings {
             "torch_tileview",
             "network_mode_tileview"
     ));
+
+    private enum RemoveNotificationMethodState {
+        METHOD_ENTERED,
+        METHOD_EXITED
+    }
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -163,6 +170,9 @@ public class ModQuickSettings {
         log("init");
 
         try {
+            final ThreadLocal<RemoveNotificationMethodState> removeNotificationState = 
+                    new ThreadLocal<RemoveNotificationMethodState>();
+
             prefs.reload();
             mActiveTileKeys = prefs.getStringSet(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS, null);
             log("got tile prefs: mActiveTileKeys = " + (mActiveTileKeys == null ? "null" : mActiveTileKeys.toString()));
@@ -171,6 +181,7 @@ public class ModQuickSettings {
             final Class<?> phoneStatusBarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
             final Class<?> panelBarClass = XposedHelpers.findClass(CLASS_PANEL_BAR, classLoader);
             mQuickSettingsTileViewClass = XposedHelpers.findClass(CLASS_QS_TILEVIEW, classLoader);
+            final Class<?> baseStatusBarClass = XposedHelpers.findClass(CLASS_BASE_STATUSBAR, classLoader);
 
             XposedBridge.hookAllConstructors(quickSettingsClass, quickSettingsConstructHook);
             XposedHelpers.findAndHookMethod(quickSettingsClass, "setBar", 
@@ -181,6 +192,48 @@ public class ModQuickSettings {
                     ViewGroup.class, LayoutInflater.class, quickSettingsAddSystemTilesHook);
             XposedHelpers.findAndHookMethod(quickSettingsClass, "updateResources", quickSettingsUpdateResourcesHook);
 
+            XposedHelpers.findAndHookMethod(phoneStatusBarClass, "removeNotification", IBinder.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (DEBUG) {
+                        log("removeNotification method ENTER");
+                    }
+                    removeNotificationState.set(RemoveNotificationMethodState.METHOD_ENTERED);
+                }
+
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (DEBUG) {
+                        log("removeNotification method EXIT");
+                    }
+                    removeNotificationState.set(RemoveNotificationMethodState.METHOD_EXITED);
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(phoneStatusBarClass, "animateCollapsePanels", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (removeNotificationState.get() != null && 
+                            removeNotificationState.get().equals(RemoveNotificationMethodState.METHOD_ENTERED)) {
+                        log("animateCollapsePanels called from removeNotification method");
+
+                        boolean hasFlipSettings = XposedHelpers.getBooleanField(param.thisObject, "mHasFlipSettings");
+                        boolean animating = XposedHelpers.getBooleanField(param.thisObject, "mAnimating");
+                        View flipSettingsView = (View) XposedHelpers.getObjectField(param.thisObject, "mFlipSettingsView");
+                        Object baseStatusBar = baseStatusBarClass.cast(param.thisObject);
+                        Object notificationData = XposedHelpers.getObjectField(baseStatusBar, "mNotificationData");
+                        int ndSize = (Integer) XposedHelpers.callMethod(notificationData, "size");
+                        boolean isShowingSettings = hasFlipSettings && flipSettingsView.getVisibility() == View.VISIBLE;
+
+                        if (ndSize == 0 && !animating && !isShowingSettings) {
+                            // let the original method finish its work
+                        } else {
+                            log("animateCollapsePanels: all notifications removed but showing QuickSettings - do nothing");
+                            param.setResult(null);
+                        }
+                    }
+                }
+            });
         } catch (Exception e) {
             XposedBridge.log(e);
         }
