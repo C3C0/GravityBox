@@ -3,7 +3,7 @@
 
     <string name="app_name">GravityBox</string>
  
-    <string name="battery_style_title">Stile indicatore batteria</string>      
+    <string name="battery_style_title">Stile indicatore batteria</string>
     <string name="battery_style_stock">Indicatore batteria stock</string>
     <string name="battery_style_circle">Batteria circolare con percentuale</string>
     <string name="battery_style_percent">Testo percentuale largo</string>
@@ -29,7 +29,7 @@
  
     <string name="poweroff_advanced_title">Menu Power-off avanzato</string>
     <string name="poweroff_advanced_summary">Abilita il menu power-off avanzato con l\'opzione per riavviare in ripristino</string>
-    <string name="poweroff_recovery">Ripristino</string>    
+    <string name="poweroff_recovery">Ripristino</string>
  
     <string name="vol_key_cursor_control_title">Controllo cursore con tasti volume</string>
     <string name="vol_key_cursor_control_summary">Controlla il cursore usando i tasti volume nei campi di testo</string>
