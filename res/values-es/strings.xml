@@ -40,6 +40,9 @@
     <string name="recents_clear_all_title">Borrado de tareas recientes</string>
     <string name="recents_clear_all_summary">Habilita el botón para borrar todas las tareas recientes a la vez</string>
 
+    <string name="pref_group_mods_title">Personalizaciones</string>
+    <string name="pref_group_fixes_title">Parches - Activar solo en caso necesario</string>
+
     <string name="fix_datetime_crash_title">Parche para el error de Fecha y Hora</string>
     <string name="fix_datetime_crash_summary">Habilitar en caso de experimentar errores al acceder a la configuración de Fecha y Hora (requiere reiniciar)</string>
 
@@ -83,5 +86,53 @@
     <string name="qs_tile_sync">Sincronización</string>
     <string name="qs_tile_wifi_ap">Punto de acceso Wi-Fi</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Selección de color</string>
+    <string name="press_color_to_apply">Toque en el color para seleccionar</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Color de fondo de la barra de estado</string>
+    <string name="statusbar_bgcolor_summary">Permite seleccionar el color de la barra de estado y su transparencia</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Parche para las preferencias de habla</string>
+    <string name="fix_tts_settings_summary">Habilita la busqueda por voz y los ajustes de texto-a-voz&amp;en entrada. (requiere reiniciar)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">Opciones avanzadas de desarrolador</string>
+    <string name="fix_dev_opts_summary">Habilita las opciones avanzadas de desarrolador (requiere reinicio)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Personalización de la barra de estado</string>
+    <string name="pref_cat_statusbar_summary">Personalizaciones varias de la barra de estado</string>
+    <string name="pref_cat_misc_title">Personalizaciones varias</string>
+    <string name="pref_cat_misc_summary">Personalizaciones que no tienen cabida en otras categorias</string>
+    <string name="pref_cat_fixes_title">Parches generales</string>
+    <string name="pref_cat_fixes_summary">Parches para MTK6589.  Usar solo en caso necesario.</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">Acerca de</string>
+    <string name="about_gb_summary">Programado por C3C076@XDA. Toque para visitar el foro oficial.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Programado por rovo89@XDA. Toque para visitar el foro oficial.</string>
+    <string name="about_donate_title">Donar</string>
+    <string name="about_donate_summary">Hazme una donación si crees que esta aplicación lo vale! Considera también donar a rovo89 por su excelente trabajo con el framework Xposed.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">El teléfono se reiniciará</string>
+    <string name="reboot_confirm_recovery">El teléfono se reiniciaré en modo de restauración</string>
+
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">Efecto de CRT al apagar la pantalla</string>
+    <string name="crt_off_effect_summary">Habilita la animación de apagado de pantalla que simula una pantalla antigua</string>
+
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Modo ingeniero</string>
+    <string name="engineering_mode_summary">Accede al codo ingeniero</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Timbre Dual SIM</string>
+    <string name="dual_sim_ringer_summary">Permite configurar el tono de llamada y de notificación para cada SIM por separado</string>
 
 </resources>
