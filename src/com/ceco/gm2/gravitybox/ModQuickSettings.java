@@ -328,13 +328,14 @@ public class ModQuickSettings {
 
             if (mStatusBar != null && XposedHelpers.getBooleanField(mStatusBar, "mHasFlipSettings")) {
                 boolean shouldFlip = false;
-                boolean okToFlip = false;
+                boolean okToFlip = XposedHelpers.getBooleanField(param.thisObject, "mOkToFlip");
                 Object notificationData = XposedHelpers.getObjectField(mStatusBar, "mNotificationData");
                 float handleBarHeight = XposedHelpers.getFloatField(param.thisObject, "mHandleBarHeight");
                 Method getExpandedHeight = param.thisObject.getClass().getSuperclass().getMethod("getExpandedHeight");
                 switch (event.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
                         okToFlip = ((Float) getExpandedHeight.invoke(param.thisObject)) == 0;
+                        XposedHelpers.setBooleanField(param.thisObject, "mOkToFlip", okToFlip);
                         if ((Integer)XposedHelpers.callMethod(notificationData, "size") == 0) {
                             shouldFlip = true;
                         }
