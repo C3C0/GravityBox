@@ -47,6 +47,7 @@ public class ModQuickSettings {
     private static Object mStatusBar;
     private static Set<String> mActiveTileKeys;
     private static Class<?> mQuickSettingsTileViewClass;
+    private static Object mSimSwitchPanelView;
 
     private static ArrayList<AQuickSettingsTile> mTiles;
 
@@ -196,6 +197,8 @@ public class ModQuickSettings {
             XposedHelpers.findAndHookMethod(quickSettingsClass, "updateResources", quickSettingsUpdateResourcesHook);
             XposedHelpers.findAndHookMethod(notifPanelViewClass, "onTouchEvent", 
                     MotionEvent.class, notificationPanelViewOnTouchEvent);
+            XposedHelpers.findAndHookMethod(phoneStatusBarClass, "makeStatusBarView", 
+                    makeStatusBarViewHook);
 
             XposedHelpers.findAndHookMethod(phoneStatusBarClass, "removeNotification", IBinder.class, new XC_MethodHook() {
                 @Override
@@ -336,7 +339,8 @@ public class ModQuickSettings {
                     case MotionEvent.ACTION_DOWN:
                         okToFlip = ((Float) getExpandedHeight.invoke(param.thisObject)) == 0;
                         XposedHelpers.setBooleanField(param.thisObject, "mOkToFlip", okToFlip);
-                        if ((Integer)XposedHelpers.callMethod(notificationData, "size") == 0) {
+                        if ((Integer)XposedHelpers.callMethod(notificationData, "size") == 0 &&
+                                !isSimSwitchPanelShowing()) {
                             shouldFlip = true;
                         }
                         break;
@@ -369,4 +373,25 @@ public class ModQuickSettings {
             return handleView.dispatchTouchEvent(event);
         }
     };
+
+    private static XC_MethodHook makeStatusBarViewHook = new XC_MethodHook() {
+        @Override
+        protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+            try {
+                Object toolbarView = XposedHelpers.getObjectField(param.thisObject, "mToolBarView");
+                if (toolbarView != null) {
+                    mSimSwitchPanelView = XposedHelpers.getObjectField(toolbarView, "mSimSwitchPanelView");
+                    log("makeStatusBarView: SimSwitchPanelView found");
+                }
+            } catch (Exception e) {
+                //
+            }
+        }
+    };
+
+    private static boolean isSimSwitchPanelShowing() {
+        if (mSimSwitchPanelView == null) return false;
+
+        return (Boolean) XposedHelpers.callMethod(mSimSwitchPanelView, "isPanelShowing");
+    }
 }
