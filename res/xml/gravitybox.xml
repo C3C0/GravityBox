@@ -6,13 +6,32 @@
         android:title="@string/pref_cat_lockscreen_title"
         android:summary="@string/pref_cat_lockscreen_summary">
 
-        <ListPreference
-            android:key="pref_lockscreen_background"
-            android:title="@string/pref_lockscreen_background_title"
-            android:summary="@string/pref_lockscreen_background_summary"
-            android:entries="@array/lockscreen_bg_entries"
-            android:entryValues="@array/lockscreen_bg_values"
-            android:defaultValue="default" />
+        <PreferenceCategory 
+            android:key="pref_cat_lockscreen_background"
+            android:title="@string/pref_cat_lockscreen_background_title">
+
+            <ListPreference
+                android:key="pref_lockscreen_background"
+                android:title="@string/pref_lockscreen_background_title"
+                android:entries="@array/lockscreen_bg_entries"
+                android:entryValues="@array/lockscreen_bg_values"
+                android:defaultValue="default"
+                android:order="1" />
+
+            <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                android:key="pref_lockscreen_bg_color"
+                android:title="@string/pref_lockscreen_bg_color_title"
+                android:summary="@string/pref_lockscreen_bg_color_summary"
+                android:defaultValue="@integer/COLOR_BLACK"
+                android:order="2" />
+
+            <Preference
+                android:key="pref_lockscreen_bg_image"
+                android:title="@string/pref_lockscreen_bg_image_title"
+                android:summary="@string/pref_lockscreen_bg_image_summary"
+                android:order="3" />
+
+        </PreferenceCategory>
 
     </PreferenceScreen>
 

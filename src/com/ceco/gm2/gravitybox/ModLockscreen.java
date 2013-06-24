@@ -1,10 +1,20 @@
 package com.ceco.gm2.gravitybox;
 
+import android.content.Context;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.ViewManager;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
@@ -26,9 +36,9 @@ public class ModLockscreen {
 
             XposedHelpers.findAndHookMethod(kgViewManagerClass, "maybeCreateKeyguardLocked", 
                     boolean.class, boolean.class, Bundle.class, new XC_MethodHook() {
+
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    log("after maybeCreateKeyguardLocked method");
                     prefs.reload();
                     ViewManager viewManager = (ViewManager) XposedHelpers.getObjectField(
                             param.thisObject, "mViewManager");
@@ -41,15 +51,13 @@ public class ModLockscreen {
                             GravityBoxSettings.PREF_KEY_LOCKSCREEN_BACKGROUND,
                             GravityBoxSettings.LOCKSCREEN_BG_DEFAULT);
 
-                    int flags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
-                            WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR |
-                            WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN;
-
-                    if (bgType.equals(GravityBoxSettings.LOCKSCREEN_BG_DEFAULT)) {
-                        flags |= WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
+                    if (!bgType.equals(GravityBoxSettings.LOCKSCREEN_BG_DEFAULT)) {
+                        windowLayoutParams.flags &= ~WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
+                    } else {
+                        windowLayoutParams.flags |= WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
                     }
-                    windowLayoutParams.flags = flags;
                     viewManager.updateViewLayout(keyGuardHost, windowLayoutParams);
+                    log("maybeCreateKeyguardLocked: layout updated");
                 }
             });
 
@@ -57,7 +65,6 @@ public class ModLockscreen {
                     Bundle.class, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    log("after inflateKeyguardView method");
                     prefs.reload();
 
                     FrameLayout keyguardView = (FrameLayout) XposedHelpers.getObjectField(
@@ -71,6 +78,28 @@ public class ModLockscreen {
                         int color = prefs.getInt(
                                 GravityBoxSettings.PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR, Color.BLACK);
                         keyguardView.setBackgroundColor(color);
+                        log("inflateKeyguardView: background color set");
+                    } else if (bgType.equals(GravityBoxSettings.LOCKSCREEN_BG_IMAGE)) {
+                        try {
+                            Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                            FrameLayout flayout = new FrameLayout(context);
+                            flayout.setLayoutParams(new LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT, 
+                                    ViewGroup.LayoutParams.MATCH_PARENT));
+                            Context gbContext = context.createPackageContext(
+                                    GravityBox.PACKAGE_NAME, 0);
+                            String wallpaperFile = gbContext.getFilesDir() + "/lockwallpaper";
+                            Bitmap background = BitmapFactory.decodeFile(wallpaperFile);
+                            Drawable d = new BitmapDrawable(context.getResources(), background);
+                            ImageView mLockScreenWallpaperImage = new ImageView(context);
+                            mLockScreenWallpaperImage.setScaleType(ScaleType.CENTER_CROP);
+                            mLockScreenWallpaperImage.setImageDrawable(d);
+                            flayout.addView(mLockScreenWallpaperImage, -1, -1);
+                            keyguardView.addView(flayout,0);
+                            log("inflateKeyguardView: background image set");
+                        } catch (NameNotFoundException e) {
+                            XposedBridge.log(e);
+                        }
                     }
                 }
             });
