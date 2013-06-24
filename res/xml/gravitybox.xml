@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <PreferenceScreen
+        android:key="pref_cat_lockscreen"
+        android:title="@string/pref_cat_lockscreen_title"
+        android:summary="@string/pref_cat_lockscreen_summary">
+
+        <ListPreference
+            android:key="pref_lockscreen_background"
+            android:title="@string/pref_lockscreen_background_title"
+            android:summary="@string/pref_lockscreen_background_summary"
+            android:entries="@array/lockscreen_bg_entries"
+            android:entryValues="@array/lockscreen_bg_values"
+            android:defaultValue="default" />
+
+    </PreferenceScreen>
+
     <PreferenceScreen 
         android:key="pref_cat_statusbar"
         android:title="@string/pref_cat_statusbar_title"

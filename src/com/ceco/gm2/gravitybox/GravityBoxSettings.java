@@ -20,11 +20,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
+import net.margaritov.preference.colorpicker.ColorPickerDialog;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class GravityBoxSettings extends Activity {
@@ -69,6 +71,12 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_DUAL_SIM_RINGER = "pref_dual_sim_ringer";
     public static final String APP_DUAL_SIM_RINGER = "dualsim.ringer";
     public static final String APP_DUAL_SIM_RINGER_CLASS = "dualsim.ringer.main";
+
+    public static final String PREF_KEY_LOCKSCREEN_BACKGROUND = "pref_lockscreen_background";
+    public static final String PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR = "pref_lockscreen_background_color";
+    public static final String LOCKSCREEN_BG_DEFAULT = "default";
+    public static final String LOCKSCREEN_BG_COLOR = "color";
+    public static final String LOCKSCREEN_BG_IMAGE = "image";
 
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
@@ -218,8 +226,12 @@ public class GravityBoxSettings extends Activity {
             } else if (key.equals(PREF_KEY_STATUSBAR_BGCOLOR)) {
                 intent.setAction(ACTION_PREF_STATUSBAR_BGCOLOR_CHANGED);
                 intent.putExtra(EXTRA_SB_BGCOLOR, prefs.getInt(PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK));
+            } else if (key.equals(PREF_KEY_LOCKSCREEN_BACKGROUND)) {
+                handleLockscreenBackground();
             }
-            getActivity().sendBroadcast(intent);
+            if (intent.getAction() != null) {
+                getActivity().sendBroadcast(intent);
+            }
 
             if (key.equals(PREF_KEY_FIX_CALLER_ID_PHONE) ||
                     key.equals(PREF_KEY_FIX_CALLER_ID_MMS)) {
@@ -281,6 +293,25 @@ public class GravityBoxSettings extends Activity {
                 return true;
             } catch (Exception e) {
                 return false;
+            }
+        }
+
+        private void handleLockscreenBackground() {
+            final String bgType = mPrefs.getString(PREF_KEY_LOCKSCREEN_BACKGROUND, LOCKSCREEN_BG_DEFAULT); 
+
+            if (bgType.equals(LOCKSCREEN_BG_COLOR)) {
+                int currentColor = mPrefs.getInt(PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR, Color.BLACK);
+                ColorPickerDialog cpDlg = new ColorPickerDialog(getActivity(), currentColor);
+                cpDlg.setOnColorChangedListener(new ColorPickerDialog.OnColorChangedListener() {
+
+                    @Override
+                    public void onColorChanged(int color) {
+                       Editor e = mPrefs.edit();
+                       e.putInt(PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR, color);
+                       e.commit();
+                    }
+                });
+                cpDlg.show();
             }
         }
     }

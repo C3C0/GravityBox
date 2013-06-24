@@ -34,6 +34,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         GeminiPhoneWrapper.initZygote();
         ModElectronBeam.initZygote(prefs);
+        ModLockscreen.initZygote(prefs);
     }
 
     @Override
