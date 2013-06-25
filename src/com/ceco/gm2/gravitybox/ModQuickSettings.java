@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.ceco.gm2.gravitybox.Utils.MethodState;
 import com.ceco.gm2.gravitybox.quicksettings.AQuickSettingsTile;
 import com.ceco.gm2.gravitybox.quicksettings.NetworkModeTile;
 import com.ceco.gm2.gravitybox.quicksettings.TorchTile;
@@ -73,11 +74,6 @@ public class ModQuickSettings {
             "torch_tileview",
             "network_mode_tileview"
     ));
-
-    private enum RemoveNotificationMethodState {
-        METHOD_ENTERED,
-        METHOD_EXITED
-    }
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -174,8 +170,9 @@ public class ModQuickSettings {
         log("init");
 
         try {
-            final ThreadLocal<RemoveNotificationMethodState> removeNotificationState = 
-                    new ThreadLocal<RemoveNotificationMethodState>();
+            final ThreadLocal<MethodState> removeNotificationState = 
+                    new ThreadLocal<MethodState>();
+            removeNotificationState.set(MethodState.UNKNOWN);
 
             prefs.reload();
             mActiveTileKeys = prefs.getStringSet(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS, null);
@@ -206,7 +203,7 @@ public class ModQuickSettings {
                     if (DEBUG) {
                         log("removeNotification method ENTER");
                     }
-                    removeNotificationState.set(RemoveNotificationMethodState.METHOD_ENTERED);
+                    removeNotificationState.set(MethodState.METHOD_ENTERED);
                 }
 
                 @Override
@@ -214,15 +211,14 @@ public class ModQuickSettings {
                     if (DEBUG) {
                         log("removeNotification method EXIT");
                     }
-                    removeNotificationState.set(RemoveNotificationMethodState.METHOD_EXITED);
+                    removeNotificationState.set(MethodState.METHOD_EXITED);
                 }
             });
 
             XposedHelpers.findAndHookMethod(phoneStatusBarClass, "animateCollapsePanels", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
-                    if (removeNotificationState.get() != null && 
-                            removeNotificationState.get().equals(RemoveNotificationMethodState.METHOD_ENTERED)) {
+                    if (removeNotificationState.get().equals(MethodState.METHOD_ENTERED)) {
                         log("animateCollapsePanels called from removeNotification method");
 
                         boolean hasFlipSettings = XposedHelpers.getBooleanField(param.thisObject, "mHasFlipSettings");
