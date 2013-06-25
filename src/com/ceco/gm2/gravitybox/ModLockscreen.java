@@ -23,6 +23,9 @@ import de.robv.android.xposed.XposedHelpers;
 public class ModLockscreen {
     private static final String TAG = "ModLockscreen";
     private static final String CLASS_KGVIEW_MANAGER = "com.android.internal.policy.impl.keyguard.KeyguardViewManager";
+    private static final String CLASS_KG_HOSTVIEW = "com.android.internal.policy.impl.keyguard.KeyguardHostView";
+
+    private static XSharedPreferences mPrefs;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -32,14 +35,16 @@ public class ModLockscreen {
         log("initZygote");
 
         try {
+            mPrefs = prefs;
             final Class<?> kgViewManagerClass = XposedHelpers.findClass(CLASS_KGVIEW_MANAGER, null);
+            final Class<?> kgHostViewClass = XposedHelpers.findClass(CLASS_KG_HOSTVIEW, null);
 
             XposedHelpers.findAndHookMethod(kgViewManagerClass, "maybeCreateKeyguardLocked", 
                     boolean.class, boolean.class, Bundle.class, new XC_MethodHook() {
 
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    prefs.reload();
+                    mPrefs.reload();
                     ViewManager viewManager = (ViewManager) XposedHelpers.getObjectField(
                             param.thisObject, "mViewManager");
                     FrameLayout keyGuardHost = (FrameLayout) XposedHelpers.getObjectField(
@@ -65,17 +70,17 @@ public class ModLockscreen {
                     Bundle.class, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    prefs.reload();
+                    mPrefs.reload();
 
                     FrameLayout keyguardView = (FrameLayout) XposedHelpers.getObjectField(
                             param.thisObject, "mKeyguardView");
 
-                    final String bgType = prefs.getString(
+                    final String bgType = mPrefs.getString(
                             GravityBoxSettings.PREF_KEY_LOCKSCREEN_BACKGROUND, 
                             GravityBoxSettings.LOCKSCREEN_BG_DEFAULT);
 
                     if (bgType.equals(GravityBoxSettings.LOCKSCREEN_BG_COLOR)) {
-                        int color = prefs.getInt(
+                        int color = mPrefs.getInt(
                                 GravityBoxSettings.PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR, Color.BLACK);
                         keyguardView.setBackgroundColor(color);
                         log("inflateKeyguardView: background color set");
@@ -103,8 +108,33 @@ public class ModLockscreen {
                     }
                 }
             });
+
+            XposedHelpers.findAndHookMethod(kgHostViewClass, "onFinishInflate", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    Object slidingChallenge = XposedHelpers.getObjectField(
+                            param.thisObject, "mSlidingChallengeLayout");
+                    minimizeChallengeIfDesired(slidingChallenge);
+                }
+            });
+            XposedHelpers.findAndHookMethod(kgHostViewClass, "onScreenTurnedOn", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    Object slidingChallenge = XposedHelpers.getObjectField(
+                            param.thisObject, "mSlidingChallengeLayout");
+                    minimizeChallengeIfDesired(slidingChallenge);
+                }
+            });
         } catch (Exception e) {
             XposedBridge.log(e);
+        }
+    }
+
+    private static void minimizeChallengeIfDesired(Object challenge) {
+        mPrefs.reload();
+        if (mPrefs.getBoolean(GravityBoxSettings.PREF_KEY_LOCKSCREEN_MAXIMIZE_WIDGETS, false)) {
+            log("minimizeChallengeIfDesired: challenge minimized");
+            XposedHelpers.callMethod(challenge, "showChallenge", false);
         }
     }
 }

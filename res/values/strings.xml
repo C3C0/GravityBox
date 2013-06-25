@@ -152,5 +152,8 @@
     <string name="pref_lockscreen_bg_image_summary">Allows to set custom background image for lockscreen</string>
     <string name="lockscreen_background_result_successful">Background changed</string>
     <string name="lockscreen_background_result_not_successful">Background not changed</string>
+    <string name="pref_cat_lockscreen_other_title">Other</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Maximize widgets</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">When enabled, lockscreen widgets will be maximized by default</string>
 
 </resources>

@@ -87,6 +87,8 @@ public class GravityBoxSettings extends Activity {
     public static final String LOCKSCREEN_BG_IMAGE = "image";
     private static final int LOCKSCREEN_BACKGROUND = 1024;
 
+    public static final String PREF_KEY_LOCKSCREEN_MAXIMIZE_WIDGETS = "pref_lockscreen_maximize_widgets"; 
+
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
