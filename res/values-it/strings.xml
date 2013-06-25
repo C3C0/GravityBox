@@ -7,6 +7,7 @@
     <string name="battery_style_stock">Indicatore batteria stock</string>
     <string name="battery_style_circle">Batteria circolare con percentuale</string>
     <string name="battery_style_percent">Testo percentuale largo</string>
+    <string name="battery_style_percent_stock">Testo percentuale largo con icona stock</string>
     <string name="battery_style_none">Nessuno</string>
  
     <string name="vol_music_controls_title">Tasti volume cambiano traccia</string>
@@ -29,7 +30,7 @@
  
     <string name="poweroff_advanced_title">Menu Power-off avanzato</string>
     <string name="poweroff_advanced_summary">Abilita il menu power-off avanzato con l\'opzione per riavviare in ripristino</string>
-    <string name="poweroff_recovery">Ripristino</string>
+    <string name="poweroff_recovery">Riavvia in Recovery</string>
  
     <string name="vol_key_cursor_control_title">Controllo cursore con tasti volume</string>
     <string name="vol_key_cursor_control_summary">Controlla il cursore usando i tasti volume nei campi di testo</string>
@@ -120,7 +121,7 @@
     <string name="about_gb_summary">Codificato da C3C076@XDA. Tocca per vedere il thread ufficiale.</string>
     <string name="about_xposed_title">Framework Xposed</string>
     <string name="about_xposed_summary">Codificato da rovo89@XDA. Tocca per vedere il thread ufficiale.</string>
-    <string name="about_donate_title">Danazione</string>
+    <string name="about_donate_title">Donazione</string>
     <string name="about_donate_summary">Fai una donazione a me se credi che questa app se la meriti! Considera anche una donazione a rovo89 per il suo eccellente framework Xposed.</string>
 
     <!-- Reboot confirmation -->
@@ -132,11 +133,37 @@
     <string name="crt_off_effect_summary">Abilita un\'animazione che simula l\'effetto spegnimento dei vecchi schermi CRT</string>
 
     <!-- Engineering mode shortcut -->
-    <string name="engineering_mode_title">Modo ingegnere</string>
-    <string name="engineering_mode_summary">Lancia l\'applicazione Modo Ingegnere</string>
+    <string name="engineering_mode_title">Modalità Engineer</string>
+    <string name="engineering_mode_summary">Lancia l\'applicazione Modalità Engineer</string>
 
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Suoneria Dual SIM</string>
     <string name="dual_sim_ringer_summary">Lancia l\'applicazione che consente di impostare suonerie e notifiche specifiche per ogni SIM</string>
+
+    <!-- Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Modifiche Lockscreen</string>
+    <string name="pref_cat_lockscreen_summary">Contiene varie modifiche al lockscreen</string>
+    <string name="pref_cat_lockscreen_background_title">Sfondo Lockscreen</string>
+    <string name="pref_lockscreen_background_title">Stile sfondo</string>
+    <string name="lockscreen_bg_default">Wallpaper di default</string>
+    <string name="lockscreen_bg_color">Colore di riempimento</string>
+    <string name="lockscreen_bg_image">Immagine personalizzata</string>
+    <string name="pref_lockscreen_bg_color_title">Imposta colore personalizzato</string>
+    <string name="pref_lockscreen_bg_color_summary">Consente di impostare un colore di sfondo personalizzato per il lockscreen</string>
+    <string name="pref_lockscreen_bg_image_title">Imposta immagine personalizzata</string>
+    <string name="pref_lockscreen_bg_image_summary">Consente di impostare una immagine di sfondo personalizzata per il lockscreen</string>
+    <string name="lockscreen_background_result_successful">Sfondo cambiato</string>
+    <string name="lockscreen_background_result_not_successful">Sfondo non cambiato</string>
+    <string name="pref_cat_lockscreen_other_title">Altro</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Massimizza i widget</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Se abilitato, i widget del lockscreen verranno massimizzati di default</string>
+
+    <!-- Power tweaks category -->
+    <string name="pref_cat_power_title">Modifiche batteria</string>
+    <string name="pref_cat_power_summary">Contiene varie modifiche relative alla batteria</string>
+
+    <!-- Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Disabilita LED lampeggiante</string>
+    <string name="pref_flashing_led_disable_summary">Disabilita il LED lampeggiante quando il livello batteria è basso e non è in carica</string>
 
 </resources>
