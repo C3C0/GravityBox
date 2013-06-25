@@ -162,6 +162,6 @@
 
     <!--  Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Disable LED flashing</string>
-    <string name="pref_flashing_led_disable_summary">Disables instrusive LED flashing when battery is low and not charging</string>
+    <string name="pref_flashing_led_disable_summary">Disables intrusive LED flashing when battery is low and not charging</string>
 
 </resources>
