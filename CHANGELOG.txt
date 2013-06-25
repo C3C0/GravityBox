@@ -1,3 +1,12 @@
+Changelog 1.4.0 - 25/06/2013
+--------------------------------------
+- Bugfix: don't switch to QuickSettings when SIM Switch Panel is showing
+- Lockscreen tweaks:
+--- option to set lockscreen background style (default, color fill, custom image)
+--- option to show lockscreen widgets maximized by default
+- option to disable LED flashing when battery is low
+- updated Hungarian translations (thanks to Indiant)
+
 Changelog 1.3.2 - 21/06/2013
 --------------------------------------
 - Fixed bug: two-finger swipe won't open QuickSettings when there are notifications
