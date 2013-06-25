@@ -46,4 +46,10 @@ public class Utils {
     public static boolean isTablet(Context con) {
         return getScreenType(con) == DEVICE_TABLET;
     }
+
+    public static enum MethodState {
+        UNKNOWN,
+        METHOD_ENTERED,
+        METHOD_EXITED
+    }
 }

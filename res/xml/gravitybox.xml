@@ -82,10 +82,16 @@
 
     </PreferenceScreen>
 
-    <PreferenceScreen 
-        android:key="pref_cat_misc"
-        android:title="@string/pref_cat_misc_title"
-        android:summary="@string/pref_cat_misc_summary">
+    <PreferenceScreen
+        android:key="pref_cat_power"
+        android:title="@string/pref_cat_power_title"
+        android:summary="@string/pref_cat_power_summary">
+
+        <CheckBoxPreference 
+            android:key="pref_poweroff_advanced"
+            android:title="@string/poweroff_advanced_title"
+            android:summary="@string/poweroff_advanced_summary"
+            android:defaultValue="false" />
 
         <ListPreference
             android:key="pref_low_battery_warning_policy"
@@ -95,10 +101,17 @@
             android:defaultValue="3" />
 
         <CheckBoxPreference 
-            android:key="pref_poweroff_advanced"
-            android:title="@string/poweroff_advanced_title"
-            android:summary="@string/poweroff_advanced_summary"
+            android:key="pref_flashing_led_disable"
+            android:title="@string/pref_flashing_led_disable_title"
+            android:summary="@string/pref_flashing_led_disable_summary"
             android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_misc"
+        android:title="@string/pref_cat_misc_title"
+        android:summary="@string/pref_cat_misc_summary">
 
         <ListPreference
             android:key="pref_vol_key_cursor_control"
