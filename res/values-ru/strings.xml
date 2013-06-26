@@ -128,14 +128,40 @@
     
      <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT-эффект выключения экрана</string>
-    <string name="crt_off_effect_summary">Включает анимацию, имитирующую выключение старых ЭЛТ-мониторов, при выключении экрана</string>
+    <string name="crt_off_effect_summary">Позволяет включить анимацию, имитирующую выключение старых ЭЛТ-мониторов, при выключении экрана</string>
         
         <!-- Engineering mode shortcut -->
     <string name="engineering_mode_title">Инженерное меню</string>
-    <string name="engineering_mode_summary">Запускает Инженерное меню</string>
+    <string name="engineering_mode_summary">Позволяет запустить Инженерное меню</string>
 
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Мелодия звонка для 2-х SIM</string>
-    <string name="dual_sim_ringer_summary">Запускает приложение, которое позволяет установить мелодию звонка и уведомлений отдельно для каждой SIM-карты</string>
+    <string name="dual_sim_ringer_summary">Позволяет запустить приложение, которое позволяет установить мелодию звонка и уведомлений отдельно для каждой SIM-карты</string>
     
+	<!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Настройки экрана блокировки</string>
+    <string name="pref_cat_lockscreen_summary">Содержит различные настройки экрана блокировки</string>
+    <string name="pref_cat_lockscreen_background_title">Фон экрана блокировки</string>
+    <string name="pref_lockscreen_background_title">Стиль фона</string>
+    <string name="lockscreen_bg_default">Стандартные обои</string>
+    <string name="lockscreen_bg_color">Заполнение цветом</string>
+    <string name="lockscreen_bg_image">Пользовательское изображение</string>
+    <string name="pref_lockscreen_bg_color_title">Задать цыет</string>
+    <string name="pref_lockscreen_bg_color_summary">Позволяет задать цвет фона для экрана блокировки</string>
+    <string name="pref_lockscreen_bg_image_title">Задать изображение</string>
+    <string name="pref_lockscreen_bg_image_summary">Позволяет установить пользовательское изображение для экрана блокировки</string>
+    <string name="lockscreen_background_result_successful">Фон изменен</string>
+    <string name="lockscreen_background_result_not_successful">Фон не изменен</string>
+    <string name="pref_cat_lockscreen_other_title">Другие</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Развернуть виджеты</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Когда включено, виджеты будут максимизированы по умолчанию</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Power tweaks</string>
+    <string name="pref_cat_power_summary">Содержит различные настройки, связанные с зарядом</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Отключить вспышку</string>
+    <string name="pref_flashing_led_disable_summary">Отключает вспышку при малом заряде батареи и отключенном зарядном устройстве</string>
+
 </resources>

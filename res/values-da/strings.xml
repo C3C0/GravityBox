@@ -108,7 +108,7 @@
 
     <!-- Main preference categories -->
     <string name="pref_cat_statusbar_title">Statusbjælke-tweaks</string>
-    <string name="pref_cat_statusbar_summary">Indeholder forskellige statusbjælke-tweaks</string>
+    <string name="pref_cat_statusbar_summary">Indeholder diverse statusbjælke-tweaks</string>
     <string name="pref_cat_misc_title">Diverse tweaks</string>
     <string name="pref_cat_misc_summary">Indeholder øvrige tweaks uden for specifikke kategorier</string>
     <string name="pref_cat_fixes_title">Almene fix</string>
@@ -129,5 +129,39 @@
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Billedrørsskærms-slukkeeffekt</string>
     <string name="crt_off_effect_summary">Slår animation til som simulerer gammeldags billedrørs-slukkeeffekt når skærmen slukkes</string>
+
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Ingeniørtilstand</string>
+    <string name="engineering_mode_summary">Starter Ingeniørtilstands-applikation</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Dobbelt-SIM ringetoner</string>
+    <string name="dual_sim_ringer_summary">Starter applikation som tillader at indstille ringetone samt notifikationslyde separat for hvert SIM</string>
+
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Låseskærms-tweaks</string>
+    <string name="pref_cat_lockscreen_summary">Indeholder diverse låseskærms-tweaks</string>
+    <string name="pref_cat_lockscreen_background_title">Baggrund for låseskærm</string>
+    <string name="pref_lockscreen_background_title">Baggrunds-stil</string>
+    <string name="lockscreen_bg_default">Standardtapet</string>
+    <string name="lockscreen_bg_color">Fyld farve</string>
+    <string name="lockscreen_bg_image">Setvvalgt billede</string>
+    <string name="pref_lockscreen_bg_color_title">Valg af farve</string>
+    <string name="pref_lockscreen_bg_color_summary">Muliggør indstilling af baggrundsfarve for låseskærm</string>
+    <string name="pref_lockscreen_bg_image_title">Vælg billede</string>
+    <string name="pref_lockscreen_bg_image_summary">Muliggør valg af låseskærmsbillede</string>
+    <string name="lockscreen_background_result_successful">Baggrund ændret</string>
+    <string name="lockscreen_background_result_not_successful">Baggrund ikke ændret</string>
+    <string name="pref_cat_lockscreen_other_title">Andet</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Maksimér widgets</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Låseskærms-widgets vil automatisk blive maksimerede, når dette er valgt</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Strøm-tweaks</string>
+    <string name="pref_cat_power_summary">Indeholder diverse strøm-relaterede tweaks</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Slå lysdiodeblink fra</string>
+    <string name="pref_flashing_led_disable_summary">Fjerner forstyrrende lysdiodeblink når batteristanden er lav og der ikke lades</string>
 
 </resources>

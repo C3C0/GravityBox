@@ -97,4 +97,16 @@
         <item>gravitybox_tileview</item>
     </string-array>
 
+    <string-array name="lockscreen_bg_entries" translatable="false">
+        <item>@string/lockscreen_bg_default</item>
+        <item>@string/lockscreen_bg_color</item>
+        <item>@string/lockscreen_bg_image</item>
+    </string-array>
+
+    <string-array name="lockscreen_bg_values" translatable="false">
+        <item>default</item>
+        <item>color</item>
+        <item>image</item>
+    </string-array>
+
 </resources>

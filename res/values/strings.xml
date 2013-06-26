@@ -138,4 +138,30 @@
     <string name="dual_sim_ringer_title">Dual SIM Ringer</string>
     <string name="dual_sim_ringer_summary">Launches application that allows to set ringtone and notification sounds separately for each SIM</string>
 
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Lockscreen tweaks</string>
+    <string name="pref_cat_lockscreen_summary">Contains various lockscreen tweaks</string>
+    <string name="pref_cat_lockscreen_background_title">Lockscreen background</string>
+    <string name="pref_lockscreen_background_title">Background style</string>
+    <string name="lockscreen_bg_default">Default wallpaper</string>
+    <string name="lockscreen_bg_color">Color fill</string>
+    <string name="lockscreen_bg_image">Custom image</string>
+    <string name="pref_lockscreen_bg_color_title">Set custom color</string>
+    <string name="pref_lockscreen_bg_color_summary">Allows to set custom background color for lockscreen</string>
+    <string name="pref_lockscreen_bg_image_title">Set custom image</string>
+    <string name="pref_lockscreen_bg_image_summary">Allows to set custom background image for lockscreen</string>
+    <string name="lockscreen_background_result_successful">Background changed</string>
+    <string name="lockscreen_background_result_not_successful">Background not changed</string>
+    <string name="pref_cat_lockscreen_other_title">Other</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Maximize widgets</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">When enabled, lockscreen widgets will be maximized by default</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Power tweaks</string>
+    <string name="pref_cat_power_summary">Contains various power related tweaks</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Disable LED flashing</string>
+    <string name="pref_flashing_led_disable_summary">Disables intrusive LED flashing when battery is low and not charging</string>
+
 </resources>

@@ -135,4 +135,30 @@
     <string name="dual_sim_ringer_title">Timbre Dual SIM</string>
     <string name="dual_sim_ringer_summary">Permite configurar el tono de llamada y de notificación para cada SIM por separado</string>
 
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Configuración de la Pantalla de Bloqueo</string>
+    <string name="pref_cat_lockscreen_summary">Configuraciones varias de la pantalla de bloqueo</string>
+    <string name="pref_cat_lockscreen_background_title">Color de fondo de la pantalla de bloqueo</string>
+    <string name="pref_lockscreen_background_title">Color de Fondo</string>
+    <string name="lockscreen_bg_default">Imagen de fondo por defecto</string>
+    <string name="lockscreen_bg_color">Color de relleno</string>
+    <string name="lockscreen_bg_image">Imagen predeterminada</string>
+    <string name="pref_lockscreen_bg_color_title">Seleccionar un color personalizado</string>
+    <string name="pref_lockscreen_bg_color_summary">Permite seleccionar un color de fondo personalizado para la pantalla de bloqueo</string>
+    <string name="pref_lockscreen_bg_image_title">Seleccionar una imagen personalizada</string>
+    <string name="pref_lockscreen_bg_image_summary">Permite seleccionar una imagen personalizada para la pantalla de bloqueo</string>
+    <string name="lockscreen_background_result_successful">Fondo cambiado</string>
+    <string name="lockscreen_background_result_not_successful">Fondo no cambiado</string>
+    <string name="pref_cat_lockscreen_other_title">Otro</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Maximizar Widgets</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Cuando está habilitado, los Widgets de la pantalla de bloqueo serán maximizados por defecto</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Opciones de Energía</string>
+    <string name="pref_cat_power_summary">Contiene varias opciones relacionadas con el uso de la energía</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Deshabilitar el parpadeo del LED de notificaciones</string>
+    <string name="pref_flashing_led_disable_summary">Deshabilita el LED de notificaciones cuando queda poca carga en la batería y no se está cargando</string>
+
 </resources>

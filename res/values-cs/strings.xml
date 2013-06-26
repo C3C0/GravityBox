@@ -141,4 +141,30 @@
     <string name="dual_sim_ringer_title">Dual SIM vyzváněč</string>
     <string name="dual_sim_ringer_summary">Spustí aplikaci, která umožňuje nastavení zvuků zvonění a notifikací samostatně pro každou SIM</string>
 
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Nastavení obrazovky uzamčení</string>
+    <string name="pref_cat_lockscreen_summary">Obsahuje různá nastavení obrazovky uzamčení</string>
+    <string name="pref_cat_lockscreen_background_title">Pozadí obrazovky uzamčení</string>
+    <string name="pref_lockscreen_background_title">Styl pozadí</string>
+    <string name="lockscreen_bg_default">Výchozí tapeta</string>
+    <string name="lockscreen_bg_color">Barevná výplň</string>
+    <string name="lockscreen_bg_image">Vlastní obrázek</string>
+    <string name="pref_lockscreen_bg_color_title">Nastavení barevné výplně</string>
+    <string name="pref_lockscreen_bg_color_summary">Umožňuje nastavení barvy pozadí obrazovky uzamčení</string>
+    <string name="pref_lockscreen_bg_image_title">Nastavení vlastního obrázku</string>
+    <string name="pref_lockscreen_bg_image_summary">Umožňuje výběr vlastního obrázku pro pozadí obrazovky uzamčení</string>
+    <string name="lockscreen_background_result_successful">Pozadí změněno</string>
+    <string name="lockscreen_background_result_not_successful">Pozadí nebylo změněno</string>
+    <string name="pref_cat_lockscreen_other_title">Jiné</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Maximalizovat widgety</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Umožní zobrazení widgetů v maximalizovaném stavu automaticky po zobrazení obrazovky uzamčení</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Nastavení napájení</string>
+    <string name="pref_cat_power_summary">Obsahuje různá nastavení týkající se napájení</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Vypnout blikání LED</string>
+    <string name="pref_flashing_led_disable_summary">Vypne otravné blikání LED, které je aktivní v případě nízké úrovně baterie</string>
+
 </resources>

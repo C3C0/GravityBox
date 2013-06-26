@@ -1,5 +1,6 @@
 package com.ceco.gm2.gravitybox;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,8 +11,12 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
+import android.provider.MediaStore;
+import android.view.Display;
+import android.view.Window;
 import android.widget.Toast;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,7 +29,10 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Rect;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class GravityBoxSettings extends Activity {
@@ -70,6 +78,18 @@ public class GravityBoxSettings extends Activity {
     public static final String APP_DUAL_SIM_RINGER = "dualsim.ringer";
     public static final String APP_DUAL_SIM_RINGER_CLASS = "dualsim.ringer.main";
 
+    public static final String PREF_CAT_KEY_LOCKSCREEN_BACCKGROUND = "pref_cat_lockscreen_background";
+    public static final String PREF_KEY_LOCKSCREEN_BACKGROUND = "pref_lockscreen_background";
+    public static final String PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR = "pref_lockscreen_bg_color";
+    public static final String PREF_KEY_LOCKSCREEN_BACKGROUND_IMAGE = "pref_lockscreen_bg_image";
+    public static final String LOCKSCREEN_BG_DEFAULT = "default";
+    public static final String LOCKSCREEN_BG_COLOR = "color";
+    public static final String LOCKSCREEN_BG_IMAGE = "image";
+    private static final int LOCKSCREEN_BACKGROUND = 1024;
+
+    public static final String PREF_KEY_LOCKSCREEN_MAXIMIZE_WIDGETS = "pref_lockscreen_maximize_widgets";
+    public static final String PREF_KEY_FLASHING_LED_DISABLE = "pref_flashing_led_disable";
+
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
@@ -109,6 +129,12 @@ public class GravityBoxSettings extends Activity {
         private Preference mPrefAboutDonate;
         private Preference mPrefEngMode;
         private Preference mPrefDualSimRinger;
+        private PreferenceCategory mPrefCatLockscreenBg;
+        private ListPreference mPrefLockscreenBg;
+        private ColorPickerPreference mPrefLockscreenBgColor;
+        private Preference mPrefLockscreenBgImage;
+        private File wallpaperImage;
+        private File wallpaperTemporary;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -153,6 +179,17 @@ public class GravityBoxSettings extends Activity {
             if (!isAppInstalled(APP_DUAL_SIM_RINGER)) {
                 getPreferenceScreen().removePreference(mPrefDualSimRinger);
             }
+
+            mPrefCatLockscreenBg = 
+                    (PreferenceCategory) findPreference(PREF_CAT_KEY_LOCKSCREEN_BACCKGROUND);
+            mPrefLockscreenBg = (ListPreference) findPreference(PREF_KEY_LOCKSCREEN_BACKGROUND);
+            mPrefLockscreenBgColor = 
+                    (ColorPickerPreference) findPreference(PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR);
+            mPrefLockscreenBgImage = 
+                    (Preference) findPreference(PREF_KEY_LOCKSCREEN_BACKGROUND_IMAGE);
+
+            wallpaperImage = new File(getActivity().getFilesDir() + "/lockwallpaper"); 
+            wallpaperTemporary = new File(getActivity().getCacheDir() + "/lockwallpaper.tmp");
         }
 
         @Override
@@ -196,6 +233,17 @@ public class GravityBoxSettings extends Activity {
                 summary = getString(R.string.signal_icon_autohide_summary);
             }
             mSignalIconAutohide.setSummary(summary);
+
+            mPrefLockscreenBg.setSummary(mPrefLockscreenBg.getEntry());
+
+            mPrefCatLockscreenBg.removePreference(mPrefLockscreenBgColor);
+            mPrefCatLockscreenBg.removePreference(mPrefLockscreenBgImage);
+            String option = mPrefs.getString(PREF_KEY_LOCKSCREEN_BACKGROUND, LOCKSCREEN_BG_DEFAULT);
+            if (option.equals(LOCKSCREEN_BG_COLOR)) {
+                mPrefCatLockscreenBg.addPreference(mPrefLockscreenBgColor);
+            } else if (option.equals(LOCKSCREEN_BG_IMAGE)) {
+                mPrefCatLockscreenBg.addPreference(mPrefLockscreenBgImage);
+            }
         }
 
         @Override
@@ -219,7 +267,9 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_STATUSBAR_BGCOLOR_CHANGED);
                 intent.putExtra(EXTRA_SB_BGCOLOR, prefs.getInt(PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK));
             }
-            getActivity().sendBroadcast(intent);
+            if (intent.getAction() != null) {
+                getActivity().sendBroadcast(intent);
+            }
 
             if (key.equals(PREF_KEY_FIX_CALLER_ID_PHONE) ||
                     key.equals(PREF_KEY_FIX_CALLER_ID_MMS)) {
@@ -260,6 +310,9 @@ public class GravityBoxSettings extends Activity {
             } else if (pref == mPrefDualSimRinger) {
                 intent = new Intent(Intent.ACTION_MAIN);
                 intent.setClassName(APP_DUAL_SIM_RINGER, APP_DUAL_SIM_RINGER_CLASS);
+            } else if (pref == mPrefLockscreenBgImage) {
+                setCustomLockscreenImage();
+                return true;
             }
             
             if (intent != null) {
@@ -281,6 +334,79 @@ public class GravityBoxSettings extends Activity {
                 return true;
             } catch (Exception e) {
                 return false;
+            }
+        }
+
+        @SuppressWarnings("deprecation")
+        private void setCustomLockscreenImage() {
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            intent.putExtra("crop", "true");
+            intent.putExtra("scale", true);
+            intent.putExtra("scaleUpIfNeeded", false);
+            intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
+            Display display = getActivity().getWindowManager().getDefaultDisplay();
+            int width = display.getWidth();
+            int height = display.getHeight();
+            Rect rect = new Rect();
+            Window window = getActivity().getWindow();
+            window.getDecorView().getWindowVisibleDisplayFrame(rect);
+            int statusBarHeight = rect.top;
+            int contentViewTop = window.findViewById(Window.ID_ANDROID_CONTENT).getTop();
+            int titleBarHeight = contentViewTop - statusBarHeight;
+            // Lock screen for tablets visible section are different in landscape/portrait,
+            // image need to be cropped correctly, like wallpaper setup for scrolling in background in home screen
+            // other wise it does not scale correctly
+            if (Utils.isTablet(getActivity())) {
+                width = getActivity().getWallpaperDesiredMinimumWidth();
+                height = getActivity().getWallpaperDesiredMinimumHeight();
+                float spotlightX = (float) display.getWidth() / width;
+                float spotlightY = (float) display.getHeight() / height;
+                intent.putExtra("aspectX", width);
+                intent.putExtra("aspectY", height);
+                intent.putExtra("outputX", width);
+                intent.putExtra("outputY", height);
+                intent.putExtra("spotlightX", spotlightX);
+                intent.putExtra("spotlightY", spotlightY);
+            } else {
+                boolean isPortrait = getResources().getConfiguration().orientation ==
+                    Configuration.ORIENTATION_PORTRAIT;
+                intent.putExtra("aspectX", isPortrait ? width : height - titleBarHeight);
+                intent.putExtra("aspectY", isPortrait ? height - titleBarHeight : width);
+            }
+            try {
+                wallpaperTemporary.createNewFile();
+                wallpaperTemporary.setWritable(true, false);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(wallpaperTemporary));
+                intent.putExtra("return-data", false);
+                getActivity().startActivityFromFragment(this, intent, LOCKSCREEN_BACKGROUND);
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), getString(
+                        R.string.lockscreen_background_result_not_successful),
+                        Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+            if (requestCode == LOCKSCREEN_BACKGROUND) {
+                if (resultCode == Activity.RESULT_OK) {
+                    if (wallpaperTemporary.exists()) {
+                        wallpaperTemporary.renameTo(wallpaperImage);
+                    }
+                    wallpaperImage.setReadable(true, false);
+                    Toast.makeText(getActivity(), getString(
+                            R.string.lockscreen_background_result_successful), 
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    if (wallpaperTemporary.exists()) {
+                        wallpaperTemporary.delete();
+                    }
+                    Toast.makeText(getActivity(), getString(
+                            R.string.lockscreen_background_result_not_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }

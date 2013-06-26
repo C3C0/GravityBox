@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Estilo do indicador de bateria</string>
+    <string name="battery_style_stock">Indicador de bateria padrão</string>
+    <string name="battery_style_circle">Indicador de bateria circular com porcentagem</string>
+    <string name="battery_style_percent">Texto da porcentagem grande</string>
+    <string name="battery_style_percent_stock">Texto de porcentagem com icone padrão</string>
+    <string name="battery_style_none">Nenhum</string>
+
+    <string name="vol_music_controls_title">Teclas de Volume trocam de faixa</string>
+    <string name="vol_music_controls_summary">Talcas de volume trocam de faixa após uma longa pressionada com a tela desligada</string>
+
+    <string name="low_battery_warning_policy_title">Aviso de baixa bateria</string>
+    <string name="low_battery_warning_full">Sons e \"Pop-up\"</string>
+    <string name="low_battery_warning_popup">Somente \"Pop-up\"</string>
+    <string name="low_battery_warning_sound">Somente sons</string>
+    <string name="low_battery_warning_off">Desligado</string>
+
+    <string name="reboot_required">Mudanças serão aplicadas após reiniciar o celular.</string>
+
+    <string name="signal_icon_autohide_title">Esconder automaticamente os icones de sinal</string>
+    <string name="signal_icon_autohide_summary">Esconder o icone de sinal para o slot SIM escolhido quando este não estiver inserido. Desabilita notificações de \"SIM não inserido\"</string>
+    <string name="sim_slot_1">Esconder automaticamente SIM Slot 1</string>
+    <string name="sim_slot_2">Esconder automaticamente SIM Slot 2</string>
+    <string name="sim_disable_notifications">Desabilitar notificações</string>
+    <string name="sim_disable_notifications_summary">Notificações \"SIM não inseirdo\" desabilitadas</string>
+
+    <string name="poweroff_advanced_title">Menu de Desligar avançado</string>
+    <string name="poweroff_advanced_summary">Habilitar opção \"Reiniciar em modo recuperação\" no menu de desligar avançado</string>
+    <string name="poweroff_recovery">Recuperação</string>
+
+    <string name="vol_key_cursor_control_title">Tecla de volume controla cursor</string>
+    <string name="vol_key_cursor_control_summary">As teclas de volume controlam o cursor em campos de texto</string>
+    <string name="vol_key_cursor_control_off">Desabilitado</string>
+    <string name="vol_key_cursor_control_on">Teclas de Volume Cima/Baixo movem o cursor esquerda/direita</string>
+    <string name="vol_key_cursor_control_on_reverse">Volume cima/baixo movem o cursor direita/esquerda</string>
+
+    <string name="recents_clear_all_title">Limpar todas as tarefas recentes</string>
+    <string name="recents_clear_all_summary">Habilitar o botão de limpar tudas as tarefas recentes de uma vez na janela de tarefas recentes</string>
+
+    <string name="fix_datetime_crash_title">Ajustar erro de Data&amp;Hora</string>
+    <string name="fix_datetime_crash_summary">Habilitar esta opção caso esteja tendo problema ao acessar a opção de Data&amp;Hora nas configurações (necessário reiniciar)</string>
+
+    <string name="fix_caller_id_phone_title">Corrigir contatos em ligação</string>
+    <string name="fix_caller_id_phone_summary">Habilitar caso um contato não seja reconhecido quando recebendo uma ligação (necessário reiniciar)</string>
+    <string name="fix_caller_id_phone_alert">Após reiniciar, você deve limpar e readicionar seus contatos para ter efeito! Para tal, vá em Ajustes / Aplicações / Todos. Para limpar os dados do Provedor de Contatos.</string>
+
+    <string name="fix_caller_id_mms_title">Corrigir contatos em mensagem</string>
+    <string name="fix_caller_id_mms_summary">Habilitar caso tenha problemas de conversas divididas em varios tópicos do mesmo contato (necessário reiniciar)</string>
+    <string name="fix_caller_id_mms_alert">Após reiniciarlizar, é necessário deletar todos os tópicos divididos para ter efeito!</string>
+
+    <string name="fix_calendar_title">Corrigir programa de calendário</string>
+    <string name="fix_calendar_summary">Habilitar caso esteja acontecendo da tela ligar sozinha em tempos periódicos (necessário reiniciar)</string>
+
+    <string name="important">Importante</string>
+
+    <string name="caller_fullscreen_photo_title">Foto do contato em tela cheia em ligação</string>
+    <string name="caller_fullscreen_photo_summary">Mostra a foto do contato em tela cheia quando recebe ligação</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Sync On</string>
+    <string name="quick_settings_sync_off">Sync Off</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP On</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP Off</string>
+    <string name="quick_settings_torch_on">Torch On</string>
+    <string name="quick_settings_torch_off">Torch Off</string>
+    <string name="quick_settings_torch_off_notif">Toque para desligar</string>
+
+    <!-- QuickSettings settings -->
+    <string name="quick_settings_title">Barra de Status Rápidas</string>
+    <string name="quick_settings_summary">Habilitar escolher quais configurações rápidas visualizar</string>
+    <string name="qs_tile_user_profile">Perfil do Usuário</string>
+    <string name="qs_tile_airplane_mode">Modo Avião</string>
+    <string name="qs_tile_battery">Status da Bateria</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">Dados 3G</string>
+    <string name="qs_tile_network_mode">Modo de Rede</string>
+    <string name="qs_tile_data_usage">Uso de dados</string>
+    <string name="qs_tile_audio">Perfils de Audio</string>
+    <string name="qs_tile_brightness">Brilho</string>
+    <string name="qs_tile_screen_timeout">Tempo Limite de Tela</string>
+    <string name="qs_tile_autorotation">Auto rotação</string>
+    <string name="qs_tile_sync">Sincronização</string>
+    <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
+    <string name="qs_tile_torch">Tocha</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Escolha a Cor</string>
+    <string name="press_color_to_apply">Pressione na cor para aplicar</string>
+
+    <!-- Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Cor do fundo da Barra de Status</string>
+    <string name="statusbar_bgcolor_summary">Permite escolhe a cor e transparencia da cor do fundo</string>
+
+    <!-- Fix speech settings -->
+    <string name="fix_tts_settings_title">Corrigir configurações de fala</string>
+    <string name="fix_tts_settings_summary">Desbloqueia consultas por voz e configurações de texto-para-voz nas configurações (necessário reiniciar)</string>
+
+    <!-- Advanced developer options -->
+    <string name="fix_dev_opts_title">Menu opções avançadas de desenvolvimento</string>
+    <string name="fix_dev_opts_summary">Desbloqueia as configurações avançadas de desenvolvedor nas configurações (necessário reiniciar)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Ajustes na Barra de Status</string>
+    <string name="pref_cat_statusbar_summary">Contém diversos ajustes para a barra de status</string>
+    <string name="pref_cat_misc_title">Ajustes diversos</string>
+    <string name="pref_cat_misc_summary">Contém todos os ajustes que não são classificados numa categoria específica</string>
+    <string name="pref_cat_fixes_title">Ajustes Gerais</string>
+    <string name="pref_cat_fixes_summary">Contém correções gerais para MTK6589. Use somente se necessário!.</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">Sobre</string>
+    <string name="about_gb_summary">Codificado por C3C076@XDA. Entre em contato no tópico oficial.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Codificado por rovo89@XDA. Entre em contato no tópico oficial.</string>
+    <string name="about_donate_title">Doação</string>
+    <string name="about_donate_summary">Faça uma doação para mim se você acha que este aplicativo vale a pena! Também considere doar para o rovo89 pelo seu exelente trabalho no Xposed framework.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">Seu celular irá reiniciar</string>
+    <string name="reboot_confirm_recovery">Seu celular irá reiniciar em modo recuperação</string>
+
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">Efeito de TV antiga desligando</string>
+    <string name="crt_off_effect_summary">Habilita o efeito que simula tv antiga desligando quando desligar a tela</string>
+
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Modo Engenharia</string>
+    <string name="engineering_mode_summary">Roda os aplicativos em modo engenharia</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Toques para cada SIM</string>
+    <string name="dual_sim_ringer_summary">Roda o aplicativo que permite que cada cartão SIM tenha sons de toque e notificações específicas para cada cartão</string>
+
+    <!-- Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Ajustes na tela de bloqueio</string>
+    <string name="pref_cat_lockscreen_summary">Contém diversos ajustes na tela de bloqueio</string>
+    <string name="pref_cat_lockscreen_background_title">Fundo da tela de bloqueio</string>
+    <string name="pref_lockscreen_background_title">Estilo do fundo</string>
+    <string name="lockscreen_bg_default">Papel de Parede padão</string>
+    <string name="lockscreen_bg_color">Cor</string>
+    <string name="lockscreen_bg_image">Imagem Customizada</string>
+    <string name="pref_lockscreen_bg_color_title">Escolha a cor</string>
+    <string name="pref_lockscreen_bg_color_summary">Permite escolher uma cor customizada para a tela de bloqueio</string>
+    <string name="pref_lockscreen_bg_image_title">Escolha uma imagem</string>
+    <string name="pref_lockscreen_bg_image_summary">Permite escolher uma imagem customizada para a tela de bloqueio</string>
+    <string name="lockscreen_background_result_successful">Fundo alterado</string>
+    <string name="lockscreen_background_result_not_successful">Fundo não alterado</string>
+    <string name="pref_cat_lockscreen_other_title">Outros</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Maximizar widgets</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Quando habilitado, os widgets de tela de bloqueio serão maximizados por padrão</string>
+
+    <!-- Power tweaks category -->
+    <string name="pref_cat_power_title">Ajustes de Bateria</string>
+    <string name="pref_cat_power_summary">Contém varios ajustes relacionados a bateria</string>
+
+    <!-- Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Desabilitar LED piscante</string>
+    <string name="pref_flashing_led_disable_summary">Desabilitar o LED quando a bateria estiver baixa e não carregando</string>
+
+</resources>

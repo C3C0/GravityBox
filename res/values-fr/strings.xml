@@ -3,7 +3,6 @@
 
  	<string name="app_name">GravityBox</string>
 
-
     <string name="battery_style_title">Style de l\'indicateur de batterie</string>	
     <string name="battery_style_stock">Incateur par défaut</string>
     <string name="battery_style_circle">Cercle avec pourcentage</string>
@@ -138,5 +137,31 @@
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Sonnerie double SIM</string>
     <string name="dual_sim_ringer_summary">Lance l\'application qui permet de configurer la sonnerie et les sons de notification indépendamment pour chaque carte SIM.</string>
+
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Arrangements écran de déverrouillage</string>
+    <string name="pref_cat_lockscreen_summary">Regroupe divers arrangements de l\'écran de déverrouillage</string>
+    <string name="pref_cat_lockscreen_background_title">Fond d\'écran de déverrouillage</string>
+    <string name="pref_lockscreen_background_title">Style d\'arrière-plan</string>
+    <string name="lockscreen_bg_default">Par défaut</string>
+    <string name="lockscreen_bg_color">Couleur</string>
+    <string name="lockscreen_bg_image">Image personnalisée</string>
+    <string name="pref_lockscreen_bg_color_title">Couleur personnalisée</string>
+    <string name="pref_lockscreen_bg_color_summary">Permet de définir la couleur d\'arrière-plan personnalisée pour l\'écran de déverrouillage</string>
+    <string name="pref_lockscreen_bg_image_title">Image personnalisée</string>
+    <string name="pref_lockscreen_bg_image_summary">Permet de définir une image personnalisée en fond d\écran pour l\'écran de déverrouillage</string>
+    <string name="lockscreen_background_result_successful">Fond d\'écran modifié</string>
+    <string name="lockscreen_background_result_not_successful">Fond d\'écran inchangé</string>
+    <string name="pref_cat_lockscreen_other_title">Autre</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Widgets maximisés</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Activée, cette option maximise par défaut l\'affichage des widgets de l\'écran de déverrouillage.</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Arrangements énergie</string>
+    <string name="pref_cat_power_summary">Regroupe divers arrangements liés à l\'énergie</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Désactiver LED clignotante</string>
+    <string name="pref_flashing_led_disable_summary">Désactive le clignotement de la LED lorsque la batterie est faible et qu'elle n'est pas en cours de chargement</string>
 
 </resources>

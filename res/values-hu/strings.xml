@@ -1,64 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">GravityBox</string>
-
-    <string name="battery_style_title">Akkumulátor kijelző stílusa</string>	
+    <string name="battery_style_title">Akkumulátor kijelző stílusa</string>
     <string name="battery_style_stock">Gyári akkumulátor kijelző</string>
     <string name="battery_style_circle">Kör akkumulátor százalékkal</string>
     <string name="battery_style_percent">Nagy százalék kijelzés</string>
+    <string name="battery_style_percent_stock">Nagy százalék kijelzés gyári ikonnal</string>
     <string name="battery_style_none">Semmilyen</string>
-
     <string name="vol_music_controls_title">Hangerő gombok kihagyják a számot</string>
     <string name="vol_music_controls_summary">Léptetik a számot a hangerő gombok, kikapcsolt képernyőnél hosszan kell nyomni</string>
-
     <string name="low_battery_warning_policy_title">Alacsony akkumulátor figyelmeztetés</string>
     <string name="low_battery_warning_full">Felugró szöveg és hang</string>
     <string name="low_battery_warning_popup">Csak felugró szöveg</string>
     <string name="low_battery_warning_sound">Csak hang</string>
     <string name="low_battery_warning_off">Ki</string>
-
     <string name="reboot_required">A változás csak az újraindítás után lesz alkalmazva</string>
-
     <string name="signal_icon_autohide_title">Jelszint ikonok automatikus elrejtése</string>
     <string name="signal_icon_autohide_summary">A kiválasztott SIM foglalat jelszint ikonjának automatikus elrejtése ha a SIM kártya hiányzik, letiltja a \"SIM nem található\" figyelmeztetést</string>
     <string name="sim_slot_1">SIM 1 foglalat automatikus elrejtése</string>
     <string name="sim_slot_2">SIM 2 foglalat automatikus elrejtése</string>
     <string name="sim_disable_notifications">Figyelmeztetés letiltása</string>
     <string name="sim_disable_notifications_summary">\"SIM nem található\" figyelmeztetés letiltva</string>
-
     <string name="poweroff_advanced_title">Haladó kikapcsoló menü</string>
     <string name="poweroff_advanced_summary">Engedélyezi a haladó kikapcsoló menüt újraindítás a recovery-be opcióval</string>
-    <string name="poweroff_recovery">Recovery</string>    
-
+    <string name="poweroff_recovery">Recovery</string>
     <string name="vol_key_cursor_control_title">Hangerő gombos kurzor irányítás</string>
     <string name="vol_key_cursor_control_summary">Irányítja a kurzort a hangerő gombokkal a szöveg mezőkben</string>
     <string name="vol_key_cursor_control_off">Letiltva</string>
     <string name="vol_key_cursor_control_on">Hangerő fel/le mozgatja a kurzort balra/jobbra</string>
     <string name="vol_key_cursor_control_on_reverse">Hangerő fel/le mozgatja a kurzort jobbra/balra</string>
-
     <string name="recents_clear_all_title">Töröl minden új feladatot</string>
     <string name="recents_clear_all_summary">A gombbal törölheti az összes új feladatot egyszerre a legújabb alkalmazások ablakban</string>
-
     <string name="fix_datetime_crash_title">Javítja a dátum&amp;idő beállítás hibáját</string>
     <string name="fix_datetime_crash_summary">Engedélyezze abban az esetben, ha azt tapasztalja, hogy összeomlik a Dátum&amp;idő beállítása közben (újraindítás szükséges)</string>
-
     <string name="fix_caller_id_phone_title">Javítja a telefon hívóazonosítóját</string>
     <string name="fix_caller_id_phone_summary">Engedélyezze, ha a hívó nem egyezik a hívás fogadásakor (újraindítás szükséges)</string>
     <string name="fix_caller_id_phone_alert">Újraindítás után, törölni és újra hozzáadni kell a kapcsolatokat a változás érvényesítéséhez! Használja a  Beállítások / Alkalmazások / Összes - menüpontot a névjegyzék szolgáltató adatainak törléséhez.</string>
-
     <string name="fix_caller_id_mms_title">Javítja az üzenetek hívóazonosítóját</string>
     <string name="fix_caller_id_mms_summary">Engedélyezze abban az esetben, ha azt tapasztalja, hogy osztott beszélgetés szálak vannak egyazon partneről (újraindítás szükséges)</string>
     <string name="fix_caller_id_mms_alert">Újraindítás után, törölni kell az összes osztott szálat az üzenetküldő alkalmazásban a változás érvényesítéséhez!</string>
-
     <string name="fix_calendar_title">Naptár prog. javítása</string>
     <string name="fix_calendar_summary">Engedélyezze abban az esetben, ha azt tapasztalja, hogy a képernyő rendszeresen bekapcsolja magát (újraindítás szükséges)</string>
-
     <string name="important">Fontos</string>
-
     <string name="caller_fullscreen_photo_title">Teljes képernyős hívó fotó</string>
     <string name="caller_fullscreen_photo_summary">Teljes képernyőn mutatja a hívó fotóját a bejövő hívás képernyőn</string>
-
     <!-- QuickSettings strings -->
     <string name="quick_settings_sync_on">Szinkronizálás be</string>
     <string name="quick_settings_sync_off">Szinkronizálás ki</string>
@@ -67,7 +52,6 @@
     <string name="quick_settings_torch_on">Zseblámpa be</string>
     <string name="quick_settings_torch_off">Zseblámpa ki</string>
     <string name="quick_settings_torch_off_notif">Érintse meg a lekapcsoláshoz</string>
-
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Statusbar gyorsbeállítás csempék</string>
     <string name="quick_settings_summary">Mutatja vagy elrejti a gyorsbeállítás csempéket a statusbar-on</string>
@@ -78,32 +62,28 @@
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_mobile_data">Mobil adat</string>
+    <string name="qs_tile_network_mode">Hálózat mód</string>
     <string name="qs_tile_data_usage">Adat használat</string>
     <string name="qs_tile_audio">Hang profilok</string>
     <string name="qs_tile_brightness">Fényerő</string>
     <string name="qs_tile_screen_timeout">Képernyő időtúllépés</string>
     <string name="qs_tile_autorotation">Automatikus forgatás</string>
     <string name="qs_tile_sync">Szinkronizálás</string>
-    <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
+    <string name="qs_tile_wifi_ap">Wi-Fi hozzáférési pont</string>
     <string name="qs_tile_torch">Zseblámpa</string>
-    <string name="qs_tile_gravitybox">GravityBox</string>
-
+    <string name="qs_tile_gravitybox">GravityBox Magyarul</string>
     <!-- Color Picker -->
     <string name="dialog_color_picker">Szín választó</string>
     <string name="press_color_to_apply">Nyomjon a színre a kiválasztáshoz</string>
-
     <!--  Statusbar background color -->
     <string name="statusbar_bgcolor_title">Statusbar háttér szín</string>
     <string name="statusbar_bgcolor_summary">Lehetővé teszi, hogy állíthassa a statusbar háttér színét és az átlátszóságát</string>
-
     <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">Javítja a beszéd beállításokat</string>
     <string name="fix_tts_settings_summary">Lehetővé teszi,a hangalapú keresést és szövegfelolvasó kimenetet a Nyelv&amp;bevitel-ben (újraindítás szükséges)</string>
-
     <!--  Advanced developer options -->
     <string name="fix_dev_opts_title">Fejlett fejlesztői lehetőségek</string>
     <string name="fix_dev_opts_summary">Lehetővé teszi, a fejlett fejlesztői lehetőségeket (újraindítás szükséges)</string>
-
     <!-- Main preference categories -->
     <string name="pref_cat_statusbar_title">Statusbar módosítások</string>
     <string name="pref_cat_statusbar_summary">Különféle statusbar módosításokat tartalmaz</string>
@@ -111,7 +91,6 @@
     <string name="pref_cat_misc_summary">Tartalmaz minden egyéb módosítást, ami nem tartozik a többi konkrét kategóriába</string>
     <string name="pref_cat_fixes_title">Általános javítások</string>
     <string name="pref_cat_fixes_summary">Általános MTK6589 specifikus javításokat tartalmaz. Csak akkor használja, ha szükséges.</string>
-
     <!-- About -->
     <string name="pref_cat_about_title">A programról..</string>
     <string name="about_gb_summary">Fejlesztette C3C076@XDA. Érintse meg a hivatalos fórum meglátogatásához.</string>
@@ -119,9 +98,39 @@
     <string name="about_xposed_summary">Fejlesztette rovo89@XDA. Érintse meg a hivatalos fórum meglátogatásához.</string>
     <string name="about_donate_title">Felajánlás</string>
     <string name="about_donate_summary">Adományozzon részemre ha úgy gondolja, hogy ez a program megérdemli! Valamint fontolja meg, hogy rovo89 is adományoz a kitűnő Xposed framework-ért.</string>
-
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">A telefonja újra fog indulni</string>
     <string name="reboot_confirm_recovery">A telefonja újra fog indulni a recovery-be</string>
-
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">CRT kikapcsoló effekt</string>
+    <string name="crt_off_effect_summary">Engedélyezi az animációt ami szimulálja az öreg CRT kikapcsolási effektet, ha kikapcsolódik a képernyő</string>
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Tervező mód</string>
+    <string name="engineering_mode_summary">Indítja a Tervező mód programot</string>
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Dual SIM Ringer</string>
+    <string name="dual_sim_ringer_summary">Indítja a programot ami lehetővé teszi, hogy beállítson csengőhangokat és figyelmeztetési hangokat külön mindkét SIM-nek</string>
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Lockscreen módosítások</string>
+    <string name="pref_cat_lockscreen_summary">Különböző lockscreen módosításokat tartalmaz</string>
+    <string name="pref_cat_lockscreen_background_title">Lockscreen háttér</string>
+    <string name="pref_lockscreen_background_title">Háttér stílus</string>
+    <string name="lockscreen_bg_default">Alapértelmezett háttérkép</string>
+    <string name="lockscreen_bg_color">Szín kitöltés</string>
+    <string name="lockscreen_bg_image">Egyéni kép</string>
+    <string name="pref_lockscreen_bg_color_title">Egyéni szín beállítás</string>
+    <string name="pref_lockscreen_bg_color_summary">Lehetővé teszi, hogy beállítson egyéni háttérszínt a lockscreen-hez</string>
+    <string name="pref_lockscreen_bg_image_title">Egyéni kép beállítás</string>
+    <string name="pref_lockscreen_bg_image_summary">Lehetővé teszi, hogy beállítson egyéni háttérképet a lockscreen-hez</string>
+    <string name="lockscreen_background_result_successful">Háttér megváltozott</string>
+    <string name="lockscreen_background_result_not_successful">Háttér nem változott</string>
+    <string name="pref_cat_lockscreen_other_title">Egyéb</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Widgetek maximalizálása</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Ha engedélyezve van, lockscreen widgetek maximalizálva lesznek alapértelmezetten</string>
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Energia módosítások</string>
+    <string name="pref_cat_power_summary">Tartalmaz különböző energiával kapcsolatos módosításokat</string>
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Letiltja a LED villogást</string>
+    <string name="pref_flashing_led_disable_summary">Kikapcsolja a zavaró LED villogást, ha az akkumulátor szintje alacsony és nincs töltés</string>
 </resources>
