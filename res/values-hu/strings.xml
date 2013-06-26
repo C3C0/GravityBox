@@ -110,4 +110,27 @@
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Dual SIM Ringer</string>
     <string name="dual_sim_ringer_summary">Indítja a programot ami lehetővé teszi, hogy beállítson csengőhangokat és figyelmeztetési hangokat külön mindkét SIM-nek</string>
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Lockscreen módosítások</string>
+    <string name="pref_cat_lockscreen_summary">Különböző lockscreen módosításokat tartalmaz</string>
+    <string name="pref_cat_lockscreen_background_title">Lockscreen háttér</string>
+    <string name="pref_lockscreen_background_title">Háttér stílus</string>
+    <string name="lockscreen_bg_default">Alapértelmezett háttérkép</string>
+    <string name="lockscreen_bg_color">Szín kitöltés</string>
+    <string name="lockscreen_bg_image">Egyéni kép</string>
+    <string name="pref_lockscreen_bg_color_title">Egyéni szín beállítás</string>
+    <string name="pref_lockscreen_bg_color_summary">Lehetővé teszi, hogy beállítson egyéni háttérszínt a lockscreen-hez</string>
+    <string name="pref_lockscreen_bg_image_title">Egyéni kép beállítás</string>
+    <string name="pref_lockscreen_bg_image_summary">Lehetővé teszi, hogy beállítson egyéni háttérképet a lockscreen-hez</string>
+    <string name="lockscreen_background_result_successful">Háttér megváltozott</string>
+    <string name="lockscreen_background_result_not_successful">Háttér nem változott</string>
+    <string name="pref_cat_lockscreen_other_title">Egyéb</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Widgetek maximalizálása</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Ha engedélyezve van, lockscreen widgetek maximalizálva lesznek alapértelmezetten</string>
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Energia módosítások</string>
+    <string name="pref_cat_power_summary">Tartalmaz különböző energiával kapcsolatos módosításokat</string>
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Letiltja a LED villogást</string>
+    <string name="pref_flashing_led_disable_summary">Kikapcsolja a zavaró LED villogást, ha az akkumulátor szintje alacsony és nincs töltés</string>
 </resources>
