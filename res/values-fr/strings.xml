@@ -162,6 +162,6 @@
 
     <!--  Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Désactiver LED clignotante</string>
-    <string name="pref_flashing_led_disable_summary">Désactive le clignotement de la LED lorsque la batterie est faible et qu'elle n'est pas en cours de chargement</string>
+    <string name="pref_flashing_led_disable_summary">Désactive le clignotement de la LED lorsque la batterie est faible et qu\'elle n\'est pas en cours de chargement</string>
 
 </resources>
