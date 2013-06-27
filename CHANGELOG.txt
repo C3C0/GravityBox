@@ -1,3 +1,13 @@
+Changelog 1.4.1 - 27/06/2013
+--------------------------------------
+- updated Italian translations (thanks to kidmar)
+- updated Russian translations (thanks to romashko)
+- updated Danish translations (thanks to Mr. Premise)
+- updated Spanish translations (thanks to oicirbaf)
+- updated Hungarian translations (thanks to Indiant)
+- updated French translations (thanks to ch-vox)
+- added Portuguese (BR) translations (thanks to lelemm) 
+
 Changelog 1.4.0 - 25/06/2013
 --------------------------------------
 - Bugfix: don't switch to QuickSettings when SIM Switch Panel is showing
