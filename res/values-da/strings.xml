@@ -145,7 +145,7 @@
     <string name="pref_lockscreen_background_title">Baggrunds-stil</string>
     <string name="lockscreen_bg_default">Standardtapet</string>
     <string name="lockscreen_bg_color">Fyld farve</string>
-    <string name="lockscreen_bg_image">Setvvalgt billede</string>
+    <string name="lockscreen_bg_image">Selvvalgt billede</string>
     <string name="pref_lockscreen_bg_color_title">Valg af farve</string>
     <string name="pref_lockscreen_bg_color_summary">Muliggør indstilling af baggrundsfarve for låseskærm</string>
     <string name="pref_lockscreen_bg_image_title">Vælg billede</string>
