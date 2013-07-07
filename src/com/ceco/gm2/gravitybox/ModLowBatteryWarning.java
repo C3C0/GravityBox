@@ -56,7 +56,8 @@ public class ModLowBatteryWarning {
                     int.class, int.class, int.class, int.class, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    if (mUpdateLightsMethodState.get().equals(MethodState.METHOD_ENTERED)) {
+                    if (mUpdateLightsMethodState.get() != null &&
+                            mUpdateLightsMethodState.get().equals(MethodState.METHOD_ENTERED)) {
                         prefs.reload();
                         if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FLASHING_LED_DISABLE, false)) {
                             if (DEBUG) {
