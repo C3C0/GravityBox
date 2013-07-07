@@ -189,4 +189,8 @@
     <string name="pref_ab_config_saved">New autobrightness configuration saved</string>
     <string name="pref_ab_config_cancelled">Autobrightness configuration was NOT saved</string>
 
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">Enable lockscreen rotation</string>
+    <string name="pref_lockscreen_rotation_summary">WARNING: can swap unlock ring targets on some devices in case AOSP lockscreen has been modified by vendor</string>
+
 </resources>

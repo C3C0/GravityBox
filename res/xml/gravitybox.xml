@@ -43,6 +43,12 @@
                 android:summary="@string/pref_lockscreen_maximize_widgets_summary"
                 android:defaultValue="false" />
 
+            <CheckBoxPreference 
+                android:key="pref_lockscreen_rotation"
+                android:title="@string/pref_lockscreen_rotation_title"
+                android:summary="@string/pref_lockscreen_rotation_summary"
+                android:defaultValue="false" />
+
         </PreferenceCategory>
 
     </PreferenceScreen>

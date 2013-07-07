@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -109,6 +110,16 @@ public class ModLockscreen {
                 }
             });
 
+            XposedHelpers.findAndHookMethod(kgViewManagerClass, 
+                    "shouldEnableScreenRotation", new XC_MethodReplacement() {
+
+                        @Override
+                        protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                            prefs.reload();
+                            return prefs.getBoolean(GravityBoxSettings.PREF_KEY_LOCKSCREEN_ROTATION, false);
+                        }
+            });
+
             XposedHelpers.findAndHookMethod(kgHostViewClass, "onFinishInflate", new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
@@ -131,6 +142,8 @@ public class ModLockscreen {
     }
 
     private static void minimizeChallengeIfDesired(Object challenge) {
+        if (challenge == null) return;
+
         mPrefs.reload();
         if (mPrefs.getBoolean(GravityBoxSettings.PREF_KEY_LOCKSCREEN_MAXIMIZE_WIDGETS, false)) {
             log("minimizeChallengeIfDesired: challenge minimized");

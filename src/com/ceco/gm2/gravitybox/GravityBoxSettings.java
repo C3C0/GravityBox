@@ -90,6 +90,7 @@ public class GravityBoxSettings extends Activity {
     private static final int LOCKSCREEN_BACKGROUND = 1024;
 
     public static final String PREF_KEY_LOCKSCREEN_MAXIMIZE_WIDGETS = "pref_lockscreen_maximize_widgets";
+    public static final String PREF_KEY_LOCKSCREEN_ROTATION = "pref_lockscreen_rotation";
     public static final String PREF_KEY_FLASHING_LED_DISABLE = "pref_flashing_led_disable";
 
     public static final String PREF_KEY_BRIGHTNESS_MIN = "pref_brightness_min";
