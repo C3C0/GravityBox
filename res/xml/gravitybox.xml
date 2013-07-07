@@ -204,6 +204,12 @@
             android:defaultValue="false" />
 
         <CheckBoxPreference
+            android:key="pref_mms_fix_wakelock"
+            android:title="@string/pref_mms_fix_wakelock_title"
+            android:summary="@string/pref_mms_fix_wakelock_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="pref_fix_calendar"
             android:title="@string/fix_calendar_title"
             android:summary="@string/fix_calendar_summary"

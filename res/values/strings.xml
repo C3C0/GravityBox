@@ -197,4 +197,8 @@
     <string name="pref_lockscreen_menu_key_title">Enable menu key</string>
     <string name="pref_lockscreen_menu_key_summary">Allows menu key to be used for quick-unlocking the device while on lockscreen (requires reboot)</string>
 
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">Fix messaging wakelock</string>
+    <string name="pref_mms_fix_wakelock_summary">Prevents screen from turning on when new message arrives (requires reboot)</string>
+
 </resources>

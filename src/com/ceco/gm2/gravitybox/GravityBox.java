@@ -37,6 +37,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         ModLockscreen.initZygote(prefs);
         ModLowBatteryWarning.initZygote(prefs);
         ModDisplay.initZygote(prefs);
+
+        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_MMS_WAKELOCK, false)) {
+            FixMmsWakelock.initZygote(prefs);
+        }
     }
 
     @Override
@@ -94,5 +98,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_DEV_OPTS, false) &&
                 lpparam.packageName.equals(FixDevOptions.PACKAGE_NAME))
             FixDevOptions.init(prefs, lpparam.classLoader);
+
+        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_MMS_WAKELOCK, false) && 
+                lpparam.packageName.equals(FixMmsWakelock.PACKAGE_NAME)) {
+            FixMmsWakelock.init(prefs, lpparam.classLoader);
+        }
     }
 }

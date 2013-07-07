@@ -65,6 +65,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_FIX_DATETIME_CRASH = "pref_fix_datetime_crash";
     public static final String PREF_KEY_FIX_CALLER_ID_PHONE = "pref_fix_caller_id_phone";
     public static final String PREF_KEY_FIX_CALLER_ID_MMS = "pref_fix_caller_id_mms";
+    public static final String PREF_KEY_FIX_MMS_WAKELOCK = "pref_mms_fix_wakelock";
     public static final String PREF_KEY_FIX_CALENDAR = "pref_fix_calendar";
     public static final String PREF_KEY_STATUSBAR_BGCOLOR = "pref_statusbar_bgcolor";
     public static final String PREF_KEY_FIX_TTS_SETTINGS = "pref_fix_tts_settings";
@@ -114,7 +115,8 @@ public class GravityBoxSettings extends Activity {
             PREF_KEY_FIX_TTS_SETTINGS,
             PREF_KEY_FIX_DEV_OPTS,
             PREF_KEY_BRIGHTNESS_MIN,
-            PREF_KEY_LOCKSCREEN_MENU_KEY
+            PREF_KEY_LOCKSCREEN_MENU_KEY,
+            PREF_KEY_FIX_MMS_WAKELOCK
     ));
 
     @Override
