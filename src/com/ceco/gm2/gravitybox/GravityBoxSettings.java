@@ -8,6 +8,7 @@ import java.util.Set;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
@@ -25,6 +26,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -90,6 +92,9 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_LOCKSCREEN_MAXIMIZE_WIDGETS = "pref_lockscreen_maximize_widgets";
     public static final String PREF_KEY_FLASHING_LED_DISABLE = "pref_flashing_led_disable";
 
+    public static final String PREF_KEY_BRIGHTNESS_MIN = "pref_brightness_min";
+    public static final String PREF_KEY_AUTOBRIGHTNESS = "pref_autobrightness";
+
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
@@ -105,7 +110,8 @@ public class GravityBoxSettings extends Activity {
             PREF_KEY_FIX_CALLER_ID_PHONE,
             PREF_KEY_FIX_CALLER_ID_MMS,
             PREF_KEY_FIX_TTS_SETTINGS,
-            PREF_KEY_FIX_DEV_OPTS
+            PREF_KEY_FIX_DEV_OPTS,
+            PREF_KEY_BRIGHTNESS_MIN
     ));
 
     @Override
@@ -135,6 +141,7 @@ public class GravityBoxSettings extends Activity {
         private Preference mPrefLockscreenBgImage;
         private File wallpaperImage;
         private File wallpaperTemporary;
+        private EditTextPreference mPrefBrightnessMin;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -190,6 +197,8 @@ public class GravityBoxSettings extends Activity {
 
             wallpaperImage = new File(getActivity().getFilesDir() + "/lockwallpaper"); 
             wallpaperTemporary = new File(getActivity().getCacheDir() + "/lockwallpaper.tmp");
+
+            mPrefBrightnessMin = (EditTextPreference) findPreference(PREF_KEY_BRIGHTNESS_MIN);
         }
 
         @Override
@@ -288,6 +297,27 @@ public class GravityBoxSettings extends Activity {
                 });
                 mDialog = builder.create();
                 mDialog.show();
+            }
+
+            if (key.equals(PREF_KEY_BRIGHTNESS_MIN)) {
+                String strVal = prefs.getString(PREF_KEY_BRIGHTNESS_MIN, "20");
+                try {
+                    int val = Integer.valueOf(strVal);
+                    int newVal = val;
+                    if (val < 20) newVal = 20;
+                    if (val > 80) newVal = 80;
+                    if (val != newVal) {
+                        Editor editor = prefs.edit();
+                        editor.putString(PREF_KEY_BRIGHTNESS_MIN, String.valueOf(newVal));
+                        editor.commit();
+                        mPrefBrightnessMin.setText(String.valueOf(newVal));
+                    }
+                } catch (NumberFormatException e) {
+                    Editor editor = prefs.edit();
+                    editor.putString(PREF_KEY_BRIGHTNESS_MIN, "20");
+                    editor.commit();
+                    mPrefBrightnessMin.setText("20");
+                }
             }
 
             if (rebootKeys.contains(key))

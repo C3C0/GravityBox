@@ -109,6 +109,33 @@
     </PreferenceScreen>
 
     <PreferenceScreen 
+        android:key="pref_cat_display"
+        android:title="@string/pref_cat_display_title"
+        android:summary="@string/pref_cat_display_summary">
+        
+
+        <EditTextPreference
+            android:key="pref_brightness_min"
+            android:title="@string/pref_brightness_min_title"
+            android:summary="@string/pref_brightness_min_summary"
+            android:dialogMessage="@string/pref_brightness_dlg_msg"
+            android:inputType="number"
+            android:defaultValue="20" />
+
+        <com.ceco.gm2.gravitybox.preference.AutoBrightnessDialogPreference
+            android:key="pref_autobrightness" 
+            android:title="@string/pref_ab_title"
+            android:summary="@string/pref_ab_summary" />
+
+        <CheckBoxPreference 
+            android:key="pref_crt_off_effect"
+            android:title="@string/crt_off_effect_title"
+            android:summary="@string/crt_off_effect_summary"
+            android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
         android:key="pref_cat_misc"
         android:title="@string/pref_cat_misc_title"
         android:summary="@string/pref_cat_misc_summary">
@@ -137,12 +164,6 @@
             android:key="pref_caller_fullscreen_photo"
             android:title="@string/caller_fullscreen_photo_title"
             android:summary="@string/caller_fullscreen_photo_summary"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference 
-            android:key="pref_crt_off_effect"
-            android:title="@string/crt_off_effect_title"
-            android:summary="@string/crt_off_effect_summary"
             android:defaultValue="false" />
 
     </PreferenceScreen>

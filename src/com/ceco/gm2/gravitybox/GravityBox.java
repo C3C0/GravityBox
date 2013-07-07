@@ -36,6 +36,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         ModElectronBeam.initZygote(prefs);
         ModLockscreen.initZygote(prefs);
         ModLowBatteryWarning.initZygote(prefs);
+        ModDisplay.initZygote(prefs);
     }
 
     @Override
