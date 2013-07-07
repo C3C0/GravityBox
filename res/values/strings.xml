@@ -201,4 +201,7 @@
     <string name="pref_mms_fix_wakelock_title">Fix messaging wakelock</string>
     <string name="pref_mms_fix_wakelock_summary">Prevents screen from turning on when new message arrives (requires reboot)</string>
 
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">Center clock</string>
+
 </resources>

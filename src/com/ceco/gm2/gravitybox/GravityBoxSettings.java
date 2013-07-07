@@ -68,6 +68,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_FIX_MMS_WAKELOCK = "pref_mms_fix_wakelock";
     public static final String PREF_KEY_FIX_CALENDAR = "pref_fix_calendar";
     public static final String PREF_KEY_STATUSBAR_BGCOLOR = "pref_statusbar_bgcolor";
+    public static final String PREF_KEY_STATUSBAR_CENTER_CLOCK = "pref_statusbar_center_clock";
     public static final String PREF_KEY_FIX_TTS_SETTINGS = "pref_fix_tts_settings";
     public static final String PREF_KEY_FIX_DEV_OPTS = "pref_fix_dev_opts";
     public static final String PREF_KEY_ABOUT_GRAVITYBOX = "pref_about_gb";
@@ -106,6 +107,9 @@ public class GravityBoxSettings extends Activity {
 
     public static final String ACTION_PREF_QUICKSETTINGS_CHANGED = "gravitybox.intent.action.QUICKSETTINGS_CHANGED";
     public static final String EXTRA_QS_PREFS = "qsPrefs";
+
+    public static final String ACTION_PREF_CENTER_CLOCK_CHANGED = "gravitybox.intent.action.CENTER_CLOCK_CHANGED";
+    public static final String EXTRA_CENTER_CLOCK = "centerClock";
 
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
@@ -280,6 +284,10 @@ public class GravityBoxSettings extends Activity {
             } else if (key.equals(PREF_KEY_STATUSBAR_BGCOLOR)) {
                 intent.setAction(ACTION_PREF_STATUSBAR_BGCOLOR_CHANGED);
                 intent.putExtra(EXTRA_SB_BGCOLOR, prefs.getInt(PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK));
+            } else if (key.equals(PREF_KEY_STATUSBAR_CENTER_CLOCK)) {
+                intent.setAction(ACTION_PREF_CENTER_CLOCK_CHANGED);
+                intent.putExtra(EXTRA_CENTER_CLOCK, 
+                        prefs.getBoolean(PREF_KEY_STATUSBAR_CENTER_CLOCK, false));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);

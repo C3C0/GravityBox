@@ -85,6 +85,11 @@
             android:summary="@string/statusbar_bgcolor_summary"
             android:defaultValue="@integer/COLOR_BLACK" />
 
+        <CheckBoxPreference 
+            android:key="pref_statusbar_center_clock"
+            android:title="@string/pref_statusbar_center_clock_title"
+            android:defaultValue="false" />
+
         <MultiSelectListPreference
             android:key="pref_signal_icon_autohide"
             android:title="@string/signal_icon_autohide_title"
