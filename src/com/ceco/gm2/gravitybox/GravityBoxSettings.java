@@ -91,6 +91,7 @@ public class GravityBoxSettings extends Activity {
 
     public static final String PREF_KEY_LOCKSCREEN_MAXIMIZE_WIDGETS = "pref_lockscreen_maximize_widgets";
     public static final String PREF_KEY_LOCKSCREEN_ROTATION = "pref_lockscreen_rotation";
+    public static final String PREF_KEY_LOCKSCREEN_MENU_KEY = "pref_lockscreen_menu_key";
     public static final String PREF_KEY_FLASHING_LED_DISABLE = "pref_flashing_led_disable";
 
     public static final String PREF_KEY_BRIGHTNESS_MIN = "pref_brightness_min";
@@ -112,7 +113,8 @@ public class GravityBoxSettings extends Activity {
             PREF_KEY_FIX_CALLER_ID_MMS,
             PREF_KEY_FIX_TTS_SETTINGS,
             PREF_KEY_FIX_DEV_OPTS,
-            PREF_KEY_BRIGHTNESS_MIN
+            PREF_KEY_BRIGHTNESS_MIN,
+            PREF_KEY_LOCKSCREEN_MENU_KEY
     ));
 
     @Override

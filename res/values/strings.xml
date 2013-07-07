@@ -193,4 +193,8 @@
     <string name="pref_lockscreen_rotation_title">Enable lockscreen rotation</string>
     <string name="pref_lockscreen_rotation_summary">WARNING: can swap unlock ring targets on some devices in case AOSP lockscreen has been modified by vendor</string>
 
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">Enable menu key</string>
+    <string name="pref_lockscreen_menu_key_summary">Allows menu key to be used for quick-unlocking the device while on lockscreen (requires reboot)</string>
+
 </resources>
