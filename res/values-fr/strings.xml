@@ -164,4 +164,60 @@
     <string name="pref_flashing_led_disable_title">Désactiver LED clignotante</string>
     <string name="pref_flashing_led_disable_summary">Désactive le clignotement de la LED lorsque la batterie est faible et qu\'elle n\'est pas en cours de chargement</string>
 
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">Arrangements affichage</string>
+    <string name="pref_cat_display_summary">Regroupe divers arrangements liés à l\'affichage</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">Niveau minimum de luminosité</string>
+    <string name="pref_brightness_min_summary">Permet de régler le niveau minimum de luminosité. S\'applique aux règlages manuels de luminosité (redémarrage nécessaire).</string>
+    <string name="pref_brightness_dlg_msg">Valeur dans l\'intervalle : 20 &#8211; 80</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">Niveaux luminosité automatique</string>
+    <string name="pref_ab_summary">Permet de définir les niveaux de lumière ambiante ainsi que les valeurs correspondantes pour le rétroéclairage (LCD)</string>
+    <string name="level">Niveau</string>
+    <string name="pref_ab_lux_max_label">Lux maximum</string>
+    <string name="pref_ab_brighness_label">Luminosité (20 &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">Le nombre spécifié n\'est pas valide</string>
+    <string name="pref_ab_brightness_too_low">Il est recommandé de ne pas régler la luminosité en-dessous de 20.</string>
+    <string name="pref_ab_brightness_too_high">La luminosité ne peut pas être supérieure à 255.</string>
+    <string name="pref_ab_number_error_negative">La valeur ne peut pas être inférieure à zéro.</string>
+    <string name="pref_ab_number_not_ascending">La valeur minimum ne pas être supérieure à la valeur maximum.</string>
+    <string name="pref_ab_number_not_descending">La valeur maximum ne pas être inférieure à la valeur minimum.</string>
+    <string name="pref_ab_values_set">Valeur de %s appliquée</string>
+    <string name="pref_ab_config_saved">Nouvelle configuration de luminosité automatique enregistrée.</string>
+    <string name="pref_ab_config_cancelled">La configuration de luminosité automatique N\'a PAS été enregistrée.</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">Rotation écran de déverrouillage</string>
+    <string name="pref_lockscreen_rotation_summary">ATTENTION : peut modifier les cibles de l\'anneau de déverrouillage sur certains appareils dans la cas où l\'écran de déverrouillage aurait été personnalisé par le fabricant.</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">Activation touche menu</string>
+    <string name="pref_lockscreen_menu_key_summary">Permet d\'utiliser la touche menu pour un déverrouillage rapide à partir de l\'écran de déverrouillage (redémarrage nécessaire)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">Allumage à réception de message</string>
+    <string name="pref_mms_fix_wakelock_summary">Permet de ne pas allumer l\'écran à la réception d\'un message (redémarrage nécessaire)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">Centrer l\'horloge</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Arrangements médias</string>
+    <string name="pref_cat_media_summary">Regroupe divers arrangements pour les médias et les système audio</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">Plus d\'étapes volume musical</string>
+    <string name="pref_music_volume_steps_summary">Permet un contrôle plus précis du volume de la musique en ajoutant des étapes (redémarrage nécessaire)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">Volume d\'écoute sécurisé</string>
+    <string name="pref_safe_media_volume_summary">Active ou désactive la limitation du volume sonore dans les écouteurs mains-libres</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">Désactivation LED en chargement</string>
+    <string name="pref_charging_led_disable_summary">Désactive la LED lors du chargement</string>
+
 </resources>
