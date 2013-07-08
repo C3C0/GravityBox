@@ -167,4 +167,60 @@
     <string name="pref_flashing_led_disable_title">Vypnout blikání LED</string>
     <string name="pref_flashing_led_disable_summary">Vypne otravné blikání LED, které je aktivní v případě nízké úrovně baterie</string>
 
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">Nastavení obrazovky</string>
+    <string name="pref_cat_display_summary">Obsahuje různá nastavení týkající se obrazovky</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">Minimální úroveň jasu</string>
+    <string name="pref_brightness_min_summary">Umožňuje nastavit minimální úroveň jasu pro manuální nastavení jasu (vyžaduje restart)</string>
+    <string name="pref_brightness_dlg_msg">Hodnota z intervalu: 20 &#8211; 80</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">Úrovně automatického jasu</string>
+    <string name="pref_ab_summary">Umožňuje nastavit úrovně světla prostředí a odpovídající úrovně podsvícení obrazovky</string>
+    <string name="level">Úroveň</string>
+    <string name="pref_ab_lux_max_label">Lux max</string>
+    <string name="pref_ab_brighness_label">Jas (0 &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">Zadané číslo není platné</string>
+    <string name="pref_ab_brightness_too_low">Nedoporučuje se nastavit úroveň jasu menší než 20</string>
+    <string name="pref_ab_brightness_too_high">Úroveň jasu nesmí být větší než 255</string>
+    <string name="pref_ab_number_error_negative">Hodnoty nesmí být menší než nula</string>
+    <string name="pref_ab_number_not_ascending">Hodnoty na nižších úrovních nesmí být větší než hodnoty na vyšších úrovních</string>
+    <string name="pref_ab_number_not_descending">Hodnoty na vyšších úrovních nesmí být nižší než hodnoty na nižších úrovních</string>
+    <string name="pref_ab_values_set">Hodnoty pro %s nastaveny</string>
+    <string name="pref_ab_config_saved">Nová konfigurace automatického jasu byla uložena</string>
+    <string name="pref_ab_config_cancelled">Nová konfigurace automatického jasu NEBYLA uložena</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">Rotace obrazovky uzamčení</string>
+    <string name="pref_lockscreen_rotation_summary">POZOR: může přehodit zkratky odemykacího prstence na některých zařízeních, pokud byla obrazovka uzamčení modifikována výrobcem</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">Povolit menu tlačítko</string>
+    <string name="pref_lockscreen_menu_key_summary">Povolí menu tlačítko pro rychlé odemknutí obrazovky uzamčení (vyžaduje restart)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">Opravit wakelock zpráv</string>
+    <string name="pref_mms_fix_wakelock_summary">Zamezí zapnutí obrazovky při obdržení nové SMS / MMS zprávy (vyžaduje restart)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">Vycentrované hodiny</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Nastavení médií</string>
+    <string name="pref_cat_media_summary">Obsahuje různá nastavení týkající se médií a audio systému</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">Více úrovní hlasitoti</string>
+    <string name="pref_music_volume_steps_summary">Přidá více úrovní hlasitosti pro stream hudby (vyžaduje restart)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">Bezpečná hlasitost pro headset</string>
+    <string name="pref_safe_media_volume_summary">Aktivuje nebo deaktivuje bezpečnou hlasitost pro headset</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">Vypnout LED nabíjení</string>
+    <string name="pref_charging_led_disable_summary">Vypne LED během nabíjení</string>
+
 </resources>
