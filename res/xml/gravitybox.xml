@@ -169,6 +169,12 @@
             android:summary="@string/pref_music_volume_steps_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_safe_media_volume"
+            android:title="@string/pref_safe_media_volume_title"
+            android:summary="@string/pref_safe_media_volume_summary"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 

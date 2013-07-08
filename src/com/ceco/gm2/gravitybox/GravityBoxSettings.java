@@ -100,6 +100,7 @@ public class GravityBoxSettings extends Activity {
 
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
     public static final String PREF_KEY_MUSIC_VOLUME_STEPS = "pref_music_volume_steps";
+    public static final String PREF_KEY_SAFE_MEDIA_VOLUME = "pref_safe_media_volume";
 
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
@@ -112,6 +113,9 @@ public class GravityBoxSettings extends Activity {
 
     public static final String ACTION_PREF_CENTER_CLOCK_CHANGED = "gravitybox.intent.action.CENTER_CLOCK_CHANGED";
     public static final String EXTRA_CENTER_CLOCK = "centerClock";
+
+    public static final String ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED = "gravitybox.intent.action.SAFE_MEDIA_VOLUME_CHANGED";
+    public static final String EXTRA_SAFE_MEDIA_VOLUME_ENABLED = "enabled";
 
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
@@ -291,6 +295,10 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_CENTER_CLOCK_CHANGED);
                 intent.putExtra(EXTRA_CENTER_CLOCK, 
                         prefs.getBoolean(PREF_KEY_STATUSBAR_CENTER_CLOCK, false));
+            } else if (key.equals(PREF_KEY_SAFE_MEDIA_VOLUME)) {
+                intent.setAction(ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED);
+                intent.putExtra(EXTRA_SAFE_MEDIA_VOLUME_ENABLED,
+                        prefs.getBoolean(PREF_KEY_SAFE_MEDIA_VOLUME, false));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);
