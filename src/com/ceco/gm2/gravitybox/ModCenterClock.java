@@ -35,6 +35,7 @@ public class ModCenterClock {
     private static int mAnimPushDownIn;
     private static int mAnimFadeIn;
     private static boolean mClockCentered = false;
+    private static int mClockOriginalPaddingLeft;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -68,6 +69,7 @@ public class ModCenterClock {
                     mClock = (TextView) mIconArea.findViewById(
                             liparam.res.getIdentifier("clock", "id", PACKAGE_NAME));
                     if (mClock == null) return;
+                    mClockOriginalPaddingLeft = mClock.getPaddingLeft();
 
                     // inject new clock layout
                     mLayoutClock = new LinearLayout(liparam.view.getContext());
@@ -170,6 +172,7 @@ public class ModCenterClock {
             mClock.setGravity(Gravity.CENTER);
             mClock.setLayoutParams(new LinearLayout.LayoutParams(
                     LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            mClock.setPadding(0, 0, 0, 0);
             mIconArea.removeView(mClock);
             mLayoutClock.addView(mClock);
             mLayoutClock.setVisibility(View.VISIBLE);
@@ -178,6 +181,7 @@ public class ModCenterClock {
             mClock.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
             mClock.setLayoutParams(new LinearLayout.LayoutParams(
                     LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
+            mClock.setPadding(mClockOriginalPaddingLeft, 0, 0, 0);
             mLayoutClock.removeView(mClock);
             mIconArea.addView(mClock);
             mLayoutClock.setVisibility(View.GONE);
