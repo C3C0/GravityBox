@@ -1,3 +1,23 @@
+Changelog 1.5.0 - 08/07/2013
+--------------------------------------
+- Lockscreen tweaks
+--- option to enable lockscreen rotation
+--- option to enable quick-unlock by menu key on lockscreen
+- Statusbar tweaks
+--- option to center statusbar clock
+- Power tweaks
+--- option to disable LED while charging
+- Display tweaks
+--- option to set minimum brightness level for manual brightness setting
+--- interface for adjusting autobrightness levels
+- Media tweaks
+--- option to add more volume levels for music stream
+--- option to control safe headset media volume feature
+- General fixes
+--- fix wakelock in messaging app causing screen turn on every time new message arrives
+- Added Polish translations (thanks to LuHash)
+- Added Portuguese (PT) translations (thanks to bgcngm)
+
 Changelog 1.4.1 - 27/06/2013
 --------------------------------------
 - updated Italian translations (thanks to kidmar)
