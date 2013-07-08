@@ -204,5 +204,21 @@
     <!-- Statusbar center clock -->
     <string name="pref_statusbar_center_clock_title">Centrar relógio</string>
 
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Ajustes multimédia</string>
+    <string name="pref_cat_media_summary">Contém vários ajustes relacionados com multimédia</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">Mais passos de volume</string>
+    <string name="pref_music_volume_steps_summary">Permite controlo mais fino do volume ao adicionar mais passos (necessário reiniciar)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">Volume de segurança para mãos-livres</string>
+    <string name="pref_safe_media_volume_summary">Ativa ou desativa o volume de segurança do áudio mãos-livres</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">Desativar luz de bateria a carregar</string>
+    <string name="pref_charging_led_disable_summary">Desativa a luz vermelha quando a bateria está a carregar</string>
+
 </resources>
 
