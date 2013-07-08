@@ -204,4 +204,12 @@
     <!-- Statusbar center clock -->
     <string name="pref_statusbar_center_clock_title">Center clock</string>
 
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Media tweaks</string>
+    <string name="pref_cat_media_summary">Contains various tweaks for media and audio system</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">More music volume steps</string>
+    <string name="pref_music_volume_steps_summary">Adds more volume steps for music stream (requires reboot)</string>
+
 </resources>

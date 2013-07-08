@@ -41,6 +41,8 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_MMS_WAKELOCK, false)) {
             FixMmsWakelock.initZygote(prefs);
         }
+
+        ModAudio.initZygote(prefs);
     }
 
     @Override

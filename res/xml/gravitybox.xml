@@ -153,6 +153,25 @@
     </PreferenceScreen>
 
     <PreferenceScreen 
+        android:key="pref_cat_media"
+        android:title="@string/pref_cat_media_title"
+        android:summary="@string/pref_cat_media_summary">
+
+        <CheckBoxPreference 
+            android:key="pref_vol_music_controls"
+            android:title="@string/vol_music_controls_title"
+            android:summary="@string/vol_music_controls_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
+            android:key="pref_music_volume_steps"
+            android:title="@string/pref_music_volume_steps_title"
+            android:summary="@string/pref_music_volume_steps_summary"
+            android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
         android:key="pref_cat_misc"
         android:title="@string/pref_cat_misc_title"
         android:summary="@string/pref_cat_misc_summary">
@@ -164,12 +183,6 @@
             android:entries="@array/vol_key_cursor_control_entries"
             android:entryValues="@array/vol_key_cursor_control_values"
             android:defaultValue="0" />
-
-        <CheckBoxPreference 
-            android:key="pref_vol_music_controls"
-            android:title="@string/vol_music_controls_title"
-            android:summary="@string/vol_music_controls_summary"
-            android:defaultValue="false" />
 
         <CheckBoxPreference 
             android:key="pref_recents_clear_all"
