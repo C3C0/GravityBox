@@ -94,6 +94,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_LOCKSCREEN_ROTATION = "pref_lockscreen_rotation";
     public static final String PREF_KEY_LOCKSCREEN_MENU_KEY = "pref_lockscreen_menu_key";
     public static final String PREF_KEY_FLASHING_LED_DISABLE = "pref_flashing_led_disable";
+    public static final String PREF_KEY_CHARGING_LED_DISABLE = "pref_charging_led_disable";
 
     public static final String PREF_KEY_BRIGHTNESS_MIN = "pref_brightness_min";
     public static final String PREF_KEY_AUTOBRIGHTNESS = "pref_autobrightness";

@@ -123,6 +123,12 @@
             android:summary="@string/pref_flashing_led_disable_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_charging_led_disable"
+            android:title="@string/pref_charging_led_disable_title"
+            android:summary="@string/pref_charging_led_disable_summary"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 

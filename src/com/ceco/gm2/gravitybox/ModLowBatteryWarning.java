@@ -69,6 +69,23 @@ public class ModLowBatteryWarning {
                     }
                 }
             });
+
+            XposedHelpers.findAndHookMethod(lightServiceClass, "setColor", int.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    if (mUpdateLightsMethodState.get() != null &&
+                            mUpdateLightsMethodState.get().equals(MethodState.METHOD_ENTERED)) {
+                        prefs.reload();
+                        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_CHARGING_LED_DISABLE, false)) {
+                            if (DEBUG) {
+                                log("LightService: setColor called from BatteryService - ignoring");
+                            }
+                            XposedHelpers.callMethod(param.thisObject, "turnOff");
+                            param.setResult(null);
+                        }
+                    }
+                }
+            });
         } catch (Exception e) {
             XposedBridge.log(e);
         }
