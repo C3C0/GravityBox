@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Стиль індикатора батареї</string>
+    <string name="battery_style_stock">Стандартний індикатор</string>
+    <string name="battery_style_circle">Круговий з процентами</string>
+    <string name="battery_style_percent">Великі цифри процентів</string>
+    <string name="battery_style_percent_stock">Великі цифри зі стандартною іконкою</string>
+    <string name="battery_style_none">Ніякого</string>
+
+    <string name="vol_music_controls_title">Гортання музики клавішею гучності</string>
+    <string name="vol_music_controls_summary">Гортає треки довгим натисканням гучності коли під час блокування екрану</string>
+
+    <string name="low_battery_warning_policy_title">Попередження про низький рівень заряду</string>
+    <string name="low_battery_warning_full">Спливаюче вікно та звук</string>
+    <string name="low_battery_warning_popup">Тільки вікно</string>
+    <string name="low_battery_warning_sound">Тільки звук</string>
+    <string name="low_battery_warning_off">Вимкнене</string>
+
+    <string name="reboot_required">Зміни набудуть чинності після перезавантаження</string>
+
+    <string name="signal_icon_autohide_title">Приховування іконок рівня сигналу</string>
+    <string name="signal_icon_autohide_summary">Автоматично приховує іконки обраних SIM-слотів при відсутніх SIM-картках, вимикає повідомлення \"SIM-картка відсутня\"</string>
+    <string name="sim_slot_1">Приховувати іконку у 1-му SIM-слоті</string>
+    <string name="sim_slot_2">Приховувати іконку у 2-му SIM-слоті</string>
+    <string name="sim_disable_notifications">Вимкнути повідомлення</string>
+    <string name="sim_disable_notifications_summary">Вимкнути повідомлення \"SIM-картка відсутня\"</string>
+
+    <string name="poweroff_advanced_title">Варіанти вимкнення живлення</string>
+    <string name="poweroff_advanced_summary">Вмикає варіанти з перезавантаженням та меню відновлення (рекавері)</string>
+    <string name="poweroff_recovery">Меню відновлення (рекавері)</string>    
+
+    <string name="vol_key_cursor_control_title">Керування курсором клавішами гучності</string>
+    <string name="vol_key_cursor_control_summary">Дозволяє рухати курсор клавішами гучності в текстових полях</string>
+    <string name="vol_key_cursor_control_off">Вимкнено</string>
+    <string name="vol_key_cursor_control_on">Збільш./зменш. гучності рухає курсор вліво/вправо</string>
+    <string name="vol_key_cursor_control_on_reverse">Збільш./зменш. гучності рухає курсор вправо/вліво</string>
+
+    <string name="recents_clear_all_title">Завершення всіх поточних завдань</string>
+    <string name="recents_clear_all_summary">В меню поточних завдань створює кнопку для завершення одразу усіх завдань</string>
+
+    <string name="fix_datetime_crash_title">Виправлення в налаштуваннях дати та часу</string>
+    <string name="fix_datetime_crash_summary">Увімкніть, якщо трапляються збої під час налаштування дати та часу (потрібне перезавантаження)</string>
+
+    <string name="fix_caller_id_phone_title">Виправлення ID контакту вхідного дзвінка</string>
+    <string name="fix_caller_id_phone_summary">Увімкніть, якщо трапляється неспівпадіння під час вхідного дзвінка (потрібне перезавантаження)</string>
+    <string name="fix_caller_id_phone_alert">Для набуття чинності після перезавантаження очистіть та знову додайте контакти! Налаштування / Програми / Усі - очистити дані Пам\'яті контактів.</string>
+
+    <string name="fix_caller_id_mms_title">Виправлення ID контакту для повідомлень</string>
+    <string name="fix_caller_id_mms_summary">Увімкніть, якщо трапляються розрізнені ланцюжки повідомлень для одного контакту (потрібне перезавантаження)</string>
+    <string name="fix_caller_id_mms_alert">Для набуття чинності після перезавантаження видаліть всі розрізнені ланцюжки повідомлень!</string>
+
+    <string name="fix_calendar_title">Виправлення додатку календаря</string>
+    <string name="fix_calendar_summary">Увімкніть, якщо трапляються періодичні самовмикання екрану (потрібне перезавантаження)</string>
+
+    <string name="important">Важливо</string>
+
+    <string name="caller_fullscreen_photo_title">Повноекранне фото контакту</string>
+    <string name="caller_fullscreen_photo_summary">Під час вхідного дзвінка показує фото абонента на повний екран</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Увімк. синхронізацію</string>
+    <string name="quick_settings_sync_off">Вимк. синхронізацію</string>
+    <string name="quick_settings_wifi_ap_on">Увімк. портативну точку доступу</string>
+    <string name="quick_settings_wifi_ap_off">Вимк. портативну точку доступу</string>
+    <string name="quick_settings_torch_on">Увімк. ліхтарик</string>
+    <string name="quick_settings_torch_off">Вимк. ліхтарик</string>
+    <string name="quick_settings_torch_off_notif">Ліхтарик вимкнений</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">Плитки швидких налаштувань у панелі сповіщень</string>
+    <string name="quick_settings_summary">Дозволяє показати або сховати плитки швидких налаштувань у панелі сповіщень</string>
+    <string name="qs_tile_user_profile">Профіль користувача</string>
+    <string name="qs_tile_airplane_mode">Режим літака</string>
+    <string name="qs_tile_battery">Стан батареї</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">Мобільні дані</string>
+    <string name="qs_tile_network_mode">Режим мережі</string>
+    <string name="qs_tile_data_usage">Використання даних</string>
+    <string name="qs_tile_audio">Профілі звуку</string>
+    <string name="qs_tile_brightness">Яскравість</string>
+    <string name="qs_tile_screen_timeout">Час гасіння екрану</string>
+    <string name="qs_tile_autorotation">Автообертання екрану</string>
+    <string name="qs_tile_sync">Синхронізація</string>
+    <string name="qs_tile_wifi_ap">Портативна точка доступу</string>
+    <string name="qs_tile_torch">Ліхтарик</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Змішувач кольорів</string>
+    <string name="press_color_to_apply">Натисніть для обрання кольору</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Тло панелі сповіщень</string>
+    <string name="statusbar_bgcolor_summary">Дозволяє призначати колір тла та прозорість панелі сповіщень</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Виправлення синтезу мовлення</string>
+    <string name="fix_tts_settings_summary">Розблокує налаштування голосового пошуку та виводу синтезу мовлення з тексту в налаштуваннях мови та введення (потрібне перезавантаження)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">Додаткові параметри розробника</string>
+    <string name="fix_dev_opts_summary">Розблокує додаткові параметри розробника (потрібне перезавантаження)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Твіки панелі сповіщень</string>
+    <string name="pref_cat_statusbar_summary">Різноманітні твіки панелі сповіщень</string>
+    <string name="pref_cat_misc_title">Різне</string>
+    <string name="pref_cat_misc_summary">Решта твіків, що не підпадають під конкретну категорію</string>
+    <string name="pref_cat_fixes_title">Основні твіки</string>
+    <string name="pref_cat_fixes_summary">Основні виправлення для MTK6589. Використовуйте лише в разі необхідності.</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">Про програму</string>
+    <string name="about_gb_summary">Автор коду C3C076@XDA. Натисніть щоб зайти на офіційну сторінку обговорення.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Автор коду rovo89@XDA. Натисніть щоб зайти на офіційну сторінку обговорення.</string>
+    <string name="about_donate_title">Пожертва авторові</string>
+    <string name="about_donate_summary">Зробіть пожертву якщо вважаєте додаток вартим цього! Приділіть також увагу пожертві для rovo89 за його чудовий Xposed framework.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">Пристрій буде перезавантажений</string>
+    <string name="reboot_confirm_recovery">Пристрій буде перезавантажений у меню відновлення (рекавері)</string>
+
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">Ефект вимкнення кінескопу (CRT)</string>
+    <string name="crt_off_effect_summary">Вмикає анімацію, що імітуючє вимкнення старого кінескопу (CRT) під час вимкнення екрану</string>
+
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Інженерне меню</string>
+    <string name="engineering_mode_summary">Запускає додаток інженерного меню</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Dual SIM Ringer</string>
+    <string name="dual_sim_ringer_summary">Запускає додаток, що дозволяє призначити мелодії дзвінка та звуки сповіщень для кожної SIM-картки окремо</string>
+
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Твіки блокування екрану</string>
+    <string name="pref_cat_lockscreen_summary">Різноманітні твіки блокування екрану</string>
+    <string name="pref_cat_lockscreen_background_title">Тло блокування екрану</string>
+    <string name="pref_lockscreen_background_title">Стиль тла</string>
+    <string name="lockscreen_bg_default">Шпалери за умовчанням</string>
+    <string name="lockscreen_bg_color">Заливка кольором</string>
+    <string name="lockscreen_bg_image">Зображення на вибір</string>
+    <string name="pref_lockscreen_bg_color_title">Призначити колір</string>
+    <string name="pref_lockscreen_bg_color_summary">Дозволяє на вибір призначати тло та колір екрану блокування</string>
+    <string name="pref_lockscreen_bg_image_title">Зображення на вибір</string>
+    <string name="pref_lockscreen_bg_image_summary">Дозволяє на вибір призначати фонове зображення екрану блокування</string>
+    <string name="lockscreen_background_result_successful">Тло змінене</string>
+    <string name="lockscreen_background_result_not_successful">Тло не змінене</string>
+    <string name="pref_cat_lockscreen_other_title">Інше</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Максимізація віджетів</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Якщо увімкнено, то віджети екрану блокування будуть максимізовані за умовчанням</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Твіки живлення</string>
+    <string name="pref_cat_power_summary">Різноманітні твіки стосовно живлення</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Вимкнути мерехтіння світлодіода</string>
+    <string name="pref_flashing_led_disable_summary">Вимикає докучливе мерехтіння світлодіода за низького рівня заряду та коли батарея не заряджається</string>
+
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">Твіки екрана</string>
+    <string name="pref_cat_display_summary">Різноманітні твіки екрана</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">Мінімальний рівень яскравості</string>
+    <string name="pref_brightness_min_summary">Дозволяє призначити мінімальний рівень яскравості. Застосовується для ручного налаштування яскравості (потрібне перезавантаження)</string>
+    <string name="pref_brightness_dlg_msg">Значення з інтервалу: 20 &#8211; 80</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">Автоматична яскравість</string>
+    <string name="pref_ab_summary">Дозволяє призначати значення рівня зовнішнього освітлення та відповідні значення рівнів підсвітки екрану</string>
+    <string name="level">Рівень</string>
+    <string name="pref_ab_lux_max_label">Люкс макс.</string>
+    <string name="pref_ab_brighness_label">Яскравість (20 &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">Невірне значення</string>
+    <string name="pref_ab_brightness_too_low">Не рекомендовано призначати яскравість нижче 20</string>
+    <string name="pref_ab_brightness_too_high">Яскравість не може бути більшою за 255</string>
+    <string name="pref_ab_number_error_negative">Значення не можуть бути меншими нуля</string>
+    <string name="pref_ab_number_not_ascending">Значення для нижчих рівнів не можуть бути більшими значень для вищих</string>
+    <string name="pref_ab_number_not_descending">Значення для вищих рівнів не можуть бути меншими значень для нижчих</string>
+    <string name="pref_ab_values_set">Значення для %s задано</string>
+    <string name="pref_ab_config_saved">Нова конфігурація автоматичної яскравості збережена</string>
+    <string name="pref_ab_config_cancelled">Конфігурація автоматичної яскравості НЕ збережена</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">Автообертання екрану блокування</string>
+    <string name="pref_lockscreen_rotation_summary">УВАГА: на деяких пристроях можлива зміна мішеней кільця розблокування, якщо екран блокування AOSP був модифікований виробником</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">Розблокування кнопкою меню</string>
+    <string name="pref_lockscreen_menu_key_summary">Дозволяє використовувати кнопку меню для швидкого розблокування пристрою в режимі екрану блокування (потрібне перезавантаження)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">Виправлення пробудження повідомленням</string>
+    <string name="pref_mms_fix_wakelock_summary">Запобігає увімкненню екрану під час надходження повідомлення (потрібне перезавантаження)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">Центрування годинника панелі сповіщень</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Твіки медіа</string>
+    <string name="pref_cat_media_summary">Різноманітні твіки для медіа та аудіосистеми</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">Більше кроків регулювання гучності</string>
+    <string name="pref_music_volume_steps_summary">Додає більше кроків регулювання гучності для музики (потрібне перезавантаження)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">Безпечна гучність медіа для навушників</string>
+    <string name="pref_safe_media_volume_summary">Активує та деактивує установку безпечного рівня гучності медіа для навушників</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">Вимикання світлодіода зарядження</string>
+    <string name="pref_charging_led_disable_summary">Вимикає світлодіод під час зарядження пристрою</string>
+
+</resources>
