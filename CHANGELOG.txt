@@ -1,3 +1,9 @@
+Changelog 1.5.1 - 15/07/2013
+--------------------------------------
+- updated Danish translations (thx Mr.Premise)
+- updated French translations (thx ch-vox)
+- added Ukrainian translations (thx alex_glbr)
+
 Changelog 1.5.0 - 08/07/2013
 --------------------------------------
 - Lockscreen tweaks
