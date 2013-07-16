@@ -220,4 +220,7 @@
     <string name="pref_charging_led_disable_title">Disable charging LED</string>
     <string name="pref_charging_led_disable_summary">Disables LED while charging</string>
 
+    <!-- Hardware key actions -->
+    <string name="app_killed">Application killed</string>
+
 </resources>
