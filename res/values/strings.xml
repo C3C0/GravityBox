@@ -239,4 +239,16 @@
     <string name="nothing_to_kill">There\'s nothing to kill</string>
     <string name="no_previous_app_found">No previous app found</string>
 
+    <!--  Phone tweaks category -->
+    <string name="pref_cat_phone_title">Phone tweaks</string>
+    <string name="pref_cat_phone_summary">Contains various telephony tweaks</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">Flip action while ringing</string>
+    <string name="pref_phone_flip_summary">Allows to define action to be performed when device is flipped face down while ringing</string>
+    <string name="phone_flip_action_none">Do nothing</string>
+    <string name="phone_flip_action_mute">Mute ringer</string>
+    <string name="phone_flip_action_dismiss">Dismiss call</string>
+    
+
 </resources>

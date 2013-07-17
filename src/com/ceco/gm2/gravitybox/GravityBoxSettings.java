@@ -122,6 +122,11 @@ public class GravityBoxSettings extends Activity {
     public static final String ACTION_PREF_HWKEY_KILL_DELAY_CHANGED = "gravitybox.intent.action.HWKEY_KILL_DELAY_CHANGED";
     public static final String EXTRA_HWKEY_VALUE = "hwKeyValue";
 
+    public static final String PREF_KEY_PHONE_FLIP = "pref_phone_flip";
+    public static final int PHONE_FLIP_ACTION_NONE = 0;
+    public static final int PHONE_FLIP_ACTION_MUTE = 1;
+    public static final int PHONE_FLIP_ACTION_DISMISS = 2;
+
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
@@ -183,6 +188,7 @@ public class GravityBoxSettings extends Activity {
         private ListPreference mPrefHwKeyBackLongpress;
         private ListPreference mPrefHwKeyDoubletapSpeed;
         private ListPreference mPrefHwKeyKillDelay;
+        private ListPreference mPrefPhoneFlip;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -246,6 +252,8 @@ public class GravityBoxSettings extends Activity {
             mPrefHwKeyBackLongpress = (ListPreference) findPreference(PREF_KEY_HWKEY_BACK_LONGPRESS);
             mPrefHwKeyDoubletapSpeed = (ListPreference) findPreference(PREF_KEY_HWKEY_DOUBLETAP_SPEED);
             mPrefHwKeyKillDelay = (ListPreference) findPreference(PREF_KEY_HWKEY_KILL_DELAY);
+
+            mPrefPhoneFlip = (ListPreference) findPreference(PREF_KEY_PHONE_FLIP);
         }
 
         @Override
@@ -308,6 +316,9 @@ public class GravityBoxSettings extends Activity {
                     + " (" + mPrefHwKeyDoubletapSpeed.getEntry() + ")");
             mPrefHwKeyKillDelay.setSummary(getString(R.string.pref_hwkey_kill_delay_summary)
                     + " (" + mPrefHwKeyKillDelay.getEntry() + ")");
+
+            mPrefPhoneFlip.setSummary(getString(R.string.pref_phone_flip_summary)
+                    + " (" + mPrefPhoneFlip.getEntry() + ")");
         }
 
         @Override
