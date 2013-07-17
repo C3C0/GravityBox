@@ -1,10 +1,14 @@
 package com.ceco.gm2.gravitybox;
 
+import java.lang.reflect.Method;
+
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodHook.Unhook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -15,12 +19,14 @@ public class ModPhone {
     private static final String CLASS_IN_CALL_SCREEN = "com.android.phone.InCallScreen";
     private static final String ENUM_PHONE_STATE = "com.android.internal.telephony.PhoneConstants$State";
     private static final String CLASS_ASYNC_RESULT = "android.os.AsyncResult";
+    private static final String CLASS_CALL_NOTIFIER = "com.android.phone.CallNotifier";
     private static final boolean DEBUG = false;
 
     private static SensorManager mSensorManager;
     private static boolean mSensorListenerAttached = false;
     private static int mFlipAction = GravityBoxSettings.PHONE_FLIP_ACTION_NONE;
     private static Object mInCallScreen;
+    private static Unhook mVibrateHook;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -87,6 +93,7 @@ public class ModPhone {
         try {
             final Class<?> classInCallScreen = XposedHelpers.findClass(CLASS_IN_CALL_SCREEN, classLoader);
             final Class<? extends Enum> enumPhoneState = (Class<? extends Enum>) Class.forName(ENUM_PHONE_STATE);
+            final Class<?> classCallNotifier = XposedHelpers.findClass(CLASS_CALL_NOTIFIER, classLoader);
 
             XposedHelpers.findAndHookMethod(classInCallScreen, "onCreate", Bundle.class, new XC_MethodHook() {
 
@@ -138,6 +145,50 @@ public class ModPhone {
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     if (DEBUG) log("internalSilenceRinger - detaching sensor listener (if is attached)");
                     detachSensorListener();
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(classCallNotifier, 
+                    "onPhoneStateChanged", CLASS_ASYNC_RESULT, new XC_MethodHook() {
+
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    if (DEBUG ) log("CallNotifier: onPhoneStateChanged ENTERED");
+
+                    prefs.reload();
+                    if (!prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_PHONE_CALL_CONNECT_VIBRATE_DISABLE, false)) {
+                        return;
+                    }
+
+                    Object app = XposedHelpers.getObjectField(param.thisObject, "mApplication");
+                    if (app == null) return;
+
+                    Method m = app.getClass().getMethod("getSystemService", String.class);
+                    Vibrator v = (Vibrator) m.invoke(app, "vibrator");
+                    if (v == null) return;
+
+                    mVibrateHook = XposedHelpers.findAndHookMethod(
+                            v.getClass(), "vibrate", long.class, new XC_MethodHook() {
+
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            log("Vibrator: vibrate called from CallNotifier - ignoring");
+                            param.setResult(null);
+                        }
+                    });
+                    if (DEBUG) log("CallNotifier: Vibrator.vibrate() method hooked");
+                }
+
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    if (mVibrateHook != null) {
+                        if (DEBUG) log("CallNotifier: unhooking vibrate hook");
+                        mVibrateHook.unhook();
+                        mVibrateHook = null;
+                    }
+
+                    if (DEBUG ) log("CallNotifier: onPhoneStateChanged EXITED");
                 }
             });
         } catch (Exception e) {

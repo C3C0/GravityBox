@@ -126,6 +126,7 @@ public class GravityBoxSettings extends Activity {
     public static final int PHONE_FLIP_ACTION_NONE = 0;
     public static final int PHONE_FLIP_ACTION_MUTE = 1;
     public static final int PHONE_FLIP_ACTION_DISMISS = 2;
+    public static final String PREF_KEY_PHONE_CALL_CONNECT_VIBRATE_DISABLE = "pref_phone_call_connect_vibrate_disable";
 
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";

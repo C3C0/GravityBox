@@ -249,6 +249,9 @@
     <string name="phone_flip_action_none">Do nothing</string>
     <string name="phone_flip_action_mute">Mute ringer</string>
     <string name="phone_flip_action_dismiss">Dismiss call</string>
-    
+
+    <!-- Disable vibrate on call connect -->
+    <string name="pref_phone_call_connect_vibrate_disable_title">Disable vibrate on call connect</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">Disables vibration that is triggered when call is connected</string>
 
 </resources>

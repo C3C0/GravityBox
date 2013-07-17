@@ -171,6 +171,12 @@
             android:entryValues="@array/phone_flip_action_values"
             android:defaultValue="0" />
 
+        <CheckBoxPreference 
+            android:key="pref_phone_call_connect_vibrate_disable"
+            android:title="@string/pref_phone_call_connect_vibrate_disable_title"
+            android:summary="@string/pref_phone_call_connect_vibrate_disable_summary"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 
