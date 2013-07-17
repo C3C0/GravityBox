@@ -2,6 +2,7 @@ package com.ceco.gm2.gravitybox;
 
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.XResources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -38,6 +40,10 @@ public class ModLockscreen {
             mPrefs = prefs;
             final Class<?> kgViewManagerClass = XposedHelpers.findClass(CLASS_KGVIEW_MANAGER, null);
             final Class<?> kgHostViewClass = XposedHelpers.findClass(CLASS_KG_HOSTVIEW, null);
+
+            boolean enableMenuKey = prefs.getBoolean(
+                    GravityBoxSettings.PREF_KEY_LOCKSCREEN_MENU_KEY, false);
+            XResources.setSystemWideReplacement("android", "bool", "config_disableMenuKeyInLockScreen", !enableMenuKey);
 
             XposedHelpers.findAndHookMethod(kgViewManagerClass, "maybeCreateKeyguardLocked", 
                     boolean.class, boolean.class, Bundle.class, new XC_MethodHook() {
@@ -109,6 +115,16 @@ public class ModLockscreen {
                 }
             });
 
+            XposedHelpers.findAndHookMethod(kgViewManagerClass, 
+                    "shouldEnableScreenRotation", new XC_MethodReplacement() {
+
+                        @Override
+                        protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                            prefs.reload();
+                            return prefs.getBoolean(GravityBoxSettings.PREF_KEY_LOCKSCREEN_ROTATION, false);
+                        }
+            });
+
             XposedHelpers.findAndHookMethod(kgHostViewClass, "onFinishInflate", new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
@@ -131,6 +147,8 @@ public class ModLockscreen {
     }
 
     private static void minimizeChallengeIfDesired(Object challenge) {
+        if (challenge == null) return;
+
         mPrefs.reload();
         if (mPrefs.getBoolean(GravityBoxSettings.PREF_KEY_LOCKSCREEN_MAXIMIZE_WIDGETS, false)) {
             log("minimizeChallengeIfDesired: challenge minimized");

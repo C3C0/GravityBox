@@ -36,6 +36,14 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         ModElectronBeam.initZygote(prefs);
         ModLockscreen.initZygote(prefs);
         ModLowBatteryWarning.initZygote(prefs);
+        ModDisplay.initZygote(prefs);
+
+        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_MMS_WAKELOCK, false)) {
+            FixMmsWakelock.initZygote(prefs);
+        }
+
+        ModAudio.initZygote(prefs);
+        ModHwKeys.initZygote(prefs);
     }
 
     @Override
@@ -43,6 +51,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         if (resparam.packageName.equals(ModBatteryStyle.PACKAGE_NAME))
             ModBatteryStyle.initResources(prefs, resparam);
+
+        if (resparam.packageName.equals(ModCenterClock.PACKAGE_NAME)) {
+            ModCenterClock.initResources(prefs, resparam);
+        }
     }
 
     @Override
@@ -93,5 +105,14 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_DEV_OPTS, false) &&
                 lpparam.packageName.equals(FixDevOptions.PACKAGE_NAME))
             FixDevOptions.init(prefs, lpparam.classLoader);
+
+        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_MMS_WAKELOCK, false) && 
+                lpparam.packageName.equals(FixMmsWakelock.PACKAGE_NAME)) {
+            FixMmsWakelock.init(prefs, lpparam.classLoader);
+        }
+
+        if (lpparam.packageName.equals(ModCenterClock.PACKAGE_NAME)) {
+            ModCenterClock.init(prefs, lpparam.classLoader);
+        }
     }
 }

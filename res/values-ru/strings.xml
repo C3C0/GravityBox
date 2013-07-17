@@ -157,11 +157,67 @@
     <string name="pref_lockscreen_maximize_widgets_summary">Когда включено, виджеты будут максимизированы по умолчанию</string>
 
     <!--  Power tweaks category -->
-    <string name="pref_cat_power_title">Power tweaks</string>
+    <string name="pref_cat_power_title">Настройки питания</string>
     <string name="pref_cat_power_summary">Содержит различные настройки, связанные с зарядом</string>
 
     <!--  Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Отключить вспышку</string>
     <string name="pref_flashing_led_disable_summary">Отключает вспышку при малом заряде батареи и отключенном зарядном устройстве</string>
 
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">Настройки экрана</string>
+    <string name="pref_cat_display_summary">Содержит различные настройки экрана</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">Минимальный уровень яркости</string>
+    <string name="pref_brightness_min_summary">Позволяет установить минимальный уровень яркости. Применимо к ручной настройке яркости. (Необходима перезагрузка)</string>
+    <string name="pref_brightness_dlg_msg">Значения из интервала: 20 &#8211; 80</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">Уровни автояркости</string>
+    <string name="pref_ab_summary">Позволяет настроить уровни яркости подсветки в зависимости от внешней освещенности</string>
+    <string name="level">Уровень</string>
+    <string name="pref_ab_lux_max_label">Максимальная освещенность</string>
+    <string name="pref_ab_brighness_label">Яркость (20 &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">Некорректное значение</string>
+    <string name="pref_ab_brightness_too_low">Не рекомендуется устнавливать яркость ниже 20</string>
+    <string name="pref_ab_brightness_too_high">Яркость не может быть выше 255</string>
+    <string name="pref_ab_number_error_negative">Значение не должно быть меньше 0</string>
+    <string name="pref_ab_number_not_ascending">Значение на нижнем уровне не может быть выше значений на верхних уровнях</string>
+    <string name="pref_ab_number_not_descending">Значение на верхнем уровне не может быть ниже значений на нижних уровнях</string>
+    <string name="pref_ab_values_set">Значения для %s установлено</string>
+    <string name="pref_ab_config_saved">Новая конфигурация автояркости сохранена</string>
+    <string name="pref_ab_config_cancelled">Конфигурация автояркости НЕ БЫЛА сохранена</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">Включить поворот экрана блокировки</string>
+    <string name="pref_lockscreen_rotation_summary">ВНИМАНИЕ: может переместить цели для кольца разблокировки на некоторых девайсах в случае, если экран блокировки из AOSP был изменен производителем</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">Включить "Меню"</string>
+    <string name="pref_lockscreen_menu_key_summary">Позволяет быстро разблокировать устройство с экрана блокировки клавишей "Меню" (Необходима перезагрузка)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">Исправление просыпания пир входящих сообщениях</string>
+    <string name="pref_mms_fix_wakelock_summary">Предотвращает включение экрана при входящих сообщениях (Необходима перезагрузка)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">Часы в центре</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Настройки мультимедиа</string>
+    <string name="pref_cat_media_summary">Содержит различные настройки для медиа- и аудиосистемы</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">Больше уровней громкости для музыки</string>
+    <string name="pref_music_volume_steps_summary">Добавляет больше шагов для изменения громкости музыки (Необходима перезагрузка)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">Безопасный звук в наушниках</string>
+    <string name="pref_safe_media_volume_summary">Позволяет включить или выключить функцию безопасного звука в наушниках</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">Отключить диод зарядки</string>
+    <string name="pref_charging_led_disable_summary">Позволяет отключить диод во время заряда</string>
+    
 </resources>

@@ -43,6 +43,18 @@
                 android:summary="@string/pref_lockscreen_maximize_widgets_summary"
                 android:defaultValue="false" />
 
+            <CheckBoxPreference 
+                android:key="pref_lockscreen_rotation"
+                android:title="@string/pref_lockscreen_rotation_title"
+                android:summary="@string/pref_lockscreen_rotation_summary"
+                android:defaultValue="false" />
+
+            <CheckBoxPreference 
+                android:key="pref_lockscreen_menu_key"
+                android:title="@string/pref_lockscreen_menu_key_title"
+                android:summary="@string/pref_lockscreen_menu_key_summary"
+                android:defaultValue="false" />
+
         </PreferenceCategory>
 
     </PreferenceScreen>
@@ -72,6 +84,11 @@
             android:title="@string/statusbar_bgcolor_title" 
             android:summary="@string/statusbar_bgcolor_summary"
             android:defaultValue="@integer/COLOR_BLACK" />
+
+        <CheckBoxPreference 
+            android:key="pref_statusbar_center_clock"
+            android:title="@string/pref_statusbar_center_clock_title"
+            android:defaultValue="false" />
 
         <MultiSelectListPreference
             android:key="pref_signal_icon_autohide"
@@ -106,6 +123,108 @@
             android:summary="@string/pref_flashing_led_disable_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_charging_led_disable"
+            android:title="@string/pref_charging_led_disable_title"
+            android:summary="@string/pref_charging_led_disable_summary"
+            android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_display"
+        android:title="@string/pref_cat_display_title"
+        android:summary="@string/pref_cat_display_summary">
+        
+
+        <EditTextPreference
+            android:key="pref_brightness_min"
+            android:title="@string/pref_brightness_min_title"
+            android:summary="@string/pref_brightness_min_summary"
+            android:dialogMessage="@string/pref_brightness_dlg_msg"
+            android:inputType="number"
+            android:defaultValue="20" />
+
+        <com.ceco.gm2.gravitybox.preference.AutoBrightnessDialogPreference
+            android:key="pref_autobrightness" 
+            android:title="@string/pref_ab_title"
+            android:summary="@string/pref_ab_summary" />
+
+        <CheckBoxPreference 
+            android:key="pref_crt_off_effect"
+            android:title="@string/crt_off_effect_title"
+            android:summary="@string/crt_off_effect_summary"
+            android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_media"
+        android:title="@string/pref_cat_media_title"
+        android:summary="@string/pref_cat_media_summary">
+
+        <CheckBoxPreference 
+            android:key="pref_vol_music_controls"
+            android:title="@string/vol_music_controls_title"
+            android:summary="@string/vol_music_controls_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
+            android:key="pref_music_volume_steps"
+            android:title="@string/pref_music_volume_steps_title"
+            android:summary="@string/pref_music_volume_steps_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
+            android:key="pref_safe_media_volume"
+            android:title="@string/pref_safe_media_volume_title"
+            android:summary="@string/pref_safe_media_volume_summary"
+            android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_hwkey_actions"
+        android:title="@string/pref_cat_hwkey_actions_title"
+        android:summary="@string/pref_cat_hwkey_actions_summary">
+
+        <ListPreference
+            android:key="pref_hwkey_menu_longpress"
+            android:title="@string/pref_hwkey_menu_longpress_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
+        <ListPreference
+            android:key="pref_hwkey_menu_doubletap"
+            android:title="@string/pref_hwkey_menu_doubletap_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
+        <ListPreference
+            android:key="pref_hwkey_back_longpress"
+            android:title="@string/pref_hwkey_back_longpress_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
+        <ListPreference
+            android:key="pref_hwkey_doubletap_speed"
+            android:title="@string/pref_hwkey_doubletap_speed_title"
+            android:summary="@string/pref_hwkey_doubletap_speed_summary"
+            android:entries="@array/hwkey_doubletap_speed_entries"
+            android:entryValues="@array/hwkey_doubletap_speed_values"
+            android:defaultValue="400" />
+
+        <ListPreference
+            android:key="pref_hwkey_kill_delay"
+            android:title="@string/pref_hwkey_kill_delay_title"
+            android:summary="@string/pref_hwkey_kill_delay_summary"
+            android:entries="@array/hwkey_kill_delay_entries"
+            android:entryValues="@array/hwkey_kill_delay_values"
+            android:defaultValue="1000" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 
@@ -122,12 +241,6 @@
             android:defaultValue="0" />
 
         <CheckBoxPreference 
-            android:key="pref_vol_music_controls"
-            android:title="@string/vol_music_controls_title"
-            android:summary="@string/vol_music_controls_summary"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference 
             android:key="pref_recents_clear_all"
             android:title="@string/recents_clear_all_title"
             android:summary="@string/recents_clear_all_summary"
@@ -137,12 +250,6 @@
             android:key="pref_caller_fullscreen_photo"
             android:title="@string/caller_fullscreen_photo_title"
             android:summary="@string/caller_fullscreen_photo_summary"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference 
-            android:key="pref_crt_off_effect"
-            android:title="@string/crt_off_effect_title"
-            android:summary="@string/crt_off_effect_summary"
             android:defaultValue="false" />
 
     </PreferenceScreen>
@@ -168,6 +275,12 @@
             android:key="pref_fix_caller_id_mms"
             android:title="@string/fix_caller_id_mms_title"
             android:summary="@string/fix_caller_id_mms_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="pref_mms_fix_wakelock"
+            android:title="@string/pref_mms_fix_wakelock_title"
+            android:summary="@string/pref_mms_fix_wakelock_summary"
             android:defaultValue="false" />
 
         <CheckBoxPreference

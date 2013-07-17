@@ -164,4 +164,79 @@
     <string name="pref_flashing_led_disable_title">Disable LED flashing</string>
     <string name="pref_flashing_led_disable_summary">Disables intrusive LED flashing when battery is low and not charging</string>
 
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">Display tweaks</string>
+    <string name="pref_cat_display_summary">Contains various display tweaks</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">Minimum brightness level</string>
+    <string name="pref_brightness_min_summary">Allows to set minimum brightness level. Applies to manual brightness setting. (requires reboot)</string>
+    <string name="pref_brightness_dlg_msg">Value from interval: 20 &#8211; 80</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">Autobrightness levels</string>
+    <string name="pref_ab_summary">Allows to set ambient light levels and corresponding LCD backlight values</string>
+    <string name="level">Level</string>
+    <string name="pref_ab_lux_max_label">Lux max</string>
+    <string name="pref_ab_brighness_label">Brightness (20 &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">Specified number is not valid</string>
+    <string name="pref_ab_brightness_too_low">It is not recommended to set brightness below 20</string>
+    <string name="pref_ab_brightness_too_high">Brightness cannot be greater than 255</string>
+    <string name="pref_ab_number_error_negative">Values cannot be lower than zero</string>
+    <string name="pref_ab_number_not_ascending">Values on lower levels cannot be greater than values on higher levels</string>
+    <string name="pref_ab_number_not_descending">Values on higher levels cannot be smaller than values on lower levels</string>
+    <string name="pref_ab_values_set">Values for %s set</string>
+    <string name="pref_ab_config_saved">New autobrightness configuration saved</string>
+    <string name="pref_ab_config_cancelled">Autobrightness configuration was NOT saved</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">Enable lockscreen rotation</string>
+    <string name="pref_lockscreen_rotation_summary">WARNING: can swap unlock ring targets on some devices in case AOSP lockscreen has been modified by vendor</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">Enable menu key</string>
+    <string name="pref_lockscreen_menu_key_summary">Allows menu key to be used for quick-unlocking the device while on lockscreen (requires reboot)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">Fix messaging wakelock</string>
+    <string name="pref_mms_fix_wakelock_summary">Prevents screen from turning on when new message arrives (requires reboot)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">Center clock</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Media tweaks</string>
+    <string name="pref_cat_media_summary">Contains various tweaks for media and audio system</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">More music volume steps</string>
+    <string name="pref_music_volume_steps_summary">Adds more volume steps for music stream (requires reboot)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">Safe headset media volume</string>
+    <string name="pref_safe_media_volume_summary">Activates or deactivates safe headset media volume feature</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">Disable charging LED</string>
+    <string name="pref_charging_led_disable_summary">Disables LED while charging</string>
+
+    <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">Hardware key actions</string>
+    <string name="pref_cat_hwkey_actions_summary">Allows to set custom actions on hardware keys</string>
+    <string name="pref_hwkey_menu_longpress_title">Menu key long-press action</string>
+    <string name="pref_hwkey_menu_doubletap_title">Menu key double-tap action</string>
+    <string name="pref_hwkey_back_longpress_title">Back key long-press action</string>
+    <string name="hwkey_action_default">Default</string>
+    <string name="hwkey_action_search">Search</string>
+    <string name="hwkey_action_voice_search">Voice search</string>
+    <string name="hwkey_action_prev_app">Switch to previous app</string>
+    <string name="hwkey_action_kill">Kill foreground app</string>
+    <string name="pref_hwkey_kill_delay_title">Kill app long-press delay</string>
+    <string name="pref_hwkey_kill_delay_summary">Applies to Kill foreground app action. Defines for how long key must be pressed to trigger kill</string>
+    <string name="pref_hwkey_doubletap_speed_title">Double-tap speed</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Applies to Menu key double-tap action. Defines how fast key must be tapped to trigger double-tap</string>
+    <string name="app_killed">Application killed</string>
+    <string name="nothing_to_kill">There\'s nothing to kill</string>
+    <string name="no_previous_app_found">No previous app found</string>
+
 </resources>
