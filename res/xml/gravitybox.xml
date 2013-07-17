@@ -177,6 +177,12 @@
             android:summary="@string/pref_phone_call_connect_vibrate_disable_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_caller_fullscreen_photo"
+            android:title="@string/caller_fullscreen_photo_title"
+            android:summary="@string/caller_fullscreen_photo_summary"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 
@@ -265,12 +271,6 @@
             android:key="pref_recents_clear_all"
             android:title="@string/recents_clear_all_title"
             android:summary="@string/recents_clear_all_summary"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference 
-            android:key="pref_caller_fullscreen_photo"
-            android:title="@string/caller_fullscreen_photo_title"
-            android:summary="@string/caller_fullscreen_photo_summary"
             android:defaultValue="false" />
 
     </PreferenceScreen>
