@@ -184,6 +184,50 @@
     </PreferenceScreen>
 
     <PreferenceScreen 
+        android:key="pref_cat_hwkey_actions"
+        android:title="@string/pref_cat_hwkey_actions_title"
+        android:summary="@string/pref_cat_hwkey_actions_summary">
+
+        <ListPreference
+            android:key="pref_hwkey_menu_longpress"
+            android:title="@string/pref_hwkey_menu_longpress_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
+        <ListPreference
+            android:key="pref_hwkey_menu_doubletap"
+            android:title="@string/pref_hwkey_menu_doubletap_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
+        <ListPreference
+            android:key="pref_hwkey_back_longpress"
+            android:title="@string/pref_hwkey_back_longpress_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
+        <ListPreference
+            android:key="pref_hwkey_doubletap_speed"
+            android:title="@string/pref_hwkey_doubletap_speed_title"
+            android:summary="@string/pref_hwkey_doubletap_speed_summary"
+            android:entries="@array/hwkey_doubletap_speed_entries"
+            android:entryValues="@array/hwkey_doubletap_speed_values"
+            android:defaultValue="400" />
+
+        <ListPreference
+            android:key="pref_hwkey_kill_delay"
+            android:title="@string/pref_hwkey_kill_delay_title"
+            android:summary="@string/pref_hwkey_kill_delay_summary"
+            android:entries="@array/hwkey_kill_delay_entries"
+            android:entryValues="@array/hwkey_kill_delay_values"
+            android:defaultValue="1000" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
         android:key="pref_cat_misc"
         android:title="@string/pref_cat_misc_title"
         android:summary="@string/pref_cat_misc_summary">
