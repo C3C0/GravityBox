@@ -252,13 +252,6 @@
             android:entryValues="@array/hwkey_kill_delay_values"
             android:defaultValue="1000" />
 
-    </PreferenceScreen>
-
-    <PreferenceScreen 
-        android:key="pref_cat_misc"
-        android:title="@string/pref_cat_misc_title"
-        android:summary="@string/pref_cat_misc_summary">
-
         <ListPreference
             android:key="pref_vol_key_cursor_control"
             android:title="@string/vol_key_cursor_control_title"
@@ -266,6 +259,13 @@
             android:entries="@array/vol_key_cursor_control_entries"
             android:entryValues="@array/vol_key_cursor_control_values"
             android:defaultValue="0" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_misc"
+        android:title="@string/pref_cat_misc_title"
+        android:summary="@string/pref_cat_misc_summary">
 
         <CheckBoxPreference 
             android:key="pref_recents_clear_all"
