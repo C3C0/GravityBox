@@ -19,7 +19,7 @@
     <string name="low_battery_warning_sound">Son seulement</string>
     <string name="low_battery_warning_off">Aucun</string>
 
-    <string name="reboot_required">Le changement sera pris en compte après redémarrage.</string>
+    <string name="reboot_required">Le changement sera pris en compte après redémarrage</string>
 
     <string name="signal_icon_autohide_title">Masquer les icônes de signal</string>
     <string name="signal_icon_autohide_summary">Cache automatiquement les icônes de signal pour l\'emplacement SIM sélectionné lorsque la carte SIM n\'est pas insérée, désactive la notification  \"SIM non insérée\"</string>
@@ -46,11 +46,11 @@
 
     <string name="fix_caller_id_phone_title">Identification de l\'appelant en téléphonie</string>
     <string name="fix_caller_id_phone_summary">Activer si vous constatez qu\'un contact enregistré n\'est pas identifié lord d\'un appel entrant (redémarrage nécessaire)</string>
-    <string name="fix_caller_id_phone_alert">Après redémarrage, vous devrez supprimer puis ajouter de nouveau vos contacts pour que le changement prenne effet. Allez dans Paramètres / Applications / Toutes / Liste des contacts / Effacer les données.</string>
+    <string name="fix_caller_id_phone_alert">Après redémarrage, vous devrez supprimer puis ajouter de nouveau vos contacts pour que le changement prenne effet. Allez dans Paramètres / Applications / Toutes / Liste des contacts / Effacer les données</string>
 
     <string name="fix_caller_id_mms_title">Identification de l\'émetteur d\'un message</string>
     <string name="fix_caller_id_mms_summary">Activer si vous constatez plusieurs fils de discussion pour un même contact enregistré (redémarrage nécessaire)</string>
-    <string name="fix_caller_id_mms_alert">Après redémarrage, vous devrez supprimer tous les fils de discussion séparés dans votre messagerie pour que le changement prenne effet.</string>
+    <string name="fix_caller_id_mms_alert">Après redémarrage, vous devrez supprimer tous les fils de discussion séparés dans votre messagerie pour que le changement prenne effet</string>
 
     <string name="fix_calendar_title">Application Agenda</string>
     <string name="fix_calendar_summary">Activer si vous constatez que votre écran s\'allume de lui-même périodiquement (redémarrage nécessaire)</string>
@@ -116,19 +116,19 @@
 
     <!-- About -->
     <string name="pref_cat_about_title">À propos</string>
-    <string name="about_gb_summary">Encodé par C3C076@XDA. Touchez pour accéder au fil de discussion officiel.</string>
+    <string name="about_gb_summary">Encodé par C3C076@XDA. Touchez pour accéder au fil de discussion officiel</string>
     <string name="about_xposed_title">Xposed framework</string>
-    <string name="about_xposed_summary">Encodé par rovo89@XDA. Touchez pour accéder au fil de discussion officiel.</string>
+    <string name="about_xposed_summary">Encodé par rovo89@XDA. Touchez pour accéder au fil de discussion officiel</string>
     <string name="about_donate_title">Donations</string>
-    <string name="about_donate_summary">Faîtes un don si vous pensez que cette application en vaut la peine ! Faîtes également un don à rovo89 pour son excellent Xposed framework.</string>
+    <string name="about_donate_summary">Faîtes un don si vous pensez que cette application en vaut la peine ! Faîtes également un don à rovo89 pour son excellent Xposed framework</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Votre téléphone va redémarrer.</string>
-    <string name="reboot_confirm_recovery">Votre téléphone va redémarrer en mode récupération.</string>
+    <string name="reboot_confirm">Votre téléphone va redémarrer</string>
+    <string name="reboot_confirm_recovery">Votre téléphone va redémarrer en mode récupération</string>
     
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Effet écran CRT</string>
-    <string name="crt_off_effect_summary">Active l\'animation qui simule l\'extinction des vieux moniteurs cathodiques lorsque vous éteignez l\'écran.</string>
+    <string name="crt_off_effect_summary">Active l\'animation qui simule l\'extinction des vieux moniteurs cathodiques lorsque vous éteignez l\'écran</string>
 
     <!-- Engineering mode shortcut -->
     <string name="engineering_mode_title">Mode ingénierie</string>
@@ -136,7 +136,7 @@
     
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Sonnerie double SIM</string>
-    <string name="dual_sim_ringer_summary">Lance l\'application qui permet de configurer la sonnerie et les sons de notification indépendamment pour chaque carte SIM.</string>
+    <string name="dual_sim_ringer_summary">Lance l\'application qui permet de configurer la sonnerie et les sons de notification indépendamment pour chaque carte SIM</string>
 
     <!--  Lockscreen tweaks -->
     <string name="pref_cat_lockscreen_title">Arrangements écran de déverrouillage</string>
@@ -154,7 +154,7 @@
     <string name="lockscreen_background_result_not_successful">Fond d\'écran inchangé</string>
     <string name="pref_cat_lockscreen_other_title">Autre</string>
     <string name="pref_lockscreen_maximize_widgets_title">Widgets maximisés</string>
-    <string name="pref_lockscreen_maximize_widgets_summary">Activée, cette option maximise par défaut l\'affichage des widgets de l\'écran de déverrouillage.</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Activée, cette option maximise par défaut l\'affichage des widgets de l\'écran de déverrouillage</string>
 
     <!--  Power tweaks category -->
     <string name="pref_cat_power_title">Arrangements énergie</string>
@@ -170,7 +170,7 @@
 
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Niveau minimum de luminosité</string>
-    <string name="pref_brightness_min_summary">Permet de régler le niveau minimum de luminosité. S\'applique aux règlages manuels de luminosité (redémarrage nécessaire).</string>
+    <string name="pref_brightness_min_summary">Permet de régler le niveau minimum de luminosité. S\'applique aux règlages manuels de luminosité (redémarrage nécessaire)</string>
     <string name="pref_brightness_dlg_msg">Valeur dans l\'intervalle : 20 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
@@ -180,18 +180,18 @@
     <string name="pref_ab_lux_max_label">Lux maximum</string>
     <string name="pref_ab_brighness_label">Luminosité (20 &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Le nombre spécifié n\'est pas valide</string>
-    <string name="pref_ab_brightness_too_low">Il est recommandé de ne pas régler la luminosité en-dessous de 20.</string>
-    <string name="pref_ab_brightness_too_high">La luminosité ne peut pas être supérieure à 255.</string>
-    <string name="pref_ab_number_error_negative">La valeur ne peut pas être inférieure à zéro.</string>
-    <string name="pref_ab_number_not_ascending">La valeur minimum ne pas être supérieure à la valeur maximum.</string>
-    <string name="pref_ab_number_not_descending">La valeur maximum ne pas être inférieure à la valeur minimum.</string>
+    <string name="pref_ab_brightness_too_low">Il est recommandé de ne pas régler la luminosité en-dessous de 20</string>
+    <string name="pref_ab_brightness_too_high">La luminosité ne peut pas être supérieure à 255</string>
+    <string name="pref_ab_number_error_negative">La valeur ne peut pas être inférieure à zéro</string>
+    <string name="pref_ab_number_not_ascending">La valeur minimum ne pas être supérieure à la valeur maximum</string>
+    <string name="pref_ab_number_not_descending">La valeur maximum ne pas être inférieure à la valeur minimum</string>
     <string name="pref_ab_values_set">Valeur de %s appliquée</string>
-    <string name="pref_ab_config_saved">Nouvelle configuration de luminosité automatique enregistrée.</string>
-    <string name="pref_ab_config_cancelled">La configuration de luminosité automatique N\'a PAS été enregistrée.</string>
+    <string name="pref_ab_config_saved">Nouvelle configuration de luminosité automatique enregistrée</string>
+    <string name="pref_ab_config_cancelled">La configuration de luminosité automatique N\'a PAS été enregistrée</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Rotation écran de déverrouillage</string>
-    <string name="pref_lockscreen_rotation_summary">ATTENTION : peut modifier les cibles de l\'anneau de déverrouillage sur certains appareils dans la cas où l\'écran de déverrouillage aurait été personnalisé par le fabricant.</string>
+    <string name="pref_lockscreen_rotation_summary">ATTENTION : peut modifier les cibles de l\'anneau de déverrouillage sur certains appareils dans la cas où l\'écran de déverrouillage aurait été personnalisé par le fabricant</string>
 
     <!-- Lockscreen menu key -->
     <string name="pref_lockscreen_menu_key_title">Activation touche menu</string>
@@ -219,5 +219,39 @@
     <!-- Disable charging LED -->
     <string name="pref_charging_led_disable_title">Désactivation LED en chargement</string>
     <string name="pref_charging_led_disable_summary">Désactive la LED lors du chargement</string>
+
+     <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">Actions touches matérielles</string>
+    <string name="pref_cat_hwkey_actions_summary">Permet de programmer des actions pour les touches matérielles</string>
+    <string name="pref_hwkey_menu_longpress_title">Appui long touche menu</string>
+    <string name="pref_hwkey_menu_doubletap_title">Double appui touche menu</string>
+    <string name="pref_hwkey_back_longpress_title">Appui long touche retour</string>
+    <string name="hwkey_action_default">Par défaut</string>
+    <string name="hwkey_action_search">Recherche</string>
+    <string name="hwkey_action_voice_search">Recherche vocale</string>
+    <string name="hwkey_action_prev_app">Revenir à la précédente appli</string>
+    <string name="hwkey_action_kill">Fin de tâche appli en cours</string>
+    <string name="pref_hwkey_kill_delay_title">Délai appui long fin de tâche</string>
+    <string name="pref_hwkey_kill_delay_summary">Valable pour mettre fin à l\'application de premier plan. Définit combien de temps la touche doit être pressée pour mettre fin à la tâche</string>
+    <string name="pref_hwkey_doubletap_speed_title">Vitesse double appui</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Valable pour le double appui sur la touche menu. Définit à quelle vitesse on doit appuyer sur la touche menu pour obtenir l\'action voulue</string>
+    <string name="app_killed">Fin de l\'application</string>
+    <string name="nothing_to_kill">Il n\'y a aucune application en cours</string>
+    <string name="no_previous_app_found">Aucune application précédente trouvée</string>
+
+    <!--  Phone tweaks category -->
+    <string name="pref_cat_phone_title">Arrangements téléphonie</string>
+    <string name="pref_cat_phone_summary">Regroupe divers arrangements liés à la téléphonie</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">Retournement sur sonnerie</string>
+    <string name="pref_phone_flip_summary">Permet de définir une action à effectuer lorsque l\'appareil est retourné écran en bas lors d\'une sonnerie</string>
+    <string name="phone_flip_action_none">Ne rien faire</string>
+    <string name="phone_flip_action_mute">Arrêter la sonnerie</string>
+    <string name="phone_flip_action_dismiss">Rejeter l\'appel</string>
+
+    <!-- Disable vibrate on call connect -->
+    <string name="pref_phone_call_connect_vibrate_disable_title">Désactiver la vibration au décrochage</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">Désactive la vibration lorsque l\'interlocuteur décroche pour répondre à l\'appel</string>
 
 </resources>
