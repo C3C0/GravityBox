@@ -1,3 +1,16 @@
+Changelog 1.6.0 - 18/07/2013
+--------------------------------------
+- Hardware key actions
+--- on Menu long-press
+--- on Menu double-tap
+--- on Back long-press
+--- available actions: search, voice search, switch to previous app, kill foreground app
+- Phone tweaks
+--- flip action while ringing (do nothing, mute ringer, dismiss call)
+--- disable vibrate on call connect
+- fixed CRT screen off animation not working on some ROMs
+- updated translations: Slovak, Czech, Danish, French, Russian
+
 Changelog 1.5.1 - 15/07/2013
 --------------------------------------
 - updated Danish translations (thx Mr.Premise)
