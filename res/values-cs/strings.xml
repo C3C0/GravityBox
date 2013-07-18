@@ -223,4 +223,38 @@
     <string name="pref_charging_led_disable_title">Vypnout LED nabíjení</string>
     <string name="pref_charging_led_disable_summary">Vypne LED během nabíjení</string>
 
+    <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">Akcie tlačítek</string>
+    <string name="pref_cat_hwkey_actions_summary">Umožňuje nastavení akcí pro hardvérová tlačítka</string>
+    <string name="pref_hwkey_menu_longpress_title">Dlouhé podržení Menu</string>
+    <string name="pref_hwkey_menu_doubletap_title">Dvojité klepnutí na Menu</string>
+    <string name="pref_hwkey_back_longpress_title">Dlouhé podržení Zpět</string>
+    <string name="hwkey_action_default">Výchozí</string>
+    <string name="hwkey_action_search">Vyhledávání</string>
+    <string name="hwkey_action_voice_search">Hlasové vyhledávání</string>
+    <string name="hwkey_action_prev_app">Přepnout na předcházející aplikaci</string>
+    <string name="hwkey_action_kill">Zabít aplikaci v popředí</string>
+    <string name="pref_hwkey_kill_delay_title">Zpoždění zabití aplikace</string>
+    <string name="pref_hwkey_kill_delay_summary">Vztahuje se na akci zabití aplikace v popředí dlouhým podržením tlačítka. Definuje, jak dlouho musí být tlačítko přidrženo aby došlo k provedení akce.</string>
+    <string name="pref_hwkey_doubletap_speed_title">Rychlost dvojitého klepnutí</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Vztahuje se na dvojité klepnutí na Menu. Definuje, jak rychle musí být provedeno dvojité klepnutí aby došlo k provedení akce.</string>
+    <string name="app_killed">Aplikace zabita</string>
+    <string name="nothing_to_kill">Není co zabít</string>
+    <string name="no_previous_app_found">Žádná předcházející aplikace</string>
+
+    <!--  Phone tweaks category -->
+    <string name="pref_cat_phone_title">Nastavení telefonu</string>
+    <string name="pref_cat_phone_summary">Obsahuje různá nastavení týkající se telefonování</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">Akce překlopení zařízení</string>
+    <string name="pref_phone_flip_summary">Umožňuje definovat akci, která se provede po překlopení zařízení obrazovkou dolů během vyzvánění</string>
+    <string name="phone_flip_action_none">Žádná akce</string>
+    <string name="phone_flip_action_mute">Ztlumit vyzvánění</string>
+    <string name="phone_flip_action_dismiss">Zrušit hovor</string>
+
+    <!-- Disable vibrate on call connect -->
+    <string name="pref_phone_call_connect_vibrate_disable_title">Zakázat vibrování při navázání hovoru</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">Zakáže vibraci, která je provedena při navázání hovoru</string>
+
 </resources>

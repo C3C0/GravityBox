@@ -159,6 +159,33 @@
     </PreferenceScreen>
 
     <PreferenceScreen 
+        android:key="pref_cat_phone"
+        android:title="@string/pref_cat_phone_title"
+        android:summary="@string/pref_cat_phone_summary">
+
+        <ListPreference
+            android:key="pref_phone_flip"
+            android:title="@string/pref_phone_flip_title"
+            android:summary="@string/pref_phone_flip_summary"
+            android:entries="@array/phone_flip_action_entries"
+            android:entryValues="@array/phone_flip_action_values"
+            android:defaultValue="0" />
+
+        <CheckBoxPreference 
+            android:key="pref_phone_call_connect_vibrate_disable"
+            android:title="@string/pref_phone_call_connect_vibrate_disable_title"
+            android:summary="@string/pref_phone_call_connect_vibrate_disable_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
+            android:key="pref_caller_fullscreen_photo"
+            android:title="@string/caller_fullscreen_photo_title"
+            android:summary="@string/caller_fullscreen_photo_summary"
+            android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
         android:key="pref_cat_media"
         android:title="@string/pref_cat_media_title"
         android:summary="@string/pref_cat_media_summary">
@@ -225,13 +252,6 @@
             android:entryValues="@array/hwkey_kill_delay_values"
             android:defaultValue="1000" />
 
-    </PreferenceScreen>
-
-    <PreferenceScreen 
-        android:key="pref_cat_misc"
-        android:title="@string/pref_cat_misc_title"
-        android:summary="@string/pref_cat_misc_summary">
-
         <ListPreference
             android:key="pref_vol_key_cursor_control"
             android:title="@string/vol_key_cursor_control_title"
@@ -240,16 +260,17 @@
             android:entryValues="@array/vol_key_cursor_control_values"
             android:defaultValue="0" />
 
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_misc"
+        android:title="@string/pref_cat_misc_title"
+        android:summary="@string/pref_cat_misc_summary">
+
         <CheckBoxPreference 
             android:key="pref_recents_clear_all"
             android:title="@string/recents_clear_all_title"
             android:summary="@string/recents_clear_all_summary"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference 
-            android:key="pref_caller_fullscreen_photo"
-            android:title="@string/caller_fullscreen_photo_title"
-            android:summary="@string/caller_fullscreen_photo_summary"
             android:defaultValue="false" />
 
     </PreferenceScreen>
