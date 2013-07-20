@@ -170,7 +170,7 @@
 
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Livello luminosità minimo</string>
-    <string name="pref_brightness_min_summary">Permette di impostare il livello di luminosità minimo. Si applica all'impostazione manuale (richiede riavvio)</string>
+    <string name="pref_brightness_min_summary">Permette di impostare il livello di luminosità minimo. Si applica all\'impostazione manuale (richiede riavvio)</string>
     <string name="pref_brightness_dlg_msg">Intervallo di valori: 20 &#8211; 80</string>
 
     <!-- Autobrightness levels -->
@@ -199,7 +199,7 @@
 
     <!-- Fix messaging wakelock -->
     <string name="pref_mms_fix_wakelock_title">Fix accensione messaggi</string>
-    <string name="pref_mms_fix_wakelock_summary">Impedisce allo schermo di accendersi all'arrivo di un nuovo messaggio (richiede riavvio)</string>
+    <string name="pref_mms_fix_wakelock_summary">Impedisce allo schermo di accendersi all\'arrivo di un nuovo messaggio (richiede riavvio)</string>
 
     <!-- Statusbar center clock -->
     <string name="pref_statusbar_center_clock_title">Centra orologio</string>
