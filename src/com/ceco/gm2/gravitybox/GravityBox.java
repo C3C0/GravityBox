@@ -1,5 +1,6 @@
 package com.ceco.gm2.gravitybox;
 
+import android.content.res.XModuleResources;
 import android.content.res.XResources;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -15,8 +16,19 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
         prefs = new XSharedPreferences(PACKAGE_NAME);
+        XModuleResources modRes = XModuleResources.createInstance(startupParam.modulePath, null);
 
         XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
+
+        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_SOLID_BLACK, false)) {
+            XResources.setSystemWideReplacement(
+                "android", "drawable", "background_holo_dark", modRes.fwd(R.drawable.background_holo_dark_solid));
+        } else {
+            XResources.setSystemWideReplacement(
+                    "android", "drawable", "background_holo_dark", modRes.fwd(R.drawable.background_holo_dark));
+        }
+        XResources.setSystemWideReplacement(
+                "android", "drawable", "background_holo_light", modRes.fwd(R.drawable.background_holo_light));
 
         FixTraceFlood.initZygote();
         ModVolumeKeySkipTrack.init(prefs);

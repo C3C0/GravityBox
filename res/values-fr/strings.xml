@@ -28,8 +28,8 @@
     <string name="sim_disable_notifications">Désactiver les notifications</string>
     <string name="sim_disable_notifications_summary">Message \"SIM non insérée\" désactivé</string>
 
-    <string name="poweroff_advanced_title">Menu avancé d\'extinction</string>
-    <string name="poweroff_advanced_summary">Active le menu avancé d\'extinction avec la possibilité de redémarrer en mode récupération</string>
+    <string name="poweroff_advanced_title">Menu avancé de redémarrage</string>
+    <string name="poweroff_advanced_summary">Active le menu avancé de redémarrage avec la possibilité de redémarrer en mode récupération</string>
     <string name="poweroff_recovery">Récupération</string>    
 
     <string name="vol_key_cursor_control_title">Touches de volume et curseur</string>
@@ -253,5 +253,8 @@
     <!-- Disable vibrate on call connect -->
     <string name="pref_phone_call_connect_vibrate_disable_title">Désactiver la vibration au décrochage</string>
     <string name="pref_phone_call_connect_vibrate_disable_summary">Désactive la vibration lorsque l\'interlocuteur décroche pour répondre à l\'appel</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">Redémarrage logiciel</string>
 
 </resources>
