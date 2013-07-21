@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Valg af batteriindikator</string>	
+    <string name="battery_style_stock">Standard batteriindikator</string>
+    <string name="battery_style_circle">Cirkel-batteriindikator med procenttal</string>
+    <string name="battery_style_percent">Store procenttal</string>
+    <string name="battery_style_percent_stock">Store procenttal med standard batteriikon</string>
+    <string name="battery_style_none">Ingen</string>
+
+    <string name="vol_music_controls_title">Volumentaster skifter melodi</string>
+    <string name="vol_music_controls_summary">Lang-tryk på volumentaster skifter melodi når skærmen er slukket</string>
+
+    <string name="low_battery_warning_policy_title">Advarsel om lav batteristand</string>
+    <string name="low_battery_warning_full">Pop-op og lyd</string>
+    <string name="low_battery_warning_popup">Kun pop-op</string>
+    <string name="low_battery_warning_sound">Kun lyd</string>
+    <string name="low_battery_warning_off">Fra</string>
+
+    <string name="reboot_required">Ændringen træder i kraft efter genstart</string>
+
+    <string name="signal_icon_autohide_title">Skjul signalstyrkeikoner automatisk</string>
+    <string name="signal_icon_autohide_summary">Skjuler automatisk signalstyrkeikoner for de valgte SIM slots når der ikke er isat SIM kort, \"No SIM card detected\" notifikationer slået fra</string>
+    <string name="sim_slot_1">Skjul automatisk for SIM slot 1</string>
+    <string name="sim_slot_2">Skjul automatisk for SIM slot 2</string>
+    <string name="sim_disable_notifications">Slå notifikationer fra</string>
+    <string name="sim_disable_notifications_summary">\"No SIM card detected\" notifikationer slået fra</string>
+
+    <string name="poweroff_advanced_title">Udvidet Power-Off menu</string>
+    <string name="poweroff_advanced_summary">Aktiverer udvidet Power-Off menu med menupunkt for reboot til systemgendannelse</string>
+    <string name="poweroff_recovery">Systemgendannelse</string>    
+
+    <string name="vol_key_cursor_control_title">Styring af markøren med volumentasten</string>
+    <string name="vol_key_cursor_control_summary">Styrer markøren i tekstfelter med volumentasten</string>
+    <string name="vol_key_cursor_control_off">Slået fra</string>
+    <string name="vol_key_cursor_control_on">Volumen op/ned bevæger markøren til venstre/højre</string>
+    <string name="vol_key_cursor_control_on_reverse">Volumen op/ned bevæger markøren til højre/venstre</string>
+
+    <string name="recents_clear_all_title">Ryd alle seneste apps</string>
+    <string name="recents_clear_all_summary">Aktiverer knap som rydder alle seneste opgaver i \"seneste apps\"-dialogen</string>
+
+    <string name="fix_datetime_crash_title">Fix crash i indstillinger for dato og tid</string>
+    <string name="fix_datetime_crash_summary">Slå til hvis du oplever crash mens du tilgår indstillinger for dato og tid</string>
+
+    <string name="fix_caller_id_phone_title">Fix opkaldsinfo for telefonen</string>
+    <string name="fix_caller_id_phone_summary">Slå til hvis opkaldsinfo ikke matcher korrekt til kontakter (kræver genstart)</string>
+    <string name="fix_caller_id_phone_alert">Efter genstart skal kontaktlisten ryddes og kontakterne tilføjes igen, før ændringen virker. Benyt Indstillinger / Apps / Alle for at rydde kontaktforsynerens data</string>
+
+    <string name="fix_caller_id_mms_title">Fix afsender ID for beskeder</string>
+    <string name="fix_caller_id_mms_summary">Slå til hvis du oplever flere beskedtråde for den samme kontakt (kræver genstart)</string>
+    <string name="fix_caller_id_mms_alert">Efter genstart skal de berørte beskedtråde slettes, før ændringen virker</string>
+
+    <string name="fix_calendar_title">Fix kalender-app</string>
+    <string name="fix_calendar_summary">Slå til hvis du oplever at skærmen tænder periodisk af sig selv (kræver genstart)</string>
+
+    <string name="important">Vigtigt</string>
+
+    <string name="caller_fullscreen_photo_title">Fuldskærmsbillede af den, som ringer</string>
+    <string name="caller_fullscreen_photo_summary">Viser fuldskærmsbillede af den som ringer ved indgående kald</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Synkronisering til</string>
+    <string name="quick_settings_sync_off">Synkronisering fra</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP til</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP fra</string>
+    <string name="quick_settings_torch_on">Lygte tændt</string>
+    <string name="quick_settings_torch_off">Lygte slukket</string>
+    <string name="quick_settings_torch_off_notif">Tryk for at slukke</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">QuickSettings-felter i statusbjælken</string>
+    <string name="quick_settings_summary">Tillader at vise eller skjule QuickSettings-felter i statusbjælken</string>
+    <string name="qs_tile_user_profile">Brugerprofil</string>
+    <string name="qs_tile_airplane_mode">Flytilstand</string>
+    <string name="qs_tile_battery">Batteristatus</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_network_mode">Netværkstype</string>
+    <string name="qs_tile_mobile_data">Mobildata</string>
+    <string name="qs_tile_data_usage">Dataforbrug</string>
+    <string name="qs_tile_audio">Lydprofiler</string>
+    <string name="qs_tile_brightness">Lysstyrke</string>
+    <string name="qs_tile_screen_timeout">Skærm-timeout</string>
+    <string name="qs_tile_autorotation">Autorotation</string>
+    <string name="qs_tile_sync">Synkronisering</string>
+    <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
+    <string name="qs_tile_torch">Lygte</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Farvevælger</string>
+    <string name="press_color_to_apply">Tryk på Farve for at ændre</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Baggrundsfarve for statusbjælken</string>
+    <string name="statusbar_bgcolor_summary">Tillader indstilling af statusbjælkens baggrundsfarve samt transparens</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Fix taleindstillinger</string>
+    <string name="fix_tts_settings_summary">Oplåser indstillinger for for talestyret søgning samt tekst-til-tale i Sprog &amp; Input (kræver genstart)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">Avancerede muligheder for udviklere</string>
+    <string name="fix_dev_opts_summary">Oplåser avancerede muligheder for udviklere (kræver genstart)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Statusbjælke-tweaks</string>
+    <string name="pref_cat_statusbar_summary">Indeholder diverse statusbjælke-tweaks</string>
+    <string name="pref_cat_misc_title">Diverse tweaks</string>
+    <string name="pref_cat_misc_summary">Indeholder øvrige tweaks uden for specifikke kategorier</string>
+    <string name="pref_cat_fixes_title">Almene fix</string>
+    <string name="pref_cat_fixes_summary">Indeholder almene MTK6589 specifikke fix. Benyt kun hvis nødvendigt.</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">Om</string>
+    <string name="about_gb_summary">Kodet af C3C076@XDA. Tryk for at gå til officiel tråd.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Kodet af rovo89@XDA. Tryk for at gå til officiel tråd.</string>
+    <string name="about_donate_title">Bidrag</string>
+    <string name="about_donate_summary">Giv mig et bidrag hvis du synes denne app er det værd! Overvej også bidrag til rovo89 for hans fremragende Xposed framework.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">Din telefon vil genstarte</string>
+    <string name="reboot_confirm_recovery">Din telefon vil genstarte i systemgendannelsestilstand</string>
+
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">Billedrørsskærms-slukkeeffekt</string>
+    <string name="crt_off_effect_summary">Slår animation til som simulerer gammeldags billedrørs-slukkeeffekt når skærmen slukkes</string>
+
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Ingeniørtilstand</string>
+    <string name="engineering_mode_summary">Starter Ingeniørtilstands-applikation</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Dobbelt-SIM ringetoner</string>
+    <string name="dual_sim_ringer_summary">Starter applikation som tillader at indstille ringetone samt notifikationslyde separat for hvert SIM</string>
+
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Låseskærms-tweaks</string>
+    <string name="pref_cat_lockscreen_summary">Indeholder diverse låseskærms-tweaks</string>
+    <string name="pref_cat_lockscreen_background_title">Baggrund for låseskærm</string>
+    <string name="pref_lockscreen_background_title">Baggrunds-stil</string>
+    <string name="lockscreen_bg_default">Standardtapet</string>
+    <string name="lockscreen_bg_color">Fyld farve</string>
+    <string name="lockscreen_bg_image">Selvvalgt billede</string>
+    <string name="pref_lockscreen_bg_color_title">Valg af farve</string>
+    <string name="pref_lockscreen_bg_color_summary">Muliggør indstilling af baggrundsfarve for låseskærm</string>
+    <string name="pref_lockscreen_bg_image_title">Vælg billede</string>
+    <string name="pref_lockscreen_bg_image_summary">Muliggør valg af låseskærmsbillede</string>
+    <string name="lockscreen_background_result_successful">Baggrund ændret</string>
+    <string name="lockscreen_background_result_not_successful">Baggrund ikke ændret</string>
+    <string name="pref_cat_lockscreen_other_title">Andet</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Maksimér widgets</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Låseskærms-widgets vil automatisk blive maksimerede, når dette er valgt</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Strøm-tweaks</string>
+    <string name="pref_cat_power_summary">Indeholder diverse strøm-relaterede tweaks</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Slå lysdiodeblink fra</string>
+    <string name="pref_flashing_led_disable_summary">Fjerner forstyrrende lysdiodeblink når batteristanden er lav og der ikke lades</string>
+
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">Skærm-tweaks</string>
+    <string name="pref_cat_display_summary">Indeholder diverse skærm-tweaks</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">Minimumsniveau for lysstyrke</string>
+    <string name="pref_brightness_min_summary">Muliggør angivelse af minimumsniveau for lysstyrke. Påvirker manuel lysstyrke-indstilling. (kræver genstart)</string>
+    <string name="pref_brightness_dlg_msg">Værdi i intervallet: 20 &#8211; 80</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">Niveauer for automatisk lysstyrke</string>
+    <string name="pref_ab_summary">Tillader at indstille omgivelses-lysniveau og tilhørende værdier for LCD-baggrundslys</string>
+    <string name="level">Niveau</string>
+    <string name="pref_ab_lux_max_label">Lux maks.</string>
+    <string name="pref_ab_brighness_label">Lysstyrke (20 &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">Angivet tal er ugyldigt</string>
+    <string name="pref_ab_brightness_too_low">Det anbefales ikke at sætte lysstyrke til under 20</string>
+    <string name="pref_ab_brightness_too_high">Lysstyrke kan højst være 255</string>
+    <string name="pref_ab_number_error_negative">Værdier kan ikke være mindre end nul</string>
+    <string name="pref_ab_number_not_ascending">Værdier for lavere niveauer kan ikke være større end værdier for højere niveauer</string>
+    <string name="pref_ab_number_not_descending">Værdier for højere niveauer kan ikke være mindre end værdier for lavere niveauer</string>
+    <string name="pref_ab_values_set">Værdier for %s indstillet</string>
+    <string name="pref_ab_config_saved">Ny konfiguration for automatisk lysstyrke gemt</string>
+    <string name="pref_ab_config_cancelled">Konfiguration for automatisk lysstyrke IKKE gemt</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">Rotation af låseskærm til</string>
+    <string name="pref_lockscreen_rotation_summary">ADVARSEL: Kan flytte rundt på mål på lås-op-ringen på nogle apparater såfremt AOSP låseskærmen er ændret af sælger</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">Oplåsning med menu-tast til</string>
+    <string name="pref_lockscreen_menu_key_summary">Menu-tasten kan benyttes til hurtig oplåsning af apparatet når låseskærmen vises (kræver genstart)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">Fix besked-opvågning</string>
+    <string name="pref_mms_fix_wakelock_summary">Forhindrer at skærmen tændes når ny besked ankommer (kræver genstart)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">Ur i midten</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Medie-tweaks</string>
+    <string name="pref_cat_media_summary">Indeholder diverse tweaks for medie- og lydsystem</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">Flere lydstyrkeniveauer</string>
+    <string name="pref_music_volume_steps_summary">Tilføjer flere lydstyrketrin for musikstrøm (kræver genstart) </string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">Sikkert lydniveau for hovedtelefoner</string>
+    <string name="pref_safe_media_volume_summary">Slår sikkert lydniveau for hovedtelefoner til eller fra</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">Afbryd lade-LED</string>
+    <string name="pref_charging_led_disable_summary">Afbryder lysdiodesignal for ladning</string>
+
+    <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">Funktioner for hardware-taster</string>
+    <string name="pref_cat_hwkey_actions_summary">Valg af funktion for hardware-taster</string>
+    <string name="pref_hwkey_menu_longpress_title">Menutast langt-tryk funktion</string>
+    <string name="pref_hwkey_menu_doubletap_title">Menutast dobbelt-tap funktion</string>
+    <string name="pref_hwkey_back_longpress_title">Tilbagetast langt-tryk funktion</string>
+    <string name="hwkey_action_default">Standard</string>
+    <string name="hwkey_action_search">Søgning</string>
+    <string name="hwkey_action_voice_search">Stemmestyret søgning</string>
+    <string name="hwkey_action_prev_app">Skift til forrige app</string>
+    <string name="hwkey_action_kill">Afslut forgrunds-app</string>
+    <string name="pref_hwkey_kill_delay_title">Langt-tryk tid for afslut app</string>
+    <string name="pref_hwkey_kill_delay_summary">Påvirker afslut forgrunds-app funktionen. Definerer hvor længe tasten skat holdes for at udløse afslutning</string>
+    <string name="pref_hwkey_doubletap_speed_title">Dobbelt-tap hastighed</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Påvirker dobbelt-tap af menutasten. Definer hvor hurtigt tasten skal tappes for at udløse dobbelt-tap</string>
+    <string name="app_killed">App afsluttet</string>
+    <string name="nothing_to_kill">Intet at afslutte</string>
+    <string name="no_previous_app_found">Ingen forrige app fundet</string>
+
+    <!--  Phone tweaks category -->
+    <string name="pref_cat_phone_title">Telefon-tweaks</string>
+    <string name="pref_cat_phone_summary">Indeholder diverse tweaks for telefonen</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">Vend-forside-nedad handling når telefonen ringer </string>
+    <string name="pref_phone_flip_summary">Tillader valg af handling til udførelse når telefonen vendes med forsiden nedad mens den ringer</string>
+    <string name="phone_flip_action_none">Gør intet</string>
+    <string name="phone_flip_action_mute">Ringetone fra</string>
+    <string name="phone_flip_action_dismiss">Afvis opkaldet</string>
+
+    <!-- Disable vibrate on call connect -->
+    <string name="pref_phone_call_connect_vibrate_disable_title">Vibration ved forbundet opkald fra</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">Slår vibration ved forbundet opkald fra</string>
+
+</resources>

@@ -5,6 +5,7 @@
         <item>@string/battery_style_stock</item>
         <item>@string/battery_style_circle</item>
         <item>@string/battery_style_percent</item>
+        <item>@string/battery_style_percent_stock</item>
         <item>@string/battery_style_none</item>
     </string-array>
 
@@ -12,6 +13,7 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
         <item>0</item>
     </string-array>
 
@@ -50,6 +52,114 @@
     </string-array>
 
     <string-array name="vol_key_cursor_control_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="qs_tile_entries" translatable="false">
+        <item>@string/qs_tile_user_profile</item>
+        <item>@string/qs_tile_airplane_mode</item>
+        <item>@string/qs_tile_battery</item>
+        <item>@string/qs_tile_wifi</item>
+        <item>@string/qs_tile_bluetooth</item>
+        <item>@string/qs_tile_gps</item>
+        <item>@string/qs_tile_mobile_data</item>
+        <item>@string/qs_tile_network_mode</item>
+        <item>@string/qs_tile_data_usage</item>
+        <item>@string/qs_tile_audio</item>
+        <item>@string/qs_tile_brightness</item>
+        <item>@string/qs_tile_screen_timeout</item>
+        <item>@string/qs_tile_autorotation</item>
+        <item>@string/qs_tile_sync</item>
+        <item>@string/qs_tile_wifi_ap</item>
+        <item>@string/qs_tile_torch</item>
+        <item>@string/qs_tile_gravitybox</item>
+    </string-array>
+
+    <string-array name="qs_tile_values" translatable="false">
+        <item>user_textview</item>
+        <item>airplane_mode_textview</item>
+        <item>battery_textview</item>
+        <item>wifi_textview</item>
+        <item>bluetooth_textview</item>
+        <item>gps_textview</item>
+        <item>data_conn_textview</item>
+        <item>network_mode_tileview</item>
+        <item>rssi_textview</item>
+        <item>audio_profile_textview</item>
+        <item>brightness_textview</item>
+        <item>timeout_textview</item>
+        <item>auto_rotate_textview</item>
+        <item>sync_tileview</item>
+        <item>wifi_ap_tileview</item>
+        <item>torch_tileview</item>
+        <item>gravitybox_tileview</item>
+    </string-array>
+
+    <string-array name="lockscreen_bg_entries" translatable="false">
+        <item>@string/lockscreen_bg_default</item>
+        <item>@string/lockscreen_bg_color</item>
+        <item>@string/lockscreen_bg_image</item>
+    </string-array>
+
+    <string-array name="lockscreen_bg_values" translatable="false">
+        <item>default</item>
+        <item>color</item>
+        <item>image</item>
+    </string-array>
+
+    <string-array name="hwkey_action_entries" tanslatable="false">
+        <item>@string/hwkey_action_default</item>
+        <item>@string/hwkey_action_search</item>
+        <item>@string/hwkey_action_voice_search</item>
+        <item>@string/hwkey_action_prev_app</item>
+        <item>@string/hwkey_action_kill</item>
+    </string-array>
+
+    <string-array name="hwkey_action_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="hwkey_doubletap_speed_entries" translatable="false">
+        <item>200ms</item>
+        <item>300ms</item>
+        <item>400ms</item>
+        <item>500ms</item>
+    </string-array>
+
+    <string-array name="hwkey_doubletap_speed_values" translatable="false">
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+    </string-array>
+
+    <string-array name="hwkey_kill_delay_entries" translatable="false">
+        <item>500ms</item>
+        <item>1000ms</item>
+        <item>1500ms</item>
+        <item>2000ms</item>
+    </string-array>
+
+    <string-array name="hwkey_kill_delay_values" translatable="false">
+        <item>500</item>
+        <item>1000</item>
+        <item>1500</item>
+        <item>2000</item>
+    </string-array>
+
+    <string-array name="phone_flip_action_entries" translatable="false">
+        <item>@string/phone_flip_action_none</item>
+        <item>@string/phone_flip_action_mute</item>
+        <item>@string/phone_flip_action_dismiss</item>
+    </string-array>
+
+    <string-array name="phone_flip_action_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>

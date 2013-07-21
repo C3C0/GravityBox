@@ -113,11 +113,17 @@ public class ModBatteryStyle {
                     @SuppressWarnings("unchecked")
                     ArrayList<TextView> mLabelViews = (ArrayList<TextView>) XposedHelpers.getObjectField(param.thisObject, "mLabelViews");
 
-                    mIconViews.get(0).setVisibility(mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_STOCK ?
-                            View.VISIBLE : View.GONE);
+                    mIconViews.get(0).setVisibility(
+                            (mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_STOCK ||
+                             mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_PERCENT_STOCK) ?
+                                     View.VISIBLE : View.GONE);
+
                     mIconViews.get(1).setVisibility(mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE ?
                             View.VISIBLE : View.GONE);
-                    mLabelViews.get(0).setVisibility(mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_PERCENT ?
+
+                    mLabelViews.get(0).setVisibility(
+                            (mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_PERCENT ||
+                             mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_PERCENT_STOCK) ?
                             View.VISIBLE : View.GONE);
                 }
             });

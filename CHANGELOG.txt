@@ -1,0 +1,119 @@
+Changelog 1.6.1 - 19/07/2013
+--------------------------------------
+Security release, patching following vulnerabilities:
+- Master Key (Bug 8219321) - http://bluebox.com/corporate-blog/bluebox-uncovers-android-master-key/
+- Bug 9695860 - http://www.androidpolice.com/2013/07/11/second-all-access-apk-exploit-is-revealed-just-two-days-after-master-key-goes-public-already-patched-by-google/
+Thanks to Tungstwenty@XDA for original xposed module
+https://github.com/Tungstwenty/MasterKeyDualFix
+
+Changelog 1.6.0 - 18/07/2013
+--------------------------------------
+- Hardware key actions
+--- on Menu long-press
+--- on Menu double-tap
+--- on Back long-press
+--- available actions: search, voice search, switch to previous app, kill foreground app
+- Phone tweaks
+--- flip action while ringing (do nothing, mute ringer, dismiss call)
+--- disable vibrate on call connect
+- fixed CRT screen off animation not working on some ROMs
+- updated translations: Slovak, Czech, Danish, French, Russian
+
+Changelog 1.5.1 - 15/07/2013
+--------------------------------------
+- updated Danish translations (thx Mr.Premise)
+- updated French translations (thx ch-vox)
+- added Ukrainian translations (thx alex_glbr)
+
+Changelog 1.5.0 - 08/07/2013
+--------------------------------------
+- Lockscreen tweaks
+--- option to enable lockscreen rotation
+--- option to enable quick-unlock by menu key on lockscreen
+- Statusbar tweaks
+--- option to center statusbar clock
+- Power tweaks
+--- option to disable LED while charging
+- Display tweaks
+--- option to set minimum brightness level for manual brightness setting
+--- interface for adjusting autobrightness levels
+- Media tweaks
+--- option to add more volume levels for music stream
+--- option to control safe headset media volume feature
+- General fixes
+--- fix wakelock in messaging app causing screen turn on every time new message arrives
+- Added Polish translations (thanks to LuHash)
+- Added Portuguese (PT) translations (thanks to bgcngm)
+
+Changelog 1.4.1 - 27/06/2013
+--------------------------------------
+- updated Italian translations (thanks to kidmar)
+- updated Russian translations (thanks to romashko)
+- updated Danish translations (thanks to Mr. Premise)
+- updated Spanish translations (thanks to oicirbaf)
+- updated Hungarian translations (thanks to Indiant)
+- updated French translations (thanks to ch-vox)
+- added Portuguese (BR) translations (thanks to lelemm) 
+
+Changelog 1.4.0 - 25/06/2013
+--------------------------------------
+- Bugfix: don't switch to QuickSettings when SIM Switch Panel is showing
+- Lockscreen tweaks:
+--- option to set lockscreen background style (default, color fill, custom image)
+--- option to show lockscreen widgets maximized by default
+- option to disable LED flashing when battery is low
+- updated Hungarian translations (thanks to Indiant)
+
+Changelog 1.3.2 - 21/06/2013
+--------------------------------------
+- Fixed bug: two-finger swipe won't open QuickSettings when there are notifications
+
+Changelog 1.3.1 - 20/06/2013
+--------------------------------------
+- SystemUI: avoid "phantom" statusbar collapsing
+--- more info: https://github.com/C3C0/GravityBox/commit/4a2f875814ed344bf692cfcfc1df4c6d7f9ad3d3
+- Open QuickSettings instead of empty notification panel when there are no notifications
+- updated Danish translations (thanks to Mr. Premise)
+- updated French translations (thanks to ch-vox)
+- updated Spanish translations (thanks to peptonib)
+- updated Italian translations (thanks to kidmar)
+
+Changelog 1.3.0 - 20/06/2013
+--------------------------------------
+- QuickSettings Torch tile (flashlight)
+- QuickSettings Network mode tile (2G/3G/2G+3G switch)
+- new battery style: Large percent text with stock icon
+- option for CRT screen off animation
+- added shortcut for launching Engineering mode
+- added shortcut for launching Dual Sim Ringer settings
+--- allows setting ringtone and notification sounds separately for each SIM
+--- requires 3rd party Dual Sim Ringer app for this option to be visible
+- updated translations 
+
+Changelog 1.2.0 - 16/06/2013
+--------------------------------------
+- option to set statusbar color and transparency 
+--- thanks to Sergey Margaritov for ColorPickerPreference
+- option to unlock Voice search and TTS settings in Language&Input
+- option to unlock advanced developer options
+- revamped preference screen
+- added About section with links to relevant threads
+- fixed bug in QuickSettings that caused dynamic tiles to become invisible
+- added reboot confirmation dialogs
+- added Hungarian translations (thanks to Indiant)
+
+Changelog 1.1.0 - 14/06/2013
+--------------------------------------
+- status bar quick settings management
+--- allows to show/hide quicksettings tiles
+--- added Sync on/off tile
+--- added WiFi AP (hotspot) on/off tile (long-touch opens Tether settings)
+--- added GravityBox tile (opens GravityBox app)
+- added Danish translations (thanks to Mr. Premise)
+- added Czech tranalstions (thanks to unavix)
+- added French translations (thanks to ch-vox)
+- added Russian translations (thanks to romashko)
+- added Spanish translations (thanks to peptonib)
+- added Catalan translations (thanks to peptonib)
+- updated Italian translations (thanks to kidmar)
+- updated Slovak translations

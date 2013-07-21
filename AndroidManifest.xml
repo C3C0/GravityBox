@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ceco.gm2.gravitybox"
-    android:versionCode="3"
-    android:versionName="1.0.2" >
+    android:versionCode="14"
+    android:versionName="1.6.1" >
 
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -21,7 +26,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
+        <service android:name=".GravityBoxService">
+            <intent-filter>
+                <action android:name="gravitybox.intent.action.TOGGLE_SYNC" />
+                <action android:name="gravitybox.intent.action.GET_SYNC_STATUS" />
+            </intent-filter>
+        </service>
+
+        <service android:name=".TorchService">
+            <intent-filter>
+                <action android:name="gravitybox.intent.action.TOGGLE_TORCH" />
+            </intent-filter>
+        </service>
+
         <meta-data
             android:name="xposedmodule"
             android:value="true" />
@@ -30,7 +48,7 @@
             android:value="2.1*" />
         <meta-data
             android:name="xposeddescription"
-            android:value="GravityBox - Tweak Box by C3C076@XDA" />
+            android:value="GravityBox - MTK6589 Tweaks by C3C076@XDA" />
     </application>
 
 </manifest>

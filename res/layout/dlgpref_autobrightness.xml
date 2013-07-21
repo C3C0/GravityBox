@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+        <Spinner
+            android:id="@+id/spinLevels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView 
+            android:text="@string/pref_ab_lux_max_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/txtLux"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/txtLux"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <TextView 
+            android:text="@string/pref_ab_brighness_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/txtBrightness"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/txtBrightness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <Button 
+            android:id="@+id/btnSet"
+            android:text="Set"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+</LinearLayout>

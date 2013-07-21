@@ -1,8 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory
-        android:title="@string/pref_group_mods_title">
+    <PreferenceScreen
+        android:key="pref_cat_lockscreen"
+        android:title="@string/pref_cat_lockscreen_title"
+        android:summary="@string/pref_cat_lockscreen_summary">
+
+        <PreferenceCategory 
+            android:key="pref_cat_lockscreen_background"
+            android:title="@string/pref_cat_lockscreen_background_title">
+
+            <ListPreference
+                android:key="pref_lockscreen_background"
+                android:title="@string/pref_lockscreen_background_title"
+                android:entries="@array/lockscreen_bg_entries"
+                android:entryValues="@array/lockscreen_bg_values"
+                android:defaultValue="default"
+                android:order="1" />
+
+            <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                android:key="pref_lockscreen_bg_color"
+                android:title="@string/pref_lockscreen_bg_color_title"
+                android:summary="@string/pref_lockscreen_bg_color_summary"
+                android:defaultValue="@integer/COLOR_BLACK"
+                android:order="2" />
+
+            <Preference
+                android:key="pref_lockscreen_bg_image"
+                android:title="@string/pref_lockscreen_bg_image_title"
+                android:summary="@string/pref_lockscreen_bg_image_summary"
+                android:order="3" />
+
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            android:key="pref_cat_lockscreen_other"
+            android:title="@string/pref_cat_lockscreen_other_title">
+
+            <CheckBoxPreference 
+                android:key="pref_lockscreen_maximize_widgets"
+                android:title="@string/pref_lockscreen_maximize_widgets_title"
+                android:summary="@string/pref_lockscreen_maximize_widgets_summary"
+                android:defaultValue="false" />
+
+            <CheckBoxPreference 
+                android:key="pref_lockscreen_rotation"
+                android:title="@string/pref_lockscreen_rotation_title"
+                android:summary="@string/pref_lockscreen_rotation_summary"
+                android:defaultValue="false" />
+
+            <CheckBoxPreference 
+                android:key="pref_lockscreen_menu_key"
+                android:title="@string/pref_lockscreen_menu_key_title"
+                android:summary="@string/pref_lockscreen_menu_key_summary"
+                android:defaultValue="false" />
+
+        </PreferenceCategory>
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_statusbar"
+        android:title="@string/pref_cat_statusbar_title"
+        android:summary="@string/pref_cat_statusbar_summary">
+
+        <MultiSelectListPreference 
+            android:key="pref_quick_settings"
+            android:title="@string/quick_settings_title"
+            android:summary="@string/quick_settings_summary" 
+            android:entries="@array/qs_tile_entries"
+            android:entryValues="@array/qs_tile_values"
+            android:defaultValue="@array/qs_tile_values" />
 
         <ListPreference
             android:key="pref_battery_style" 
@@ -11,12 +79,16 @@
             android:entryValues="@array/battery_style_values"
             android:defaultValue="1" />
 
-        <ListPreference
-            android:key="pref_low_battery_warning_policy"
-            android:title="@string/low_battery_warning_policy_title"
-            android:entries="@array/low_battery_warning_policy_entries"
-            android:entryValues="@array/low_battery_warning_policy_values"
-            android:defaultValue="3" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference 
+            android:key="pref_statusbar_bgcolor"
+            android:title="@string/statusbar_bgcolor_title" 
+            android:summary="@string/statusbar_bgcolor_summary"
+            android:defaultValue="@integer/COLOR_BLACK" />
+
+        <CheckBoxPreference 
+            android:key="pref_statusbar_center_clock"
+            android:title="@string/pref_statusbar_center_clock_title"
+            android:defaultValue="false" />
 
         <MultiSelectListPreference
             android:key="pref_signal_icon_autohide"
@@ -25,11 +97,160 @@
             android:entryValues="@array/signal_icon_autohide_values"
             android:defaultValue="@array/empty_array" />
 
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:key="pref_cat_power"
+        android:title="@string/pref_cat_power_title"
+        android:summary="@string/pref_cat_power_summary">
+
         <CheckBoxPreference 
             android:key="pref_poweroff_advanced"
             android:title="@string/poweroff_advanced_title"
             android:summary="@string/poweroff_advanced_summary"
             android:defaultValue="false" />
+
+        <ListPreference
+            android:key="pref_low_battery_warning_policy"
+            android:title="@string/low_battery_warning_policy_title"
+            android:entries="@array/low_battery_warning_policy_entries"
+            android:entryValues="@array/low_battery_warning_policy_values"
+            android:defaultValue="3" />
+
+        <CheckBoxPreference 
+            android:key="pref_flashing_led_disable"
+            android:title="@string/pref_flashing_led_disable_title"
+            android:summary="@string/pref_flashing_led_disable_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
+            android:key="pref_charging_led_disable"
+            android:title="@string/pref_charging_led_disable_title"
+            android:summary="@string/pref_charging_led_disable_summary"
+            android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_display"
+        android:title="@string/pref_cat_display_title"
+        android:summary="@string/pref_cat_display_summary">
+        
+
+        <EditTextPreference
+            android:key="pref_brightness_min"
+            android:title="@string/pref_brightness_min_title"
+            android:summary="@string/pref_brightness_min_summary"
+            android:dialogMessage="@string/pref_brightness_dlg_msg"
+            android:inputType="number"
+            android:defaultValue="20" />
+
+        <com.ceco.gm2.gravitybox.preference.AutoBrightnessDialogPreference
+            android:key="pref_autobrightness" 
+            android:title="@string/pref_ab_title"
+            android:summary="@string/pref_ab_summary" />
+
+        <CheckBoxPreference 
+            android:key="pref_crt_off_effect"
+            android:title="@string/crt_off_effect_title"
+            android:summary="@string/crt_off_effect_summary"
+            android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_phone"
+        android:title="@string/pref_cat_phone_title"
+        android:summary="@string/pref_cat_phone_summary">
+
+        <ListPreference
+            android:key="pref_phone_flip"
+            android:title="@string/pref_phone_flip_title"
+            android:summary="@string/pref_phone_flip_summary"
+            android:entries="@array/phone_flip_action_entries"
+            android:entryValues="@array/phone_flip_action_values"
+            android:defaultValue="0" />
+
+        <CheckBoxPreference 
+            android:key="pref_phone_call_connect_vibrate_disable"
+            android:title="@string/pref_phone_call_connect_vibrate_disable_title"
+            android:summary="@string/pref_phone_call_connect_vibrate_disable_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
+            android:key="pref_caller_fullscreen_photo"
+            android:title="@string/caller_fullscreen_photo_title"
+            android:summary="@string/caller_fullscreen_photo_summary"
+            android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_media"
+        android:title="@string/pref_cat_media_title"
+        android:summary="@string/pref_cat_media_summary">
+
+        <CheckBoxPreference 
+            android:key="pref_vol_music_controls"
+            android:title="@string/vol_music_controls_title"
+            android:summary="@string/vol_music_controls_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
+            android:key="pref_music_volume_steps"
+            android:title="@string/pref_music_volume_steps_title"
+            android:summary="@string/pref_music_volume_steps_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
+            android:key="pref_safe_media_volume"
+            android:title="@string/pref_safe_media_volume_title"
+            android:summary="@string/pref_safe_media_volume_summary"
+            android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_hwkey_actions"
+        android:title="@string/pref_cat_hwkey_actions_title"
+        android:summary="@string/pref_cat_hwkey_actions_summary">
+
+        <ListPreference
+            android:key="pref_hwkey_menu_longpress"
+            android:title="@string/pref_hwkey_menu_longpress_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
+        <ListPreference
+            android:key="pref_hwkey_menu_doubletap"
+            android:title="@string/pref_hwkey_menu_doubletap_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
+        <ListPreference
+            android:key="pref_hwkey_back_longpress"
+            android:title="@string/pref_hwkey_back_longpress_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
+        <ListPreference
+            android:key="pref_hwkey_doubletap_speed"
+            android:title="@string/pref_hwkey_doubletap_speed_title"
+            android:summary="@string/pref_hwkey_doubletap_speed_summary"
+            android:entries="@array/hwkey_doubletap_speed_entries"
+            android:entryValues="@array/hwkey_doubletap_speed_values"
+            android:defaultValue="400" />
+
+        <ListPreference
+            android:key="pref_hwkey_kill_delay"
+            android:title="@string/pref_hwkey_kill_delay_title"
+            android:summary="@string/pref_hwkey_kill_delay_summary"
+            android:entries="@array/hwkey_kill_delay_entries"
+            android:entryValues="@array/hwkey_kill_delay_values"
+            android:defaultValue="1000" />
 
         <ListPreference
             android:key="pref_vol_key_cursor_control"
@@ -39,11 +260,12 @@
             android:entryValues="@array/vol_key_cursor_control_values"
             android:defaultValue="0" />
 
-        <CheckBoxPreference 
-            android:key="pref_vol_music_controls"
-            android:title="@string/vol_music_controls_title"
-            android:summary="@string/vol_music_controls_summary"
-            android:defaultValue="false" />
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_misc"
+        android:title="@string/pref_cat_misc_title"
+        android:summary="@string/pref_cat_misc_summary">
 
         <CheckBoxPreference 
             android:key="pref_recents_clear_all"
@@ -51,18 +273,14 @@
             android:summary="@string/recents_clear_all_summary"
             android:defaultValue="false" />
 
-        <CheckBoxPreference 
-            android:key="pref_caller_fullscreen_photo"
-            android:title="@string/caller_fullscreen_photo_title"
-            android:summary="@string/caller_fullscreen_photo_summary"
-            android:defaultValue="false" />
+    </PreferenceScreen>
 
-    </PreferenceCategory>
+    <PreferenceScreen 
+        android:key="pref_cat_fixes"
+        android:title="@string/pref_cat_fixes_title"
+        android:summary="@string/pref_cat_fixes_summary">
 
-    <PreferenceCategory 
-        android:title="@string/pref_group_fixes_title">
-
-        <CheckBoxPreference
+    <CheckBoxPreference
             android:key="pref_fix_datetime_crash"
             android:title="@string/fix_datetime_crash_title"
             android:summary="@string/fix_datetime_crash_summary"
@@ -81,10 +299,59 @@
             android:defaultValue="false" />
 
         <CheckBoxPreference
+            android:key="pref_mms_fix_wakelock"
+            android:title="@string/pref_mms_fix_wakelock_title"
+            android:summary="@string/pref_mms_fix_wakelock_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="pref_fix_calendar"
             android:title="@string/fix_calendar_title"
             android:summary="@string/fix_calendar_summary"
             android:defaultValue="false" />
 
-    </PreferenceCategory>
+        <CheckBoxPreference
+            android:key="pref_fix_tts_settings"
+            android:title="@string/fix_tts_settings_title"
+            android:summary="@string/fix_tts_settings_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="pref_fix_dev_opts"
+            android:title="@string/fix_dev_opts_title"
+            android:summary="@string/fix_dev_opts_summary"
+            android:defaultValue="false" />
+
+    </PreferenceScreen>
+
+    <Preference
+        android:key="pref_dual_sim_ringer"
+        android:title="@string/dual_sim_ringer_title"
+        android:summary="@string/dual_sim_ringer_summary" />"
+
+    <Preference
+        android:key="pref_engineering_mode"
+        android:title="@string/engineering_mode_title"
+        android:summary="@string/engineering_mode_summary" />"
+
+    <PreferenceScreen 
+        android:key="pref_cat_about"
+        android:title="@string/pref_cat_about_title">
+
+        <Preference
+            android:key="pref_about_gb" 
+            android:summary="@string/about_gb_summary" />
+
+        <Preference
+            android:key="pref_about_xposed"
+            android:title="@string/about_xposed_title"
+            android:summary="@string/about_xposed_summary" />"
+
+        <Preference
+            android:key="pref_about_donate"
+            android:title="@string/about_donate_title"
+            android:summary="@string/about_donate_summary" />
+
+    </PreferenceScreen>
+
 </PreferenceScreen>
