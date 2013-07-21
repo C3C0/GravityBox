@@ -257,4 +257,8 @@
     <!-- Soft reboot -->
     <string name="reboot_soft">Redémarrage logiciel</string>
 
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Arrière-plan noir uni</string>
+    <string name="pref_holo_bg_solid_black_summary">Utiliser un arrière-plan noir uni pour le thème Holo par défaut au lieu du dégradé noir-gris (nécessite un redémarrage)</string>
+
 </resources>
