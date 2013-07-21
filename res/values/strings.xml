@@ -231,6 +231,7 @@
     <string name="hwkey_action_voice_search">Voice search</string>
     <string name="hwkey_action_prev_app">Switch to previous app</string>
     <string name="hwkey_action_kill">Kill foreground app</string>
+    <string name="hwkey_action_sleep">Go to sleep</string>
     <string name="pref_hwkey_kill_delay_title">Kill app long-press delay</string>
     <string name="pref_hwkey_kill_delay_summary">Applies to Kill foreground app action. Defines for how long key must be pressed to trigger kill</string>
     <string name="pref_hwkey_doubletap_speed_title">Double-tap speed</string>
@@ -256,5 +257,9 @@
 
     <!-- Soft reboot -->
     <string name="reboot_soft">Soft reboot</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Solid black background</string>
+    <string name="pref_holo_bg_solid_black_summary">Use solid black background for default Holo system theme instead of black-grey gradient (requires reboot)</string>
 
 </resources>

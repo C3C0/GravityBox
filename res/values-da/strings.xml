@@ -28,8 +28,8 @@
     <string name="sim_disable_notifications">Slå notifikationer fra</string>
     <string name="sim_disable_notifications_summary">\"No SIM card detected\" notifikationer slået fra</string>
 
-    <string name="poweroff_advanced_title">Udvidet Power-Off menu</string>
-    <string name="poweroff_advanced_summary">Aktiverer udvidet Power-Off menu med menupunkt for reboot til systemgendannelse</string>
+    <string name="poweroff_advanced_title">Udvidet genstartsmenu</string>
+    <string name="poweroff_advanced_summary">Aktiverer udvidet genstartsmenu med menupunkt for reboot til systemgendannelse</string>
     <string name="poweroff_recovery">Systemgendannelse</string>    
 
     <string name="vol_key_cursor_control_title">Styring af markøren med volumentasten</string>
@@ -231,6 +231,7 @@
     <string name="hwkey_action_voice_search">Stemmestyret søgning</string>
     <string name="hwkey_action_prev_app">Skift til forrige app</string>
     <string name="hwkey_action_kill">Afslut forgrunds-app</string>
+    <string name="hwkey_action_sleep">Gå i dvaletilstand</string>
     <string name="pref_hwkey_kill_delay_title">Langt-tryk tid for afslut app</string>
     <string name="pref_hwkey_kill_delay_summary">Påvirker afslut forgrunds-app funktionen. Definerer hvor længe tasten skat holdes for at udløse afslutning</string>
     <string name="pref_hwkey_doubletap_speed_title">Dobbelt-tap hastighed</string>
@@ -253,5 +254,12 @@
     <!-- Disable vibrate on call connect -->
     <string name="pref_phone_call_connect_vibrate_disable_title">Vibration ved forbundet opkald fra</string>
     <string name="pref_phone_call_connect_vibrate_disable_summary">Slår vibration ved forbundet opkald fra</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">blød genstart</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Sort baggrund</string>
+    <string name="pref_holo_bg_solid_black_summary">Benyt sort baggrund for standard Holo systemtema i stedet for gråtoneskala (kræver genstart)</string>
 
 </resources>

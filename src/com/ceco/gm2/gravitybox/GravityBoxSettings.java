@@ -98,6 +98,7 @@ public class GravityBoxSettings extends Activity {
 
     public static final String PREF_KEY_BRIGHTNESS_MIN = "pref_brightness_min";
     public static final String PREF_KEY_AUTOBRIGHTNESS = "pref_autobrightness";
+    public static final String PREF_KEY_HOLO_BG_SOLID_BLACK = "pref_holo_bg_solid_black";
 
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
     public static final String PREF_KEY_MUSIC_VOLUME_STEPS = "pref_music_volume_steps";
@@ -113,6 +114,7 @@ public class GravityBoxSettings extends Activity {
     public static final int HWKEY_ACTION_VOICE_SEARCH = 2;
     public static final int HWKEY_ACTION_PREV_APP = 3;
     public static final int HWKEY_ACTION_KILL = 4;
+    public static final int HWKEY_ACTION_SLEEP = 5;
     public static final int HWKEY_DOUBLETAP_SPEED_DEFAULT = 400;
     public static final int HWKEY_KILL_DELAY_DEFAULT = 1000;
     public static final String ACTION_PREF_HWKEY_MENU_LONGPRESS_CHANGED = "gravitybox.intent.action.HWKEY_MENU_LONGPRESS_CHANGED";
@@ -153,7 +155,8 @@ public class GravityBoxSettings extends Activity {
             PREF_KEY_BRIGHTNESS_MIN,
             PREF_KEY_LOCKSCREEN_MENU_KEY,
             PREF_KEY_FIX_MMS_WAKELOCK,
-            PREF_KEY_MUSIC_VOLUME_STEPS
+            PREF_KEY_MUSIC_VOLUME_STEPS,
+            PREF_KEY_HOLO_BG_SOLID_BLACK
     ));
 
     @Override
