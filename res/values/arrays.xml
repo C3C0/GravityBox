@@ -115,6 +115,7 @@
         <item>@string/hwkey_action_voice_search</item>
         <item>@string/hwkey_action_prev_app</item>
         <item>@string/hwkey_action_kill</item>
+        <item>@string/hwkey_action_sleep</item>
     </string-array>
 
     <string-array name="hwkey_action_values" translatable="false">
@@ -123,6 +124,7 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+        <item>5</item>
     </string-array>
 
     <string-array name="hwkey_doubletap_speed_entries" translatable="false">

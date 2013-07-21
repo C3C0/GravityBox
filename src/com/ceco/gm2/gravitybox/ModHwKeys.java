@@ -11,7 +11,9 @@ import android.content.IntentFilter;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.os.Process;
+import android.os.SystemClock;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.ViewConfiguration;
@@ -281,6 +283,8 @@ public class ModHwKeys {
             switchToLastApp();
         } else if (action == GravityBoxSettings.HWKEY_ACTION_KILL) {
             killForegroundApp();
+        } else if (action == GravityBoxSettings.HWKEY_ACTION_SLEEP) {
+            goToSleep();
         }
     }
 
@@ -397,5 +401,14 @@ public class ModHwKeys {
                 }
             }
         );
+    }
+
+    private static void goToSleep() {
+        try {
+            PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+            pm.goToSleep(SystemClock.uptimeMillis());
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
     }
 }
