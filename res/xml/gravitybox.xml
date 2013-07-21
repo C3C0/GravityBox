@@ -156,6 +156,12 @@
             android:summary="@string/crt_off_effect_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference
+            android:key="pref_holo_bg_solid_black"
+            android:title="@string/pref_holo_bg_solid_black_title"
+            android:summary="@string/pref_holo_bg_solid_black_summary"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 

@@ -257,4 +257,8 @@
     <!-- Soft reboot -->
     <string name="reboot_soft">Soft reboot</string>
 
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Solid black background</string>
+    <string name="pref_holo_bg_solid_black_summary">Use solid black background for default Holo system theme instead of black-grey gradient (requires reboot)</string>
+
 </resources>
