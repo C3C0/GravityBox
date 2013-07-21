@@ -28,8 +28,8 @@
     <string name="sim_disable_notifications">Disable notifications</string>
     <string name="sim_disable_notifications_summary">\"SIM not inserted\" notifications disabled</string>
 
-    <string name="poweroff_advanced_title">Advanced Power-off menu</string>
-    <string name="poweroff_advanced_summary">Enables advanced power-off menu with option to reboot to recovery</string>
+    <string name="poweroff_advanced_title">Advanced reboot menu</string>
+    <string name="poweroff_advanced_summary">Enables advanced reboot menu with option to reboot to recovery</string>
     <string name="poweroff_recovery">Recovery</string>    
 
     <string name="vol_key_cursor_control_title">Volume key cursor control</string>
@@ -253,5 +253,8 @@
     <!-- Disable vibrate on call connect -->
     <string name="pref_phone_call_connect_vibrate_disable_title">Disable vibrate on call connect</string>
     <string name="pref_phone_call_connect_vibrate_disable_summary">Disables vibration that is triggered when call is connected</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">Soft reboot</string>
 
 </resources>

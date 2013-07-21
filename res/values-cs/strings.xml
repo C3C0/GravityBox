@@ -28,8 +28,8 @@
     <string name="sim_disable_notifications">Vypnout \"SIM není vložená\" hlášení</string>
     <string name="sim_disable_notifications_summary">\"SIM není vložená\" hlášení vypnuté</string>
 
-    <string name="poweroff_advanced_title">Rozšířené menu napájení</string>
-    <string name="poweroff_advanced_summary">Umožní rozšířené menu napájení s možností restartu a restartu do recovery</string>
+    <string name="poweroff_advanced_title">Rozšířené restart menu</string>
+    <string name="poweroff_advanced_summary">Aktivuje rozšířené restart menu s možností restartu do recovery</string>
     <string name="poweroff_recovery">Recovery</string>    
 
     <string name="vol_key_cursor_control_title">Pohyb kurzoru tlačítky hlasitosti</string>

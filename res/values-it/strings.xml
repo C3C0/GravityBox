@@ -2,67 +2,64 @@
 <resources>
 
     <string name="app_name">GravityBox</string>
- 
+
     <string name="battery_style_title">Stile indicatore batteria</string>
     <string name="battery_style_stock">Indicatore batteria stock</string>
     <string name="battery_style_circle">Batteria circolare con percentuale</string>
     <string name="battery_style_percent">Testo percentuale largo</string>
     <string name="battery_style_percent_stock">Testo percentuale largo con icona stock</string>
     <string name="battery_style_none">Nessuno</string>
- 
-    <string name="vol_music_controls_title">Tasti volume cambiano traccia</string>
+
+    <string name="vol_music_controls_title">Tasto vol cambia traccia</string>
     <string name="vol_music_controls_summary">Cambia traccia alla pressione dei tasti volume prolungata a schermo spento</string>
- 
+
     <string name="low_battery_warning_policy_title">Avviso per poca batteria</string>
     <string name="low_battery_warning_full">Pop-up e suono</string>
     <string name="low_battery_warning_popup">Solo Pop-up</string>
     <string name="low_battery_warning_sound">Solo suono</string>
     <string name="low_battery_warning_off">Off</string>
- 
+
     <string name="reboot_required">Le modifiche saranno applicate dopo il riavvio</string>
- 
-    <string name="signal_icon_autohide_title">Auto-nascondi icone di segnalazione</string>
+
+    <string name="signal_icon_autohide_title">Auto-nascondi icone segnalazione</string>
     <string name="signal_icon_autohide_summary">Nascondi automaticamente le icone di segnalazione per gli slot SIM selezionati se la SIM non è inserita, Disabilita la notifica \"SIM non inserita\"</string>
     <string name="sim_slot_1">Nascondi automaticamente lo slot SIM 1</string>
     <string name="sim_slot_2">Nascondi automaticamente lo slot SIM 2</string>
     <string name="sim_disable_notifications">Disabilita le notifiche</string>
     <string name="sim_disable_notifications_summary">Notifica di \"SIM non inserita\" disabilitata</string>
- 
+
     <string name="poweroff_advanced_title">Menu Power-off avanzato</string>
     <string name="poweroff_advanced_summary">Abilita il menu power-off avanzato con l\'opzione per riavviare in ripristino</string>
     <string name="poweroff_recovery">Riavvia in Recovery</string>
- 
+
     <string name="vol_key_cursor_control_title">Controllo cursore con tasti volume</string>
     <string name="vol_key_cursor_control_summary">Controlla il cursore usando i tasti volume nei campi di testo</string>
     <string name="vol_key_cursor_control_off">Disabilitato</string>
     <string name="vol_key_cursor_control_on">Volume su/giu muove il cursore a sinistra/destra</string>
     <string name="vol_key_cursor_control_on_reverse">Volume su/giu muove il cursore a destra/sinistra</string>
- 
+
     <string name="recents_clear_all_title">Pulisci tutte le attività recenti</string>
     <string name="recents_clear_all_summary">Abilita il bottone per pulire tutte le attività recenti nella finestra \"Attività recenti\"</string>
- 
-    <string name="pref_group_mods_title">Mods</string>
-    <string name="pref_group_fixes_title">Fix - Usa solo se necessario</string>
- 
-    <string name="fix_datetime_crash_title">Fix crash in modifica Data&amp;ora</string>
+
+    <string name="fix_datetime_crash_title">Fix crash modifica Data&amp;ora</string>
     <string name="fix_datetime_crash_summary">Abilita nel caso si verifichi un crash durante l\'accesso alle impostazione Data&amp;Ora (richiede riavvio)</string>
- 
-    <string name="fix_caller_id_phone_title">Fix ID chiamante per il telefono</string>
+
+    <string name="fix_caller_id_phone_title">Fix ID chiamante per telefono</string>
     <string name="fix_caller_id_phone_summary">Abilita nel caso in cui il tuo contatto non corrisponda durante la ricezione di chiamate (richiede riavvio)</string>
     <string name="fix_caller_id_phone_alert">Dopo il riavvio, dovresti pulire e riaggiungere i tuoi contatti affinchè la modifica abbia affetto! Usa Impostazioni / Applicazioni / Tutte - per pulire i dati del fornitore di contatti.</string>
- 
-    <string name="fix_caller_id_mms_title">Fix ID chiamante nei messaggi</string>
+
+    <string name="fix_caller_id_mms_title">Fix ID chiamante messaggi</string>
     <string name="fix_caller_id_mms_summary">Abilita nel caso in cui ci siano più conversazioni divise per lo stesso contatto (richiede riavvio)</string>
     <string name="fix_caller_id_mms_alert">Dopo il riavvio, dovresti eliminare tutti la conversazioni divise nelle applicazioni di messaggistica affinchè la modifica abbia effetto!</string>
- 
+
     <string name="fix_calendar_title">Fix app calendario</string>
     <string name="fix_calendar_summary">Abilita nel caso in cui si verifichino periodiche accensioni automatiche dello schermo (richiede riavvio)</string>
- 
+
     <string name="important">Importante</string>
- 
+
     <string name="caller_fullscreen_photo_title">Foto chiamante tutto schermo</string>
     <string name="caller_fullscreen_photo_summary">Mostra la foto del chiamante a tutto schermo per le chiamate in arrivo</string>
- 
+
     <!-- QuickSettings strings -->
     <string name="quick_settings_sync_on">Sync on</string>
     <string name="quick_settings_sync_off">Sync off</string>
@@ -82,11 +79,12 @@
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_mobile_data">Dati mobili</string>
+    <string name="qs_tile_network_mode">Network mode</string>
     <string name="qs_tile_data_usage">Utilizzo dati</string>
     <string name="qs_tile_audio">Profili audio</string>
     <string name="qs_tile_brightness">Luminosità</string>
     <string name="qs_tile_screen_timeout">Timout schermo</string>
-    <string name="qs_tile_autorotation">Rotazione automatica</string>
+    <string name="qs_tile_autorotation">Rotazione auto</string>
     <string name="qs_tile_sync">Sincronia</string>
     <string name="qs_tile_wifi_ap">Punto d\'accesso Wi-Fi</string>
     <string name="qs_tile_torch">Torcia</string>
@@ -96,16 +94,16 @@
     <string name="dialog_color_picker">Scegli colore</string>
     <string name="press_color_to_apply">Premi sul colore per applicare</string>
 
-    <!--  Statusbar background color -->
+    <!-- Statusbar background color -->
     <string name="statusbar_bgcolor_title">Colore sfondo statusbar</string>
     <string name="statusbar_bgcolor_summary">Permette di impostare il colore di sfondo della statusbar e la trasparenza</string>
 
-    <!--  Fix speech settings -->
+    <!-- Fix speech settings -->
     <string name="fix_tts_settings_title">Fix impostazioni voce</string>
     <string name="fix_tts_settings_summary">Sblocca la ricerca vocale e le impostazioni text-to-speech in \"Lingua e immissione\" (richiede riavvio)</string>
 
-    <!--  Advanced developer options -->
-    <string name="fix_dev_opts_title">Opzioni sviluppatore avanzate</string>
+    <!-- Advanced developer options -->
+    <string name="fix_dev_opts_title">Opzioni sviluppatore</string>
     <string name="fix_dev_opts_summary">Sblocca impostazioni sviluppatore avanzate (richiede riavvio)</string>
 
     <!-- Main preference categories -->
@@ -165,5 +163,95 @@
     <!-- Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Disabilita LED lampeggiante</string>
     <string name="pref_flashing_led_disable_summary">Disabilita il LED lampeggiante quando il livello batteria è basso e non è in carica</string>
+
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">Modifiche Display</string>
+    <string name="pref_cat_display_summary">Contiene varie modifiche al display</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">Livello luminosità minimo</string>
+    <string name="pref_brightness_min_summary">Permette di impostare il livello di luminosità minimo. Si applica all\'impostazione manuale (richiede riavvio)</string>
+    <string name="pref_brightness_dlg_msg">Intervallo di valori: 20 &#8211; 80</string>
+
+    <!-- Autobrightness levels -->
+    <string name="pref_ab_title">Livelli Autobrightness</string>
+    <string name="pref_ab_summary">Permette di impostare la luminosità dello schermo in base alla luce ambientale (lux)</string>
+    <string name="level">Livello</string>
+    <string name="pref_ab_lux_max_label">Lux massima</string>
+    <string name="pref_ab_brighness_label">Luminosità (20 &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">Il numero specificato è invalido</string>
+    <string name="pref_ab_brightness_too_low">Non è consigliato impostare una luminosità inferiore a 20</string>
+    <string name="pref_ab_brightness_too_high">La luminosità non pul superare 255</string>
+    <string name="pref_ab_number_error_negative">I valori non possono essere inferiori a 0</string>
+    <string name="pref_ab_number_not_ascending">I valori dei livelli bassi non possono superare quelli dei livelli più alti</string>
+    <string name="pref_ab_number_not_descending">I valori dei livelli alti non possono essere inferiori a quelli dei livelli più bassi</string>
+    <string name="pref_ab_values_set">Valori per %s impostati</string>
+    <string name="pref_ab_config_saved">Nuova configurazione autobrightness salvata</string>
+    <string name="pref_ab_config_cancelled">Configurazione Autobrightness NON salvata</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">Abilita rotazione lockscreen</string>
+    <string name="pref_lockscreen_rotation_summary">ATTENZIONE: potrebbe scambiare gli anelli di sblocco sui dispositivi in cui il lockscreen AOSP sia stato modificato dal produttore</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">Abilita tasto menu</string>
+    <string name="pref_lockscreen_menu_key_summary">Permette di utilizzare il tasto menu per sbloccare velocemente il dispositivo durante il lockscreen (richiede riavvio)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">Fix accensione messaggi</string>
+    <string name="pref_mms_fix_wakelock_summary">Impedisce allo schermo di accendersi all\'arrivo di un nuovo messaggio (richiede riavvio)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">Centra orologio</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Modifiche media</string>
+    <string name="pref_cat_media_summary">Contiene varie modifiche per media e sistema audio</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">Più step volume</string>
+    <string name="pref_music_volume_steps_summary">Aggiunge più step volume per lo strem musicale (richiede riavvio)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">Safe headset media volume</string>
+    <string name="pref_safe_media_volume_summary">Attiva o disattiva la feature safe headset media volume</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">Disabilita LED in carica</string>
+    <string name="pref_charging_led_disable_summary">Disabilita LED durante la carica</string>
+
+    <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">Azioni tasti Hardware</string>
+    <string name="pref_cat_hwkey_actions_summary">Permette di impostare azioni personalizzate per la pressione dei stasti hardware</string>
+    <string name="pref_hwkey_menu_longpress_title">Azione per tasto MENU premuto a lungo</string>
+    <string name="pref_hwkey_menu_doubletap_title">Azione per il doppio-tap del tasto MENU</string>
+    <string name="pref_hwkey_back_longpress_title">Azione per tasto INDIETRO premuto a lungo</string>
+    <string name="hwkey_action_default">Default</string>
+    <string name="hwkey_action_search">Cerca</string>
+    <string name="hwkey_action_voice_search">Ricerca vocale</string>
+    <string name="hwkey_action_prev_app">Passa alla app precedente</string>
+    <string name="hwkey_action_kill">Killa app corrente</string>
+    <string name="pref_hwkey_kill_delay_title">Durata per Kill app su pressione lunga</string>
+    <string name="pref_hwkey_kill_delay_summary">Si applica per il Kill della app corrente. Definisce quanto a lungo deve rimanere premuto il tasto per fare la kill</string>
+    <string name="pref_hwkey_doubletap_speed_title">Velocità doppio-tap</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Si applica per il doppio-tap del tasto MENU. Definisce quanto velocemente deve avvenire il secondo tap</string>
+    <string name="app_killed">Applicazione terminata</string>
+    <string name="nothing_to_kill">Non c\'è niente da terminare</string>
+    <string name="no_previous_app_found">Nessuna app precedente trovata</string>
+
+    <!-- Phone tweaks category -->
+    <string name="pref_cat_phone_title">Modifiche telefono</string>
+    <string name="pref_cat_phone_summary">Contiene varie modifiche per il telefono</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">Azione per ribaltamento mentre squilla</string>
+    <string name="pref_phone_flip_summary">Permette di definire cosa fare quando il dispositivo viene ribaltato a faccia in giù mentre squilla</string>
+    <string name="phone_flip_action_none">Non fare niente</string>
+    <string name="phone_flip_action_mute">Silenzia</string>
+    <string name="phone_flip_action_dismiss">Rifiuta chiamata</string>
+
+    <!-- Disable vibrate on call connect -->
+    <string name="pref_phone_call_connect_vibrate_disable_title">Disabilita vibrazione alla risposta</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">Disabilita la vibrazione quando si risponde ad una chiamata</string>
 
 </resources>
