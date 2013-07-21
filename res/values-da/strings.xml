@@ -231,6 +231,7 @@
     <string name="hwkey_action_voice_search">Stemmestyret søgning</string>
     <string name="hwkey_action_prev_app">Skift til forrige app</string>
     <string name="hwkey_action_kill">Afslut forgrunds-app</string>
+    <string name="hwkey_action_sleep">Gå i dvaletilstand</string>
     <string name="pref_hwkey_kill_delay_title">Langt-tryk tid for afslut app</string>
     <string name="pref_hwkey_kill_delay_summary">Påvirker afslut forgrunds-app funktionen. Definerer hvor længe tasten skat holdes for at udløse afslutning</string>
     <string name="pref_hwkey_doubletap_speed_title">Dobbelt-tap hastighed</string>
