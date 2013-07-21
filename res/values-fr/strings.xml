@@ -231,6 +231,7 @@
     <string name="hwkey_action_voice_search">Recherche vocale</string>
     <string name="hwkey_action_prev_app">Revenir à la précédente appli</string>
     <string name="hwkey_action_kill">Fin de tâche appli en cours</string>
+    <string name="hwkey_action_sleep">Mettre en veille</string>
     <string name="pref_hwkey_kill_delay_title">Délai appui long fin de tâche</string>
     <string name="pref_hwkey_kill_delay_summary">Valable pour mettre fin à l\'application de premier plan. Définit combien de temps la touche doit être pressée pour mettre fin à la tâche</string>
     <string name="pref_hwkey_doubletap_speed_title">Vitesse double appui</string>
