@@ -231,6 +231,7 @@
     <string name="hwkey_action_voice_search">Stemmestyret søgning</string>
     <string name="hwkey_action_prev_app">Skift til forrige app</string>
     <string name="hwkey_action_kill">Afslut forgrunds-app</string>
+    <string name="hwkey_action_sleep">Gå i dvaletilstand</string>
     <string name="pref_hwkey_kill_delay_title">Langt-tryk tid for afslut app</string>
     <string name="pref_hwkey_kill_delay_summary">Påvirker afslut forgrunds-app funktionen. Definerer hvor længe tasten skat holdes for at udløse afslutning</string>
     <string name="pref_hwkey_doubletap_speed_title">Dobbelt-tap hastighed</string>
@@ -256,5 +257,9 @@
 
     <!-- Soft reboot -->
     <string name="reboot_soft">blød genstart</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Sort baggrund</string>
+    <string name="pref_holo_bg_solid_black_summary">Benyt sort baggrund for standard Holo systemtema i stedet for gråtoneskala (kræver genstart)</string>
 
 </resources>
