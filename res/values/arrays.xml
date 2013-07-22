@@ -75,6 +75,7 @@
         <item>@string/qs_tile_wifi_ap</item>
         <item>@string/qs_tile_torch</item>
         <item>@string/qs_tile_sleep</item>
+        <item>@string/qs_tile_quickrecord</item>
         <item>@string/qs_tile_gravitybox</item>
     </string-array>
 
@@ -96,6 +97,7 @@
         <item>wifi_ap_tileview</item>
         <item>torch_tileview</item>
         <item>sleep_tileview</item>
+        <item>quickrecord_tileview</item>
         <item>gravitybox_tileview</item>
     </string-array>
 

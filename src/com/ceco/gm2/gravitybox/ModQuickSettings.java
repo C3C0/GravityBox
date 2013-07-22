@@ -10,6 +10,7 @@ import java.util.Set;
 import com.ceco.gm2.gravitybox.Utils.MethodState;
 import com.ceco.gm2.gravitybox.quicksettings.AQuickSettingsTile;
 import com.ceco.gm2.gravitybox.quicksettings.NetworkModeTile;
+import com.ceco.gm2.gravitybox.quicksettings.QuickRecordTile;
 import com.ceco.gm2.gravitybox.quicksettings.SleepTile;
 import com.ceco.gm2.gravitybox.quicksettings.TorchTile;
 import com.ceco.gm2.gravitybox.quicksettings.GravityBoxTile;
@@ -74,7 +75,8 @@ public class ModQuickSettings {
             "gravitybox_tileview",
             "torch_tileview",
             "network_mode_tileview",
-            "sleep_tileview"
+            "sleep_tileview",
+            "quickrecord_tileview"
     ));
 
     private static void log(String message) {
@@ -303,6 +305,10 @@ public class ModQuickSettings {
             SleepTile sleepTile = new SleepTile(mContext, mGbContext, mStatusBar, mPanelBar);
             sleepTile.setupQuickSettingsTile(mContainerView, inflater);
             mTiles.add(sleepTile);
+
+            QuickRecordTile qrTile = new QuickRecordTile(mContext, mGbContext, mStatusBar, mPanelBar);
+            qrTile.setupQuickSettingsTile(mContainerView, inflater);
+            mTiles.add(qrTile);
 
             GravityBoxTile gbTile = new GravityBoxTile(mContext, mGbContext, mStatusBar, mPanelBar);
             gbTile.setupQuickSettingsTile(mContainerView, inflater);
