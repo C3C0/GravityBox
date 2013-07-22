@@ -89,6 +89,7 @@
     <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
     <string name="qs_tile_torch">Torch</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Sleep</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
