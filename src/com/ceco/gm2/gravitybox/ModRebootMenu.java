@@ -287,7 +287,8 @@ public class ModRebootMenu {
                 showDialog();
                 return null;
             } else if (methodName.equals("onLongPress")) {
-                return false;
+                handleReboot(mContext, mRebootStr, 0);
+                return true;
             } else if (methodName.equals("showDuringKeyguard")) {
                 return true;
             } else if (methodName.equals("showBeforeProvisioning")) {
