@@ -35,24 +35,64 @@ public class ModRebootMenu {
     private static final String TAG = "ModRebootMenu";
     public static final String PACKAGE_NAME = "android";
     public static final String CLASS_GLOBAL_ACTIONS = "com.android.internal.policy.impl.GlobalActions";
+    public static final String CLASS_ACTION = "com.android.internal.policy.impl.GlobalActions.Action";
 
     private static Context mContext;
+    private static String mRebootStr;
+    private static String mRebootSoftStr;
+    private static String mRecoveryStr;
+    private static Drawable mRebootIcon;
+    private static Drawable mRebootSoftIcon;
+    private static Drawable mRecoveryIcon;
+    private static List<IIconListAdapterItem> mRebootItemList;
+    private static String mRebootConfirmStr;
+    private static String mRebootConfirmRecoveryStr;
     private static Unhook mRebootActionHook;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
     }
 
-    public static void init(final XSharedPreferences prefs, ClassLoader classLoader) {
+    public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
 
         try {
             final Class<?> globalActionsClass = XposedHelpers.findClass(CLASS_GLOBAL_ACTIONS, classLoader);
+            final Class<?> actionClass = XposedHelpers.findClass(CLASS_ACTION, classLoader);
 
             XposedBridge.hookAllConstructors(globalActionsClass, new XC_MethodHook() {
                @Override
                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                    mContext = (Context) param.args[0];
-                   XposedBridge.log("ModRebootMenu: GlobalActions constructed, mContext set");
+                   Context gbContext = mContext.createPackageContext(
+                           GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
+                   Resources res = mContext.getResources();
+                   Resources gbRes = gbContext.getResources();
+
+                   int rebootStrId = res.getIdentifier("factorytest_reboot", "string", PACKAGE_NAME);
+                   int rebootSoftStrId = gbRes.getIdentifier("reboot_soft", "string", GravityBox.PACKAGE_NAME);
+                   int recoveryStrId = gbRes.getIdentifier("poweroff_recovery", "string", GravityBox.PACKAGE_NAME);
+                   mRebootStr  = (rebootStrId == 0) ? "Reboot" : res.getString(rebootStrId);
+                   mRebootSoftStr = gbRes.getString(rebootSoftStrId);
+                   mRecoveryStr = gbRes.getString(recoveryStrId);
+
+                   mRebootIcon = gbRes.getDrawable(
+                           gbRes.getIdentifier("ic_lock_reboot", "drawable", GravityBox.PACKAGE_NAME));
+                   mRebootSoftIcon = gbRes.getDrawable(
+                           gbRes.getIdentifier("ic_lock_reboot_soft", "drawable", GravityBox.PACKAGE_NAME));
+                   mRecoveryIcon = gbRes.getDrawable(
+                           gbRes.getIdentifier("ic_lock_recovery", "drawable", GravityBox.PACKAGE_NAME));
+
+                   mRebootItemList = new ArrayList<IIconListAdapterItem>();
+                   mRebootItemList.add(new BasicIconListItem(mRebootStr, null, mRebootIcon, null));
+                   mRebootItemList.add(new BasicIconListItem(mRebootSoftStr, null, mRebootSoftIcon, null));
+                   mRebootItemList.add(new BasicIconListItem(mRecoveryStr, null, mRecoveryIcon, null));
+
+                   mRebootConfirmStr = gbRes.getString(gbRes.getIdentifier(
+                           "reboot_confirm", "string", GravityBox.PACKAGE_NAME));
+                   mRebootConfirmRecoveryStr = gbRes.getString(gbRes.getIdentifier(
+                           "reboot_confirm_recovery", "string", GravityBox.PACKAGE_NAME));
+                   
+                   log("GlobalActions constructed, resources set.");
                }
             });
 
@@ -120,10 +160,7 @@ public class ModRebootMenu {
                         });
                     } else {
                         log("Existing Reboot action item NOT found! Adding new RebootAction item");
-                        ClassLoader cl = param.thisObject.getClass().getClassLoader();
-                        Class<?> clsAction = XposedHelpers.findClass(
-                                "com.android.internal.policy.impl.GlobalActions.Action", cl);
-                        Object action = Proxy.newProxyInstance(cl, new Class<?>[] { clsAction }, 
+                        Object action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass }, 
                                 new RebootAction());
                         // add to the second position
                         mItems.add(1, action);
@@ -139,50 +176,25 @@ public class ModRebootMenu {
 
     private static void showDialog() {
         if (mContext == null) {
-            XposedBridge.log("ModRebootMenu: mContext is null - aborting");
+            log("mContext is null - aborting");
             return;
         }
 
         try {
-            XposedBridge.log("ModRebootMenu: about to get resources and set items");
-            Context gbContext = mContext.createPackageContext(
-                    GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
-            Resources gbRes = gbContext.getResources();
-            Resources res = mContext.getResources();
-    
-            int rebootStrId = res.getIdentifier("factorytest_reboot", "string", PACKAGE_NAME);
-            int rebootSoftStrId = gbRes.getIdentifier("reboot_soft", "string", GravityBox.PACKAGE_NAME);
-            int recoveryStrId = gbRes.getIdentifier("poweroff_recovery", "string", GravityBox.PACKAGE_NAME);
-            Drawable rebootIcon = gbRes.getDrawable(
-                    gbRes.getIdentifier("ic_lock_reboot", "drawable", GravityBox.PACKAGE_NAME));
-            Drawable rebootSoftIcon = gbRes.getDrawable(
-                    gbRes.getIdentifier("ic_lock_reboot_soft", "drawable", GravityBox.PACKAGE_NAME));
-            Drawable recoveryIcon = gbRes.getDrawable(
-                    gbRes.getIdentifier("ic_lock_recovery", "drawable", GravityBox.PACKAGE_NAME));
-    
-            final String[] items = new String[3];
-            items[0] = (rebootStrId == 0) ? "Reboot" : res.getString(rebootStrId);
-            items[1] = (rebootSoftStrId == 0) ? "Soft reboot" : gbRes.getString(rebootSoftStrId);
-            items[2] = (recoveryStrId == 0) ? "Recovery" : gbRes.getString(recoveryStrId);
-    
-            ArrayList<IIconListAdapterItem> itemList = new ArrayList<IIconListAdapterItem>();
-            itemList.add(new BasicIconListItem(items[0], null, rebootIcon, null));
-            itemList.add(new BasicIconListItem(items[1], null, rebootSoftIcon, null));
-            itemList.add(new BasicIconListItem(items[2], null, recoveryIcon, null));
-    
-            XposedBridge.log("ModRebootMenu: about to build reboot dialog");
+            log("about to build reboot dialog");
+
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
-                .setTitle(items[0])
-                .setAdapter(new IconListAdapter(mContext, itemList), new DialogInterface.OnClickListener() {
+                .setTitle(mRebootStr)
+                .setAdapter(new IconListAdapter(mContext, mRebootItemList), new DialogInterface.OnClickListener() {
                     
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        XposedBridge.log("ModRebootMenu: onClick() item = " + which);
-                        handleReboot(mContext, items[0], which);
+                        log("onClick() item = " + which);
+                        handleReboot(mContext, mRebootStr, which);
                     }
                 })
-                .setNegativeButton(res.getString(res.getIdentifier("no", "string", PACKAGE_NAME)),
+                .setNegativeButton(android.R.string.no,
                         new DialogInterface.OnClickListener() {
     
                             @Override
@@ -201,17 +213,7 @@ public class ModRebootMenu {
     private static void handleReboot(Context context, String caption, final int mode) {
         try {
             final PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-            
-            Resources gbRes = mContext.createPackageContext(
-                    GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY).getResources();
-            String message = "";
-            if (mode == 0 || mode == 1) {
-                message = gbRes.getString(gbRes.getIdentifier(
-                        "reboot_confirm", "string", GravityBox.PACKAGE_NAME));
-            } else if (mode == 2) {
-                message = gbRes.getString(gbRes.getIdentifier(
-                        "reboot_confirm_recovery", "string", GravityBox.PACKAGE_NAME));
-            }
+            final String message = (mode == 0 || mode == 1) ? mRebootConfirmStr : mRebootConfirmRecoveryStr;
 
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
                 .setTitle(caption)
@@ -262,11 +264,7 @@ public class ModRebootMenu {
 
             if (methodName.equals("create")) {
                 mContext = (Context) args[0];
-                Context gbContext = mContext.createPackageContext(
-                        GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
                 Resources res = mContext.getResources();
-                Resources gbRes = gbContext.getResources();
-
                 LayoutInflater li = (LayoutInflater) args[3];
                 int layoutId = res.getIdentifier(
                         "global_actions_item", "layout", "android");
@@ -274,14 +272,11 @@ public class ModRebootMenu {
 
                 ImageView icon = (ImageView) v.findViewById(res.getIdentifier(
                         "icon", "id", "android"));
-                Drawable recoveryIcon = gbRes.getDrawable(
-                        gbRes.getIdentifier("ic_lock_reboot", "drawable", GravityBox.PACKAGE_NAME));
-                icon.setImageDrawable(recoveryIcon);
+                icon.setImageDrawable(mRebootIcon);
 
                 TextView messageView = (TextView) v.findViewById(res.getIdentifier(
                         "message", "id", "android"));
-                int rebootStrId = res.getIdentifier("factorytest_reboot", "string", PACKAGE_NAME);
-                messageView.setText((rebootStrId == 0) ? "Reboot" : res.getString(rebootStrId));
+                messageView.setText(mRebootStr);
 
                 TextView statusView = (TextView) v.findViewById(res.getIdentifier(
                         "status", "id", "android"));
