@@ -270,7 +270,7 @@
 
     <!-- QuickSettings tiles per row -->
     <string name="pref_qs_tiles_per_row_title">Tiles per row</string>
-    <string name="pref_qs_tiles_per_row_summary">Defines how many QuickSettings tiles to display per one row. Tiles will be resized accordingly.</string>
+    <string name="pref_qs_tiles_per_row_summary">Defines how many QuickSettings tiles to display per one row. Tiles will be resized accordingly. Applies to portrait mode.</string>
 
     <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">Show day of week</string>

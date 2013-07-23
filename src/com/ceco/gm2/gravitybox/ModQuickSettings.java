@@ -22,6 +22,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -104,7 +105,9 @@ public class ModQuickSettings {
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_QS_COLS)) {
                     mNumColumns = intent.getIntExtra(GravityBoxSettings.EXTRA_QS_COLS, 3);
-                    updateTileLayout();
+                    if (mContainerView != null) {
+                        XposedHelpers.callMethod(mContainerView, "updateResources");
+                    }
                 }
             }
         }
@@ -183,15 +186,19 @@ public class ModQuickSettings {
         }
     }
 
-    private static void updateTileLayout() {
-        int tileCount = mContainerView.getChildCount();
-        int textSize;
+    private static void updateTileLayout(FrameLayout container, int orientation) {
+        if (container == null) return;
 
-        switch (mNumColumns) {
-            case 4: textSize = 10; break;
-            case 5: textSize = 8; break;
-            case 3:
-            default: textSize = 12;
+        int tileCount = container.getChildCount();
+        int textSize = 12;
+
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            switch (mNumColumns) {
+                case 4: textSize = 10; break;
+                case 5: textSize = 8; break;
+                case 3:
+                default: textSize = 12;
+            }
         }
 
         for(int i = 0; i < tileCount; i++) {
@@ -220,9 +227,6 @@ public class ModQuickSettings {
                 }
             }
         }
-
-        XposedHelpers.setIntField(mContainerView, "mNumColumns", mNumColumns);
-        XposedHelpers.callMethod(mContainerView, "updateResources");
     }
 
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
@@ -382,7 +386,6 @@ public class ModQuickSettings {
             mTiles.add(gbTile);
 
             updateTileVisibility();
-            updateTileLayout();
         }
     };
 
@@ -469,9 +472,14 @@ public class ModQuickSettings {
         @Override
         protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
             if (DEBUG ) log("qsContainerView updateResources called");
+            // do this only for portrait mode
             FrameLayout fl = (FrameLayout) param.thisObject;
-            XposedHelpers.setIntField(param.thisObject, "mNumColumns", mNumColumns);
-            fl.requestLayout();
+            final int orientation = fl.getContext().getResources().getConfiguration().orientation;
+            updateTileLayout(fl, orientation);
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                XposedHelpers.setIntField(param.thisObject, "mNumColumns", mNumColumns);
+                fl.requestLayout();
+            }
         }
     };
 
@@ -482,13 +490,15 @@ public class ModQuickSettings {
             ViewGroup thisView = (ViewGroup) param.thisObject;
             int widthMeasureSpec = (Integer) param.args[0];
             int heightMeasureSpec = (Integer) param.args[1];
-            float mCellGap = XposedHelpers.getFloatField(thisView, "mCellGap"); 
+            float mCellGap = XposedHelpers.getFloatField(thisView, "mCellGap");
+            int numColumns = XposedHelpers.getIntField(thisView, "mNumColumns");
+            int orientation = mContext.getResources().getConfiguration().orientation;
             
             int width = MeasureSpec.getSize(widthMeasureSpec);
             int height = MeasureSpec.getSize(heightMeasureSpec);
             int availableWidth = (int) (width - thisView.getPaddingLeft() - thisView.getPaddingRight() -
-                    (mNumColumns - 1) * mCellGap);
-            float cellWidth = (float) Math.ceil(((float) availableWidth) / mNumColumns);
+                    (numColumns - 1) * mCellGap);
+            float cellWidth = (float) Math.ceil(((float) availableWidth) / numColumns);
 
             // Update each of the children's widths accordingly to the cell width
             int N = thisView.getChildCount();
@@ -502,11 +512,15 @@ public class ModQuickSettings {
                     int colSpan = (Integer) XposedHelpers.callMethod(v, "getColumnSpan");
                     lp.width = (int) ((colSpan * cellWidth) + (colSpan - 1) * mCellGap);
 
-                    if (mNumColumns > 3) {
-                        if (mLpOriginalHeight == -1) mLpOriginalHeight = lp.height;
-                        lp.height = (lp.width * mNumColumns-1) / mNumColumns;
+                    if (mLpOriginalHeight == -1) mLpOriginalHeight = lp.height;
+                    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                        if (numColumns > 3) {
+                            lp.height = (lp.width * numColumns-1) / numColumns;
+                        } else {
+                            lp.height = mLpOriginalHeight;
+                        }
                     } else {
-                        if (mLpOriginalHeight != -1) lp.height = mLpOriginalHeight;
+                        lp.height = mLpOriginalHeight;
                     }
 
                     // Measure the child
@@ -526,7 +540,7 @@ public class ModQuickSettings {
             // all the tiles.
             // Calling to setMeasuredDimension is protected final and not accessible directly from here
             // so we emulate it
-            int numRows = (int) Math.ceil((float) cursor / mNumColumns);
+            int numRows = (int) Math.ceil((float) cursor / numColumns);
             int newHeight = (int) ((numRows * cellHeight) + ((numRows - 1) * mCellGap)) +
                     thisView.getPaddingTop() + thisView.getPaddingBottom();
 
