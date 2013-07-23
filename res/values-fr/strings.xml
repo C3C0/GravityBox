@@ -71,7 +71,7 @@
     <string name="quick_settings_qr_playing">Lecture&#8230;</string>
     <string name="quick_settings_qr_recording">Enregistrement&#8230;</string>
     <string name="quick_settings_qr_recorded">Enregistré</string>
-    <string name="quick_settings_qr_record">Appuyez longtemps pour enregistrer</string>
+    <string name="quick_settings_qr_record">Appui long pour enregistrer</string>
     <string name="quick_settings_qr_recording_notif">Touchez pour stopper l\'enregistrement</string>
 
     <!--  QuickSettings settings -->
