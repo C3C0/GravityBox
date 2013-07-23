@@ -92,7 +92,7 @@ public class ModBatteryStyle {
                     mBatteryStyle = Integer.valueOf(prefs.getString(GravityBoxSettings.PREF_KEY_BATTERY_STYLE, "1"));
                     mBatteryPercentText = prefs.getBoolean(GravityBoxSettings.PREF_KEY_BATTERY_PERCENT_TEXT, false);
                     // handle obsolete settings
-                    if (mBatteryStyle == 2 || mBatteryStyle == 3) {
+                    if (mBatteryStyle == 3 || mBatteryStyle == 4) {
                         mBatteryStyle = GravityBoxSettings.BATTERY_STYLE_STOCK;
                     }
                     XposedBridge.log("ModBatteryStyle: BatteryController constructed");
