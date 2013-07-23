@@ -6,8 +6,7 @@
     <string name="battery_style_title">Style de l\'indicateur de batterie</string>	
     <string name="battery_style_stock">Incateur par défaut</string>
     <string name="battery_style_circle">Cercle avec pourcentage</string>
-    <string name="battery_style_percent">Texte uniquement</string>
-    <string name="battery_style_percent_stock">Texte et indicateur par défaut</string>
+    <string name="battery_style_percent">Batterie avec pourcentage</string>
     <string name="battery_style_none">Aucun</string>
 
     <string name="vol_music_controls_title">Touches de volume et pistes audio</string>
@@ -272,5 +271,8 @@
     <!-- QuickSettings tiles per row -->
     <string name="pref_qs_tiles_per_row_title">Touches par rangée</string>
     <string name="pref_qs_tiles_per_row_summary">Définit le nombre de touches de paramètres rapides à afficher par rangée. Les touches seront redimensionnées en conséquence</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">Afficher le jour de la semaine</string>
 
 </resources>
