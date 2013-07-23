@@ -11,12 +11,14 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackageResources, IXposedHookLoadPackage {
     public static final String PACKAGE_NAME = GravityBox.class.getPackage().getName();
+    public static String MODULE_PATH = null;
     private static XSharedPreferences prefs;
 
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
+        MODULE_PATH = startupParam.modulePath;
         prefs = new XSharedPreferences(PACKAGE_NAME);
-        XModuleResources modRes = XModuleResources.createInstance(startupParam.modulePath, null);
+        XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, null);
 
         XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
 
@@ -67,6 +69,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         if (resparam.packageName.equals(ModCenterClock.PACKAGE_NAME)) {
             ModCenterClock.initResources(prefs, resparam);
+        }
+
+        if (resparam.packageName.equals(FixDevOptions.PACKAGE_NAME)) {
+            FixDevOptions.initPackageResources(prefs, resparam);
         }
     }
 
@@ -130,6 +136,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         if (lpparam.packageName.equals(ModPhone.PACKAGE_NAME)) {
             ModPhone.init(prefs, lpparam.classLoader);
+        }
+
+        if (lpparam.packageName.equals(ModSettings.PACKAGE_NAME)) {
+            ModSettings.init(prefs, lpparam.classLoader);
         }
     }
 }

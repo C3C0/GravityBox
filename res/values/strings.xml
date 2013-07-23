@@ -6,8 +6,7 @@
     <string name="battery_style_title">Battery indicator style</string>	
     <string name="battery_style_stock">Stock battery indicator</string>
     <string name="battery_style_circle">Circle battery with percentage</string>
-    <string name="battery_style_percent">Large percent text</string>
-    <string name="battery_style_percent_stock">Large percent text with stock icon</string>
+    <string name="battery_style_percent">Battery percent text</string>
     <string name="battery_style_none">None</string>
 
     <string name="vol_music_controls_title">Volume keys skip track</string>
@@ -68,6 +67,11 @@
     <string name="quick_settings_torch_on">Torch on</string>
     <string name="quick_settings_torch_off">Torch off</string>
     <string name="quick_settings_torch_off_notif">Touch to turn off</string>
+    <string name="quick_settings_qr_playing">Playing&#8230;</string>
+    <string name="quick_settings_qr_recording">Recording&#8230;</string>
+    <string name="quick_settings_qr_recorded">Recorded</string>
+    <string name="quick_settings_qr_record">Long Press To Record</string>
+    <string name="quick_settings_qr_recording_notif">Touch to stop recording</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Statusbar QuickSettings tiles</string>
@@ -89,6 +93,8 @@
     <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
     <string name="qs_tile_torch">Torch</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Sleep</string>
+    <string name="qs_tile_quickrecord">Quick Record</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
@@ -261,5 +267,12 @@
     <!--  Solid black Holo background -->
     <string name="pref_holo_bg_solid_black_title">Solid black background</string>
     <string name="pref_holo_bg_solid_black_summary">Use solid black background for default Holo system theme instead of black-grey gradient (requires reboot)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">Tiles per row</string>
+    <string name="pref_qs_tiles_per_row_summary">Defines how many QuickSettings tiles to display per one row. Tiles will be resized accordingly.</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">Show day of week</string>
 
 </resources>

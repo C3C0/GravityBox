@@ -68,6 +68,11 @@
     <string name="quick_settings_torch_on">Torche on</string>
     <string name="quick_settings_torch_off">Torche off</string>
     <string name="quick_settings_torch_off_notif">Toucher pour éteindre</string>
+    <string name="quick_settings_qr_playing">Lecture&#8230;</string>
+    <string name="quick_settings_qr_recording">Enregistrement&#8230;</string>
+    <string name="quick_settings_qr_recorded">Enregistré</string>
+    <string name="quick_settings_qr_record">Appui long pour enregistrer</string>
+    <string name="quick_settings_qr_recording_notif">Touchez pour stopper l\'enregistrement</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Gestion des paramètres rapides</string>
@@ -89,6 +94,8 @@
     <string name="qs_tile_wifi_ap">Hotspot Wi-Fi</string>
     <string name="qs_tile_torch">Torche</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Veille</string>
+    <string name="qs_tile_quickrecord">Enregistrement rapide</string>
     
     <!-- Color Picker -->
     <string name="dialog_color_picker">Sélecteur de couleur</string>
@@ -231,6 +238,7 @@
     <string name="hwkey_action_voice_search">Recherche vocale</string>
     <string name="hwkey_action_prev_app">Revenir à la précédente appli</string>
     <string name="hwkey_action_kill">Fin de tâche appli en cours</string>
+    <string name="hwkey_action_sleep">Mettre en veille</string>
     <string name="pref_hwkey_kill_delay_title">Délai appui long fin de tâche</string>
     <string name="pref_hwkey_kill_delay_summary">Valable pour mettre fin à l\'application de premier plan. Définit combien de temps la touche doit être pressée pour mettre fin à la tâche</string>
     <string name="pref_hwkey_doubletap_speed_title">Vitesse double appui</string>
@@ -260,5 +268,9 @@
     <!--  Solid black Holo background -->
     <string name="pref_holo_bg_solid_black_title">Arrière-plan noir uni</string>
     <string name="pref_holo_bg_solid_black_summary">Utiliser un arrière-plan noir uni pour le thème Holo par défaut au lieu du dégradé noir-gris (nécessite un redémarrage)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">Touches par rangée</string>
+    <string name="pref_qs_tiles_per_row_summary">Définit le nombre de touches de paramètres rapides à afficher par rangée. Les touches seront redimensionnées en conséquence</string>
 
 </resources>

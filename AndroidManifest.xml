@@ -12,6 +12,9 @@
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -37,6 +40,13 @@
         <service android:name=".TorchService">
             <intent-filter>
                 <action android:name="gravitybox.intent.action.TOGGLE_TORCH" />
+            </intent-filter>
+        </service>
+
+        <service android:name=".RecordingService">
+            <intent-filter>
+                <action android:name="gravitybox.intent.action.RECORDING_START" />
+                <action android:name="gravitybox.intent.action.RECORDING_STOP" />
             </intent-filter>
         </service>
 

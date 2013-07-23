@@ -4,16 +4,12 @@
     <string-array name="battery_style_entries" translatable="false">
         <item>@string/battery_style_stock</item>
         <item>@string/battery_style_circle</item>
-        <item>@string/battery_style_percent</item>
-        <item>@string/battery_style_percent_stock</item>
         <item>@string/battery_style_none</item>
     </string-array>
 
     <string-array name="battery_style_values" translatable="false">
         <item>1</item>
         <item>2</item>
-        <item>3</item>
-        <item>4</item>
         <item>0</item>
     </string-array>
 
@@ -74,6 +70,8 @@
         <item>@string/qs_tile_sync</item>
         <item>@string/qs_tile_wifi_ap</item>
         <item>@string/qs_tile_torch</item>
+        <item>@string/qs_tile_sleep</item>
+        <item>@string/qs_tile_quickrecord</item>
         <item>@string/qs_tile_gravitybox</item>
     </string-array>
 
@@ -94,6 +92,8 @@
         <item>sync_tileview</item>
         <item>wifi_ap_tileview</item>
         <item>torch_tileview</item>
+        <item>sleep_tileview</item>
+        <item>quickrecord_tileview</item>
         <item>gravitybox_tileview</item>
     </string-array>
 
@@ -165,6 +165,90 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+    </string-array>
+
+    <string-array name="qs_tiles_per_row_entries" translatable="false">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="qs_tiles_per_row_values" translatable="false">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <!-- Titles for window animation scale preference. [CHAR LIMIT=35] -->
+    <string-array name="window_animation_scale_entries">
+        <item>Animation off</item>
+        <item>Animation scale .25x</item>
+        <item>Animation scale .5x</item>
+        <item>Animation scale 1x</item>
+        <item>Animation scale 1.5x</item>
+        <item>Animation scale 2x</item>
+        <item>Animation scale 5x</item>
+        <item>Animation scale 10x</item>
+    </string-array>
+
+    <!-- Values for window animation scale preference. -->
+    <string-array name="window_animation_scale_values" translatable="false" >
+        <item>0</item>
+        <item>.25</item>
+        <item>.5</item>
+        <item>1</item>
+        <item>1.5</item>
+        <item>2</item>
+        <item>5</item>
+        <item>10</item>
+    </string-array>
+
+    <!-- Titles for transition animation scale preference. [CHAR LIMIT=35] -->
+    <string-array name="transition_animation_scale_entries">
+        <item>Animation off</item>
+        <item>Animation scale .25x</item>
+        <item>Animation scale .5x</item>
+        <item>Animation scale 1x</item>
+        <item>Animation scale 1.5x</item>
+        <item>Animation scale 2x</item>
+        <item>Animation scale 5x</item>
+        <item>Animation scale 10x</item>
+    </string-array>
+
+    <!-- Values for transition animation scale preference. -->
+    <string-array name="transition_animation_scale_values" translatable="false" >
+        <item>0</item>
+        <item>.25</item>
+        <item>.5</item>
+        <item>1</item>
+        <item>1.5</item>
+        <item>2</item>
+        <item>5</item>
+        <item>10</item>
+    </string-array>
+
+    <!-- Titles for animator duration scale preference. [CHAR LIMIT=35] -->
+    <string-array name="animator_duration_scale_entries">
+        <item>Animation off</item>
+        <item>Animation scale .25x</item>
+        <item>Animation scale .5x</item>
+        <item>Animation scale 1x</item>
+        <item>Animation scale 1.5x</item>
+        <item>Animation scale 2x</item>
+        <item>Animation scale 5x</item>
+        <item>Animation scale 10x</item>
+    </string-array>
+
+    <!-- Values for animator duration scale preference. -->
+    <string-array name="animator_duration_scale_values" translatable="false" >
+        <item>0</item>
+        <item>.25</item>
+        <item>.5</item>
+        <item>1</item>
+        <item>1.5</item>
+        <item>2</item>
+        <item>5</item>
+        <item>10</item>
     </string-array>
 
 </resources>
