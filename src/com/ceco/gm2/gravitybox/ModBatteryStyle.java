@@ -25,6 +25,9 @@ public class ModBatteryStyle {
     public static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     public static final String CLASS_BATTERY_CONTROLLER = "com.android.systemui.statusbar.policy.BatteryController";
 
+    private static int mBatteryStyle;
+    private static boolean mBatteryPercentText;
+
     public static void initResources(XSharedPreferences prefs, InitPackageResourcesParam resparam) {
         try {
             resparam.res.hookLayout(PACKAGE_NAME, "layout", "gemini_super_status_bar", new XC_LayoutInflated() {
@@ -86,9 +89,13 @@ public class ModBatteryStyle {
                 @Override
                 protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
                     prefs.reload();
-                    int mBatteryStyle = Integer.valueOf(prefs.getString(GravityBoxSettings.PREF_KEY_BATTERY_STYLE, "1"));
-                    XposedHelpers.setAdditionalInstanceField(param.thisObject, "mBatteryStyle", mBatteryStyle);
-                    XposedBridge.log("ModBatteryStyle: mBatteryStyle instance field injected; value = " + mBatteryStyle);
+                    mBatteryStyle = Integer.valueOf(prefs.getString(GravityBoxSettings.PREF_KEY_BATTERY_STYLE, "1"));
+                    mBatteryPercentText = prefs.getBoolean(GravityBoxSettings.PREF_KEY_BATTERY_PERCENT_TEXT, false);
+                    // handle obsolete settings
+                    if (mBatteryStyle == 2 || mBatteryStyle == 3) {
+                        mBatteryStyle = GravityBoxSettings.BATTERY_STYLE_STOCK;
+                    }
+                    XposedBridge.log("ModBatteryStyle: BatteryController constructed");
                 }
             });
 
@@ -99,13 +106,15 @@ public class ModBatteryStyle {
 
                     Intent intent = (Intent) param.args[1];
 
-                    int mBatteryStyle = (Integer) XposedHelpers.getAdditionalInstanceField(param.thisObject, "mBatteryStyle");
-
-                    if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_BATTERY_STYLE_CHANGED) && 
-                            intent.hasExtra("batteryStyle")) {
-                        mBatteryStyle = intent.getIntExtra("batteryStyle", 1);
-                        XposedHelpers.setAdditionalInstanceField(param.thisObject, "mBatteryStyle", mBatteryStyle);
-                        XposedBridge.log("ModBatteryStyle: mBatteryStyle changed to: " + mBatteryStyle);
+                    if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_BATTERY_STYLE_CHANGED)) {
+                        if (intent.hasExtra("batteryStyle")) {
+                            mBatteryStyle = intent.getIntExtra("batteryStyle", 1);
+                            XposedBridge.log("ModBatteryStyle: mBatteryStyle changed to: " + mBatteryStyle);
+                        }
+                        if (intent.hasExtra("batteryPercent")) {
+                            mBatteryPercentText = intent.getBooleanExtra("batteryPercent", false);
+                            XposedBridge.log("ModBatteryStyle: mBatteryPercentText changed to: " + mBatteryPercentText);
+                        }
                     }
 
                     @SuppressWarnings("unchecked")
@@ -114,17 +123,14 @@ public class ModBatteryStyle {
                     ArrayList<TextView> mLabelViews = (ArrayList<TextView>) XposedHelpers.getObjectField(param.thisObject, "mLabelViews");
 
                     mIconViews.get(0).setVisibility(
-                            (mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_STOCK ||
-                             mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_PERCENT_STOCK) ?
+                            (mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_STOCK) ?
                                      View.VISIBLE : View.GONE);
 
                     mIconViews.get(1).setVisibility(mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE ?
                             View.VISIBLE : View.GONE);
 
                     mLabelViews.get(0).setVisibility(
-                            (mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_PERCENT ||
-                             mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_PERCENT_STOCK) ?
-                            View.VISIBLE : View.GONE);
+                            (mBatteryPercentText ? View.VISIBLE : View.GONE));
                 }
             });
         }

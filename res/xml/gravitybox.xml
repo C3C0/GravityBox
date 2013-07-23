@@ -87,6 +87,11 @@
             android:entryValues="@array/battery_style_values"
             android:defaultValue="1" />
 
+        <CheckBoxPreference 
+            android:key="pref_battery_percent_text"
+            android:title="@string/battery_style_percent"
+            android:defaultValue="false" />
+
         <net.margaritov.preference.colorpicker.ColorPickerPreference 
             android:key="pref_statusbar_bgcolor"
             android:title="@string/statusbar_bgcolor_title" 

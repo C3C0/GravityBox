@@ -42,10 +42,9 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW = "pref_qs_tiles_per_row";
 
     public static final String PREF_KEY_BATTERY_STYLE = "pref_battery_style";
+    public static final String PREF_KEY_BATTERY_PERCENT_TEXT = "pref_battery_percent_text";
     public static final int BATTERY_STYLE_STOCK = 1;
     public static final int BATTERY_STYLE_CIRCLE = 2;
-    public static final int BATTERY_STYLE_PERCENT = 3;
-    public static final int BATTERY_STYLE_PERCENT_STOCK = 4;
     public static final int BATTERY_STYLE_NONE = 0;
 
     public static final String PREF_KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
@@ -335,7 +334,10 @@ public class GravityBoxSettings extends Activity {
             if (key.equals(PREF_KEY_BATTERY_STYLE)) {
                 intent.setAction(ACTION_PREF_BATTERY_STYLE_CHANGED);
                 int batteryStyle = Integer.valueOf(prefs.getString(PREF_KEY_BATTERY_STYLE, "1"));
-                intent.putExtra("batteryStyle", batteryStyle);                
+                intent.putExtra("batteryStyle", batteryStyle);
+            } else if (key.equals(PREF_KEY_BATTERY_PERCENT_TEXT)) {
+                intent.setAction(ACTION_PREF_BATTERY_STYLE_CHANGED);
+                intent.putExtra("batteryPercent", prefs.getBoolean(PREF_KEY_BATTERY_PERCENT_TEXT, false));
             } else if (key.equals(PREF_KEY_SIGNAL_ICON_AUTOHIDE)) {
                 intent.setAction(ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED);
                 String[] autohidePrefs = mSignalIconAutohide.getValues().toArray(new String[0]);
