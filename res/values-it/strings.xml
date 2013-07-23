@@ -68,6 +68,11 @@
     <string name="quick_settings_torch_on">Torcia accesa</string>
     <string name="quick_settings_torch_off">Torcia spenta</string>
     <string name="quick_settings_torch_off_notif">Tocca per spegnere</string>
+    <string name="quick_settings_qr_playing">In riproduzione&#8230;</string>
+    <string name="quick_settings_qr_recording">Registrazione&#8230;</string>
+    <string name="quick_settings_qr_recorded">Registrato</string>
+    <string name="quick_settings_qr_record">Pressione lunga per registrare</string>
+    <string name="quick_settings_qr_recording_notif">Tocca per fermare la registrazione</string>
 
     <!-- QuickSettings settings -->
     <string name="quick_settings_title">Caselle Statusbar QuickSettings</string>
@@ -89,6 +94,8 @@
     <string name="qs_tile_wifi_ap">Punto d\'accesso Wi-Fi</string>
     <string name="qs_tile_torch">Torcia</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Sleep</string>
+    <string name="qs_tile_quickrecord">Registra</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Scegli colore</string>
@@ -253,5 +260,12 @@
     <!-- Disable vibrate on call connect -->
     <string name="pref_phone_call_connect_vibrate_disable_title">Disabilita vibrazione alla risposta</string>
     <string name="pref_phone_call_connect_vibrate_disable_summary">Disabilita la vibrazione quando si risponde ad una chiamata</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">Riavvio soft</string>
+
+    <!-- Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Sfondo nero solido</string>
+    <string name="pref_holo_bg_solid_black_summary">Usa lo sfondo nero solido come tema di Holo di default invece del grigio scuro sfumato (richiede riavvio)</string>
 
 </resources>
