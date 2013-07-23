@@ -68,6 +68,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_FIX_CALENDAR = "pref_fix_calendar";
     public static final String PREF_KEY_STATUSBAR_BGCOLOR = "pref_statusbar_bgcolor";
     public static final String PREF_KEY_STATUSBAR_CENTER_CLOCK = "pref_statusbar_center_clock";
+    public static final String PREF_KEY_STATUSBAR_CLOCK_DOW = "pref_statusbar_clock_dow";
     public static final String PREF_KEY_FIX_TTS_SETTINGS = "pref_fix_tts_settings";
     public static final String PREF_KEY_FIX_DEV_OPTS = "pref_fix_dev_opts";
     public static final String PREF_KEY_ABOUT_GRAVITYBOX = "pref_about_gb";
@@ -142,6 +143,8 @@ public class GravityBoxSettings extends Activity {
 
     public static final String ACTION_PREF_CENTER_CLOCK_CHANGED = "gravitybox.intent.action.CENTER_CLOCK_CHANGED";
     public static final String EXTRA_CENTER_CLOCK = "centerClock";
+    public static final String ACTION_PREF_CLOCK_DOW = "gravitybox.intent.action.CLOCK_DOW_CHANGED";
+    public static final String EXTRA_CLOCK_DOW = "clockDow";
 
     public static final String ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED = "gravitybox.intent.action.SAFE_MEDIA_VOLUME_CHANGED";
     public static final String EXTRA_SAFE_MEDIA_VOLUME_ENABLED = "enabled";
@@ -357,6 +360,10 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_CENTER_CLOCK_CHANGED);
                 intent.putExtra(EXTRA_CENTER_CLOCK, 
                         prefs.getBoolean(PREF_KEY_STATUSBAR_CENTER_CLOCK, false));
+            } else if (key.equals(PREF_KEY_STATUSBAR_CLOCK_DOW)) {
+                intent.setAction(ACTION_PREF_CLOCK_DOW);
+                intent.putExtra(EXTRA_CLOCK_DOW,
+                        prefs.getBoolean(PREF_KEY_STATUSBAR_CLOCK_DOW, false));
             } else if (key.equals(PREF_KEY_SAFE_MEDIA_VOLUME)) {
                 intent.setAction(ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED);
                 intent.putExtra(EXTRA_SAFE_MEDIA_VOLUME_ENABLED,
