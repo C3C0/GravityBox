@@ -73,6 +73,14 @@
             android:defaultValue="@array/qs_tile_values" />
 
         <ListPreference
+            android:key="pref_qs_tiles_per_row" 
+            android:title="@string/pref_qs_tiles_per_row_title"
+            android:summary="@string/pref_qs_tiles_per_row_summary" 
+            android:entries="@array/qs_tiles_per_row_entries"
+            android:entryValues="@array/qs_tiles_per_row_values"
+            android:defaultValue="3" />
+
+        <ListPreference
             android:key="pref_battery_style" 
             android:title="@string/battery_style_title" 
             android:entries="@array/battery_style_entries"

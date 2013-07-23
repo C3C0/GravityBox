@@ -269,4 +269,8 @@
     <string name="pref_holo_bg_solid_black_title">Solid black background</string>
     <string name="pref_holo_bg_solid_black_summary">Use solid black background for default Holo system theme instead of black-grey gradient (requires reboot)</string>
 
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">Tiles per row</string>
+    <string name="pref_qs_tiles_per_row_summary">Defines how many QuickSettings tiles to display per one row. Tiles will be resized accordingly.</string>
+
 </resources>

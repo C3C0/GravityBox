@@ -1,5 +1,6 @@
 package com.ceco.gm2.gravitybox;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +27,11 @@ import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
@@ -41,6 +46,7 @@ public class ModQuickSettings {
     private static final String CLASS_PANEL_BAR = "com.android.systemui.statusbar.phone.PanelBar";
     private static final String CLASS_QS_TILEVIEW = "com.android.systemui.statusbar.phone.QuickSettingsTileView";
     private static final String CLASS_NOTIF_PANELVIEW = "com.android.systemui.statusbar.phone.NotificationPanelView";
+    private static final String CLASS_QS_CONTAINER_VIEW = "com.android.systemui.statusbar.phone.QuickSettingsContainerView";
     private static final boolean DEBUG = false;
 
     private static Context mContext;
@@ -51,6 +57,8 @@ public class ModQuickSettings {
     private static Set<String> mActiveTileKeys;
     private static Class<?> mQuickSettingsTileViewClass;
     private static Object mSimSwitchPanelView;
+    private static int mNumColumns = 3;
+    private static int mLpOriginalHeight = -1;
 
     private static ArrayList<AQuickSettingsTile> mTiles;
 
@@ -88,11 +96,16 @@ public class ModQuickSettings {
         @Override
         public void onReceive(Context context, Intent intent) {
             log("received broadcast: " + intent.toString());
-            if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKSETTINGS_CHANGED) &&
-                            intent.hasExtra(GravityBoxSettings.EXTRA_QS_PREFS)) {
-                String[] qsPrefs = intent.getStringArrayExtra(GravityBoxSettings.EXTRA_QS_PREFS);
-                mActiveTileKeys = new HashSet<String>(Arrays.asList(qsPrefs));
-                updateTileVisibility();
+            if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKSETTINGS_CHANGED)) {
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_QS_PREFS)) {
+                    String[] qsPrefs = intent.getStringArrayExtra(GravityBoxSettings.EXTRA_QS_PREFS);
+                    mActiveTileKeys = new HashSet<String>(Arrays.asList(qsPrefs));
+                    updateTileVisibility();
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_QS_COLS)) {
+                    mNumColumns = intent.getIntExtra(GravityBoxSettings.EXTRA_QS_COLS, 3);
+                    updateTileLayout();
+                }
             }
         }
     };
@@ -170,6 +183,48 @@ public class ModQuickSettings {
         }
     }
 
+    private static void updateTileLayout() {
+        int tileCount = mContainerView.getChildCount();
+        int textSize;
+
+        switch (mNumColumns) {
+            case 4: textSize = 10; break;
+            case 5: textSize = 8; break;
+            case 3:
+            default: textSize = 12;
+        }
+
+        for(int i = 0; i < tileCount; i++) {
+            ViewGroup viewGroup = (ViewGroup) mContainerView.getChildAt(i);
+            if (viewGroup != null) {
+                int childCount = viewGroup.getChildCount();
+                for(int j = 0; j < childCount; j++) {
+                    View childView = viewGroup.getChildAt(j);
+                    TextView targetView = null;
+                    if (childView instanceof ViewGroup) {
+                        int innerChildCount = ((ViewGroup) childView).getChildCount();
+                        for (int k = 0; k < innerChildCount; k++) {
+                            View innerChildView = ((ViewGroup) childView).getChildAt(k); 
+                            if (innerChildView instanceof TextView) {
+                                targetView = (TextView) innerChildView;
+                            }
+                        }
+                    } else if (childView instanceof TextView) {
+                        targetView = (TextView) childView;
+                    }
+                    if (targetView != null) {
+                        targetView.setTextSize(1, textSize);
+                        targetView.setSingleLine(false);
+                        targetView.setAllCaps(true);
+                    }
+                }
+            }
+        }
+
+        XposedHelpers.setIntField(mContainerView, "mNumColumns", mNumColumns);
+        XposedHelpers.callMethod(mContainerView, "updateResources");
+    }
+
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
         log("init");
 
@@ -182,11 +237,19 @@ public class ModQuickSettings {
             mActiveTileKeys = prefs.getStringSet(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS, null);
             log("got tile prefs: mActiveTileKeys = " + (mActiveTileKeys == null ? "null" : mActiveTileKeys.toString()));
 
+            try {
+                mNumColumns = Integer.valueOf(prefs.getString(
+                        GravityBoxSettings.PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW, "3"));
+            } catch (NumberFormatException e) {
+                log("Invalid preference for tiles per row: " + e.getMessage());
+            }
+
             final Class<?> quickSettingsClass = XposedHelpers.findClass(CLASS_QUICK_SETTINGS, classLoader);
             final Class<?> phoneStatusBarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
             final Class<?> panelBarClass = XposedHelpers.findClass(CLASS_PANEL_BAR, classLoader);
             mQuickSettingsTileViewClass = XposedHelpers.findClass(CLASS_QS_TILEVIEW, classLoader);
             final Class<?> notifPanelViewClass = XposedHelpers.findClass(CLASS_NOTIF_PANELVIEW, classLoader);
+            final Class<?> quickSettingsContainerViewClass = XposedHelpers.findClass(CLASS_QS_CONTAINER_VIEW, classLoader);
 
             XposedBridge.hookAllConstructors(quickSettingsClass, quickSettingsConstructHook);
             XposedHelpers.findAndHookMethod(quickSettingsClass, "setBar", 
@@ -200,6 +263,10 @@ public class ModQuickSettings {
                     MotionEvent.class, notificationPanelViewOnTouchEvent);
             XposedHelpers.findAndHookMethod(phoneStatusBarClass, "makeStatusBarView", 
                     makeStatusBarViewHook);
+            XposedHelpers.findAndHookMethod(quickSettingsContainerViewClass, "updateResources", 
+                    qsContainerViewUpdateResources);
+            XposedHelpers.findAndHookMethod(quickSettingsContainerViewClass, "onMeasure",
+                    int.class, int.class, qsContainerViewOnMeasure);
 
             XposedHelpers.findAndHookMethod(phoneStatusBarClass, "removeNotification", IBinder.class, new XC_MethodHook() {
                 @Override
@@ -315,6 +382,7 @@ public class ModQuickSettings {
             mTiles.add(gbTile);
 
             updateTileVisibility();
+            updateTileLayout();
         }
     };
 
@@ -394,6 +462,87 @@ public class ModQuickSettings {
             } catch (Exception e) {
                 //
             }
+        }
+    };
+
+    private static XC_MethodHook qsContainerViewUpdateResources = new XC_MethodHook() {
+        @Override
+        protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+            if (DEBUG ) log("qsContainerView updateResources called");
+            FrameLayout fl = (FrameLayout) param.thisObject;
+            XposedHelpers.setIntField(param.thisObject, "mNumColumns", mNumColumns);
+            fl.requestLayout();
+        }
+    };
+
+    private static XC_MethodReplacement qsContainerViewOnMeasure = new XC_MethodReplacement() {
+
+        @Override
+        protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+            ViewGroup thisView = (ViewGroup) param.thisObject;
+            int widthMeasureSpec = (Integer) param.args[0];
+            int heightMeasureSpec = (Integer) param.args[1];
+            float mCellGap = XposedHelpers.getFloatField(thisView, "mCellGap"); 
+            
+            int width = MeasureSpec.getSize(widthMeasureSpec);
+            int height = MeasureSpec.getSize(heightMeasureSpec);
+            int availableWidth = (int) (width - thisView.getPaddingLeft() - thisView.getPaddingRight() -
+                    (mNumColumns - 1) * mCellGap);
+            float cellWidth = (float) Math.ceil(((float) availableWidth) / mNumColumns);
+
+            // Update each of the children's widths accordingly to the cell width
+            int N = thisView.getChildCount();
+            int cellHeight = 0;
+            int cursor = 0;
+            for (int i = 0; i < N; ++i) {
+                // Update the child's width
+                View v = (View) thisView.getChildAt(i);
+                if (v.getVisibility() != View.GONE) {
+                    ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+                    int colSpan = (Integer) XposedHelpers.callMethod(v, "getColumnSpan");
+                    lp.width = (int) ((colSpan * cellWidth) + (colSpan - 1) * mCellGap);
+
+                    if (mNumColumns > 3) {
+                        if (mLpOriginalHeight == -1) mLpOriginalHeight = lp.height;
+                        lp.height = (lp.width * mNumColumns-1) / mNumColumns;
+                    } else {
+                        if (mLpOriginalHeight != -1) lp.height = mLpOriginalHeight;
+                    }
+
+                    // Measure the child
+                    int newWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, MeasureSpec.EXACTLY);
+                    int newHeightSpec = MeasureSpec.makeMeasureSpec(lp.height, MeasureSpec.EXACTLY);
+                    v.measure(newWidthSpec, newHeightSpec);
+
+                    // Save the cell height
+                    if (cellHeight <= 0) {
+                        cellHeight = v.getMeasuredHeight();
+                    }
+                    cursor += colSpan;
+                }
+            }
+
+            // Set the measured dimensions.  We always fill the tray width, but wrap to the height of
+            // all the tiles.
+            // Calling to setMeasuredDimension is protected final and not accessible directly from here
+            // so we emulate it
+            int numRows = (int) Math.ceil((float) cursor / mNumColumns);
+            int newHeight = (int) ((numRows * cellHeight) + ((numRows - 1) * mCellGap)) +
+                    thisView.getPaddingTop() + thisView.getPaddingBottom();
+
+            Field fMeasuredWidth = View.class.getDeclaredField("mMeasuredWidth");
+            fMeasuredWidth.setAccessible(true);
+            Field fMeasuredHeight = View.class.getDeclaredField("mMeasuredHeight");
+            fMeasuredHeight.setAccessible(true);
+            Field fPrivateFlags = View.class.getDeclaredField("mPrivateFlags");
+            fPrivateFlags.setAccessible(true); 
+            fMeasuredWidth.setInt(thisView, width);
+            fMeasuredHeight.setInt(thisView, newHeight);
+            int privateFlags = fPrivateFlags.getInt(thisView);
+            privateFlags |= 0x00000800;
+            fPrivateFlags.setInt(thisView, privateFlags);
+
+            return null;
         }
     };
 
