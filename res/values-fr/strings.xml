@@ -68,6 +68,11 @@
     <string name="quick_settings_torch_on">Torche on</string>
     <string name="quick_settings_torch_off">Torche off</string>
     <string name="quick_settings_torch_off_notif">Toucher pour éteindre</string>
+    <string name="quick_settings_qr_playing">Lecture&#8230;</string>
+    <string name="quick_settings_qr_recording">Enregistrement&#8230;</string>
+    <string name="quick_settings_qr_recorded">Enregistré</string>
+    <string name="quick_settings_qr_record">Appuyez longtemps pour enregistrer</string>
+    <string name="quick_settings_qr_recording_notif">Touchez pour stopper l\'enregistrement</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Gestion des paramètres rapides</string>
@@ -89,6 +94,8 @@
     <string name="qs_tile_wifi_ap">Hotspot Wi-Fi</string>
     <string name="qs_tile_torch">Torche</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Veille</string>
+    <string name="qs_tile_quickrecord">Enregistrement rapide</string>
     
     <!-- Color Picker -->
     <string name="dialog_color_picker">Sélecteur de couleur</string>
