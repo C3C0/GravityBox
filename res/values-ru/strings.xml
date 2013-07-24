@@ -6,8 +6,7 @@
     <string name="battery_style_title">Вид индикатора заряда</string>	
     <string name="battery_style_stock">Стоковый индикатор</string>
     <string name="battery_style_circle">Круглый индикатор с процентами</string>
-    <string name="battery_style_percent">Большой текст (проценты)</string>
-    <string name="battery_style_percent_stock">Большие проценты и стоковый индикатор</string>
+    <string name="battery_style_percent">Индикатор с процентами</string>
     <string name="battery_style_none">Не показывать</string>
 
     <string name="vol_music_controls_title">Пропуск трека с помощь клавиш громкости</string>
@@ -28,8 +27,8 @@
     <string name="sim_disable_notifications">Отключить уведомления</string>
     <string name="sim_disable_notifications_summary">Уведомления \"Отсутствует SIM\" отключены</string>
 
-    <string name="poweroff_advanced_title">Расширенное меню выключения</string>
-    <string name="poweroff_advanced_summary">Расширяет меню выключения устройства опцией перезагрузки в Recovery</string>
+    <string name="poweroff_advanced_title">Расширенное меню перезагрузки</string>
+    <string name="poweroff_advanced_summary">Включает расширенное меню перезагрузки с возможностью перезагрузки в Recovery</string>
     <string name="poweroff_recovery">Recovery</string>    
 
     <string name="vol_key_cursor_control_title">Управление курсором клавишами громкости</string>
@@ -68,6 +67,11 @@
     <string name="quick_settings_torch_on">Фонарик вкл.</string>
     <string name="quick_settings_torch_off">Фонарик выкл</string>
     <string name="quick_settings_torch_off_notif">Нажмите для выключения</string>
+    <string name="quick_settings_qr_playing">Воспроизведение&#8230;</string>
+    <string name="quick_settings_qr_recording">Запись&#8230;</string>
+    <string name="quick_settings_qr_recorded">Записано</string>
+    <string name="quick_settings_qr_record">Удержите для записи</string>
+    <string name="quick_settings_qr_recording_notif">Косниться чтобы остановить запись</string>
     
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Иконки быстрых настроек в статусбаре</string>
@@ -89,6 +93,8 @@
     <string name="qs_tile_wifi_ap">Точка доступа Wi-Fi</string>
     <string name="qs_tile_torch">Фонарик</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Сон</string>
+    <string name="qs_tile_quickrecord">Быстрая запись</string>
 
      <!-- Color Picker -->
     <string name="dialog_color_picker">Выбор цвета</string>
@@ -231,6 +237,7 @@
     <string name="hwkey_action_voice_search">Голосовой поиск</string>
     <string name="hwkey_action_prev_app">Переключится на предыдущее приложение</string>
     <string name="hwkey_action_kill">Закрыть текущее приложение</string>
+    <string name="hwkey_action_sleep">Отключить экран</string>
     <string name="pref_hwkey_kill_delay_title">Задержка долгого нажатия для закрытия приложения</string>
     <string name="pref_hwkey_kill_delay_summary">Применимо к кнопке Закрыть текущее приложение. Определяет, как долго нужно держать кнопку чтобы закрыть приложение</string>
     <string name="pref_hwkey_doubletap_speed_title">Скорость двойного нажатия</string>
@@ -254,4 +261,18 @@
     <string name="pref_phone_call_connect_vibrate_disable_title">Отключить вибрацию при установлении соединения</string>
     <string name="pref_phone_call_connect_vibrate_disable_summary">Отключает вибрацию, которая срабатывает при установлении соединения во ремя звонка</string>
 
+    <!-- Soft reboot -->
+    <string name="reboot_soft">Мягкая перезагрузка</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Черный задний фон</string>
+    <string name="pref_holo_bg_solid_black_summary">Использовать черный фон для ситемной Holo-темы по умолчанию вместо темно-серого градиента (Необходима перезагрузка)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">иконок в ряд</string>
+    <string name="pref_qs_tiles_per_row_summary">Определяет, как много иконок быстрых настроек будет показано в одном ряду. Размеры изменятся соответственно. Применимо к портретному режиму.</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">Отображать день недели</string>
+    
 </resources>
