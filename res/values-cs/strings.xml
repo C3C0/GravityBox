@@ -6,8 +6,7 @@
     <string name="battery_style_title">Styl indikátoru baterie</string>	
     <string name="battery_style_stock">Základní</string>
     <string name="battery_style_circle">Kruhový s procenty</string>
-    <string name="battery_style_percent">Textový s procenty</string>
-	<string name="battery_style_percent_stock">Textový s procenty a ikonou</string>
+    <string name="battery_style_percent">Procentuální text stavu baterie</string>
     <string name="battery_style_none">Žádný</string>
 
     <string name="vol_music_controls_title">Ovládání hudby tlačítky hlasitosti</string>
@@ -71,6 +70,11 @@
     <string name="quick_settings_torch_on">Světlo zap</string>
     <string name="quick_settings_torch_off">Světlo vyp</string>
     <string name="quick_settings_torch_off_notif">Dotykem vypněte světlo</string>
+    <string name="quick_settings_qr_playing">Přehrávám&#8230;</string>
+    <string name="quick_settings_qr_recording">Nahrávám&#8230;</string>
+    <string name="quick_settings_qr_recorded">Zaznamenáno</string>
+    <string name="quick_settings_qr_record">Podržte pro záznam</string>
+    <string name="quick_settings_qr_recording_notif">Dotykem zastavíte záznam</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Dlaždice QuickSettings panelu</string>
@@ -92,6 +96,8 @@
     <string name="qs_tile_wifi_ap">Wi-Fi Přístupový bod</string>
 	<string name="qs_tile_torch">Světlo</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Uspát</string>
+    <string name="qs_tile_quickrecord">Rychlý záznam zvuku</string>
 	
 	<!-- Color Picker -->
     <string name="dialog_color_picker">Výběr barvy</string>
@@ -234,6 +240,7 @@
     <string name="hwkey_action_voice_search">Hlasové vyhledávání</string>
     <string name="hwkey_action_prev_app">Přepnout na předcházející aplikaci</string>
     <string name="hwkey_action_kill">Zabít aplikaci v popředí</string>
+    <string name="hwkey_action_sleep">Uspát</string>
     <string name="pref_hwkey_kill_delay_title">Zpoždění zabití aplikace</string>
     <string name="pref_hwkey_kill_delay_summary">Vztahuje se na akci zabití aplikace v popředí dlouhým podržením tlačítka. Definuje, jak dlouho musí být tlačítko přidrženo aby došlo k provedení akce.</string>
     <string name="pref_hwkey_doubletap_speed_title">Rychlost dvojitého klepnutí</string>
@@ -256,5 +263,16 @@
     <!-- Disable vibrate on call connect -->
     <string name="pref_phone_call_connect_vibrate_disable_title">Zakázat vibrování při navázání hovoru</string>
     <string name="pref_phone_call_connect_vibrate_disable_summary">Zakáže vibraci, která je provedena při navázání hovoru</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Plné černé pozadí</string>
+    <string name="pref_holo_bg_solid_black_summary">Nahradí standardní černo-šedé pozadí (gradient) plnou černou barvou (vyžaduje restart)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">Počet dlaždic na řádek</string>
+    <string name="pref_qs_tiles_per_row_summary">Definuje počet QuickSettings dlaždic zobrazených na 1 řádek. Velikost dlaždic bude upravená podle potřeby. Aplikovatelné na portrét režim.</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">Zobrazit den v týdnu</string>
 
 </resources>
