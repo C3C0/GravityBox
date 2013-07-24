@@ -28,8 +28,8 @@
     <string name="sim_disable_notifications">關閉提醒</string>
     <string name="sim_disable_notifications_summary">「SIM 卡未插入」提醒已停用</string>
 
-    <string name="poweroff_advanced_title">進階的關機選單</string>
-    <string name="poweroff_advanced_summary">啟用有「重新啟動至 Recovery」選項的進階關機選單</string>
+    <string name="poweroff_advanced_title">進階的重新啟動選單</string>
+    <string name="poweroff_advanced_summary">啟用有重新啟動至 Recovery 選項的進階重新啟動選單</string>
     <string name="poweroff_recovery">Recovery</string>
 
     <string name="vol_key_cursor_control_title">音量鍵游標控制</string>
@@ -252,5 +252,8 @@
     <!-- Disable vibrate on call connect -->
     <string name="pref_phone_call_connect_vibrate_disable_title">停用接通時的震動</string>
     <string name="pref_phone_call_connect_vibrate_disable_summary">停用在通話接通時所觸發的震動</string>
+	
+    <!-- Soft reboot -->
+    <string name="reboot_soft">軟重啟</string>
 
 </resources>
