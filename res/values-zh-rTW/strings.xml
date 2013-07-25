@@ -6,8 +6,7 @@
     <string name="battery_style_title">電量指示圖案樣式</string>	
     <string name="battery_style_stock">原廠電量指示圖案</string>
     <string name="battery_style_circle">圓形電量圖示（包含百分比）</string>
-    <string name="battery_style_percent">大型百分比文字</string>
-    <string name="battery_style_percent_stock">大型百分比文字以及原廠電量指示圖案</string>
+    <string name="battery_style_percent">電量百分比文字</string>
     <string name="battery_style_none">無</string>
 
     <string name="vol_music_controls_title">音量鍵跳過曲目</string>
@@ -28,13 +27,13 @@
     <string name="sim_disable_notifications">關閉提醒</string>
     <string name="sim_disable_notifications_summary">「SIM 卡未插入」提醒已停用</string>
 
-    <string name="poweroff_advanced_title">進階的重新啟動選單</string>
+    <string name="poweroff_advanced_title">進階重新啟動選單</string>
     <string name="poweroff_advanced_summary">啟用有重新啟動至 Recovery 選項的進階重新啟動選單</string>
     <string name="poweroff_recovery">Recovery</string>
 
     <string name="vol_key_cursor_control_title">音量鍵游標控制</string>
     <string name="vol_key_cursor_control_summary">在文字輸入區域內，以音量鍵控制游標位置</string>
-    <string name="vol_key_cursor_control_off">已停用</string>
+    <string name="vol_key_cursor_control_off">停用</string>
     <string name="vol_key_cursor_control_on">音量增/減鈕控制游標向左/向右</string>
     <string name="vol_key_cursor_control_on_reverse">音量增/減鈕控制游標向右/向左</string>
 
@@ -67,12 +66,17 @@
     <string name="quick_settings_wifi_ap_off">Wi-Fi AP 關閉</string>
     <string name="quick_settings_torch_on">手電筒開啟</string>
     <string name="quick_settings_torch_off">手電筒關閉</string>
-    <string name="quick_settings_torch_off_notif">按下已關閉</string>
+    <string name="quick_settings_torch_off_notif">按下以關閉</string>
+	<string name="quick_settings_qr_playing">播放中&#8230;</string>
+    <string name="quick_settings_qr_recording">錄音中&#8230;</string>
+    <string name="quick_settings_qr_recorded">已錄音</string>
+    <string name="quick_settings_qr_record">長按以錄音</string>
+    <string name="quick_settings_qr_recording_notif">按下以停止錄音</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">狀態列快速設定磁貼</string>
     <string name="quick_settings_summary">可以設定狀態列的快速設定內，各個磁貼選項的顯示或隱藏</string>
-    <string name="qs_tile_user_profile">使用者資訊</string>
+    <string name="qs_tile_user_profile">擁有者</string>
     <string name="qs_tile_airplane_mode">飛航模式</string>
     <string name="qs_tile_battery">電池狀態</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
@@ -81,6 +85,7 @@
     <string name="qs_tile_mobile_data">資料連結</string>
     <string name="qs_tile_network_mode">網路模式</string>
     <string name="qs_tile_data_usage">資料用量</string>
+	<string name="qs_tile_audio">情境模式</string>
     <string name="qs_tile_brightness">亮度</string>
     <string name="qs_tile_screen_timeout">休眠</string>
     <string name="qs_tile_autorotation">自動旋轉</string>
@@ -88,7 +93,9 @@
     <string name="qs_tile_wifi_ap">Wi-Fi 存取點</string>
     <string name="qs_tile_torch">手電筒</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
-
+    <string name="qs_tile_sleep">關閉螢幕</string>
+    <string name="qs_tile_quickrecord">快速錄音</string>
+	
     <!-- Color Picker -->
     <string name="dialog_color_picker">顏色選擇器</string>
     <string name="press_color_to_apply">在顏色上按下以套用</string>
@@ -201,7 +208,7 @@
     <string name="pref_mms_fix_wakelock_summary">避免在收到新訊息時喚醒螢幕（需要重新啟動）</string>
 
     <!-- Statusbar center clock -->
-    <string name="pref_statusbar_center_clock_title">時間置中</string>
+    <string name="pref_statusbar_center_clock_title">時鐘置中</string>
 
     <!-- Media tweaks category -->
     <string name="pref_cat_media_title">媒體調校</string>
@@ -230,6 +237,7 @@
     <string name="hwkey_action_voice_search">語音搜尋</string>
     <string name="hwkey_action_prev_app">切換至上一個應用程式</string>
     <string name="hwkey_action_kill">結束正在使用的應用程式</string>
+	<string name="hwkey_action_sleep">使裝置休眠</string>
     <string name="pref_hwkey_kill_delay_title">結束應用程式的長按延遲</string>
     <string name="pref_hwkey_kill_delay_summary">適用於「結束正在使用的應用程式」動作。定義按鍵需要按下持續多久才會觸發動作</string>
     <string name="pref_hwkey_doubletap_speed_title">雙擊速度</string>
@@ -255,5 +263,16 @@
 	
     <!-- Soft reboot -->
     <string name="reboot_soft">軟重啟</string>
+	
+	 <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">純黑色背景</string>
+    <string name="pref_holo_bg_solid_black_summary">在預設的 Holo 系統內建佈景主題內使用純黑色的背景，而不是黑-灰色的漸層（需要重新啟動）</string>
+
+	 <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">每列磁貼數</string>
+    <string name="pref_qs_tiles_per_row_summary">定義快速設定內每列有幾個磁貼。磁貼會根據您的設定自動縮放。適用於豎屏。</string>
+ 
+	<!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">顯示目前是一週的哪一天</string>
 
 </resources>
