@@ -6,8 +6,7 @@
     <string name="battery_style_title">Стиль індикатора батареї</string>  
     <string name="battery_style_stock">Стандартний індикатор</string>
     <string name="battery_style_circle">Круговий з процентами</string>
-    <string name="battery_style_percent">Великі цифри процентів</string>
-    <string name="battery_style_percent_stock">Великі цифри зі стандартною іконкою</string>
+    <string name="battery_style_percent">Цифри процентів</string>
     <string name="battery_style_none">Ніякого</string>
 
     <string name="vol_music_controls_title">Гортання треків гучністю</string>
@@ -63,11 +62,16 @@
     <!-- QuickSettings strings -->
     <string name="quick_settings_sync_on">Синхр. увімк.</string>
     <string name="quick_settings_sync_off">Синхр. вимк.</string>
-    <string name="quick_settings_wifi_ap_on">ТД Wi-FI увімк.</string>
-    <string name="quick_settings_wifi_ap_off">ТД Wi-FI вимк.</string>
+    <string name="quick_settings_wifi_ap_on">ТД Wi-Fi увімк.</string>
+    <string name="quick_settings_wifi_ap_off">ТД Wi-Fi вимк.</string>
     <string name="quick_settings_torch_on">Ліхтарик увімк.</string>
     <string name="quick_settings_torch_off">Ліхтарик вимк.</string>
-    <string name="quick_settings_torch_off_notif">Ліхтарик вимкнений</string>
+    <string name="quick_settings_torch_off_notif">Натисніть для вимк.</string>
+    <string name="quick_settings_qr_playing">Відтворення&#8230;</string>
+    <string name="quick_settings_qr_recording">Запис&#8230;</string>
+    <string name="quick_settings_qr_recorded">Записано</string>
+    <string name="quick_settings_qr_record">Довг. натис. для запису</string>
+    <string name="quick_settings_qr_recording_notif">Завершити запис</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Плитки швидких налаштувань</string>
@@ -89,6 +93,8 @@
     <string name="qs_tile_wifi_ap">Портативна точка доступу</string>
     <string name="qs_tile_torch">Ліхтарик</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+	<string name="qs_tile_sleep">Блокування</string>
+    <string name="qs_tile_quickrecord">Швидкий запис</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Змішувач кольорів</string>
@@ -231,7 +237,8 @@
     <string name="hwkey_action_voice_search">Голосовий пошук</string>
     <string name="hwkey_action_prev_app">До попереднього додатку</string>
     <string name="hwkey_action_kill">Завершити усі поточні</string>
-    <string name="pref_hwkey_kill_delay_title">Тривалість натискання завершення</string>
+	<string name="hwkey_action_sleep">Заблокувати</string>
+    <string name="pref_hwkey_kill_delay_title">Довге натискання завершення</string>
     <string name="pref_hwkey_kill_delay_summary">Застосовується до дії завершення усіх поточних завдань. Визначає тривалість натискання для спрацьовування</string>
     <string name="pref_hwkey_doubletap_speed_title">Швидкість подвійного дотику</string>
     <string name="pref_hwkey_doubletap_speed_summary">Застосовується до дії подвійного дотику меню. Визначає швидкість подвійного дотику для спрацьовування</string>
@@ -244,7 +251,7 @@
     <string name="pref_cat_phone_summary">Різноманітні твіки телефонії</string>
 
     <!-- Flip action while ringing -->
-    <string name="pref_phone_flip_title">Перегортання пристрою під час дзвінка</string>
+    <string name="pref_phone_flip_title">Перегортання під час дзвінка</string>
     <string name="pref_phone_flip_summary">Дозволяє призначити дію на перегортання пристрою лицем донизу під час вхідного дзвінка</string>
     <string name="phone_flip_action_none">Нічого не робити</string>
     <string name="phone_flip_action_mute">Заглушити дзвінок</string>
@@ -253,5 +260,19 @@
     <!-- Disable vibrate on call connect -->
     <string name="pref_phone_call_connect_vibrate_disable_title">Вимкнення вібрації з\'єднання</string>
     <string name="pref_phone_call_connect_vibrate_disable_summary">Вимикає вібрацію під час з\'єднання дзвінка</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">М\'яке перезавантаження</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Суцільне чорне тло</string>
+    <string name="pref_holo_bg_solid_black_summary">Призначає суцільне чорне тло замість чорно-сірого градієнту для системної теми за умовчанням Holo (потрібне перезавантаження)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">Плиток в рядку</string>
+    <string name="pref_qs_tiles_per_row_summary">Призначає скільки плиток швидких налаштувань розміщувати в одному рядку. Розмір буде змінений належним чином. Застосовується до портретного режиму.</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">Показувати день тижня</string>
 
 </resources>
