@@ -1,3 +1,11 @@
+Changelog 1.7.1 - 25/07/2013
+--------------------------------------
+- improved detection of existing Reboot action item.
+--- Fixes duplicate Reboot action item for most devices
+--- There may still be some exotic ones where duplicate may occur - provide framework-res.apk in such case
+- updated Traditional Chinese translations (thanks to c1126230)
+- updated Ukrainian translations (thanks to alex_glbr)
+
 Changelog 1.7.0 - 24/07/2013
 --------------------------------------
 - Advanced reboot menu revamped
