@@ -44,7 +44,7 @@
     <string name="fix_datetime_crash_summary">Activer si vous constatez un plantage lorsque vous accédez au paramètre Date et heure (redémarrage nécessaire)</string>
 
     <string name="fix_caller_id_phone_title">Identification de l\'appelant en téléphonie</string>
-    <string name="fix_caller_id_phone_summary">Activer si vous constatez qu\'un contact enregistré n\'est pas identifié lord d\'un appel entrant (redémarrage nécessaire)</string>
+    <string name="fix_caller_id_phone_summary">Activer si vous constatez qu\'un contact enregistré n\'est pas identifié lors d\'un appel entrant (redémarrage nécessaire)</string>
     <string name="fix_caller_id_phone_alert">Après redémarrage, vous devrez supprimer puis ajouter de nouveau vos contacts pour que le changement prenne effet. Allez dans Paramètres / Applications / Toutes / Liste des contacts / Effacer les données</string>
 
     <string name="fix_caller_id_mms_title">Identification de l\'émetteur d\'un message</string>
