@@ -21,6 +21,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, null);
 
         XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
+        XResources.setSystemWideReplacement("android", "bool", "config_useMasterVolume", false);
 
         if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_SOLID_BLACK, false)) {
             XResources.setSystemWideReplacement(
@@ -140,6 +141,14 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         if (lpparam.packageName.equals(ModSettings.PACKAGE_NAME)) {
             ModSettings.init(prefs, lpparam.classLoader);
+        }
+
+        if (lpparam.packageName.equals(ModVolumePanel.PACKAGE_NAME)) {
+            ModVolumePanel.init(prefs, lpparam.classLoader);
+        }
+
+        if (lpparam.packageName.equals(ModAudioSettings.PACKAGE_NAME)) {
+            ModAudioSettings.init(prefs, lpparam.classLoader);
         }
     }
 }
