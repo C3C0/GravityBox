@@ -287,4 +287,11 @@
     <string name="pref_auto_switch_qs_title">Auto-switch QuickSettings</string>
     <string name="pref_auto_switch_qs_summary">QuickSettings will show automatically when status bar is pulled down while there are no notifications</string>
 
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Quick pulldown</string>
+    <string name="pref_quick_pulldown_summary">Edge of the status bar pulls down QuickSettings</string>
+    <string name="quick_pulldown_off">Off</string>
+    <string name="quick_pulldown_right">Right</string>
+    <string name="quick_pulldown_left">Left</string>
+
 </resources>

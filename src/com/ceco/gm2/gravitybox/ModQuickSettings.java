@@ -49,6 +49,9 @@ public class ModQuickSettings {
     private static final String CLASS_QS_CONTAINER_VIEW = "com.android.systemui.statusbar.phone.QuickSettingsContainerView";
     private static final boolean DEBUG = false;
 
+    private static final float STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_RIGHT = 0.15f;
+    private static final float STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_LEFT = 0.85f;
+
     private static Context mContext;
     private static Context mGbContext;
     private static ViewGroup mContainerView;
@@ -60,6 +63,7 @@ public class ModQuickSettings {
     private static int mNumColumns = 3;
     private static int mLpOriginalHeight = -1;
     private static boolean mAutoSwitch = false;
+    private static int mQuickPulldown = GravityBoxSettings.QUICK_PULLDOWN_OFF;
 
     private static ArrayList<AQuickSettingsTile> mTiles;
 
@@ -112,6 +116,11 @@ public class ModQuickSettings {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_QS_AUTOSWITCH)) {
                     mAutoSwitch = intent.getBooleanExtra(
                             GravityBoxSettings.EXTRA_QS_AUTOSWITCH, false);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICK_PULLDOWN)) {
+                    mQuickPulldown = intent.getIntExtra(
+                            GravityBoxSettings.EXTRA_QUICK_PULLDOWN, 
+                            GravityBoxSettings.QUICK_PULLDOWN_OFF);
                 }
             }
         }
@@ -250,6 +259,15 @@ public class ModQuickSettings {
                         GravityBoxSettings.PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW, "3"));
             } catch (NumberFormatException e) {
                 log("Invalid preference for tiles per row: " + e.getMessage());
+            }
+
+            mAutoSwitch = prefs.getBoolean(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS_AUTOSWITCH, false);
+
+            try {
+                mQuickPulldown = Integer.valueOf(prefs.getString(
+                        GravityBoxSettings.PREF_KEY_QUICK_PULLDOWN, "0"));
+            } catch (NumberFormatException e) {
+                log("Invalid preference for quick pulldown: " + e.getMessage());
             }
 
             final Class<?> quickSettingsClass = XposedHelpers.findClass(CLASS_QUICK_SETTINGS, classLoader);
@@ -419,6 +437,8 @@ public class ModQuickSettings {
                 float handleBarHeight = XposedHelpers.getFloatField(param.thisObject, "mHandleBarHeight");
                 Method getExpandedHeight = param.thisObject.getClass().getSuperclass().getMethod("getExpandedHeight");
                 float expandedHeight = (Float) getExpandedHeight.invoke(param.thisObject);
+                final int width = ((View) param.thisObject).getWidth();
+                
                 switch (event.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
                         okToFlip = (expandedHeight == 0);
@@ -426,6 +446,14 @@ public class ModQuickSettings {
                         if (mAutoSwitch && 
                                 (Integer)XposedHelpers.callMethod(notificationData, "size") == 0 &&
                                 !isSimSwitchPanelShowing()) {
+                            shouldFlip = true;
+                        } else if (mQuickPulldown == GravityBoxSettings.QUICK_PULLDOWN_RIGHT
+                                    && (event.getX(0) > (width * 
+                                    (1.0f - STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_RIGHT)))) {
+                            shouldFlip = true;
+                        } else if (mQuickPulldown == GravityBoxSettings.QUICK_PULLDOWN_LEFT
+                                    && (event.getX(0) < (width *
+                                    (1.0f - STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_LEFT)))) {
                             shouldFlip = true;
                         }
                         break;
