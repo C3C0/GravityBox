@@ -52,10 +52,6 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         ModLowBatteryWarning.initZygote(prefs);
         ModDisplay.initZygote(prefs);
 
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_MMS_WAKELOCK, false)) {
-            FixMmsWakelock.initZygote(prefs);
-        }
-
         ModAudio.initZygote(prefs);
         ModHwKeys.initZygote(prefs);
         PatchMasterKey.initZygote();
