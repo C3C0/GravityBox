@@ -40,6 +40,7 @@ import net.margaritov.preference.colorpicker.ColorPickerPreference;
 public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_QUICK_SETTINGS = "pref_quick_settings";
     public static final String PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW = "pref_qs_tiles_per_row";
+    public static final String PREF_KEY_QUICK_SETTINGS_AUTOSWITCH = "pref_auto_switch_qs";
 
     public static final String PREF_KEY_BATTERY_STYLE = "pref_battery_style";
     public static final String PREF_KEY_BATTERY_PERCENT_TEXT = "pref_battery_percent_text";
@@ -146,6 +147,7 @@ public class GravityBoxSettings extends Activity {
     public static final String ACTION_PREF_QUICKSETTINGS_CHANGED = "gravitybox.intent.action.QUICKSETTINGS_CHANGED";
     public static final String EXTRA_QS_PREFS = "qsPrefs";
     public static final String EXTRA_QS_COLS = "qsCols";
+    public static final String EXTRA_QS_AUTOSWITCH = "qsAutoSwitch";
 
     public static final String ACTION_PREF_CENTER_CLOCK_CHANGED = "gravitybox.intent.action.CENTER_CLOCK_CHANGED";
     public static final String EXTRA_CENTER_CLOCK = "centerClock";
@@ -359,6 +361,10 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
                 intent.putExtra(EXTRA_QS_COLS, Integer.valueOf(
                         prefs.getString(PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW, "3")));
+            } else if (key.equals(PREF_KEY_QUICK_SETTINGS_AUTOSWITCH)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_QS_AUTOSWITCH,
+                        prefs.getBoolean(PREF_KEY_QUICK_SETTINGS_AUTOSWITCH, false));
             } else if (key.equals(PREF_KEY_STATUSBAR_BGCOLOR)) {
                 intent.setAction(ACTION_PREF_STATUSBAR_BGCOLOR_CHANGED);
                 intent.putExtra(EXTRA_SB_BGCOLOR, prefs.getInt(PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK));

@@ -31,7 +31,6 @@ import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -60,6 +59,7 @@ public class ModQuickSettings {
     private static Object mSimSwitchPanelView;
     private static int mNumColumns = 3;
     private static int mLpOriginalHeight = -1;
+    private static boolean mAutoSwitch = false;
 
     private static ArrayList<AQuickSettingsTile> mTiles;
 
@@ -108,6 +108,10 @@ public class ModQuickSettings {
                     if (mContainerView != null) {
                         XposedHelpers.callMethod(mContainerView, "updateResources");
                     }
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_QS_AUTOSWITCH)) {
+                    mAutoSwitch = intent.getBooleanExtra(
+                            GravityBoxSettings.EXTRA_QS_AUTOSWITCH, false);
                 }
             }
         }
@@ -414,11 +418,13 @@ public class ModQuickSettings {
                 Object notificationData = XposedHelpers.getObjectField(mStatusBar, "mNotificationData");
                 float handleBarHeight = XposedHelpers.getFloatField(param.thisObject, "mHandleBarHeight");
                 Method getExpandedHeight = param.thisObject.getClass().getSuperclass().getMethod("getExpandedHeight");
+                float expandedHeight = (Float) getExpandedHeight.invoke(param.thisObject);
                 switch (event.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
-                        okToFlip = ((Float) getExpandedHeight.invoke(param.thisObject)) == 0;
+                        okToFlip = (expandedHeight == 0);
                         XposedHelpers.setBooleanField(param.thisObject, "mOkToFlip", okToFlip);
-                        if ((Integer)XposedHelpers.callMethod(notificationData, "size") == 0 &&
+                        if (mAutoSwitch && 
+                                (Integer)XposedHelpers.callMethod(notificationData, "size") == 0 &&
                                 !isSimSwitchPanelShowing()) {
                             shouldFlip = true;
                         }
@@ -439,7 +445,7 @@ public class ModQuickSettings {
                         break;
                 }
                 if (okToFlip && shouldFlip) {
-                    if (((View)param.thisObject).getMeasuredHeight() < handleBarHeight) {
+                    if (expandedHeight < handleBarHeight) {
                         XposedHelpers.callMethod(mStatusBar, "switchToSettings");
                     } else {
                         XposedHelpers.callMethod(mStatusBar, "flipToSettings");
