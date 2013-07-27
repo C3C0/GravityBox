@@ -21,7 +21,6 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, null);
 
         XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
-        XResources.setSystemWideReplacement("android", "bool", "config_useMasterVolume", false);
 
         if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_SOLID_BLACK, false)) {
             XResources.setSystemWideReplacement(

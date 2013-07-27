@@ -104,6 +104,12 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
     public static final String PREF_KEY_MUSIC_VOLUME_STEPS = "pref_music_volume_steps";
     public static final String PREF_KEY_SAFE_MEDIA_VOLUME = "pref_safe_media_volume";
+    public static final String PREF_KEY_VOLUME_PANEL_EXPANDABLE = "pref_volume_panel_expandable";
+    public static final String ACTION_PREF_VOLUME_PANEL_MODE_CHANGED = "gravitybox.intent.action.VOLUME_PANEL_MODE_CHANGED";
+    public static final String EXTRA_EXPANDABLE = "expandable";
+    public static final String PREF_KEY_LINK_VOLUMES = "pref_link_volumes";
+    public static final String ACTION_PREF_LINK_VOLUMES_CHANGED = "gravitybox.intent.action.LINK_VOLUMES_CHANGED";
+    public static final String EXTRA_LINKED = "linked";
 
     public static final String PREF_KEY_HWKEY_MENU_LONGPRESS = "pref_hwkey_menu_longpress";
     public static final String PREF_KEY_HWKEY_MENU_DOUBLETAP = "pref_hwkey_menu_doubletap";
@@ -388,6 +394,14 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_HWKEY_KILL_DELAY_CHANGED);
                 intent.putExtra(EXTRA_HWKEY_VALUE, Integer.valueOf(
                         prefs.getString(PREF_KEY_HWKEY_KILL_DELAY, "1000")));
+            } else if (key.equals(PREF_KEY_VOLUME_PANEL_EXPANDABLE)) {
+                intent.setAction(ACTION_PREF_VOLUME_PANEL_MODE_CHANGED);
+                intent.putExtra(EXTRA_EXPANDABLE,
+                        prefs.getBoolean(PREF_KEY_VOLUME_PANEL_EXPANDABLE, false));
+            } else if (key.equals(PREF_KEY_LINK_VOLUMES)) {
+                intent.setAction(ACTION_PREF_LINK_VOLUMES_CHANGED);
+                intent.putExtra(EXTRA_LINKED,
+                        prefs.getBoolean(PREF_KEY_LINK_VOLUMES, true));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);

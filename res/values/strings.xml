@@ -275,4 +275,12 @@
     <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">Show day of week</string>
 
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Expandable volume panel</string>
+    <string name="pref_volume_panel_expandable_summary">Enables expandable volume panel with ability to set volumes for different streams</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Link ringtone &amp; notifications volumes</string>
+    <string name="pref_link_volumes_summary">When disabled, volumes for ringtone and notifications can be set independently</string>
+
 </resources>

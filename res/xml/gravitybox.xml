@@ -232,6 +232,18 @@
             android:summary="@string/pref_safe_media_volume_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_volume_panel_expandable"
+            android:title="@string/pref_volume_panel_expandable_title"
+            android:summary="@string/pref_volume_panel_expandable_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
+            android:key="pref_link_volumes"
+            android:title="@string/pref_link_volumes_title"
+            android:summary="@string/pref_link_volumes_summary"
+            android:defaultValue="true" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 
