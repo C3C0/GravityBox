@@ -22,6 +22,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -30,7 +31,6 @@ import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -49,6 +49,9 @@ public class ModQuickSettings {
     private static final String CLASS_QS_CONTAINER_VIEW = "com.android.systemui.statusbar.phone.QuickSettingsContainerView";
     private static final boolean DEBUG = false;
 
+    private static final float STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_RIGHT = 0.15f;
+    private static final float STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_LEFT = 0.85f;
+
     private static Context mContext;
     private static Context mGbContext;
     private static ViewGroup mContainerView;
@@ -59,6 +62,8 @@ public class ModQuickSettings {
     private static Object mSimSwitchPanelView;
     private static int mNumColumns = 3;
     private static int mLpOriginalHeight = -1;
+    private static boolean mAutoSwitch = false;
+    private static int mQuickPulldown = GravityBoxSettings.QUICK_PULLDOWN_OFF;
 
     private static ArrayList<AQuickSettingsTile> mTiles;
 
@@ -104,7 +109,18 @@ public class ModQuickSettings {
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_QS_COLS)) {
                     mNumColumns = intent.getIntExtra(GravityBoxSettings.EXTRA_QS_COLS, 3);
-                    updateTileLayout();
+                    if (mContainerView != null) {
+                        XposedHelpers.callMethod(mContainerView, "updateResources");
+                    }
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_QS_AUTOSWITCH)) {
+                    mAutoSwitch = intent.getBooleanExtra(
+                            GravityBoxSettings.EXTRA_QS_AUTOSWITCH, false);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICK_PULLDOWN)) {
+                    mQuickPulldown = intent.getIntExtra(
+                            GravityBoxSettings.EXTRA_QUICK_PULLDOWN, 
+                            GravityBoxSettings.QUICK_PULLDOWN_OFF);
                 }
             }
         }
@@ -183,15 +199,19 @@ public class ModQuickSettings {
         }
     }
 
-    private static void updateTileLayout() {
-        int tileCount = mContainerView.getChildCount();
-        int textSize;
+    private static void updateTileLayout(FrameLayout container, int orientation) {
+        if (container == null) return;
 
-        switch (mNumColumns) {
-            case 4: textSize = 10; break;
-            case 5: textSize = 8; break;
-            case 3:
-            default: textSize = 12;
+        int tileCount = container.getChildCount();
+        int textSize = 12;
+
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            switch (mNumColumns) {
+                case 4: textSize = 10; break;
+                case 5: textSize = 8; break;
+                case 3:
+                default: textSize = 12;
+            }
         }
 
         for(int i = 0; i < tileCount; i++) {
@@ -220,9 +240,6 @@ public class ModQuickSettings {
                 }
             }
         }
-
-        XposedHelpers.setIntField(mContainerView, "mNumColumns", mNumColumns);
-        XposedHelpers.callMethod(mContainerView, "updateResources");
     }
 
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
@@ -242,6 +259,15 @@ public class ModQuickSettings {
                         GravityBoxSettings.PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW, "3"));
             } catch (NumberFormatException e) {
                 log("Invalid preference for tiles per row: " + e.getMessage());
+            }
+
+            mAutoSwitch = prefs.getBoolean(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS_AUTOSWITCH, false);
+
+            try {
+                mQuickPulldown = Integer.valueOf(prefs.getString(
+                        GravityBoxSettings.PREF_KEY_QUICK_PULLDOWN, "0"));
+            } catch (NumberFormatException e) {
+                log("Invalid preference for quick pulldown: " + e.getMessage());
             }
 
             final Class<?> quickSettingsClass = XposedHelpers.findClass(CLASS_QUICK_SETTINGS, classLoader);
@@ -382,7 +408,6 @@ public class ModQuickSettings {
             mTiles.add(gbTile);
 
             updateTileVisibility();
-            updateTileLayout();
         }
     };
 
@@ -411,12 +436,24 @@ public class ModQuickSettings {
                 Object notificationData = XposedHelpers.getObjectField(mStatusBar, "mNotificationData");
                 float handleBarHeight = XposedHelpers.getFloatField(param.thisObject, "mHandleBarHeight");
                 Method getExpandedHeight = param.thisObject.getClass().getSuperclass().getMethod("getExpandedHeight");
+                float expandedHeight = (Float) getExpandedHeight.invoke(param.thisObject);
+                final int width = ((View) param.thisObject).getWidth();
+                
                 switch (event.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
-                        okToFlip = ((Float) getExpandedHeight.invoke(param.thisObject)) == 0;
+                        okToFlip = (expandedHeight == 0);
                         XposedHelpers.setBooleanField(param.thisObject, "mOkToFlip", okToFlip);
-                        if ((Integer)XposedHelpers.callMethod(notificationData, "size") == 0 &&
+                        if (mAutoSwitch && 
+                                (Integer)XposedHelpers.callMethod(notificationData, "size") == 0 &&
                                 !isSimSwitchPanelShowing()) {
+                            shouldFlip = true;
+                        } else if (mQuickPulldown == GravityBoxSettings.QUICK_PULLDOWN_RIGHT
+                                    && (event.getX(0) > (width * 
+                                    (1.0f - STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_RIGHT)))) {
+                            shouldFlip = true;
+                        } else if (mQuickPulldown == GravityBoxSettings.QUICK_PULLDOWN_LEFT
+                                    && (event.getX(0) < (width *
+                                    (1.0f - STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_LEFT)))) {
                             shouldFlip = true;
                         }
                         break;
@@ -436,7 +473,7 @@ public class ModQuickSettings {
                         break;
                 }
                 if (okToFlip && shouldFlip) {
-                    if (((View)param.thisObject).getMeasuredHeight() < handleBarHeight) {
+                    if (expandedHeight < handleBarHeight) {
                         XposedHelpers.callMethod(mStatusBar, "switchToSettings");
                     } else {
                         XposedHelpers.callMethod(mStatusBar, "flipToSettings");
@@ -469,9 +506,14 @@ public class ModQuickSettings {
         @Override
         protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
             if (DEBUG ) log("qsContainerView updateResources called");
+            // do this only for portrait mode
             FrameLayout fl = (FrameLayout) param.thisObject;
-            XposedHelpers.setIntField(param.thisObject, "mNumColumns", mNumColumns);
-            fl.requestLayout();
+            final int orientation = fl.getContext().getResources().getConfiguration().orientation;
+            updateTileLayout(fl, orientation);
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                XposedHelpers.setIntField(param.thisObject, "mNumColumns", mNumColumns);
+                fl.requestLayout();
+            }
         }
     };
 
@@ -482,13 +524,15 @@ public class ModQuickSettings {
             ViewGroup thisView = (ViewGroup) param.thisObject;
             int widthMeasureSpec = (Integer) param.args[0];
             int heightMeasureSpec = (Integer) param.args[1];
-            float mCellGap = XposedHelpers.getFloatField(thisView, "mCellGap"); 
+            float mCellGap = XposedHelpers.getFloatField(thisView, "mCellGap");
+            int numColumns = XposedHelpers.getIntField(thisView, "mNumColumns");
+            int orientation = mContext.getResources().getConfiguration().orientation;
             
             int width = MeasureSpec.getSize(widthMeasureSpec);
             int height = MeasureSpec.getSize(heightMeasureSpec);
             int availableWidth = (int) (width - thisView.getPaddingLeft() - thisView.getPaddingRight() -
-                    (mNumColumns - 1) * mCellGap);
-            float cellWidth = (float) Math.ceil(((float) availableWidth) / mNumColumns);
+                    (numColumns - 1) * mCellGap);
+            float cellWidth = (float) Math.ceil(((float) availableWidth) / numColumns);
 
             // Update each of the children's widths accordingly to the cell width
             int N = thisView.getChildCount();
@@ -502,11 +546,15 @@ public class ModQuickSettings {
                     int colSpan = (Integer) XposedHelpers.callMethod(v, "getColumnSpan");
                     lp.width = (int) ((colSpan * cellWidth) + (colSpan - 1) * mCellGap);
 
-                    if (mNumColumns > 3) {
-                        if (mLpOriginalHeight == -1) mLpOriginalHeight = lp.height;
-                        lp.height = (lp.width * mNumColumns-1) / mNumColumns;
+                    if (mLpOriginalHeight == -1) mLpOriginalHeight = lp.height;
+                    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                        if (numColumns > 3) {
+                            lp.height = (lp.width * numColumns-1) / numColumns;
+                        } else {
+                            lp.height = mLpOriginalHeight;
+                        }
                     } else {
-                        if (mLpOriginalHeight != -1) lp.height = mLpOriginalHeight;
+                        lp.height = mLpOriginalHeight;
                     }
 
                     // Measure the child
@@ -526,7 +574,7 @@ public class ModQuickSettings {
             // all the tiles.
             // Calling to setMeasuredDimension is protected final and not accessible directly from here
             // so we emulate it
-            int numRows = (int) Math.ceil((float) cursor / mNumColumns);
+            int numRows = (int) Math.ceil((float) cursor / numColumns);
             int newHeight = (int) ((numRows * cellHeight) + ((numRows - 1) * mCellGap)) +
                     thisView.getPaddingTop() + thisView.getPaddingBottom();
 

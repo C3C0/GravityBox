@@ -6,8 +6,7 @@
     <string name="battery_style_title">Styl indikátoru baterie</string>	
     <string name="battery_style_stock">Základní</string>
     <string name="battery_style_circle">Kruhový s procenty</string>
-    <string name="battery_style_percent">Textový s procenty</string>
-	<string name="battery_style_percent_stock">Textový s procenty a ikonou</string>
+    <string name="battery_style_percent">Procentuální text stavu baterie</string>
     <string name="battery_style_none">Žádný</string>
 
     <string name="vol_music_controls_title">Ovládání hudby tlačítky hlasitosti</string>
@@ -71,6 +70,11 @@
     <string name="quick_settings_torch_on">Světlo zap</string>
     <string name="quick_settings_torch_off">Světlo vyp</string>
     <string name="quick_settings_torch_off_notif">Dotykem vypněte světlo</string>
+    <string name="quick_settings_qr_playing">Přehrávám&#8230;</string>
+    <string name="quick_settings_qr_recording">Nahrávám&#8230;</string>
+    <string name="quick_settings_qr_recorded">Zaznamenáno</string>
+    <string name="quick_settings_qr_record">Podržte pro záznam</string>
+    <string name="quick_settings_qr_recording_notif">Dotykem zastavíte záznam</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Dlaždice QuickSettings panelu</string>
@@ -92,6 +96,8 @@
     <string name="qs_tile_wifi_ap">Wi-Fi Přístupový bod</string>
 	<string name="qs_tile_torch">Světlo</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Uspát</string>
+    <string name="qs_tile_quickrecord">Rychlý záznam zvuku</string>
 	
 	<!-- Color Picker -->
     <string name="dialog_color_picker">Výběr barvy</string>
@@ -111,8 +117,8 @@
 
     <!-- Main preference categories -->
     <string name="pref_cat_statusbar_title">Nastavení stavového řádku</string>
-    <string name="pref_cat_statusbar_summary">Obsahuje různé nastavení stavového řádku</string>
-    <string name="pref_cat_misc_title">Různé nastavení</string>
+    <string name="pref_cat_statusbar_summary">Obsahuje různá nastavení stavového řádku</string>
+    <string name="pref_cat_misc_title">Různá nastavení</string>
     <string name="pref_cat_misc_summary">Obsahuje všechny ostatní nastavení nespadající do jiné specifické kategorie</string>
     <string name="pref_cat_fixes_title">Všeobecné opravy</string>
     <string name="pref_cat_fixes_summary">Obsahuje všeobecné opravy specifické pro MTK6589. Použít jen v případě potřeby</string>
@@ -224,7 +230,7 @@
     <string name="pref_charging_led_disable_summary">Vypne LED během nabíjení</string>
 
     <!-- Hardware key actions -->
-    <string name="pref_cat_hwkey_actions_title">Akcie tlačítek</string>
+    <string name="pref_cat_hwkey_actions_title">Akce tlačítek</string>
     <string name="pref_cat_hwkey_actions_summary">Umožňuje nastavení akcí pro hardvérová tlačítka</string>
     <string name="pref_hwkey_menu_longpress_title">Dlouhé podržení Menu</string>
     <string name="pref_hwkey_menu_doubletap_title">Dvojité klepnutí na Menu</string>
@@ -234,6 +240,7 @@
     <string name="hwkey_action_voice_search">Hlasové vyhledávání</string>
     <string name="hwkey_action_prev_app">Přepnout na předcházející aplikaci</string>
     <string name="hwkey_action_kill">Zabít aplikaci v popředí</string>
+    <string name="hwkey_action_sleep">Uspát</string>
     <string name="pref_hwkey_kill_delay_title">Zpoždění zabití aplikace</string>
     <string name="pref_hwkey_kill_delay_summary">Vztahuje se na akci zabití aplikace v popředí dlouhým podržením tlačítka. Definuje, jak dlouho musí být tlačítko přidrženo aby došlo k provedení akce.</string>
     <string name="pref_hwkey_doubletap_speed_title">Rychlost dvojitého klepnutí</string>
@@ -256,5 +263,39 @@
     <!-- Disable vibrate on call connect -->
     <string name="pref_phone_call_connect_vibrate_disable_title">Zakázat vibrování při navázání hovoru</string>
     <string name="pref_phone_call_connect_vibrate_disable_summary">Zakáže vibraci, která je provedena při navázání hovoru</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Plné černé pozadí</string>
+    <string name="pref_holo_bg_solid_black_summary">Nahradí standardní černo-šedé pozadí (gradient) plnou černou barvou (vyžaduje restart)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">Počet dlaždic na řádek</string>
+    <string name="pref_qs_tiles_per_row_summary">Definuje počet QuickSettings dlaždic zobrazených na 1 řádek. Velikost dlaždic bude upravená podle potřeby. Aplikovatelné na portrét režim.</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">Zobrazit den v týdnu</string>
+
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Rozšiřitelné nastavení hlasitosti</string>
+    <string name="pref_volume_panel_expandable_summary">Umožňuje rozšířit panel nastavení hlasitosti, ve kterém je možné nastavit hlasitosti zvlášť pro každý zvukový tok</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Spojit hlasitost vyzvánění a notifikací</string>
+    <string name="pref_link_volumes_summary">Pokud je vypnuto, umožňuje nastavit úrovně hlasitosti zvlášť pro vyzvánění a notifikace</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">Automatické zobrazení QuickSettings</string>
+    <string name="pref_auto_switch_qs_summary">QuickSettings budou zobrazeny automaticky pokud se v oznamovacím panely nenacházejí žádné notifikace</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Rychlé zobrazení QuickSettings</string>
+    <string name="pref_quick_pulldown_summary">Stažení stavového řádku v oblasti definovaného okraje přepne na QuickSettings</string>
+    <string name="quick_pulldown_off">Vypnuto</string>
+    <string name="quick_pulldown_right">Pravý okraj</string>
+    <string name="quick_pulldown_left">Levý okraj</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">Zakázat probouzení tlačítky hlasitosti</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Pro zařízení jako Jiayu G3S, G4, u kterých tlačítka hlasitosti probouzejí zařízení</string>
 
 </resources>

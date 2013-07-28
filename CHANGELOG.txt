@@ -1,3 +1,49 @@
+Changelog 1.8.0 - 28/07/2013
+--------------------------------------
+- Media tweaks
+--- option for expandable volume panel
+--- option to unlink common volumes for ringtone and notifications to control them independently
+- Quick settings
+--- auto-switch to QuickSettings when there are no notifications is now configurable
+--- option to use edges of status bar to quickly pull down QuickSettings (off,left,right)
+- Hardware keys
+--- option to disable volume rocker wake for devices like Jiayu G3S, G4, where volume keys turn on screen
+--- this should also fix volume keys skip track for those devices
+- Messaging wakelock fix
+--- adapted to support more devices (Zopo, Jiayu G3s, G4)
+
+Changelog 1.7.1 - 25/07/2013
+--------------------------------------
+- improved detection of existing Reboot action item.
+--- Fixes duplicate Reboot action item for most devices
+--- There may still be some exotic ones where duplicate may occur - provide framework-res.apk in such case
+- updated Traditional Chinese translations (thanks to c1126230)
+- updated Ukrainian translations (thanks to alex_glbr)
+
+Changelog 1.7.0 - 24/07/2013
+--------------------------------------
+- Advanced reboot menu revamped
+--- binds to existing Reboot item if exists
+--- creates new Reboot item if it does not exist
+--- added Soft Reboot option
+- Display Tweaks
+--- dithered Holo background to suppress color banding
+--- option to use solid black Holo background instead of black-grey gradient
+- Hardware key actions
+--- added "Go to sleep" action (mimics power key)
+- QuickSettings tiles
+--- added Sleep tile (mimics power key)
+--- added QuickRecord tile - allows to quickly record audio
+------ long-press to start recording
+------ single-press to stop recording or start/stop playback
+--- option to set number of tiles per row for portrait mode (3,4,5)
+- Developer options
+--- added 0.25x scale factor for animations
+- Battery style revamped
+--- allows battery percent text to be turned on for any battery style (independent option)
+--- removed obsolete Battery percent setting from Battery settings
+- added Traditional Chinese translations (thanks to c1126230)
+
 Changelog 1.6.1 - 19/07/2013
 --------------------------------------
 Security release, patching following vulnerabilities:

@@ -80,6 +80,20 @@
             android:entryValues="@array/qs_tiles_per_row_values"
             android:defaultValue="3" />
 
+        <CheckBoxPreference 
+            android:key="pref_auto_switch_qs"
+            android:title="@string/pref_auto_switch_qs_title"
+            android:summary="@string/pref_auto_switch_qs_summary"
+            android:defaultValue="false" />
+
+        <ListPreference
+            android:key="pref_quick_pulldown" 
+            android:title="@string/pref_quick_pulldown_title"
+            android:summary="@string/pref_quick_pulldown_summary"
+            android:entries="@array/quick_pulldown_entries"
+            android:entryValues="@array/quick_pulldown_values"
+            android:defaultValue="0" />
+
         <ListPreference
             android:key="pref_battery_style" 
             android:title="@string/battery_style_title" 
@@ -232,6 +246,18 @@
             android:summary="@string/pref_safe_media_volume_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_volume_panel_expandable"
+            android:title="@string/pref_volume_panel_expandable_title"
+            android:summary="@string/pref_volume_panel_expandable_summary"
+            android:defaultValue="true" />
+
+        <CheckBoxPreference 
+            android:key="pref_link_volumes"
+            android:title="@string/pref_link_volumes_title"
+            android:summary="@string/pref_link_volumes_summary"
+            android:defaultValue="true" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 
@@ -283,6 +309,12 @@
             android:entries="@array/vol_key_cursor_control_entries"
             android:entryValues="@array/vol_key_cursor_control_values"
             android:defaultValue="0" />
+
+        <CheckBoxPreference
+            android:key="pref_volume_rocker_wake_disable"
+            android:title="@string/pref_volume_rocker_wake_disable_title"
+            android:summary="@string/pref_volume_rocker_wake_disable_summary"
+            android:defaultValue="false" />
 
     </PreferenceScreen>
 

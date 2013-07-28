@@ -7,7 +7,6 @@
     <string name="battery_style_stock">Indicatore batteria stock</string>
     <string name="battery_style_circle">Batteria circolare con percentuale</string>
     <string name="battery_style_percent">Testo percentuale largo</string>
-    <string name="battery_style_percent_stock">Testo percentuale largo con icona stock</string>
     <string name="battery_style_none">Nessuno</string>
 
     <string name="vol_music_controls_title">Tasto vol cambia traccia</string>
@@ -238,6 +237,7 @@
     <string name="hwkey_action_voice_search">Ricerca vocale</string>
     <string name="hwkey_action_prev_app">Passa alla app precedente</string>
     <string name="hwkey_action_kill">Killa app corrente</string>
+    <string name="hwkey_action_sleep">Vai in sleep</string>
     <string name="pref_hwkey_kill_delay_title">Durata per Kill app su pressione lunga</string>
     <string name="pref_hwkey_kill_delay_summary">Si applica per il Kill della app corrente. Definisce quanto a lungo deve rimanere premuto il tasto per fare la kill</string>
     <string name="pref_hwkey_doubletap_speed_title">Velocità doppio-tap</string>
@@ -267,5 +267,12 @@
     <!-- Solid black Holo background -->
     <string name="pref_holo_bg_solid_black_title">Sfondo nero solido</string>
     <string name="pref_holo_bg_solid_black_summary">Usa lo sfondo nero solido come tema di Holo di default invece del grigio scuro sfumato (richiede riavvio)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">Caselle per riga</string>
+    <string name="pref_qs_tiles_per_row_summary">Definisce quante caselle QuickSettings visualizzare su una riga. Le caselle verranno scalate di conseguenza.</string>
+
+    <!-- Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">Mostra giorno della settimana</string>
 
 </resources>

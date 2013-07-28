@@ -40,6 +40,11 @@ import net.margaritov.preference.colorpicker.ColorPickerPreference;
 public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_QUICK_SETTINGS = "pref_quick_settings";
     public static final String PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW = "pref_qs_tiles_per_row";
+    public static final String PREF_KEY_QUICK_SETTINGS_AUTOSWITCH = "pref_auto_switch_qs";
+    public static final String PREF_KEY_QUICK_PULLDOWN = "pref_quick_pulldown";
+    public static final int QUICK_PULLDOWN_OFF = 0;
+    public static final int QUICK_PULLDOWN_RIGHT = 1;
+    public static final int QUICK_PULLDOWN_LEFT = 2;
 
     public static final String PREF_KEY_BATTERY_STYLE = "pref_battery_style";
     public static final String PREF_KEY_BATTERY_PERCENT_TEXT = "pref_battery_percent_text";
@@ -104,12 +109,19 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
     public static final String PREF_KEY_MUSIC_VOLUME_STEPS = "pref_music_volume_steps";
     public static final String PREF_KEY_SAFE_MEDIA_VOLUME = "pref_safe_media_volume";
+    public static final String PREF_KEY_VOLUME_PANEL_EXPANDABLE = "pref_volume_panel_expandable";
+    public static final String ACTION_PREF_VOLUME_PANEL_MODE_CHANGED = "gravitybox.intent.action.VOLUME_PANEL_MODE_CHANGED";
+    public static final String EXTRA_EXPANDABLE = "expandable";
+    public static final String PREF_KEY_LINK_VOLUMES = "pref_link_volumes";
+    public static final String ACTION_PREF_LINK_VOLUMES_CHANGED = "gravitybox.intent.action.LINK_VOLUMES_CHANGED";
+    public static final String EXTRA_LINKED = "linked";
 
     public static final String PREF_KEY_HWKEY_MENU_LONGPRESS = "pref_hwkey_menu_longpress";
     public static final String PREF_KEY_HWKEY_MENU_DOUBLETAP = "pref_hwkey_menu_doubletap";
     public static final String PREF_KEY_HWKEY_BACK_LONGPRESS = "pref_hwkey_back_longpress";
     public static final String PREF_KEY_HWKEY_DOUBLETAP_SPEED = "pref_hwkey_doubletap_speed";
     public static final String PREF_KEY_HWKEY_KILL_DELAY = "pref_hwkey_kill_delay";
+    public static final String PREF_KEY_VOLUME_ROCKER_WAKE_DISABLE = "pref_volume_rocker_wake_disable";
     public static final int HWKEY_ACTION_DEFAULT = 0;
     public static final int HWKEY_ACTION_SEARCH = 1;
     public static final int HWKEY_ACTION_VOICE_SEARCH = 2;
@@ -123,7 +135,9 @@ public class GravityBoxSettings extends Activity {
     public static final String ACTION_PREF_HWKEY_BACK_LONGPRESS_CHANGED = "gravitybox.intent.action.HWKEY_BACK_LONGPRESS_CHANGED";
     public static final String ACTION_PREF_HWKEY_DOUBLETAP_SPEED_CHANGED = "gravitybox.intent.action.HWKEY_DOUBLETAP_SPEED_CHANGED";
     public static final String ACTION_PREF_HWKEY_KILL_DELAY_CHANGED = "gravitybox.intent.action.HWKEY_KILL_DELAY_CHANGED";
+    public static final String ACTION_PREF_VOLUME_ROCKER_WAKE_CHANGED = "gravitybox.intent.action.VOLUME_ROCKER_WAKE_CHANGED";
     public static final String EXTRA_HWKEY_VALUE = "hwKeyValue";
+    public static final String EXTRA_VOLUME_ROCKER_WAKE_DISABLE = "volumeRockerWakeDisable";
 
     public static final String PREF_KEY_PHONE_FLIP = "pref_phone_flip";
     public static final int PHONE_FLIP_ACTION_NONE = 0;
@@ -140,6 +154,8 @@ public class GravityBoxSettings extends Activity {
     public static final String ACTION_PREF_QUICKSETTINGS_CHANGED = "gravitybox.intent.action.QUICKSETTINGS_CHANGED";
     public static final String EXTRA_QS_PREFS = "qsPrefs";
     public static final String EXTRA_QS_COLS = "qsCols";
+    public static final String EXTRA_QS_AUTOSWITCH = "qsAutoSwitch";
+    public static final String EXTRA_QUICK_PULLDOWN = "quickPulldown";
 
     public static final String ACTION_PREF_CENTER_CLOCK_CHANGED = "gravitybox.intent.action.CENTER_CLOCK_CHANGED";
     public static final String EXTRA_CENTER_CLOCK = "centerClock";
@@ -353,6 +369,14 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
                 intent.putExtra(EXTRA_QS_COLS, Integer.valueOf(
                         prefs.getString(PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW, "3")));
+            } else if (key.equals(PREF_KEY_QUICK_SETTINGS_AUTOSWITCH)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_QS_AUTOSWITCH,
+                        prefs.getBoolean(PREF_KEY_QUICK_SETTINGS_AUTOSWITCH, false));
+            } else if (key.equals(PREF_KEY_QUICK_PULLDOWN)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_QUICK_PULLDOWN, Integer.valueOf(
+                        prefs.getString(PREF_KEY_QUICK_PULLDOWN, "0")));
             } else if (key.equals(PREF_KEY_STATUSBAR_BGCOLOR)) {
                 intent.setAction(ACTION_PREF_STATUSBAR_BGCOLOR_CHANGED);
                 intent.putExtra(EXTRA_SB_BGCOLOR, prefs.getInt(PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK));
@@ -388,6 +412,18 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_HWKEY_KILL_DELAY_CHANGED);
                 intent.putExtra(EXTRA_HWKEY_VALUE, Integer.valueOf(
                         prefs.getString(PREF_KEY_HWKEY_KILL_DELAY, "1000")));
+            } else if (key.equals(PREF_KEY_VOLUME_ROCKER_WAKE_DISABLE)) {
+                intent.setAction(ACTION_PREF_VOLUME_ROCKER_WAKE_CHANGED);
+                intent.putExtra(EXTRA_VOLUME_ROCKER_WAKE_DISABLE,
+                        prefs.getBoolean(PREF_KEY_VOLUME_ROCKER_WAKE_DISABLE, false));
+            } else if (key.equals(PREF_KEY_VOLUME_PANEL_EXPANDABLE)) {
+                intent.setAction(ACTION_PREF_VOLUME_PANEL_MODE_CHANGED);
+                intent.putExtra(EXTRA_EXPANDABLE,
+                        prefs.getBoolean(PREF_KEY_VOLUME_PANEL_EXPANDABLE, true));
+            } else if (key.equals(PREF_KEY_LINK_VOLUMES)) {
+                intent.setAction(ACTION_PREF_LINK_VOLUMES_CHANGED);
+                intent.putExtra(EXTRA_LINKED,
+                        prefs.getBoolean(PREF_KEY_LINK_VOLUMES, true));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);

@@ -6,8 +6,7 @@
     <string name="battery_style_title">Style de l\'indicateur de batterie</string>	
     <string name="battery_style_stock">Incateur par défaut</string>
     <string name="battery_style_circle">Cercle avec pourcentage</string>
-    <string name="battery_style_percent">Texte uniquement</string>
-    <string name="battery_style_percent_stock">Texte et indicateur par défaut</string>
+    <string name="battery_style_percent">Batterie avec pourcentage</string>
     <string name="battery_style_none">Aucun</string>
 
     <string name="vol_music_controls_title">Touches de volume et pistes audio</string>
@@ -45,7 +44,7 @@
     <string name="fix_datetime_crash_summary">Activer si vous constatez un plantage lorsque vous accédez au paramètre Date et heure (redémarrage nécessaire)</string>
 
     <string name="fix_caller_id_phone_title">Identification de l\'appelant en téléphonie</string>
-    <string name="fix_caller_id_phone_summary">Activer si vous constatez qu\'un contact enregistré n\'est pas identifié lord d\'un appel entrant (redémarrage nécessaire)</string>
+    <string name="fix_caller_id_phone_summary">Activer si vous constatez qu\'un contact enregistré n\'est pas identifié lors d\'un appel entrant (redémarrage nécessaire)</string>
     <string name="fix_caller_id_phone_alert">Après redémarrage, vous devrez supprimer puis ajouter de nouveau vos contacts pour que le changement prenne effet. Allez dans Paramètres / Applications / Toutes / Liste des contacts / Effacer les données</string>
 
     <string name="fix_caller_id_mms_title">Identification de l\'émetteur d\'un message</string>
@@ -272,5 +271,8 @@
     <!-- QuickSettings tiles per row -->
     <string name="pref_qs_tiles_per_row_title">Touches par rangée</string>
     <string name="pref_qs_tiles_per_row_summary">Définit le nombre de touches de paramètres rapides à afficher par rangée. Les touches seront redimensionnées en conséquence</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">Afficher le jour de la semaine</string>
 
 </resources>

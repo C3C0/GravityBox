@@ -270,9 +270,32 @@
 
     <!-- QuickSettings tiles per row -->
     <string name="pref_qs_tiles_per_row_title">Tiles per row</string>
-    <string name="pref_qs_tiles_per_row_summary">Defines how many QuickSettings tiles to display per one row. Tiles will be resized accordingly.</string>
+    <string name="pref_qs_tiles_per_row_summary">Defines how many QuickSettings tiles to display per one row. Tiles will be resized accordingly. Applies to portrait mode.</string>
 
     <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">Show day of week</string>
+
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Expandable volume panel</string>
+    <string name="pref_volume_panel_expandable_summary">Enables expandable volume panel with ability to set volumes for different streams</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Link ringtone &amp; notifications volumes</string>
+    <string name="pref_link_volumes_summary">When disabled, volumes for ringtone and notifications can be set independently</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">Auto-switch QuickSettings</string>
+    <string name="pref_auto_switch_qs_summary">QuickSettings will show automatically when status bar is pulled down while there are no notifications</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Quick pulldown</string>
+    <string name="pref_quick_pulldown_summary">Edge of the status bar pulls down QuickSettings</string>
+    <string name="quick_pulldown_off">Off</string>
+    <string name="quick_pulldown_right">Right</string>
+    <string name="quick_pulldown_left">Left</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">Disable volume rocker wake</string>
+    <string name="pref_volume_rocker_wake_disable_summary">For devices like Jiayu G3s,G4 where volume keys turn on screen</string>
 
 </resources>

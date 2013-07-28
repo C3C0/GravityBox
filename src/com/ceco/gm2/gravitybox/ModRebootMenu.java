@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import android.app.AlertDialog;
 
@@ -121,30 +122,26 @@ public class ModRebootMenu {
 
                     // try to find out if reboot action item already exists in the list of GlobalActions items
                     // strategy:
-                    // 1) check if ic_lock_reboot drawable exists in system resources
-                    // 2) check if Action has field mIconResId that is equal to resId of ic_lock_reboot
+                    // 1) check if Action has mIconResId field
+                    // 2) check if the name of the corresponding resource contains "reboot" substring
                     log("Searching for existing reboot action item...");
                     Object rebootActionItem = null;
                     Resources res = mContext.getResources();
-                    int rebootIconId = res.getIdentifier("ic_lock_reboot_radio", "drawable", "android"); 
-                    // if zero, try once more with alternative name
-                    if (rebootIconId == 0) {
-                        log("ic_lock_reboot_radio not found, trying alternative ic_lock_reboot");
-                        rebootIconId = res.getIdentifier("ic_lock_reboot", "drawable", "android");
-                    }
-                    if (rebootIconId != 0) {
-                        log("Reboot icon resource found: " + rebootIconId + ". Searching for matching Action item");
-                        // check if Action with given icon res id exists
-                        for (Object o : mItems) {
-                            try {
-                                Field f = XposedHelpers.findField(o.getClass(), "mIconResId");
-                                if ((Integer) f.get(o) == rebootIconId) {
-                                    rebootActionItem = o;
-                                    break;
-                                }
-                            } catch (NoSuchFieldError nfe) {
-                                // continue
+                    for (Object o : mItems) {
+                        try {
+                            Field f = XposedHelpers.findField(o.getClass(), "mIconResId");
+                            String resName = res.getResourceName((Integer) f.get(o)).toLowerCase(Locale.US);
+                            log("resName = " + resName);
+                            if (resName.contains("reboot")) {
+                                rebootActionItem = o;
+                                break;
                             }
+                        } catch (NoSuchFieldError nfe) {
+                            // continue
+                        } catch (Resources.NotFoundException resnfe) { 
+                            // continue
+                        } catch (IllegalArgumentException iae) {
+                            // continue
                         }
                     }
 
