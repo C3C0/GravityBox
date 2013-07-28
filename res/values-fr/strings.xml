@@ -281,7 +281,7 @@
 
     <!-- Link ringtone & notifications volumes -->
     <string name="pref_link_volumes_title">Volumes sonnerie &amp; notifications liés</string>
-    <string name="pref_link_volumes_summary">Si désactivé, les volumes de la sonnerie et des notifications peuvent être régler indépendamment</string>
+    <string name="pref_link_volumes_summary">Si désactivé, les volumes de la sonnerie et des notifications peuvent être réglés indépendamment</string>
 
     <!-- Auto-switch QuickSettings -->
     <string name="pref_auto_switch_qs_title">Auto-commutation paramètres rapides</string>
