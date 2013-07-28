@@ -117,8 +117,8 @@
 
     <!-- Main preference categories -->
     <string name="pref_cat_statusbar_title">Nastavení stavového řádku</string>
-    <string name="pref_cat_statusbar_summary">Obsahuje různé nastavení stavového řádku</string>
-    <string name="pref_cat_misc_title">Různé nastavení</string>
+    <string name="pref_cat_statusbar_summary">Obsahuje různá nastavení stavového řádku</string>
+    <string name="pref_cat_misc_title">Různá nastavení</string>
     <string name="pref_cat_misc_summary">Obsahuje všechny ostatní nastavení nespadající do jiné specifické kategorie</string>
     <string name="pref_cat_fixes_title">Všeobecné opravy</string>
     <string name="pref_cat_fixes_summary">Obsahuje všeobecné opravy specifické pro MTK6589. Použít jen v případě potřeby</string>
@@ -230,7 +230,7 @@
     <string name="pref_charging_led_disable_summary">Vypne LED během nabíjení</string>
 
     <!-- Hardware key actions -->
-    <string name="pref_cat_hwkey_actions_title">Akcie tlačítek</string>
+    <string name="pref_cat_hwkey_actions_title">Akce tlačítek</string>
     <string name="pref_cat_hwkey_actions_summary">Umožňuje nastavení akcí pro hardvérová tlačítka</string>
     <string name="pref_hwkey_menu_longpress_title">Dlouhé podržení Menu</string>
     <string name="pref_hwkey_menu_doubletap_title">Dvojité klepnutí na Menu</string>
