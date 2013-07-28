@@ -276,26 +276,26 @@
     <string name="pref_statusbar_clock_dow_title">Afficher le jour de la semaine</string>
 
     <!-- Expandable volume panel -->
-    <string name="pref_volume_panel_expandable_title">Expandable volume panel</string>
-    <string name="pref_volume_panel_expandable_summary">Enables expandable volume panel with ability to set volumes for different streams</string>
+    <string name="pref_volume_panel_expandable_title">Panneau de volume extensible</string>
+    <string name="pref_volume_panel_expandable_summary">Active le panneau de volume extensible avec la possibilité de régler les volumes pour différents flux sonores</string>
 
     <!-- Link ringtone & notifications volumes -->
-    <string name="pref_link_volumes_title">Link ringtone &amp; notifications volumes</string>
-    <string name="pref_link_volumes_summary">When disabled, volumes for ringtone and notifications can be set independently</string>
+    <string name="pref_link_volumes_title">Volumes sonnerie &amp; notifications liés</string>
+    <string name="pref_link_volumes_summary">Si désactivé, les volumes de la sonnerie et des notifications peuvent être régler indépendamment</string>
 
     <!-- Auto-switch QuickSettings -->
-    <string name="pref_auto_switch_qs_title">Auto-switch QuickSettings</string>
-    <string name="pref_auto_switch_qs_summary">QuickSettings will show automatically when status bar is pulled down while there are no notifications</string>
+    <string name="pref_auto_switch_qs_title">Auto-commutation paramètres rapides</string>
+    <string name="pref_auto_switch_qs_summary">Les paramètres rapides seront affichés automatiquement lorsque la barre de status est tirée vers le bas s\'il n\'y a pas de notification</string>
 
     <!-- Quick pulldown -->
-    <string name="pref_quick_pulldown_title">Quick pulldown</string>
-    <string name="pref_quick_pulldown_summary">Edge of the status bar pulls down QuickSettings</string>
-    <string name="quick_pulldown_off">Off</string>
-    <string name="quick_pulldown_right">Right</string>
-    <string name="quick_pulldown_left">Left</string>
+    <string name="pref_quick_pulldown_title">Accès rapide</string>
+    <string name="pref_quick_pulldown_summary">Les bords de la barre de status font apparaître les paramètres rapides</string>
+    <string name="quick_pulldown_off">Désactivé</string>
+    <string name="quick_pulldown_right">Droit</string>
+    <string name="quick_pulldown_left">Gauche</string>
 
     <!-- Disable volume rocker wake -->
-    <string name="pref_volume_rocker_wake_disable_title">Disable volume rocker wake</string>
-    <string name="pref_volume_rocker_wake_disable_summary">For devices like Jiayu G3s,G4 where volume keys turn on screen</string>
+    <string name="pref_volume_rocker_wake_disable_title">Désactiver sortie de veille</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Pour les modèles tels que Jiayu G3s, G4, permet de désactiver la sortie de veille par les touches de volume</string>
 
 </resources>
