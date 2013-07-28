@@ -272,4 +272,27 @@
     <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">Zobraziť deň v týždni</string>
 
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Rozšíriteľné nastavenie hlasitosti</string>
+    <string name="pref_volume_panel_expandable_summary">Umožňuje rozšíriť panel nastavenia hlasitosti, v ktorom je možné nastaviť hlasitosti zvlášť pre každý zvukový tok</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Spojiť hlasitosť vyzváňania a notifikácií</string>
+    <string name="pref_link_volumes_summary">Ak je vypnuté, umožňuje nastaviť úrovne hlasitosti zvlášť pre vyzváňanie a notifikácie</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">Automatické zobrazenie QuickSettings</string>
+    <string name="pref_auto_switch_qs_summary">QuickSettings budú zobrazené automaticky ak sa v notifikačnom panely nenachádzajú žiadne notifikácie</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Rýchle zobrazenie QuickSettings</string>
+    <string name="pref_quick_pulldown_summary">Stiahnutie stavového riadku v oblasti definovaného okraja zobrazí QuickSettings</string>
+    <string name="quick_pulldown_off">Vypnuté</string>
+    <string name="quick_pulldown_right">Pravý okraj</string>
+    <string name="quick_pulldown_left">Ľavý okraj</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">Zakázať zobúdzanie tlačidlami hlasitosti</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Pre zariadenia ako Jiayu G3s,G4, kde tlačidlá hlasitosti zobúdzajú zariadenie</string>
+
 </resources>
