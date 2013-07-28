@@ -19,6 +19,7 @@ public class ModStatusbarColor {
     public static final String PACKAGE_NAME = "com.android.systemui";
     private static final String CLASS_PHONE_WINDOW_MANAGER = "com.android.internal.policy.impl.PhoneWindowManager";
     private static final String CLASS_PANEL_BAR = "com.android.systemui.statusbar.phone.PanelBar";
+    private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
 
     private static View mPanelBar;
 
@@ -69,19 +70,27 @@ public class ModStatusbarColor {
 
         try {
             final Class<?> panelBarClass = XposedHelpers.findClass(CLASS_PANEL_BAR, classLoader);
+            final Class<?> phoneStatusbarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
 
             XposedBridge.hookAllConstructors(panelBarClass, new XC_MethodHook() {
 
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    prefs.reload();
                     mPanelBar = (View) param.thisObject;
-                    int bgColor = prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK);
-                    setStatusbarBgColor(bgColor);
 
                     IntentFilter intentFilter = new IntentFilter(
                             GravityBoxSettings.ACTION_PREF_STATUSBAR_BGCOLOR_CHANGED);
                     mPanelBar.getContext().registerReceiver(mBroadcastReceiver, intentFilter);
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(phoneStatusbarClass, "makeStatusBarView", new XC_MethodHook() {
+
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    prefs.reload();
+                    int bgColor = prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK);
+                    setStatusbarBgColor(bgColor);
                 }
             });
 
