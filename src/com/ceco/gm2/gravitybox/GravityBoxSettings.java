@@ -419,7 +419,7 @@ public class GravityBoxSettings extends Activity {
             } else if (key.equals(PREF_KEY_VOLUME_PANEL_EXPANDABLE)) {
                 intent.setAction(ACTION_PREF_VOLUME_PANEL_MODE_CHANGED);
                 intent.putExtra(EXTRA_EXPANDABLE,
-                        prefs.getBoolean(PREF_KEY_VOLUME_PANEL_EXPANDABLE, false));
+                        prefs.getBoolean(PREF_KEY_VOLUME_PANEL_EXPANDABLE, true));
             } else if (key.equals(PREF_KEY_LINK_VOLUMES)) {
                 intent.setAction(ACTION_PREF_LINK_VOLUMES_CHANGED);
                 intent.putExtra(EXTRA_LINKED,

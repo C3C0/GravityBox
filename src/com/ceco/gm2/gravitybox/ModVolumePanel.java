@@ -60,7 +60,7 @@ public class ModVolumePanel {
                     log("VolumePanel constructed; mVolumePanel set");
 
                     boolean expandable = prefs.getBoolean(
-                            GravityBoxSettings.PREF_KEY_VOLUME_PANEL_EXPANDABLE, false);
+                            GravityBoxSettings.PREF_KEY_VOLUME_PANEL_EXPANDABLE, true);
                     updateVolumePanelMode(expandable);
 
                     mVolumesLinked = prefs.getBoolean(GravityBoxSettings.PREF_KEY_LINK_VOLUMES, true);
