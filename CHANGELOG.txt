@@ -1,3 +1,17 @@
+Changelog 1.8.0 - 28/07/2013
+--------------------------------------
+- Media tweaks
+--- option for expandable volume panel
+--- option to unlink common volumes for ringtone and notifications to control them independently
+- Quick settings
+--- auto-switch to QuickSettings when there are no notifications is now configurable
+--- option to use edges of status bar to quickly pull down QuickSettings (off,left,right)
+- Hardware keys
+--- option to disable volume rocker wake for devices like Jiayu G3S, G4, where volume keys turn on screen
+--- this should also fix volume keys skip track for those devices
+- Messaging wakelock fix
+--- adapted to support more devices (Zopo, Jiayu G3s, G4)
+
 Changelog 1.7.1 - 25/07/2013
 --------------------------------------
 - improved detection of existing Reboot action item.
