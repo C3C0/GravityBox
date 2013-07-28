@@ -121,6 +121,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_HWKEY_BACK_LONGPRESS = "pref_hwkey_back_longpress";
     public static final String PREF_KEY_HWKEY_DOUBLETAP_SPEED = "pref_hwkey_doubletap_speed";
     public static final String PREF_KEY_HWKEY_KILL_DELAY = "pref_hwkey_kill_delay";
+    public static final String PREF_KEY_VOLUME_ROCKER_WAKE_DISABLE = "pref_volume_rocker_wake_disable";
     public static final int HWKEY_ACTION_DEFAULT = 0;
     public static final int HWKEY_ACTION_SEARCH = 1;
     public static final int HWKEY_ACTION_VOICE_SEARCH = 2;
@@ -134,7 +135,9 @@ public class GravityBoxSettings extends Activity {
     public static final String ACTION_PREF_HWKEY_BACK_LONGPRESS_CHANGED = "gravitybox.intent.action.HWKEY_BACK_LONGPRESS_CHANGED";
     public static final String ACTION_PREF_HWKEY_DOUBLETAP_SPEED_CHANGED = "gravitybox.intent.action.HWKEY_DOUBLETAP_SPEED_CHANGED";
     public static final String ACTION_PREF_HWKEY_KILL_DELAY_CHANGED = "gravitybox.intent.action.HWKEY_KILL_DELAY_CHANGED";
+    public static final String ACTION_PREF_VOLUME_ROCKER_WAKE_CHANGED = "gravitybox.intent.action.VOLUME_ROCKER_WAKE_CHANGED";
     public static final String EXTRA_HWKEY_VALUE = "hwKeyValue";
+    public static final String EXTRA_VOLUME_ROCKER_WAKE_DISABLE = "volumeRockerWakeDisable";
 
     public static final String PREF_KEY_PHONE_FLIP = "pref_phone_flip";
     public static final int PHONE_FLIP_ACTION_NONE = 0;
@@ -409,6 +412,10 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_HWKEY_KILL_DELAY_CHANGED);
                 intent.putExtra(EXTRA_HWKEY_VALUE, Integer.valueOf(
                         prefs.getString(PREF_KEY_HWKEY_KILL_DELAY, "1000")));
+            } else if (key.equals(PREF_KEY_VOLUME_ROCKER_WAKE_DISABLE)) {
+                intent.setAction(ACTION_PREF_VOLUME_ROCKER_WAKE_CHANGED);
+                intent.putExtra(EXTRA_VOLUME_ROCKER_WAKE_DISABLE,
+                        prefs.getBoolean(PREF_KEY_VOLUME_ROCKER_WAKE_DISABLE, false));
             } else if (key.equals(PREF_KEY_VOLUME_PANEL_EXPANDABLE)) {
                 intent.setAction(ACTION_PREF_VOLUME_PANEL_MODE_CHANGED);
                 intent.putExtra(EXTRA_EXPANDABLE,

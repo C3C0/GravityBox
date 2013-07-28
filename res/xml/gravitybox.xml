@@ -310,6 +310,12 @@
             android:entryValues="@array/vol_key_cursor_control_values"
             android:defaultValue="0" />
 
+        <CheckBoxPreference
+            android:key="pref_volume_rocker_wake_disable"
+            android:title="@string/pref_volume_rocker_wake_disable_title"
+            android:summary="@string/pref_volume_rocker_wake_disable_summary"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 

@@ -22,6 +22,7 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.callbacks.XCallback;
 
 public class ModHwKeys {
     private static final String TAG = "ModHwKeys";
@@ -31,6 +32,9 @@ public class ModHwKeys {
     private static final String CLASS_WINDOW_MANAGER_FUNCS = "android.view.WindowManagerPolicy.WindowManagerFuncs";
     private static final String CLASS_IWINDOW_MANAGER = "android.view.IWindowManager";
     private static final boolean DEBUG = false;
+
+    private static final int FLAG_WAKE = 0x00000001;
+    private static final int FLAG_WAKE_DROPPED = 0x00000002;
 
     private static Class<?> classActivityManagerNative;
     private static Object mPhoneWindowManager;
@@ -47,6 +51,7 @@ public class ModHwKeys {
     private static int mBackLongpressAction = 0;
     private static int mDoubletapSpeed = GravityBoxSettings.HWKEY_DOUBLETAP_SPEED_DEFAULT;
     private static int mKillDelay = GravityBoxSettings.HWKEY_KILL_DELAY_DEFAULT;
+    private static boolean mVolumeRockerWakeDisabled = false;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -90,6 +95,10 @@ public class ModHwKeys {
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_KILL_DELAY_CHANGED)) {
                 mKillDelay = value;
                 log("Kill delay set to: " + value);
+            } else if (action.equals(GravityBoxSettings.ACTION_PREF_VOLUME_ROCKER_WAKE_CHANGED)) {
+                mVolumeRockerWakeDisabled = intent.getBooleanExtra(
+                        GravityBoxSettings.EXTRA_VOLUME_ROCKER_WAKE_DISABLE, false);
+                log("mVolumeRockerWakeDisabled set to: " + mVolumeRockerWakeDisabled);
             }
         }
     };
@@ -110,6 +119,9 @@ public class ModHwKeys {
             } catch (NumberFormatException e) {
                 XposedBridge.log(e);
             }
+
+            mVolumeRockerWakeDisabled = prefs.getBoolean(
+                    GravityBoxSettings.PREF_KEY_VOLUME_ROCKER_WAKE_DISABLE, false);
 
             final Class<?> classPhoneWindowManager = XposedHelpers.findClass(CLASS_PHONE_WINDOW_MANAGER, null);
             classActivityManagerNative = XposedHelpers.findClass(CLASS_ACTIVITY_MANAGER_NATIVE, null);
@@ -134,9 +146,26 @@ public class ModHwKeys {
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_BACK_LONGPRESS_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_DOUBLETAP_SPEED_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_KILL_DELAY_CHANGED);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_VOLUME_ROCKER_WAKE_CHANGED);
                     mContext.registerReceiver(mBroadcastReceiver, intentFilter);
 
                     log("Phone window manager initialized");
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(classPhoneWindowManager, "interceptKeyBeforeQueueing", 
+                    KeyEvent.class, int.class, boolean.class, new XC_MethodHook(XCallback.PRIORITY_HIGHEST) {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    KeyEvent event = (KeyEvent) param.args[0];
+                    if (mVolumeRockerWakeDisabled && 
+                            (event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP ||
+                             event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+                        int policyFlags = (Integer) param.args[1];
+                        policyFlags &= ~FLAG_WAKE;
+                        policyFlags &= ~FLAG_WAKE_DROPPED;
+                        param.args[1] = policyFlags;
+                    }
                 }
             });
 
@@ -198,6 +227,20 @@ public class ModHwKeys {
                                 return;
                             }
                         }
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(classPhoneWindowManager, 
+                    "isWakeKeyWhenScreenOff", int.class, new XC_MethodHook() {
+
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    int keyCode = (Integer) param.args[0];
+                    if (mVolumeRockerWakeDisabled && 
+                            (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN ||
+                             keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+                        param.setResult(false);
                     }
                 }
             });
