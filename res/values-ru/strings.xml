@@ -269,10 +269,33 @@
     <string name="pref_holo_bg_solid_black_summary">Использовать черный фон для ситемной Holo-темы по умолчанию вместо темно-серого градиента (Необходима перезагрузка)</string>
 
     <!-- QuickSettings tiles per row -->
-    <string name="pref_qs_tiles_per_row_title">иконок в ряд</string>
+    <string name="pref_qs_tiles_per_row_title">Иконок в ряд</string>
     <string name="pref_qs_tiles_per_row_summary">Определяет, как много иконок быстрых настроек будет показано в одном ряду. Размеры изменятся соответственно. Применимо к портретному режиму.</string>
 
     <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">Отображать день недели</string>
+    
+     <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Расширяемая звуковая панель</string>
+    <string name="pref_volume_panel_expandable_summary">Включает расширяемую звуковую панель, на которой можно менять звук для разных потоков</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Связать громкость рингтона и уведомлений</string>
+    <string name="pref_link_volumes_summary">Когда отключено, громкость уведомлений и ренгтона можно задавать независимо</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">Автовключение быстрых настроек</string>
+    <string name="pref_auto_switch_qs_summary">Быстрые настройки будут показаны автоматически (если нет уведомлений) при вытягивании статусбара</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Быстрое вытягивание</string>
+    <string name="pref_quick_pulldown_summary">За край статусбара можно вытянуть быстрые настройки</string>
+    <string name="quick_pulldown_off">Выключено</string>
+    <string name="quick_pulldown_right">Справа</string>
+    <string name="quick_pulldown_left">Слева</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">Отключение выхода из сна клавишами громкости</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Для устройств вроде Jiayu G3s,G4 где изменение звука будит устройство</string>
     
 </resources>
