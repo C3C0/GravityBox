@@ -70,29 +70,24 @@ public class ModRebootMenu {
                    Resources gbRes = gbContext.getResources();
 
                    int rebootStrId = res.getIdentifier("factorytest_reboot", "string", PACKAGE_NAME);
-                   int rebootSoftStrId = gbRes.getIdentifier("reboot_soft", "string", GravityBox.PACKAGE_NAME);
-                   int recoveryStrId = gbRes.getIdentifier("poweroff_recovery", "string", GravityBox.PACKAGE_NAME);
+                   int rebootSoftStrId = R.string.reboot_soft;
+                   int recoveryStrId = R.string.poweroff_recovery;
                    mRebootStr  = (rebootStrId == 0) ? "Reboot" : res.getString(rebootStrId);
                    mRebootSoftStr = gbRes.getString(rebootSoftStrId);
                    mRecoveryStr = gbRes.getString(recoveryStrId);
 
-                   mRebootIcon = gbRes.getDrawable(
-                           gbRes.getIdentifier("ic_lock_reboot", "drawable", GravityBox.PACKAGE_NAME));
-                   mRebootSoftIcon = gbRes.getDrawable(
-                           gbRes.getIdentifier("ic_lock_reboot_soft", "drawable", GravityBox.PACKAGE_NAME));
-                   mRecoveryIcon = gbRes.getDrawable(
-                           gbRes.getIdentifier("ic_lock_recovery", "drawable", GravityBox.PACKAGE_NAME));
+                   mRebootIcon = gbRes.getDrawable(R.drawable.ic_lock_reboot);
+                   mRebootSoftIcon = gbRes.getDrawable(R.drawable.ic_lock_reboot_soft);
+                   mRecoveryIcon = gbRes.getDrawable(R.drawable.ic_lock_recovery);
 
                    mRebootItemList = new ArrayList<IIconListAdapterItem>();
                    mRebootItemList.add(new BasicIconListItem(mRebootStr, null, mRebootIcon, null));
                    mRebootItemList.add(new BasicIconListItem(mRebootSoftStr, null, mRebootSoftIcon, null));
                    mRebootItemList.add(new BasicIconListItem(mRecoveryStr, null, mRecoveryIcon, null));
 
-                   mRebootConfirmStr = gbRes.getString(gbRes.getIdentifier(
-                           "reboot_confirm", "string", GravityBox.PACKAGE_NAME));
-                   mRebootConfirmRecoveryStr = gbRes.getString(gbRes.getIdentifier(
-                           "reboot_confirm_recovery", "string", GravityBox.PACKAGE_NAME));
-                   
+                   mRebootConfirmStr = gbRes.getString(R.string.reboot_confirm);
+                   mRebootConfirmRecoveryStr = gbRes.getString(R.string.reboot_confirm_recovery);
+
                    log("GlobalActions constructed, resources set.");
                }
             });

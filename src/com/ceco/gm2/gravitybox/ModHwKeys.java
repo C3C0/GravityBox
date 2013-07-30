@@ -136,9 +136,9 @@ public class ModHwKeys {
                     mGbContext = mContext.createPackageContext(GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
 
                     Resources res = mGbContext.getResources();
-                    mStrAppKilled = res.getString(res.getIdentifier("app_killed", "string", GravityBox.PACKAGE_NAME));
-                    mStrNothingToKill = res.getString(res.getIdentifier("nothing_to_kill", "string", GravityBox.PACKAGE_NAME));
-                    mStrNoPrevApp = res.getString(res.getIdentifier("no_previous_app_found", "string", GravityBox.PACKAGE_NAME));
+                    mStrAppKilled = res.getString(R.string.app_killed);
+                    mStrNothingToKill = res.getString(R.string.nothing_to_kill);
+                    mStrNoPrevApp = res.getString(R.string.no_previous_app_found);
 
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_LONGPRESS_CHANGED);

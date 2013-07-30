@@ -1,6 +1,5 @@
 package com.ceco.gm2.gravitybox;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;

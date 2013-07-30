@@ -15,7 +15,6 @@ import android.view.ViewConfiguration;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.callbacks.XCallback;
 
 public class ModVolumeKeySkipTrack {
     private static boolean mIsLongPress = false;

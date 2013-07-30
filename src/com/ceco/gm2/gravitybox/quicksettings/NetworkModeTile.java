@@ -1,7 +1,7 @@
 package com.ceco.gm2.gravitybox.quicksettings;
 
 import com.ceco.gm2.gravitybox.GeminiPhoneWrapper;
-import com.ceco.gm2.gravitybox.GravityBox;
+import com.ceco.gm2.gravitybox.R;
 
 import de.robv.android.xposed.XposedBridge;
 
@@ -76,16 +76,12 @@ public class NetworkModeTile extends AQuickSettingsTile {
 
     @Override
     protected void onTileCreate() {
-        mLabel = mGbResources.getString(mGbResources.getIdentifier(
-                "qs_tile_network_mode", "string", GravityBox.PACKAGE_NAME));
+        mLabel = mGbResources.getString(R.string.qs_tile_network_mode);
 
-        int mTileLayoutId = mGbResources.getIdentifier(
-                "quick_settings_tile_network_mode", "layout", GravityBox.PACKAGE_NAME);
         LayoutInflater inflater = LayoutInflater.from(mGbContext);
-        inflater.inflate(mTileLayoutId, mTile);
+        inflater.inflate(R.layout.quick_settings_tile_network_mode, mTile);
 
-        mTextView = (TextView) mTile.findViewById(
-                mGbResources.getIdentifier("network_mode_tileview", "id", GravityBox.PACKAGE_NAME));
+        mTextView = (TextView) mTile.findViewById(R.id.network_mode_tileview);
 
         mNetworkType = Settings.Global.getInt(mContext.getContentResolver(), 
                 GeminiPhoneWrapper.PREFERRED_NETWORK_MODE, GeminiPhoneWrapper.NT_WCDMA_PREFERRED);
@@ -99,16 +95,13 @@ public class NetworkModeTile extends AQuickSettingsTile {
         switch (mNetworkType) {
             case GeminiPhoneWrapper.NT_WCDMA_PREFERRED:
             case GeminiPhoneWrapper.NT_GSM_WCDMA_AUTO:
-                mDrawableId = mGbResources.getIdentifier(
-                        "ic_qs_2g3g_on", "drawable", GravityBox.PACKAGE_NAME);
+                mDrawableId = R.drawable.ic_qs_2g3g_on;
                 break;
             case GeminiPhoneWrapper.NT_WCDMA_ONLY:
-                mDrawableId = mGbResources.getIdentifier(
-                        "ic_qs_3g_on", "drawable", GravityBox.PACKAGE_NAME);
+                mDrawableId = R.drawable.ic_qs_3g_on;
                 break;
             case GeminiPhoneWrapper.NT_GSM_ONLY:
-                mDrawableId = mGbResources.getIdentifier(
-                        "ic_qs_2g_on", "drawable", GravityBox.PACKAGE_NAME);
+                mDrawableId = R.drawable.ic_qs_2g_on;
                 break;
         }
 

@@ -1,7 +1,7 @@
 package com.ceco.gm2.gravitybox.quicksettings;
 
-import com.ceco.gm2.gravitybox.GravityBox;
 import com.ceco.gm2.gravitybox.GravityBoxResultReceiver;
+import com.ceco.gm2.gravitybox.R;
 import com.ceco.gm2.gravitybox.GravityBoxResultReceiver.Receiver;
 import com.ceco.gm2.gravitybox.GravityBoxService;
 
@@ -39,11 +39,9 @@ public class SyncTile extends AQuickSettingsTile {
 
     @Override
     protected void onTileCreate() {
-        int mTileLayoutId = mGbResources.getIdentifier("quick_settings_tile_sync", "layout", GravityBox.PACKAGE_NAME);
         LayoutInflater inflater = LayoutInflater.from(mGbContext);
-        inflater.inflate(mTileLayoutId, mTile);
-        mTextView = (TextView) mTile.findViewById(
-                mGbResources.getIdentifier("sync_tileview", "id", GravityBox.PACKAGE_NAME));
+        inflater.inflate(R.layout.quick_settings_tile_sync, mTile);
+        mTextView = (TextView) mTile.findViewById(R.id.sync_tileview);
 
         mReceiver = new GravityBoxResultReceiver(mHandler);
         mReceiver.setReceiver(new Receiver() {
@@ -70,13 +68,11 @@ public class SyncTile extends AQuickSettingsTile {
     @Override
     protected void updateTile() {
         if (mSyncState) {
-            mDrawableId = mGbResources.getIdentifier("ic_qs_sync_on", "drawable", GravityBox.PACKAGE_NAME);
-            mLabel = mGbResources.getString(
-                    mGbResources.getIdentifier("quick_settings_sync_on", "string", GravityBox.PACKAGE_NAME));
+            mDrawableId = R.drawable.ic_qs_sync_on;
+            mLabel = mGbResources.getString(R.string.quick_settings_sync_on);
         } else {
-            mDrawableId = mGbResources.getIdentifier("ic_qs_sync_off", "drawable", GravityBox.PACKAGE_NAME);
-            mLabel = mGbResources.getString(
-                    mGbResources.getIdentifier("quick_settings_sync_off", "string", GravityBox.PACKAGE_NAME));            
+            mDrawableId = R.drawable.ic_qs_sync_off;
+            mLabel = mGbResources.getString(R.string.quick_settings_sync_off);
         }
 
         mTextView.setText(mLabel);

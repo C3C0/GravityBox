@@ -82,14 +82,14 @@ public class ModQuickSettings {
             "auto_rotate_textview"
     ));
 
-    private static List<String> mCustomGbTileKeys = new ArrayList<String>(Arrays.asList(
-            "sync_tileview",
-            "wifi_ap_tileview",
-            "gravitybox_tileview",
-            "torch_tileview",
-            "network_mode_tileview",
-            "sleep_tileview",
-            "quickrecord_tileview"
+    private static List<Integer> mCustomGbTileKeys = new ArrayList<Integer>(Arrays.asList(
+            R.id.sync_tileview,
+            R.id.wifi_ap_tileview,
+            R.id.gravitybox_tileview,
+            R.id.torch_tileview,
+            R.id.network_mode_tileview,
+            R.id.sleep_tileview,
+            R.id.quickrecord_tileview
     ));
 
     private static void log(String message) {
@@ -137,9 +137,8 @@ public class ModQuickSettings {
         }
 
         res = mGbContext.getResources();
-        for (String key : mCustomGbTileKeys) {
-            int resId = res.getIdentifier(key, "id", GravityBox.PACKAGE_NAME);
-            if (view.findViewById(resId) != null) {
+        for (Integer key : mCustomGbTileKeys) {
+            if (view.findViewById(key) != null) {
                 return true;
             }
         }
