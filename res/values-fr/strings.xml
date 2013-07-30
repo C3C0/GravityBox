@@ -270,9 +270,32 @@
 
     <!-- QuickSettings tiles per row -->
     <string name="pref_qs_tiles_per_row_title">Touches par rangée</string>
-    <string name="pref_qs_tiles_per_row_summary">Définit le nombre de touches de paramètres rapides à afficher par rangée. Les touches seront redimensionnées en conséquence</string>
+    <string name="pref_qs_tiles_per_row_summary">Définit le nombre de touches de paramètres rapides à afficher par rangée. Les touches seront redimensionnées en conséquence. Uniquement en mode portrait</string>
 
     <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">Afficher le jour de la semaine</string>
+
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Panneau de volume extensible</string>
+    <string name="pref_volume_panel_expandable_summary">Active le panneau de volume extensible avec la possibilité de régler les volumes pour différents flux sonores</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Volumes sonnerie &amp; notifications liés</string>
+    <string name="pref_link_volumes_summary">Si désactivé, les volumes de la sonnerie et des notifications peuvent être réglés indépendamment</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">Auto-commutation paramètres rapides</string>
+    <string name="pref_auto_switch_qs_summary">Les paramètres rapides seront affichés automatiquement lorsque la barre de status est tirée vers le bas s\'il n\'y a pas de notification</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Accès rapide</string>
+    <string name="pref_quick_pulldown_summary">Les bords de la barre de status font apparaître les paramètres rapides</string>
+    <string name="quick_pulldown_off">Désactivé</string>
+    <string name="quick_pulldown_right">Droit</string>
+    <string name="quick_pulldown_left">Gauche</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">Désactiver sortie de veille</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Pour les modèles tels que Jiayu G3s, G4, permet de désactiver la sortie de veille par les touches de volume</string>
 
 </resources>
