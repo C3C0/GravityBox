@@ -64,35 +64,41 @@
         android:title="@string/pref_cat_statusbar_title"
         android:summary="@string/pref_cat_statusbar_summary">
 
-        <MultiSelectListPreference 
-            android:key="pref_quick_settings"
-            android:title="@string/quick_settings_title"
-            android:summary="@string/quick_settings_summary" 
-            android:entries="@array/qs_tile_entries"
-            android:entryValues="@array/qs_tile_values"
-            android:defaultValue="@array/qs_tile_values" />
+        <PreferenceScreen
+            android:key="pref_cat_statusbar_qs"
+            android:title="@string/pref_cat_statusbar_qs_title">
 
-        <ListPreference
-            android:key="pref_qs_tiles_per_row" 
-            android:title="@string/pref_qs_tiles_per_row_title"
-            android:summary="@string/pref_qs_tiles_per_row_summary" 
-            android:entries="@array/qs_tiles_per_row_entries"
-            android:entryValues="@array/qs_tiles_per_row_values"
-            android:defaultValue="3" />
+            <MultiSelectListPreference 
+                android:key="pref_quick_settings"
+                android:title="@string/quick_settings_title"
+                android:summary="@string/quick_settings_summary" 
+                android:entries="@array/qs_tile_entries"
+                android:entryValues="@array/qs_tile_values"
+                android:defaultValue="@array/qs_tile_values" />
+    
+            <ListPreference
+                android:key="pref_qs_tiles_per_row" 
+                android:title="@string/pref_qs_tiles_per_row_title"
+                android:summary="@string/pref_qs_tiles_per_row_summary" 
+                android:entries="@array/qs_tiles_per_row_entries"
+                android:entryValues="@array/qs_tiles_per_row_values"
+                android:defaultValue="3" />
+    
+            <CheckBoxPreference 
+                android:key="pref_auto_switch_qs"
+                android:title="@string/pref_auto_switch_qs_title"
+                android:summary="@string/pref_auto_switch_qs_summary"
+                android:defaultValue="false" />
+    
+            <ListPreference
+                android:key="pref_quick_pulldown" 
+                android:title="@string/pref_quick_pulldown_title"
+                android:summary="@string/pref_quick_pulldown_summary"
+                android:entries="@array/quick_pulldown_entries"
+                android:entryValues="@array/quick_pulldown_values"
+                android:defaultValue="0" />
 
-        <CheckBoxPreference 
-            android:key="pref_auto_switch_qs"
-            android:title="@string/pref_auto_switch_qs_title"
-            android:summary="@string/pref_auto_switch_qs_summary"
-            android:defaultValue="false" />
-
-        <ListPreference
-            android:key="pref_quick_pulldown" 
-            android:title="@string/pref_quick_pulldown_title"
-            android:summary="@string/pref_quick_pulldown_summary"
-            android:entries="@array/quick_pulldown_entries"
-            android:entryValues="@array/quick_pulldown_values"
-            android:defaultValue="0" />
+        </PreferenceScreen>
 
         <PreferenceScreen 
             android:key="pref_cat_statusbar_colors"

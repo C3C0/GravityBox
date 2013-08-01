@@ -312,4 +312,7 @@
     <string name="pref_statusbar_data_activity_color_title">Data activity color</string>
     <string name="pref_statusbar_data_activity_color_summary">Sets color for data activity indicators</string>
 
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">QuickSettings management</string>
+
 </resources>
