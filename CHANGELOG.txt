@@ -1,3 +1,15 @@
+Changelog 1.8.5 - 01/08/2013
+--------------------------------------
+- fixed status bar background color not being applied at boot on some devices
+- expandable volume panel - make ringer slider always available (e.g. also when music plays)
+- option to set statusbar icon color and data activity indicators color
+--- applies to all icons except for bluetooth and airplane mode icon
+--- stock battery icon won't animate during charging when coloring is turned on
+--- for mobile signal, the basic blue color is overriden. Other 3 colors in SIM Management can be used to override GB color
+- reorganized statusbar preferences
+- optimized resource handling
+- updated Slovak, Czech, French, Russian translations
+
 Changelog 1.8.0 - 28/07/2013
 --------------------------------------
 - Media tweaks
