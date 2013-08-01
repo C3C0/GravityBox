@@ -298,4 +298,21 @@
     <string name="pref_volume_rocker_wake_disable_title">Zakázat probouzení tlačítky hlasitosti</string>
     <string name="pref_volume_rocker_wake_disable_summary">Pro zařízení jako Jiayu G3S, G4, u kterých tlačítka hlasitosti probouzejí zařízení</string>
 
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">Barvy stavového řádku</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">Povolit vybarvování ikon</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">Barva ikon</string>
+    <string name="pref_statusbar_icon_color_summary">Nastaví barvu pro ikony stavového řádku a pro hodiny</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">Barva indikátoru datové aktivity</string>
+    <string name="pref_statusbar_data_activity_color_summary">Nastaví barvu pro indikátory datové aktivity</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">QuickSettings nastavení</string>
+
 </resources>
