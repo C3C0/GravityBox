@@ -142,7 +142,7 @@
 
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Мелодия звонка для 2-х SIM</string>
-    <string name="dual_sim_ringer_summary">Позволяет запустить приложение, которое позволяет установить мелодию звонка и уведомлений отдельно для каждой SIM-карты</string>
+    <string name="dual_sim_ringer_summary">Запускает приложение, которое позволяет установить мелодию звонка и уведомлений отдельно для каждой SIM-карты</string>
     
 	<!--  Lockscreen tweaks -->
     <string name="pref_cat_lockscreen_title">Настройки экрана блокировки</string>
@@ -152,7 +152,7 @@
     <string name="lockscreen_bg_default">Стандартные обои</string>
     <string name="lockscreen_bg_color">Заполнение цветом</string>
     <string name="lockscreen_bg_image">Пользовательское изображение</string>
-    <string name="pref_lockscreen_bg_color_title">Задать цыет</string>
+    <string name="pref_lockscreen_bg_color_title">Задать цвет</string>
     <string name="pref_lockscreen_bg_color_summary">Позволяет задать цвет фона для экрана блокировки</string>
     <string name="pref_lockscreen_bg_image_title">Задать изображение</string>
     <string name="pref_lockscreen_bg_image_summary">Позволяет установить пользовательское изображение для экрана блокировки</string>
@@ -297,5 +297,22 @@
     <!-- Disable volume rocker wake -->
     <string name="pref_volume_rocker_wake_disable_title">Отключение выхода из сна клавишами громкости</string>
     <string name="pref_volume_rocker_wake_disable_summary">Для устройств вроде Jiayu G3s,G4 где изменение звука будит устройство</string>
+    
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">Цвета статусбара</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">Включить цвета иконок</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">Цвет иконок статусбара</string>
+    <string name="pref_statusbar_icon_color_summary">Задает цвета для иконок статусбара и часов</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">Цвет активности данных</string>
+    <string name="pref_statusbar_data_activity_color_summary">Задает цвета для индикаторов активности данных</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">Управление Быстрыми настройками</string>
     
 </resources>
