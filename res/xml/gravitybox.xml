@@ -94,6 +94,35 @@
             android:entryValues="@array/quick_pulldown_values"
             android:defaultValue="0" />
 
+        <PreferenceScreen 
+            android:key="pref_cat_statusbar_colors"
+            android:title="@string/pref_cat_statusbar_colors_title">
+
+            <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                android:key="pref_statusbar_bgcolor"
+                android:title="@string/statusbar_bgcolor_title" 
+                android:summary="@string/statusbar_bgcolor_summary"
+                android:defaultValue="@integer/COLOR_BLACK" />
+
+            <CheckBoxPreference 
+                android:key="pref_statusbar_icon_color_enable"
+                android:title="@string/pref_statusbar_icon_color_enable_title"
+                android:defaultValue="false" />
+
+            <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                android:key="pref_statusbar_icon_color"
+                android:title="@string/pref_statusbar_icon_color_title" 
+                android:summary="@string/pref_statusbar_icon_color_summary"
+                android:defaultValue="@integer/COLOR_HOLO_BLUE_LIGHT" />
+
+            <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                android:key="pref_statusbar_data_activity_color"
+                android:title="@string/pref_statusbar_data_activity_color_title" 
+                android:summary="@string/pref_statusbar_data_activity_color_summary"
+                android:defaultValue="@integer/COLOR_WHITE" />
+
+        </PreferenceScreen>
+
         <ListPreference
             android:key="pref_battery_style" 
             android:title="@string/battery_style_title" 
@@ -105,12 +134,6 @@
             android:key="pref_battery_percent_text"
             android:title="@string/battery_style_percent"
             android:defaultValue="false" />
-
-        <net.margaritov.preference.colorpicker.ColorPickerPreference 
-            android:key="pref_statusbar_bgcolor"
-            android:title="@string/statusbar_bgcolor_title" 
-            android:summary="@string/statusbar_bgcolor_summary"
-            android:defaultValue="@integer/COLOR_BLACK" />
 
         <CheckBoxPreference 
             android:key="pref_statusbar_center_clock"

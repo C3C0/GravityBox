@@ -8,6 +8,7 @@ import java.util.Set;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
@@ -72,6 +73,9 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_FIX_MMS_WAKELOCK = "pref_mms_fix_wakelock";
     public static final String PREF_KEY_FIX_CALENDAR = "pref_fix_calendar";
     public static final String PREF_KEY_STATUSBAR_BGCOLOR = "pref_statusbar_bgcolor";
+    public static final String PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE = "pref_statusbar_icon_color_enable";
+    public static final String PREF_KEY_STATUSBAR_ICON_COLOR = "pref_statusbar_icon_color";
+    public static final String PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR = "pref_statusbar_data_activity_color";
     public static final String PREF_KEY_STATUSBAR_CENTER_CLOCK = "pref_statusbar_center_clock";
     public static final String PREF_KEY_STATUSBAR_CLOCK_DOW = "pref_statusbar_clock_dow";
     public static final String PREF_KEY_FIX_TTS_SETTINGS = "pref_fix_tts_settings";
@@ -148,8 +152,11 @@ public class GravityBoxSettings extends Activity {
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
-    public static final String ACTION_PREF_STATUSBAR_BGCOLOR_CHANGED = "gravitybox.intent.action.STATUSBAR_BGCOLOR_CHANGED";
-    public static final String EXTRA_SB_BGCOLOR = "bgColor";
+    public static final String ACTION_PREF_STATUSBAR_COLOR_CHANGED = "gravitybox.intent.action.STATUSBAR_COLOR_CHANGED";
+    public static final String EXTRA_SB_BG_COLOR = "bgColor";
+    public static final String EXTRA_SB_ICON_COLOR_ENABLE = "iconColorEnable";
+    public static final String EXTRA_SB_ICON_COLOR = "iconColor";
+    public static final String EXTRA_SB_DATA_ACTIVITY_COLOR = "dataActivityColor";
 
     public static final String ACTION_PREF_QUICKSETTINGS_CHANGED = "gravitybox.intent.action.QUICKSETTINGS_CHANGED";
     public static final String EXTRA_QS_PREFS = "qsPrefs";
@@ -213,6 +220,9 @@ public class GravityBoxSettings extends Activity {
         private ListPreference mPrefHwKeyDoubletapSpeed;
         private ListPreference mPrefHwKeyKillDelay;
         private ListPreference mPrefPhoneFlip;
+        private CheckBoxPreference mPrefSbIconColorEnable;
+        private ColorPickerPreference mPrefSbIconColor;
+        private ColorPickerPreference mPrefSbDaColor;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -278,6 +288,10 @@ public class GravityBoxSettings extends Activity {
             mPrefHwKeyKillDelay = (ListPreference) findPreference(PREF_KEY_HWKEY_KILL_DELAY);
 
             mPrefPhoneFlip = (ListPreference) findPreference(PREF_KEY_PHONE_FLIP);
+
+            mPrefSbIconColorEnable = (CheckBoxPreference) findPreference(PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE);
+            mPrefSbIconColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_ICON_COLOR);
+            mPrefSbDaColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR);
         }
 
         @Override
@@ -343,6 +357,9 @@ public class GravityBoxSettings extends Activity {
 
             mPrefPhoneFlip.setSummary(getString(R.string.pref_phone_flip_summary)
                     + " (" + mPrefPhoneFlip.getEntry() + ")");
+
+            mPrefSbIconColor.setEnabled(mPrefSbIconColorEnable.isChecked());
+            mPrefSbDaColor.setEnabled(mPrefSbIconColorEnable.isChecked());
         }
 
         @Override
@@ -378,8 +395,20 @@ public class GravityBoxSettings extends Activity {
                 intent.putExtra(EXTRA_QUICK_PULLDOWN, Integer.valueOf(
                         prefs.getString(PREF_KEY_QUICK_PULLDOWN, "0")));
             } else if (key.equals(PREF_KEY_STATUSBAR_BGCOLOR)) {
-                intent.setAction(ACTION_PREF_STATUSBAR_BGCOLOR_CHANGED);
-                intent.putExtra(EXTRA_SB_BGCOLOR, prefs.getInt(PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK));
+                intent.setAction(ACTION_PREF_STATUSBAR_COLOR_CHANGED);
+                intent.putExtra(EXTRA_SB_BG_COLOR, prefs.getInt(PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK));
+            } else if (key.equals(PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE)) {
+                intent.setAction(ACTION_PREF_STATUSBAR_COLOR_CHANGED);
+                intent.putExtra(EXTRA_SB_ICON_COLOR_ENABLE,
+                        prefs.getBoolean(PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE, false));
+            } else if (key.equals(PREF_KEY_STATUSBAR_ICON_COLOR)) {
+                intent.setAction(ACTION_PREF_STATUSBAR_COLOR_CHANGED);
+                intent.putExtra(EXTRA_SB_ICON_COLOR, prefs.getInt(PREF_KEY_STATUSBAR_ICON_COLOR, 
+                        getResources().getInteger(R.integer.COLOR_HOLO_BLUE_LIGHT)));
+            } else if (key.equals(PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR)) {
+                intent.setAction(ACTION_PREF_STATUSBAR_COLOR_CHANGED);
+                intent.putExtra(EXTRA_SB_DATA_ACTIVITY_COLOR,
+                        prefs.getInt(PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR, Color.WHITE));
             } else if (key.equals(PREF_KEY_STATUSBAR_CENTER_CLOCK)) {
                 intent.setAction(ACTION_PREF_CENTER_CLOCK_CHANGED);
                 intent.putExtra(EXTRA_CENTER_CLOCK, 

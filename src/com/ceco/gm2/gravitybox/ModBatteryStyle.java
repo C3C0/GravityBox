@@ -19,6 +19,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
+import de.robv.android.xposed.callbacks.XCallback;
 
 public class ModBatteryStyle {
     public static final String PACKAGE_NAME = "com.android.systemui";
@@ -52,8 +53,19 @@ public class ModBatteryStyle {
                             LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
                     circleBattery.setLayoutParams(lParams);
                     circleBattery.setPadding(4, 0, 0, 0);
+                    ModStatusbarColor.setCircleBattery(circleBattery);
                     vg.addView(circleBattery);
                     XposedBridge.log("ModBatteryStyle: CmCircleBattery injected");
+
+                    // find battery
+                    ImageView battery = (ImageView) vg.findViewById(
+                            liparam.res.getIdentifier("battery", "id", PACKAGE_NAME));
+                    ModStatusbarColor.setBattery(battery);
+
+                    // find battery percentage
+                    TextView percentage = (TextView) vg.findViewById(
+                            liparam.res.getIdentifier("percentage", "id", PACKAGE_NAME));
+                    ModStatusbarColor.setPercentage(percentage);
                 }
                 
             });
@@ -71,7 +83,7 @@ public class ModBatteryStyle {
             Class<?> phoneStatusBarClass = findClass(CLASS_PHONE_STATUSBAR, classLoader);
             Class<?> batteryControllerClass = findClass(CLASS_BATTERY_CONTROLLER, classLoader);
 
-            findAndHookMethod(phoneStatusBarClass, "makeStatusBarView", new XC_MethodHook() {
+            findAndHookMethod(phoneStatusBarClass, "makeStatusBarView", new XC_MethodHook(XCallback.PRIORITY_HIGHEST) {
 
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
@@ -122,15 +134,21 @@ public class ModBatteryStyle {
                     @SuppressWarnings("unchecked")
                     ArrayList<TextView> mLabelViews = (ArrayList<TextView>) XposedHelpers.getObjectField(param.thisObject, "mLabelViews");
 
-                    mIconViews.get(0).setVisibility(
-                            (mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_STOCK) ?
-                                     View.VISIBLE : View.GONE);
+                    if (!mIconViews.isEmpty()) {
+                        mIconViews.get(0).setVisibility(
+                                (mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_STOCK) ?
+                                         View.VISIBLE : View.GONE);
+    
+                        if (mIconViews.size() >= 2) {
+                            mIconViews.get(1).setVisibility(mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE ?
+                                    View.VISIBLE : View.GONE);
+                        }
+                    }
 
-                    mIconViews.get(1).setVisibility(mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE ?
-                            View.VISIBLE : View.GONE);
-
-                    mLabelViews.get(0).setVisibility(
-                            (mBatteryPercentText ? View.VISIBLE : View.GONE));
+                    if (!mLabelViews.isEmpty()) {
+                        mLabelViews.get(0).setVisibility(
+                                (mBatteryPercentText ? View.VISIBLE : View.GONE));
+                    }
                 }
             });
         }

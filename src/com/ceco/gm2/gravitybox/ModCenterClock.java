@@ -81,6 +81,7 @@ public class ModCenterClock {
                     mClock = (TextView) mIconArea.findViewById(
                             liparam.res.getIdentifier("clock", "id", PACKAGE_NAME));
                     if (mClock == null) return;
+                    ModStatusbarColor.setClock(mClock);
                     // use this additional field to identify the instance of Clock that resides in status bar
                     XposedHelpers.setAdditionalInstanceField(mClock, "sbClock", true);
                     mClockOriginalPaddingLeft = mClock.getPaddingLeft();

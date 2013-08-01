@@ -331,4 +331,10 @@ public class CmCircleBattery extends ImageView {
             }
         }
     }
+
+    public void setColor(int color) {
+        mPaintSystem.setColor(color);
+        mPaintFont.setColor(color);
+        invalidate();
+    }
 }

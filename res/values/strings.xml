@@ -298,4 +298,18 @@
     <string name="pref_volume_rocker_wake_disable_title">Disable volume rocker wake</string>
     <string name="pref_volume_rocker_wake_disable_summary">For devices like Jiayu G3s,G4 where volume keys turn on screen</string>
 
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">Statusbar colors</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">Enable icon colors</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">Statusbar icon color</string>
+    <string name="pref_statusbar_icon_color_summary">Sets color for statusbar icons and clock</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">Data activity color</string>
+    <string name="pref_statusbar_data_activity_color_summary">Sets color for data activity indicators</string>
+
 </resources>
