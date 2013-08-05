@@ -489,14 +489,16 @@ public class ModQuickSettings {
     private static XC_MethodHook makeStatusBarViewHook = new XC_MethodHook() {
         @Override
         protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-            try {
-                Object toolbarView = XposedHelpers.getObjectField(param.thisObject, "mToolBarView");
-                if (toolbarView != null) {
-                    mSimSwitchPanelView = XposedHelpers.getObjectField(toolbarView, "mSimSwitchPanelView");
-                    log("makeStatusBarView: SimSwitchPanelView found");
+            if (Utils.isMtkDevice()) {
+                try {
+                    Object toolbarView = XposedHelpers.getObjectField(param.thisObject, "mToolBarView");
+                    if (toolbarView != null) {
+                        mSimSwitchPanelView = XposedHelpers.getObjectField(toolbarView, "mSimSwitchPanelView");
+                        log("makeStatusBarView: SimSwitchPanelView found");
+                    }
+                } catch (NoSuchFieldError e) {
+                    //
                 }
-            } catch (Exception e) {
-                //
             }
         }
     };
@@ -520,76 +522,84 @@ public class ModQuickSettings {
 
         @Override
         protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-            ViewGroup thisView = (ViewGroup) param.thisObject;
-            int widthMeasureSpec = (Integer) param.args[0];
-            int heightMeasureSpec = (Integer) param.args[1];
-            float mCellGap = XposedHelpers.getFloatField(thisView, "mCellGap");
-            int numColumns = XposedHelpers.getIntField(thisView, "mNumColumns");
-            int orientation = mContext.getResources().getConfiguration().orientation;
-            
-            int width = MeasureSpec.getSize(widthMeasureSpec);
-            int height = MeasureSpec.getSize(heightMeasureSpec);
-            int availableWidth = (int) (width - thisView.getPaddingLeft() - thisView.getPaddingRight() -
-                    (numColumns - 1) * mCellGap);
-            float cellWidth = (float) Math.ceil(((float) availableWidth) / numColumns);
-
-            // Update each of the children's widths accordingly to the cell width
-            int N = thisView.getChildCount();
-            int cellHeight = 0;
-            int cursor = 0;
-            for (int i = 0; i < N; ++i) {
-                // Update the child's width
-                View v = (View) thisView.getChildAt(i);
-                if (v.getVisibility() != View.GONE) {
-                    ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
-                    int colSpan = (Integer) XposedHelpers.callMethod(v, "getColumnSpan");
-                    lp.width = (int) ((colSpan * cellWidth) + (colSpan - 1) * mCellGap);
-
-                    if (mLpOriginalHeight == -1) mLpOriginalHeight = lp.height;
-                    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-                        if (numColumns > 3) {
-                            lp.height = (lp.width * numColumns-1) / numColumns;
+            try {
+                ViewGroup thisView = (ViewGroup) param.thisObject;
+                int widthMeasureSpec = (Integer) param.args[0];
+                int heightMeasureSpec = (Integer) param.args[1];
+                float mCellGap = XposedHelpers.getFloatField(thisView, "mCellGap");
+                int numColumns = XposedHelpers.getIntField(thisView, "mNumColumns");
+                int orientation = mContext.getResources().getConfiguration().orientation;
+                
+                int width = MeasureSpec.getSize(widthMeasureSpec);
+                int height = MeasureSpec.getSize(heightMeasureSpec);
+                int availableWidth = (int) (width - thisView.getPaddingLeft() - thisView.getPaddingRight() -
+                        (numColumns - 1) * mCellGap);
+                float cellWidth = (float) Math.ceil(((float) availableWidth) / numColumns);
+    
+                // Update each of the children's widths accordingly to the cell width
+                int N = thisView.getChildCount();
+                int cellHeight = 0;
+                int cursor = 0;
+                for (int i = 0; i < N; ++i) {
+                    // Update the child's width
+                    View v = (View) thisView.getChildAt(i);
+                    if (v.getVisibility() != View.GONE) {
+                        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+                        Object o = mQuickSettingsTileViewClass.cast(v);
+                        int colSpan = (Integer) XposedHelpers.callMethod(o, "getColumnSpan");
+                        lp.width = (int) ((colSpan * cellWidth) + (colSpan - 1) * mCellGap);
+    
+                        if (mLpOriginalHeight == -1) mLpOriginalHeight = lp.height;
+                        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                            if (numColumns > 3) {
+                                lp.height = (lp.width * numColumns-1) / numColumns;
+                            } else {
+                                lp.height = mLpOriginalHeight;
+                            }
                         } else {
                             lp.height = mLpOriginalHeight;
                         }
-                    } else {
-                        lp.height = mLpOriginalHeight;
+    
+                        // Measure the child
+                        int newWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, MeasureSpec.EXACTLY);
+                        int newHeightSpec = MeasureSpec.makeMeasureSpec(lp.height, MeasureSpec.EXACTLY);
+                        v.measure(newWidthSpec, newHeightSpec);
+    
+                        // Save the cell height
+                        if (cellHeight <= 0) {
+                            cellHeight = v.getMeasuredHeight();
+                        }
+                        cursor += colSpan;
                     }
-
-                    // Measure the child
-                    int newWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, MeasureSpec.EXACTLY);
-                    int newHeightSpec = MeasureSpec.makeMeasureSpec(lp.height, MeasureSpec.EXACTLY);
-                    v.measure(newWidthSpec, newHeightSpec);
-
-                    // Save the cell height
-                    if (cellHeight <= 0) {
-                        cellHeight = v.getMeasuredHeight();
-                    }
-                    cursor += colSpan;
                 }
+    
+                // Set the measured dimensions.  We always fill the tray width, but wrap to the height of
+                // all the tiles.
+                // Calling to setMeasuredDimension is protected final and not accessible directly from here
+                // so we emulate it
+                int numRows = (int) Math.ceil((float) cursor / numColumns);
+                int newHeight = (int) ((numRows * cellHeight) + ((numRows - 1) * mCellGap)) +
+                        thisView.getPaddingTop() + thisView.getPaddingBottom();
+    
+                Field fMeasuredWidth = View.class.getDeclaredField("mMeasuredWidth");
+                fMeasuredWidth.setAccessible(true);
+                Field fMeasuredHeight = View.class.getDeclaredField("mMeasuredHeight");
+                fMeasuredHeight.setAccessible(true);
+                Field fPrivateFlags = View.class.getDeclaredField("mPrivateFlags");
+                fPrivateFlags.setAccessible(true); 
+                fMeasuredWidth.setInt(thisView, width);
+                fMeasuredHeight.setInt(thisView, newHeight);
+                int privateFlags = fPrivateFlags.getInt(thisView);
+                privateFlags |= 0x00000800;
+                fPrivateFlags.setInt(thisView, privateFlags);
+    
+                return null;
+            } catch (Exception e) {
+                // fallback to original method in case of problems
+                XposedBridge.log(e);
+                XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
+                return null;
             }
-
-            // Set the measured dimensions.  We always fill the tray width, but wrap to the height of
-            // all the tiles.
-            // Calling to setMeasuredDimension is protected final and not accessible directly from here
-            // so we emulate it
-            int numRows = (int) Math.ceil((float) cursor / numColumns);
-            int newHeight = (int) ((numRows * cellHeight) + ((numRows - 1) * mCellGap)) +
-                    thisView.getPaddingTop() + thisView.getPaddingBottom();
-
-            Field fMeasuredWidth = View.class.getDeclaredField("mMeasuredWidth");
-            fMeasuredWidth.setAccessible(true);
-            Field fMeasuredHeight = View.class.getDeclaredField("mMeasuredHeight");
-            fMeasuredHeight.setAccessible(true);
-            Field fPrivateFlags = View.class.getDeclaredField("mPrivateFlags");
-            fPrivateFlags.setAccessible(true); 
-            fMeasuredWidth.setInt(thisView, width);
-            fMeasuredHeight.setInt(thisView, newHeight);
-            int privateFlags = fPrivateFlags.getInt(thisView);
-            privateFlags |= 0x00000800;
-            fPrivateFlags.setInt(thisView, privateFlags);
-
-            return null;
         }
     };
 
