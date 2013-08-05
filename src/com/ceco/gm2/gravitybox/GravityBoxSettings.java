@@ -67,11 +67,13 @@ public class GravityBoxSettings extends Activity {
 
     public static final String PREF_KEY_RECENTS_CLEAR_ALL = "pref_recents_clear_all";
     public static final String PREF_KEY_CALLER_FULLSCREEN_PHOTO = "pref_caller_fullscreen_photo";
+    public static final String PREF_CAT_KEY_FIXES = "pref_cat_fixes";
     public static final String PREF_KEY_FIX_DATETIME_CRASH = "pref_fix_datetime_crash";
     public static final String PREF_KEY_FIX_CALLER_ID_PHONE = "pref_fix_caller_id_phone";
     public static final String PREF_KEY_FIX_CALLER_ID_MMS = "pref_fix_caller_id_mms";
     public static final String PREF_KEY_FIX_MMS_WAKELOCK = "pref_mms_fix_wakelock";
     public static final String PREF_KEY_FIX_CALENDAR = "pref_fix_calendar";
+    public static final String PREF_CAT_KEY_STATUSBAR = "pref_cat_statusbar";
     public static final String PREF_KEY_STATUSBAR_BGCOLOR = "pref_statusbar_bgcolor";
     public static final String PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE = "pref_statusbar_icon_color_enable";
     public static final String PREF_KEY_STATUSBAR_ICON_COLOR = "pref_statusbar_icon_color";
@@ -149,7 +151,7 @@ public class GravityBoxSettings extends Activity {
     public static final int PHONE_FLIP_ACTION_DISMISS = 2;
     public static final String PREF_KEY_PHONE_CALL_CONNECT_VIBRATE_DISABLE = "pref_phone_call_connect_vibrate_disable";
 
-    public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
+    public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "gravitybox.intent.action.BATTERY_STYLE_CHANGED";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
     public static final String ACTION_PREF_STATUSBAR_COLOR_CHANGED = "gravitybox.intent.action.STATUSBAR_COLOR_CHANGED";
@@ -223,6 +225,8 @@ public class GravityBoxSettings extends Activity {
         private CheckBoxPreference mPrefSbIconColorEnable;
         private ColorPickerPreference mPrefSbIconColor;
         private ColorPickerPreference mPrefSbDaColor;
+        private PreferenceScreen mPrefCatFixes;
+        private PreferenceScreen mPrefCatStatusbar;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -292,6 +296,16 @@ public class GravityBoxSettings extends Activity {
             mPrefSbIconColorEnable = (CheckBoxPreference) findPreference(PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE);
             mPrefSbIconColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_ICON_COLOR);
             mPrefSbDaColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR);
+
+            mPrefCatFixes = (PreferenceScreen) findPreference(PREF_CAT_KEY_FIXES);
+            mPrefCatStatusbar = (PreferenceScreen) findPreference(PREF_CAT_KEY_STATUSBAR);
+
+            // Remove MTK specific preferences for non-mtk device
+            if (!Utils.isMtkDevice()) {
+                getPreferenceScreen().removePreference(mPrefCatFixes);
+                mPrefCatStatusbar.removePreference(mSignalIconAutohide);
+                mPrefCatStatusbar.removePreference(mQuickSettings);
+            }
         }
 
         @Override

@@ -1,6 +1,7 @@
 package com.ceco.gm2.gravitybox;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
@@ -51,5 +52,9 @@ public class Utils {
         UNKNOWN,
         METHOD_ENTERED,
         METHOD_EXITED
+    }
+
+    public static boolean isMtkDevice() {
+        return (Build.HARDWARE.toLowerCase().contains("mt6589"));
     }
 }

@@ -48,12 +48,27 @@ public class StatusBarIconManager {
         tmpMap.put("stat_sys_wifi_signal_null", R.drawable.stat_sys_wifi_signal_null);
         mWifiIconIds = Collections.unmodifiableMap(tmpMap);
 
-        tmpMap = new HashMap<String, Integer>();
-        tmpMap.put("stat_sys_gemini_signal_1_blue", R.drawable.stat_sys_signal_1_fully);
-        tmpMap.put("stat_sys_gemini_signal_2_blue", R.drawable.stat_sys_signal_2_fully);
-        tmpMap.put("stat_sys_gemini_signal_3_blue", R.drawable.stat_sys_signal_3_fully);
-        tmpMap.put("stat_sys_gemini_signal_4_blue", R.drawable.stat_sys_signal_4_fully);
-        mMobileIconIds = Collections.unmodifiableMap(tmpMap);
+        if (Utils.isMtkDevice()) {
+            tmpMap = new HashMap<String, Integer>();
+            tmpMap.put("stat_sys_gemini_signal_1_blue", R.drawable.stat_sys_signal_1_fully);
+            tmpMap.put("stat_sys_gemini_signal_2_blue", R.drawable.stat_sys_signal_2_fully);
+            tmpMap.put("stat_sys_gemini_signal_3_blue", R.drawable.stat_sys_signal_3_fully);
+            tmpMap.put("stat_sys_gemini_signal_4_blue", R.drawable.stat_sys_signal_4_fully);
+            mMobileIconIds = Collections.unmodifiableMap(tmpMap);
+        } else {
+            tmpMap = new HashMap<String, Integer>();
+            tmpMap.put("stat_sys_signal_0", R.drawable.stat_sys_signal_0);
+            tmpMap.put("stat_sys_signal_0_fully", R.drawable.stat_sys_signal_0_fully);
+            tmpMap.put("stat_sys_signal_1", R.drawable.stat_sys_signal_1);
+            tmpMap.put("stat_sys_signal_1_fully", R.drawable.stat_sys_signal_1_fully);
+            tmpMap.put("stat_sys_signal_2", R.drawable.stat_sys_signal_2);
+            tmpMap.put("stat_sys_signal_2_fully", R.drawable.stat_sys_signal_2_fully);
+            tmpMap.put("stat_sys_signal_3", R.drawable.stat_sys_signal_3);
+            tmpMap.put("stat_sys_signal_3_fully", R.drawable.stat_sys_signal_3_fully);
+            tmpMap.put("stat_sys_signal_4", R.drawable.stat_sys_signal_4);
+            tmpMap.put("stat_sys_signal_4_fully", R.drawable.stat_sys_signal_4_fully);
+            mMobileIconIds = Collections.unmodifiableMap(tmpMap);
+        }
 
         tmpMap = new HashMap<String, Integer>();
         tmpMap.put("stat_sys_battery_0", R.drawable.stat_sys_battery_0);

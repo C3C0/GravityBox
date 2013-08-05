@@ -202,12 +202,18 @@ public class ModStatusbarColor {
                             XposedHelpers.getObjectField(param.thisObject, "mWifiGroup") == null) return;
 
                     Resources res = ((LinearLayout) param.thisObject).getContext().getResources();
-                    Object[] mobileIconIds = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthId");
-                    Object[] mobileIconIdsGemini = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthIdGemini");
-                    Object mobileActivityId = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityId");
-                    Object mobileActivityIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityIdGemini");
-                    Object mobileTypeId = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeId");
-                    Object mobileTypeIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeIdGemini");
+
+                    Object[] mobileIconIds = null, mobileIconIdsGemini = null;
+                    Object mobileActivityId = null, mobileActivityIdGemini = null;
+                    Object mobileTypeId = null, mobileTypeIdGemini = null;
+                    if (Utils.isMtkDevice()) {
+                        mobileIconIds = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthId");
+                        mobileIconIdsGemini = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthIdGemini");
+                        mobileActivityId = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityId");
+                        mobileActivityIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityIdGemini");
+                        mobileTypeId = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeId");
+                        mobileTypeIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeIdGemini");
+                    }
 
                     if (XposedHelpers.getBooleanField(param.thisObject, "mWifiVisible")) {
                         ImageView wifiIcon = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mWifi");
@@ -239,9 +245,11 @@ public class ModStatusbarColor {
                             ImageView mobile = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobile");
                             if (mobile != null) {
                                 try {
-                                    int resId = (Integer) XposedHelpers.callMethod(mobileIconIds[0], "getIconId");
+                                    int resId = Utils.isMtkDevice() ? 
+                                            (Integer) XposedHelpers.callMethod(mobileIconIds[0], "getIconId") :
+                                            XposedHelpers.getIntField(param.thisObject, "mMobileStrengthId");
                                     String resName = res.getResourceEntryName(resId);
-                                    allowChange = resName.contains("blue");
+                                    allowChange = resName.contains("blue") | !Utils.isMtkDevice();
                                     Drawable d = mIconManager.getMobileIcon(resName);
                                     if (d != null) mobile.setImageDrawable(d);
                                 } catch (Resources.NotFoundException e) { }
@@ -251,7 +259,9 @@ public class ModStatusbarColor {
                                         (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileActivity");
                                 if (mobileActivity != null) {
                                     try {
-                                        int resId = (Integer) XposedHelpers.callMethod(mobileActivityId, "getIconId");
+                                        int resId = Utils.isMtkDevice() ? 
+                                                (Integer) XposedHelpers.callMethod(mobileActivityId, "getIconId") :
+                                                XposedHelpers.getIntField(param.thisObject, "mMobileActivityId");
                                         Drawable d = res.getDrawable(resId).mutate();
                                         d = mIconManager.applyDataActivityColorFilter(d);
                                         mobileActivity.setImageDrawable(d);
@@ -262,7 +272,9 @@ public class ModStatusbarColor {
                                 ImageView mobileType = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileType");
                                 if (mobileType != null) {
                                     try {
-                                        int resId = (Integer) XposedHelpers.callMethod(mobileTypeId, "getIconId");
+                                        int resId = Utils.isMtkDevice() ?
+                                                (Integer) XposedHelpers.callMethod(mobileTypeId, "getIconId") :
+                                                XposedHelpers.getIntField(param.thisObject, "mMobileTypeId");
                                         Drawable d = res.getDrawable(resId).mutate();
                                         d = mIconManager.applyColorFilter(d);
                                         mobileType.setImageDrawable(d);
@@ -287,7 +299,8 @@ public class ModStatusbarColor {
                         }
 
                         // for SIM Slot 2
-                        if (XposedHelpers.getBooleanField(param.thisObject, "mMobileVisibleGemini")) {
+                        if (Utils.isMtkDevice() && 
+                                XposedHelpers.getBooleanField(param.thisObject, "mMobileVisibleGemini")) {
                             boolean allowChange = false;
                             ImageView mobile = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileGemini");
                             if (mobile != null) {

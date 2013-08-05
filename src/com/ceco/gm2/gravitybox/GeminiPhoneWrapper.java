@@ -4,17 +4,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Handler;
 import android.os.Message;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class GeminiPhoneWrapper {
-    private static final String TAG = "GeminiPhoneWrapper";
-
-    public static final int EVENT_QUERY_NETWORKMODE_DONE = 0x65;
-    public static final int EVENT_SET_NETWORKMODE_DONE = 0x66;
+    private static final String TAG = "PhoneWrapper";
 
     public static final int NT_WCDMA_PREFERRED = 0;
     public static final int NT_GSM_ONLY = 1;
@@ -27,14 +23,11 @@ public class GeminiPhoneWrapper {
     public static final String EXTRA_NETWORK_TYPE = "networkType";
 
     private static Class<?> mClsPhoneFactory;
-    private static Class<?> mClsPhoneGemini;
     private static Context mContext;
 
     private static void log(String msg) {
         XposedBridge.log(TAG + ": " + msg);
     }
-
-    private static Handler mHandler;
 
     private static BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
 
@@ -54,21 +47,19 @@ public class GeminiPhoneWrapper {
         log("Entering init state");
         
         mClsPhoneFactory = XposedHelpers.findClass("com.android.internal.telephony.PhoneFactory", null);
-        mClsPhoneGemini = XposedHelpers.findClass("com.android.internal.telephony.gemini.GeminiPhone", null);
 
-        XposedBridge.hookAllConstructors(mClsPhoneGemini, new XC_MethodHook() {
+        XposedHelpers.findAndHookMethod(mClsPhoneFactory, "makeDefaultPhones", 
+                Context.class, new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "f");
-                log("GeminiPhone constructed");
+                mContext = (Context) param.args[0];
+                log("PhoneFactory makeDefaultPhones - phone wrapper initialized");
                 onInitialize();
             }
         });
     }
 
     private static void onInitialize() {
-        mHandler = new Handler();
-
         if (mContext != null) {
             IntentFilter intentFilter = new IntentFilter(ACTION_CHANGE_NETWORK_TYPE);
             mContext.registerReceiver(mBroadcastReceiver, intentFilter);
@@ -79,7 +70,17 @@ public class GeminiPhoneWrapper {
         Object defPhone = XposedHelpers.callStaticMethod(mClsPhoneFactory, "getDefaultPhone");
         if (defPhone == null) return;
 
-        Message msg = mHandler.obtainMessage(EVENT_SET_NETWORKMODE_DONE);
-        XposedHelpers.callMethod(defPhone, "setPreferredNetworkTypeGemini", networkType, msg, 0);
+        if (Utils.isMtkDevice()) {
+            Class<?>[] paramArgs = new Class<?>[3];
+            paramArgs[0] = int.class;
+            paramArgs[1] = Message.class;
+            paramArgs[2] = int.class;
+            XposedHelpers.callMethod(defPhone, "setPreferredNetworkTypeGemini", paramArgs, networkType, null, 0);
+        } else {
+            Class<?>[] paramArgs = new Class<?>[2];
+            paramArgs[0] = int.class;
+            paramArgs[1] = Message.class;
+            XposedHelpers.callMethod(defPhone, "setPreferredNetworkType", paramArgs, networkType, null);
+        }
     }
 }

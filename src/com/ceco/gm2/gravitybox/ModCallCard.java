@@ -53,34 +53,36 @@ public class ModCallCard {
                 }
             });
 
-            XposedHelpers.findAndHookMethod(callCardClass, "updateCallBannerBackground", 
-                    callClass, ViewGroup.class, new XC_MethodHook() {
-                @Override
-                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    prefs.reload();
-                    if (!prefs.getBoolean(GravityBoxSettings.PREF_KEY_CALLER_FULLSCREEN_PHOTO, false))
-                        return;
-                    XposedBridge.log(TAG + ": CallCard: after updateCallBannerBackground");
-
-                    TextView simIndicator = 
-                            (TextView) XposedHelpers.getObjectField(param.thisObject, "mSimIndicator");
-                    if (simIndicator != null) {
-                        simIndicator.setBackgroundResource(0);
+            if (Utils.isMtkDevice()) {
+                XposedHelpers.findAndHookMethod(callCardClass, "updateCallBannerBackground", 
+                        callClass, ViewGroup.class, new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                        prefs.reload();
+                        if (!prefs.getBoolean(GravityBoxSettings.PREF_KEY_CALLER_FULLSCREEN_PHOTO, false))
+                            return;
+                        XposedBridge.log(TAG + ": CallCard: after updateCallBannerBackground");
+    
+                        TextView simIndicator = 
+                                (TextView) XposedHelpers.getObjectField(param.thisObject, "mSimIndicator");
+                        if (simIndicator != null) {
+                            simIndicator.setBackgroundResource(0);
+                        }
+    
+                        ViewGroup secondaryInfoContainer =
+                                (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mSecondaryInfoContainer");
+                        if (secondaryInfoContainer != null) {
+                            secondaryInfoContainer.setBackgroundResource(0);
+                        }
+    
+                        ViewGroup secondaryCallBanner = 
+                                (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mSecondaryCallBanner");
+                        if (secondaryCallBanner != null) {
+                            secondaryCallBanner.setBackgroundResource(0);
+                        }
                     }
-
-                    ViewGroup secondaryInfoContainer =
-                            (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mSecondaryInfoContainer");
-                    if (secondaryInfoContainer != null) {
-                        secondaryInfoContainer.setBackgroundResource(0);
-                    }
-
-                    ViewGroup secondaryCallBanner = 
-                            (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mSecondaryCallBanner");
-                    if (secondaryCallBanner != null) {
-                        secondaryCallBanner.setBackgroundResource(0);
-                    }
-                }
-            });
+                });
+            }
 
             XposedHelpers.findAndHookMethod(inCallTouchUiClass, "showIncomingCallWidget",
                     callClass, new XC_MethodHook() {
