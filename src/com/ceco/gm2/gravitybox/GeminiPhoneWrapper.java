@@ -43,20 +43,24 @@ public class GeminiPhoneWrapper {
     };
 
     public static void initZygote() {
-
         log("Entering init state");
-        
-        mClsPhoneFactory = XposedHelpers.findClass("com.android.internal.telephony.PhoneFactory", null);
 
-        XposedHelpers.findAndHookMethod(mClsPhoneFactory, "makeDefaultPhones", 
-                Context.class, new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                mContext = (Context) param.args[0];
-                log("PhoneFactory makeDefaultPhones - phone wrapper initialized");
-                onInitialize();
-            }
-        });
+        try {
+            mClsPhoneFactory = XposedHelpers.findClass("com.android.internal.telephony.PhoneFactory", null);
+
+            String methodName = Utils.isMtkDevice() ? "makeDefaultPhones" : "makeDefaultPhone";
+            XposedHelpers.findAndHookMethod(mClsPhoneFactory, methodName, 
+                    Context.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    mContext = (Context) param.args[0];
+                    log("PhoneFactory makeDefaultPhones - phone wrapper initialized");
+                    onInitialize();
+                }
+            });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
     }
 
     private static void onInitialize() {
