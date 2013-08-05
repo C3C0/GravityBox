@@ -74,6 +74,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_FIX_MMS_WAKELOCK = "pref_mms_fix_wakelock";
     public static final String PREF_KEY_FIX_CALENDAR = "pref_fix_calendar";
     public static final String PREF_CAT_KEY_STATUSBAR = "pref_cat_statusbar";
+    public static final String PREF_CAT_KEY_STATUSBAR_QS = "pref_cat_statusbar_qs";
     public static final String PREF_KEY_STATUSBAR_BGCOLOR = "pref_statusbar_bgcolor";
     public static final String PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE = "pref_statusbar_icon_color_enable";
     public static final String PREF_KEY_STATUSBAR_ICON_COLOR = "pref_statusbar_icon_color";
@@ -227,6 +228,7 @@ public class GravityBoxSettings extends Activity {
         private ColorPickerPreference mPrefSbDaColor;
         private PreferenceScreen mPrefCatFixes;
         private PreferenceScreen mPrefCatStatusbar;
+        private PreferenceScreen mPrefCatStatusbarQs;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -299,12 +301,13 @@ public class GravityBoxSettings extends Activity {
 
             mPrefCatFixes = (PreferenceScreen) findPreference(PREF_CAT_KEY_FIXES);
             mPrefCatStatusbar = (PreferenceScreen) findPreference(PREF_CAT_KEY_STATUSBAR);
+            mPrefCatStatusbarQs = (PreferenceScreen) findPreference(PREF_CAT_KEY_STATUSBAR_QS);
 
             // Remove MTK specific preferences for non-mtk device
             if (!Utils.isMtkDevice()) {
                 getPreferenceScreen().removePreference(mPrefCatFixes);
                 mPrefCatStatusbar.removePreference(mSignalIconAutohide);
-                mPrefCatStatusbar.removePreference(mQuickSettings);
+                mPrefCatStatusbarQs.removePreference(mQuickSettings);
             }
         }
 
