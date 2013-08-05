@@ -1,6 +1,6 @@
 package com.ceco.gm2.gravitybox.quicksettings;
 
-import com.ceco.gm2.gravitybox.GeminiPhoneWrapper;
+import com.ceco.gm2.gravitybox.PhoneWrapper;
 import com.ceco.gm2.gravitybox.R;
 
 import de.robv.android.xposed.XposedBridge;
@@ -34,13 +34,13 @@ public class NetworkModeTile extends AQuickSettingsTile {
         public void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(
-                    Settings.Global.getUriFor(GeminiPhoneWrapper.PREFERRED_NETWORK_MODE), false, this);
+                    Settings.Global.getUriFor(PhoneWrapper.PREFERRED_NETWORK_MODE), false, this);
         }
 
         @Override
         public void onChange(boolean selfChange) {
             mNetworkType = Settings.Global.getInt(mContext.getContentResolver(), 
-                    GeminiPhoneWrapper.PREFERRED_NETWORK_MODE, GeminiPhoneWrapper.NT_WCDMA_PREFERRED);
+                    PhoneWrapper.PREFERRED_NETWORK_MODE, PhoneWrapper.NT_WCDMA_PREFERRED);
             log("SettingsObserver onChange; mNetworkType = " + mNetworkType);
             updateResources();
         }
@@ -53,20 +53,20 @@ public class NetworkModeTile extends AQuickSettingsTile {
             
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(GeminiPhoneWrapper.ACTION_CHANGE_NETWORK_TYPE);
+                Intent i = new Intent(PhoneWrapper.ACTION_CHANGE_NETWORK_TYPE);
                 switch (mNetworkType) {
-                    case GeminiPhoneWrapper.NT_WCDMA_PREFERRED:
-                    case GeminiPhoneWrapper.NT_GSM_WCDMA_AUTO:
-                        i.putExtra(GeminiPhoneWrapper.EXTRA_NETWORK_TYPE, 
-                                GeminiPhoneWrapper.NT_GSM_ONLY);
+                    case PhoneWrapper.NT_WCDMA_PREFERRED:
+                    case PhoneWrapper.NT_GSM_WCDMA_AUTO:
+                        i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
+                                PhoneWrapper.NT_GSM_ONLY);
                         break;
-                    case GeminiPhoneWrapper.NT_WCDMA_ONLY:
-                        i.putExtra(GeminiPhoneWrapper.EXTRA_NETWORK_TYPE, 
-                                GeminiPhoneWrapper.NT_WCDMA_PREFERRED);
+                    case PhoneWrapper.NT_WCDMA_ONLY:
+                        i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
+                                PhoneWrapper.NT_WCDMA_PREFERRED);
                         break;
-                    case GeminiPhoneWrapper.NT_GSM_ONLY:
-                        i.putExtra(GeminiPhoneWrapper.EXTRA_NETWORK_TYPE, 
-                                GeminiPhoneWrapper.NT_WCDMA_ONLY);
+                    case PhoneWrapper.NT_GSM_ONLY:
+                        i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
+                                PhoneWrapper.NT_WCDMA_ONLY);
                         break;
                 }
                 mContext.sendBroadcast(i);
@@ -84,7 +84,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
         mTextView = (TextView) mTile.findViewById(R.id.network_mode_tileview);
 
         mNetworkType = Settings.Global.getInt(mContext.getContentResolver(), 
-                GeminiPhoneWrapper.PREFERRED_NETWORK_MODE, GeminiPhoneWrapper.NT_WCDMA_PREFERRED);
+                PhoneWrapper.PREFERRED_NETWORK_MODE, PhoneWrapper.NT_WCDMA_PREFERRED);
         SettingsObserver observer = new SettingsObserver(new Handler());
         observer.observe();
     }
@@ -93,14 +93,14 @@ public class NetworkModeTile extends AQuickSettingsTile {
     protected synchronized void updateTile() {
 
         switch (mNetworkType) {
-            case GeminiPhoneWrapper.NT_WCDMA_PREFERRED:
-            case GeminiPhoneWrapper.NT_GSM_WCDMA_AUTO:
+            case PhoneWrapper.NT_WCDMA_PREFERRED:
+            case PhoneWrapper.NT_GSM_WCDMA_AUTO:
                 mDrawableId = R.drawable.ic_qs_2g3g_on;
                 break;
-            case GeminiPhoneWrapper.NT_WCDMA_ONLY:
+            case PhoneWrapper.NT_WCDMA_ONLY:
                 mDrawableId = R.drawable.ic_qs_3g_on;
                 break;
-            case GeminiPhoneWrapper.NT_GSM_ONLY:
+            case PhoneWrapper.NT_GSM_ONLY:
                 mDrawableId = R.drawable.ic_qs_2g_on;
                 break;
         }

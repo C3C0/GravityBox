@@ -9,7 +9,7 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
-public class GeminiPhoneWrapper {
+public class PhoneWrapper {
     private static final String TAG = "PhoneWrapper";
 
     public static final int NT_WCDMA_PREFERRED = 0;

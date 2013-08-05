@@ -56,7 +56,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         ModVolKeyCursor.initZygote(prefs);
         ModCallCard.initZygote();
         ModStatusbarColor.initZygote();
-        GeminiPhoneWrapper.initZygote();
+        PhoneWrapper.initZygote();
         ModElectronBeam.initZygote(prefs);
         ModLockscreen.initZygote(prefs);
         ModLowBatteryWarning.initZygote(prefs);
