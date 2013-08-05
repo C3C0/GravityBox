@@ -28,7 +28,9 @@ public class ModStatusbarColor {
     private static final String CLASS_PHONE_WINDOW_MANAGER = "com.android.internal.policy.impl.PhoneWindowManager";
     private static final String CLASS_PANEL_BAR = "com.android.systemui.statusbar.phone.PanelBar";
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
-    private static final String CLASS_SIGNAL_CLUSTER_VIEW = "com.android.systemui.statusbar.SignalClusterViewGemini";
+    private static final String CLASS_SIGNAL_CLUSTER_VIEW = Utils.isMtkDevice() ? 
+            "com.android.systemui.statusbar.SignalClusterViewGemini" :
+            "com.android.systemui.statusbar.SignalClusterView";
     private static final String CLASS_BATTERY_CONTROLLER = "com.android.systemui.statusbar.policy.BatteryController";
 
     private static View mPanelBar;
