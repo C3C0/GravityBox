@@ -74,7 +74,7 @@
     <string name="quick_settings_qr_recording_notif">Touchez pour stopper l\'enregistrement</string>
 
     <!--  QuickSettings settings -->
-    <string name="quick_settings_title">Gestion des paramètres rapides</string>
+    <string name="quick_settings_title">Touches des paramètres rapides</string>
     <string name="quick_settings_summary">Permet d\'afficher ou masquer les touches de paramètres rapides depuis la barre de status</string>
     <string name="qs_tile_user_profile">Profile utilisateur</string>
     <string name="qs_tile_airplane_mode">Mode avion</string>
@@ -297,5 +297,22 @@
     <!-- Disable volume rocker wake -->
     <string name="pref_volume_rocker_wake_disable_title">Désactiver sortie de veille</string>
     <string name="pref_volume_rocker_wake_disable_summary">Pour les modèles tels que Jiayu G3s, G4, permet de désactiver la sortie de veille par les touches de volume</string>
+
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">Couleurs barre de status</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">Activer couleur des icônes</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">Couleur icônes</string>
+    <string name="pref_statusbar_icon_color_summary">Définit la couleur des icônes et de l\'horloge dans la barre de status</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">Couleur transfert de données</string>
+    <string name="pref_statusbar_data_activity_color_summary">Définit la couleur des indicateurs de transfert de données</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">Gestion des paramètres rapides</string>
 
 </resources>
