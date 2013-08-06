@@ -307,7 +307,11 @@ public class GravityBoxSettings extends Activity {
             if (!Utils.isMtkDevice()) {
                 getPreferenceScreen().removePreference(mPrefCatFixes);
                 mPrefCatStatusbar.removePreference(mSignalIconAutohide);
-                mPrefCatStatusbarQs.removePreference(mQuickSettings);
+                mQuickSettings.setEntries(R.array.qs_tile_aosp_entries);
+                mQuickSettings.setEntryValues(R.array.qs_tile_aosp_values);
+            } else {
+                mQuickSettings.setEntries(R.array.qs_tile_entries);
+                mQuickSettings.setEntryValues(R.array.qs_tile_values);
             }
         }
 

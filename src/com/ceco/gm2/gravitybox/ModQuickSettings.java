@@ -48,6 +48,8 @@ public class ModQuickSettings {
     private static final String CLASS_QS_TILEVIEW = "com.android.systemui.statusbar.phone.QuickSettingsTileView";
     private static final String CLASS_NOTIF_PANELVIEW = "com.android.systemui.statusbar.phone.NotificationPanelView";
     private static final String CLASS_QS_CONTAINER_VIEW = "com.android.systemui.statusbar.phone.QuickSettingsContainerView";
+    private static final String CLASS_QS_MODEL = "com.android.systemui.statusbar.phone.QuickSettingsModel";
+    private static final String CLASS_QS_MODEL_RCB = "com.android.systemui.statusbar.phone.QuickSettingsModel$RefreshCallback";
     private static final boolean DEBUG = false;
 
     private static final float STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_RIGHT = 0.15f;
@@ -81,7 +83,8 @@ public class ModQuickSettings {
             "audio_profile_textview",
             "brightness_textview",
             "timeout_textview",
-            "auto_rotate_textview"
+            "auto_rotate_textview",
+            "settings"
     ));
 
     private static List<Integer> mCustomGbTileKeys = new ArrayList<Integer>(Arrays.asList(
@@ -133,7 +136,7 @@ public class ModQuickSettings {
         Resources res = mContext.getResources();
         for (String key : mCustomSystemTileKeys) {
             int resId = res.getIdentifier(key, "id", PACKAGE_NAME);
-            if (view.findViewById(resId) != null) {
+            if (view.findViewById(resId) != null || view.findViewWithTag(key) != null) {
                 return true;
             }
         }
@@ -171,9 +174,13 @@ public class ModQuickSettings {
             View view = mContainerView.findViewById(mContext.getResources().getIdentifier(
                     tileKey, "id", PACKAGE_NAME));
             if (view == null) {
-                // search within mGbContext (our additional GB specific tiles)
-                view = mContainerView.findViewById(mGbContext.getResources().getIdentifier(
-                        tileKey, "id", GravityBox.PACKAGE_NAME));
+                // search for tagged tiles
+                view = mContainerView.findViewWithTag(tileKey);
+                if (view == null) {
+                    // search within mGbContext (our additional GB specific tiles)
+                    view = mContainerView.findViewById(mGbContext.getResources().getIdentifier(
+                            tileKey, "id", GravityBox.PACKAGE_NAME));
+                }
             }
 
             if (view != null) {
@@ -295,6 +302,11 @@ public class ModQuickSettings {
                     qsContainerViewUpdateResources);
             XposedHelpers.findAndHookMethod(quickSettingsContainerViewClass, "onMeasure",
                     int.class, int.class, qsContainerViewOnMeasure);
+
+            // tag AOSP QS views for future identification
+            if (!Utils.isMtkDevice()) {
+                tagAospTileViews(classLoader);
+            }
 
             XposedHelpers.findAndHookMethod(phoneStatusBarClass, "removeNotification", IBinder.class, new XC_MethodHook() {
                 @Override
@@ -610,5 +622,117 @@ public class ModQuickSettings {
         if (mSimSwitchPanelView == null) return false;
 
         return (Boolean) XposedHelpers.callMethod(mSimSwitchPanelView, "isPanelShowing");
+    }
+
+    private static void tagAospTileViews(ClassLoader classLoader) {
+        final Class<?> classQsModel = XposedHelpers.findClass(CLASS_QS_MODEL, classLoader);
+
+        try {
+            XposedHelpers.findAndHookMethod(classQsModel, "addUserTile",
+                    CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    ((View)param.args[0]).setTag("user_textview");
+                }
+            });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+
+        try {
+            XposedHelpers.findAndHookMethod(classQsModel, "addBrightnessTile",
+                    CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    ((View)param.args[0]).setTag("brightness_textview");
+                }
+            });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+
+        try {
+            XposedHelpers.findAndHookMethod(classQsModel, "addSettingsTile",
+                    CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    ((View)param.args[0]).setTag("settings");
+                }
+            });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+
+        try {
+            XposedHelpers.findAndHookMethod(classQsModel, "addWifiTile",
+                    CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    ((View)param.args[0]).setTag("wifi_textview");
+                }
+            });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+
+        try {
+            XposedHelpers.findAndHookMethod(classQsModel, "addRSSITile",
+                    CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    ((View)param.args[0]).setTag("rssi_textview");
+                }
+            });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+
+        try {
+            XposedHelpers.findAndHookMethod(classQsModel, "addRotationLockTile",
+                    CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    ((View)param.args[0]).setTag("auto_rotate_textview");
+                }
+            });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+
+        try {
+            XposedHelpers.findAndHookMethod(classQsModel, "addBatteryTile",
+                    CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    ((View)param.args[0]).setTag("battery_textview");
+                }
+            });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+
+        try {
+            XposedHelpers.findAndHookMethod(classQsModel, "addAirplaneModeTile",
+                    CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    ((View)param.args[0]).setTag("airplane_mode_textview");
+                }
+            });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+
+        try {
+            XposedHelpers.findAndHookMethod(classQsModel, "addBluetoothTile",
+                    CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    ((View)param.args[0]).setTag("bluetooth_textview");
+                }
+            });
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
     }
 }

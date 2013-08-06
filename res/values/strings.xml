@@ -95,6 +95,7 @@
     <string name="qs_tile_gravitybox">GravityBox</string>
     <string name="qs_tile_sleep">Sleep</string>
     <string name="qs_tile_quickrecord">Quick Record</string>
+    <string name="qs_tile_settings">Settings</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>

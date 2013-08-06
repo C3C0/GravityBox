@@ -71,10 +71,7 @@
             <MultiSelectListPreference 
                 android:key="pref_quick_settings"
                 android:title="@string/quick_settings_title"
-                android:summary="@string/quick_settings_summary" 
-                android:entries="@array/qs_tile_entries"
-                android:entryValues="@array/qs_tile_values"
-                android:defaultValue="@array/qs_tile_values" />
+                android:summary="@string/quick_settings_summary" />
     
             <ListPreference
                 android:key="pref_qs_tiles_per_row" 
