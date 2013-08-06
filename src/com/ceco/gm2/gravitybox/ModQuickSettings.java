@@ -4,8 +4,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.ceco.gm2.gravitybox.Utils.MethodState;
@@ -46,6 +49,7 @@ public class ModQuickSettings {
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     private static final String CLASS_PANEL_BAR = "com.android.systemui.statusbar.phone.PanelBar";
     private static final String CLASS_QS_TILEVIEW = "com.android.systemui.statusbar.phone.QuickSettingsTileView";
+    private static final String CLASS_QS_BASIC_TILE = "com.android.systemui.statusbar.phone.QuickSettingsBasicTile";
     private static final String CLASS_NOTIF_PANELVIEW = "com.android.systemui.statusbar.phone.NotificationPanelView";
     private static final String CLASS_QS_CONTAINER_VIEW = "com.android.systemui.statusbar.phone.QuickSettingsContainerView";
     private static final String CLASS_QS_MODEL = "com.android.systemui.statusbar.phone.QuickSettingsModel";
@@ -62,16 +66,21 @@ public class ModQuickSettings {
     private static Object mStatusBar;
     private static Set<String> mActiveTileKeys;
     private static Class<?> mQuickSettingsTileViewClass;
+    private static Class<?> mQuickSettingsBasicTileClass;
     private static Object mSimSwitchPanelView;
     private static int mNumColumns = 3;
     private static int mLpOriginalHeight = -1;
     private static boolean mAutoSwitch = false;
     private static int mQuickPulldown = GravityBoxSettings.QUICK_PULLDOWN_OFF;
     private static Method methodGetColumnSpan;
+    private static List<String> mCustomSystemTileKeys;
+    private static List<Integer> mCustomGbTileKeys;
+    private static Map<String, Integer> mAospTileTags;
 
     private static ArrayList<AQuickSettingsTile> mTiles;
 
-    private static List<String> mCustomSystemTileKeys = new ArrayList<String>(Arrays.asList(
+    static {
+        mCustomSystemTileKeys = new ArrayList<String>(Arrays.asList(
             "user_textview",
             "airplane_mode_textview",
             "battery_textview",
@@ -85,9 +94,9 @@ public class ModQuickSettings {
             "timeout_textview",
             "auto_rotate_textview",
             "settings"
-    ));
+        ));
 
-    private static List<Integer> mCustomGbTileKeys = new ArrayList<Integer>(Arrays.asList(
+        mCustomGbTileKeys = new ArrayList<Integer>(Arrays.asList(
             R.id.sync_tileview,
             R.id.wifi_ap_tileview,
             R.id.gravitybox_tileview,
@@ -95,7 +104,20 @@ public class ModQuickSettings {
             R.id.network_mode_tileview,
             R.id.sleep_tileview,
             R.id.quickrecord_tileview
-    ));
+        ));
+
+        Map<String, Integer> tmpMap = new HashMap<String, Integer>();
+        tmpMap.put("user_textview", 1);
+        tmpMap.put("brightness_textview", 2);
+        tmpMap.put("settings", 3);
+        tmpMap.put("wifi_textview", 4);
+        tmpMap.put("rssi_textview", 5);
+        tmpMap.put("auto_rotate_textview", 6);
+        tmpMap.put("battery_textview", 7);
+        tmpMap.put("airplane_mode_textview", 8);
+        tmpMap.put("bluetooth_textview", 9);
+        mAospTileTags = Collections.unmodifiableMap(tmpMap);
+    }
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -136,7 +158,8 @@ public class ModQuickSettings {
         Resources res = mContext.getResources();
         for (String key : mCustomSystemTileKeys) {
             int resId = res.getIdentifier(key, "id", PACKAGE_NAME);
-            if (view.findViewById(resId) != null || view.findViewWithTag(key) != null) {
+            if (view.findViewById(resId) != null || 
+                    view.findViewWithTag(mAospTileTags.get(key)) != null) {
                 return true;
             }
         }
@@ -175,7 +198,11 @@ public class ModQuickSettings {
                     tileKey, "id", PACKAGE_NAME));
             if (view == null) {
                 // search for tagged tiles
-                view = mContainerView.findViewWithTag(tileKey);
+                view = mContainerView.findViewWithTag(mAospTileTags.get(tileKey.toString()));
+                if (DEBUG) {
+                    log("updateTileVisibility: findViewWithTag('" + tileKey + "') = " +
+                            ((view == null) ? "null" : view.toString()));
+                }
                 if (view == null) {
                     // search within mGbContext (our additional GB specific tiles)
                     view = mContainerView.findViewById(mGbContext.getResources().getIdentifier(
@@ -191,9 +218,14 @@ public class ModQuickSettings {
 
                 // bubble up in view hierarchy to find QuickSettingsTileView parent view
                 View rootView = view;
-                do {
-                    rootView = (View) rootView.getParent();
-                } while (rootView != null && rootView.getClass() != mQuickSettingsTileViewClass);
+                if (rootView.getClass() != mQuickSettingsTileViewClass &&
+                        rootView.getClass() != mQuickSettingsBasicTileClass) {
+                    do {
+                        rootView = (View) rootView.getParent();
+                    } while (rootView != null && 
+                             rootView.getClass() != mQuickSettingsTileViewClass &&
+                             rootView.getClass() != mQuickSettingsBasicTileClass);
+                }
 
                 if (DEBUG) {
                     log("updateTileVisibility: finished searching for root view; rootView=" +
@@ -283,6 +315,8 @@ public class ModQuickSettings {
             final Class<?> panelBarClass = XposedHelpers.findClass(CLASS_PANEL_BAR, classLoader);
             mQuickSettingsTileViewClass = XposedHelpers.findClass(CLASS_QS_TILEVIEW, classLoader);
             methodGetColumnSpan = mQuickSettingsTileViewClass.getDeclaredMethod("getColumnSpan");
+            mQuickSettingsBasicTileClass = Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1 ?
+                    XposedHelpers.findClass(CLASS_QS_BASIC_TILE, classLoader) : mQuickSettingsTileViewClass;
             final Class<?> notifPanelViewClass = XposedHelpers.findClass(CLASS_NOTIF_PANELVIEW, classLoader);
             final Class<?> quickSettingsContainerViewClass = XposedHelpers.findClass(CLASS_QS_CONTAINER_VIEW, classLoader);
 
@@ -632,7 +666,7 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag("user_textview");
+                    ((View)param.args[0]).setTag(mAospTileTags.get("user_textview"));
                 }
             });
         } catch (Exception e) {
@@ -644,7 +678,7 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag("brightness_textview");
+                    ((View)param.args[0]).setTag(mAospTileTags.get("brightness_textview"));
                 }
             });
         } catch (Exception e) {
@@ -656,7 +690,7 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag("settings");
+                    ((View)param.args[0]).setTag(mAospTileTags.get("settings"));
                 }
             });
         } catch (Exception e) {
@@ -668,7 +702,7 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag("wifi_textview");
+                    ((View)param.args[0]).setTag(mAospTileTags.get("wifi_textview"));
                 }
             });
         } catch (Exception e) {
@@ -680,7 +714,7 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag("rssi_textview");
+                    ((View)param.args[0]).setTag(mAospTileTags.get("rssi_textview"));
                 }
             });
         } catch (Exception e) {
@@ -692,7 +726,7 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag("auto_rotate_textview");
+                    ((View)param.args[0]).setTag(mAospTileTags.get("auto_rotate_textview"));
                 }
             });
         } catch (Exception e) {
@@ -704,7 +738,7 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag("battery_textview");
+                    ((View)param.args[0]).setTag(mAospTileTags.get("battery_textview"));
                 }
             });
         } catch (Exception e) {
@@ -716,7 +750,7 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag("airplane_mode_textview");
+                    ((View)param.args[0]).setTag(mAospTileTags.get("airplane_mode_textview"));
                 }
             });
         } catch (Exception e) {
@@ -728,7 +762,7 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag("bluetooth_textview");
+                    ((View)param.args[0]).setTag(mAospTileTags.get("bluetooth_textview"));
                 }
             });
         } catch (Exception e) {
