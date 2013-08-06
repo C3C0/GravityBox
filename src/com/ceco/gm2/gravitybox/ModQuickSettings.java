@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -64,6 +65,7 @@ public class ModQuickSettings {
     private static int mLpOriginalHeight = -1;
     private static boolean mAutoSwitch = false;
     private static int mQuickPulldown = GravityBoxSettings.QUICK_PULLDOWN_OFF;
+    private static Method methodGetColumnSpan;
 
     private static ArrayList<AQuickSettingsTile> mTiles;
 
@@ -273,6 +275,7 @@ public class ModQuickSettings {
             final Class<?> phoneStatusBarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
             final Class<?> panelBarClass = XposedHelpers.findClass(CLASS_PANEL_BAR, classLoader);
             mQuickSettingsTileViewClass = XposedHelpers.findClass(CLASS_QS_TILEVIEW, classLoader);
+            methodGetColumnSpan = mQuickSettingsTileViewClass.getDeclaredMethod("getColumnSpan");
             final Class<?> notifPanelViewClass = XposedHelpers.findClass(CLASS_NOTIF_PANELVIEW, classLoader);
             final Class<?> quickSettingsContainerViewClass = XposedHelpers.findClass(CLASS_QS_CONTAINER_VIEW, classLoader);
 
@@ -318,7 +321,8 @@ public class ModQuickSettings {
                         log("animateCollapsePanels called from removeNotification method");
 
                         boolean hasFlipSettings = XposedHelpers.getBooleanField(param.thisObject, "mHasFlipSettings");
-                        boolean animating = XposedHelpers.getBooleanField(param.thisObject, "mAnimating");
+                        boolean animating = Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1 ? false : 
+                                XposedHelpers.getBooleanField(param.thisObject, "mAnimating");
                         View flipSettingsView = (View) XposedHelpers.getObjectField(param.thisObject, "mFlipSettingsView");
                         Object notificationData = XposedHelpers.getObjectField(mStatusBar, "mNotificationData");
                         int ndSize = (Integer) XposedHelpers.callMethod(notificationData, "size");
@@ -545,8 +549,7 @@ public class ModQuickSettings {
                     View v = (View) thisView.getChildAt(i);
                     if (v.getVisibility() != View.GONE) {
                         ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
-                        Object o = mQuickSettingsTileViewClass.cast(v);
-                        int colSpan = (Integer) XposedHelpers.callMethod(o, "getColumnSpan");
+                        int colSpan = (Integer) methodGetColumnSpan.invoke(v);
                         lp.width = (int) ((colSpan * cellWidth) + (colSpan - 1) * mCellGap);
     
                         if (mLpOriginalHeight == -1) mLpOriginalHeight = lp.height;
