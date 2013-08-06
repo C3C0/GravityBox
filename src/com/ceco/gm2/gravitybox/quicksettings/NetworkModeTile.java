@@ -68,8 +68,13 @@ public class NetworkModeTile extends AQuickSettingsTile {
                         i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
                                 PhoneWrapper.NT_WCDMA_ONLY);
                         break;
+                    default:
+                        log("onClick: Unknown or unexpected network type: mNetworkType = " + mNetworkType);
+                        break;
                 }
-                mContext.sendBroadcast(i);
+                if (i.hasExtra(PhoneWrapper.EXTRA_NETWORK_TYPE)) {
+                    mContext.sendBroadcast(i);
+                }
             }
         };
     }
@@ -102,6 +107,10 @@ public class NetworkModeTile extends AQuickSettingsTile {
                 break;
             case PhoneWrapper.NT_GSM_ONLY:
                 mDrawableId = R.drawable.ic_qs_2g_on;
+                break;
+            default:
+                mDrawableId = R.drawable.ic_qs_unexpected_network;
+                log("updateTile: Unknown or unexpected network type: mNetworkType = " + mNetworkType);
                 break;
         }
 

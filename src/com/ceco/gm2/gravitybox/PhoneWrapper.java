@@ -74,17 +74,22 @@ public class PhoneWrapper {
         Object defPhone = XposedHelpers.callStaticMethod(mClsPhoneFactory, "getDefaultPhone");
         if (defPhone == null) return;
 
-        if (Utils.isMtkDevice()) {
-            Class<?>[] paramArgs = new Class<?>[3];
-            paramArgs[0] = int.class;
-            paramArgs[1] = Message.class;
-            paramArgs[2] = int.class;
-            XposedHelpers.callMethod(defPhone, "setPreferredNetworkTypeGemini", paramArgs, networkType, null, 0);
-        } else {
-            Class<?>[] paramArgs = new Class<?>[2];
-            paramArgs[0] = int.class;
-            paramArgs[1] = Message.class;
-            XposedHelpers.callMethod(defPhone, "setPreferredNetworkType", paramArgs, networkType, null);
+        try {
+            if (Utils.isMtkDevice()) {
+                Class<?>[] paramArgs = new Class<?>[3];
+                paramArgs[0] = int.class;
+                paramArgs[1] = Message.class;
+                paramArgs[2] = int.class;
+                XposedHelpers.callMethod(defPhone, "setPreferredNetworkTypeGemini", paramArgs, networkType, null, 0);
+            } else {
+                Class<?>[] paramArgs = new Class<?>[2];
+                paramArgs[0] = int.class;
+                paramArgs[1] = Message.class;
+                XposedHelpers.callMethod(defPhone, "setPreferredNetworkType", paramArgs, networkType, null);
+            }
+        } catch (Exception e) {
+            log("setPreferredNetworkType failed: " + e.getMessage());
+            XposedBridge.log(e);
         }
     }
 }
