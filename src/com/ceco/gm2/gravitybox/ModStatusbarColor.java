@@ -284,7 +284,8 @@ public class ModStatusbarColor {
                                         mobileType.setImageDrawable(null);
                                     }
                                 }
-                                if (XposedHelpers.getBooleanField(param.thisObject, "mRoaming")) {
+                                if (Utils.isMtkDevice() &&
+                                        XposedHelpers.getBooleanField(param.thisObject, "mRoaming")) {
                                     ImageView mobileRoam = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileRoam");
                                     if (mobileRoam != null) {
                                         try {
