@@ -392,7 +392,7 @@ public class ModStatusbarColor {
             mPercentage.setTextColor(iconColor);
         }
 
-        if (mBatteryController != null) {
+        if (mBatteryController != null && mBattery != null) {
             Intent intent = new Intent(Intent.ACTION_BATTERY_CHANGED);
             intent.putExtra(BatteryManager.EXTRA_LEVEL, mBatteryLevel);
             intent.putExtra(BatteryManager.EXTRA_PLUGGED, mBatteryPlugged);
