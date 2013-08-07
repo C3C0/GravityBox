@@ -1,39 +1,32 @@
 package com.ceco.gm2.gravitybox;
 
 import java.io.File;
-import java.io.IOException;
+
+import de.robv.android.xposed.XposedBridge;
 
 import android.content.Context;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.provider.Settings;
-import android.util.AttributeSet;
 import android.view.Display;
 import android.view.WindowManager;
 import android.view.Surface;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
-
-import android.database.ContentObserver;
-import android.net.Uri;
-import android.os.Handler;
-import android.content.ContentResolver;
 
 class NotificationWallpaper extends FrameLayout {
 
     private final String TAG = "NotificationWallpaperUpdater";
 
-    private final String NOTIF_WALLPAPER_IMAGE_PATH = "/data/data/com.ceco.gm2.gravitybox/files/lockwallpaper";
-    private final String NOTIF_WALLPAPER_IMAGE_PATH_LANDSCAPE = "";
-
     private ImageView mNotificationWallpaperImage;
-    private float wallpaperAlpha;
-    private int mCreationOrientation = 2;
+    private String mNotifBgImagePathPortrait;
+    private String mNotifBgImagePathLandscape;
+    private float mAlpha;
+    private boolean mEnabled;
 
     Context mContext;
 
@@ -42,13 +35,48 @@ class NotificationWallpaper extends FrameLayout {
     public NotificationWallpaper(Context context) {
         super(context);
         mContext = context;
-        setNotificationWallpaper();
+
+        try {
+            Context gbContext = context.createPackageContext(GravityBox.PACKAGE_NAME, 0);
+            mNotifBgImagePathPortrait = gbContext.getFilesDir() + "/notifwallpaper";
+            mNotifBgImagePathLandscape = gbContext.getFilesDir() + "/notifwallpaper_landscape";
+        } catch (NameNotFoundException e) {
+            mNotifBgImagePathPortrait = "";
+            mNotifBgImagePathLandscape = "";
+            XposedBridge.log(e);
+        }
+
+        mAlpha = 0.6f;
+        mEnabled = false;
     }
 
-    public void setNotificationWallpaper() {
+    public void setAlpha(float alpha) {
+        if (alpha < 0) alpha = 0;
+        if (alpha > 1) alpha = 1;
+        mAlpha = alpha;
+    }
+
+    public void setAlpha(int alpha) {
+        if (alpha < 0) alpha = 0;
+        if (alpha > 100) alpha = 100;
+        mAlpha = (float)alpha / (float)100;
+    }
+
+    public void setEnabled(boolean enabled) {
+        mEnabled = enabled;
+    }
+
+    public void updateNotificationWallpaper() {
+        if (!mEnabled) {
+            if (mNotificationWallpaperImage != null) {
+                removeView(mNotificationWallpaperImage);
+            }
+            return;
+        }
+
         boolean isLandscape = false;
-        File file = new File(NOTIF_WALLPAPER_IMAGE_PATH);
-        File fileLandscape = new File(NOTIF_WALLPAPER_IMAGE_PATH_LANDSCAPE);
+        File file = new File(mNotifBgImagePathPortrait);
+        File fileLandscape = new File(mNotifBgImagePathLandscape);
         Display display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         int orientation = display.getRotation();
         switch(orientation) {
@@ -66,7 +94,6 @@ class NotificationWallpaper extends FrameLayout {
             if (mNotificationWallpaperImage != null) {
                 removeView(mNotificationWallpaperImage);
             }
-            wallpaperAlpha = 0.7f;
 
             mNotificationWallpaperImage = new ImageView(getContext());
             if (isLandscape && !fileLandscape.exists()) {
@@ -76,12 +103,12 @@ class NotificationWallpaper extends FrameLayout {
             }
             addView(mNotificationWallpaperImage, -1, -1);
             if (isLandscape && fileLandscape.exists()) {
-                bitmapWallpaper = BitmapFactory.decodeFile(NOTIF_WALLPAPER_IMAGE_PATH_LANDSCAPE);
+                bitmapWallpaper = BitmapFactory.decodeFile(mNotifBgImagePathLandscape);
             }else {
-                bitmapWallpaper = BitmapFactory.decodeFile(NOTIF_WALLPAPER_IMAGE_PATH);
+                bitmapWallpaper = BitmapFactory.decodeFile(mNotifBgImagePathPortrait);
             }
             Drawable d = new BitmapDrawable(getResources(), bitmapWallpaper);
-            d.setAlpha((int) ((1-wallpaperAlpha) * 255));
+            d.setAlpha(mAlpha == 0 ? 255 : (int) ((1-mAlpha) * 255));
             mNotificationWallpaperImage.setImageDrawable(d);
         } else {
             if (mNotificationWallpaperImage != null) {
@@ -102,7 +129,7 @@ class NotificationWallpaper extends FrameLayout {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-            setNotificationWallpaper();
+            updateNotificationWallpaper();
     }
 }
 

@@ -21,7 +21,8 @@ public class SeekBarPreference extends Preference
     private TextView monitorBox;
     private SeekBar bar;
 
-    int mValue;
+    private int mValue;
+    private boolean mTracking = false;
 
     public SeekBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -54,8 +55,12 @@ public class SeekBarPreference extends Preference
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (!fromUser) return;
 
-        progress = Math.round(((float) progress) / interval) * interval;
-        setValue(progress);
+        if (mTracking) {
+            monitorBox.setText(seekBar.getProgress() + "%");
+        } else {
+            progress = Math.round(((float) progress) / interval) * interval;
+            setValue(progress);
+        }
     }
 
     public void setValue(int progress){
@@ -70,11 +75,12 @@ public class SeekBarPreference extends Preference
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
+        mTracking = true;
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
+        mTracking = false;
+        onProgressChanged(seekBar, seekBar.getProgress(), true);
     }
 }

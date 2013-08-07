@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.XModuleResources;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -47,12 +48,20 @@ public class ModStatusbarColor {
     private static boolean mBatteryPlugged;
     private static Object mBatteryController;
     private static FrameLayout mNotificationPanelView;
+    private static NotificationWallpaper mNotificationWallpaper;
+    private static String mNotifBgType;
+    private static int mNotifBgColor;
+    private static int mNotifBgAlpha;
+    
 
     static {
         mIconManager = new StatusBarIconManager(XModuleResources.createInstance(GravityBox.MODULE_PATH, null));
         mIconColorEnabled = false;
         mBatteryLevel = 0;
         mBatteryPlugged = false;
+        mNotifBgType = GravityBoxSettings.NOTIF_BG_DEFAULT;
+        mNotifBgColor = Color.BLACK;
+        mNotifBgAlpha = 60;
     }
 
     private static void log(String message) {
@@ -103,6 +112,19 @@ public class ModStatusbarColor {
                     applyIconColors();
                 }
             }
+
+            if (intent.getAction().equals(GravityBoxSettings.ACTION_NOTIF_BACKGROUND_CHANGED)) {
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_TYPE)) {
+                    mNotifBgType = intent.getStringExtra(GravityBoxSettings.EXTRA_BG_TYPE);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_COLOR)) {
+                    mNotifBgColor = intent.getIntExtra(GravityBoxSettings.EXTRA_BG_COLOR, Color.BLACK);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_ALPHA)) {
+                    mNotifBgAlpha = intent.getIntExtra(GravityBoxSettings.EXTRA_BG_ALPHA, 60); 
+                }
+                updateNotificationPanelBackground();
+            }
         }
     };
 
@@ -149,6 +171,11 @@ public class ModStatusbarColor {
                     prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR, 
                             StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
 
+            mNotifBgType = prefs.getString(GravityBoxSettings.PREF_KEY_NOTIF_BACKGROUND,
+                    GravityBoxSettings.NOTIF_BG_DEFAULT);
+            mNotifBgColor = prefs.getInt(GravityBoxSettings.PREF_KEY_NOTIF_COLOR, Color.BLACK);
+            mNotifBgAlpha = prefs.getInt(GravityBoxSettings.PREF_KEY_NOTIF_BACKGROUND_ALPHA, 60);
+
             XposedBridge.hookAllConstructors(panelBarClass, new XC_MethodHook() {
 
                 @Override
@@ -157,6 +184,7 @@ public class ModStatusbarColor {
 
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_STATUSBAR_COLOR_CHANGED);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_NOTIF_BACKGROUND_CHANGED);
                     mPanelBar.getContext().registerReceiver(mBroadcastReceiver, intentFilter);
                 }
             });
@@ -367,13 +395,16 @@ public class ModStatusbarColor {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     mNotificationPanelView = (FrameLayout) param.thisObject;
-                    NotificationWallpaper nw = new NotificationWallpaper(mNotificationPanelView.getContext());
+
+                    mNotificationWallpaper = new NotificationWallpaper(mNotificationPanelView.getContext());
                     FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
                             FrameLayout.LayoutParams.MATCH_PARENT,
                             FrameLayout.LayoutParams.MATCH_PARENT);
-                    nw.setLayoutParams(lp);
-                    mNotificationPanelView.addView(nw);
-                    setNotificationPanelBackground();
+                    mNotificationWallpaper.setLayoutParams(lp);
+                    mNotificationWallpaper.setAlpha(mNotifBgAlpha);
+                    mNotificationWallpaper.setEnabled(mNotifBgType == GravityBoxSettings.NOTIF_BG_IMAGE);
+                    mNotificationPanelView.addView(mNotificationWallpaper);
+                    updateNotificationPanelBackground();
                 }
             });
 
@@ -419,7 +450,31 @@ public class ModStatusbarColor {
         }
     }
 
-    private static void setNotificationPanelBackground() {
-        if (mNotificationPanelView == null) return;
+    private static void updateNotificationPanelBackground() {
+        if (mNotificationPanelView == null || mNotificationWallpaper == null) return;
+
+        log("Updating Notification panel background: mNotifBgType = " + mNotifBgType + 
+                "; mNotifBgColor = " + mNotifBgColor + "; mNotifBgAlpha = " + mNotifBgAlpha);
+
+        mNotificationPanelView.setBackgroundResource(0);
+        mNotificationPanelView.setBackgroundResource(
+                mNotificationPanelView.getResources().getIdentifier(
+                        "notification_panel_bg", "drawable", PACKAGE_NAME));
+
+        if (mNotifBgType.equals(GravityBoxSettings.NOTIF_BG_DEFAULT) ||
+                mNotifBgType.equals(GravityBoxSettings.NOTIF_BG_COLOR)) {
+            mNotificationWallpaper.setEnabled(false);
+            Drawable background = mNotificationPanelView.getBackground();
+            background.setAlpha(mNotifBgAlpha == 0 ? 255 : 
+                (int)(1-((float)mNotifBgAlpha / (float)100) * 255));
+            if (mNotifBgType.equals(GravityBoxSettings.NOTIF_BG_COLOR)) {
+                background.setColorFilter(mNotifBgColor, PorterDuff.Mode.SRC_ATOP);
+            }
+        } else if (mNotifBgType.equals(GravityBoxSettings.NOTIF_BG_IMAGE)) {
+            mNotificationWallpaper.setEnabled(true);
+            mNotificationWallpaper.setAlpha(mNotifBgAlpha);
+        }
+
+        mNotificationWallpaper.updateNotificationWallpaper();
     }
 }

@@ -158,10 +158,17 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_NOTIF_COLOR = "pref_notif_color";
     public static final String PREF_KEY_NOTIF_IMAGE_PORTRAIT = "pref_notif_image_portrait";
     public static final String PREF_KEY_NOTIF_IMAGE_LANDSCAPE = "pref_notif_image_landscape";
+    public static final String PREF_KEY_NOTIF_BACKGROUND_ALPHA = "pref_notif_background_alpha";
     public static final String NOTIF_BG_DEFAULT = "default";
     public static final String NOTIF_BG_COLOR = "color";
     public static final String NOTIF_BG_IMAGE = "image";
-    
+    private static final int NOTIF_BG_IMAGE_PORTRAIT = 1025;
+    private static final int NOTIF_BG_IMAGE_LANDSCAPE = 1026;
+    public static final String ACTION_NOTIF_BACKGROUND_CHANGED = "gravitybox.intent.action.NOTIF_BACKGROUND_CHANGED";
+    public static final String EXTRA_BG_TYPE = "bgType";
+    public static final String EXTRA_BG_COLOR = "bgColor";
+    public static final String EXTRA_BG_ALPHA = "bgAlpha";
+
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "gravitybox.intent.action.BATTERY_STYLE_CHANGED";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
@@ -226,6 +233,8 @@ public class GravityBoxSettings extends Activity {
         private Preference mPrefLockscreenBgImage;
         private File wallpaperImage;
         private File wallpaperTemporary;
+        private File notifBgImagePortrait;
+        private File notifBgImageLandscape;
         private EditTextPreference mPrefBrightnessMin;
         private ListPreference mPrefHwKeyMenuLongpress;
         private ListPreference mPrefHwKeyMenuDoubletap;
@@ -299,6 +308,8 @@ public class GravityBoxSettings extends Activity {
 
             wallpaperImage = new File(getActivity().getFilesDir() + "/lockwallpaper"); 
             wallpaperTemporary = new File(getActivity().getCacheDir() + "/lockwallpaper.tmp");
+            notifBgImagePortrait = new File(getActivity().getFilesDir() + "/notifwallpaper");
+            notifBgImageLandscape = new File(getActivity().getFilesDir() + "/notifwallpaper_landscape");
 
             mPrefBrightnessMin = (EditTextPreference) findPreference(PREF_KEY_BRIGHTNESS_MIN);
 
@@ -342,7 +353,7 @@ public class GravityBoxSettings extends Activity {
         public void onResume() {
             super.onResume();
 
-            updatePreferences();
+            updatePreferences(null);
             mPrefs.registerOnSharedPreferenceChangeListener(this);
         }
 
@@ -370,70 +381,97 @@ public class GravityBoxSettings extends Activity {
             }
         }
 
-        private void updatePreferences() {
-            mBatteryStyle.setSummary(mBatteryStyle.getEntry());
-            mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
-
-            Set<String> autoHide =  mSignalIconAutohide.getValues();
-            String summary = "";
-            if (autoHide.contains("notifications_disabled")) {
-                summary += getString(R.string.sim_disable_notifications_summary);
-            }
-            if (autoHide.contains("sim1")) {
-                if (!summary.isEmpty()) summary += ", ";
-                summary += getString(R.string.sim_slot_1);
-            }
-            if (autoHide.contains("sim2")) {
-                if (!summary.isEmpty()) summary += ", ";
-                summary += getString(R.string.sim_slot_2);
-            }
-            if (summary.isEmpty()) {
-                summary = getString(R.string.signal_icon_autohide_summary);
-            }
-            mSignalIconAutohide.setSummary(summary);
-
-            mPrefLockscreenBg.setSummary(mPrefLockscreenBg.getEntry());
-
-            mPrefCatLockscreenBg.removePreference(mPrefLockscreenBgColor);
-            mPrefCatLockscreenBg.removePreference(mPrefLockscreenBgImage);
-            String option = mPrefs.getString(PREF_KEY_LOCKSCREEN_BACKGROUND, LOCKSCREEN_BG_DEFAULT);
-            if (option.equals(LOCKSCREEN_BG_COLOR)) {
-                mPrefCatLockscreenBg.addPreference(mPrefLockscreenBgColor);
-            } else if (option.equals(LOCKSCREEN_BG_IMAGE)) {
-                mPrefCatLockscreenBg.addPreference(mPrefLockscreenBgImage);
+        private void updatePreferences(String key) {
+            if (key == null || key.equals(PREF_KEY_BATTERY_STYLE)) {
+                mBatteryStyle.setSummary(mBatteryStyle.getEntry());
             }
 
-            mPrefHwKeyMenuLongpress.setSummary(mPrefHwKeyMenuLongpress.getEntry());
-            mPrefHwKeyMenuDoubletap.setSummary(mPrefHwKeyMenuDoubletap.getEntry());
-            mPrefHwKeyBackLongpress.setSummary(mPrefHwKeyBackLongpress.getEntry());
-            mPrefHwKeyDoubletapSpeed.setSummary(getString(R.string.pref_hwkey_doubletap_speed_summary)
-                    + " (" + mPrefHwKeyDoubletapSpeed.getEntry() + ")");
-            mPrefHwKeyKillDelay.setSummary(getString(R.string.pref_hwkey_kill_delay_summary)
-                    + " (" + mPrefHwKeyKillDelay.getEntry() + ")");
+            if (key == null || key.equals(PREF_KEY_LOW_BATTERY_WARNING_POLICY)) {
+                mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
+            }
 
-            mPrefPhoneFlip.setSummary(getString(R.string.pref_phone_flip_summary)
-                    + " (" + mPrefPhoneFlip.getEntry() + ")");
+            if (key == null || key.equals(PREF_KEY_SIGNAL_ICON_AUTOHIDE)) {
+                Set<String> autoHide =  mSignalIconAutohide.getValues();
+                String summary = "";
+                if (autoHide.contains("notifications_disabled")) {
+                    summary += getString(R.string.sim_disable_notifications_summary);
+                }
+                if (autoHide.contains("sim1")) {
+                    if (!summary.isEmpty()) summary += ", ";
+                    summary += getString(R.string.sim_slot_1);
+                }
+                if (autoHide.contains("sim2")) {
+                    if (!summary.isEmpty()) summary += ", ";
+                    summary += getString(R.string.sim_slot_2);
+                }
+                if (summary.isEmpty()) {
+                    summary = getString(R.string.signal_icon_autohide_summary);
+                }
+                mSignalIconAutohide.setSummary(summary);
+            }
 
-            mPrefSbIconColor.setEnabled(mPrefSbIconColorEnable.isChecked());
-            mPrefSbDaColor.setEnabled(mPrefSbIconColorEnable.isChecked());
+            if (key == null || key.equals(PREF_KEY_LOCKSCREEN_BACKGROUND)) {
+                mPrefLockscreenBg.setSummary(mPrefLockscreenBg.getEntry());
+                mPrefCatLockscreenBg.removePreference(mPrefLockscreenBgColor);
+                mPrefCatLockscreenBg.removePreference(mPrefLockscreenBgImage);
+                String option = mPrefs.getString(PREF_KEY_LOCKSCREEN_BACKGROUND, LOCKSCREEN_BG_DEFAULT);
+                if (option.equals(LOCKSCREEN_BG_COLOR)) {
+                    mPrefCatLockscreenBg.addPreference(mPrefLockscreenBgColor);
+                } else if (option.equals(LOCKSCREEN_BG_IMAGE)) {
+                    mPrefCatLockscreenBg.addPreference(mPrefLockscreenBgImage);
+                }
+            }
 
-            mPrefNotifBackground.setSummary(mPrefNotifBackground.getEntry());
+            if (key == null || key.equals(PREF_KEY_HWKEY_MENU_LONGPRESS)) {
+                mPrefHwKeyMenuLongpress.setSummary(mPrefHwKeyMenuLongpress.getEntry());
+            }
 
-            mPrefCatNotifDrawerStyle.removePreference(mPrefNotifColor);
-            mPrefCatNotifDrawerStyle.removePreference(mPrefNotifImagePortrait);
-            mPrefCatNotifDrawerStyle.removePreference(mPrefNotifImageLandscape);
-            option = mPrefs.getString(PREF_KEY_NOTIF_BACKGROUND, NOTIF_BG_DEFAULT);
-            if (option.equals(NOTIF_BG_COLOR)) {
-                mPrefCatNotifDrawerStyle.addPreference(mPrefNotifColor);
-            } else if (option.equals(NOTIF_BG_IMAGE)) {
-                mPrefCatNotifDrawerStyle.addPreference(mPrefNotifImagePortrait);
-                mPrefCatNotifDrawerStyle.addPreference(mPrefNotifImageLandscape);
+            if (key == null || key.equals(PREF_KEY_HWKEY_MENU_DOUBLETAP)) {
+                mPrefHwKeyMenuDoubletap.setSummary(mPrefHwKeyMenuDoubletap.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_HWKEY_BACK_LONGPRESS)) {
+                mPrefHwKeyBackLongpress.setSummary(mPrefHwKeyBackLongpress.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_HWKEY_DOUBLETAP_SPEED)) {
+                mPrefHwKeyDoubletapSpeed.setSummary(getString(R.string.pref_hwkey_doubletap_speed_summary)
+                        + " (" + mPrefHwKeyDoubletapSpeed.getEntry() + ")");
+            }
+
+            if (key == null || key.equals(PREF_KEY_HWKEY_KILL_DELAY)) {
+                mPrefHwKeyKillDelay.setSummary(getString(R.string.pref_hwkey_kill_delay_summary)
+                        + " (" + mPrefHwKeyKillDelay.getEntry() + ")");
+            }
+
+            if (key == null || key.equals(PREF_KEY_PHONE_FLIP)) {
+                mPrefPhoneFlip.setSummary(getString(R.string.pref_phone_flip_summary)
+                        + " (" + mPrefPhoneFlip.getEntry() + ")");
+            }
+
+            if (key == null || key.equals(PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE)) {
+                mPrefSbIconColor.setEnabled(mPrefSbIconColorEnable.isChecked());
+                mPrefSbDaColor.setEnabled(mPrefSbIconColorEnable.isChecked());
+            }
+
+            if (key == null || key.equals(PREF_KEY_NOTIF_BACKGROUND)) {
+                mPrefNotifBackground.setSummary(mPrefNotifBackground.getEntry());
+                mPrefCatNotifDrawerStyle.removePreference(mPrefNotifColor);
+                mPrefCatNotifDrawerStyle.removePreference(mPrefNotifImagePortrait);
+                mPrefCatNotifDrawerStyle.removePreference(mPrefNotifImageLandscape);
+                String option = mPrefs.getString(PREF_KEY_NOTIF_BACKGROUND, NOTIF_BG_DEFAULT);
+                if (option.equals(NOTIF_BG_COLOR)) {
+                    mPrefCatNotifDrawerStyle.addPreference(mPrefNotifColor);
+                } else if (option.equals(NOTIF_BG_IMAGE)) {
+                    mPrefCatNotifDrawerStyle.addPreference(mPrefNotifImagePortrait);
+                    mPrefCatNotifDrawerStyle.addPreference(mPrefNotifImageLandscape);
+                }
             }
         }
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-            updatePreferences();
+            updatePreferences(key);
 
             Intent intent = new Intent();
             if (key.equals(PREF_KEY_BATTERY_STYLE)) {
@@ -522,6 +560,16 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_LINK_VOLUMES_CHANGED);
                 intent.putExtra(EXTRA_LINKED,
                         prefs.getBoolean(PREF_KEY_LINK_VOLUMES, true));
+            } else if (key.equals(PREF_KEY_NOTIF_BACKGROUND)) {
+                intent.setAction(ACTION_NOTIF_BACKGROUND_CHANGED);
+                intent.putExtra(EXTRA_BG_TYPE, prefs.getString(
+                        PREF_KEY_NOTIF_BACKGROUND, NOTIF_BG_DEFAULT));
+            } else if (key.equals(PREF_KEY_NOTIF_COLOR)) {
+                intent.setAction(ACTION_NOTIF_BACKGROUND_CHANGED);
+                intent.putExtra(EXTRA_BG_COLOR, prefs.getInt(PREF_KEY_NOTIF_COLOR, Color.BLACK));
+            } else if (key.equals(PREF_KEY_NOTIF_BACKGROUND_ALPHA)) {
+                intent.setAction(ACTION_NOTIF_BACKGROUND_CHANGED);
+                intent.putExtra(EXTRA_BG_ALPHA, prefs.getInt(PREF_KEY_NOTIF_BACKGROUND_ALPHA, 60));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);
@@ -589,6 +637,12 @@ public class GravityBoxSettings extends Activity {
                 intent.setClassName(APP_DUAL_SIM_RINGER, APP_DUAL_SIM_RINGER_CLASS);
             } else if (pref == mPrefLockscreenBgImage) {
                 setCustomLockscreenImage();
+                return true;
+            } else if (pref == mPrefNotifImagePortrait) {
+                setCustomNotifBgPortrait();
+                return true;
+            } else if (pref == mPrefNotifImageLandscape) {
+                setCustomNotifBgLandscape();
                 return true;
             }
             
@@ -665,6 +719,78 @@ public class GravityBoxSettings extends Activity {
             }
         }
 
+        @SuppressWarnings("deprecation")
+        private void setCustomNotifBgPortrait() {
+            Display display = getActivity().getWindowManager().getDefaultDisplay();
+            int width = display.getWidth();
+            int height = display.getHeight();
+            Rect rect = new Rect();
+            Window window = getActivity().getWindow();
+            window.getDecorView().getWindowVisibleDisplayFrame(rect);
+            int statusBarHeight = rect.top;
+            int contentViewTop = window.findViewById(Window.ID_ANDROID_CONTENT).getTop();
+            int titleBarHeight = contentViewTop - statusBarHeight;
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            intent.putExtra("crop", "true");
+            boolean isPortrait = getResources()
+                    .getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+            intent.putExtra("aspectX", isPortrait ? width : height - titleBarHeight);
+            intent.putExtra("aspectY", isPortrait ? height - titleBarHeight : width);
+            intent.putExtra("outputX", isPortrait ? width : height);
+            intent.putExtra("outputY", isPortrait ? height : width);
+            intent.putExtra("scale", true);
+            intent.putExtra("scaleUpIfNeeded", true);
+            intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
+            try {
+                wallpaperTemporary.createNewFile();
+                wallpaperTemporary.setWritable(true, false);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(wallpaperTemporary));
+                startActivityForResult(intent, NOTIF_BG_IMAGE_PORTRAIT);
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), getString(
+                        R.string.lockscreen_background_result_not_successful),
+                        Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
+
+        @SuppressWarnings("deprecation")
+        private void setCustomNotifBgLandscape() {
+            Display display = getActivity().getWindowManager().getDefaultDisplay();
+            int width = display.getWidth();
+            int height = display.getHeight();
+            Rect rect = new Rect();
+            Window window = getActivity().getWindow();
+            window.getDecorView().getWindowVisibleDisplayFrame(rect);
+            int statusBarHeight = rect.top;
+            int contentViewTop = window.findViewById(Window.ID_ANDROID_CONTENT).getTop();
+            int titleBarHeight = contentViewTop - statusBarHeight;
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            intent.putExtra("crop", "true");
+            boolean isPortrait = getResources()
+                  .getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+            intent.putExtra("aspectX", isPortrait ? height - titleBarHeight : width);
+            intent.putExtra("aspectY", isPortrait ? width : height - titleBarHeight);
+            intent.putExtra("outputX", isPortrait ? height : width);
+            intent.putExtra("outputY", isPortrait ? width : height);
+            intent.putExtra("scale", true);
+            intent.putExtra("scaleUpIfNeeded", true);
+            intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
+            try {
+                wallpaperTemporary.createNewFile();
+                wallpaperTemporary.setWritable(true, false);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(wallpaperTemporary));
+                startActivityForResult(intent, NOTIF_BG_IMAGE_LANDSCAPE);
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), getString(
+                        R.string.lockscreen_background_result_not_successful),
+                        Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
+
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
             if (requestCode == LOCKSCREEN_BACKGROUND) {
@@ -684,6 +810,44 @@ public class GravityBoxSettings extends Activity {
                             R.string.lockscreen_background_result_not_successful),
                             Toast.LENGTH_SHORT).show();
                 }
+            } else if (requestCode == NOTIF_BG_IMAGE_PORTRAIT) {
+                if (resultCode == Activity.RESULT_OK) {
+                    if (wallpaperTemporary.exists()) {
+                        wallpaperTemporary.renameTo(notifBgImagePortrait);
+                    }
+                    notifBgImagePortrait.setReadable(true, false);
+                    Toast.makeText(getActivity(), getString(
+                            R.string.lockscreen_background_result_successful), 
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    if (wallpaperTemporary.exists()) {
+                        wallpaperTemporary.delete();
+                    }
+                    Toast.makeText(getActivity(), getString(
+                            R.string.lockscreen_background_result_not_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
+                Intent intent = new Intent(ACTION_NOTIF_BACKGROUND_CHANGED);
+                getActivity().sendBroadcast(intent);
+            } else if (requestCode == NOTIF_BG_IMAGE_LANDSCAPE) {
+                if (resultCode == Activity.RESULT_OK) {
+                    if (wallpaperTemporary.exists()) {
+                        wallpaperTemporary.renameTo(notifBgImageLandscape);
+                    }
+                    notifBgImageLandscape.setReadable(true, false);
+                    Toast.makeText(getActivity(), getString(
+                            R.string.lockscreen_background_result_successful), 
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    if (wallpaperTemporary.exists()) {
+                        wallpaperTemporary.delete();
+                    }
+                    Toast.makeText(getActivity(), getString(
+                            R.string.lockscreen_background_result_not_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
+                Intent intent = new Intent(ACTION_NOTIF_BACKGROUND_CHANGED);
+                getActivity().sendBroadcast(intent);
             }
         }
     }
