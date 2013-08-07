@@ -3,6 +3,7 @@ package com.ceco.gm2.gravitybox;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -313,6 +314,8 @@ public class GravityBoxSettings extends Activity {
                 mQuickSettings.setEntries(R.array.qs_tile_entries);
                 mQuickSettings.setEntryValues(R.array.qs_tile_values);
             }
+
+            setDefaultValues();
         }
 
         @Override
@@ -333,6 +336,18 @@ public class GravityBoxSettings extends Activity {
             }
 
             super.onPause();
+        }
+
+        private void setDefaultValues() {
+            if (mPrefs.getStringSet(PREF_KEY_QUICK_SETTINGS, null) == null) {
+                Editor e = mPrefs.edit();
+                Set<String> defVal = new HashSet<String>(
+                        Arrays.asList(getResources().getStringArray(
+                                Utils.isMtkDevice() ? R.array.qs_tile_values : R.array.qs_tile_aosp_values))); 
+                e.putStringSet(PREF_KEY_QUICK_SETTINGS, defVal);
+                e.commit();
+                mQuickSettings.setValues(defVal);
+            }
         }
 
         private void updatePreferences() {
