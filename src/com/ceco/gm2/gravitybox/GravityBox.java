@@ -23,7 +23,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, null);
 
         XposedBridge.log("Hardware: " + Build.HARDWARE);
+        XposedBridge.log("Product: " + Build.PRODUCT);
         XposedBridge.log("Is MTK device: " + Utils.isMtkDevice());
+        XposedBridge.log("Android SDK: " + Build.VERSION.SDK_INT);
+        XposedBridge.log("Android Release: " + Build.VERSION.RELEASE);
 
         XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
 
