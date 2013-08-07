@@ -95,6 +95,7 @@
     <string name="qs_tile_gravitybox">GravityBox</string>
     <string name="qs_tile_sleep">Veille</string>
     <string name="qs_tile_quickrecord">Enregistrement rapide</string>
+    <string name="qs_tile_settings">Réglages</string>
     
     <!-- Color Picker -->
     <string name="dialog_color_picker">Sélecteur de couleur</string>
@@ -314,5 +315,18 @@
 
     <!-- QuickSettings management category -->
     <string name="pref_cat_statusbar_qs_title">Gestion des paramètres rapides</string>
+    
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">Style du tiroir de notification</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">Fond du tiroir de notification</string>
+    <string name="notif_background_default">Fond par défaut</string>
+    <string name="notif_background_color_fill">Couleur de remplissage</string>
+    <string name="notif_background_custom_image">Image personnalisée</string>
+    <string name="pref_notif_color_title">Régler la couleur du fond</string>
+    <string name="pref_notif_image_portrait_title">Image en mode portrait</string>
+    <string name="pref_notif_image_landscape_title">Image en mode paysage</string>
+    <string name="pref_notif_background_alpha_title">Transparence du fond</string>
 
 </resources>
