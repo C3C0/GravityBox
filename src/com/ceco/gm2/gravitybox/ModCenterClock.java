@@ -15,6 +15,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,11 +107,22 @@ public class ModCenterClock {
                             Object sbClock = XposedHelpers.getAdditionalInstanceField(param.thisObject, "sbClock");
                             if (sbClock != null && mClockShowDow) {
                                 Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-                                CharSequence clockText = (CharSequence) param.getResult();
-                                clockText = (CharSequence) calendar.getDisplayName(
-                                    Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()) + 
-                                    " " + clockText;
-                                param.setResult(clockText);
+                                String clockText = param.getResult().toString();
+                                String amPm = calendar.getDisplayName(
+                                        Calendar.AM_PM, Calendar.SHORT, Locale.getDefault());
+                                int amPmIndex = clockText.indexOf(amPm);
+                                CharSequence dow = calendar.getDisplayName(
+                                        Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault());
+                                clockText = dow  + " " + clockText;
+                                SpannableStringBuilder sb = new SpannableStringBuilder(clockText);
+                                sb.setSpan(new RelativeSizeSpan(0.7f), 0, dow.length(), 
+                                        Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                                if (amPmIndex > -1) {
+                                    sb.setSpan(new RelativeSizeSpan(0.7f), dow.length() + amPmIndex + 1, 
+                                            dow.length() + amPmIndex + amPm.length() + 1, 
+                                            Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                                }
+                                param.setResult(sb);
                             }
                         }
                     });
