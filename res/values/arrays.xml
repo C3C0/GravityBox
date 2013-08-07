@@ -301,4 +301,16 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="notif_background_entries" translatable="false">
+        <item>@string/notif_background_default</item>
+        <item>@string/notif_background_color_fill</item>
+        <item>@string/notif_background_custom_image</item>
+    </string-array>
+
+    <string-array name="notif_background_values" translatable="false">
+        <item>default</item>
+        <item>color</item>
+        <item>image</item>
+    </string-array>
+
 </resources>

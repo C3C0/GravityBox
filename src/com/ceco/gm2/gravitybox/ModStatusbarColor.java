@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class ModStatusbarColor {
             "com.android.systemui.statusbar.SignalClusterViewGemini" :
             "com.android.systemui.statusbar.SignalClusterView";
     private static final String CLASS_BATTERY_CONTROLLER = "com.android.systemui.statusbar.policy.BatteryController";
+    private static final String CLASS_NOTIF_PANEL_VIEW = "com.android.systemui.statusbar.phone.NotificationPanelView";
 
     private static View mPanelBar;
     private static StatusBarIconManager mIconManager;
@@ -44,6 +46,7 @@ public class ModStatusbarColor {
     private static int mBatteryLevel;
     private static boolean mBatteryPlugged;
     private static Object mBatteryController;
+    private static FrameLayout mNotificationPanelView;
 
     static {
         mIconManager = new StatusBarIconManager(XModuleResources.createInstance(GravityBox.MODULE_PATH, null));
@@ -136,6 +139,7 @@ public class ModStatusbarColor {
             final Class<?> phoneStatusbarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
             final Class<?> signalClusterViewClass = XposedHelpers.findClass(CLASS_SIGNAL_CLUSTER_VIEW, classLoader);
             final Class<?> batteryControllerClass = XposedHelpers.findClass(CLASS_BATTERY_CONTROLLER, classLoader);
+            final Class<?> notifPanelViewClass = XposedHelpers.findClass(CLASS_NOTIF_PANEL_VIEW, classLoader);
 
             mIconColorEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE, false);
             mIconManager.setIconColor(
@@ -358,6 +362,21 @@ public class ModStatusbarColor {
                 }
             });
 
+            XposedHelpers.findAndHookMethod(notifPanelViewClass, "onFinishInflate", new XC_MethodHook() {
+
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    mNotificationPanelView = (FrameLayout) param.thisObject;
+                    NotificationWallpaper nw = new NotificationWallpaper(mNotificationPanelView.getContext());
+                    FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                            FrameLayout.LayoutParams.MATCH_PARENT,
+                            FrameLayout.LayoutParams.MATCH_PARENT);
+                    nw.setLayoutParams(lp);
+                    mNotificationPanelView.addView(nw);
+                    setNotificationPanelBackground();
+                }
+            });
+
         } catch (Exception e) {
             XposedBridge.log(e);
         }
@@ -398,5 +417,9 @@ public class ModStatusbarColor {
             intent.putExtra(BatteryManager.EXTRA_PLUGGED, mBatteryPlugged);
             XposedHelpers.callMethod(mBatteryController, "onReceive", mBattery.getContext(), intent);
         }
+    }
+
+    private static void setNotificationPanelBackground() {
+        if (mNotificationPanelView == null) return;
     }
 }

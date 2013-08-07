@@ -153,6 +153,15 @@ public class GravityBoxSettings extends Activity {
     public static final int PHONE_FLIP_ACTION_DISMISS = 2;
     public static final String PREF_KEY_PHONE_CALL_CONNECT_VIBRATE_DISABLE = "pref_phone_call_connect_vibrate_disable";
 
+    public static final String PREF_CAT_KEY_NOTIF_DRAWER_STYLE = "pref_cat_notification_drawer_style";
+    public static final String PREF_KEY_NOTIF_BACKGROUND = "pref_notif_background";
+    public static final String PREF_KEY_NOTIF_COLOR = "pref_notif_color";
+    public static final String PREF_KEY_NOTIF_IMAGE_PORTRAIT = "pref_notif_image_portrait";
+    public static final String PREF_KEY_NOTIF_IMAGE_LANDSCAPE = "pref_notif_image_landscape";
+    public static final String NOTIF_BG_DEFAULT = "default";
+    public static final String NOTIF_BG_COLOR = "color";
+    public static final String NOTIF_BG_IMAGE = "image";
+    
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "gravitybox.intent.action.BATTERY_STYLE_CHANGED";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
@@ -230,6 +239,11 @@ public class GravityBoxSettings extends Activity {
         private PreferenceScreen mPrefCatFixes;
         private PreferenceScreen mPrefCatStatusbar;
         private PreferenceScreen mPrefCatStatusbarQs;
+        private PreferenceScreen mPrefCatNotifDrawerStyle;
+        private ListPreference mPrefNotifBackground;
+        private ColorPickerPreference mPrefNotifColor;
+        private Preference mPrefNotifImagePortrait;
+        private Preference mPrefNotifImageLandscape;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -315,6 +329,12 @@ public class GravityBoxSettings extends Activity {
                 mQuickSettings.setEntryValues(R.array.qs_tile_values);
             }
 
+            mPrefCatNotifDrawerStyle = (PreferenceScreen) findPreference(PREF_CAT_KEY_NOTIF_DRAWER_STYLE);
+            mPrefNotifBackground = (ListPreference) findPreference(PREF_KEY_NOTIF_BACKGROUND);
+            mPrefNotifColor = (ColorPickerPreference) findPreference(PREF_KEY_NOTIF_COLOR);
+            mPrefNotifImagePortrait = (Preference) findPreference(PREF_KEY_NOTIF_IMAGE_PORTRAIT);
+            mPrefNotifImageLandscape = (Preference) findPreference(PREF_KEY_NOTIF_IMAGE_LANDSCAPE);
+
             setDefaultValues();
         }
 
@@ -396,6 +416,19 @@ public class GravityBoxSettings extends Activity {
 
             mPrefSbIconColor.setEnabled(mPrefSbIconColorEnable.isChecked());
             mPrefSbDaColor.setEnabled(mPrefSbIconColorEnable.isChecked());
+
+            mPrefNotifBackground.setSummary(mPrefNotifBackground.getEntry());
+
+            mPrefCatNotifDrawerStyle.removePreference(mPrefNotifColor);
+            mPrefCatNotifDrawerStyle.removePreference(mPrefNotifImagePortrait);
+            mPrefCatNotifDrawerStyle.removePreference(mPrefNotifImageLandscape);
+            option = mPrefs.getString(PREF_KEY_NOTIF_BACKGROUND, NOTIF_BG_DEFAULT);
+            if (option.equals(NOTIF_BG_COLOR)) {
+                mPrefCatNotifDrawerStyle.addPreference(mPrefNotifColor);
+            } else if (option.equals(NOTIF_BG_IMAGE)) {
+                mPrefCatNotifDrawerStyle.addPreference(mPrefNotifImagePortrait);
+                mPrefCatNotifDrawerStyle.addPreference(mPrefNotifImageLandscape);
+            }
         }
 
         @Override

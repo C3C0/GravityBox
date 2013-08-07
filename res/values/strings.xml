@@ -316,4 +316,17 @@
     <!-- QuickSettings management category -->
     <string name="pref_cat_statusbar_qs_title">QuickSettings management</string>
 
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">Notification drawer style</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">Notification drawer background</string>
+    <string name="notif_background_default">Default background</string>
+    <string name="notif_background_color_fill">Color fill</string>
+    <string name="notif_background_custom_image">Custom image</string>
+    <string name="pref_notif_color_title">Set background color</string>
+    <string name="pref_notif_image_portrait_title">Set portrait image</string>
+    <string name="pref_notif_image_landscape_title">Set landscape image</string>
+    <string name="pref_notif_background_alpha_title">Background transparency</string>
+
 </resources>

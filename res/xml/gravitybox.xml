@@ -126,6 +126,41 @@
 
         </PreferenceScreen>
 
+        <PreferenceScreen
+            android:key="pref_cat_notification_drawer_style"
+            android:title="@string/pref_cat_notification_drawer_style_title" >
+
+            <ListPreference
+                android:key="pref_notif_background"
+                android:title="@string/pref_notif_background_title"
+                android:entries="@array/notif_background_entries"
+                android:entryValues="@array/notif_background_values"
+                android:defaultValue="default"
+                android:order="1" />
+
+            <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                android:key="pref_notif_color"
+                android:title="@string/pref_notif_color_title"
+                android:defaultValue="@integer/COLOR_BLACK"
+                android:order="2" />
+
+            <Preference
+                android:key="pref_notif_image_portrait"
+                android:title="@string/pref_notif_image_portrait_title"
+                android:order="3" />
+
+            <Preference
+                android:key="pref_notif_image_landscape"
+                android:title="@string/pref_notif_image_landscape_title"
+                android:order="4" />
+
+            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+                android:key="pref_notif_background_alpha"
+                android:title="@string/pref_notif_background_alpha_title"
+                android:order="5" />
+
+        </PreferenceScreen>
+
         <ListPreference
             android:key="pref_battery_style" 
             android:title="@string/battery_style_title" 
