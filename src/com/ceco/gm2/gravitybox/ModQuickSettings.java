@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.res.XResources;
 import android.os.Build;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 
 public class ModQuickSettings {
     private static final String TAG = "ModQuickSettings";
@@ -279,6 +281,17 @@ public class ModQuickSettings {
                     }
                 }
             }
+        }
+    }
+
+    public static void initResources(XSharedPreferences prefs, InitPackageResourcesParam resparam) {
+        try {
+            // Enable rotation lock tile for non-MTK devices
+            if (!Utils.isMtkDevice()) {
+                resparam.res.setReplacement(PACKAGE_NAME, "bool", "quick_settings_show_rotation_lock", true);
+            }
+        } catch (Exception e) {
+            XposedBridge.log(e);
         }
     }
 

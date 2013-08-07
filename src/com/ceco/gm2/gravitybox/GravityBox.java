@@ -40,11 +40,6 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         XResources.setSystemWideReplacement(
                 "android", "drawable", "background_holo_light", modRes.fwd(R.drawable.background_holo_light));
 
-        // Enable rotation lock tile for non-MTK devices
-        if (!Utils.isMtkDevice()) {
-            XResources.setSystemWideReplacement("android", "bool", "quick_settings_show_rotation_lock", true);
-        }
-
         // MTK specific
         if (Utils.isMtkDevice()) {
             ModSignalIconHide.initZygote(prefs);
@@ -86,6 +81,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         if (resparam.packageName.equals(FixDevOptions.PACKAGE_NAME)) {
             FixDevOptions.initPackageResources(prefs, resparam);
+        }
+
+        if (resparam.packageName.equals(ModQuickSettings.PACKAGE_NAME)) {
+            ModQuickSettings.initResources(prefs, resparam);
         }
     }
 
