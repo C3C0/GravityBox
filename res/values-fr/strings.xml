@@ -5,7 +5,9 @@
 
     <string name="battery_style_title">Style de l\'indicateur de batterie</string>	
     <string name="battery_style_stock">Incateur par défaut</string>
-    <string name="battery_style_circle">Cercle avec pourcentage</string>
+    <string name="battery_style_circle">Batterie circulaire</string>
+    <string name="battery_style_circle_percent">Batterie circulaire et pourcentage</string>
+
     <string name="battery_style_percent">Batterie avec pourcentage</string>
     <string name="battery_style_none">Aucun</string>
 
@@ -328,5 +330,12 @@
     <string name="pref_notif_image_portrait_title">Image en mode portrait</string>
     <string name="pref_notif_image_landscape_title">Image en mode paysage</string>
     <string name="pref_notif_background_alpha_title">Transparence du fond</string>
+    <string name="pref_notif_color_mode_title">Mode remplissage de couleur</string>
+    <string name="color_fill_overlay">Surimpression</string>
+    <string name="color_fill_underlay">Sous-couche</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">Indicateurs d\'itinérance</string>
+    <string name="pref_disable_roaming_indicators_summary">Si désactivé, l\'indicateur R ne sera pas visible en cas d\'itinérance de données. À utiliser avec prudence</string>
 
 </resources>
