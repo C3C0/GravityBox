@@ -4,12 +4,14 @@
     <string-array name="battery_style_entries" translatable="false">
         <item>@string/battery_style_stock</item>
         <item>@string/battery_style_circle</item>
+        <item>@string/battery_style_circle_percent</item>
         <item>@string/battery_style_none</item>
     </string-array>
 
     <string-array name="battery_style_values" translatable="false">
         <item>1</item>
         <item>2</item>
+        <item>3</item>
         <item>0</item>
     </string-array>
 

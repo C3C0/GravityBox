@@ -49,6 +49,7 @@ public class CmCircleBattery extends ImageView {
     private int     mDockLevel;     // current dock battery level
     private boolean mDockIsCharging;// whether or not dock battery is currently charging
     private boolean mIsDocked = false;      // whether or not dock battery is connected
+    private boolean mPercentage;    // whether to show percentage
 
     private int     mCircleSize;    // draw size of circle. read rather complicated from
                                     // another status bar icon, so it fits the icon size
@@ -167,6 +168,14 @@ public class CmCircleBattery extends ImageView {
         // font needs some extra settings
         mPaintFont.setTextAlign(Align.CENTER);
         mPaintFont.setFakeBoldText(true);
+        mPercentage = false;
+    }
+
+    public void setPercentage(boolean enable) {
+        mPercentage = enable;
+        if (mAttached) {
+            invalidate();
+        }
     }
 
     @Override
@@ -223,7 +232,7 @@ public class CmCircleBattery extends ImageView {
         canvas.drawArc(drawRect, 270 + animOffset, 3.6f * padLevel, false, usePaint);
         // if chosen by options, draw percentage text in the middle
         // always skip percentage when 100, so layout doesnt break
-        if (level < 100) {
+        if (level < 100 && mPercentage) {
             mPaintFont.setColor(usePaint.getColor());
             canvas.drawText(Integer.toString(level), textX, mTextY, mPaintFont);
         }

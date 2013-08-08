@@ -158,7 +158,7 @@ public class ModBatteryStyle {
                     mBatteryStyle = Integer.valueOf(prefs.getString(GravityBoxSettings.PREF_KEY_BATTERY_STYLE, "1"));
                     mBatteryPercentText = prefs.getBoolean(GravityBoxSettings.PREF_KEY_BATTERY_PERCENT_TEXT, false);
                     // handle obsolete settings
-                    if (mBatteryStyle == 3 || mBatteryStyle == 4) {
+                    if (mBatteryStyle == 4) {
                         mBatteryStyle = GravityBoxSettings.BATTERY_STYLE_STOCK;
                     }
 
@@ -200,8 +200,14 @@ public class ModBatteryStyle {
                              View.VISIBLE : View.GONE);
 
             if (mIconViews.size() >= 2) {
-                mIconViews.get(1).setVisibility(mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE ?
-                        View.VISIBLE : View.GONE);
+                ImageView iv = mIconViews.get(1);
+                if (iv instanceof CmCircleBattery) {
+                    iv.setVisibility((mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE ||
+                            mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE_PERCENT) ?
+                            View.VISIBLE : View.GONE);
+                    ((CmCircleBattery)iv).setPercentage(
+                            mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE_PERCENT);
+                }
             }
         }
 
