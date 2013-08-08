@@ -48,12 +48,16 @@ public class ModStatusbarColor {
     private static Object mBatteryController;
     private static FrameLayout mNotificationPanelView;
     private static NotificationWallpaper mNotificationWallpaper;
+    private static Integer mClockDefaultColor;
+    private static Integer mPercentageDefaultColor;
 
     static {
         mIconManager = new StatusBarIconManager(XModuleResources.createInstance(GravityBox.MODULE_PATH, null));
         mIconColorEnabled = false;
         mBatteryLevel = 0;
         mBatteryPlugged = false;
+        mClockDefaultColor = null;
+        mPercentageDefaultColor = null;
     }
 
     private static void log(String message) {
@@ -427,7 +431,10 @@ public class ModStatusbarColor {
                 mIconManager.getIconColor() : StatusBarIconManager.DEFAULT_ICON_COLOR;
 
         if (mClock != null) {
-            mClock.setTextColor(iconColor);
+            if (mClockDefaultColor == null) {
+                mClockDefaultColor = mClock.getCurrentTextColor();
+            }
+            mClock.setTextColor(mIconColorEnabled ? iconColor : mClockDefaultColor);
         }
 
         if (mCircleBattery != null) {
@@ -435,7 +442,10 @@ public class ModStatusbarColor {
         }
 
         if (mPercentage != null) {
-            mPercentage.setTextColor(iconColor);
+            if (mPercentageDefaultColor == null) {
+                mPercentageDefaultColor = mPercentage.getCurrentTextColor();
+            }
+            mPercentage.setTextColor(mIconColorEnabled ? iconColor : mPercentageDefaultColor);
         }
 
         if (mBatteryController != null && mBattery != null) {
