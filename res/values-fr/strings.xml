@@ -335,7 +335,7 @@
     <string name="color_fill_underlay">Sous-couche</string>
 
     <!-- Disable roaming indicators -->
-    <string name="pref_disable_roaming_indicators_title">Indicateurs d\'itinérance</string>
-    <string name="pref_disable_roaming_indicators_summary">Si désactivé, l\'indicateur R ne sera pas visible en cas d\'itinérance de données. À utiliser avec prudence</string>
+    <string name="pref_disable_roaming_indicators_title">Désactiver indic. d\'itinérance</string>
+    <string name="pref_disable_roaming_indicators_summary">Cochez pour désactiver l\'indicateur R qui ne sera alors pas visible en cas d\'itinérance de données. À utiliser avec prudence</string>
 
 </resources>
