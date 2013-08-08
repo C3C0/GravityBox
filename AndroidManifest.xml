@@ -58,7 +58,7 @@
             android:value="2.1*" />
         <meta-data
             android:name="xposeddescription"
-            android:value="GravityBox - MTK6589 Tweaks by C3C076@XDA" />
+            android:value="GravityBox by C3C076@XDA" />
     </application>
 
 </manifest>
