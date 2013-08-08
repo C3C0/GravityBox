@@ -43,7 +43,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
             mNetworkType = Settings.Global.getInt(mContext.getContentResolver(), 
                     PhoneWrapper.PREFERRED_NETWORK_MODE, PhoneWrapper.NT_WCDMA_PREFERRED);
             log("SettingsObserver onChange; mNetworkType = " + mNetworkType);
-            mIsLte = (mNetworkType == PhoneWrapper.NT_LTE_GSM_WCDMA);
+            mIsLte |= (mNetworkType == PhoneWrapper.NT_LTE_GSM_WCDMA);
             updateResources();
         }
     }
