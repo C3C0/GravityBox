@@ -17,6 +17,7 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.format.DateFormat;
 import android.text.style.RelativeSizeSpan;
 import android.view.Gravity;
 import android.view.View;
@@ -111,6 +112,11 @@ public class ModCenterClock {
                                 String amPm = calendar.getDisplayName(
                                         Calendar.AM_PM, Calendar.SHORT, Locale.getDefault());
                                 int amPmIndex = clockText.indexOf(amPm);
+                                // insert AM/PM if missing
+                                if (!DateFormat.is24HourFormat(mClock.getContext()) && amPmIndex == -1) {
+                                    clockText += " " + amPm;
+                                    amPmIndex = clockText.indexOf(amPm);
+                                }
                                 CharSequence dow = calendar.getDisplayName(
                                         Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault());
                                 clockText = dow  + " " + clockText;
