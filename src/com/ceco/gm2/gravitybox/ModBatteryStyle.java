@@ -73,6 +73,7 @@ public class ModBatteryStyle {
                         percText.setPadding(4, 0, 0, 0);
                         percText.setTextSize(1, 16);
                         percText.setTextColor(StatusBarIconManager.DEFAULT_ICON_COLOR);
+                        percText.setVisibility(View.GONE);
                         vg.addView(percText);
                         XposedBridge.log("ModBatteryStyle: Battery percent text injected");
                     }
@@ -134,8 +135,15 @@ public class ModBatteryStyle {
 
                     TextView percText = (TextView) mStatusBarView.findViewWithTag("percentage");
                     if (percText != null) {
-                        XposedHelpers.callMethod(mBatteryController, "addLabelView", percText);
-                        XposedBridge.log("ModBatteryStyle: BatteryController.addLabelView(percText)");
+                        // add percent text only in case there is no other label view present
+                        // which might be another percent text coming from stock ROM with id other than "percentage"
+                        @SuppressWarnings("unchecked")
+                        ArrayList<TextView> mLabelViews = 
+                            (ArrayList<TextView>) XposedHelpers.getObjectField(mBatteryController, "mLabelViews");
+                        if (mLabelViews.isEmpty()) {
+                            XposedHelpers.callMethod(mBatteryController, "addLabelView", percText);
+                            XposedBridge.log("ModBatteryStyle: BatteryController.addLabelView(percText)");
+                        }
                     }
                 }
             });
