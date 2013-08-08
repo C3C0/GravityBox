@@ -1,3 +1,19 @@
+Changelog 2.0.0 - 08/08/2013
+--------------------------------------
+- added support for non-MTK devices running vanilla Android
+- compatibility adjustments to support non-MTK devices and Android 4.3
+- smaller font for day of week and AM/PM in statusbar clock
+- added AM/PM indicator for ROMs where missing while 12h format is set
+- option to set Notification drawer style
+--- default background
+--- color fill with 2 modes: overlay/underlay
+--- independent custom images for portrait and landscape
+--- background transparency level
+- NetworkModeTile: added support for LTE network type to switch between LTE and GSM_ONLY (needs testing)
+- option to show circle battery without percentage
+- option to disable Roaming indicators (MTK6589 only)
+- other compatibility fixes
+
 Changelog 1.8.5 - 01/08/2013
 --------------------------------------
 - fixed status bar background color not being applied at boot on some devices
