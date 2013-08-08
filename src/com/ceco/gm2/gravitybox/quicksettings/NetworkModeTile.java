@@ -20,6 +20,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
 
     private TextView mTextView;
     private int mNetworkType;
+    private boolean mIsLte;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -42,6 +43,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
             mNetworkType = Settings.Global.getInt(mContext.getContentResolver(), 
                     PhoneWrapper.PREFERRED_NETWORK_MODE, PhoneWrapper.NT_WCDMA_PREFERRED);
             log("SettingsObserver onChange; mNetworkType = " + mNetworkType);
+            mIsLte = (mNetworkType == PhoneWrapper.NT_LTE_GSM_WCDMA);
             updateResources();
         }
     }
@@ -57,6 +59,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
                 switch (mNetworkType) {
                     case PhoneWrapper.NT_WCDMA_PREFERRED:
                     case PhoneWrapper.NT_GSM_WCDMA_AUTO:
+                    case PhoneWrapper.NT_LTE_GSM_WCDMA:
                         i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
                                 PhoneWrapper.NT_GSM_ONLY);
                         break;
@@ -66,7 +69,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
                         break;
                     case PhoneWrapper.NT_GSM_ONLY:
                         i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
-                                PhoneWrapper.NT_WCDMA_ONLY);
+                                mIsLte ? PhoneWrapper.NT_LTE_GSM_WCDMA : PhoneWrapper.NT_WCDMA_ONLY);
                         break;
                     default:
                         log("onClick: Unknown or unexpected network type: mNetworkType = " + mNetworkType);
@@ -90,6 +93,8 @@ public class NetworkModeTile extends AQuickSettingsTile {
 
         mNetworkType = Settings.Global.getInt(mContext.getContentResolver(), 
                 PhoneWrapper.PREFERRED_NETWORK_MODE, PhoneWrapper.NT_WCDMA_PREFERRED);
+        mIsLte = (mNetworkType == PhoneWrapper.NT_LTE_GSM_WCDMA);
+
         SettingsObserver observer = new SettingsObserver(new Handler());
         observer.observe();
     }
@@ -103,6 +108,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
                 mDrawableId = R.drawable.ic_qs_2g3g_on;
                 break;
             case PhoneWrapper.NT_WCDMA_ONLY:
+            case PhoneWrapper.NT_LTE_GSM_WCDMA:
                 mDrawableId = R.drawable.ic_qs_3g_on;
                 break;
             case PhoneWrapper.NT_GSM_ONLY:

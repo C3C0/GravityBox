@@ -16,6 +16,7 @@ public class PhoneWrapper {
     public static final int NT_GSM_ONLY = 1;
     public static final int NT_WCDMA_ONLY = 2;
     public static final int NT_GSM_WCDMA_AUTO = 3;
+    public static final int NT_LTE_GSM_WCDMA = 9;
 
     public static final String PREFERRED_NETWORK_MODE = "preferred_network_mode";
 
