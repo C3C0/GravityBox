@@ -315,4 +315,24 @@
     <!-- QuickSettings management category -->
     <string name="pref_cat_statusbar_qs_title">QuickSettings nastavení</string>
 
+        <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">Nastavení notifikačního panelu</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">Pozadí notifikačního panelu</string>
+    <string name="notif_background_default">Původní</string>
+    <string name="notif_background_color_fill">Barevná výplň</string>
+    <string name="notif_background_custom_image">Vlastní obrázek</string>
+    <string name="pref_notif_color_title">Nastavit barvu pozadí</string>
+    <string name="pref_notif_image_portrait_title">Nastavit obrázek na výšku</string>
+    <string name="pref_notif_image_landscape_title">Nastavit obázek na šířku</string>
+    <string name="pref_notif_background_alpha_title">Průhlednost pozadí</string>
+    <string name="pref_notif_color_mode_title">Režim barevné výplně</string>
+    <string name="color_fill_overlay">Překrýt</string>
+    <string name="color_fill_underlay">Podklad</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">Vypnout roaming indikátory</string>
+    <string name="pref_disable_roaming_indicators_summary">Pokud vypnuto, R indikátory nebudou zobrazeny během roamingu. Použít s opatrností.</string>
+
 </resources>
