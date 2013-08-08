@@ -333,4 +333,8 @@
     <string name="color_fill_overlay">Overlay</string>
     <string name="color_fill_underlay">Underlay</string>
 
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">Disable roaming indicators</string>
+    <string name="pref_disable_roaming_indicators_summary">When disabled, R indicator will not be visible while roaming. Use with caution.</string>
+
 </resources>

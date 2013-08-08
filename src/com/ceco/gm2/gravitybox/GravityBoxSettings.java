@@ -60,6 +60,9 @@ public class GravityBoxSettings extends Activity {
     public static final int BATTERY_WARNING_SOUND = 2;
 
     public static final String PREF_KEY_SIGNAL_ICON_AUTOHIDE = "pref_signal_icon_autohide";
+    public static final String PREF_KEY_DISABLE_ROAMING_INDICATORS = "pref_disable_roaming_indicators";
+    public static final String ACTION_DISABLE_ROAMING_INDICATORS_CHANGED = "gravitybox.intent.action.DISABLE_ROAMING_INDICATORS_CHANGED";
+    public static final String EXTRA_INDICATORS_DISABLED = "indicatorsDisabled";
     public static final String PREF_KEY_POWEROFF_ADVANCED = "pref_poweroff_advanced";
 
     public static final String PREF_KEY_VOL_KEY_CURSOR_CONTROL = "pref_vol_key_cursor_control";
@@ -259,6 +262,7 @@ public class GravityBoxSettings extends Activity {
         private Preference mPrefNotifImagePortrait;
         private Preference mPrefNotifImageLandscape;
         private ListPreference mPrefNotifColorMode;
+        private CheckBoxPreference mPrefDisableRoamingIndicators;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -335,23 +339,26 @@ public class GravityBoxSettings extends Activity {
             mPrefCatStatusbar = (PreferenceScreen) findPreference(PREF_CAT_KEY_STATUSBAR);
             mPrefCatStatusbarQs = (PreferenceScreen) findPreference(PREF_CAT_KEY_STATUSBAR_QS);
 
-            // Remove MTK specific preferences for non-mtk device
-            if (!Utils.isMtkDevice()) {
-                getPreferenceScreen().removePreference(mPrefCatFixes);
-                mPrefCatStatusbar.removePreference(mSignalIconAutohide);
-                mQuickSettings.setEntries(R.array.qs_tile_aosp_entries);
-                mQuickSettings.setEntryValues(R.array.qs_tile_aosp_values);
-            } else {
-                mQuickSettings.setEntries(R.array.qs_tile_entries);
-                mQuickSettings.setEntryValues(R.array.qs_tile_values);
-            }
-
             mPrefCatNotifDrawerStyle = (PreferenceScreen) findPreference(PREF_CAT_KEY_NOTIF_DRAWER_STYLE);
             mPrefNotifBackground = (ListPreference) findPreference(PREF_KEY_NOTIF_BACKGROUND);
             mPrefNotifColor = (ColorPickerPreference) findPreference(PREF_KEY_NOTIF_COLOR);
             mPrefNotifImagePortrait = (Preference) findPreference(PREF_KEY_NOTIF_IMAGE_PORTRAIT);
             mPrefNotifImageLandscape = (Preference) findPreference(PREF_KEY_NOTIF_IMAGE_LANDSCAPE);
             mPrefNotifColorMode = (ListPreference) findPreference(PREF_KEY_NOTIF_COLOR_MODE);
+
+            mPrefDisableRoamingIndicators = (CheckBoxPreference) findPreference(PREF_KEY_DISABLE_ROAMING_INDICATORS);
+
+            // Remove MTK specific preferences for non-mtk device
+            if (!Utils.isMtkDevice()) {
+                getPreferenceScreen().removePreference(mPrefCatFixes);
+                mPrefCatStatusbar.removePreference(mSignalIconAutohide);
+                mPrefCatStatusbar.removePreference(mPrefDisableRoamingIndicators);
+                mQuickSettings.setEntries(R.array.qs_tile_aosp_entries);
+                mQuickSettings.setEntryValues(R.array.qs_tile_aosp_values);
+            } else {
+                mQuickSettings.setEntries(R.array.qs_tile_entries);
+                mQuickSettings.setEntryValues(R.array.qs_tile_values);
+            }
 
             setDefaultValues();
         }
@@ -587,6 +594,10 @@ public class GravityBoxSettings extends Activity {
             } else if (key.equals(PREF_KEY_NOTIF_BACKGROUND_ALPHA)) {
                 intent.setAction(ACTION_NOTIF_BACKGROUND_CHANGED);
                 intent.putExtra(EXTRA_BG_ALPHA, prefs.getInt(PREF_KEY_NOTIF_BACKGROUND_ALPHA, 60));
+            } else if (key.equals(PREF_KEY_DISABLE_ROAMING_INDICATORS)) {
+                intent.setAction(ACTION_DISABLE_ROAMING_INDICATORS_CHANGED);
+                intent.putExtra(EXTRA_INDICATORS_DISABLED,
+                        prefs.getBoolean(PREF_KEY_DISABLE_ROAMING_INDICATORS, false));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);

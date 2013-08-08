@@ -50,6 +50,7 @@ public class ModStatusbarColor {
     private static NotificationWallpaper mNotificationWallpaper;
     private static Integer mClockDefaultColor;
     private static Integer mPercentageDefaultColor;
+    private static boolean mRoamingIndicatorsDisabled;
 
     static {
         mIconManager = new StatusBarIconManager(XModuleResources.createInstance(GravityBox.MODULE_PATH, null));
@@ -58,6 +59,7 @@ public class ModStatusbarColor {
         mBatteryPlugged = false;
         mClockDefaultColor = null;
         mPercentageDefaultColor = null;
+        mRoamingIndicatorsDisabled = false;
     }
 
     private static void log(String message) {
@@ -129,6 +131,11 @@ public class ModStatusbarColor {
                 }
                 updateNotificationPanelBackground();
             }
+
+            if (intent.getAction().equals(GravityBoxSettings.ACTION_DISABLE_ROAMING_INDICATORS_CHANGED)) {
+                mRoamingIndicatorsDisabled = intent.getBooleanExtra(
+                        GravityBoxSettings.EXTRA_INDICATORS_DISABLED, false);
+            }
         }
     };
 
@@ -174,6 +181,8 @@ public class ModStatusbarColor {
             mIconManager.setDataActivityColor(
                     prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR, 
                             StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
+            mRoamingIndicatorsDisabled = prefs.getBoolean(
+                    GravityBoxSettings.PREF_KEY_DISABLE_ROAMING_INDICATORS, false);
 
             XposedBridge.hookAllConstructors(panelBarClass, new XC_MethodHook() {
 
@@ -184,6 +193,7 @@ public class ModStatusbarColor {
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_STATUSBAR_COLOR_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_NOTIF_BACKGROUND_CHANGED);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_DISABLE_ROAMING_INDICATORS_CHANGED);
                     mPanelBar.getContext().registerReceiver(mBroadcastReceiver, intentFilter);
                 }
             });
@@ -327,6 +337,9 @@ public class ModStatusbarColor {
                                         } catch (Resources.NotFoundException e) { 
                                             mobileRoam.setImageDrawable(null);
                                         }
+                                        if (mRoamingIndicatorsDisabled) {
+                                            mobileRoam.setVisibility(View.GONE);
+                                        }
                                     }
                                 }
                             }
@@ -380,6 +393,9 @@ public class ModStatusbarColor {
                                             mobileRoam.setImageDrawable(d);
                                         } catch (Resources.NotFoundException e) { 
                                             mobileRoam.setImageDrawable(null);
+                                        }
+                                        if (mRoamingIndicatorsDisabled) {
+                                            mobileRoam.setVisibility(View.GONE);
                                         }
                                     }
                                 }

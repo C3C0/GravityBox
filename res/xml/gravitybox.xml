@@ -198,6 +198,12 @@
             android:entryValues="@array/signal_icon_autohide_values"
             android:defaultValue="@array/empty_array" />
 
+        <CheckBoxPreference 
+            android:key="pref_disable_roaming_indicators"
+            android:title="@string/pref_disable_roaming_indicators_title"
+            android:summary="@string/pref_disable_roaming_indicators_summary"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen
