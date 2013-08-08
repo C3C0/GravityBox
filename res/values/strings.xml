@@ -328,5 +328,8 @@
     <string name="pref_notif_image_portrait_title">Set portrait image</string>
     <string name="pref_notif_image_landscape_title">Set landscape image</string>
     <string name="pref_notif_background_alpha_title">Background transparency</string>
+    <string name="pref_notif_color_mode_title">Color fill mode</string>
+    <string name="color_fill_overlay">Overlay</string>
+    <string name="color_fill_underlay">Underlay</string>
 
 </resources>

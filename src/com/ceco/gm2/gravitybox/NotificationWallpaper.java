@@ -9,10 +9,12 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.Display;
+import android.view.ViewParent;
 import android.view.WindowManager;
 import android.view.Surface;
 import android.widget.FrameLayout;
@@ -28,6 +30,7 @@ class NotificationWallpaper extends FrameLayout {
     private String mNotifBgImagePathLandscape;
     private String mBgType;
     private int mColor;
+    private String mColorMode;
     private float mAlpha;
     private Context mContext;
     Bitmap mBitmapWallpaper = null;
@@ -47,6 +50,7 @@ class NotificationWallpaper extends FrameLayout {
         }
 
         mBgType = GravityBoxSettings.NOTIF_BG_DEFAULT;
+        mColorMode = GravityBoxSettings.NOTIF_BG_COLOR_MODE_OVERLAY;
         mAlpha = 0.6f;
     }
 
@@ -64,6 +68,14 @@ class NotificationWallpaper extends FrameLayout {
 
     public void setColor(int color) {
         mColor = color; 
+    }
+
+    public String getColorMode() {
+        return mColorMode;
+    }
+
+    public void setColorMode(String colorMode) {
+        mColorMode = colorMode;
     }
 
     public float getAlpha() {
@@ -123,8 +135,19 @@ class NotificationWallpaper extends FrameLayout {
                 d = new BitmapDrawable(getResources(), mBitmapWallpaper);
             }
         } else if (mBgType.equals(GravityBoxSettings.NOTIF_BG_COLOR)) {
-            d = new ColorDrawable();
-            ((ColorDrawable)d).setColor(mColor);
+            if (mColorMode.equals(GravityBoxSettings.NOTIF_BG_COLOR_MODE_UNDERLAY)) {
+                ViewParent parent = getParent();
+                if (parent != null && parent instanceof FrameLayout) {
+                    Drawable pd = ((FrameLayout)parent).getBackground(); 
+                    if (pd != null) {
+                        pd.setColorFilter(mColor, PorterDuff.Mode.SRC_ATOP);
+                        pd.setAlpha(mAlpha == 0 ? 255 : (int) ((1-mAlpha) * 255));
+                    }
+                }
+            } else if (mColorMode.equals(GravityBoxSettings.NOTIF_BG_COLOR_MODE_OVERLAY)) {
+                d = new ColorDrawable();
+                ((ColorDrawable)d).setColor(mColor);
+            }
         }
 
         if (d != null) {

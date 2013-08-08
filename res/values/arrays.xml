@@ -313,4 +313,14 @@
         <item>image</item>
     </string-array>
 
+    <string-array name="notif_color_mode_entries" translatable="false">
+        <item>@string/color_fill_overlay</item>
+        <item>@string/color_fill_underlay</item>
+    </string-array>
+
+    <string-array name="notif_color_mode_values" translatable="false">
+        <item>overlay</item>
+        <item>underlay</item>
+    </string-array>
+
 </resources>

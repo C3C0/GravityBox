@@ -144,20 +144,28 @@
                 android:defaultValue="@integer/COLOR_BLACK"
                 android:order="2" />
 
+            <ListPreference
+                android:key="pref_notif_color_mode"
+                android:title="@string/pref_notif_color_mode_title"
+                android:entries="@array/notif_color_mode_entries"
+                android:entryValues="@array/notif_color_mode_values"
+                android:defaultValue="overlay"
+                android:order="3" />
+
             <Preference
                 android:key="pref_notif_image_portrait"
                 android:title="@string/pref_notif_image_portrait_title"
-                android:order="3" />
+                android:order="4" />
 
             <Preference
                 android:key="pref_notif_image_landscape"
                 android:title="@string/pref_notif_image_landscape_title"
-                android:order="4" />
+                android:order="5" />
 
             <com.ceco.gm2.gravitybox.preference.SeekBarPreference
                 android:key="pref_notif_background_alpha"
                 android:title="@string/pref_notif_background_alpha_title"
-                android:order="5" />
+                android:order="6" />
 
         </PreferenceScreen>
 

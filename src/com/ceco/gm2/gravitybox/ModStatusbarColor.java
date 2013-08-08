@@ -123,6 +123,10 @@ public class ModStatusbarColor {
                     mNotificationWallpaper.setAlpha(
                             intent.getIntExtra(GravityBoxSettings.EXTRA_BG_ALPHA, 60));
                 }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_COLOR_MODE)) {
+                    mNotificationWallpaper.setColorMode(
+                            intent.getStringExtra(GravityBoxSettings.EXTRA_BG_COLOR_MODE));
+                }
                 updateNotificationPanelBackground();
             }
         }
@@ -401,6 +405,9 @@ public class ModStatusbarColor {
                             GravityBoxSettings.NOTIF_BG_DEFAULT));
                     mNotificationWallpaper.setColor(prefs.getInt(
                             GravityBoxSettings.PREF_KEY_NOTIF_COLOR, Color.BLACK));
+                    mNotificationWallpaper.setColorMode(prefs.getString(
+                            GravityBoxSettings.PREF_KEY_NOTIF_COLOR_MODE,
+                            GravityBoxSettings.NOTIF_BG_COLOR_MODE_OVERLAY));
                     mNotificationWallpaper.setAlpha(prefs.getInt(
                             GravityBoxSettings.PREF_KEY_NOTIF_BACKGROUND_ALPHA, 60));
                     mNotificationPanelView.addView(mNotificationWallpaper);
@@ -459,16 +466,14 @@ public class ModStatusbarColor {
     private static void updateNotificationPanelBackground() {
         if (mNotificationPanelView == null || mNotificationWallpaper == null) return;
 
-        if (mNotificationWallpaper.getType().equals(GravityBoxSettings.NOTIF_BG_DEFAULT)) {
-            mNotificationPanelView.setBackgroundResource(0);
-            mNotificationPanelView.setBackgroundResource(
-                    mNotificationPanelView.getResources().getIdentifier(
-                            "notification_panel_bg", "drawable", PACKAGE_NAME));
-            Drawable background = mNotificationPanelView.getBackground();
-            float alpha = mNotificationWallpaper.getAlpha();
-            background.setAlpha(alpha == 0 ? 255 : 
-                (int)(1-alpha * 255));
-        }
+        mNotificationPanelView.setBackgroundResource(0);
+        mNotificationPanelView.setBackgroundResource(
+                mNotificationPanelView.getResources().getIdentifier(
+                        "notification_panel_bg", "drawable", PACKAGE_NAME));
+        Drawable background = mNotificationPanelView.getBackground();
+        float alpha = mNotificationWallpaper.getAlpha();
+        background.setAlpha(alpha == 0 ? 255 : 
+            (int)(1-alpha * 255));
 
         mNotificationWallpaper.updateNotificationWallpaper();
     }
