@@ -2,6 +2,7 @@ package com.ceco.gm2.gravitybox;
 
 import android.content.res.Resources;
 import android.os.Handler;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,11 +54,9 @@ public class ModClearAllRecents {
                     // otherwise create and inject new ImageView and set onClick listener to handle action
                     ImageView imgView = new ImageView(vg.getContext());
                     imgView.setImageDrawable(res.getDrawable(res.getIdentifier("ic_notify_clear", "drawable", PACKAGE_NAME)));
-                    int sizeDp = (int)(50 * res.getDisplayMetrics().density);
+                    int sizePx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, res.getDisplayMetrics());
                     FrameLayout.LayoutParams lParams = new FrameLayout.LayoutParams(
-                            sizeDp, sizeDp, Gravity.TOP | Gravity.RIGHT);
-                    lParams.topMargin = 10;
-                    lParams.rightMargin = 10;
+                            sizePx, sizePx, Gravity.TOP | Gravity.RIGHT);
                     imgView.setLayoutParams(lParams);
                     imgView.setScaleType(ScaleType.CENTER);
                     imgView.setClickable(true);
