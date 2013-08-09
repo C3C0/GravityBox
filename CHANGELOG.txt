@@ -1,3 +1,12 @@
+Changelog 2.0.1 - 09/08/2013
+--------------------------------------
+- fixed option for disabling roaming indicators (MTK devices)
+- fixed AM/PM showing only when Day of week enabled on some devices
+- improved scaling of "clear all recents" button
+- allow overlay/underlay modes also for notification drawer custom images
+- yet another attempt to fix 2G/3G tile for LTE network
+- updated French translations (thanks to ch-vox)
+
 Changelog 2.0.0 - 08/08/2013
 --------------------------------------
 - added support for non-MTK devices running vanilla Android
