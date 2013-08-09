@@ -241,166 +241,169 @@ public class ModStatusbarColor {
 
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    if (!mIconColorEnabled || 
-                            XposedHelpers.getObjectField(param.thisObject, "mWifiGroup") == null) return;
+                    if (XposedHelpers.getObjectField(param.thisObject, "mWifiGroup") == null) return;
 
                     Resources res = ((LinearLayout) param.thisObject).getContext().getResources();
 
-                    Object[] mobileIconIds = null, mobileIconIdsGemini = null;
-                    Object mobileActivityId = null, mobileActivityIdGemini = null;
-                    Object mobileTypeId = null, mobileTypeIdGemini = null;
-                    if (Utils.isMtkDevice()) {
-                        mobileIconIds = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthId");
-                        mobileIconIdsGemini = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthIdGemini");
-                        mobileActivityId = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityId");
-                        mobileActivityIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityIdGemini");
-                        mobileTypeId = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeId");
-                        mobileTypeIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeIdGemini");
-                    }
-
-                    if (XposedHelpers.getBooleanField(param.thisObject, "mWifiVisible")) {
-                        ImageView wifiIcon = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mWifi");
-                        if (wifiIcon != null) {
-                            try {
-                                int resId = XposedHelpers.getIntField(param.thisObject, "mWifiStrengthId");
-                                String resName = res.getResourceEntryName(resId);
-                                Drawable d = mIconManager.getWifiIcon(resName);
-                                if (d != null) wifiIcon.setImageDrawable(d);
-                            } catch (Resources.NotFoundException e) { }
+                    if (mIconColorEnabled) {
+                        Object[] mobileIconIds = null, mobileIconIdsGemini = null;
+                        Object mobileActivityId = null, mobileActivityIdGemini = null;
+                        Object mobileTypeId = null, mobileTypeIdGemini = null;
+                        if (Utils.isMtkDevice()) {
+                            mobileIconIds = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthId");
+                            mobileIconIdsGemini = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthIdGemini");
+                            mobileActivityId = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityId");
+                            mobileActivityIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityIdGemini");
+                            mobileTypeId = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeId");
+                            mobileTypeIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeIdGemini");
                         }
-                        ImageView wifiActivity = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mWifiActivity");
-                        if (wifiActivity != null) {
-                            try {
-                                int resId = XposedHelpers.getIntField(param.thisObject, "mWifiActivityId");
-                                Drawable d = res.getDrawable(resId).mutate();
-                                d = mIconManager.applyDataActivityColorFilter(d);
-                                wifiActivity.setImageDrawable(d);
-                            } catch (Resources.NotFoundException e) {
-                                wifiActivity.setImageDrawable(null);
-                            }
-                        }
-                    }
-
-                    if (!XposedHelpers.getBooleanField(param.thisObject, "mIsAirplaneMode")) {
-                        // for SIM Slot 1
-                        if (XposedHelpers.getBooleanField(param.thisObject, "mMobileVisible")) {
-                            boolean allowChange = false;
-                            ImageView mobile = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobile");
-                            if (mobile != null) {
+    
+                        if (XposedHelpers.getBooleanField(param.thisObject, "mWifiVisible")) {
+                            ImageView wifiIcon = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mWifi");
+                            if (wifiIcon != null) {
                                 try {
-                                    int resId = Utils.isMtkDevice() ? 
-                                            (Integer) XposedHelpers.callMethod(mobileIconIds[0], "getIconId") :
-                                            XposedHelpers.getIntField(param.thisObject, "mMobileStrengthId");
+                                    int resId = XposedHelpers.getIntField(param.thisObject, "mWifiStrengthId");
                                     String resName = res.getResourceEntryName(resId);
-                                    allowChange = resName.contains("blue") | !Utils.isMtkDevice();
-                                    Drawable d = mIconManager.getMobileIcon(resName);
-                                    if (d != null) mobile.setImageDrawable(d);
+                                    Drawable d = mIconManager.getWifiIcon(resName);
+                                    if (d != null) wifiIcon.setImageDrawable(d);
                                 } catch (Resources.NotFoundException e) { }
                             }
-                            if (allowChange) {
-                                ImageView mobileActivity = 
-                                        (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileActivity");
-                                if (mobileActivity != null) {
+                            ImageView wifiActivity = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mWifiActivity");
+                            if (wifiActivity != null) {
+                                try {
+                                    int resId = XposedHelpers.getIntField(param.thisObject, "mWifiActivityId");
+                                    Drawable d = res.getDrawable(resId).mutate();
+                                    d = mIconManager.applyDataActivityColorFilter(d);
+                                    wifiActivity.setImageDrawable(d);
+                                } catch (Resources.NotFoundException e) {
+                                    wifiActivity.setImageDrawable(null);
+                                }
+                            }
+                        }
+    
+                        if (!XposedHelpers.getBooleanField(param.thisObject, "mIsAirplaneMode")) {
+                            // for SIM Slot 1
+                            if (XposedHelpers.getBooleanField(param.thisObject, "mMobileVisible")) {
+                                boolean allowChange = false;
+                                ImageView mobile = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobile");
+                                if (mobile != null) {
                                     try {
                                         int resId = Utils.isMtkDevice() ? 
-                                                (Integer) XposedHelpers.callMethod(mobileActivityId, "getIconId") :
-                                                XposedHelpers.getIntField(param.thisObject, "mMobileActivityId");
-                                        Drawable d = res.getDrawable(resId).mutate();
-                                        d = mIconManager.applyDataActivityColorFilter(d);
-                                        mobileActivity.setImageDrawable(d);
-                                    } catch (Resources.NotFoundException e) { 
-                                        mobileActivity.setImageDrawable(null);
-                                    }
+                                                (Integer) XposedHelpers.callMethod(mobileIconIds[0], "getIconId") :
+                                                XposedHelpers.getIntField(param.thisObject, "mMobileStrengthId");
+                                        String resName = res.getResourceEntryName(resId);
+                                        allowChange = resName.contains("blue") | !Utils.isMtkDevice();
+                                        Drawable d = mIconManager.getMobileIcon(resName);
+                                        if (d != null) mobile.setImageDrawable(d);
+                                    } catch (Resources.NotFoundException e) { }
                                 }
-                                ImageView mobileType = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileType");
-                                if (mobileType != null) {
-                                    try {
-                                        int resId = Utils.isMtkDevice() ?
-                                                (Integer) XposedHelpers.callMethod(mobileTypeId, "getIconId") :
-                                                XposedHelpers.getIntField(param.thisObject, "mMobileTypeId");
-                                        Drawable d = res.getDrawable(resId).mutate();
-                                        d = mIconManager.applyColorFilter(d);
-                                        mobileType.setImageDrawable(d);
-                                    } catch (Resources.NotFoundException e) { 
-                                        mobileType.setImageDrawable(null);
-                                    }
-                                }
-                                if (Utils.isMtkDevice() &&
-                                        XposedHelpers.getBooleanField(param.thisObject, "mRoaming")) {
-                                    ImageView mobileRoam = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileRoam");
-                                    if (mobileRoam != null) {
+                                if (allowChange) {
+                                    ImageView mobileActivity = 
+                                            (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileActivity");
+                                    if (mobileActivity != null) {
                                         try {
-                                            int resId = XposedHelpers.getIntField(param.thisObject, "mRoamingId");
+                                            int resId = Utils.isMtkDevice() ? 
+                                                    (Integer) XposedHelpers.callMethod(mobileActivityId, "getIconId") :
+                                                    XposedHelpers.getIntField(param.thisObject, "mMobileActivityId");
+                                            Drawable d = res.getDrawable(resId).mutate();
+                                            d = mIconManager.applyDataActivityColorFilter(d);
+                                            mobileActivity.setImageDrawable(d);
+                                        } catch (Resources.NotFoundException e) { 
+                                            mobileActivity.setImageDrawable(null);
+                                        }
+                                    }
+                                    ImageView mobileType = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileType");
+                                    if (mobileType != null) {
+                                        try {
+                                            int resId = Utils.isMtkDevice() ?
+                                                    (Integer) XposedHelpers.callMethod(mobileTypeId, "getIconId") :
+                                                    XposedHelpers.getIntField(param.thisObject, "mMobileTypeId");
                                             Drawable d = res.getDrawable(resId).mutate();
                                             d = mIconManager.applyColorFilter(d);
-                                            mobileRoam.setImageDrawable(d);
+                                            mobileType.setImageDrawable(d);
                                         } catch (Resources.NotFoundException e) { 
-                                            mobileRoam.setImageDrawable(null);
+                                            mobileType.setImageDrawable(null);
                                         }
-                                        if (mRoamingIndicatorsDisabled) {
-                                            mobileRoam.setVisibility(View.GONE);
+                                    }
+                                    if (Utils.isMtkDevice() &&
+                                            XposedHelpers.getBooleanField(param.thisObject, "mRoaming")) {
+                                        ImageView mobileRoam = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileRoam");
+                                        if (mobileRoam != null) {
+                                            try {
+                                                int resId = XposedHelpers.getIntField(param.thisObject, "mRoamingId");
+                                                Drawable d = res.getDrawable(resId).mutate();
+                                                d = mIconManager.applyColorFilter(d);
+                                                mobileRoam.setImageDrawable(d);
+                                            } catch (Resources.NotFoundException e) { 
+                                                mobileRoam.setImageDrawable(null);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+    
+                            // for SIM Slot 2
+                            if (Utils.isMtkDevice() && 
+                                    XposedHelpers.getBooleanField(param.thisObject, "mMobileVisibleGemini")) {
+                                boolean allowChange = false;
+                                ImageView mobile = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileGemini");
+                                if (mobile != null) {
+                                    try {
+                                        int resId = (Integer) XposedHelpers.callMethod(mobileIconIdsGemini[0], "getIconId");
+                                        String resName = res.getResourceEntryName(resId);
+                                        allowChange = resName.contains("blue");
+                                        Drawable d = mIconManager.getMobileIcon(resName);
+                                        if (d != null) mobile.setImageDrawable(d);
+                                    } catch (Resources.NotFoundException e) { }
+                                }
+                                if (allowChange) {
+                                    ImageView mobileActivity = 
+                                            (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileActivityGemini");
+                                    if (mobileActivity != null) {
+                                        try {
+                                            int resId = (Integer) XposedHelpers.callMethod(mobileActivityIdGemini, "getIconId");
+                                            Drawable d = res.getDrawable(resId).mutate();
+                                            d = mIconManager.applyDataActivityColorFilter(d);
+                                            mobileActivity.setImageDrawable(d);
+                                        } catch (Resources.NotFoundException e) { 
+                                            mobileActivity.setImageDrawable(null);
+                                        }
+                                    }
+                                    ImageView mobileType = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileTypeGemini");
+                                    if (mobileType != null) {
+                                        try {
+                                            int resId = (Integer) XposedHelpers.callMethod(mobileTypeIdGemini, "getIconId");
+                                            Drawable d = res.getDrawable(resId).mutate();
+                                            d = mIconManager.applyColorFilter(d);
+                                            mobileType.setImageDrawable(d);
+                                        } catch (Resources.NotFoundException e) { 
+                                            mobileType.setImageDrawable(null);
+                                        }
+                                    }
+                                    if (XposedHelpers.getBooleanField(param.thisObject, "mRoamingGemini")) {
+                                        ImageView mobileRoam = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileRoamGemini");
+                                        if (mobileRoam != null) {
+                                            try {
+                                                int resId = XposedHelpers.getIntField(param.thisObject, "mRoamingGeminiId");
+                                                Drawable d = res.getDrawable(resId).mutate();
+                                                d = mIconManager.applyColorFilter(d);
+                                                mobileRoam.setImageDrawable(d);
+                                            } catch (Resources.NotFoundException e) { 
+                                                mobileRoam.setImageDrawable(null);
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
+                    }
 
-                        // for SIM Slot 2
-                        if (Utils.isMtkDevice() && 
-                                XposedHelpers.getBooleanField(param.thisObject, "mMobileVisibleGemini")) {
-                            boolean allowChange = false;
-                            ImageView mobile = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileGemini");
-                            if (mobile != null) {
-                                try {
-                                    int resId = (Integer) XposedHelpers.callMethod(mobileIconIdsGemini[0], "getIconId");
-                                    String resName = res.getResourceEntryName(resId);
-                                    allowChange = resName.contains("blue");
-                                    Drawable d = mIconManager.getMobileIcon(resName);
-                                    if (d != null) mobile.setImageDrawable(d);
-                                } catch (Resources.NotFoundException e) { }
-                            }
-                            if (allowChange) {
-                                ImageView mobileActivity = 
-                                        (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileActivityGemini");
-                                if (mobileActivity != null) {
-                                    try {
-                                        int resId = (Integer) XposedHelpers.callMethod(mobileActivityIdGemini, "getIconId");
-                                        Drawable d = res.getDrawable(resId).mutate();
-                                        d = mIconManager.applyDataActivityColorFilter(d);
-                                        mobileActivity.setImageDrawable(d);
-                                    } catch (Resources.NotFoundException e) { 
-                                        mobileActivity.setImageDrawable(null);
-                                    }
-                                }
-                                ImageView mobileType = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileTypeGemini");
-                                if (mobileType != null) {
-                                    try {
-                                        int resId = (Integer) XposedHelpers.callMethod(mobileTypeIdGemini, "getIconId");
-                                        Drawable d = res.getDrawable(resId).mutate();
-                                        d = mIconManager.applyColorFilter(d);
-                                        mobileType.setImageDrawable(d);
-                                    } catch (Resources.NotFoundException e) { 
-                                        mobileType.setImageDrawable(null);
-                                    }
-                                }
-                                if (XposedHelpers.getBooleanField(param.thisObject, "mRoamingGemini")) {
-                                    ImageView mobileRoam = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileRoamGemini");
-                                    if (mobileRoam != null) {
-                                        try {
-                                            int resId = XposedHelpers.getIntField(param.thisObject, "mRoamingGeminiId");
-                                            Drawable d = res.getDrawable(resId).mutate();
-                                            d = mIconManager.applyColorFilter(d);
-                                            mobileRoam.setImageDrawable(d);
-                                        } catch (Resources.NotFoundException e) { 
-                                            mobileRoam.setImageDrawable(null);
-                                        }
-                                        if (mRoamingIndicatorsDisabled) {
-                                            mobileRoam.setVisibility(View.GONE);
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                    if (Utils.isMtkDevice() && mRoamingIndicatorsDisabled) {
+                        ImageView mobileRoam;
+                        mobileRoam = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileRoam");
+                        if (mobileRoam != null) mobileRoam.setVisibility(View.GONE);
+                        mobileRoam = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileRoamGemini");
+                        if (mobileRoam != null) mobileRoam.setVisibility(View.GONE);
                     }
                 }
             });
