@@ -20,7 +20,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
 
     private TextView mTextView;
     private int mNetworkType;
-    private boolean mIsLte;
+    private int mDefaultNetworkType;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -43,7 +43,6 @@ public class NetworkModeTile extends AQuickSettingsTile {
             mNetworkType = Settings.Global.getInt(mContext.getContentResolver(), 
                     PhoneWrapper.PREFERRED_NETWORK_MODE, PhoneWrapper.NT_WCDMA_PREFERRED);
             log("SettingsObserver onChange; mNetworkType = " + mNetworkType);
-            mIsLte |= (mNetworkType == PhoneWrapper.NT_LTE_GSM_WCDMA);
             updateResources();
         }
     }
@@ -59,7 +58,6 @@ public class NetworkModeTile extends AQuickSettingsTile {
                 switch (mNetworkType) {
                     case PhoneWrapper.NT_WCDMA_PREFERRED:
                     case PhoneWrapper.NT_GSM_WCDMA_AUTO:
-                    case PhoneWrapper.NT_LTE_GSM_WCDMA:
                         i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
                                 PhoneWrapper.NT_GSM_ONLY);
                         break;
@@ -69,10 +67,15 @@ public class NetworkModeTile extends AQuickSettingsTile {
                         break;
                     case PhoneWrapper.NT_GSM_ONLY:
                         i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
-                                mIsLte ? PhoneWrapper.NT_LTE_GSM_WCDMA : PhoneWrapper.NT_WCDMA_ONLY);
+                                hasLte() ? mDefaultNetworkType : PhoneWrapper.NT_WCDMA_ONLY);
                         break;
                     default:
-                        log("onClick: Unknown or unexpected network type: mNetworkType = " + mNetworkType);
+                        if (hasLte()) {
+                            i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
+                                    PhoneWrapper.NT_GSM_ONLY);
+                        } else {
+                            log("onClick: Unknown or unsupported network type: mNetworkType = " + mNetworkType);
+                        }
                         break;
                 }
                 if (i.hasExtra(PhoneWrapper.EXTRA_NETWORK_TYPE)) {
@@ -91,9 +94,9 @@ public class NetworkModeTile extends AQuickSettingsTile {
 
         mTextView = (TextView) mTile.findViewById(R.id.network_mode_tileview);
 
+        mDefaultNetworkType = PhoneWrapper.getDefaultNetworkType();
         mNetworkType = Settings.Global.getInt(mContext.getContentResolver(), 
-                PhoneWrapper.PREFERRED_NETWORK_MODE, PhoneWrapper.NT_WCDMA_PREFERRED);
-        mIsLte = (mNetworkType == PhoneWrapper.NT_LTE_GSM_WCDMA);
+                PhoneWrapper.PREFERRED_NETWORK_MODE, mDefaultNetworkType);
 
         SettingsObserver observer = new SettingsObserver(new Handler());
         observer.observe();
@@ -108,19 +111,27 @@ public class NetworkModeTile extends AQuickSettingsTile {
                 mDrawableId = R.drawable.ic_qs_2g3g_on;
                 break;
             case PhoneWrapper.NT_WCDMA_ONLY:
-            case PhoneWrapper.NT_LTE_GSM_WCDMA:
                 mDrawableId = R.drawable.ic_qs_3g_on;
                 break;
             case PhoneWrapper.NT_GSM_ONLY:
                 mDrawableId = R.drawable.ic_qs_2g_on;
                 break;
             default:
-                mDrawableId = R.drawable.ic_qs_unexpected_network;
-                log("updateTile: Unknown or unexpected network type: mNetworkType = " + mNetworkType);
+                if (mNetworkType < PhoneWrapper.NT_MODE_UNKNOWN) {
+                    mDrawableId = R.drawable.ic_qs_3g_on;
+                } else {
+                    mDrawableId = R.drawable.ic_qs_unexpected_network;
+                    log("updateTile: Unknown or unsupported network type: mNetworkType = " + mNetworkType);
+                }
                 break;
         }
 
         mTextView.setText(mLabel);
         mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+    }
+
+    private boolean hasLte() {
+        return (mDefaultNetworkType >= PhoneWrapper.NT_LTE_CDMA_EVDO && 
+                mDefaultNetworkType < PhoneWrapper.NT_MODE_UNKNOWN);
     }
 }

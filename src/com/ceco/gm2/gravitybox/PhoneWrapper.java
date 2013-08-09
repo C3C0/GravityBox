@@ -4,7 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -16,7 +18,12 @@ public class PhoneWrapper {
     public static final int NT_GSM_ONLY = 1;
     public static final int NT_WCDMA_ONLY = 2;
     public static final int NT_GSM_WCDMA_AUTO = 3;
+    public static final int NT_LTE_CDMA_EVDO = 8; 
     public static final int NT_LTE_GSM_WCDMA = 9;
+    public static final int NT_LTE_CMDA_EVDO_GSM_WCDMA = 10;
+    public static final int NT_LTE_ONLY = 11;
+    public static final int NT_LTE_WCDMA = 12;
+    public static final int NT_MODE_UNKNOWN = 13;
 
     public static final String PREFERRED_NETWORK_MODE = "preferred_network_mode";
 
@@ -24,6 +31,7 @@ public class PhoneWrapper {
     public static final String EXTRA_NETWORK_TYPE = "networkType";
 
     private static Class<?> mClsPhoneFactory;
+    private static Class<?> mSystemProperties;
     private static Context mContext;
 
     private static void log(String msg) {
@@ -48,6 +56,7 @@ public class PhoneWrapper {
 
         try {
             mClsPhoneFactory = XposedHelpers.findClass("com.android.internal.telephony.PhoneFactory", null);
+            mSystemProperties = XposedHelpers.findClass("android.os.SystemProperties", null);
 
             String methodName = Utils.isMtkDevice() ? "makeDefaultPhones" : "makeDefaultPhone";
             XposedHelpers.findAndHookMethod(mClsPhoneFactory, methodName, 
@@ -83,6 +92,7 @@ public class PhoneWrapper {
                 paramArgs[2] = int.class;
                 XposedHelpers.callMethod(defPhone, "setPreferredNetworkTypeGemini", paramArgs, networkType, null, 0);
             } else {
+                Settings.Global.putInt(mContext.getContentResolver(), PREFERRED_NETWORK_MODE, networkType);
                 Class<?>[] paramArgs = new Class<?>[2];
                 paramArgs[0] = int.class;
                 paramArgs[1] = Message.class;
@@ -91,6 +101,18 @@ public class PhoneWrapper {
         } catch (Exception e) {
             log("setPreferredNetworkType failed: " + e.getMessage());
             XposedBridge.log(e);
+        }
+    }
+
+    public static int getDefaultNetworkType() {
+        try {
+            int mode = (Integer) XposedHelpers.callStaticMethod(mSystemProperties, 
+                "getInt", "ro.telephony.default_network", NT_WCDMA_PREFERRED);
+            log("getDefaultNetworkMode: mode=" + mode);
+            return mode;
+        } catch (Exception e) {
+            XposedBridge.log(e);
+            return NT_WCDMA_PREFERRED;
         }
     }
 }
