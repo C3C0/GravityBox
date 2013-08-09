@@ -97,6 +97,7 @@ class NotificationWallpaper extends FrameLayout {
     public void updateNotificationWallpaper() {
         if (mNotificationWallpaperImage != null) {
             removeView(mNotificationWallpaperImage);
+            mNotificationWallpaperImage = null;
         }
 
         if (mBgType.equals(GravityBoxSettings.NOTIF_BG_DEFAULT)) return;
@@ -117,15 +118,9 @@ class NotificationWallpaper extends FrameLayout {
                 break;
         }
 
-        mNotificationWallpaperImage = new ImageView(getContext());
-
         Drawable d = null;
         if (mBgType.equals(GravityBoxSettings.NOTIF_BG_IMAGE) && file.exists()) {
-            if (isLandscape && !fileLandscape.exists()) {
-                mNotificationWallpaperImage.setScaleType(ScaleType.CENTER_CROP);
-            } else {
-                mNotificationWallpaperImage.setScaleType(ScaleType.CENTER);
-            }
+            
             if (isLandscape && fileLandscape.exists()) {
                 mBitmapWallpaper = BitmapFactory.decodeFile(mNotifBgImagePathLandscape);
             } else {
@@ -135,27 +130,28 @@ class NotificationWallpaper extends FrameLayout {
                 d = new BitmapDrawable(getResources(), mBitmapWallpaper);
             }
         } else if (mBgType.equals(GravityBoxSettings.NOTIF_BG_COLOR)) {
-            if (mColorMode.equals(GravityBoxSettings.NOTIF_BG_COLOR_MODE_UNDERLAY)) {
-                ViewParent parent = getParent();
-                if (parent != null && parent instanceof FrameLayout) {
-                    Drawable pd = ((FrameLayout)parent).getBackground(); 
-                    if (pd != null) {
-                        pd.setColorFilter(mColor, PorterDuff.Mode.SRC_ATOP);
-                        pd.setAlpha(mAlpha == 0 ? 255 : (int) ((1-mAlpha) * 255));
-                    }
-                }
-            } else if (mColorMode.equals(GravityBoxSettings.NOTIF_BG_COLOR_MODE_OVERLAY)) {
-                d = new ColorDrawable();
-                ((ColorDrawable)d).setColor(mColor);
-            }
+            d = new ColorDrawable();
+            ((ColorDrawable)d).setColor(mColor);
         }
 
         if (d != null) {
             d.setAlpha(mAlpha == 0 ? 255 : (int) ((1-mAlpha) * 255));
-            mNotificationWallpaperImage.setImageDrawable(d);
-            addView(mNotificationWallpaperImage, -1, -1);
-        } else {
-            mNotificationWallpaperImage = null;
+            if (mColorMode.equals(GravityBoxSettings.NOTIF_BG_COLOR_MODE_UNDERLAY)) {
+                ViewParent parent = getParent();
+                if (parent != null && parent instanceof FrameLayout) {
+                    ((FrameLayout)parent).setBackground(d);
+                }
+            } else if (mColorMode.equals(GravityBoxSettings.NOTIF_BG_COLOR_MODE_OVERLAY)) {
+                mNotificationWallpaperImage = new ImageView(getContext());
+                if (mBgType.equals(GravityBoxSettings.NOTIF_BG_IMAGE) &&
+                        isLandscape && !fileLandscape.exists()) {
+                    mNotificationWallpaperImage.setScaleType(ScaleType.CENTER_CROP);
+                } else {
+                    mNotificationWallpaperImage.setScaleType(ScaleType.CENTER);
+                }
+                mNotificationWallpaperImage.setImageDrawable(d);
+                addView(mNotificationWallpaperImage, -1, -1);
+            }
         }
     }
 

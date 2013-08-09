@@ -481,6 +481,7 @@ public class GravityBoxSettings extends Activity {
                 } else if (option.equals(NOTIF_BG_IMAGE)) {
                     mPrefCatNotifDrawerStyle.addPreference(mPrefNotifImagePortrait);
                     mPrefCatNotifDrawerStyle.addPreference(mPrefNotifImageLandscape);
+                    mPrefCatNotifDrawerStyle.addPreference(mPrefNotifColorMode);
                 }
             }
 
