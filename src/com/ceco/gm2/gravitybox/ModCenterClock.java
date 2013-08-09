@@ -106,7 +106,7 @@ public class ModCenterClock {
                             // is this a status bar Clock instance?
                             // yes, if it contains our additional sbClock field
                             Object sbClock = XposedHelpers.getAdditionalInstanceField(param.thisObject, "sbClock");
-                            if (sbClock != null && mClockShowDow) {
+                            if (sbClock != null) {
                                 Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
                                 String clockText = param.getResult().toString();
                                 String amPm = calendar.getDisplayName(
@@ -117,15 +117,20 @@ public class ModCenterClock {
                                     clockText += " " + amPm;
                                     amPmIndex = clockText.indexOf(amPm);
                                 }
-                                CharSequence dow = calendar.getDisplayName(
-                                        Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault());
-                                clockText = dow  + " " + clockText;
+                                CharSequence dow = "";
+                                if (mClockShowDow) {
+                                    dow = calendar.getDisplayName(
+                                            Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()) + " ";
+                                }
+                                clockText = dow + clockText;
                                 SpannableStringBuilder sb = new SpannableStringBuilder(clockText);
                                 sb.setSpan(new RelativeSizeSpan(0.7f), 0, dow.length(), 
                                         Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
                                 if (amPmIndex > -1) {
-                                    sb.setSpan(new RelativeSizeSpan(0.7f), dow.length() + amPmIndex + 1, 
-                                            dow.length() + amPmIndex + amPm.length() + 1, 
+                                    int offset = Character.isWhitespace(clockText.charAt(dow.length() + amPmIndex - 1)) ?
+                                            1 : 0;
+                                    sb.setSpan(new RelativeSizeSpan(0.7f), dow.length() + amPmIndex - offset, 
+                                            dow.length() + amPmIndex + amPm.length(), 
                                             Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
                                 }
                                 param.setResult(sb);
