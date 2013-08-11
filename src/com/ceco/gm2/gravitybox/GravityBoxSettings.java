@@ -188,8 +188,10 @@ public class GravityBoxSettings extends Activity {
     public static final String EXTRA_PIE_SIZE = "pieSize";
 
     public static final String PREF_KEY_BUTTON_BACKLIGHT_MODE = "pref_button_backlight_mode";
+    public static final String PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS = "pref_button_backlight_notifications";
     public static final String ACTION_PREF_BUTTON_BACKLIGHT_CHANGED = "gravitybox.intent.action.BUTTON_BACKLIGHT_CHANGED";
     public static final String EXTRA_BB_MODE = "bbMode";
+    public static final String EXTRA_BB_NOTIF = "bbNotif";
     public static final String BB_MODE_DEFAULT = "default";
     public static final String BB_MODE_DISABLE = "disable";
     public static final String BB_MODE_ALWAYS_ON = "always_on";
@@ -640,6 +642,10 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_BUTTON_BACKLIGHT_CHANGED);
                 intent.putExtra(EXTRA_BB_MODE, prefs.getString(
                         PREF_KEY_BUTTON_BACKLIGHT_MODE, BB_MODE_DEFAULT));
+            } else if (key.equals(PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS)) {
+                intent.setAction(ACTION_PREF_BUTTON_BACKLIGHT_CHANGED);
+                intent.putExtra(EXTRA_BB_NOTIF, prefs.getBoolean(
+                        PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS, false));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);

@@ -26,12 +26,17 @@ public class ModDisplay {
     public static final int RESULT_AUTOBRIGHTNESS_CONFIG = 0;
 
     private static final int LIGHT_ID_BUTTONS = 2;
+    private static final int LIGHT_ID_NOTIFICATIONS = 4;
+    private static final int LIGHT_ID_ATTENTION = 5;
 
     private static Context mContext;
     private static Object mDisplayPowerController;
     private static int mScreenBrightnessRangeMinimum;
     private static int mScreenBrightnessRangeMaximum;
     private static String mButtonBacklightMode;
+    private static boolean mButtonBacklightNotif;
+    private static PowerManager mPm;
+    private static boolean mPendingNotif = false;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -62,6 +67,12 @@ public class ModDisplay {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_BB_MODE)) {
                     mButtonBacklightMode = intent.getStringExtra(GravityBoxSettings.EXTRA_BB_MODE);
                 }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_BB_NOTIF)) {
+                    mButtonBacklightNotif = intent.getBooleanExtra(GravityBoxSettings.EXTRA_BB_NOTIF, false);
+                    if (!mButtonBacklightNotif) {
+                        mPendingNotif = false;
+                    }
+                }
             }
         }
         
@@ -76,6 +87,8 @@ public class ModDisplay {
             String brightnessMin = prefs.getString(GravityBoxSettings.PREF_KEY_BRIGHTNESS_MIN, "20");
             mButtonBacklightMode = prefs.getString(
                     GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_MODE, GravityBoxSettings.BB_MODE_DEFAULT);
+            mButtonBacklightNotif = prefs.getBoolean(
+                    GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS, false);
 
             try {
                 int bMin = Integer.valueOf(brightnessMin);
@@ -152,18 +165,55 @@ public class ModDisplay {
                             "; mode=" + param.args[1] + "; " + "onMS=" + param.args[2] + 
                             "; offMS=" + param.args[3] + "; bMode=" + param.args[4]);
 
+                    if (mPm == null) {
+                        Object lightService = XposedHelpers.getSurroundingThis(param.thisObject);
+                        Context context = (Context) XposedHelpers.getObjectField(lightService, "mContext");
+                        mPm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+                    }
+
                     if (id == LIGHT_ID_BUTTONS) {
-                        if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_DISABLE)) {
+                        if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_DISABLE) && !mPendingNotif) {
                             param.args[0] = param.args[1] = param.args[2] = param.args[3] = param.args[4] = 0;
+                            if (DEBUG) log("Button backlight disabled. Turning off");
                             return;
                         } else if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)) {
-                            Object lightService = XposedHelpers.getSurroundingThis(param.thisObject);
-                            Context context = (Context) XposedHelpers.getObjectField(lightService, "mContext");
-                            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-                            if (pm.isScreenOn() && ((Integer)param.args[0] == 0)) {
+                            if (mPm.isScreenOn() && ((Integer)param.args[0] == 0)) {
+                                if (DEBUG) log("Button backlight always on and screen is on. Turning on");
                                 param.args[0] = 0xff6e6e6e;
                                 return;
                             }
+                        }
+                    }
+
+                    if (mButtonBacklightNotif) {
+                        int color = -1;
+                        if (mPendingNotif && mPm.isScreenOn()) {
+                            mPendingNotif = false;
+                            log("Notification pending and screen is on. Canceling pending notification.");
+                            if (!mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)) {
+                                log("Turning off button backlight");
+                                color = 0;
+                            }
+                        } else if (id == LIGHT_ID_NOTIFICATIONS || id == LIGHT_ID_ATTENTION) {
+                            if ((Integer)param.args[0] != 0 && !mPm.isScreenOn()) {
+                                mPendingNotif = true;
+                                log("New notification and screen is off. Turning on button backlight");
+                                color = (Integer)param.args[0];
+                            } else {
+                                mPendingNotif = false;
+                                log("Notification dismissed or screen on");
+                                if (!mPm.isScreenOn() ||
+                                        !mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)) {
+                                    color = 0;
+                                    log("Turning off button backlight");
+                                }
+                            }
+                        }
+                        if (color != -1) {
+                            Object ls = XposedHelpers.getSurroundingThis(param.thisObject);
+                            int np = XposedHelpers.getIntField(ls, "mNativePointer");
+                            XposedHelpers.callMethod(ls, "setLight_native",
+                                    np, LIGHT_ID_BUTTONS, color, 0, 0, 0, 0);
                         }
                     }
                 }
