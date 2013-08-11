@@ -86,6 +86,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         if (resparam.packageName.equals(ModQuickSettings.PACKAGE_NAME)) {
             ModQuickSettings.initResources(prefs, resparam);
         }
+
+        if (resparam.packageName.equals(ModPieControls.PACKAGE_NAME)) {
+            ModPieControls.initResources(prefs, resparam);
+        }
     }
 
     @Override
@@ -175,6 +179,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         if (lpparam.packageName.equals(ModVolumePanel.PACKAGE_NAME)) {
             ModVolumePanel.init(prefs, lpparam.classLoader);
+        }
+
+        if (lpparam.packageName.equals(ModPieControls.PACKAGE_NAME)) {
+            ModPieControls.init(prefs, lpparam.classLoader);
         }
     }
 }

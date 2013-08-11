@@ -325,4 +325,22 @@
         <item>underlay</item>
     </string-array>
 
+    <string-array name="pie_control_trigger_position_entries" translatable="false">
+        <item>@string/pie_control_trigger_left</item>
+        <item>@string/pie_control_trigger_bottom</item>
+        <item>@string/pie_control_trigger_right</item>
+        <item>@string/pie_control_trigger_top</item>
+    </string-array>
+
+    <string-array name="pie_control_trigger_position_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>8</item>
+    </string-array>
+
+    <string-array name="pie_control_trigger_position_default" translatable="false">
+        <item>2</item>
+    </string-array>
+
 </resources>

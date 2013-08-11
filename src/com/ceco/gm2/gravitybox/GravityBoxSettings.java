@@ -177,6 +177,16 @@ public class GravityBoxSettings extends Activity {
     public static final String EXTRA_BG_COLOR_MODE = "bgColorMode";
     public static final String EXTRA_BG_ALPHA = "bgAlpha";
 
+    public static final String PREF_KEY_PIE_CONTROL_ENABLE = "pref_pie_control_enable";
+    public static final String PREF_KEY_PIE_CONTROL_SEARCH = "pref_pie_control_search";
+    public static final String PREF_KEY_PIE_CONTROL_TRIGGERS = "pref_pie_control_trigger_positions";
+    public static final String PREF_KEY_PIE_CONTROL_SIZE = "pref_pie_control_size";
+    public static final String ACTION_PREF_PIE_CHANGED = "gravitybox.intent.action.PREF_PIE_CHANGED";
+    public static final String EXTRA_PIE_ENABLE = "pieEnable";
+    public static final String EXTRA_PIE_SEARCH = "pieSearch";
+    public static final String EXTRA_PIE_TRIGGERS = "pieTriggers";
+    public static final String EXTRA_PIE_SIZE = "pieSize";
+
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "gravitybox.intent.action.BATTERY_STYLE_CHANGED";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
@@ -599,6 +609,20 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_DISABLE_ROAMING_INDICATORS_CHANGED);
                 intent.putExtra(EXTRA_INDICATORS_DISABLED,
                         prefs.getBoolean(PREF_KEY_DISABLE_ROAMING_INDICATORS, false));
+            } else if (key.equals(PREF_KEY_PIE_CONTROL_ENABLE)) {
+                intent.setAction(ACTION_PREF_PIE_CHANGED);
+                intent.putExtra(EXTRA_PIE_ENABLE, prefs.getBoolean(PREF_KEY_PIE_CONTROL_ENABLE, false));
+            } else if (key.equals(PREF_KEY_PIE_CONTROL_SEARCH)) {
+                intent.setAction(ACTION_PREF_PIE_CHANGED);
+                intent.putExtra(EXTRA_PIE_SEARCH, prefs.getBoolean(PREF_KEY_PIE_CONTROL_SEARCH, false));
+            } else if (key.equals(PREF_KEY_PIE_CONTROL_TRIGGERS)) {
+                intent.setAction(ACTION_PREF_PIE_CHANGED);
+                String[] triggers = prefs.getStringSet(
+                        PREF_KEY_PIE_CONTROL_TRIGGERS, new HashSet<String>()).toArray(new String[0]);
+                intent.putExtra(EXTRA_PIE_TRIGGERS, triggers);
+            } else if (key.equals(PREF_KEY_PIE_CONTROL_SIZE)) {
+                intent.setAction(ACTION_PREF_PIE_CHANGED);
+                intent.putExtra(EXTRA_PIE_SIZE, prefs.getInt(PREF_KEY_PIE_CONTROL_SIZE, 1000));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);
