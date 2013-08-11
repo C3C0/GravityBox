@@ -12,20 +12,30 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-public class SeekBarPreference extends Preference
-        implements OnSeekBarChangeListener {
+public class SeekBarPreference extends Preference implements OnSeekBarChangeListener {
 
-    public static int maximum = 100;
-    public static int interval = 5;
+    private int mMinimum = 0;
+    private int mMaximum = 100;
+    private int mInterval = 1;
+    private int mDefaultValue = mMinimum;
+    private boolean mMonitorBoxEnabled = false;
 
-    private TextView monitorBox;
-    private SeekBar bar;
+    private TextView mMonitorBox;
+    private SeekBar mBar;
 
     private int mValue;
     private boolean mTracking = false;
 
     public SeekBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        if (attrs != null) {
+            mMinimum = attrs.getAttributeIntValue(null, "minimum", 0);
+            mMaximum = attrs.getAttributeIntValue(null, "maximum", 100);
+            mInterval = attrs.getAttributeIntValue(null, "interval", 1);
+            mDefaultValue = mMinimum;
+            mMonitorBoxEnabled = attrs.getAttributeBooleanValue(null, "monitorBoxEnabled", false);
+        }
     }
 
     @Override
@@ -33,17 +43,19 @@ public class SeekBarPreference extends Preference
 
         View layout = View.inflate(getContext(), R.layout.slider_preference, null);
 
-        monitorBox = (TextView) layout.findViewById(R.id.monitor_box);
-        bar = (SeekBar) layout.findViewById(R.id.seek_bar);
-        bar.setOnSeekBarChangeListener(this);
-        bar.setProgress(mValue);
-        monitorBox.setText(mValue + "%");
+        mMonitorBox = (TextView) layout.findViewById(R.id.monitor_box);
+        mMonitorBox.setVisibility(mMonitorBoxEnabled ? View.VISIBLE : View.GONE);
+        mBar = (SeekBar) layout.findViewById(R.id.seek_bar);
+        mBar.setMax(mMaximum - mMinimum);
+        mBar.setOnSeekBarChangeListener(this);
+        mBar.setProgress(mValue - mMinimum);
+        setMonitorBoxText(mValue + "%");
         return layout;
     }
 
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
-        return a.getInt(index, 60);
+        return a.getInt(index, mDefaultValue);
     }
 
     @Override
@@ -55,21 +67,27 @@ public class SeekBarPreference extends Preference
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (!fromUser) return;
 
+        progress = Math.round(((float) progress) / mInterval) * mInterval + mMinimum;
         if (mTracking) {
-            monitorBox.setText(seekBar.getProgress() + "%");
+            setMonitorBoxText(progress + "%");
         } else {
-            progress = Math.round(((float) progress) / interval) * interval;
             setValue(progress);
         }
     }
 
-    public void setValue(int progress){
+    private void setValue(int progress){
         mValue = progress;
         persistInt(mValue);
-        if (bar != null)
+        if (mBar != null)
         {
-            bar.setProgress(progress);
-            monitorBox.setText(progress + "%");
+            mBar.setProgress(mValue - mMinimum);
+            setMonitorBoxText(mValue + "%");
+        }
+    }
+
+    private void setMonitorBoxText(String text) {
+        if (mMonitorBoxEnabled) {
+            mMonitorBox.setText(text);
         }
     }
 

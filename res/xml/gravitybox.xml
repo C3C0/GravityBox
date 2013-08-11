@@ -165,6 +165,10 @@
             <com.ceco.gm2.gravitybox.preference.SeekBarPreference
                 android:key="pref_notif_background_alpha"
                 android:title="@string/pref_notif_background_alpha_title"
+                minimum="0"
+                maximum="100"
+                interval="5"
+                monitorBoxEnabled="true"
                 android:order="6" />
 
         </PreferenceScreen>
