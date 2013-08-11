@@ -187,6 +187,13 @@ public class GravityBoxSettings extends Activity {
     public static final String EXTRA_PIE_TRIGGERS = "pieTriggers";
     public static final String EXTRA_PIE_SIZE = "pieSize";
 
+    public static final String PREF_KEY_BUTTON_BACKLIGHT_MODE = "pref_button_backlight_mode";
+    public static final String ACTION_PREF_BUTTON_BACKLIGHT_CHANGED = "gravitybox.intent.action.BUTTON_BACKLIGHT_CHANGED";
+    public static final String EXTRA_BB_MODE = "bbMode";
+    public static final String BB_MODE_DEFAULT = "default";
+    public static final String BB_MODE_DISABLE = "disable";
+    public static final String BB_MODE_ALWAYS_ON = "always_on";
+
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "gravitybox.intent.action.BATTERY_STYLE_CHANGED";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
@@ -273,6 +280,7 @@ public class GravityBoxSettings extends Activity {
         private Preference mPrefNotifImageLandscape;
         private ListPreference mPrefNotifColorMode;
         private CheckBoxPreference mPrefDisableRoamingIndicators;
+        private ListPreference mPrefButtonBacklightMode;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -357,6 +365,7 @@ public class GravityBoxSettings extends Activity {
             mPrefNotifColorMode = (ListPreference) findPreference(PREF_KEY_NOTIF_COLOR_MODE);
 
             mPrefDisableRoamingIndicators = (CheckBoxPreference) findPreference(PREF_KEY_DISABLE_ROAMING_INDICATORS);
+            mPrefButtonBacklightMode = (ListPreference) findPreference(PREF_KEY_BUTTON_BACKLIGHT_MODE);
 
             // Remove MTK specific preferences for non-mtk device
             if (!Utils.isMtkDevice()) {
@@ -498,6 +507,10 @@ public class GravityBoxSettings extends Activity {
             if (key == null || key.equals(PREF_KEY_NOTIF_COLOR_MODE)) {
                 mPrefNotifColorMode.setSummary(mPrefNotifColorMode.getEntry());
             }
+
+            if (key == null || key.equals(PREF_KEY_BUTTON_BACKLIGHT_MODE)) {
+                mPrefButtonBacklightMode.setSummary(mPrefButtonBacklightMode.getEntry());
+            }
         }
 
         @Override
@@ -623,6 +636,10 @@ public class GravityBoxSettings extends Activity {
             } else if (key.equals(PREF_KEY_PIE_CONTROL_SIZE)) {
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
                 intent.putExtra(EXTRA_PIE_SIZE, prefs.getInt(PREF_KEY_PIE_CONTROL_SIZE, 1000));
+            } else if (key.equals(PREF_KEY_BUTTON_BACKLIGHT_MODE)) {
+                intent.setAction(ACTION_PREF_BUTTON_BACKLIGHT_CHANGED);
+                intent.putExtra(EXTRA_BB_MODE, prefs.getString(
+                        PREF_KEY_BUTTON_BACKLIGHT_MODE, BB_MODE_DEFAULT));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);

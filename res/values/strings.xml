@@ -358,4 +358,10 @@
     <string name="pie_control_trigger_right">Right screen border</string>
     <string name="pie_control_trigger_top">Top screen border</string>
 
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">Button backlight mode</string>
+    <string name="button_backlight_mode_default">Default</string>
+    <string name="button_backlight_mode_disable">Disable button backlight</string>
+    <string name="button_backlight_mode_always_on">Always on while screen is on</string>
+    
 </resources>

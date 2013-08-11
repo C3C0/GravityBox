@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.XResources;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.os.ResultReceiver;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -17,15 +18,20 @@ import de.robv.android.xposed.XposedHelpers;
 public class ModDisplay {
     private static final String TAG = "ModDisplay";
     private static final String CLASS_DISPLAY_POWER_CONTROLLER = "com.android.server.power.DisplayPowerController";
+    private static final String CLASS_LIGHT_SERVICE_LIGHT = "com.android.server.LightsService$Light";
+    private static final boolean DEBUG = false;
 
     public static final String ACTION_GET_AUTOBRIGHTNESS_CONFIG = "gravitybox.intent.action.GET_AUTOBRIGHTNESS_CONFIG";
     public static final String ACTION_SET_AUTOBRIGHTNESS_CONFIG = "gravitybox.intent.action.SET_AUTOBRIGHTNESS_CONFIG";
     public static final int RESULT_AUTOBRIGHTNESS_CONFIG = 0;
 
+    private static final int LIGHT_ID_BUTTONS = 2;
+
     private static Context mContext;
     private static Object mDisplayPowerController;
     private static int mScreenBrightnessRangeMinimum;
     private static int mScreenBrightnessRangeMaximum;
+    private static String mButtonBacklightMode;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -52,6 +58,10 @@ public class ModDisplay {
                 int[] luxArray = intent.getIntArrayExtra("config_autoBrightnessLevels");
                 int[] brightnessArray = intent.getIntArrayExtra("config_autoBrightnessLcdBacklightValues");
                 updateAutobrightnessConfig(luxArray, brightnessArray);
+            } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_BUTTON_BACKLIGHT_CHANGED)) {
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_BB_MODE)) {
+                    mButtonBacklightMode = intent.getStringExtra(GravityBoxSettings.EXTRA_BB_MODE);
+                }
             }
         }
         
@@ -61,8 +71,12 @@ public class ModDisplay {
         try {
             final Class<?> classDisplayPowerController =
                     XposedHelpers.findClass(CLASS_DISPLAY_POWER_CONTROLLER, null);
+            final Class<?> classLight = XposedHelpers.findClass(CLASS_LIGHT_SERVICE_LIGHT, null);
 
             String brightnessMin = prefs.getString(GravityBoxSettings.PREF_KEY_BRIGHTNESS_MIN, "20");
+            mButtonBacklightMode = prefs.getString(
+                    GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_MODE, GravityBoxSettings.BB_MODE_DEFAULT);
+
             try {
                 int bMin = Integer.valueOf(brightnessMin);
                 XResources.setSystemWideReplacement(
@@ -113,6 +127,7 @@ public class ModDisplay {
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(ACTION_GET_AUTOBRIGHTNESS_CONFIG);
                     intentFilter.addAction(ACTION_SET_AUTOBRIGHTNESS_CONFIG);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_BUTTON_BACKLIGHT_CHANGED);
                     mContext.registerReceiver(mBroadcastReceiver, intentFilter);
                 }
             });
@@ -127,6 +142,32 @@ public class ModDisplay {
                         }
             });
 
+            XposedHelpers.findAndHookMethod(classLight, "setLightLocked",
+                    int.class, int.class, int.class, int.class, int.class, new XC_MethodHook() {
+
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    int id = XposedHelpers.getIntField(param.thisObject, "mId");
+                    if (DEBUG ) log("lightId=" + id + "; color=" + param.args[0] + 
+                            "; mode=" + param.args[1] + "; " + "onMS=" + param.args[2] + 
+                            "; offMS=" + param.args[3] + "; bMode=" + param.args[4]);
+
+                    if (id == LIGHT_ID_BUTTONS) {
+                        if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_DISABLE)) {
+                            param.args[0] = param.args[1] = param.args[2] = param.args[3] = param.args[4] = 0;
+                            return;
+                        } else if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)) {
+                            Object lightService = XposedHelpers.getSurroundingThis(param.thisObject);
+                            Context context = (Context) XposedHelpers.getObjectField(lightService, "mContext");
+                            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+                            if (pm.isScreenOn() && ((Integer)param.args[0] == 0)) {
+                                param.args[0] = 0xff6e6e6e;
+                                return;
+                            }
+                        }
+                    }
+                }
+            });
         } catch (Exception e) {
             XposedBridge.log(e);
         }

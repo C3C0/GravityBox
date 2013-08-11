@@ -343,4 +343,16 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="button_backlight_mode_entries" translatable="false">
+        <item>@string/button_backlight_mode_default</item>
+        <item>@string/button_backlight_mode_disable</item>
+        <item>@string/button_backlight_mode_always_on</item>
+    </string-array>
+
+    <string-array name="button_backlight_mode_values" translatable="false">
+        <item>default</item>
+        <item>disable</item>
+        <item>always_on</item>
+    </string-array>
+
 </resources>

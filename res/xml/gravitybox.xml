@@ -304,6 +304,13 @@
             android:summary="@string/pref_holo_bg_solid_black_summary"
             android:defaultValue="false" />
 
+        <ListPreference
+            android:key="pref_button_backlight_mode"
+            android:title="@string/pref_button_backlight_mode_title"
+            android:entries="@array/button_backlight_mode_entries"
+            android:entryValues="@array/button_backlight_mode_values"
+            android:defaultValue="default" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 
