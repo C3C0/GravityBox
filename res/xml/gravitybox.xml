@@ -202,6 +202,12 @@
 	                interval="10"
 	                android:defaultValue="1000" />
 
+            <CheckBoxPreference 
+                    android:key="pref_navbar_disable"
+                    android:title="@string/pref_navbar_disable_title"
+                    android:summary="@string/pref_navbar_disable_summary"
+                    android:defaultValue="false" />
+
         </PreferenceScreen>
 
         <ListPreference

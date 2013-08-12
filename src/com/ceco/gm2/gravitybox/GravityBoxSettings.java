@@ -181,6 +181,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_PIE_CONTROL_SEARCH = "pref_pie_control_search";
     public static final String PREF_KEY_PIE_CONTROL_TRIGGERS = "pref_pie_control_trigger_positions";
     public static final String PREF_KEY_PIE_CONTROL_SIZE = "pref_pie_control_size";
+    public static final String PREF_KEY_NAVBAR_DISABLE = "pref_navbar_disable";
     public static final String ACTION_PREF_PIE_CHANGED = "gravitybox.intent.action.PREF_PIE_CHANGED";
     public static final String EXTRA_PIE_ENABLE = "pieEnable";
     public static final String EXTRA_PIE_SEARCH = "pieSearch";
@@ -230,7 +231,8 @@ public class GravityBoxSettings extends Activity {
             PREF_KEY_LOCKSCREEN_MENU_KEY,
             PREF_KEY_FIX_MMS_WAKELOCK,
             PREF_KEY_MUSIC_VOLUME_STEPS,
-            PREF_KEY_HOLO_BG_SOLID_BLACK
+            PREF_KEY_HOLO_BG_SOLID_BLACK,
+            PREF_KEY_NAVBAR_DISABLE
     ));
 
     @Override

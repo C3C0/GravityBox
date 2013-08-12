@@ -30,6 +30,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
 
+        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_DISABLE, false)) {
+            XResources.setSystemWideReplacement("android", "bool", "config_showNavigationBar", false);
+        }
+
         if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_SOLID_BLACK, false)) {
             XResources.setSystemWideReplacement(
                 "android", "drawable", "background_holo_dark", modRes.fwd(R.drawable.background_holo_dark_solid));
