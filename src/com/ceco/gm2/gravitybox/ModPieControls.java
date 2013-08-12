@@ -56,6 +56,7 @@ public class ModPieControls {
     private static Context mContext;
     private static WindowManager mWindowManager;
     private static PieSettingsObserver mSettingsObserver;
+    private static boolean mShowMenuItem;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -95,6 +96,13 @@ public class ModPieControls {
                     float size = (float) intent.getIntExtra(
                             GravityBoxSettings.EXTRA_PIE_SIZE, 1000) / 1000f;
                     Settings.System.putFloat(cr, SETTING_PIE_SIZE, size);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE)) {
+                    mShowMenuItem = intent.getBooleanExtra(
+                            GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE, false);
+                    if (mPieController != null) {
+                        mPieController.setMenuVisibility(mShowMenuItem);
+                    }
                 }
             }
         }
@@ -186,6 +194,8 @@ public class ModPieControls {
             final Class<?> systemUiClass = XposedHelpers.findClass(CLASS_SYSTEM_UI, classLoader);
             final Class<?> phoneStatusBarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
 
+            mShowMenuItem = prefs.getBoolean(GravityBoxSettings.PREF_KEY_HWKEYS_DISABLE, false);
+
             XposedHelpers.findAndHookMethod(baseStatusBarClass, "start", new XC_MethodHook() {
 
                 @Override
@@ -251,7 +261,7 @@ public class ModPieControls {
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     if (mPieController == null) return;
 
-                    mPieController.setMenuVisibility((Boolean)param.args[0]);
+                    mPieController.setMenuVisibility((Boolean)param.args[0] | mShowMenuItem);
                 }
             });
         } catch (Exception e) {

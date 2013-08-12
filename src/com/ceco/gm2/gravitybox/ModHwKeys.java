@@ -52,6 +52,7 @@ public class ModHwKeys {
     private static int mDoubletapSpeed = GravityBoxSettings.HWKEY_DOUBLETAP_SPEED_DEFAULT;
     private static int mKillDelay = GravityBoxSettings.HWKEY_KILL_DELAY_DEFAULT;
     private static boolean mVolumeRockerWakeDisabled = false;
+    private static boolean mHwKeysEnabled = true;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -99,6 +100,9 @@ public class ModHwKeys {
                 mVolumeRockerWakeDisabled = intent.getBooleanExtra(
                         GravityBoxSettings.EXTRA_VOLUME_ROCKER_WAKE_DISABLE, false);
                 log("mVolumeRockerWakeDisabled set to: " + mVolumeRockerWakeDisabled);
+            } else if (action.equals(GravityBoxSettings.ACTION_PREF_PIE_CHANGED) && 
+                    intent.hasExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE)) {
+                mHwKeysEnabled = !intent.getBooleanExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE, false);
             }
         }
     };
@@ -122,6 +126,7 @@ public class ModHwKeys {
 
             mVolumeRockerWakeDisabled = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_VOLUME_ROCKER_WAKE_DISABLE, false);
+            mHwKeysEnabled = !prefs.getBoolean(GravityBoxSettings.PREF_KEY_HWKEYS_DISABLE, false);
 
             final Class<?> classPhoneWindowManager = XposedHelpers.findClass(CLASS_PHONE_WINDOW_MANAGER, null);
             classActivityManagerNative = XposedHelpers.findClass(CLASS_ACTIVITY_MANAGER_NATIVE, null);
@@ -147,6 +152,7 @@ public class ModHwKeys {
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_DOUBLETAP_SPEED_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_KILL_DELAY_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_VOLUME_ROCKER_WAKE_CHANGED);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_PIE_CHANGED);
                     mContext.registerReceiver(mBroadcastReceiver, intentFilter);
 
                     log("Phone window manager initialized");
@@ -165,6 +171,17 @@ public class ModHwKeys {
                         policyFlags &= ~FLAG_WAKE;
                         policyFlags &= ~FLAG_WAKE_DROPPED;
                         param.args[1] = policyFlags;
+                        return;
+                    }
+
+                    if (event.getKeyCode() == KeyEvent.KEYCODE_HOME) {
+                        if (!mHwKeysEnabled && event.getAction() == KeyEvent.ACTION_UP && 
+                                 event.getRepeatCount() == 0 &&
+                                 (event.getFlags() & KeyEvent.FLAG_FROM_SYSTEM) != 0) {
+                            if (DEBUG) log("HOME KeyEvent coming from HW key and keys disabled. Ignoring.");
+                            param.setResult(0);
+                            return;
+                        }
                     }
                 }
             });
@@ -182,11 +199,18 @@ public class ModHwKeys {
                     Handler mHandler = (Handler) XposedHelpers.getObjectField(param.thisObject, "mHandler");
 
                     if (keyCode == KeyEvent.KEYCODE_MENU) {
-                        if (!hasAction(HwKey.MENU)) return;
+                        if (!hasAction(HwKey.MENU) && mHwKeysEnabled) return;
 
                         if (!down) {
                             mHandler.removeCallbacks(mMenuLongPress);
                             if (mIsMenuLongPressed) {
+                                param.setResult(-1);
+                                return;
+                            }
+                            if (!mHwKeysEnabled &&
+                                    event.getRepeatCount() == 0 && 
+                                    ((event.getFlags() & KeyEvent.FLAG_FROM_SYSTEM) != 0)) {
+                                if (DEBUG) log("MENU KeyEvent coming from HW key and keys disabled. Ignoring.");
                                 param.setResult(-1);
                                 return;
                             }
@@ -210,11 +234,18 @@ public class ModHwKeys {
                     }
 
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        if (!hasAction(HwKey.BACK)) return;
+                        if (!hasAction(HwKey.BACK) && mHwKeysEnabled) return;
 
                         if (!down) {
                             mHandler.removeCallbacks(mBackLongPress);
                             if (mIsBackLongPressed) {
+                                param.setResult(-1);
+                                return;
+                            }
+                            if (!mHwKeysEnabled &&
+                                    event.getRepeatCount() == 0 && 
+                                    ((event.getFlags() & KeyEvent.FLAG_FROM_SYSTEM) != 0)) {
+                                if (DEBUG) log("BACK KeyEvent coming from HW key and keys disabled. Ignoring.");
                                 param.setResult(-1);
                                 return;
                             }

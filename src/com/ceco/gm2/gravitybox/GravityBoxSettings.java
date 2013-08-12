@@ -183,11 +183,13 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_PIE_CONTROL_TRIGGERS = "pref_pie_control_trigger_positions";
     public static final String PREF_KEY_PIE_CONTROL_SIZE = "pref_pie_control_size";
     public static final String PREF_KEY_NAVBAR_DISABLE = "pref_navbar_disable";
+    public static final String PREF_KEY_HWKEYS_DISABLE = "pref_hwkeys_disable";
     public static final String ACTION_PREF_PIE_CHANGED = "gravitybox.intent.action.PREF_PIE_CHANGED";
     public static final String EXTRA_PIE_ENABLE = "pieEnable";
     public static final String EXTRA_PIE_SEARCH = "pieSearch";
     public static final String EXTRA_PIE_TRIGGERS = "pieTriggers";
     public static final String EXTRA_PIE_SIZE = "pieSize";
+    public static final String EXTRA_PIE_HWKEYS_DISABLE = "hwKeysDisable";
 
     public static final String PREF_KEY_BUTTON_BACKLIGHT_MODE = "pref_button_backlight_mode";
     public static final String PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS = "pref_button_backlight_notifications";
@@ -289,6 +291,7 @@ public class GravityBoxSettings extends Activity {
         private ListPreference mPrefButtonBacklightMode;
         private CheckBoxPreference mPrefPieEnabled;
         private CheckBoxPreference mPrefPieNavBarDisabled;
+        private CheckBoxPreference mPrefPieHwKeysDisabled;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -377,6 +380,7 @@ public class GravityBoxSettings extends Activity {
 
             mPrefPieEnabled = (CheckBoxPreference) findPreference(PREF_KEY_PIE_CONTROL_ENABLE);
             mPrefPieNavBarDisabled = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_DISABLE);
+            mPrefPieHwKeysDisabled = (CheckBoxPreference) findPreference(PREF_KEY_HWKEYS_DISABLE);
 
             // Remove MTK specific preferences for non-mtk device
             if (!Utils.isMtkDevice()) {
@@ -533,9 +537,17 @@ public class GravityBoxSettings extends Activity {
                         Toast.makeText(getActivity(), getString(
                                 R.string.reboot_required), Toast.LENGTH_SHORT).show();
                     }
+                    if (mPrefPieHwKeysDisabled.isChecked()) {
+                        Editor e = mPrefs.edit();
+                        e.putBoolean(PREF_KEY_HWKEYS_DISABLE, false);
+                        e.commit();
+                        mPrefPieHwKeysDisabled.setChecked(false);
+                    }
+                    mPrefPieHwKeysDisabled.setEnabled(false);
                     mPrefPieNavBarDisabled.setEnabled(false);
                 } else {
                     mPrefPieNavBarDisabled.setEnabled(true);
+                    mPrefPieHwKeysDisabled.setEnabled(true);
                 }
             }
         }
@@ -651,7 +663,11 @@ public class GravityBoxSettings extends Activity {
                         prefs.getBoolean(PREF_KEY_DISABLE_ROAMING_INDICATORS, false));
             } else if (key.equals(PREF_KEY_PIE_CONTROL_ENABLE)) {
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
-                intent.putExtra(EXTRA_PIE_ENABLE, prefs.getBoolean(PREF_KEY_PIE_CONTROL_ENABLE, false));
+                boolean enabled = prefs.getBoolean(PREF_KEY_PIE_CONTROL_ENABLE, false);
+                intent.putExtra(EXTRA_PIE_ENABLE, enabled);
+                if (!enabled) {
+                    intent.putExtra(EXTRA_PIE_HWKEYS_DISABLE, false);
+                }
             } else if (key.equals(PREF_KEY_PIE_CONTROL_SEARCH)) {
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
                 intent.putExtra(EXTRA_PIE_SEARCH, prefs.getBoolean(PREF_KEY_PIE_CONTROL_SEARCH, false));
@@ -663,6 +679,9 @@ public class GravityBoxSettings extends Activity {
             } else if (key.equals(PREF_KEY_PIE_CONTROL_SIZE)) {
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
                 intent.putExtra(EXTRA_PIE_SIZE, prefs.getInt(PREF_KEY_PIE_CONTROL_SIZE, 1000));
+            } else if (key.equals(PREF_KEY_HWKEYS_DISABLE)) {
+                intent.setAction(ACTION_PREF_PIE_CHANGED);
+                intent.putExtra(EXTRA_PIE_HWKEYS_DISABLE, prefs.getBoolean(PREF_KEY_HWKEYS_DISABLE, false));
             } else if (key.equals(PREF_KEY_BUTTON_BACKLIGHT_MODE)) {
                 intent.setAction(ACTION_PREF_BUTTON_BACKLIGHT_CHANGED);
                 intent.putExtra(EXTRA_BB_MODE, prefs.getString(
