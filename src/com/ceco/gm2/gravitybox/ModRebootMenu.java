@@ -127,7 +127,7 @@ public class ModRebootMenu {
                             Field f = XposedHelpers.findField(o.getClass(), "mIconResId");
                             String resName = res.getResourceName((Integer) f.get(o)).toLowerCase(Locale.US);
                             log("resName = " + resName);
-                            if (resName.contains("reboot")) {
+                            if (resName.contains("reboot") || resName.contains("restart")) {
                                 rebootActionItem = o;
                                 break;
                             }
