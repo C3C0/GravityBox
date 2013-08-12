@@ -355,4 +355,20 @@
         <item>always_on</item>
     </string-array>
 
+    <string-array name="recents_clear_entries" translatable="false">
+        <item>@string/recent_clear_off</item>
+        <item>@string/recent_clear_top_left</item>
+        <item>@string/recent_clear_top_right</item>
+        <item>@string/recent_clear_bottom_left</item>
+        <item>@string/recent_clear_bottom_right</item>
+    </string-array>
+
+    <string-array name="recents_clear_values" translatable="false">
+        <item>0</item>
+        <item>51</item>
+        <item>53</item>
+        <item>83</item>
+        <item>85</item>
+    </string-array>
+
 </resources>

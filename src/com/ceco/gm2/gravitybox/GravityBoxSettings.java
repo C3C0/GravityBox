@@ -71,7 +71,13 @@ public class GravityBoxSettings extends Activity {
     public static final int VOL_KEY_CURSOR_CONTROL_ON = 1;
     public static final int VOL_KEY_CURSOR_CONTROL_ON_REVERSE = 2;
 
-    public static final String PREF_KEY_RECENTS_CLEAR_ALL = "pref_recents_clear_all";
+    public static final String PREF_KEY_RECENTS_CLEAR_ALL = "pref_recents_clear_all2";
+    public static final int RECENT_CLEAR_OFF = 0;
+    public static final int RECENT_CLEAR_TOP_LEFT = 51;
+    public static final int RECENT_CLEAR_TOP_RIGHT = 53;
+    public static final int RECENT_CLEAR_BOTTOM_LEFT = 83;
+    public static final int RECENT_CLEAR_BOTTOM_RIGHT = 85;
+
     public static final String PREF_KEY_CALLER_FULLSCREEN_PHOTO = "pref_caller_fullscreen_photo";
     public static final String PREF_CAT_KEY_FIXES = "pref_cat_fixes";
     public static final String PREF_KEY_FIX_DATETIME_CRASH = "pref_fix_datetime_crash";
@@ -303,6 +309,7 @@ public class GravityBoxSettings extends Activity {
         private CheckBoxPreference mPrefPieNavBarDisabled;
         private CheckBoxPreference mPrefPieHwKeysDisabled;
         private CheckBoxPreference mPrefGbThemeDark;
+        private ListPreference mPrefRecentClear;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -396,6 +403,8 @@ public class GravityBoxSettings extends Activity {
             mPrefGbThemeDark = (CheckBoxPreference) findPreference(PREF_KEY_GB_THEME_DARK);
             File file = new File(getActivity().getFilesDir() + "/" + FILE_THEME_DARK_FLAG);
             mPrefGbThemeDark.setChecked(file.exists());
+
+            mPrefRecentClear = (ListPreference) findPreference(PREF_KEY_RECENTS_CLEAR_ALL);
 
             // Remove MTK specific preferences for non-mtk device
             if (!Utils.isMtkDevice()) {
@@ -564,6 +573,10 @@ public class GravityBoxSettings extends Activity {
                     mPrefPieNavBarDisabled.setEnabled(true);
                     mPrefPieHwKeysDisabled.setEnabled(true);
                 }
+            }
+
+            if (key == null || key.equals(PREF_KEY_RECENTS_CLEAR_ALL)) {
+                mPrefRecentClear.setSummary(mPrefRecentClear.getEntry());
             }
         }
 

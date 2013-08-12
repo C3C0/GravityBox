@@ -39,7 +39,6 @@
     <string name="vol_key_cursor_control_on_reverse">Volume up/down moves cursor right/left</string>
 
     <string name="recents_clear_all_title">Clear all recent tasks</string>
-    <string name="recents_clear_all_summary">Enables button to clear all recent tasks at once in recent apps dialog</string>
 
     <string name="fix_datetime_crash_title">Fix Date&amp;Time settings crash</string>
     <string name="fix_datetime_crash_summary">Enable in case you experience crash while accessing Date&amp;Time settings (requires reboot)</string>
@@ -381,5 +380,12 @@
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Use Holo Dark theme</string>
     <string name="pref_gb_theme_dark_summary">Switches GB UI to use Holo Dark theme instead of Holo Light</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">Off</string>
+    <string name="recent_clear_top_left">Top left</string>
+    <string name="recent_clear_top_right">Top right</string>
+    <string name="recent_clear_bottom_left">Bottom left</string>
+    <string name="recent_clear_bottom_right">Bottom right</string>
 
 </resources>
