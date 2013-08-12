@@ -1,7 +1,5 @@
 package com.ceco.gm2.gravitybox;
 
-import android.content.res.XModuleResources;
-import android.content.res.XResources;
 import android.os.Build;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -20,7 +18,6 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
     public void initZygote(StartupParam startupParam) throws Throwable {
         MODULE_PATH = startupParam.modulePath;
         prefs = new XSharedPreferences(PACKAGE_NAME);
-        XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, null);
 
         XposedBridge.log("Hardware: " + Build.HARDWARE);
         XposedBridge.log("Product: " + Build.PRODUCT);
@@ -28,24 +25,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         XposedBridge.log("Android SDK: " + Build.VERSION.SDK_INT);
         XposedBridge.log("Android Release: " + Build.VERSION.RELEASE);
 
-        XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
-
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_DISABLE, false)) {
-            XResources.setSystemWideReplacement("android", "bool", "config_showNavigationBar", false);
-        }
-
-        boolean holoBgDither = prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_DITHER, false);
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_SOLID_BLACK, false)) {
-            XResources.setSystemWideReplacement(
-                "android", "drawable", "background_holo_dark", modRes.fwd(R.drawable.background_holo_dark_solid));
-        } else if (holoBgDither) {
-            XResources.setSystemWideReplacement(
-                    "android", "drawable", "background_holo_dark", modRes.fwd(R.drawable.background_holo_dark));
-        }
-        if (holoBgDither) {
-            XResources.setSystemWideReplacement(
-                    "android", "drawable", "background_holo_light", modRes.fwd(R.drawable.background_holo_light));
-        }
+        SystemWideResources.initResources(prefs);
 
         // MTK specific
         if (Utils.isMtkDevice()) {
