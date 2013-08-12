@@ -287,6 +287,8 @@ public class GravityBoxSettings extends Activity {
         private ListPreference mPrefNotifColorMode;
         private CheckBoxPreference mPrefDisableRoamingIndicators;
         private ListPreference mPrefButtonBacklightMode;
+        private CheckBoxPreference mPrefPieEnabled;
+        private CheckBoxPreference mPrefPieNavBarDisabled;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -372,6 +374,9 @@ public class GravityBoxSettings extends Activity {
 
             mPrefDisableRoamingIndicators = (CheckBoxPreference) findPreference(PREF_KEY_DISABLE_ROAMING_INDICATORS);
             mPrefButtonBacklightMode = (ListPreference) findPreference(PREF_KEY_BUTTON_BACKLIGHT_MODE);
+
+            mPrefPieEnabled = (CheckBoxPreference) findPreference(PREF_KEY_PIE_CONTROL_ENABLE);
+            mPrefPieNavBarDisabled = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_DISABLE);
 
             // Remove MTK specific preferences for non-mtk device
             if (!Utils.isMtkDevice()) {
@@ -516,6 +521,22 @@ public class GravityBoxSettings extends Activity {
 
             if (key == null || key.equals(PREF_KEY_BUTTON_BACKLIGHT_MODE)) {
                 mPrefButtonBacklightMode.setSummary(mPrefButtonBacklightMode.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_PIE_CONTROL_ENABLE)) {
+                if (!mPrefPieEnabled.isChecked()) {
+                    if (mPrefPieNavBarDisabled.isChecked()) {
+                        Editor e = mPrefs.edit();
+                        e.putBoolean(PREF_KEY_NAVBAR_DISABLE, false);
+                        e.commit();
+                        mPrefPieNavBarDisabled.setChecked(false);
+                        Toast.makeText(getActivity(), getString(
+                                R.string.reboot_required), Toast.LENGTH_SHORT).show();
+                    }
+                    mPrefPieNavBarDisabled.setEnabled(false);
+                } else {
+                    mPrefPieNavBarDisabled.setEnabled(true);
+                }
             }
         }
 
