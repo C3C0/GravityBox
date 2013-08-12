@@ -349,8 +349,8 @@
     <!-- Pie Controls settings -->
     <string name="pie_control_title">Contrôle Pie</string>
     <string name="pie_control_enable_title">Activer contrôle Pie</string>
-    <string name="pie_control_search_title">Afficher le bouton de recherche search button</string>
-    <string name="pie_control_size_title">Taille des touches de navigationNavigation key size</string>
+    <string name="pie_control_search_title">Afficher le bouton de recherche</string>
+    <string name="pie_control_size_title">Taille des touches de navigation</string>
     <string name="pie_control_trigger_positions_title">Positions du déclencheur</string>
     <string name="pie_control_trigger_left">À gauche</string>
     <string name="pie_control_trigger_bottom">En bas</string>
