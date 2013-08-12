@@ -117,16 +117,34 @@ public class ModRebootMenu {
 
                     // try to find out if reboot action item already exists in the list of GlobalActions items
                     // strategy:
-                    // 1) check if Action has mIconResId field
-                    // 2) check if the name of the corresponding resource contains "reboot" substring
+                    // 1) check if Action has mIconResId field or mMessageResId field
+                    // 2) check if the name of the corresponding resource contains "reboot" or "restart" substring
                     log("Searching for existing reboot action item...");
                     Object rebootActionItem = null;
                     Resources res = mContext.getResources();
                     for (Object o : mItems) {
+                        // search for drawable
                         try {
                             Field f = XposedHelpers.findField(o.getClass(), "mIconResId");
-                            String resName = res.getResourceName((Integer) f.get(o)).toLowerCase(Locale.US);
-                            log("resName = " + resName);
+                            String resName = res.getResourceEntryName((Integer) f.get(o)).toLowerCase(Locale.US);
+                            log("Drawable resName = " + resName);
+                            if (resName.contains("reboot") || resName.contains("restart")) {
+                                rebootActionItem = o;
+                                break;
+                            }
+                        } catch (NoSuchFieldError nfe) {
+                            // continue
+                        } catch (Resources.NotFoundException resnfe) { 
+                            // continue
+                        } catch (IllegalArgumentException iae) {
+                            // continue
+                        }
+
+                        // search for text
+                        try {
+                            Field f = XposedHelpers.findField(o.getClass(), "mMessageResId");
+                            String resName = res.getResourceEntryName((Integer) f.get(o)).toLowerCase(Locale.US);
+                            log("Text resName = " + resName);
                             if (resName.contains("reboot") || resName.contains("restart")) {
                                 rebootActionItem = o;
                                 break;
