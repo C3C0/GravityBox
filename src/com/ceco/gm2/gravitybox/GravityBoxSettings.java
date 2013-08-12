@@ -117,6 +117,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_BRIGHTNESS_MIN = "pref_brightness_min";
     public static final String PREF_KEY_AUTOBRIGHTNESS = "pref_autobrightness";
     public static final String PREF_KEY_HOLO_BG_SOLID_BLACK = "pref_holo_bg_solid_black";
+    public static final String PREF_KEY_HOLO_BG_DITHER = "pref_holo_bg_dither";
 
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
     public static final String PREF_KEY_MUSIC_VOLUME_STEPS = "pref_music_volume_steps";
@@ -232,7 +233,8 @@ public class GravityBoxSettings extends Activity {
             PREF_KEY_FIX_MMS_WAKELOCK,
             PREF_KEY_MUSIC_VOLUME_STEPS,
             PREF_KEY_HOLO_BG_SOLID_BLACK,
-            PREF_KEY_NAVBAR_DISABLE
+            PREF_KEY_NAVBAR_DISABLE,
+            PREF_KEY_HOLO_BG_DITHER
     ));
 
     @Override

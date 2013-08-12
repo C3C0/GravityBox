@@ -370,4 +370,8 @@
     <string name="pref_navbar_disable_title">Disable navigation bar</string>
     <string name="pref_navbar_disable_summary">Disables navigation bar for devices that have it (requires reboot)</string>
 
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">Dithered Holo background</string>
+    <string name="pref_holo_bg_dither_summary">Replaces standard Holo background with dithered one to suppress color banding (requires reboot)</string>
+
 </resources>

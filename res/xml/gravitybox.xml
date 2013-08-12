@@ -305,6 +305,12 @@
             android:defaultValue="false" />
 
         <CheckBoxPreference
+            android:key="pref_holo_bg_dither"
+            android:title="@string/pref_holo_bg_dither_title"
+            android:summary="@string/pref_holo_bg_dither_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="pref_holo_bg_solid_black"
             android:title="@string/pref_holo_bg_solid_black_title"
             android:summary="@string/pref_holo_bg_solid_black_summary"

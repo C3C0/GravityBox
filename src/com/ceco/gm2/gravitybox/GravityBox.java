@@ -34,15 +34,18 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
             XResources.setSystemWideReplacement("android", "bool", "config_showNavigationBar", false);
         }
 
+        boolean holoBgDither = prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_DITHER, false);
         if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_SOLID_BLACK, false)) {
             XResources.setSystemWideReplacement(
                 "android", "drawable", "background_holo_dark", modRes.fwd(R.drawable.background_holo_dark_solid));
-        } else {
+        } else if (holoBgDither) {
             XResources.setSystemWideReplacement(
                     "android", "drawable", "background_holo_dark", modRes.fwd(R.drawable.background_holo_dark));
         }
-        XResources.setSystemWideReplacement(
-                "android", "drawable", "background_holo_light", modRes.fwd(R.drawable.background_holo_light));
+        if (holoBgDither) {
+            XResources.setSystemWideReplacement(
+                    "android", "drawable", "background_holo_light", modRes.fwd(R.drawable.background_holo_light));
+        }
 
         // MTK specific
         if (Utils.isMtkDevice()) {
