@@ -378,4 +378,8 @@
     <string name="pref_hwkeys_disable_title">Disable hardware keys</string>
     <string name="pref_hwkeys_disable_summary">Disables MENU, BACK, HOME while Pie Controls are enabled. HW keys actions will still work. (for devices having HW keys)</string>
 
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">Use Holo Dark theme</string>
+    <string name="pref_gb_theme_dark_summary">Switches GB UI to use Holo Dark theme instead of Holo Light</string>
+
 </resources>

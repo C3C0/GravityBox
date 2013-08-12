@@ -549,6 +549,13 @@
             android:title="@string/about_donate_title"
             android:summary="@string/about_donate_summary" />
 
+        <CheckBoxPreference
+            android:key="pref_gb_theme_dark"
+            android:title="@string/pref_gb_theme_dark_title"
+            android:summary="@string/pref_gb_theme_dark_summary"
+            android:persistent="false"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
 </PreferenceScreen>

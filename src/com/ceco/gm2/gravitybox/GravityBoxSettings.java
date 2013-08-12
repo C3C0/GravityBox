@@ -1,6 +1,7 @@
 package com.ceco.gm2.gravitybox;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -200,6 +201,9 @@ public class GravityBoxSettings extends Activity {
     public static final String BB_MODE_DISABLE = "disable";
     public static final String BB_MODE_ALWAYS_ON = "always_on";
 
+    public static final String PREF_KEY_GB_THEME_DARK = "pref_gb_theme_dark";
+    public static final String FILE_THEME_DARK_FLAG = "theme_dark";
+
     public static final String ACTION_PREF_BATTERY_STYLE_CHANGED = "gravitybox.intent.action.BATTERY_STYLE_CHANGED";
     public static final String ACTION_PREF_SIGNAL_ICON_AUTOHIDE_CHANGED = "gravitybox.intent.action.SIGNAL_ICON_AUTOHIDE_CHANGED";
 
@@ -241,6 +245,12 @@ public class GravityBoxSettings extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // set Holo Dark theme if flag file exists
+        File file = new File(getFilesDir() + "/" + FILE_THEME_DARK_FLAG);
+        if (file.exists()) {
+            this.setTheme(android.R.style.Theme_Holo);
+        }
+
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState == null)
@@ -292,6 +302,7 @@ public class GravityBoxSettings extends Activity {
         private CheckBoxPreference mPrefPieEnabled;
         private CheckBoxPreference mPrefPieNavBarDisabled;
         private CheckBoxPreference mPrefPieHwKeysDisabled;
+        private CheckBoxPreference mPrefGbThemeDark;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -381,6 +392,10 @@ public class GravityBoxSettings extends Activity {
             mPrefPieEnabled = (CheckBoxPreference) findPreference(PREF_KEY_PIE_CONTROL_ENABLE);
             mPrefPieNavBarDisabled = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_DISABLE);
             mPrefPieHwKeysDisabled = (CheckBoxPreference) findPreference(PREF_KEY_HWKEYS_DISABLE);
+
+            mPrefGbThemeDark = (CheckBoxPreference) findPreference(PREF_KEY_GB_THEME_DARK);
+            File file = new File(getActivity().getFilesDir() + "/" + FILE_THEME_DARK_FLAG);
+            mPrefGbThemeDark.setChecked(file.exists());
 
             // Remove MTK specific preferences for non-mtk device
             if (!Utils.isMtkDevice()) {
@@ -764,6 +779,22 @@ public class GravityBoxSettings extends Activity {
             } else if (pref == mPrefNotifImageLandscape) {
                 setCustomNotifBgLandscape();
                 return true;
+            } else if (pref == mPrefGbThemeDark) {
+                File file = new File(getActivity().getFilesDir() + "/" + FILE_THEME_DARK_FLAG);
+                if (mPrefGbThemeDark.isChecked()) {
+                    if (!file.exists()) {
+                        try {
+                            file.createNewFile();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } else {
+                    if (file.exists()) {
+                        file.delete();
+                    }
+                }
+                getActivity().recreate();
             }
             
             if (intent != null) {
