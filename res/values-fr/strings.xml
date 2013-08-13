@@ -363,7 +363,7 @@
     <string name="button_backlight_mode_disable">Désactiver le rétroélairage</string>
     <string name="button_backlight_mode_always_on">Toujours actif avec l\'écran</string>
     <string name="pref_button_backlight_notifications_title">Notification via bouton rétroéclairé</string>
-    <string name="pref_button_backlight_notifications_summary">EXPÉRIMENTAL! Allume le rétroéclairage du bouton lorsqu'il y a une notification et si l\'écran est éteint. À utiliser en l\'absence de LED de notification</string>
+    <string name="pref_button_backlight_notifications_summary">EXPÉRIMENTAL! Allume le rétroéclairage du bouton lorsqu\'il y a une notification et si l\'écran est éteint. À utiliser en l\'absence de LED de notification</string>
 
     <!-- Hide navigation bar for pie -->
     <string name="pref_navbar_disable_title">Masquer la barre de notification</string>
