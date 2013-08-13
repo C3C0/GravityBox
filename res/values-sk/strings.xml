@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
 
@@ -331,5 +331,60 @@
     <!-- Disable roaming indicators -->
     <string name="pref_disable_roaming_indicators_title">Vypnúť roaming indikátory</string>
     <string name="pref_disable_roaming_indicators_summary">Ak vypnuté, R indikátory nebudú zobrazené počas roamingu. Použiť s opatrnosťou.</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Nabíjanie (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Nabité</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% ostáva</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Bez signálu</string>
+    <string name="pie_phone_status_airplane_mode">Režim v lietadle</string>
+    <string name="pie_phone_status_emergency_only">Len núdzové hovory</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">Koláč</string>
+    <string name="pie_control_enable_title">Zapnúť koláč</string>
+    <string name="pie_control_search_title">Povoliť tlačidlo hľadania</string>
+    <string name="pie_control_size_title">Veľkosť koláča</string>
+    <string name="pie_control_trigger_positions_title">Pozície koláča</string>
+    <string name="pie_control_trigger_left">Ľavý okraj obrazovky</string>
+    <string name="pie_control_trigger_bottom">Spodný okraj obrazovky</string>
+    <string name="pie_control_trigger_right">Pravý okraj obrazovky</string>
+    <string name="pie_control_trigger_top">Horný okraj obrazovky</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">Režim podsvietenia tlačidiel</string>
+    <string name="button_backlight_mode_default">Štandardný</string>
+    <string name="button_backlight_mode_disable">Vypnúť podsvietenie</string>
+    <string name="button_backlight_mode_always_on">Vždy zapnuté počas zapnutej obrazovky</string>
+    <string name="pref_button_backlight_notifications_title">Notifikácie podsvietením</string>
+    <string name="pref_button_backlight_notifications_summary">EXPERIMENTÁLNE! Zapne podsvietenie tlačidiel v prípade novej notifikácie počas vypnutej obrazovky. Použiť v prípade, ak zariadenie nemá notifikačnú LED.</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">Skryť navigačnú lištu</string>
+    <string name="pref_navbar_disable_summary">Skryje navigačnú lištu pokiaľ je zapnutý koláč (pre zariadenia s navigačnou lištou, vyžaduje reštart)</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">Vyhladené Holo pozadie</string>
+    <string name="pref_holo_bg_dither_summary">Nahradí štandardné Holo pozadie vyhladeným obrázkom za účelom eliminácie pruhov farebného prechodu (vyžaduje reštart)</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">Zablokovať HW tlačidlá</string>
+    <string name="pref_hwkeys_disable_summary">Zablokuje MENU, SPÄŤ, DOMOV pokiaľ je zapnutý koláč. Akcie HW tlačidiel budú naďalej fungovať (pre zariadenia s HW tlačidlami)</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">Použiť tmavú tému</string>
+    <string name="pref_gb_theme_dark_summary">Prepne GB UI na tmavú tému</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">Vypnuté</string>
+    <string name="recent_clear_top_left">Vľavo hore</string>
+    <string name="recent_clear_top_right">Vpravo hore</string>
+    <string name="recent_clear_bottom_left">Vľavo dole</string>
+    <string name="recent_clear_bottom_right">Vpravo dole</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Prispôsobiť horný okraj</string>
 
 </resources>
