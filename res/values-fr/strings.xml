@@ -358,7 +358,7 @@
     <string name="pie_control_trigger_top">En haut</string>
     
     <!-- Button backlight options -->
-    <string name="pref_button_backlight_mode_title">Mode rétroélclairage des boutons</string>
+    <string name="pref_button_backlight_mode_title">Mode rétroéclairage des boutons</string>
     <string name="button_backlight_mode_default">Par défaut</string>
     <string name="button_backlight_mode_disable">Désactiver le rétroélairage</string>
     <string name="button_backlight_mode_always_on">Toujours actif avec l\'écran</string>
@@ -389,6 +389,6 @@
     <string name="recent_clear_bottom_right">En bas à droite</string>
 
     <!-- Clear all recents top margin -->
-    <string name="pref_recent_clear_margin_top_title">Ajuster la marge supérieuren</string>
+    <string name="pref_recent_clear_margin_top_title">Ajuster la marge supérieure</string>
 
 </resources>
