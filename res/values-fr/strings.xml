@@ -366,8 +366,8 @@
     <string name="pref_button_backlight_notifications_summary">EXPÉRIMENTAL! Allume le rétroéclairage du bouton lorsqu\'il y a une notification et si l\'écran est éteint. À utiliser en l\'absence de LED de notification</string>
 
     <!-- Hide navigation bar for pie -->
-    <string name="pref_navbar_disable_title">Masquer la barre de notification</string>
-    <string name="pref_navbar_disable_summary">Masque la barre de notification lorsque les Contrôles Pie sont activés (pour les appareils qui ont une barre de notification, nécessite un redémarrage)</string>
+    <string name="pref_navbar_disable_title">Masquer la barre de navigation</string>
+    <string name="pref_navbar_disable_summary">Masque la barre de navigation lorsque les Contrôles Pie sont activés (pour les appareils qui ont une barre de navigation, nécessite un redémarrage)</string>
 
     <!--  Dithered Holo background -->
     <string name="pref_holo_bg_dither_title">Arrière-plan Holo tramé</string>
