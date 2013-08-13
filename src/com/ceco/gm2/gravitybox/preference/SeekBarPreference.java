@@ -19,6 +19,7 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
     private int mInterval = 1;
     private int mDefaultValue = mMinimum;
     private boolean mMonitorBoxEnabled = false;
+    private String mMonitorBoxUnit = null;
 
     private TextView mMonitorBox;
     private SeekBar mBar;
@@ -35,6 +36,7 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
             mInterval = attrs.getAttributeIntValue(null, "interval", 1);
             mDefaultValue = mMinimum;
             mMonitorBoxEnabled = attrs.getAttributeBooleanValue(null, "monitorBoxEnabled", false);
+            mMonitorBoxUnit = attrs.getAttributeValue(null, "monitorBoxUnit");
         }
     }
 
@@ -49,7 +51,7 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
         mBar.setMax(mMaximum - mMinimum);
         mBar.setOnSeekBarChangeListener(this);
         mBar.setProgress(mValue - mMinimum);
-        setMonitorBoxText(mValue + "%");
+        setMonitorBoxText();
         return layout;
     }
 
@@ -69,7 +71,7 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
 
         progress = Math.round(((float) progress) / mInterval) * mInterval + mMinimum;
         if (mTracking) {
-            setMonitorBoxText(progress + "%");
+            setMonitorBoxText(progress);
         } else {
             setValue(progress);
         }
@@ -81,12 +83,18 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
         if (mBar != null)
         {
             mBar.setProgress(mValue - mMinimum);
-            setMonitorBoxText(mValue + "%");
+            setMonitorBoxText();
         }
     }
 
-    private void setMonitorBoxText(String text) {
+    private void setMonitorBoxText() {
+        setMonitorBoxText(mValue);
+    }
+
+    private void setMonitorBoxText(int value) {
         if (mMonitorBoxEnabled) {
+            String text = String.valueOf(value);
+            if (mMonitorBoxUnit != null) text += mMonitorBoxUnit;
             mMonitorBox.setText(text);
         }
     }

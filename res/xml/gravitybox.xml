@@ -169,6 +169,7 @@
                 maximum="100"
                 interval="5"
                 monitorBoxEnabled="true"
+                monitorBoxUnit="%"
                 android:order="6" />
 
         </PreferenceScreen>
