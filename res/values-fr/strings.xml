@@ -388,4 +388,7 @@
     <string name="recent_clear_bottom_left">En bas à gauche</string>
     <string name="recent_clear_bottom_right">En bas à droite</string>
 
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Ajuster la marge supérieuren</string>
+
 </resources>
