@@ -472,6 +472,16 @@
             android:entryValues="@array/recents_clear_values"
             android:defaultValue="53" />
 
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+                android:key="pref_recent_clear_margin_top"
+                android:title="@string/pref_recent_clear_margin_top_title"
+                minimum="0"
+                maximum="30"
+                interval="5"
+                monitorBoxEnabled="true"
+                monitorBoxUnit="px"
+                android:defaultValue="0" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 

@@ -3,6 +3,7 @@ package com.ceco.gm2.gravitybox;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -52,6 +53,15 @@ public class ModClearAllRecents {
                         } else {
                             FrameLayout.LayoutParams lparams = (FrameLayout.LayoutParams) iv.getLayoutParams();
                             lparams.gravity = gravity;
+                            if ((gravity & Gravity.TOP) != 0) {
+                                int marginTop = (int) TypedValue.applyDimension(
+                                        TypedValue.COMPLEX_UNIT_DIP, 
+                                        prefs.getInt(GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_MARGIN_TOP, 0), 
+                                        iv.getResources().getDisplayMetrics());
+                                lparams.setMargins(0, marginTop, 0, 0);
+                            } else {
+                                lparams.setMargins(0, 0, 0, 0);
+                            }
                             iv.setLayoutParams(lparams);
                             iv.setVisibility(View.VISIBLE);
                         }
