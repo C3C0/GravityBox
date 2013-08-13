@@ -1,3 +1,28 @@
+Changelog 2.1.0 - 13/08/2013
+--------------------------------------
+- CyanogenMod Pie Controls featuring:
+--- pie can be dragged and snapped to any screen border
+--- allows up to 4 independent pies, for each screen border
+--- option to show/hide search button
+--- option to set pie size (navigation key size)
+--- option to hide navigation bar while pie is on (for devices having navigation bar)
+--- option to disable HW keys (menu,back,home) while pie is on. HW key long-press and double-tap actions
+    will still work (for devices having HW keys)
+--- additional MENU pie key is available while HW keys are disabled
+- Button backlight modes (in Display tweaks)
+--- standard mode (default)
+--- disable button backlight
+--- keep button backlight on while screen is on
+- Button backlight notifications (experimental)
+--- lights up button backlight when there's a notification and screen is turned off (for devices that lack notification LED)
+- Dithered Holo background is now optional
+- Improved existing reboot menu detection algorithm
+- Option to use dark theme for GravityBox UI (in About menu)
+- Clear all recents revamped
+--- option to set position of clear all recents button (any screen corner)
+--- option to adjust top margin of clear all recents button (e.g. when covered by statusbar)
+- updated Slovak, Czech, French (thanks to ch-vox & Matx13) translations
+
 Changelog 2.0.1 - 09/08/2013
 --------------------------------------
 - fixed option for disabling roaming indicators (MTK devices)
