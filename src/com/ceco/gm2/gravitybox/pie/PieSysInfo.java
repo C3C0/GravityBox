@@ -27,6 +27,7 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 //import android.net.wifi.WifiSsid;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
@@ -196,16 +197,25 @@ public class PieSysInfo extends PieSliceContainer implements ValueAnimator.Anima
     }
 
     private SimpleDateFormat getTimeFormat() {
-        int formatResId;
-        Resources res = mContext.getResources();
-
-        if (DateFormat.is24HourFormat(mContext)) {
-            formatResId = res.getIdentifier("twenty_four_hour_time_format", "string", "android");
+        String format = DateFormat.is24HourFormat(mContext) ? "HH:mm" : "h:mm a";
+        if (Build.VERSION.SDK_INT > 17) {
+            try {
+                format = (String) XposedHelpers.callStaticMethod(
+                        DateFormat.class, "getTimeFormatString", mContext);
+            } catch(Exception e) {
+                // ignore
+            }
         } else {
-            formatResId = res.getIdentifier("twelve_hour_time_format", "string", "android");
+            int formatResId;
+            Resources res = mContext.getResources();
+            if (DateFormat.is24HourFormat(mContext)) {
+                formatResId = res.getIdentifier("twenty_four_hour_time_format", "string", "android");
+            } else {
+                formatResId = res.getIdentifier("twelve_hour_time_format", "string", "android");
+            }
+            if (formatResId != 0) format = mContext.getString(formatResId);
         }
 
-        String format = mContext.getString(formatResId);
         if (format.equals(mTimeFormatString)) {
             return mTimeFormat;
         }
