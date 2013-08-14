@@ -363,6 +363,12 @@
             android:summary="@string/caller_fullscreen_photo_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_roaming_warning_disable"
+            android:title="@string/pref_roaming_warning_disable_title"
+            android:summary="@string/pref_roaming_warning_disable_summary"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 
