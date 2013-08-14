@@ -1,6 +1,7 @@
 package com.ceco.gm2.gravitybox;
 
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Handler;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -77,10 +78,12 @@ public class ModClearAllRecents {
                     ViewGroup vg = (ViewGroup) view.findViewById(res.getIdentifier("recents_bg_protect", "id", PACKAGE_NAME));
 
                     // GM2 already has this image view so remove it if exists
-                    View rcv = vg.findViewById(res.getIdentifier("recents_clear", "id", PACKAGE_NAME));
-                    if (rcv != null) {
-                        log("recents_clear ImageView found (GM2?) - removing");
-                        vg.removeView(rcv);
+                    if (Build.DISPLAY.toLowerCase().contains("gravitymod")) {
+                        View rcv = vg.findViewById(res.getIdentifier("recents_clear", "id", PACKAGE_NAME));
+                        if (rcv != null) {
+                            log("recents_clear ImageView found (GM2?) - removing");
+                            vg.removeView(rcv);
+                        }
                     }
 
                     // create and inject new ImageView and set onClick listener to handle action
