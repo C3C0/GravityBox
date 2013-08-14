@@ -30,7 +30,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.content.res.XModuleResources;
 import android.database.ContentObserver;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
@@ -91,6 +90,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
     private static final int MSG_INJECT_KEY = 1066;
 
     private Context mContext;
+    private Context mGbContext;
     private Resources mGbResources;
     private PieLayout mPieContainer;
     /**
@@ -114,8 +114,6 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
     private boolean mShowMenu = false;
     private Drawable mBackIcon;
     private Drawable mBackAltIcon;
-
-    public static int sSearchIconId;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -297,9 +295,10 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         }
     };
 
-    public PieController(Context context) {
+    public PieController(Context context, Context gbContext) {
         mContext = context;
-        mGbResources = XModuleResources.createInstance(GravityBox.MODULE_PATH, null);
+        mGbContext = gbContext;
+        mGbResources = gbContext.getResources();
 
         mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -348,7 +347,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         // construct sysinfo slice
         inner = mGbResources.getDimensionPixelSize(R.dimen.pie_sysinfo_radius);
         outer = inner + mGbResources.getDimensionPixelSize(R.dimen.pie_sysinfo_height);
-        mSysInfo = new PieSysInfo(mContext, mPieContainer, this, PieDrawable.DISPLAY_NOT_AT_TOP);
+        mSysInfo = new PieSysInfo(mContext, mGbContext, mPieContainer, this, PieDrawable.DISPLAY_NOT_AT_TOP);
         mSysInfo.setGeometry(START_ANGLE, 180 - 2 * EMPTY_ANGLE, inner, outer);
         mPieContainer.addSlice(mSysInfo);
 
@@ -370,22 +369,22 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
 
         mNavigationSlice.clear();
         mNavigationSlice.addItem(constructItem(2, ButtonType.BACK,
-                res.getIdentifier("ic_sysbar_back", "drawable", PACKAGE_NAME),
+                res.getDrawable(res.getIdentifier("ic_sysbar_back", "drawable", PACKAGE_NAME)),
                 minimumImageSize));
         mNavigationSlice.addItem(constructItem(2, ButtonType.HOME,
-                res.getIdentifier("ic_sysbar_home", "drawable", PACKAGE_NAME),
+                res.getDrawable(res.getIdentifier("ic_sysbar_home", "drawable", PACKAGE_NAME)),
                 minimumImageSize));
         mNavigationSlice.addItem(constructItem(2, ButtonType.RECENT,
-                res.getIdentifier("ic_sysbar_recent", "drawable", PACKAGE_NAME),
+                res.getDrawable(res.getIdentifier("ic_sysbar_recent", "drawable", PACKAGE_NAME)),
                 minimumImageSize));
         if (Settings.System.getInt(mContext.getContentResolver(),
                 ModPieControls.SETTING_PIE_SEARCH, 0) == 1) {
             mNavigationSlice.addItem(constructItem(1, ButtonType.SEARCH,
-                    sSearchIconId, minimumImageSize));
+                    mGbResources.getDrawable(R.drawable.ic_sysbar_search_side), minimumImageSize));
         }
 
         mMenuButton = constructItem(1, ButtonType.MENU,
-                res.getIdentifier("ic_sysbar_menu", "drawable", PACKAGE_NAME),
+                res.getDrawable(res.getIdentifier("ic_sysbar_menu", "drawable", PACKAGE_NAME)),
                 minimumImageSize);
         mNavigationSlice.addItem(mMenuButton);
 
@@ -393,14 +392,14 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         setMenuVisibility(mShowMenu);
     }
 
-    private PieItem constructItem(int width, ButtonType type, int image, int minimumImageSize) {
+    private PieItem constructItem(int width, ButtonType type, Drawable image, int minimumImageSize) {
         ImageView view = new ImageView(mContext);
-        view.setImageResource(image);
+        view.setImageDrawable(image);
         view.setMinimumWidth(minimumImageSize);
         view.setMinimumHeight(minimumImageSize);
         LayoutParams lp = new LayoutParams(minimumImageSize, minimumImageSize);
         view.setLayoutParams(lp);
-        PieItem item = new PieItem(mContext, mPieContainer, 0, width, type, view);
+        PieItem item = new PieItem(mContext, mGbContext, mPieContainer, 0, width, type, view);
         item.setOnClickListener(this);
         return item;
     }

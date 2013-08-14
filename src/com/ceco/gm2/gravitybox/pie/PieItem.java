@@ -19,7 +19,6 @@ package com.ceco.gm2.gravitybox.pie;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.XModuleResources;
 import android.graphics.drawable.Drawable;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -30,7 +29,6 @@ import android.graphics.PorterDuff.Mode;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.ceco.gm2.gravitybox.GravityBox;
 import com.ceco.gm2.gravitybox.R;
 import com.ceco.gm2.gravitybox.pie.PieLayout.PieDrawable;
 import com.ceco.gm2.gravitybox.pie.PieController.Position;
@@ -79,9 +77,9 @@ public class PieItem extends PieLayout.PieDrawable {
      */ 
     public final static int SELECTED = 0x100;
 
-    public PieItem(Context context, PieLayout parent, int flags, int width, Object tag, View view) {
+    public PieItem(Context context, Context gbContext, PieLayout parent, int flags, int width, Object tag, View view) {
         mContext = context;
-        mGbResources = XModuleResources.createInstance(GravityBox.MODULE_PATH, null);
+        mGbResources = gbContext.getResources();
         mView = view;
         mPieLayout = parent;
         this.tag = tag;

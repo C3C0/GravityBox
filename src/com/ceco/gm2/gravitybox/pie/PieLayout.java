@@ -21,7 +21,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.res.XModuleResources;
 import android.database.ContentObserver;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -35,7 +34,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.ceco.gm2.gravitybox.GravityBox;
 import com.ceco.gm2.gravitybox.ModPieControls;
 import com.ceco.gm2.gravitybox.R;
 import com.ceco.gm2.gravitybox.pie.PieController.Position;
@@ -269,11 +267,11 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
     }
     private SettingsObserver mSettingsObserver;
 
-    public PieLayout(Context context) {
+    public PieLayout(Context context, Context gbContext) {
         super(context);
 
         mContext = context;
-        mGbResources = XModuleResources.createInstance(GravityBox.MODULE_PATH, null);
+        mGbResources = gbContext.getResources();
 
         mBackgroundAnimator.addUpdateListener(mUpdateListener);
 

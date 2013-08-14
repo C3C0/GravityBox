@@ -54,6 +54,7 @@ public class ModPieControls {
     private static int mPieTriggerSlots;
     private static View[] mPieTrigger = new View[PieController.Position.values().length];
     private static Context mContext;
+    private static Context mGbContext;
     private static WindowManager mWindowManager;
     private static PieSettingsObserver mSettingsObserver;
     private static boolean mShowMenuItem;
@@ -178,16 +179,6 @@ public class ModPieControls {
 
     };
 
-    public static void initResources(final XSharedPreferences prefs, final InitPackageResourcesParam resparam) {
-        try {
-            XModuleResources modRes = XModuleResources.createInstance(GravityBox.MODULE_PATH, resparam.res);
-            PieController.sSearchIconId = XResources.getFakeResId(modRes, R.drawable.ic_sysbar_search_side);
-            resparam.res.setReplacement(PieController.sSearchIconId, modRes.fwd(R.drawable.ic_sysbar_search_side));
-        } catch (Exception e) {
-            XposedBridge.log(e);
-        }
-    }
-
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
         try {
             final Class<?> baseStatusBarClass = XposedHelpers.findClass(CLASS_BASE_STATUSBAR, classLoader);
@@ -202,8 +193,9 @@ public class ModPieControls {
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     log("BaseStatusBar starting...");
                     mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                    mGbContext = mContext.createPackageContext(GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
                     mWindowManager = (WindowManager) XposedHelpers.getObjectField(param.thisObject, "mWindowManager");
-                    mPieController = new PieController(mContext);
+                    mPieController = new PieController(mContext, mGbContext);
                     mPieController.attachTo(param.thisObject);
 
                     IntentFilter intentFilter = new IntentFilter();
@@ -304,7 +296,7 @@ public class ModPieControls {
 
             // Create our container, if it does not exist already
             if (mPieContainer == null) {
-                mPieContainer = new PieLayout(mContext);
+                mPieContainer = new PieLayout(mContext, mGbContext);
                 WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT,
@@ -368,7 +360,7 @@ public class ModPieControls {
 
     private static WindowManager.LayoutParams getPieTriggerLayoutParams(Position position) {
         final Resources res = mContext.getResources();
-        final Resources gbRes = XModuleResources.createInstance(GravityBox.MODULE_PATH, null); 
+        final Resources gbRes = mGbContext.getResources(); 
 
         int width = (int) (res.getDisplayMetrics().widthPixels * 0.8f);
         int height = (int) (res.getDisplayMetrics().heightPixels * 0.8f);

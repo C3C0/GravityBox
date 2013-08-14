@@ -20,7 +20,6 @@ package com.ceco.gm2.gravitybox.pie;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.XModuleResources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -32,7 +31,6 @@ import android.net.wifi.WifiManager;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 
-import com.ceco.gm2.gravitybox.GravityBox;
 import com.ceco.gm2.gravitybox.R;
 import com.ceco.gm2.gravitybox.pie.PieController;
 import com.ceco.gm2.gravitybox.pie.PieController.Position;
@@ -71,12 +69,12 @@ public class PieSysInfo extends PieSliceContainer implements ValueAnimator.Anima
     private String mTimeFormatString;
     private SimpleDateFormat mTimeFormat;
 
-    public PieSysInfo(Context context, PieLayout parent,
+    public PieSysInfo(Context context, Context gbContext, PieLayout parent,
             PieController controller, int initialFlags) {
         super(parent, initialFlags);
         mController = controller;
         mContext = context;
-        mGbResources = XModuleResources.createInstance(GravityBox.MODULE_PATH, null);
+        mGbResources = gbContext.getResources();
 
         int textColor = mGbResources.getColor(R.color.pie_text_color);
 
