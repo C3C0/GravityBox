@@ -79,7 +79,9 @@ public class GravityBoxSettings extends Activity {
     public static final int RECENT_CLEAR_BOTTOM_LEFT = 83;
     public static final int RECENT_CLEAR_BOTTOM_RIGHT = 85;
 
+    public static final String PREF_CAT_KEY_PHONE = "pref_cat_phone";
     public static final String PREF_KEY_CALLER_FULLSCREEN_PHOTO = "pref_caller_fullscreen_photo";
+    public static final String PREF_KEY_ROAMING_WARNING_DISABLE = "pref_roaming_warning_disable";
     public static final String PREF_CAT_KEY_FIXES = "pref_cat_fixes";
     public static final String PREF_KEY_FIX_DATETIME_CRASH = "pref_fix_datetime_crash";
     public static final String PREF_KEY_FIX_CALLER_ID_PHONE = "pref_fix_caller_id_phone";
@@ -311,6 +313,8 @@ public class GravityBoxSettings extends Activity {
         private CheckBoxPreference mPrefPieHwKeysDisabled;
         private CheckBoxPreference mPrefGbThemeDark;
         private ListPreference mPrefRecentClear;
+        private PreferenceScreen mPrefCatPhone;
+        private CheckBoxPreference mPrefRoamingWarningDisable;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -407,6 +411,9 @@ public class GravityBoxSettings extends Activity {
 
             mPrefRecentClear = (ListPreference) findPreference(PREF_KEY_RECENTS_CLEAR_ALL);
 
+            mPrefCatPhone = (PreferenceScreen) findPreference(PREF_CAT_KEY_PHONE);
+            mPrefRoamingWarningDisable = (CheckBoxPreference) findPreference(PREF_KEY_ROAMING_WARNING_DISABLE);
+
             // Remove MTK specific preferences for non-mtk device
             if (!Utils.isMtkDevice()) {
                 getPreferenceScreen().removePreference(mPrefCatFixes);
@@ -414,6 +421,7 @@ public class GravityBoxSettings extends Activity {
                 mPrefCatStatusbar.removePreference(mPrefDisableRoamingIndicators);
                 mQuickSettings.setEntries(R.array.qs_tile_aosp_entries);
                 mQuickSettings.setEntryValues(R.array.qs_tile_aosp_values);
+                mPrefCatPhone.removePreference(mPrefRoamingWarningDisable);
             } else {
                 mQuickSettings.setEntries(R.array.qs_tile_entries);
                 mQuickSettings.setEntryValues(R.array.qs_tile_values);
