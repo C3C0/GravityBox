@@ -1,6 +1,10 @@
 package com.ceco.gm2.gravitybox;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
@@ -56,5 +60,16 @@ public class Utils {
 
     public static boolean isMtkDevice() {
         return (Build.HARDWARE.toLowerCase().contains("mt6589") || Build.HARDWARE.toLowerCase().contains("mt8389"));
+    }
+
+    public static String getApplicationLabel(Context context, String packageName) {
+        try {
+            PackageManager pm = context.getPackageManager();
+            ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);
+            return (String) pm.getApplicationLabel(ai);
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

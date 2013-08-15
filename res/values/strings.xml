@@ -395,4 +395,7 @@
     <string name="pref_roaming_warning_disable_title">Disable roaming warnings</string>
     <string name="pref_roaming_warning_disable_summary">Disables roaming warnings when sending messages or making phone calls while roaming</string>
 
+    <!-- Search -->
+    <string name="search">Search</string>
+
 </resources>
