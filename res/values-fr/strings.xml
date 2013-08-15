@@ -360,7 +360,7 @@
     <!-- Button backlight options -->
     <string name="pref_button_backlight_mode_title">Mode rétroéclairage des boutons</string>
     <string name="button_backlight_mode_default">Par défaut</string>
-    <string name="button_backlight_mode_disable">Désactiver le rétroélairage</string>
+    <string name="button_backlight_mode_disable">Désactiver le rétroéclairage</string>
     <string name="button_backlight_mode_always_on">Toujours actif avec l\'écran</string>
     <string name="pref_button_backlight_notifications_title">Notification via bouton rétroéclairé</string>
     <string name="pref_button_backlight_notifications_summary">EXPÉRIMENTAL! Allume le rétroéclairage du bouton lorsqu\'il y a une notification et si l\'écran est éteint. À utiliser en l\'absence de LED de notification</string>
@@ -392,7 +392,7 @@
     <string name="pref_recent_clear_margin_top_title">Ajuster la marge supérieure</string>
 
     <!-- Disable roaming warnings -->
-    <string name="pref_roaming_warning_disable_title">Désactiver les avertissements en itinérance</string>
-    <string name="pref_roaming_warning_disable_summary">Désactive les avertissements lors de l\'envoi de messages ou de l\'émission d\'appels en itinérance</string>
+    <string name="pref_roaming_warning_disable_title">Avertissements en itinérance</string>
+    <string name="pref_roaming_warning_disable_summary">Désactiver les avertissements lors de l\'envoi de messages ou de l\'émission d\'appels en itinérance</string>
 
 </resources>
