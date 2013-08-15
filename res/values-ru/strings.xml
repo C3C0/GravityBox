@@ -177,16 +177,16 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Минимальный уровень яркости</string>
     <string name="pref_brightness_min_summary">Позволяет установить минимальный уровень яркости. Применимо к ручной настройке яркости. (Необходима перезагрузка)</string>
-    <string name="pref_brightness_dlg_msg">Значения из интервала: 20 &#8211; 80</string>
+    <string name="pref_brightness_dlg_msg">Значения из интервала: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Уровни автояркости</string>
     <string name="pref_ab_summary">Позволяет настроить уровни яркости подсветки в зависимости от внешней освещенности</string>
     <string name="level">Уровень</string>
     <string name="pref_ab_lux_max_label">Максимальная освещенность</string>
-    <string name="pref_ab_brighness_label">Яркость (20 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Яркость (10 &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Некорректное значение</string>
-    <string name="pref_ab_brightness_too_low">Не рекомендуется устнавливать яркость ниже 20</string>
+    <string name="pref_ab_brightness_too_low">Не рекомендуется устнавливать яркость ниже 10</string>
     <string name="pref_ab_brightness_too_high">Яркость не может быть выше 255</string>
     <string name="pref_ab_number_error_negative">Значение не должно быть меньше 0</string>
     <string name="pref_ab_number_not_ascending">Значение на нижнем уровне не может быть выше значений на верхних уровнях</string>

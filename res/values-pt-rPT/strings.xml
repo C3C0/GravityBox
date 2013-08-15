@@ -171,16 +171,16 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Nível de brilho mínimo</string>
     <string name="pref_brightness_min_summary">Permite definir o nível de brilho mínimo, aplicável apenas ao modo manual (necessário reiniciar)</string>
-    <string name="pref_brightness_dlg_msg">Intervalo de valores: 20 &#8211; 80</string>
+    <string name="pref_brightness_dlg_msg">Intervalo de valores: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Níveis de brilho automático</string>
     <string name="pref_ab_summary">Permite ajustar os níveis de luz ambiente e os correspondentes valores para o brilho do ecrã</string>
     <string name="level">Nível</string>
     <string name="pref_ab_lux_max_label">Lux máx.</string>
-    <string name="pref_ab_brighness_label">Brilho (20 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Brilho (10 &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Valor especificado inválido</string>
-    <string name="pref_ab_brightness_too_low">Não é aconselhável um valor inferior a 20</string>
+    <string name="pref_ab_brightness_too_low">Não é aconselhável um valor inferior a 10</string>
     <string name="pref_ab_brightness_too_high">O valor não pode ser superior a 255</string>
     <string name="pref_ab_number_error_negative">O valor não pode ser negativo</string>
     <string name="pref_ab_number_not_ascending">O valor do patamar inferior não pode ser maior que o do patamar superior</string>

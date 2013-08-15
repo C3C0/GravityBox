@@ -177,16 +177,16 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">最低亮度層級</string>
     <string name="pref_brightness_min_summary">可以設定最低的亮度層級。在手動設定亮度時適用。（需要重新啟動）</string>
-    <string name="pref_brightness_dlg_msg">設定值的範圍：20 &#8211; 80</string>
+    <string name="pref_brightness_dlg_msg">設定值的範圍：10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">自動亮度層級</string>
     <string name="pref_ab_summary">可以設置環境的亮度層級與相對應的 LCD 背光值</string>
     <string name="level">層級</string>
     <string name="pref_ab_lux_max_label">最大照度（lux）</string>
-    <string name="pref_ab_brighness_label">亮度（20 &#8211; 255）</string>
+    <string name="pref_ab_brighness_label">亮度（10 &#8211; 255）</string>
     <string name="pref_ab_number_error_general">指定的值不被接受</string>
-    <string name="pref_ab_brightness_too_low">不建議將亮度設為 20 以下</string>
+    <string name="pref_ab_brightness_too_low">不建議將亮度設為 10 以下</string>
     <string name="pref_ab_brightness_too_high">亮度無法大於 255</string>
     <string name="pref_ab_number_error_negative">值無法低於 0</string>
     <string name="pref_ab_number_not_ascending">較低層級的值無法大於較高層級的值</string>

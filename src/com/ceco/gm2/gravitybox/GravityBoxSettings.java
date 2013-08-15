@@ -756,7 +756,7 @@ public class GravityBoxSettings extends Activity {
                 try {
                     int val = Integer.valueOf(strVal);
                     int newVal = val;
-                    if (val < 20) newVal = 20;
+                    if (val < 10) newVal = 10;
                     if (val > 80) newVal = 80;
                     if (val != newVal) {
                         Editor editor = prefs.edit();
