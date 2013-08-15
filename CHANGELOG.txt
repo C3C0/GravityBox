@@ -1,3 +1,12 @@
+Changelog 2.1.1 - 15/08/2013
+--------------------------------------
+- fixed Pie compatibility issues for Android 4.3
+- added support for MTK8389 (thanks to bgcngm)
+- option to disable warnings when sending messages or making phone calls while roaming (MTK only) (thanks to ludoo for testing)
+- allow minimum brightness as low as 10 (use with caution)
+- clear all recents: preserve existing clear all button if it exists (e.g. if implemented by custom rom)
+- updated French translations (thanks to ch-vox)
+
 Changelog 2.1.0 - 13/08/2013
 --------------------------------------
 - CyanogenMod Pie Controls featuring:
