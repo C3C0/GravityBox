@@ -13,6 +13,7 @@ import java.util.Set;
 
 import com.ceco.gm2.gravitybox.Utils.MethodState;
 import com.ceco.gm2.gravitybox.quicksettings.AQuickSettingsTile;
+import com.ceco.gm2.gravitybox.quicksettings.GpsTile;
 import com.ceco.gm2.gravitybox.quicksettings.NetworkModeTile;
 import com.ceco.gm2.gravitybox.quicksettings.QuickAppTile;
 import com.ceco.gm2.gravitybox.quicksettings.QuickRecordTile;
@@ -110,6 +111,9 @@ public class ModQuickSettings {
             R.id.quickapp_tileview,
             R.id.quickrecord_tileview
         ));
+        if (!Utils.isMtkDevice()) {
+            mCustomGbTileKeys.add(R.id.gps_tileview);
+        }
 
         Map<String, Integer> tmpMap = new HashMap<String, Integer>();
         tmpMap.put("user_textview", 1);
@@ -470,6 +474,12 @@ public class ModQuickSettings {
             LayoutInflater inflater = (LayoutInflater) param.args[1];
 
             mTiles = new ArrayList<AQuickSettingsTile>();
+
+            if (!Utils.isMtkDevice()) {
+                GpsTile gpsTile = new GpsTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                gpsTile.setupQuickSettingsTile(mContainerView, inflater);
+                mTiles.add(gpsTile);
+            }
 
             NetworkModeTile nmTile = new NetworkModeTile(mContext, mGbContext, mStatusBar, mPanelBar);
             nmTile.setupQuickSettingsTile(mContainerView, inflater);

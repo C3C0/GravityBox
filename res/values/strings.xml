@@ -408,4 +408,8 @@
     <string name="pref_quickapp_slot3_title">Long-press app slot 3</string>
     <string name="pref_quickapp_slot4_title">Long-press app slot 4</string>
 
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS on</string>
+    <string name="qs_tile_gps_disabled">GPS off</string>
+
 </resources>
