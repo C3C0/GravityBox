@@ -5,13 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 import com.ceco.gm2.gravitybox.R;
-import com.ceco.gm2.gravitybox.Utils;
 import com.ceco.gm2.gravitybox.adapters.IIconListAdapterItem;
 import com.ceco.gm2.gravitybox.adapters.IconListAdapter;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
@@ -33,6 +34,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 public class AppPickerPreference extends DialogPreference implements OnItemClickListener {
+    private static final String SEPARATOR = "#C3C0#";
 
     private Context mContext;
     private ListView mListView;
@@ -100,7 +102,7 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
     protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
         if (restoreValue) {
             String value = getPersistedString(null);
-            setSummary(Utils.getApplicationLabel(mContext, value));
+            setSummary(getAppNameFromValue(value));
         } else {
             setValue(null);
             setSummary(null);
@@ -137,6 +139,7 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
                     Bitmap appIcon = ((BitmapDrawable)ri.loadIcon(pm)).getBitmap();
                     Bitmap scaledIcon = Bitmap.createScaledBitmap(appIcon, sizePx, sizePx, true);
                     AppItem ai = new AppItem(ri.activityInfo.packageName, 
+                            ri.activityInfo.name,
                             appName, new BitmapDrawable(res, scaledIcon));
                     mListData.add(ai);
                 }
@@ -162,24 +165,51 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         AppItem item = (AppItem) parent.getItemAtPosition(position);
-        setValue(item.getPackageName());
-        setSummary(item.getText());
+        setValue(item.getValue());
+        setSummary(item.getAppName());
         getDialog().dismiss();
+    }
+
+    private String getAppNameFromValue(String value) {
+        try {
+            PackageManager pm = mContext.getPackageManager();
+            String[] splitValue = value.split(SEPARATOR);
+            ComponentName cn = new ComponentName(splitValue[0], splitValue[1]);
+            ActivityInfo ai = pm.getActivityInfo(cn, 0);
+            return (ai.loadLabel(pm).toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     class AppItem implements IIconListAdapterItem {
         private String mPackageName;
+        private String mClassName;
         private String mAppName;
         private Drawable mAppIcon;
 
-        public AppItem(String packageName, String appName, Drawable appIcon) {
+        public AppItem(String packageName, String className, String appName, Drawable appIcon) {
             mPackageName = packageName;
+            mClassName = className;
             mAppName = appName;
             mAppIcon = appIcon;
         }
 
         public String getPackageName() {
             return mPackageName;
+        }
+
+        public String getClassName() {
+            return mClassName;
+        }
+
+        public String getAppName() {
+            return mAppName;
+        }
+
+        public String getValue() {
+            return String.format("%1$s%2$s%3$s", mPackageName, SEPARATOR, mClassName);
         }
 
         @Override

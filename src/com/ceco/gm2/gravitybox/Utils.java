@@ -61,15 +61,4 @@ public class Utils {
     public static boolean isMtkDevice() {
         return (Build.HARDWARE.toLowerCase().contains("mt6589") || Build.HARDWARE.toLowerCase().contains("mt8389"));
     }
-
-    public static String getApplicationLabel(Context context, String packageName) {
-        try {
-            PackageManager pm = context.getPackageManager();
-            ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);
-            return (String) pm.getApplicationLabel(ai);
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 }
