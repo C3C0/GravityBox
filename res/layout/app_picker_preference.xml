@@ -8,7 +8,7 @@
         android:id="@+id/input_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/search"
+        android:hint="@string/app_picker_search"
         android:inputType="textVisiblePassword"
         android:saveEnabled="false" />
 

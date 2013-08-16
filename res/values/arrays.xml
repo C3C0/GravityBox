@@ -74,6 +74,7 @@
         <item>@string/qs_tile_torch</item>
         <item>@string/qs_tile_sleep</item>
         <item>@string/qs_tile_quickrecord</item>
+        <item>@string/qs_tile_quickapp</item>
         <item>@string/qs_tile_gravitybox</item>
     </string-array>
 
@@ -96,6 +97,7 @@
         <item>torch_tileview</item>
         <item>sleep_tileview</item>
         <item>quickrecord_tileview</item>
+        <item>quickapp_tileview</item>
         <item>gravitybox_tileview</item>
     </string-array>
 
@@ -115,6 +117,7 @@
         <item>@string/qs_tile_torch</item>
         <item>@string/qs_tile_sleep</item>
         <item>@string/qs_tile_quickrecord</item>
+        <item>@string/qs_tile_quickapp</item>
         <item>@string/qs_tile_gravitybox</item>
     </string-array>
 
@@ -134,6 +137,7 @@
         <item>torch_tileview</item>
         <item>sleep_tileview</item>
         <item>quickrecord_tileview</item>
+        <item>quickapp_tileview</item>
         <item>gravitybox_tileview</item>
     </string-array>
 

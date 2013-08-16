@@ -102,10 +102,11 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
     protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
         if (restoreValue) {
             String value = getPersistedString(null);
-            setSummary(getAppNameFromValue(value));
+            String appName = getAppNameFromValue(value);
+            setSummary(appName == null ? mContext.getString(R.string.app_picker_none) : appName);
         } else {
             setValue(null);
-            setSummary(null);
+            setSummary(mContext.getString(R.string.app_picker_none));
         }
     } 
 
@@ -133,6 +134,7 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
                 int sizePx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, 
                         res.getDisplayMetrics());
 
+                mListData.add(new AppItem(null, null, mContext.getString(R.string.app_picker_none), null));
                 for (ResolveInfo ri : appList) {
                     if (this.isCancelled()) break;
                     String appName = ri.loadLabel(pm).toString();
@@ -209,6 +211,8 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
         }
 
         public String getValue() {
+            if (mPackageName == null || mClassName == null) return null;
+
             return String.format("%1$s%2$s%3$s", mPackageName, SEPARATOR, mClassName);
         }
 

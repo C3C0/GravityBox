@@ -80,7 +80,38 @@
                 android:entries="@array/qs_tiles_per_row_entries"
                 android:entryValues="@array/qs_tiles_per_row_values"
                 android:defaultValue="3" />
-    
+
+            <PreferenceScreen
+                android:key="pref_cat_quick_app_tile"
+                android:title="@string/pref_cat_quickapp_tile_title">
+
+                <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                    android:key="pref_quickapp_default"
+                    android:title="@string/pref_quickapp_default_title"
+                    android:summary="@string/app_picker_none" />
+
+                <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                    android:key="pref_quickapp_slot1"
+                    android:title="@string/pref_quickapp_slot1_title"
+                    android:summary="@string/app_picker_none" />
+
+                <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                    android:key="pref_quickapp_slot2"
+                    android:title="@string/pref_quickapp_slot2_title"
+                    android:summary="@string/app_picker_none" />
+
+                <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                    android:key="pref_quickapp_slot3"
+                    android:title="@string/pref_quickapp_slot3_title"
+                    android:summary="@string/app_picker_none" />
+
+                <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                    android:key="pref_quickapp_slot4"
+                    android:title="@string/pref_quickapp_slot4_title"
+                    android:summary="@string/app_picker_none" />
+
+            </PreferenceScreen>
+
             <CheckBoxPreference 
                 android:key="pref_auto_switch_qs"
                 android:title="@string/pref_auto_switch_qs_title"

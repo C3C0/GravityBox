@@ -14,6 +14,7 @@ import java.util.Set;
 import com.ceco.gm2.gravitybox.Utils.MethodState;
 import com.ceco.gm2.gravitybox.quicksettings.AQuickSettingsTile;
 import com.ceco.gm2.gravitybox.quicksettings.NetworkModeTile;
+import com.ceco.gm2.gravitybox.quicksettings.QuickAppTile;
 import com.ceco.gm2.gravitybox.quicksettings.QuickRecordTile;
 import com.ceco.gm2.gravitybox.quicksettings.SleepTile;
 import com.ceco.gm2.gravitybox.quicksettings.TorchTile;
@@ -30,6 +31,7 @@ import android.content.res.Resources;
 import android.content.res.XResources;
 import android.os.Build;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -105,6 +107,7 @@ public class ModQuickSettings {
             R.id.torch_tileview,
             R.id.network_mode_tileview,
             R.id.sleep_tileview,
+            R.id.quickapp_tileview,
             R.id.quickrecord_tileview
         ));
 
@@ -150,6 +153,32 @@ public class ModQuickSettings {
                     mQuickPulldown = intent.getIntExtra(
                             GravityBoxSettings.EXTRA_QUICK_PULLDOWN, 
                             GravityBoxSettings.QUICK_PULLDOWN_OFF);
+                }
+            } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKAPP_CHANGED)) {
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_DEFAULT)) {
+                    Settings.System.putString(mContext.getContentResolver(),
+                            QuickAppTile.SETTING_QUICKAPP_DEFAULT,
+                            intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_DEFAULT));
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT1)) {
+                    Settings.System.putString(mContext.getContentResolver(),
+                            QuickAppTile.SETTING_QUICKAPP_SLOT1,
+                            intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT1));
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT2)) {
+                    Settings.System.putString(mContext.getContentResolver(),
+                            QuickAppTile.SETTING_QUICKAPP_SLOT2,
+                            intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT2));
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT3)) {
+                    Settings.System.putString(mContext.getContentResolver(),
+                            QuickAppTile.SETTING_QUICKAPP_SLOT3,
+                            intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT3));
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT4)) {
+                    Settings.System.putString(mContext.getContentResolver(),
+                            QuickAppTile.SETTING_QUICKAPP_SLOT4,
+                            intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT4));
                 }
             }
         }
@@ -412,6 +441,7 @@ public class ModQuickSettings {
             mContainerView = (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mContainerView");
 
             IntentFilter intentFilter = new IntentFilter(GravityBoxSettings.ACTION_PREF_QUICKSETTINGS_CHANGED);
+            intentFilter.addAction(GravityBoxSettings.ACTION_PREF_QUICKAPP_CHANGED);
             mContext.registerReceiver(mBroadcastReceiver, intentFilter);
         }
     };
@@ -464,6 +494,10 @@ public class ModQuickSettings {
             QuickRecordTile qrTile = new QuickRecordTile(mContext, mGbContext, mStatusBar, mPanelBar);
             qrTile.setupQuickSettingsTile(mContainerView, inflater);
             mTiles.add(qrTile);
+
+            QuickAppTile qAppTile = new QuickAppTile(mContext, mGbContext, mStatusBar, mPanelBar);
+            qAppTile.setupQuickSettingsTile(mContainerView, inflater);
+            mTiles.add(qAppTile);
 
             GravityBoxTile gbTile = new GravityBoxTile(mContext, mGbContext, mStatusBar, mPanelBar);
             gbTile.setupQuickSettingsTile(mContainerView, inflater);

@@ -395,7 +395,17 @@
     <string name="pref_roaming_warning_disable_title">Disable roaming warnings</string>
     <string name="pref_roaming_warning_disable_summary">Disables roaming warnings when sending messages or making phone calls while roaming</string>
 
-    <!-- Search -->
-    <string name="search">Search</string>
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">Search</string>
+    <string name="app_picker_none">(None)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">Quick App</string>
+    <string name="pref_cat_quickapp_tile_title">QuickApp tile settings</string>
+    <string name="pref_quickapp_default_title">Main application</string>
+    <string name="pref_quickapp_slot1_title">Long-press app slot 1</string>
+    <string name="pref_quickapp_slot2_title">Long-press app slot 2</string>
+    <string name="pref_quickapp_slot3_title">Long-press app slot 3</string>
+    <string name="pref_quickapp_slot4_title">Long-press app slot 4</string>
 
 </resources>

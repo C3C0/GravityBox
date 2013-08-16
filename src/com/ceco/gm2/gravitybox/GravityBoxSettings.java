@@ -210,6 +210,18 @@ public class GravityBoxSettings extends Activity {
     public static final String BB_MODE_DISABLE = "disable";
     public static final String BB_MODE_ALWAYS_ON = "always_on";
 
+    public static final String PREF_KEY_QUICKAPP_DEFAULT = "pref_quickapp_default";
+    public static final String PREF_KEY_QUICKAPP_SLOT1 = "pref_quickapp_slot1";
+    public static final String PREF_KEY_QUICKAPP_SLOT2 = "pref_quickapp_slot2";
+    public static final String PREF_KEY_QUICKAPP_SLOT3 = "pref_quickapp_slot3";
+    public static final String PREF_KEY_QUICKAPP_SLOT4 = "pref_quickapp_slot4";
+    public static final String ACTION_PREF_QUICKAPP_CHANGED = "gravitybox.intent.action.QUICKAPP_CHANGED";
+    public static final String EXTRA_QUICKAPP_DEFAULT = "quickAppDefault";
+    public static final String EXTRA_QUICKAPP_SLOT1 = "quickAppSlot1";
+    public static final String EXTRA_QUICKAPP_SLOT2 = "quickAppSlot2";
+    public static final String EXTRA_QUICKAPP_SLOT3 = "quickAppSlot3";
+    public static final String EXTRA_QUICKAPP_SLOT4 = "quickAppSlot4";
+
     public static final String PREF_KEY_GB_THEME_DARK = "pref_gb_theme_dark";
     public static final String FILE_THEME_DARK_FLAG = "theme_dark";
 
@@ -727,6 +739,21 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_BUTTON_BACKLIGHT_CHANGED);
                 intent.putExtra(EXTRA_BB_NOTIF, prefs.getBoolean(
                         PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS, false));
+            } else if (key.equals(PREF_KEY_QUICKAPP_DEFAULT)) {
+                intent.setAction(ACTION_PREF_QUICKAPP_CHANGED);
+                intent.putExtra(EXTRA_QUICKAPP_DEFAULT, prefs.getString(PREF_KEY_QUICKAPP_DEFAULT, null));
+            } else if (key.equals(PREF_KEY_QUICKAPP_SLOT1)) {
+                intent.setAction(ACTION_PREF_QUICKAPP_CHANGED);
+                intent.putExtra(EXTRA_QUICKAPP_SLOT1, prefs.getString(PREF_KEY_QUICKAPP_SLOT1, null));
+            } else if (key.equals(PREF_KEY_QUICKAPP_SLOT2)) {
+                intent.setAction(ACTION_PREF_QUICKAPP_CHANGED);
+                intent.putExtra(EXTRA_QUICKAPP_SLOT2, prefs.getString(PREF_KEY_QUICKAPP_SLOT2, null));
+            } else if (key.equals(PREF_KEY_QUICKAPP_SLOT3)) {
+                intent.setAction(ACTION_PREF_QUICKAPP_CHANGED);
+                intent.putExtra(EXTRA_QUICKAPP_SLOT3, prefs.getString(PREF_KEY_QUICKAPP_SLOT3, null));
+            } else if (key.equals(PREF_KEY_QUICKAPP_SLOT4)) {
+                intent.setAction(ACTION_PREF_QUICKAPP_CHANGED);
+                intent.putExtra(EXTRA_QUICKAPP_SLOT4, prefs.getString(PREF_KEY_QUICKAPP_SLOT4, null));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);
