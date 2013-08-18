@@ -395,4 +395,21 @@
     <string name="pref_roaming_warning_disable_title">Avertissements en itinérance</string>
     <string name="pref_roaming_warning_disable_summary">Désactiver les avertissements lors de l\'envoi de messages ou de l\'émission d\'appels en itinérance</string>
 
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">Rechercher</string>
+    <string name="app_picker_none">(Aucun)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">Appli Rapide</string>
+    <string name="pref_cat_quickapp_tile_title">Paramètres de la touche Appli Rapide</string>
+    <string name="pref_quickapp_default_title">Application principale</string>
+    <string name="pref_quickapp_slot1_title">Appui long appli position 1</string>
+    <string name="pref_quickapp_slot2_title">Appui long appli position 2</string>
+    <string name="pref_quickapp_slot3_title">Appui long appli position 3</string>
+    <string name="pref_quickapp_slot4_title">Appui long appli position 4</string>
+    
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS on</string>
+    <string name="qs_tile_gps_disabled">GPS off</string>
+
 </resources>
