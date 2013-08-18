@@ -112,6 +112,7 @@
         <item>@string/qs_tile_airplane_mode</item>
         <item>@string/qs_tile_bluetooth</item>
         <item>@string/qs_tile_gps</item>
+        <item>@string/qs_tile_ringer_mode</item>
         <item>@string/qs_tile_network_mode</item>
         <item>@string/qs_tile_sync</item>
         <item>@string/qs_tile_wifi_ap</item>
@@ -133,6 +134,7 @@
         <item>airplane_mode_textview</item>
         <item>bluetooth_textview</item>
         <item>gps_tileview</item>
+        <item>ringer_mode_tileview</item>
         <item>network_mode_tileview</item>
         <item>sync_tileview</item>
         <item>wifi_ap_tileview</item>

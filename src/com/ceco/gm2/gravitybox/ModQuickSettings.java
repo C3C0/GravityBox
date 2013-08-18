@@ -17,6 +17,7 @@ import com.ceco.gm2.gravitybox.quicksettings.GpsTile;
 import com.ceco.gm2.gravitybox.quicksettings.NetworkModeTile;
 import com.ceco.gm2.gravitybox.quicksettings.QuickAppTile;
 import com.ceco.gm2.gravitybox.quicksettings.QuickRecordTile;
+import com.ceco.gm2.gravitybox.quicksettings.RingerModeTile;
 import com.ceco.gm2.gravitybox.quicksettings.SleepTile;
 import com.ceco.gm2.gravitybox.quicksettings.TorchTile;
 import com.ceco.gm2.gravitybox.quicksettings.GravityBoxTile;
@@ -113,6 +114,7 @@ public class ModQuickSettings {
         ));
         if (!Utils.isMtkDevice()) {
             mCustomGbTileKeys.add(R.id.gps_tileview);
+            mCustomGbTileKeys.add(R.id.ringer_mode_tileview);
         }
 
         Map<String, Integer> tmpMap = new HashMap<String, Integer>();
@@ -479,6 +481,10 @@ public class ModQuickSettings {
                 GpsTile gpsTile = new GpsTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 gpsTile.setupQuickSettingsTile(mContainerView, inflater);
                 mTiles.add(gpsTile);
+
+                RingerModeTile rmTile = new RingerModeTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                rmTile.setupQuickSettingsTile(mContainerView, inflater);
+                mTiles.add(rmTile);
             }
 
             NetworkModeTile nmTile = new NetworkModeTile(mContext, mGbContext, mStatusBar, mPanelBar);
