@@ -8,6 +8,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
+import static de.robv.android.xposed.XposedHelpers.callStaticMethod;
+import static de.robv.android.xposed.XposedHelpers.findClass;
 
 public class Utils {
 
@@ -60,5 +62,10 @@ public class Utils {
 
     public static boolean isMtkDevice() {
         return (Build.HARDWARE.toLowerCase().contains("mt6589") || Build.HARDWARE.toLowerCase().contains("mt8389"));
+    }
+    
+    public static boolean hasGeminiSupport() {
+    	Class<?> classKeyguardUtils = findClass("com.android.internal.policy.impl.keyguard.KeyguardUtils", null);
+    	return (isMtkDevice() && (Boolean) callStaticMethod(classKeyguardUtils, "isGemini"));
     }
 }
