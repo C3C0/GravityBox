@@ -16,6 +16,7 @@
     <string name="low_battery_warning_full">Pop-up e suono</string>
     <string name="low_battery_warning_popup">Solo Pop-up</string>
     <string name="low_battery_warning_sound">Solo suono</string>
+
     <string name="low_battery_warning_off">Off</string>
 
     <string name="reboot_required">Le modifiche saranno applicate dopo il riavvio</string>
@@ -77,7 +78,7 @@
     <string name="quick_settings_title">Caselle Statusbar QuickSettings</string>
     <string name="quick_settings_summary">Permette di mostrare o nascondere la caselle QuickSettings nella statusbar</string>
     <string name="qs_tile_user_profile">Profilo utente</string>
-    <string name="qs_tile_airplane_mode">Modo Areo</string>
+    <string name="qs_tile_airplane_mode">Modo Aereo</string>
     <string name="qs_tile_battery">Stato batteria</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
@@ -95,6 +96,7 @@
     <string name="qs_tile_gravitybox">GravityBox</string>
     <string name="qs_tile_sleep">Sleep</string>
     <string name="qs_tile_quickrecord">Registra</string>
+
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Scegli colore</string>
@@ -274,5 +276,142 @@
 
     <!-- Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">Mostra giorno della settimana</string>
+
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Pannello volumi espandibile</string>
+    <string name="pref_volume_panel_expandable_summary">Abilita pannello volumi espandibile con possibilità di modifiche differenziate</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Collega volumi suoneria &amp; notifiche</string>
+    <string name="pref_link_volumes_summary">Se disattivato, i volumi di suoneria e notifiche possono essere impostati in modo indipendente</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">Attivazione automatica QuickSettings</string>
+    <string name="pref_auto_switch_qs_summary">I QuickSettings saranno visibili automaticamente aprendo la barra delle notifiche, se non sono già presenti notifiche</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Visualizzaione rapida</string>
+    <string name="pref_quick_pulldown_summary">Trascinando un bordo dello schermo appariranno direttamente i QuickSettings</string>
+    <string name="quick_pulldown_off">Spento</string>
+    <string name="quick_pulldown_right">Destra</string>
+    <string name="quick_pulldown_left">Sinistra</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">Disable volume rocker wake</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Per modelli come Jiayu G3s,G4 in cui i tasti volume accendono lo schermo</string>
+
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">Colori Barra di stato</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">Attiva colori icone</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">Colore barra di stato</string>
+    <string name="pref_statusbar_icon_color_summary">Imposta colore per icone e orologio</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">Colore Attività dati</string>
+    <string name="pref_statusbar_data_activity_color_summary">Imposta colore per indicatori Attività dati</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">Impostazioni QuickSettings</string>
+
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">Stile Notifica applicazioni</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">Sfondo Notifica applicazioni</string>
+    <string name="notif_background_default">Sfondo standard</string>
+    <string name="notif_background_color_fill">Colore pieno</string>
+    <string name="notif_background_custom_image">Immagine personalizzata</string>
+    <string name="pref_notif_color_title">Imposta colore sfondo</string>
+    <string name="pref_notif_image_portrait_title">Imposta immagine verticale</string>
+    <string name="pref_notif_image_landscape_title">Imposta immagine orizzontale</string>
+    <string name="pref_notif_background_alpha_title">Sfondo trasparente</string>
+    <string name="pref_notif_color_mode_title">Tipo di sfondo</string>
+    <string name="color_fill_overlay">sovrastante</string>
+    <string name="color_fill_underlay">sottostante</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">Disattiva indicatori roaming</string>
+    <string name="pref_disable_roaming_indicators_summary">Se disabilitato, l\'indicatore R nons arà visibile durante il roaming. Usare con attenzione.</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">In carica (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Carica completa</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% rimanenti</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Nessun servizio</string>
+    <string name="pie_phone_status_airplane_mode">Modo Aereo</string>
+    <string name="pie_phone_status_emergency_only">Solo Chiamate di emergenza</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">Pie controls</string>
+    <string name="pie_control_enable_title">Abilita pie controls</string>
+    <string name="pie_control_search_title">Mostra bottone ricerca</string>
+    <string name="pie_control_size_title">Grandezza tasto navigazione</string>
+    <string name="pie_control_trigger_positions_title">Posizione trigger</string>
+    <string name="pie_control_trigger_left">Bordo sinistro schermo</string>
+    <string name="pie_control_trigger_bottom">Bordo inferiore schermo</string>
+    <string name="pie_control_trigger_right">Bordo destro schermo</string>
+    <string name="pie_control_trigger_top">Bordo superiore schermo</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">Illuminazione tasti telefono</string>
+    <string name="button_backlight_mode_default">Default</string>
+    <string name="button_backlight_mode_disable">Disabilita retroilluminazione tasti</string>
+    <string name="button_backlight_mode_always_on">Sempre accesa se lo schermo è acceso</string>
+    <string name="pref_button_backlight_notifications_title">Notifiche mediante illuminazione tasti</string>
+    <string name="pref_button_backlight_notifications_summary">SPERIMENTALE! Accendi tasti se c\'è una notifica e lo schermo è spento. Usare nel caso il telefono non abbia led di notifica.</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">Nascondi barra di navigazione</string>
+    <string name="pref_navbar_disable_summary">Nascondi barra di navigazione quando è attivo il PIE CONTROL (per telefoni che hanno la barra di navigazione, necessario il riavvio)</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">Dithered Holo background</string>
+    <string name="pref_holo_bg_dither_summary">Sostituisce lo sfondo Holo standard con uno dithered per eliminare la distorsione dei colori (necessario il riavvio)</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">Disabilita tasti hardware</string>
+    <string name="pref_hwkeys_disable_summary">Disabilita MENU, BACK, HOME se Pie Controls attivo. Le azioni dei tasti HW  continueranno a funzionare. (for telefoni che hanno tasti HW)</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">Usa il tema Holo Dark</string>
+    <string name="pref_gb_theme_dark_summary">Passa a interfaccia GB per usare il tema Holo Dark invece di Holo Light</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">Off</string>
+    <string name="recent_clear_top_left">Alto sinistra</string>
+    <string name="recent_clear_top_right">Alto destra</string>
+    <string name="recent_clear_bottom_left">Basso sinistra</string>
+    <string name="recent_clear_bottom_right">Basso destra</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Modifica margine superiore</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">Disabilita notifiche roaming</string>
+    <string name="pref_roaming_warning_disable_summary">Disabilita notifiche roaming durante invio messaggi o chiamate in roaming</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">Cerca</string>
+    <string name="app_picker_none">(Nessuno)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">Quick App</string>
+    <string name="pref_cat_quickapp_tile_title">Impostazioni QuickApp</string>
+    <string name="pref_quickapp_default_title">Applicazione principale</string>
+    <string name="pref_quickapp_slot1_title">Pressione lunga app slot 1</string>
+    <string name="pref_quickapp_slot2_title">Pressione lunga app slot 2</string>
+    <string name="pref_quickapp_slot3_title">Pressione lunga app slot 3</string>
+    <string name="pref_quickapp_slot4_title">Pressione lunga app slot 4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS acceso</string>
+    <string name="qs_tile_gps_disabled">GPS spento</string>
+
 
 </resources>
