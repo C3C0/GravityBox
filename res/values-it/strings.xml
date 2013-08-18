@@ -335,7 +335,7 @@
 
     <!-- Disable roaming indicators -->
     <string name="pref_disable_roaming_indicators_title">Disattiva indicatori roaming</string>
-    <string name="pref_disable_roaming_indicators_summary">Se disabilitato, l'indicatore R nons arà visibile durante il roaming. Usare con attenzione.</string>
+    <string name="pref_disable_roaming_indicators_summary">Se disabilitato, l'\indicatore R nons arà visibile durante il roaming. Usare con attenzione.</string>
 
     <!-- Battery status in pie controls -->
     <string name="pie_battery_status_charging">In carica (<xliff:g id="percent">%d</xliff:g>%%)</string>
@@ -364,7 +364,7 @@
     <string name="button_backlight_mode_disable">Disabilita retroilluminazione tasti</string>
     <string name="button_backlight_mode_always_on">Sempre accesa se lo schermo è acceso</string>
     <string name="pref_button_backlight_notifications_title">Notifiche mediante illuminazione tasti</string>
-    <string name="pref_button_backlight_notifications_summary">SPERIMENTALE! Accendi tasti se c'è una notifica e lo schermo è spento. Usare nel caso il telefono non abbia led di notifica.</string>
+    <string name="pref_button_backlight_notifications_summary">SPERIMENTALE! Accendi tasti se c\'è una notifica e lo schermo è spento. Usare nel caso il telefono non abbia led di notifica.</string>
 
     <!-- Hide navigation bar for pie -->
     <string name="pref_navbar_disable_title">Nascondi barra di navigazione</string>
