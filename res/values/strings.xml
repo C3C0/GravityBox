@@ -412,6 +412,9 @@
     <string name="qs_tile_gps_enabled">GPS on</string>
     <string name="qs_tile_gps_disabled">GPS off</string>
 
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">Always show menu button</string>
+
     <!-- Ringer mode tile (for non-MTK) -->
     <string name="qs_tile_ringer_mode">Ringer mode</string>
 

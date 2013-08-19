@@ -8,8 +8,6 @@ import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.res.XModuleResources;
-import android.content.res.XResources;
 import android.database.ContentObserver;
 import android.graphics.PixelFormat;
 import android.os.Handler;
@@ -27,7 +25,6 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 
 public class ModPieControls {
     private static final String TAG = "ModPieController";
@@ -58,6 +55,7 @@ public class ModPieControls {
     private static WindowManager mWindowManager;
     private static PieSettingsObserver mSettingsObserver;
     private static boolean mShowMenuItem;
+    private static boolean mAlwaysShowMenuItem;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -102,7 +100,14 @@ public class ModPieControls {
                     mShowMenuItem = intent.getBooleanExtra(
                             GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE, false);
                     if (mPieController != null) {
-                        mPieController.setMenuVisibility(mShowMenuItem);
+                        mPieController.setMenuVisibility(mShowMenuItem | mAlwaysShowMenuItem);
+                    }
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_MENU)) {
+                    mAlwaysShowMenuItem = intent.getBooleanExtra(
+                            GravityBoxSettings.EXTRA_PIE_MENU, false);
+                    if (mPieController != null) {
+                        mPieController.setMenuVisibility(mShowMenuItem | mAlwaysShowMenuItem);
                     }
                 }
             }
@@ -186,6 +191,7 @@ public class ModPieControls {
             final Class<?> phoneStatusBarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
 
             mShowMenuItem = prefs.getBoolean(GravityBoxSettings.PREF_KEY_HWKEYS_DISABLE, false);
+            mAlwaysShowMenuItem = prefs.getBoolean(GravityBoxSettings.PREF_KEY_PIE_CONTROL_MENU, false);
 
             XposedHelpers.findAndHookMethod(baseStatusBarClass, "start", new XC_MethodHook() {
 
@@ -253,7 +259,9 @@ public class ModPieControls {
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     if (mPieController == null) return;
 
-                    mPieController.setMenuVisibility((Boolean)param.args[0] | mShowMenuItem);
+                    mPieController.setMenuVisibility((Boolean)param.args[0] 
+                            | mShowMenuItem
+                            | mAlwaysShowMenuItem);
                 }
             });
         } catch (Exception e) {

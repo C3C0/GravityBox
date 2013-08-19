@@ -209,30 +209,35 @@
             android:key="pref_cat_pie_control"
             android:title="@string/pie_control_title">
 
-	        <CheckBoxPreference 
-	            android:key="pref_pie_control_enable"
-	            android:title="@string/pie_control_enable_title"
-	            android:defaultValue="false" />
-	
-	        <CheckBoxPreference 
-	            android:key="pref_pie_control_search"
-	            android:title="@string/pie_control_search_title"
-	            android:defaultValue="false" />
-	
-	        <MultiSelectListPreference
-	            android:key="pref_pie_control_trigger_positions"
-	            android:title="@string/pie_control_trigger_positions_title"
-	            android:entries="@array/pie_control_trigger_position_entries"
-	            android:entryValues="@array/pie_control_trigger_position_values"
-	            android:defaultValue="@array/pie_control_trigger_position_default" />
-	
-	        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-	                android:key="pref_pie_control_size"
-	                android:title="@string/pie_control_size_title"
-	                minimum="500"
-	                maximum="1500"
-	                interval="10"
-	                android:defaultValue="1000" />
+            <CheckBoxPreference 
+                android:key="pref_pie_control_enable"
+                android:title="@string/pie_control_enable_title"
+                android:defaultValue="false" />
+
+            <CheckBoxPreference 
+                android:key="pref_pie_control_search"
+                android:title="@string/pie_control_search_title"
+                android:defaultValue="false" />
+
+            <CheckBoxPreference 
+                android:key="pref_pie_control_menu"
+                android:title="@string/pie_control_menu_title"
+                android:defaultValue="false" />
+
+            <MultiSelectListPreference
+                android:key="pref_pie_control_trigger_positions"
+                android:title="@string/pie_control_trigger_positions_title"
+                android:entries="@array/pie_control_trigger_position_entries"
+                android:entryValues="@array/pie_control_trigger_position_values"
+                android:defaultValue="@array/pie_control_trigger_position_default" />
+
+            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+                    android:key="pref_pie_control_size"
+                    android:title="@string/pie_control_size_title"
+                    minimum="500"
+                    maximum="1500"
+                    interval="10"
+                    android:defaultValue="1000" />
 
             <CheckBoxPreference 
                     android:key="pref_navbar_disable"

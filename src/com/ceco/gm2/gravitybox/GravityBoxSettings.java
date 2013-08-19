@@ -190,6 +190,7 @@ public class GravityBoxSettings extends Activity {
 
     public static final String PREF_KEY_PIE_CONTROL_ENABLE = "pref_pie_control_enable";
     public static final String PREF_KEY_PIE_CONTROL_SEARCH = "pref_pie_control_search";
+    public static final String PREF_KEY_PIE_CONTROL_MENU = "pref_pie_control_menu";
     public static final String PREF_KEY_PIE_CONTROL_TRIGGERS = "pref_pie_control_trigger_positions";
     public static final String PREF_KEY_PIE_CONTROL_SIZE = "pref_pie_control_size";
     public static final String PREF_KEY_NAVBAR_DISABLE = "pref_navbar_disable";
@@ -197,6 +198,7 @@ public class GravityBoxSettings extends Activity {
     public static final String ACTION_PREF_PIE_CHANGED = "gravitybox.intent.action.PREF_PIE_CHANGED";
     public static final String EXTRA_PIE_ENABLE = "pieEnable";
     public static final String EXTRA_PIE_SEARCH = "pieSearch";
+    public static final String EXTRA_PIE_MENU = "pieMenu";
     public static final String EXTRA_PIE_TRIGGERS = "pieTriggers";
     public static final String EXTRA_PIE_SIZE = "pieSize";
     public static final String EXTRA_PIE_HWKEYS_DISABLE = "hwKeysDisable";
@@ -720,6 +722,9 @@ public class GravityBoxSettings extends Activity {
             } else if (key.equals(PREF_KEY_PIE_CONTROL_SEARCH)) {
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
                 intent.putExtra(EXTRA_PIE_SEARCH, prefs.getBoolean(PREF_KEY_PIE_CONTROL_SEARCH, false));
+            } else if (key.equals(PREF_KEY_PIE_CONTROL_MENU)) {
+                intent.setAction(ACTION_PREF_PIE_CHANGED);
+                intent.putExtra(EXTRA_PIE_MENU, prefs.getBoolean(PREF_KEY_PIE_CONTROL_MENU, false));
             } else if (key.equals(PREF_KEY_PIE_CONTROL_TRIGGERS)) {
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
                 String[] triggers = prefs.getStringSet(
