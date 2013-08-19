@@ -424,4 +424,7 @@
     <!-- Clock: hide am/pm -->
     <string name="pref_clock_ampm_hide_title">Hide AM/PM</string>
 
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">Hide clock</string>
+
 </resources>

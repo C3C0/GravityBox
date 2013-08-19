@@ -97,6 +97,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_STATUSBAR_CENTER_CLOCK = "pref_statusbar_center_clock";
     public static final String PREF_KEY_STATUSBAR_CLOCK_DOW = "pref_statusbar_clock_dow";
     public static final String PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE = "pref_clock_ampm_hide";
+    public static final String PREF_KEY_STATUSBAR_CLOCK_HIDE = "pref_clock_hide";
     public static final String PREF_KEY_FIX_TTS_SETTINGS = "pref_fix_tts_settings";
     public static final String PREF_KEY_FIX_DEV_OPTS = "pref_fix_dev_opts";
     public static final String PREF_KEY_ABOUT_GRAVITYBOX = "pref_about_gb";
@@ -247,6 +248,7 @@ public class GravityBoxSettings extends Activity {
     public static final String EXTRA_CENTER_CLOCK = "centerClock";
     public static final String EXTRA_CLOCK_DOW = "clockDow";
     public static final String EXTRA_AMPM_HIDE = "ampmHide";
+    public static final String EXTRA_CLOCK_HIDE = "clockHide";
 
     public static final String ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED = "gravitybox.intent.action.SAFE_MEDIA_VOLUME_CHANGED";
     public static final String EXTRA_SAFE_MEDIA_VOLUME_ENABLED = "enabled";
@@ -663,6 +665,9 @@ public class GravityBoxSettings extends Activity {
                 intent.setAction(ACTION_PREF_CLOCK_CHANGED);
                 intent.putExtra(EXTRA_AMPM_HIDE, prefs.getBoolean(
                         PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE, false));
+            } else if (key.equals(PREF_KEY_STATUSBAR_CLOCK_HIDE)) {
+                intent.setAction(ACTION_PREF_CLOCK_CHANGED);
+                intent.putExtra(EXTRA_CLOCK_HIDE, prefs.getBoolean(PREF_KEY_STATUSBAR_CLOCK_HIDE, false));
             } else if (key.equals(PREF_KEY_SAFE_MEDIA_VOLUME)) {
                 intent.setAction(ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED);
                 intent.putExtra(EXTRA_SAFE_MEDIA_VOLUME_ENABLED,

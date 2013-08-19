@@ -46,6 +46,7 @@ public class ModCenterClock {
     private static int mClockOriginalPaddingLeft;
     private static boolean mClockShowDow = false;
     private static boolean mAmPmHide = false;
+    private static boolean mClockHide = false;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -72,6 +73,12 @@ public class ModCenterClock {
                         XposedHelpers.callMethod(mClock, "updateClock");
                     }
                 }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_CLOCK_HIDE)) {
+                    mClockHide = intent.getBooleanExtra(GravityBoxSettings.EXTRA_CLOCK_HIDE, false);
+                    if (mClock != null) {
+                        XposedHelpers.callMethod(mClock, "updateClock");
+                    }
+                }
             }
         }
     };
@@ -86,6 +93,7 @@ public class ModCenterClock {
                     prefs.reload();
                     mClockShowDow = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_DOW, false);
                     mAmPmHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE, false);
+                    mClockHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_HIDE, false);
                     
                     mIconArea = (ViewGroup) liparam.view.findViewById(
                             liparam.res.getIdentifier("system_icon_area", "id", PACKAGE_NAME));
@@ -118,6 +126,12 @@ public class ModCenterClock {
                             // yes, if it contains our additional sbClock field
                             Object sbClock = XposedHelpers.getAdditionalInstanceField(param.thisObject, "sbClock");
                             if (sbClock != null) {
+                                if (mClockHide) {
+                                    mClock.setVisibility(View.GONE);
+                                    return;
+                                }
+
+                                mClock.setVisibility(View.VISIBLE);
                                 Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
                                 String clockText = param.getResult().toString();
                                 String amPm = calendar.getDisplayName(

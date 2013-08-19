@@ -272,6 +272,11 @@
                 android:title="@string/pref_clock_ampm_hide_title"
                 android:defaultValue="false" />
 
+            <CheckBoxPreference 
+                android:key="pref_clock_hide"
+                android:title="@string/pref_clock_hide_title"
+                android:defaultValue="false" />
+
         </PreferenceScreen>
             
 
