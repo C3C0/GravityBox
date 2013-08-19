@@ -45,6 +45,7 @@ public class ModCenterClock {
     private static boolean mClockCentered = false;
     private static int mClockOriginalPaddingLeft;
     private static boolean mClockShowDow = false;
+    private static boolean mAmPmHide = false;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -55,12 +56,21 @@ public class ModCenterClock {
         @Override
         public void onReceive(Context context, Intent intent) {
             log("Broadcast received: " + intent.toString());
-            if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_CENTER_CLOCK_CHANGED)) {
-                setClockPosition(intent.getBooleanExtra(GravityBoxSettings.EXTRA_CENTER_CLOCK, false));
-            } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_CLOCK_DOW)) {
-                mClockShowDow = intent.getBooleanExtra(GravityBoxSettings.EXTRA_CLOCK_DOW, false);
-                if (mClock != null) {
-                    XposedHelpers.callMethod(mClock, "updateClock");
+            if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_CLOCK_CHANGED)) {
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_CENTER_CLOCK)) {
+                    setClockPosition(intent.getBooleanExtra(GravityBoxSettings.EXTRA_CENTER_CLOCK, false));
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_CLOCK_DOW)) {
+                    mClockShowDow = intent.getBooleanExtra(GravityBoxSettings.EXTRA_CLOCK_DOW, false);
+                    if (mClock != null) {
+                        XposedHelpers.callMethod(mClock, "updateClock");
+                    }
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_AMPM_HIDE)) {
+                    mAmPmHide = intent.getBooleanExtra(GravityBoxSettings.EXTRA_AMPM_HIDE, false);
+                    if (mClock != null) {
+                        XposedHelpers.callMethod(mClock, "updateClock");
+                    }
                 }
             }
         }
@@ -75,6 +85,7 @@ public class ModCenterClock {
                 public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
                     prefs.reload();
                     mClockShowDow = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_DOW, false);
+                    mAmPmHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE, false);
                     
                     mIconArea = (ViewGroup) liparam.view.findViewById(
                             liparam.res.getIdentifier("system_icon_area", "id", PACKAGE_NAME));
@@ -112,8 +123,11 @@ public class ModCenterClock {
                                 String amPm = calendar.getDisplayName(
                                         Calendar.AM_PM, Calendar.SHORT, Locale.getDefault());
                                 int amPmIndex = clockText.indexOf(amPm);
-                                // insert AM/PM if missing
-                                if (!DateFormat.is24HourFormat(mClock.getContext()) && amPmIndex == -1) {
+                                if (mAmPmHide && amPmIndex != -1) {
+                                    clockText = clockText.replace(amPm, "");
+                                    amPmIndex = -1;
+                                } else if (!DateFormat.is24HourFormat(mClock.getContext()) && amPmIndex == -1) {
+                                    // insert AM/PM if missing
                                     clockText += " " + amPm;
                                     amPmIndex = clockText.indexOf(amPm);
                                 }
@@ -170,8 +184,7 @@ public class ModCenterClock {
                     mAnimFadeIn = res.getIdentifier("fade_in", "anim", "android");
 
                     IntentFilter intentFilter = new IntentFilter();
-                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_CENTER_CLOCK_CHANGED);
-                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_CLOCK_DOW);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_CLOCK_CHANGED);
                     mContext.registerReceiver(mBroadcastReceiver, intentFilter);
                 }
             });

@@ -253,6 +253,28 @@
 
         </PreferenceScreen>
 
+        <PreferenceScreen
+            android:key="pref_cat_clock_settings"
+            android:title="@string/pref_cat_clock_settings_title">
+
+            <CheckBoxPreference 
+                android:key="pref_statusbar_center_clock"
+                android:title="@string/pref_statusbar_center_clock_title"
+                android:defaultValue="false" />
+
+            <CheckBoxPreference 
+                android:key="pref_statusbar_clock_dow"
+                android:title="@string/pref_statusbar_clock_dow_title"
+                android:defaultValue="false" />
+
+            <CheckBoxPreference 
+                android:key="pref_clock_ampm_hide"
+                android:title="@string/pref_clock_ampm_hide_title"
+                android:defaultValue="false" />
+
+        </PreferenceScreen>
+            
+
         <ListPreference
             android:key="pref_battery_style" 
             android:title="@string/battery_style_title" 
@@ -263,16 +285,6 @@
         <CheckBoxPreference 
             android:key="pref_battery_percent_text"
             android:title="@string/battery_style_percent"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference 
-            android:key="pref_statusbar_center_clock"
-            android:title="@string/pref_statusbar_center_clock_title"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference 
-            android:key="pref_statusbar_clock_dow"
-            android:title="@string/pref_statusbar_clock_dow_title"
             android:defaultValue="false" />
 
         <MultiSelectListPreference
