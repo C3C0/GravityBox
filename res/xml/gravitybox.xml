@@ -329,6 +329,11 @@
                 android:title="@string/pref_clock_hide_title"
                 android:defaultValue="false" />
 
+            <CheckBoxPreference 
+                android:key="pref_alarm_icon_hide"
+                android:title="@string/pref_alarm_icon_hide_title"
+                android:defaultValue="false" />
+
         </PreferenceScreen>
             
 

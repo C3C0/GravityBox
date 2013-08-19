@@ -15,6 +15,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.provider.AlarmClock;
+import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.format.DateFormat;
@@ -32,6 +34,7 @@ public class ModCenterClock {
     private static final String TAG = "ModCenterClock";
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     private static final String CLASS_TICKER = "com.android.systemui.statusbar.phone.PhoneStatusBar$MyTicker";
+    private static final String CLASS_PHONE_STATUSBAR_POLICY = "com.android.systemui.statusbar.phone.PhoneStatusBarPolicy";
 
     private static ViewGroup mIconArea;
     private static ViewGroup mRootView;
@@ -47,6 +50,8 @@ public class ModCenterClock {
     private static boolean mClockShowDow = false;
     private static boolean mAmPmHide = false;
     private static boolean mClockHide = false;
+    private static boolean mAlarmHide = false;
+    private static Object mPhoneStatusBarPolicy;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -79,6 +84,16 @@ public class ModCenterClock {
                         XposedHelpers.callMethod(mClock, "updateClock");
                     }
                 }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_ALARM_HIDE)) {
+                    mAlarmHide = intent.getBooleanExtra(GravityBoxSettings.EXTRA_ALARM_HIDE, false);
+                    if (mPhoneStatusBarPolicy != null) {
+                        String alarmFormatted = Settings.System.getString(context.getContentResolver(),
+                                Settings.System.NEXT_ALARM_FORMATTED);
+                        Intent i = new Intent();
+                        i.putExtra("alarmSet", (alarmFormatted != null && !alarmFormatted.isEmpty()));
+                        XposedHelpers.callMethod(mPhoneStatusBarPolicy, "updateAlarm", i);
+                    }
+                }
             }
         }
     };
@@ -94,6 +109,7 @@ public class ModCenterClock {
                     mClockShowDow = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_DOW, false);
                     mAmPmHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE, false);
                     mClockHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_HIDE, false);
+                    mAlarmHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_ALARM_ICON_HIDE, false);
                     
                     mIconArea = (ViewGroup) liparam.view.findViewById(
                             liparam.res.getIdentifier("system_icon_area", "id", PACKAGE_NAME));
@@ -181,10 +197,32 @@ public class ModCenterClock {
                     XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
             final Class<?> tickerClass =
                     XposedHelpers.findClass(CLASS_TICKER, classLoader);
+            final Class<?> phoneStatusBarPolicyClass = 
+                    XposedHelpers.findClass(CLASS_PHONE_STATUSBAR_POLICY, classLoader);
 
             final Class<?>[] loadAnimParamArgs = new Class<?>[2];
             loadAnimParamArgs[0] = int.class;
             loadAnimParamArgs[1] = Animation.AnimationListener.class;
+
+            XposedBridge.hookAllConstructors(phoneStatusBarPolicyClass, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    mPhoneStatusBarPolicy = param.thisObject;
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(phoneStatusBarPolicyClass, 
+                    "updateAlarm", Intent.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    Object sbService = XposedHelpers.getObjectField(param.thisObject, "mService");
+                    if (sbService != null) {
+                        boolean alarmSet = ((Intent)param.args[0]).getBooleanExtra("alarmSet", false);
+                        XposedHelpers.callMethod(sbService, "setIconVisibility", "alarm_clock",
+                                (alarmSet && !mAlarmHide));
+                    }
+                }
+            });
 
             XposedHelpers.findAndHookMethod(phoneStatusBarClass, "makeStatusBarView", new XC_MethodHook() {
 

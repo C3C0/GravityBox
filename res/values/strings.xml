@@ -437,4 +437,7 @@
     <string name="pref_tm_navbar_launcher_title">Navbar transparency for launcher</string>
     <string name="pref_tm_navbar_lockscreen_title">Navbar transparency for lockscreen</string>
 
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">Hide alarm icon</string>
+
 </resources>

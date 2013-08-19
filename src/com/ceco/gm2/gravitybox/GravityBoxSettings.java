@@ -98,6 +98,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_STATUSBAR_CLOCK_DOW = "pref_statusbar_clock_dow";
     public static final String PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE = "pref_clock_ampm_hide";
     public static final String PREF_KEY_STATUSBAR_CLOCK_HIDE = "pref_clock_hide";
+    public static final String PREF_KEY_ALARM_ICON_HIDE = "pref_alarm_icon_hide";
     public static final String PREF_KEY_TM_STATUSBAR_LAUNCHER = "pref_tm_statusbar_launcher";
     public static final String PREF_KEY_TM_STATUSBAR_LOCKSCREEN = "pref_tm_statusbar_lockscreen";
     public static final String PREF_KEY_TM_NAVBAR_LAUNCHER = "pref_tm_navbar_launcher";
@@ -259,6 +260,7 @@ public class GravityBoxSettings extends Activity {
     public static final String EXTRA_CLOCK_DOW = "clockDow";
     public static final String EXTRA_AMPM_HIDE = "ampmHide";
     public static final String EXTRA_CLOCK_HIDE = "clockHide";
+    public static final String EXTRA_ALARM_HIDE = "alarmHide";
 
     public static final String ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED = "gravitybox.intent.action.SAFE_MEDIA_VOLUME_CHANGED";
     public static final String EXTRA_SAFE_MEDIA_VOLUME_ENABLED = "enabled";
@@ -689,6 +691,9 @@ public class GravityBoxSettings extends Activity {
             } else if (key.equals(PREF_KEY_STATUSBAR_CLOCK_HIDE)) {
                 intent.setAction(ACTION_PREF_CLOCK_CHANGED);
                 intent.putExtra(EXTRA_CLOCK_HIDE, prefs.getBoolean(PREF_KEY_STATUSBAR_CLOCK_HIDE, false));
+            } else if (key.equals(PREF_KEY_ALARM_ICON_HIDE)) {
+                intent.setAction(ACTION_PREF_CLOCK_CHANGED);
+                intent.putExtra(EXTRA_ALARM_HIDE, prefs.getBoolean(PREF_KEY_ALARM_ICON_HIDE, false));
             } else if (key.equals(PREF_KEY_SAFE_MEDIA_VOLUME)) {
                 intent.setAction(ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED);
                 intent.putExtra(EXTRA_SAFE_MEDIA_VOLUME_ENABLED,
