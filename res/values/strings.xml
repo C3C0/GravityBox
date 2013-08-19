@@ -427,4 +427,7 @@
     <!-- Clock: hide clock -->
     <string name="pref_clock_hide_title">Hide clock</string>
 
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">Trigger size</string>
+
 </resources>

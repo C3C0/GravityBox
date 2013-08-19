@@ -12,6 +12,7 @@ import android.database.ContentObserver;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.provider.Settings;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class ModPieControls {
     public static final String SETTING_PIE_SEARCH = "pie_search";
     public static final String SETTING_PIE_GRAVITY = "pie_gravity";
     public static final String SETTING_PIE_SIZE = "pie_size";
+    public static final String SETTING_PIE_TRIGGER_SIZE = "pie_trigger_size";
 
     private static PieController mPieController;
     private static PieLayout mPieContainer;
@@ -90,6 +92,10 @@ public class ModPieControls {
                         }
                     }
                     Settings.System.putInt(cr, SETTING_PIE_GRAVITY, tslots);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_TRIGGER_SIZE)) {
+                    int size = intent.getIntExtra(GravityBoxSettings.EXTRA_PIE_TRIGGER_SIZE, 5);
+                    Settings.System.putInt(cr, SETTING_PIE_TRIGGER_SIZE, size);
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_SIZE)) {
                     float size = (float) intent.getIntExtra(
@@ -280,6 +286,8 @@ public class ModPieControls {
                     SETTING_PIE_CONTROLS), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     SETTING_PIE_GRAVITY), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    SETTING_PIE_TRIGGER_SIZE), false, this);
         }
 
         @Override
@@ -368,11 +376,14 @@ public class ModPieControls {
 
     private static WindowManager.LayoutParams getPieTriggerLayoutParams(Position position) {
         final Resources res = mContext.getResources();
-        final Resources gbRes = mGbContext.getResources(); 
 
         int width = (int) (res.getDisplayMetrics().widthPixels * 0.8f);
         int height = (int) (res.getDisplayMetrics().heightPixels * 0.8f);
-        int triggerThickness = gbRes.getDimensionPixelSize(R.dimen.pie_trigger_height);
+        int triggerThickness = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, Settings.System.getInt(
+                        mContext.getContentResolver(), SETTING_PIE_TRIGGER_SIZE, 5), 
+                        res.getDisplayMetrics());
+        if (DEBUG) log("Pie trigger thickness: " + triggerThickness);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
                 (position == Position.TOP || position == Position.BOTTOM
                         ? width : triggerThickness),

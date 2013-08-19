@@ -232,6 +232,16 @@
                 android:defaultValue="@array/pie_control_trigger_position_default" />
 
             <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+                    android:key="pref_pie_control_trigger_size"
+                    android:title="@string/pie_control_trigger_size_title"
+                    minimum="2"
+                    maximum="15"
+                    interval="1"
+                    monitorBoxEnabled="true"
+                    monitorBoxUnit="px"
+                    android:defaultValue="5" />
+
+            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
                     android:key="pref_pie_control_size"
                     android:title="@string/pie_control_size_title"
                     minimum="500"
