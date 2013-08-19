@@ -7,11 +7,14 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.XModuleResources;
 import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
+import android.provider.Settings;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,6 +54,7 @@ public class ModStatusbarColor {
     private static Integer mClockDefaultColor;
     private static Integer mPercentageDefaultColor;
     private static boolean mRoamingIndicatorsDisabled;
+    private static TransparencyManager mTransparencyManager;
 
     static {
         mIconManager = new StatusBarIconManager(XModuleResources.createInstance(GravityBox.MODULE_PATH, null));
@@ -108,6 +112,22 @@ public class ModStatusbarColor {
                     log("Icon colors master switch set to: " + mIconColorEnabled);
                     if (!mIconColorEnabled) mIconManager.clearCache();
                     applyIconColors();
+                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_SB_LAUNCHER)) {
+                    Settings.System.putInt(context.getContentResolver(),
+                            TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LAUNCHER,
+                            intent.getIntExtra(GravityBoxSettings.EXTRA_TM_SB_LAUNCHER, 0));
+                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_SB_LOCKSCREEN)) {
+                    Settings.System.putInt(context.getContentResolver(),
+                            TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LOCKSCREEN,
+                            intent.getIntExtra(GravityBoxSettings.EXTRA_TM_SB_LOCKSCREEN, 0));
+                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_NB_LAUNCHER)) {
+                    Settings.System.putInt(context.getContentResolver(),
+                            TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LAUNCHER,
+                            intent.getIntExtra(GravityBoxSettings.EXTRA_TM_NB_LAUNCHER, 0));
+                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_NB_LOCKSCREEN)) {
+                    Settings.System.putInt(context.getContentResolver(),
+                            TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN,
+                            intent.getIntExtra(GravityBoxSettings.EXTRA_TM_NB_LOCKSCREEN, 0));
                 }
             }
 
@@ -140,8 +160,6 @@ public class ModStatusbarColor {
     };
 
     public static void initZygote() {
-        log("initZygote");
-
         try {
             final Class<?> phoneWindowManagerClass = XposedHelpers.findClass(CLASS_PHONE_WINDOW_MANAGER, null);
 
@@ -165,8 +183,6 @@ public class ModStatusbarColor {
     }
 
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
-        log("init");
-
         try {
             final Class<?> panelBarClass = XposedHelpers.findClass(CLASS_PANEL_BAR, classLoader);
             final Class<?> phoneStatusbarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
@@ -212,11 +228,47 @@ public class ModStatusbarColor {
 
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                    mTransparencyManager = new TransparencyManager(context);
+                    mTransparencyManager.setStatusbar(XposedHelpers.getObjectField(param.thisObject, "mStatusBarView"));
+                    mTransparencyManager.setNavbar(XposedHelpers.getObjectField(
+                            param.thisObject, "mNavigationBarView"));
+
                     mBatteryController = XposedHelpers.getObjectField(param.thisObject, "mBatteryController");
                     prefs.reload();
                     int bgColor = prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK);
                     setStatusbarBgColor(bgColor);
                     applyIconColors();
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(phoneStatusbarClass, "getNavigationBarLayoutParams", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    WindowManager.LayoutParams lp = (WindowManager.LayoutParams) param.getResult();
+                    if (lp != null) {
+                        lp.format = PixelFormat.TRANSLUCENT;
+                        param.setResult(lp);
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(phoneStatusbarClass, "disable", int.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (mTransparencyManager != null) {
+                        mTransparencyManager.update();
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(phoneStatusbarClass, "topAppWindowChanged",
+                    boolean.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (mTransparencyManager != null) {
+                        mTransparencyManager.update();
+                    }
                 }
             });
 
