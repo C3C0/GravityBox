@@ -335,7 +335,7 @@
 
     <!-- Disable roaming indicators -->
     <string name="pref_disable_roaming_indicators_title">Disattiva indicatori roaming</string>
-    <string name="pref_disable_roaming_indicators_summary">Se disabilitato, l\'indicatore R nons arà visibile durante il roaming. Usare con attenzione.</string>
+    <string name="pref_disable_roaming_indicators_summary">Se disabilitato, l\'indicatore R non sarà visibile durante il roaming. Usare con attenzione.</string>
 
     <!-- Battery status in pie controls -->
     <string name="pie_battery_status_charging">In carica (<xliff:g id="percent">%d</xliff:g>%%)</string>
@@ -376,7 +376,7 @@
 
     <!-- Disable hardware keys for pie -->
     <string name="pref_hwkeys_disable_title">Disabilita tasti hardware</string>
-    <string name="pref_hwkeys_disable_summary">Disabilita MENU, BACK, HOME se Pie Controls attivo. Le azioni dei tasti HW  continueranno a funzionare. (for telefoni che hanno tasti HW)</string>
+    <string name="pref_hwkeys_disable_summary">Disabilita MENU, BACK, HOME se Pie Controls attivo. Le azioni dei tasti HW  continueranno a funzionare. (per telefoni che hanno tasti HW)</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Usa il tema Holo Dark</string>
@@ -413,5 +413,36 @@
     <string name="qs_tile_gps_enabled">GPS acceso</string>
     <string name="qs_tile_gps_disabled">GPS spento</string>
 
+<!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">Mostra sempre tasto Menu</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">Modo suoneria</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">Impostazioni orologio</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">Nascondi AM/PM</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">Nascondi orologio</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">Dimensione trigger</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">Impostazioni trasparenza</string>
+    <string name="pref_tm_statusbar_launcher_title">Trasparenza della Statusbar per launcher</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Trasparenza della Statusbar per lockscreen</string>
+    <string name="pref_tm_navbar_launcher_title">Trasparenza Navbar per launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Trasparenza Navbar per lockscreen</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">Nascondi icona allarme</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Modalità attenuazione luminosità</string>
+    <string name="pref_screen_dim_level_summary">Imposta luminosità per attenuazione schermo - quando lo schermo sta per spegnersi (necessita riavvio)</string>
 
 </resources>
