@@ -387,4 +387,57 @@
     <!-- Clear all recents top margin -->
     <string name="pref_recent_clear_margin_top_title">Prispôsobiť horný okraj</string>
 
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">Vypnúť roaming varovania</string>
+    <string name="pref_roaming_warning_disable_summary">Vypne zobrazovanie varovaní pri posielaní správ a volaní v roamingu</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">Hľadať</string>
+    <string name="app_picker_none">(Žiadna)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">Quick App</string>
+    <string name="pref_cat_quickapp_tile_title">Nastavenia QuickApp dlaždice</string>
+    <string name="pref_quickapp_default_title">Hlavná aplikácia</string>
+    <string name="pref_quickapp_slot1_title">Dlhé stlačenie - app slot 1</string>
+    <string name="pref_quickapp_slot2_title">Dlhé stlačenie - app slot 2</string>
+    <string name="pref_quickapp_slot3_title">Dlhé stlačenie - app slot 3</string>
+    <string name="pref_quickapp_slot4_title">Dlhé stlačenie - app slot 4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS zap</string>
+    <string name="qs_tile_gps_disabled">GPS vyp</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">Vždy zobraziť menu tlačidlo</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">Režim zvonenia</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">Nastavenia hodín</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">Skryť AM/PM</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">Skryť hodiny</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">Veľkosť aktivátora</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">Nastavenia priehľadnosti</string>
+    <string name="pref_tm_statusbar_launcher_title">Stavového riadku pre launcher</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Stavového riadku pre lockscreen</string>
+    <string name="pref_tm_navbar_launcher_title">Navigačnej lišty pre launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Navigačnej lišty pre lockscreen</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">Skryť ikonu alarmu</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Úroveň zatmavenia obrazovky</string>
+    <string name="pref_screen_dim_level_summary">Úroveň jasu pre zatmavenie obrazovky tesne pred jej vypnutím (vyžaduje reštart)</string>
+
 </resources>
