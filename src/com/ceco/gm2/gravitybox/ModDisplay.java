@@ -7,7 +7,9 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.XResources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.os.ResultReceiver;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -36,7 +38,6 @@ public class ModDisplay {
     private static String mButtonBacklightMode;
     private static boolean mButtonBacklightNotif;
     private static PowerManager mPm;
-    private static boolean mPendingNotif = false;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -76,6 +77,44 @@ public class ModDisplay {
             }
         }
         
+    };
+
+    private static boolean mPendingNotif = false;
+    private static Object mLight;
+    private static Handler mHandler;
+    private static int mPendingNotifColor = 0;
+    private static WakeLock mWakeLock;
+    private static Runnable mPendingNotifRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mLight == null) return;
+            try {
+                Object ls = XposedHelpers.getSurroundingThis(mLight);
+                int np = XposedHelpers.getIntField(ls, "mNativePointer");
+                if (!mPendingNotif) {
+                    mHandler.removeCallbacks(this);
+                    mPendingNotifColor = 
+                            mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON) 
+                                    && mPm.isScreenOn() ? 0xff6e6e6e : 0;
+                    XposedHelpers.callMethod(ls, "setLight_native",
+                            np, LIGHT_ID_BUTTONS, mPendingNotifColor, 0, 0, 0, 0);
+                } else {
+                    if (mPendingNotifColor == 0) {
+                        mPendingNotifColor = 0xff6e6e6e;
+                        XposedHelpers.callMethod(ls, "setLight_native",
+                            np, LIGHT_ID_BUTTONS, mPendingNotifColor, 0, 0, 0, 0);
+                        mHandler.postDelayed(mPendingNotifRunnable, 200);
+                    } else {
+                        mPendingNotifColor = 0;
+                        XposedHelpers.callMethod(ls, "setLight_native",
+                            np, LIGHT_ID_BUTTONS, mPendingNotifColor, 0, 0, 0, 0);
+                        mHandler.postDelayed(mPendingNotifRunnable, 3000);
+                    }
+                }
+            } catch(Exception e) {
+                XposedBridge.log(e);
+            }
+        }
     };
 
     public static void initZygote(final XSharedPreferences prefs) {
@@ -160,6 +199,8 @@ public class ModDisplay {
 
                 @Override
                 protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (mHandler == null) mHandler = new Handler();
+                    if (mLight == null) mLight = param.thisObject;
                     int id = XposedHelpers.getIntField(param.thisObject, "mId");
                     if (DEBUG ) log("lightId=" + id + "; color=" + param.args[0] + 
                             "; mode=" + param.args[1] + "; " + "onMS=" + param.args[2] + 
@@ -171,8 +212,8 @@ public class ModDisplay {
                         mPm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
                     }
 
-                    if (id == LIGHT_ID_BUTTONS) {
-                        if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_DISABLE) && !mPendingNotif) {
+                    if (id == LIGHT_ID_BUTTONS && !mPendingNotif) {
+                        if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_DISABLE)) {
                             param.args[0] = param.args[1] = param.args[2] = param.args[3] = param.args[4] = 0;
                             if (DEBUG) log("Button backlight disabled. Turning off");
                             return;
@@ -186,34 +227,24 @@ public class ModDisplay {
                     }
 
                     if (mButtonBacklightNotif) {
-                        int color = -1;
-                        if (mPendingNotif && mPm.isScreenOn()) {
-                            mPendingNotif = false;
-                            log("Notification pending and screen is on. Canceling pending notification.");
-                            if (!mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)) {
-                                log("Turning off button backlight");
-                                color = 0;
-                            }
-                        } else if (id == LIGHT_ID_NOTIFICATIONS || id == LIGHT_ID_ATTENTION) {
-                            if ((Integer)param.args[0] != 0 && !mPm.isScreenOn()) {
-                                mPendingNotif = true;
-                                log("New notification and screen is off. Turning on button backlight");
-                                color = (Integer)param.args[0];
-                            } else {
-                                mPendingNotif = false;
-                                log("Notification dismissed or screen on");
-                                if (!mPm.isScreenOn() ||
-                                        !mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)) {
-                                    color = 0;
-                                    log("Turning off button backlight");
+                        if (id == LIGHT_ID_NOTIFICATIONS || id == LIGHT_ID_ATTENTION) {
+                            if ((Integer)param.args[0] != 0) {
+                                if (!mPendingNotif) {
+                                    log("New notification. Entering PendingNotif state");
+                                    mPendingNotif = true;
+                                    mWakeLock = mPm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "GbModDisplay");
+                                    mWakeLock.acquire(3600000);
+                                    mHandler.removeCallbacks(mPendingNotifRunnable);
+                                    mHandler.post(mPendingNotifRunnable);
                                 }
+                            } else if (mPendingNotif) {
+                                log("Notification dismissed. Leaving PendingNotif state");
+                                mPendingNotif = false;
+                                if (mWakeLock.isHeld()) {
+                                    mWakeLock.release();
+                                }
+                                mWakeLock = null;
                             }
-                        }
-                        if (color != -1) {
-                            Object ls = XposedHelpers.getSurroundingThis(param.thisObject);
-                            int np = XposedHelpers.getIntField(ls, "mNativePointer");
-                            XposedHelpers.callMethod(ls, "setLight_native",
-                                    np, LIGHT_ID_BUTTONS, color, 0, 0, 0, 0);
                         }
                     }
                 }
