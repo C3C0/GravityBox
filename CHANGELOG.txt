@@ -1,3 +1,8 @@
+Changelog 2.2.1 - 20/08/2013
+--------------------------------------
+- fixed issues introduced in 2.2.0 affecting non-MTK devices
+- updated Italian translations (thanks to pitone02)
+
 Changelog 2.2.0 - 20/08/2013
 --------------------------------------
 - Added QuickSettings QuickApp tile:
