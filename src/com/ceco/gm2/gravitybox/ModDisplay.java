@@ -123,20 +123,20 @@ public class ModDisplay {
                     XposedHelpers.findClass(CLASS_DISPLAY_POWER_CONTROLLER, null);
             final Class<?> classLight = XposedHelpers.findClass(CLASS_LIGHT_SERVICE_LIGHT, null);
 
-            String brightnessMin = prefs.getString(GravityBoxSettings.PREF_KEY_BRIGHTNESS_MIN, "20");
+            int brightnessMin = prefs.getInt(GravityBoxSettings.PREF_KEY_BRIGHTNESS_MIN, 20);
+            XResources.setSystemWideReplacement(
+                    "android", "integer", "config_screenBrightnessSettingMinimum", brightnessMin);
+            log("Minimum brightness value set to: " + brightnessMin);
+
+            int screenDim = prefs.getInt(GravityBoxSettings.PREF_KEY_SCREEN_DIM_LEVEL, 10);
+            XResources.setSystemWideReplacement(
+                    "android", "integer", "config_screenBrightnessDim", screenDim);
+            log("Screen dim level set to: " + screenDim);
+
             mButtonBacklightMode = prefs.getString(
                     GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_MODE, GravityBoxSettings.BB_MODE_DEFAULT);
             mButtonBacklightNotif = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS, false);
-
-            try {
-                int bMin = Integer.valueOf(brightnessMin);
-                XResources.setSystemWideReplacement(
-                        "android", "integer", "config_screenBrightnessSettingMinimum", bMin);
-                log("Minimum brightness value set to: " + bMin);
-            } catch (NumberFormatException e) {
-                XposedBridge.log(e);
-            }
 
             XposedBridge.hookAllConstructors(classDisplayPowerController, new XC_MethodHook() {
                 @Override

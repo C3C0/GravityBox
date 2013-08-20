@@ -39,10 +39,19 @@
             android:ellipsize="marquee"
             android:fadingEdge="horizontal" />
 
+        <TextView android:id="@+android:id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@android:id/title"
+            android:layout_alignStart="@android:id/title"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorSecondary"
+            android:maxLines="4" />
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@android:id/title"
+            android:layout_below="@android:id/summary"
             android:layout_alignLeft="@android:id/title">
             <TextView
                 android:id="@+id/monitor_box"

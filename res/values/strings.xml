@@ -440,4 +440,8 @@
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Hide alarm icon</string>
 
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Screen dim level</string>
+    <string name="pref_screen_dim_level_summary">Amount of brightness for dim state - when screen is about to be turned off (requires reboot)</string>
+
 </resources>

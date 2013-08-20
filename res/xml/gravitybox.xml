@@ -402,13 +402,25 @@
         android:summary="@string/pref_cat_display_summary">
         
 
-        <EditTextPreference
-            android:key="pref_brightness_min"
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+            android:key="pref_brightness_min2"
             android:title="@string/pref_brightness_min_title"
             android:summary="@string/pref_brightness_min_summary"
-            android:dialogMessage="@string/pref_brightness_dlg_msg"
-            android:inputType="number"
+            minimum="10"
+            maximum="80"
+            interval="1"
+            monitorBoxEnabled="true"
             android:defaultValue="20" />
+
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+            android:key="pref_screen_dim_level"
+            android:title="@string/pref_screen_dim_level_title"
+            android:summary="@string/pref_screen_dim_level_summary"
+            minimum="5"
+            maximum="15"
+            interval="1"
+            monitorBoxEnabled="true"
+            android:defaultValue="10" />
 
         <com.ceco.gm2.gravitybox.preference.AutoBrightnessDialogPreference
             android:key="pref_autobrightness" 

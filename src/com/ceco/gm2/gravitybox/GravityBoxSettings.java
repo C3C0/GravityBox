@@ -131,7 +131,8 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_FLASHING_LED_DISABLE = "pref_flashing_led_disable";
     public static final String PREF_KEY_CHARGING_LED_DISABLE = "pref_charging_led_disable";
 
-    public static final String PREF_KEY_BRIGHTNESS_MIN = "pref_brightness_min";
+    public static final String PREF_KEY_BRIGHTNESS_MIN = "pref_brightness_min2";
+    public static final String PREF_KEY_SCREEN_DIM_LEVEL = "pref_screen_dim_level";
     public static final String PREF_KEY_AUTOBRIGHTNESS = "pref_autobrightness";
     public static final String PREF_KEY_HOLO_BG_SOLID_BLACK = "pref_holo_bg_solid_black";
     public static final String PREF_KEY_HOLO_BG_DITHER = "pref_holo_bg_dither";
@@ -278,7 +279,8 @@ public class GravityBoxSettings extends Activity {
             PREF_KEY_MUSIC_VOLUME_STEPS,
             PREF_KEY_HOLO_BG_SOLID_BLACK,
             PREF_KEY_NAVBAR_DISABLE,
-            PREF_KEY_HOLO_BG_DITHER
+            PREF_KEY_HOLO_BG_DITHER,
+            PREF_KEY_SCREEN_DIM_LEVEL
     ));
 
     @Override
@@ -316,7 +318,6 @@ public class GravityBoxSettings extends Activity {
         private File wallpaperTemporary;
         private File notifBgImagePortrait;
         private File notifBgImageLandscape;
-        private EditTextPreference mPrefBrightnessMin;
         private ListPreference mPrefHwKeyMenuLongpress;
         private ListPreference mPrefHwKeyMenuDoubletap;
         private ListPreference mPrefHwKeyBackLongpress;
@@ -400,8 +401,6 @@ public class GravityBoxSettings extends Activity {
             wallpaperTemporary = new File(getActivity().getCacheDir() + "/lockwallpaper.tmp");
             notifBgImagePortrait = new File(getActivity().getFilesDir() + "/notifwallpaper");
             notifBgImageLandscape = new File(getActivity().getFilesDir() + "/notifwallpaper_landscape");
-
-            mPrefBrightnessMin = (EditTextPreference) findPreference(PREF_KEY_BRIGHTNESS_MIN);
 
             mPrefHwKeyMenuLongpress = (ListPreference) findPreference(PREF_KEY_HWKEY_MENU_LONGPRESS);
             mPrefHwKeyMenuDoubletap = (ListPreference) findPreference(PREF_KEY_HWKEY_MENU_DOUBLETAP);
@@ -821,27 +820,6 @@ public class GravityBoxSettings extends Activity {
                 });
                 mDialog = builder.create();
                 mDialog.show();
-            }
-
-            if (key.equals(PREF_KEY_BRIGHTNESS_MIN)) {
-                String strVal = prefs.getString(PREF_KEY_BRIGHTNESS_MIN, "20");
-                try {
-                    int val = Integer.valueOf(strVal);
-                    int newVal = val;
-                    if (val < 10) newVal = 10;
-                    if (val > 80) newVal = 80;
-                    if (val != newVal) {
-                        Editor editor = prefs.edit();
-                        editor.putString(PREF_KEY_BRIGHTNESS_MIN, String.valueOf(newVal));
-                        editor.commit();
-                        mPrefBrightnessMin.setText(String.valueOf(newVal));
-                    }
-                } catch (NumberFormatException e) {
-                    Editor editor = prefs.edit();
-                    editor.putString(PREF_KEY_BRIGHTNESS_MIN, "20");
-                    editor.commit();
-                    mPrefBrightnessMin.setText("20");
-                }
             }
 
             if (rebootKeys.contains(key))
