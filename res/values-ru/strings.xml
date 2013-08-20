@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
 
     <string name="battery_style_title">Вид индикатора заряда</string>	
     <string name="battery_style_stock">Стоковый индикатор</string>
-    <string name="battery_style_circle">Круглый индикатор с процентами</string>
+    <string name="battery_style_circle">Круглый индикатор</string>
+    <string name="battery_style_circle_percent">Круглый индикатор с процентами</string>
     <string name="battery_style_percent">Индикатор с процентами</string>
     <string name="battery_style_none">Не показывать</string>
 
@@ -38,7 +39,6 @@
     <string name="vol_key_cursor_control_on_reverse">Звук вверх/вниз для перемещения курсора вправо/влево</string>
 
     <string name="recents_clear_all_title">Закрыть все текущие задачи</string>
-    <string name="recents_clear_all_summary">Включает кнопку для закрытия всех текущих задач в диалоге \"Недавние приложения\"</string>
 
     <string name="fix_datetime_crash_title">Исправление падения диалога Дата и время</string>
     <string name="fix_datetime_crash_summary">Включить, если при входе в настройки Даты и времени происходит падение (Необходима перезагрузка)</string>
@@ -95,6 +95,7 @@
     <string name="qs_tile_gravitybox">GravityBox</string>
     <string name="qs_tile_sleep">Сон</string>
     <string name="qs_tile_quickrecord">Быстрая запись</string>
+    <string name="qs_tile_settings">Настройки</string>
 
      <!-- Color Picker -->
     <string name="dialog_color_picker">Выбор цвета</string>
@@ -132,11 +133,11 @@
     <string name="reboot_confirm">Телефон будет перезагружен</string>
     <string name="reboot_confirm_recovery">Телефон будет перезагружен в recovery</string>
     
-     <!-- CRT effect screen off animation -->
+    <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT-эффект выключения экрана</string>
     <string name="crt_off_effect_summary">Позволяет включить анимацию, имитирующую выключение старых ЭЛТ-мониторов, при выключении экрана</string>
         
-        <!-- Engineering mode shortcut -->
+    <!-- Engineering mode shortcut -->
     <string name="engineering_mode_title">Инженерное меню</string>
     <string name="engineering_mode_summary">Позволяет запустить Инженерное меню</string>
 
@@ -315,4 +316,133 @@
     <!-- QuickSettings management category -->
     <string name="pref_cat_statusbar_qs_title">Управление Быстрыми настройками</string>
     
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">Notification drawer style</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">Фон шторки уведомлений</string>
+    <string name="notif_background_default">Стандартный фон</string>
+    <string name="notif_background_color_fill">Заполнение цветом</string>
+    <string name="notif_background_custom_image">Пользовательское изображение</string>
+    <string name="pref_notif_color_title">Задать цвет фона</string>
+    <string name="pref_notif_image_portrait_title">Задать портретную картинку</string>
+    <string name="pref_notif_image_landscape_title">Задать ландшафтную картинку</string>
+    <string name="pref_notif_background_alpha_title">Прозрачность фона</string>
+    <string name="pref_notif_color_mode_title">Режим фона</string>
+    <string name="color_fill_overlay">Передний план</string>
+    <string name="color_fill_underlay">Задний план</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">Отключить индикатор роуминга</string>
+    <string name="pref_disable_roaming_indicators_summary">При отключении R-индикатор не будет отображаться. Используйте с осторожностью.</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Зарядка (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Заряжен</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% осталось</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Нет сети</string>
+    <string name="pie_phone_status_airplane_mode">Режим полета</string>
+    <string name="pie_phone_status_emergency_only">Только экстренные</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">Pie controls</string>
+    <string name="pie_control_enable_title">Включить pie controls</string>
+    <string name="pie_control_search_title">Включить кнопку поиска</string>
+    <string name="pie_control_size_title">Размер навигационных кнопок</string>
+    <string name="pie_control_trigger_positions_title">Позиция переключателей</string>
+    <string name="pie_control_trigger_left">Левая граница</string>
+    <string name="pie_control_trigger_bottom">Нижняя граница</string>
+    <string name="pie_control_trigger_right">Правая граница</string>
+    <string name="pie_control_trigger_top">Верхняя граница</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">Режим подсветки клавиш</string>
+    <string name="button_backlight_mode_default">Стандартный</string>
+    <string name="button_backlight_mode_disable">Отключить подсветку</string>
+    <string name="button_backlight_mode_always_on">Включать всегда, когда включен экран</string>
+    <string name="pref_button_backlight_notifications_title">Уведомления подсветкой клавиш</string>
+    <string name="pref_button_backlight_notifications_summary">ЭКСПЕРИМЕНТАЛЬНО! Моргающая подсветка клавиш при уведомлениях. Использовать только в сулчае отсутствия LED индикатора. Может привести к ухудшению жизни батареи.</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">Скрыть панель навигации</string>
+    <string name="pref_navbar_disable_summary">Скрывает панель навигации, когда включен Pie control (для устройств с программными кнопками навигации, необходима перезагрузка)</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">Сглаженный Holo фон</string>
+    <string name="pref_holo_bg_dither_summary">Заменяет стандартный фон на сглаженный для избежания неплавного градиента (необходима перезагрузка)</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">Отключить железные кнопки</string>
+    <string name="pref_hwkeys_disable_summary">Отключает кнопки НАЗАД, ДОМОЙ, МЕНЮ при включенном Pie Controls. Нестандартные действия этих кнопок по прежнему будут работать. (Для устройств с железными кнопками)</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">Изпользовать тему Holo Dark</string>
+    <string name="pref_gb_theme_dark_summary">Переключает тему интерфейса GravityBox со светлой на темную</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">Выключено</string>
+    <string name="recent_clear_top_left">Сверху слева</string>
+    <string name="recent_clear_top_right">Сверху справа</string>
+    <string name="recent_clear_bottom_left">Снизу слева</string>
+    <string name="recent_clear_bottom_right">Снизу справа</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Настроить отступ сверху</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">Отключить предупреждения о роуминге</string>
+    <string name="pref_roaming_warning_disable_summary">Отключить предупреждения о роуминге при отправке сообщений или совершении звонков в роуминге</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">Поиск</string>
+    <string name="app_picker_none">(нет)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">Быстрый запуск</string>
+    <string name="pref_cat_quickapp_tile_title">Настрйоки тайла Быстрого запуска</string>
+    <string name="pref_quickapp_default_title">Основное приложение</string>
+    <string name="pref_quickapp_slot1_title">Долгий тап, слот 1</string>
+    <string name="pref_quickapp_slot2_title">Долгий тап, слот 2</string>
+    <string name="pref_quickapp_slot3_title">Долгий тап, слот 3</string>
+    <string name="pref_quickapp_slot4_title">Долгий тап, слот 4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS вкл</string>
+    <string name="qs_tile_gps_disabled">GPS выкл</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">Всегда показывать кнопку меню</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">Режим звонка</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">Настройки часов</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">Прятать AM/PM</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">Прятать часы</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">Размер переключателей</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">Управление прозрачностью</string>
+    <string name="pref_tm_statusbar_launcher_title">Прозрачность статусбара для ланчера</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Прозрачность статусбара для экарна блокировки</string>
+    <string name="pref_tm_navbar_launcher_title">Прозрачность панели навигации для ланчера</string>
+    <string name="pref_tm_navbar_lockscreen_title">Прозрачность панели навигации для экарна блокировки</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">Спрятать значок будильника</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Уровень затухания подсветки</string>
+    <string name="pref_screen_dim_level_summary">Яркость для приглушенной подсветки - когда экран почти выключился (необходима перезагрузка)</string>
+
 </resources>
+
