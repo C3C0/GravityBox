@@ -2,6 +2,7 @@ Changelog 2.2.1 - 20/08/2013
 --------------------------------------
 - fixed issues introduced in 2.2.0 affecting non-MTK devices
 - updated Italian translations (thanks to pitone02)
+- added German translations - not complete yet (thanks to Napzter)
 
 Changelog 2.2.0 - 20/08/2013
 --------------------------------------
