@@ -1,10 +1,7 @@
 package com.ceco.gm2.gravitybox;
 
+import de.robv.android.xposed.XposedBridge;
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
@@ -65,7 +62,12 @@ public class Utils {
     }
     
     public static boolean hasGeminiSupport() {
-    	Class<?> classKeyguardUtils = findClass("com.android.internal.policy.impl.keyguard.KeyguardUtils", null);
-    	return (isMtkDevice() && (Boolean) callStaticMethod(classKeyguardUtils, "isGemini"));
+        try {
+            Class<?> classKeyguardUtils = findClass("com.android.internal.policy.impl.keyguard.KeyguardUtils", null);
+            return (isMtkDevice() && (Boolean) callStaticMethod(classKeyguardUtils, "isGemini"));
+        } catch (Throwable t) {
+            XposedBridge.log("Utils: hasGeminiSupport check failed. Assuming device has no Gemini support");
+            return false;
+        }
     }
 }
