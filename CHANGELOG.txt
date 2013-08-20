@@ -1,3 +1,33 @@
+Changelog 2.2.0 - 20/08/2013
+--------------------------------------
+- Added QuickSettings QuickApp tile:
+--- option to set main application to be launched on touch
+--- option to set another 4 apps to be launched from dialog displayed on long-touch
+- Added QuickSettings GPS on/off tile (for non-MTK devices)
+- Added QuickSettings Ringer Mode tile (for non-MTK devices)
+- Pie controls:
+--- option to always show menu button
+--- option to set trigger size
+- Clock settings
+--- option to completely turn off am/pm
+--- option to hide alarm icon
+--- option to hide clock
+- Transparency management. Allows to:
+--- set transparency for status bar for launcher and lockscreen independently
+--- set transparency for navigation bar for launcher and lockscreen independently
+--- uses default system transparency when not in lockscreen nor launcher
+- Hide clear all recents button when there are no recent tasks
+- Improved button backlight notifications
+--- makes button backlight blink
+--- now also works for missed calls
+--- requires partial wakelock which is held for max. 1 hour (may consume battery)
+- Option to set screen dim level
+- Use sliders for minimum brihtness and screen dim level settings
+- Improved compatibility with MTK devices that have no Gemini support (thanks to bgcngm)
+- updated French translations (thanks to ch-vox)
+- updated Italian translations (thanks to pitone02)
+- updated Slovak and Czech translations
+
 Changelog 2.1.1 - 15/08/2013
 --------------------------------------
 - fixed Pie compatibility issues for Android 4.3
