@@ -1,5 +1,7 @@
 package com.ceco.gm2.gravitybox;
 
+import java.util.List;
+
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Handler;
@@ -49,9 +51,10 @@ public class ModClearAllRecents {
                             return;
                         }
 
-                        if (gravity == GravityBoxSettings.RECENT_CLEAR_OFF) {
-                            iv.setVisibility(View.GONE);
-                        } else {
+                        List<?> recentTaskDescriptions = (List<?>) XposedHelpers.getObjectField(
+                                param.thisObject, "mRecentTaskDescriptions");
+                        boolean visible = (recentTaskDescriptions != null && recentTaskDescriptions.size() > 0);
+                        if (gravity != GravityBoxSettings.RECENT_CLEAR_OFF && visible) {
                             FrameLayout.LayoutParams lparams = (FrameLayout.LayoutParams) iv.getLayoutParams();
                             lparams.gravity = gravity;
                             if ((gravity & Gravity.TOP) != 0) {
@@ -65,6 +68,8 @@ public class ModClearAllRecents {
                             }
                             iv.setLayoutParams(lparams);
                             iv.setVisibility(View.VISIBLE);
+                        } else {
+                            iv.setVisibility(View.GONE);
                         }
                     }
                 }
@@ -105,6 +110,7 @@ public class ModClearAllRecents {
                             mRecentsContainer.removeViewInLayout(null);
                         }
                     });
+                    imgView.setVisibility(View.GONE);
                     vg.addView(imgView);
                     log("clearAllButton ImageView injected");
                 }
