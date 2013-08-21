@@ -100,7 +100,7 @@ public class ModCenterClock {
 
     public static void initResources(final XSharedPreferences prefs, final InitPackageResourcesParam resparam) {
         try {
-            String layout = Utils.isMtkDevice() ? "gemini_super_status_bar" : "super_status_bar";
+            String layout = Utils.hasGeminiSupport() ? "gemini_super_status_bar" : "super_status_bar";
             resparam.res.hookLayout(PACKAGE_NAME, "layout", layout, new XC_LayoutInflated() {
 
                 @Override
