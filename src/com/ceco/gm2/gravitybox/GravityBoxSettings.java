@@ -330,6 +330,8 @@ public class GravityBoxSettings extends Activity {
         private PreferenceScreen mPrefCatFixes;
         private PreferenceScreen mPrefCatStatusbar;
         private PreferenceScreen mPrefCatStatusbarQs;
+        private CheckBoxPreference mPrefAutoSwitchQs;
+        private ListPreference mPrefQuickPulldown;
         private PreferenceScreen mPrefCatNotifDrawerStyle;
         private ListPreference mPrefNotifBackground;
         private ColorPickerPreference mPrefNotifColor;
@@ -417,6 +419,8 @@ public class GravityBoxSettings extends Activity {
             mPrefCatFixes = (PreferenceScreen) findPreference(PREF_CAT_KEY_FIXES);
             mPrefCatStatusbar = (PreferenceScreen) findPreference(PREF_CAT_KEY_STATUSBAR);
             mPrefCatStatusbarQs = (PreferenceScreen) findPreference(PREF_CAT_KEY_STATUSBAR_QS);
+            mPrefAutoSwitchQs = (CheckBoxPreference) findPreference(PREF_KEY_QUICK_SETTINGS_AUTOSWITCH);
+            mPrefQuickPulldown = (ListPreference) findPreference(PREF_KEY_QUICK_PULLDOWN);
 
             mPrefCatNotifDrawerStyle = (PreferenceScreen) findPreference(PREF_CAT_KEY_NOTIF_DRAWER_STYLE);
             mPrefNotifBackground = (ListPreference) findPreference(PREF_KEY_NOTIF_BACKGROUND);
@@ -440,6 +444,12 @@ public class GravityBoxSettings extends Activity {
 
             mPrefCatPhone = (PreferenceScreen) findPreference(PREF_CAT_KEY_PHONE);
             mPrefRoamingWarningDisable = (CheckBoxPreference) findPreference(PREF_KEY_ROAMING_WARNING_DISABLE);
+
+            // Remove Phone specific preferences on Tablet devices
+            if (Utils.isTablet(getActivity())) {
+            	mPrefCatStatusbarQs.removePreference(mPrefAutoSwitchQs);
+            	mPrefCatStatusbarQs.removePreference(mPrefQuickPulldown);
+            }
 
             // Remove MTK specific preferences for non-mtk device
             if (!Utils.isMtkDevice()) {
