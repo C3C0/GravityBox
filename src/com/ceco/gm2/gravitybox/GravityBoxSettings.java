@@ -116,7 +116,7 @@ public class GravityBoxSettings extends Activity {
     public static final String APP_DUAL_SIM_RINGER = "dualsim.ringer";
     public static final String APP_DUAL_SIM_RINGER_CLASS = "dualsim.ringer.main";
 
-    public static final String PREF_CAT_KEY_LOCKSCREEN_BACCKGROUND = "pref_cat_lockscreen_background";
+    public static final String PREF_CAT_KEY_LOCKSCREEN_BACKGROUND = "pref_cat_lockscreen_background";
     public static final String PREF_KEY_LOCKSCREEN_BACKGROUND = "pref_lockscreen_background";
     public static final String PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR = "pref_lockscreen_bg_color";
     public static final String PREF_KEY_LOCKSCREEN_BACKGROUND_IMAGE = "pref_lockscreen_bg_image";
@@ -392,7 +392,7 @@ public class GravityBoxSettings extends Activity {
             }
 
             mPrefCatLockscreenBg = 
-                    (PreferenceCategory) findPreference(PREF_CAT_KEY_LOCKSCREEN_BACCKGROUND);
+                    (PreferenceCategory) findPreference(PREF_CAT_KEY_LOCKSCREEN_BACKGROUND);
             mPrefLockscreenBg = (ListPreference) findPreference(PREF_KEY_LOCKSCREEN_BACKGROUND);
             mPrefLockscreenBgColor = 
                     (ColorPickerPreference) findPreference(PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR);
@@ -451,7 +451,7 @@ public class GravityBoxSettings extends Activity {
             	mPrefCatStatusbarQs.removePreference(mPrefQuickPulldown);
             }
 
-            // Remove MTK specific preferences for non-mtk device
+            // Remove MTK specific preferences for non-MTK devices
             if (!Utils.isMtkDevice()) {
                 getPreferenceScreen().removePreference(mPrefCatFixes);
                 mPrefCatStatusbar.removePreference(mSignalIconAutohide);
