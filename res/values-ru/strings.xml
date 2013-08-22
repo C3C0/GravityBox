@@ -317,7 +317,7 @@
     <string name="pref_cat_statusbar_qs_title">Управление Быстрыми настройками</string>
     
     <!-- Notification drawer style -->
-    <string name="pref_cat_notification_drawer_style_title">Notification drawer style</string>
+    <string name="pref_cat_notification_drawer_style_title">Стиль шторки уведомлений</string>
 
     <!-- Notification drawer background -->
     <string name="pref_notif_background_title">Фон шторки уведомлений</string>
@@ -347,8 +347,8 @@
     <string name="pie_phone_status_emergency_only">Только экстренные</string>
 
     <!-- Pie Controls settings -->
-    <string name="pie_control_title">Pie controls</string>
-    <string name="pie_control_enable_title">Включить pie controls</string>
+    <string name="pie_control_title">Веерное меню</string>
+    <string name="pie_control_enable_title">Включить веерное меню</string>
     <string name="pie_control_search_title">Включить кнопку поиска</string>
     <string name="pie_control_size_title">Размер навигационных кнопок</string>
     <string name="pie_control_trigger_positions_title">Позиция переключателей</string>
@@ -367,7 +367,7 @@
 
     <!-- Hide navigation bar for pie -->
     <string name="pref_navbar_disable_title">Скрыть панель навигации</string>
-    <string name="pref_navbar_disable_summary">Скрывает панель навигации, когда включен Pie control (для устройств с программными кнопками навигации, необходима перезагрузка)</string>
+    <string name="pref_navbar_disable_summary">Скрывает панель навигации, когда включено веерное меню (для устройств с программными кнопками навигации, необходима перезагрузка)</string>
 
     <!--  Dithered Holo background -->
     <string name="pref_holo_bg_dither_title">Сглаженный Holo фон</string>
@@ -375,7 +375,7 @@
 
     <!-- Disable hardware keys for pie -->
     <string name="pref_hwkeys_disable_title">Отключить железные кнопки</string>
-    <string name="pref_hwkeys_disable_summary">Отключает кнопки НАЗАД, ДОМОЙ, МЕНЮ при включенном Pie Controls. Нестандартные действия этих кнопок по прежнему будут работать. (Для устройств с железными кнопками)</string>
+    <string name="pref_hwkeys_disable_summary">Отключает кнопки НАЗАД, ДОМОЙ, МЕНЮ при включенном веерном меню. Нестандартные действия этих кнопок по прежнему будут работать. (Для устройств с железными кнопками)</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Изпользовать тему Holo Dark</string>
@@ -413,7 +413,7 @@
     <string name="qs_tile_gps_disabled">GPS выкл</string>
 
     <!-- Pie control: always show menu button -->
-    <string name="pie_control_menu_title">Всегда показывать кнопку меню</string>
+    <string name="pie_control_menu_title">Всегда показывать "Меню"</string>
 
     <!-- Ringer mode tile (for non-MTK) -->
     <string name="qs_tile_ringer_mode">Режим звонка</string>
@@ -432,10 +432,10 @@
 
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Управление прозрачностью</string>
-    <string name="pref_tm_statusbar_launcher_title">Прозрачность статусбара для ланчера</string>
-    <string name="pref_tm_statusbar_lockscreen_title">Прозрачность статусбара для экарна блокировки</string>
-    <string name="pref_tm_navbar_launcher_title">Прозрачность панели навигации для ланчера</string>
-    <string name="pref_tm_navbar_lockscreen_title">Прозрачность панели навигации для экарна блокировки</string>
+    <string name="pref_tm_statusbar_launcher_title">Статусбар для ланчера</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Статусбара для экрана блокировки</string>
+    <string name="pref_tm_navbar_launcher_title">Панель навиг. для ланчера</string>
+    <string name="pref_tm_navbar_lockscreen_title">Панель навиг. для экрана блокировки</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Спрятать значок будильника</string>
