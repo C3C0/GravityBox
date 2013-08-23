@@ -132,8 +132,8 @@
     <string name="about_donate_summary">Přispějte přes PayPal pokud si myslíte, že tato aplikace za to stojí! Zvažte též příspěvek pro rovo89 za jeho excelentní Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Váš telefon bude restartovaný</string>
-    <string name="reboot_confirm_recovery">Váš telefon bude restartovaný do režimu Recovery</string>
+    <string name="reboot_confirm">Váš %s bude restartovaný</string>
+    <string name="reboot_confirm_recovery">Váš %s bude restartovaný do režimu Recovery</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT efekt vypnutí obrazovky</string>
@@ -442,5 +442,8 @@
     <!-- Screen dim level -->
     <string name="pref_screen_dim_level_title">Úroveň zatmavení obrazovky</string>
     <string name="pref_screen_dim_level_summary">Úroveň jasu pro zatmavení obrazovky těsně před jejím vypnutím (vyžaduje restart)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">telefon</string>
 
 </resources>

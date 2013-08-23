@@ -130,8 +130,8 @@
     <string name="about_donate_summary">Faîtes un don si vous pensez que cette application en vaut la peine ! Faîtes également un don à rovo89 pour son excellent Xposed framework</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Votre téléphone va redémarrer</string>
-    <string name="reboot_confirm_recovery">Votre téléphone va redémarrer en mode récupération</string>
+    <string name="reboot_confirm">Votre %s va redémarrer.</string>
+    <string name="reboot_confirm_recovery">Votre %s va redémarrer en mode récupération.</string>
     
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Effet écran CRT</string>
@@ -411,5 +411,8 @@
     <!-- GPS Tile (for non-MTK) -->
     <string name="qs_tile_gps_enabled">GPS on</string>
     <string name="qs_tile_gps_disabled">GPS off</string>
+
+    <!-- Device type -->
+    <string name="device_phone">téléphone</string>
 
 </resources>

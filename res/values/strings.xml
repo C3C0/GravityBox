@@ -130,8 +130,8 @@
     <string name="about_donate_summary">Donate to me if you think this app is worth it! Also consider donating to rovo89 for his excellent Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Your phone will reboot</string>
-    <string name="reboot_confirm_recovery">Your phone will reboot into recovery</string>
+    <string name="reboot_confirm">Your %s will reboot.</string>
+    <string name="reboot_confirm_recovery">Your %s will reboot into recovery.</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT screen off effect</string>
@@ -443,5 +443,9 @@
     <!-- Screen dim level -->
     <string name="pref_screen_dim_level_title">Screen dim level</string>
     <string name="pref_screen_dim_level_summary">Amount of brightness for dim state - when screen is about to be turned off (requires reboot)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">phone</string>
+    <string name="device_tablet">tablet</string>
 
 </resources>

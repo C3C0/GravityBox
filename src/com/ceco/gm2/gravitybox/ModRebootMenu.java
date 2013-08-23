@@ -85,9 +85,19 @@ public class ModRebootMenu {
                    mRebootItemList.add(new BasicIconListItem(mRebootSoftStr, null, mRebootSoftIcon, null));
                    mRebootItemList.add(new BasicIconListItem(mRecoveryStr, null, mRecoveryIcon, null));
 
-                   mRebootConfirmStr = gbRes.getString(R.string.reboot_confirm);
-                   mRebootConfirmRecoveryStr = gbRes.getString(R.string.reboot_confirm_recovery);
-
+                   if (Utils.isTablet(gbContext)) {
+                	   mRebootConfirmStr = String.format(gbRes.getString(R.string.reboot_confirm),
+                			   gbRes.getString(R.string.device_tablet));
+                	   mRebootConfirmRecoveryStr = String.format(gbRes.getString(R.string.reboot_confirm_recovery),
+                			   gbRes.getString(R.string.device_tablet));
+                   }
+                   else {
+                	   mRebootConfirmStr = String.format(gbRes.getString(R.string.reboot_confirm),
+                			   gbRes.getString(R.string.device_phone));
+                	   mRebootConfirmRecoveryStr = String.format(gbRes.getString(R.string.reboot_confirm_recovery),
+                			   gbRes.getString(R.string.device_phone));
+                   }
+                           
                    log("GlobalActions constructed, resources set.");
                }
             });

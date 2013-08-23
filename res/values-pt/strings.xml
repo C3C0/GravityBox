@@ -123,8 +123,8 @@
     <string name="about_donate_summary">Faça uma doação para mim se você acha que este aplicativo vale a pena! Também considere doar para o rovo89 pelo seu exelente trabalho no Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Seu celular irá reiniciar</string>
-    <string name="reboot_confirm_recovery">Seu celular irá reiniciar em modo recuperação</string>
+    <string name="reboot_confirm">O seu %s irá reiniciar.</string>
+    <string name="reboot_confirm_recovery">O seu %s irá reiniciar em modo recuperação.</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Efeito de TV antiga desligando</string>
@@ -163,5 +163,9 @@
     <!-- Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Desabilitar LED piscante</string>
     <string name="pref_flashing_led_disable_summary">Desabilitar o LED quando a bateria estiver baixa e não carregando</string>
+
+    <!-- Device type -->
+    <string name="device_phone">telefone</string>
+    <string name="device_tablet">tablet</string>
 
 </resources>

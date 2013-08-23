@@ -123,8 +123,8 @@
     <string name="about_donate_summary">Giv mig et bidrag hvis du synes denne app er det værd! Overvej også bidrag til rovo89 for hans fremragende Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Din telefon vil genstarte</string>
-    <string name="reboot_confirm_recovery">Din telefon vil genstarte i systemgendannelsestilstand</string>
+    <string name="reboot_confirm">Din %s vil genstarte.</string>
+    <string name="reboot_confirm_recovery">Din %s vil genstarte i systemgendannelsestilstand.</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Billedrørsskærms-slukkeeffekt</string>
@@ -261,5 +261,8 @@
     <!--  Solid black Holo background -->
     <string name="pref_holo_bg_solid_black_title">Sort baggrund</string>
     <string name="pref_holo_bg_solid_black_summary">Benyt sort baggrund for standard Holo systemtema i stedet for gråtoneskala (kræver genstart)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">telefon</string>
 
 </resources>
