@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -328,6 +329,13 @@ public class GravityBoxSettings extends Activity {
         private ColorPickerPreference mPrefSbIconColor;
         private ColorPickerPreference mPrefSbDaColor;
         private PreferenceScreen mPrefCatFixes;
+        private CheckBoxPreference mPrefFixDateTimeCrash;
+        private CheckBoxPreference mPrefFixCallerIDPhone;
+        private CheckBoxPreference mPrefFixCallerIDMms;
+        private CheckBoxPreference mPrefFixMmsWakelock;
+        private CheckBoxPreference mPrefFixCalendar;
+        private CheckBoxPreference mPrefFixTtsSettings;
+        private CheckBoxPreference mPrefFixDevOpts;
         private PreferenceScreen mPrefCatStatusbar;
         private PreferenceScreen mPrefCatStatusbarQs;
         private CheckBoxPreference mPrefAutoSwitchQs;
@@ -417,6 +425,13 @@ public class GravityBoxSettings extends Activity {
             mPrefSbDaColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR);
 
             mPrefCatFixes = (PreferenceScreen) findPreference(PREF_CAT_KEY_FIXES);
+            mPrefFixDateTimeCrash = (CheckBoxPreference) findPreference(PREF_KEY_FIX_DATETIME_CRASH);
+            mPrefFixCallerIDPhone = (CheckBoxPreference) findPreference(PREF_KEY_FIX_CALLER_ID_PHONE);
+            mPrefFixCallerIDMms = (CheckBoxPreference) findPreference(PREF_KEY_FIX_CALLER_ID_MMS);
+            mPrefFixMmsWakelock = (CheckBoxPreference) findPreference(PREF_KEY_FIX_MMS_WAKELOCK);
+            mPrefFixCalendar = (CheckBoxPreference) findPreference(PREF_KEY_FIX_CALENDAR);
+            mPrefFixTtsSettings = (CheckBoxPreference) findPreference(PREF_KEY_FIX_TTS_SETTINGS);
+            mPrefFixDevOpts = (CheckBoxPreference) findPreference(PREF_KEY_FIX_DEV_OPTS);
             mPrefCatStatusbar = (PreferenceScreen) findPreference(PREF_CAT_KEY_STATUSBAR);
             mPrefCatStatusbarQs = (PreferenceScreen) findPreference(PREF_CAT_KEY_STATUSBAR_QS);
             mPrefAutoSwitchQs = (CheckBoxPreference) findPreference(PREF_KEY_QUICK_SETTINGS_AUTOSWITCH);
@@ -460,6 +475,13 @@ public class GravityBoxSettings extends Activity {
                 mQuickSettings.setEntryValues(R.array.qs_tile_aosp_values);
                 mPrefCatPhone.removePreference(mPrefRoamingWarningDisable);
             } else {
+                // Remove preferences not needed for ZTE V987
+                if (Build.MODEL.contains("V987") && Build.DISPLAY.contains("ZTE-CN-9B18D-P188F04")) {
+                	mPrefCatFixes.removePreference(mPrefFixDateTimeCrash);
+                	mPrefCatFixes.removePreference(mPrefFixTtsSettings);
+                	mPrefCatFixes.removePreference(mPrefFixDevOpts);
+                }
+
                 mQuickSettings.setEntries(R.array.qs_tile_entries);
                 mQuickSettings.setEntryValues(R.array.qs_tile_values);
             }
