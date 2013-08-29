@@ -29,8 +29,9 @@
     <string name="sim_disable_notifications_summary">\"SIM not inserted\" notifications disabled</string>
 
     <string name="poweroff_advanced_title">Advanced reboot menu</string>
-    <string name="poweroff_advanced_summary">Enables advanced reboot menu with option to reboot to recovery</string>
-    <string name="poweroff_recovery">Recovery</string>    
+    <string name="poweroff_advanced_summary">Enables advanced reboot menu with options to reboot to recovery</string>
+    <string name="poweroff_recovery">Recovery</string>
+    <string name="poweroff_bootloader">Bootloader</string>
 
     <string name="vol_key_cursor_control_title">Volume key cursor control</string>
     <string name="vol_key_cursor_control_summary">Controls cursor using volume keys in text fields</string>
@@ -132,6 +133,7 @@
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">Your %s will reboot.</string>
     <string name="reboot_confirm_recovery">Your %s will reboot into recovery.</string>
+    <string name="reboot_confirm_bootloader">Your %s will reboot into bootloader.</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT screen off effect</string>
