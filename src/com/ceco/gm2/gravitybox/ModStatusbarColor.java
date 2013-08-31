@@ -308,14 +308,13 @@ public class ModStatusbarColor {
                                 mobileIconIdsGemini = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthIdGemini");
                                 mobileActivityIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityIdGemini");
                                 mobileTypeIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeIdGemini");
-                            }
-                            else {
+                            } else {
                                 mobileIconId = (Object) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthId");
                             }
                             mobileActivityId = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityId");
                             mobileTypeId = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeId");
                         }
-                        
+
                         if (XposedHelpers.getBooleanField(param.thisObject, "mWifiVisible")) {
                             ImageView wifiIcon = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mWifi");
                             if (wifiIcon != null) {
