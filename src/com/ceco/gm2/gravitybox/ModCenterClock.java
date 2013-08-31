@@ -39,6 +39,7 @@ public class ModCenterClock {
     private static ViewGroup mRootView;
     private static LinearLayout mLayoutClock;
     private static TextView mClock;
+    private static TextView mClockExpanded;
     private static Object mPhoneStatusBar;
     private static Context mContext;
     private static int mAnimPushUpOut;
@@ -75,6 +76,9 @@ public class ModCenterClock {
                     mAmPmHide = intent.getBooleanExtra(GravityBoxSettings.EXTRA_AMPM_HIDE, false);
                     if (mClock != null) {
                         XposedHelpers.callMethod(mClock, "updateClock");
+                    }
+                    if (mClockExpanded != null) {
+                        XposedHelpers.callMethod(mClockExpanded, "updateClock");
                     }
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_CLOCK_HIDE)) {
@@ -117,6 +121,7 @@ public class ModCenterClock {
                     mRootView = (ViewGroup) mIconArea.getParent().getParent();
                     if (mRootView == null) return;
 
+                    // find statusbar clock
                     mClock = (TextView) mIconArea.findViewById(
                             liparam.res.getIdentifier("clock", "id", PACKAGE_NAME));
                     if (mClock == null) return;
@@ -128,6 +133,14 @@ public class ModCenterClock {
                         mClock.setVisibility(View.GONE);
                     }
 
+                    // find notification panel clock
+                    final ViewGroup panelHolder = (ViewGroup) liparam.view.findViewById(
+                            liparam.res.getIdentifier("panel_holder", "id", PACKAGE_NAME));
+                    if (panelHolder != null) {
+                        mClockExpanded = (TextView) panelHolder.findViewById(
+                                liparam.res.getIdentifier("clock", "id", PACKAGE_NAME));
+                    }
+                    
                     // inject new clock layout
                     mLayoutClock = new LinearLayout(liparam.view.getContext());
                     mLayoutClock.setLayoutParams(new LinearLayout.LayoutParams(
@@ -143,38 +156,37 @@ public class ModCenterClock {
                             // is this a status bar Clock instance?
                             // yes, if it contains our additional sbClock field
                             Object sbClock = XposedHelpers.getAdditionalInstanceField(param.thisObject, "sbClock");
-                            if (sbClock != null) {
-                                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-                                String clockText = param.getResult().toString();
-                                String amPm = calendar.getDisplayName(
-                                        Calendar.AM_PM, Calendar.SHORT, Locale.getDefault());
-                                int amPmIndex = clockText.indexOf(amPm);
-                                if (mAmPmHide && amPmIndex != -1) {
-                                    clockText = clockText.replace(amPm, "");
-                                    amPmIndex = -1;
-                                } else if (!DateFormat.is24HourFormat(mClock.getContext()) && amPmIndex == -1) {
-                                    // insert AM/PM if missing
-                                    clockText += " " + amPm;
-                                    amPmIndex = clockText.indexOf(amPm);
-                                }
-                                CharSequence dow = "";
-                                if (mClockShowDow) {
-                                    dow = calendar.getDisplayName(
-                                            Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()) + " ";
-                                }
-                                clockText = dow + clockText;
-                                SpannableStringBuilder sb = new SpannableStringBuilder(clockText);
-                                sb.setSpan(new RelativeSizeSpan(0.7f), 0, dow.length(), 
-                                        Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-                                if (amPmIndex > -1) {
-                                    int offset = Character.isWhitespace(clockText.charAt(dow.length() + amPmIndex - 1)) ?
-                                            1 : 0;
-                                    sb.setSpan(new RelativeSizeSpan(0.7f), dow.length() + amPmIndex - offset, 
-                                            dow.length() + amPmIndex + amPm.length(), 
-                                            Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-                                }
-                                param.setResult(sb);
+                            Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                            String clockText = param.getResult().toString();
+                            String amPm = calendar.getDisplayName(
+                                    Calendar.AM_PM, Calendar.SHORT, Locale.getDefault());
+                            int amPmIndex = clockText.indexOf(amPm);
+                            if (mAmPmHide && amPmIndex != -1) {
+                                clockText = clockText.replace(amPm, "");
+                                amPmIndex = -1;
+                            } else if (!DateFormat.is24HourFormat(mClock.getContext()) && amPmIndex == -1) {
+                                // insert AM/PM if missing
+                                clockText += " " + amPm;
+                                amPmIndex = clockText.indexOf(amPm);
                             }
+                            CharSequence dow = "";
+                            // apply day of week only to statusbar clock, not the notification panel clock
+                            if (mClockShowDow && sbClock != null) {
+                                dow = calendar.getDisplayName(
+                                        Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()) + " ";
+                            }
+                            clockText = dow + clockText;
+                            SpannableStringBuilder sb = new SpannableStringBuilder(clockText);
+                            sb.setSpan(new RelativeSizeSpan(0.7f), 0, dow.length(), 
+                                    Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                            if (amPmIndex > -1) {
+                                int offset = Character.isWhitespace(clockText.charAt(dow.length() + amPmIndex - 1)) ?
+                                        1 : 0;
+                                sb.setSpan(new RelativeSizeSpan(0.7f), dow.length() + amPmIndex - offset, 
+                                        dow.length() + amPmIndex + amPm.length(), 
+                                        Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                            }
+                            param.setResult(sb);
                         }
                     });
 
