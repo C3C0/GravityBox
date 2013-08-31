@@ -15,7 +15,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
-import android.provider.AlarmClock;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -81,7 +80,7 @@ public class ModCenterClock {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_CLOCK_HIDE)) {
                     mClockHide = intent.getBooleanExtra(GravityBoxSettings.EXTRA_CLOCK_HIDE, false);
                     if (mClock != null) {
-                        XposedHelpers.callMethod(mClock, "updateClock");
+                        mClock.setVisibility(mClockHide ? View.GONE : View.VISIBLE);
                     }
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_ALARM_HIDE)) {
@@ -125,6 +124,9 @@ public class ModCenterClock {
                     // use this additional field to identify the instance of Clock that resides in status bar
                     XposedHelpers.setAdditionalInstanceField(mClock, "sbClock", true);
                     mClockOriginalPaddingLeft = mClock.getPaddingLeft();
+                    if (mClockHide) {
+                        mClock.setVisibility(View.GONE);
+                    }
 
                     // inject new clock layout
                     mLayoutClock = new LinearLayout(liparam.view.getContext());
@@ -142,12 +144,6 @@ public class ModCenterClock {
                             // yes, if it contains our additional sbClock field
                             Object sbClock = XposedHelpers.getAdditionalInstanceField(param.thisObject, "sbClock");
                             if (sbClock != null) {
-                                if (mClockHide) {
-                                    mClock.setVisibility(View.GONE);
-                                    return;
-                                }
-
-                                mClock.setVisibility(View.VISIBLE);
                                 Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
                                 String clockText = param.getResult().toString();
                                 String amPm = calendar.getDisplayName(
@@ -238,6 +234,16 @@ public class ModCenterClock {
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_CLOCK_CHANGED);
                     mContext.registerReceiver(mBroadcastReceiver, intentFilter);
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(phoneStatusBarClass, "showClock", boolean.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    if (mClock == null) return;
+
+                    boolean visible = (Boolean) param.args[0] && !mClockHide;
+                    mClock.setVisibility(visible ? View.VISIBLE : View.GONE);
                 }
             });
 
