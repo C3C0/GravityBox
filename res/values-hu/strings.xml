@@ -44,6 +44,7 @@
     <string name="important">Fontos</string>
     <string name="caller_fullscreen_photo_title">Teljes képernyős hívó fotó</string>
     <string name="caller_fullscreen_photo_summary">Teljes képernyőn mutatja a hívó fotóját a bejövő hívás képernyőn</string>
+
     <!-- QuickSettings strings -->
     <string name="quick_settings_sync_on">Szinkronizálás be</string>
     <string name="quick_settings_sync_off">Szinkronizálás ki</string>
@@ -52,6 +53,7 @@
     <string name="quick_settings_torch_on">Zseblámpa be</string>
     <string name="quick_settings_torch_off">Zseblámpa ki</string>
     <string name="quick_settings_torch_off_notif">Érintse meg a lekapcsoláshoz</string>
+
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Statusbar gyorsbeállítás csempék</string>
     <string name="quick_settings_summary">Mutatja vagy elrejti a gyorsbeállítás csempéket a statusbar-on</string>
@@ -72,18 +74,23 @@
     <string name="qs_tile_wifi_ap">Wi-Fi hozzáférési pont</string>
     <string name="qs_tile_torch">Zseblámpa</string>
     <string name="qs_tile_gravitybox">GravityBox Magyarul</string>
+
     <!-- Color Picker -->
     <string name="dialog_color_picker">Szín választó</string>
     <string name="press_color_to_apply">Nyomjon a színre a kiválasztáshoz</string>
+
     <!--  Statusbar background color -->
     <string name="statusbar_bgcolor_title">Statusbar háttér szín</string>
     <string name="statusbar_bgcolor_summary">Lehetővé teszi, hogy állíthassa a statusbar háttér színét és az átlátszóságát</string>
+
     <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">Javítja a beszéd beállításokat</string>
     <string name="fix_tts_settings_summary">Lehetővé teszi,a hangalapú keresést és szövegfelolvasó kimenetet a Nyelv&amp;bevitel-ben (újraindítás szükséges)</string>
+
     <!--  Advanced developer options -->
     <string name="fix_dev_opts_title">Fejlett fejlesztői lehetőségek</string>
     <string name="fix_dev_opts_summary">Lehetővé teszi, a fejlett fejlesztői lehetőségeket (újraindítás szükséges)</string>
+
     <!-- Main preference categories -->
     <string name="pref_cat_statusbar_title">Statusbar módosítások</string>
     <string name="pref_cat_statusbar_summary">Különféle statusbar módosításokat tartalmaz</string>
@@ -91,6 +98,7 @@
     <string name="pref_cat_misc_summary">Tartalmaz minden egyéb módosítást, ami nem tartozik a többi konkrét kategóriába</string>
     <string name="pref_cat_fixes_title">Általános javítások</string>
     <string name="pref_cat_fixes_summary">Általános MTK6589 specifikus javításokat tartalmaz. Csak akkor használja, ha szükséges.</string>
+
     <!-- About -->
     <string name="pref_cat_about_title">A programról..</string>
     <string name="about_gb_summary">Fejlesztette C3C076@XDA. Érintse meg a hivatalos fórum meglátogatásához.</string>
@@ -98,18 +106,22 @@
     <string name="about_xposed_summary">Fejlesztette rovo89@XDA. Érintse meg a hivatalos fórum meglátogatásához.</string>
     <string name="about_donate_title">Felajánlás</string>
     <string name="about_donate_summary">Adományozzon részemre ha úgy gondolja, hogy ez a program megérdemli! Valamint fontolja meg, hogy rovo89 is adományoz a kitűnő Xposed framework-ért.</string>
+
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">A telefonja újra fog indulni</string>
-    <string name="reboot_confirm_recovery">A telefonja újra fog indulni a recovery-be</string>
+    <string name="reboot_confirm">A %s újra fog indulni.</string>
+    <string name="reboot_confirm_recovery">A %s újra fog indulni a recovery-be.</string>
+
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT kikapcsoló effekt</string>
     <string name="crt_off_effect_summary">Engedélyezi az animációt ami szimulálja az öreg CRT kikapcsolási effektet, ha kikapcsolódik a képernyő</string>
     <!-- Engineering mode shortcut -->
     <string name="engineering_mode_title">Tervező mód</string>
     <string name="engineering_mode_summary">Indítja a Tervező mód programot</string>
+
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Dual SIM Ringer</string>
     <string name="dual_sim_ringer_summary">Indítja a programot ami lehetővé teszi, hogy beállítson csengőhangokat és figyelmeztetési hangokat külön mindkét SIM-nek</string>
+
     <!--  Lockscreen tweaks -->
     <string name="pref_cat_lockscreen_title">Lockscreen módosítások</string>
     <string name="pref_cat_lockscreen_summary">Különböző lockscreen módosításokat tartalmaz</string>
@@ -127,10 +139,16 @@
     <string name="pref_cat_lockscreen_other_title">Egyéb</string>
     <string name="pref_lockscreen_maximize_widgets_title">Widgetek maximalizálása</string>
     <string name="pref_lockscreen_maximize_widgets_summary">Ha engedélyezve van, lockscreen widgetek maximalizálva lesznek alapértelmezetten</string>
+
     <!--  Power tweaks category -->
     <string name="pref_cat_power_title">Energia módosítások</string>
     <string name="pref_cat_power_summary">Tartalmaz különböző energiával kapcsolatos módosításokat</string>
+
     <!--  Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Letiltja a LED villogást</string>
     <string name="pref_flashing_led_disable_summary">Kikapcsolja a zavaró LED villogást, ha az akkumulátor szintje alacsony és nincs töltés</string>
+
+    <!-- Device type -->
+    <string name="device_phone">telefonja</string>
+
 </resources>

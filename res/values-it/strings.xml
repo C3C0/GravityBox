@@ -131,8 +131,8 @@
     <string name="about_donate_summary">Fai una donazione a me se credi che questa app se la meriti! Considera anche una donazione a rovo89 per il suo eccellente framework Xposed.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Il telefono si riavvierà</string>
-    <string name="reboot_confirm_recovery">Il telefono si riavvierà in ripristino</string>
+    <string name="reboot_confirm">Il %s si riavvierà.</string>
+    <string name="reboot_confirm_recovery">Il %s si riavvierà in ripristino.</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Effetto spegni schermo CRT</string>
@@ -444,5 +444,8 @@
     <!-- Screen dim level -->
     <string name="pref_screen_dim_level_title">Modalità attenuazione luminosità</string>
     <string name="pref_screen_dim_level_summary">Imposta luminosità per attenuazione schermo - quando lo schermo sta per spegnersi (necessita riavvio)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">telefono</string>
 
 </resources>

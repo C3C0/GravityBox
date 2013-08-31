@@ -42,12 +42,15 @@ public class ModRebootMenu {
     private static String mRebootStr;
     private static String mRebootSoftStr;
     private static String mRecoveryStr;
+    private static String mBootloaderStr;
     private static Drawable mRebootIcon;
     private static Drawable mRebootSoftIcon;
     private static Drawable mRecoveryIcon;
+    private static Drawable mBootloaderIcon;
     private static List<IIconListAdapterItem> mRebootItemList;
     private static String mRebootConfirmStr;
     private static String mRebootConfirmRecoveryStr;
+    private static String mRebootConfirmBootloaderStr;
     private static Unhook mRebootActionHook;
 
     private static void log(String message) {
@@ -72,22 +75,32 @@ public class ModRebootMenu {
                    int rebootStrId = res.getIdentifier("factorytest_reboot", "string", PACKAGE_NAME);
                    int rebootSoftStrId = R.string.reboot_soft;
                    int recoveryStrId = R.string.poweroff_recovery;
+                   int bootloaderStrId = R.string.poweroff_bootloader;
                    mRebootStr  = (rebootStrId == 0) ? "Reboot" : res.getString(rebootStrId);
                    mRebootSoftStr = gbRes.getString(rebootSoftStrId);
                    mRecoveryStr = gbRes.getString(recoveryStrId);
+                   mBootloaderStr = gbRes.getString(bootloaderStrId);
 
                    mRebootIcon = gbRes.getDrawable(R.drawable.ic_lock_reboot);
                    mRebootSoftIcon = gbRes.getDrawable(R.drawable.ic_lock_reboot_soft);
                    mRecoveryIcon = gbRes.getDrawable(R.drawable.ic_lock_recovery);
+                   mBootloaderIcon = gbRes.getDrawable(R.drawable.ic_lock_bootloader);
 
                    mRebootItemList = new ArrayList<IIconListAdapterItem>();
                    mRebootItemList.add(new BasicIconListItem(mRebootStr, null, mRebootIcon, null));
                    mRebootItemList.add(new BasicIconListItem(mRebootSoftStr, null, mRebootSoftIcon, null));
                    mRebootItemList.add(new BasicIconListItem(mRecoveryStr, null, mRecoveryIcon, null));
+                   if (!Utils.isMtkDevice()) {
+                       mRebootItemList.add(new BasicIconListItem(mBootloaderStr, null, mBootloaderIcon, null));
+                   }
 
-                   mRebootConfirmStr = gbRes.getString(R.string.reboot_confirm);
-                   mRebootConfirmRecoveryStr = gbRes.getString(R.string.reboot_confirm_recovery);
-
+               	   mRebootConfirmStr = String.format(gbRes.getString(R.string.reboot_confirm),
+                           gbRes.getString(Utils.isTablet(gbContext) ? R.string.device_tablet : R.string.device_phone));
+                   mRebootConfirmRecoveryStr = String.format(gbRes.getString(R.string.reboot_confirm_recovery),
+                           gbRes.getString(Utils.isTablet(gbContext) ? R.string.device_tablet : R.string.device_phone));
+               	   mRebootConfirmBootloaderStr = String.format(gbRes.getString(R.string.reboot_confirm_bootloader),
+                           gbRes.getString(Utils.isTablet(gbContext) ? R.string.device_tablet : R.string.device_phone));
+                   
                    log("GlobalActions constructed, resources set.");
                }
             });
@@ -223,7 +236,12 @@ public class ModRebootMenu {
     private static void handleReboot(Context context, String caption, final int mode) {
         try {
             final PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-            final String message = (mode == 0 || mode == 1) ? mRebootConfirmStr : mRebootConfirmRecoveryStr;
+            String message = mRebootConfirmStr;
+            if (mode == 2) {
+                message = mRebootConfirmRecoveryStr;
+            } else if (mode == 3) {
+                message = mRebootConfirmBootloaderStr;
+            }
 
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
                 .setTitle(caption)
@@ -244,6 +262,8 @@ public class ModRebootMenu {
                             XposedHelpers.callMethod(ipm, "crash", "Hot reboot");
                         } else if (mode == 2) {
                             pm.reboot("recovery");
+                        } else if (mode == 3) {
+                            pm.reboot("bootloader");
                         }
                     }
                 })

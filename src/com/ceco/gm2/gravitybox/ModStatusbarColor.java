@@ -32,7 +32,7 @@ public class ModStatusbarColor {
     private static final String CLASS_PHONE_WINDOW_MANAGER = "com.android.internal.policy.impl.PhoneWindowManager";
     private static final String CLASS_PANEL_BAR = "com.android.systemui.statusbar.phone.PanelBar";
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
-    private static final String CLASS_SIGNAL_CLUSTER_VIEW = Utils.isMtkDevice() ? 
+    private static final String CLASS_SIGNAL_CLUSTER_VIEW = Utils.hasGeminiSupport() ? 
             "com.android.systemui.statusbar.SignalClusterViewGemini" :
             "com.android.systemui.statusbar.SignalClusterView";
     private static final String CLASS_BATTERY_CONTROLLER = "com.android.systemui.statusbar.policy.BatteryController";
@@ -298,18 +298,24 @@ public class ModStatusbarColor {
                     Resources res = ((LinearLayout) param.thisObject).getContext().getResources();
 
                     if (mIconColorEnabled) {
+                        Object mobileIconId = null;
                         Object[] mobileIconIds = null, mobileIconIdsGemini = null;
                         Object mobileActivityId = null, mobileActivityIdGemini = null;
                         Object mobileTypeId = null, mobileTypeIdGemini = null;
                         if (Utils.isMtkDevice()) {
-                            mobileIconIds = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthId");
-                            mobileIconIdsGemini = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthIdGemini");
+                            if (Utils.hasGeminiSupport()) {
+                                mobileIconIds = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthId");
+                                mobileIconIdsGemini = (Object[]) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthIdGemini");
+                                mobileActivityIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityIdGemini");
+                                mobileTypeIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeIdGemini");
+                            }
+                            else {
+                                mobileIconId = (Object) XposedHelpers.getObjectField(param.thisObject, "mMobileStrengthId");
+                            }
                             mobileActivityId = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityId");
-                            mobileActivityIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileActivityIdGemini");
                             mobileTypeId = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeId");
-                            mobileTypeIdGemini = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeIdGemini");
                         }
-    
+                        
                         if (XposedHelpers.getBooleanField(param.thisObject, "mWifiVisible")) {
                             ImageView wifiIcon = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mWifi");
                             if (wifiIcon != null) {
@@ -341,7 +347,8 @@ public class ModStatusbarColor {
                                 if (mobile != null) {
                                     try {
                                         int resId = Utils.isMtkDevice() ? 
-                                                (Integer) XposedHelpers.callMethod(mobileIconIds[0], "getIconId") :
+                                                (Integer) XposedHelpers.callMethod(Utils.hasGeminiSupport() ?
+                                                		mobileIconIds[0] : mobileIconId, "getIconId") :
                                                 XposedHelpers.getIntField(param.thisObject, "mMobileStrengthId");
                                         String resName = res.getResourceEntryName(resId);
                                         allowChange = resName.contains("blue") | !Utils.isMtkDevice();
@@ -367,7 +374,7 @@ public class ModStatusbarColor {
                                     ImageView mobileType = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileType");
                                     if (mobileType != null) {
                                         try {
-                                            int resId = Utils.isMtkDevice() ?
+                                            int resId = Utils.hasGeminiSupport() ?
                                                     (Integer) XposedHelpers.callMethod(mobileTypeId, "getIconId") :
                                                     XposedHelpers.getIntField(param.thisObject, "mMobileTypeId");
                                             Drawable d = res.getDrawable(resId).mutate();
@@ -395,7 +402,7 @@ public class ModStatusbarColor {
                             }
     
                             // for SIM Slot 2
-                            if (Utils.isMtkDevice() && 
+                            if (Utils.hasGeminiSupport() && 
                                     XposedHelpers.getBooleanField(param.thisObject, "mMobileVisibleGemini")) {
                                 boolean allowChange = false;
                                 ImageView mobile = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileGemini");
@@ -454,8 +461,10 @@ public class ModStatusbarColor {
                         ImageView mobileRoam;
                         mobileRoam = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileRoam");
                         if (mobileRoam != null) mobileRoam.setVisibility(View.GONE);
-                        mobileRoam = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileRoamGemini");
-                        if (mobileRoam != null) mobileRoam.setVisibility(View.GONE);
+                        if (Utils.hasGeminiSupport()) {
+                            mobileRoam = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileRoamGemini");
+                            if (mobileRoam != null) mobileRoam.setVisibility(View.GONE);
+                        }
                     }
                 }
             });

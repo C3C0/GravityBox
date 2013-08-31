@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -116,7 +117,7 @@ public class GravityBoxSettings extends Activity {
     public static final String APP_DUAL_SIM_RINGER = "dualsim.ringer";
     public static final String APP_DUAL_SIM_RINGER_CLASS = "dualsim.ringer.main";
 
-    public static final String PREF_CAT_KEY_LOCKSCREEN_BACCKGROUND = "pref_cat_lockscreen_background";
+    public static final String PREF_CAT_KEY_LOCKSCREEN_BACKGROUND = "pref_cat_lockscreen_background";
     public static final String PREF_KEY_LOCKSCREEN_BACKGROUND = "pref_lockscreen_background";
     public static final String PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR = "pref_lockscreen_bg_color";
     public static final String PREF_KEY_LOCKSCREEN_BACKGROUND_IMAGE = "pref_lockscreen_bg_image";
@@ -328,8 +329,17 @@ public class GravityBoxSettings extends Activity {
         private ColorPickerPreference mPrefSbIconColor;
         private ColorPickerPreference mPrefSbDaColor;
         private PreferenceScreen mPrefCatFixes;
+        private CheckBoxPreference mPrefFixDateTimeCrash;
+        private CheckBoxPreference mPrefFixCallerIDPhone;
+        private CheckBoxPreference mPrefFixCallerIDMms;
+        private CheckBoxPreference mPrefFixMmsWakelock;
+        private CheckBoxPreference mPrefFixCalendar;
+        private CheckBoxPreference mPrefFixTtsSettings;
+        private CheckBoxPreference mPrefFixDevOpts;
         private PreferenceScreen mPrefCatStatusbar;
         private PreferenceScreen mPrefCatStatusbarQs;
+        private CheckBoxPreference mPrefAutoSwitchQs;
+        private ListPreference mPrefQuickPulldown;
         private PreferenceScreen mPrefCatNotifDrawerStyle;
         private ListPreference mPrefNotifBackground;
         private ColorPickerPreference mPrefNotifColor;
@@ -390,7 +400,7 @@ public class GravityBoxSettings extends Activity {
             }
 
             mPrefCatLockscreenBg = 
-                    (PreferenceCategory) findPreference(PREF_CAT_KEY_LOCKSCREEN_BACCKGROUND);
+                    (PreferenceCategory) findPreference(PREF_CAT_KEY_LOCKSCREEN_BACKGROUND);
             mPrefLockscreenBg = (ListPreference) findPreference(PREF_KEY_LOCKSCREEN_BACKGROUND);
             mPrefLockscreenBgColor = 
                     (ColorPickerPreference) findPreference(PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR);
@@ -415,8 +425,17 @@ public class GravityBoxSettings extends Activity {
             mPrefSbDaColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR);
 
             mPrefCatFixes = (PreferenceScreen) findPreference(PREF_CAT_KEY_FIXES);
+            mPrefFixDateTimeCrash = (CheckBoxPreference) findPreference(PREF_KEY_FIX_DATETIME_CRASH);
+            mPrefFixCallerIDPhone = (CheckBoxPreference) findPreference(PREF_KEY_FIX_CALLER_ID_PHONE);
+            mPrefFixCallerIDMms = (CheckBoxPreference) findPreference(PREF_KEY_FIX_CALLER_ID_MMS);
+            mPrefFixMmsWakelock = (CheckBoxPreference) findPreference(PREF_KEY_FIX_MMS_WAKELOCK);
+            mPrefFixCalendar = (CheckBoxPreference) findPreference(PREF_KEY_FIX_CALENDAR);
+            mPrefFixTtsSettings = (CheckBoxPreference) findPreference(PREF_KEY_FIX_TTS_SETTINGS);
+            mPrefFixDevOpts = (CheckBoxPreference) findPreference(PREF_KEY_FIX_DEV_OPTS);
             mPrefCatStatusbar = (PreferenceScreen) findPreference(PREF_CAT_KEY_STATUSBAR);
             mPrefCatStatusbarQs = (PreferenceScreen) findPreference(PREF_CAT_KEY_STATUSBAR_QS);
+            mPrefAutoSwitchQs = (CheckBoxPreference) findPreference(PREF_KEY_QUICK_SETTINGS_AUTOSWITCH);
+            mPrefQuickPulldown = (ListPreference) findPreference(PREF_KEY_QUICK_PULLDOWN);
 
             mPrefCatNotifDrawerStyle = (PreferenceScreen) findPreference(PREF_CAT_KEY_NOTIF_DRAWER_STYLE);
             mPrefNotifBackground = (ListPreference) findPreference(PREF_KEY_NOTIF_BACKGROUND);
@@ -441,7 +460,13 @@ public class GravityBoxSettings extends Activity {
             mPrefCatPhone = (PreferenceScreen) findPreference(PREF_CAT_KEY_PHONE);
             mPrefRoamingWarningDisable = (CheckBoxPreference) findPreference(PREF_KEY_ROAMING_WARNING_DISABLE);
 
-            // Remove MTK specific preferences for non-mtk device
+            // Remove Phone specific preferences on Tablet devices
+            if (Utils.isTablet(getActivity())) {
+            	mPrefCatStatusbarQs.removePreference(mPrefAutoSwitchQs);
+            	mPrefCatStatusbarQs.removePreference(mPrefQuickPulldown);
+            }
+
+            // Remove MTK specific preferences for non-MTK devices
             if (!Utils.isMtkDevice()) {
                 getPreferenceScreen().removePreference(mPrefCatFixes);
                 mPrefCatStatusbar.removePreference(mSignalIconAutohide);
@@ -450,6 +475,13 @@ public class GravityBoxSettings extends Activity {
                 mQuickSettings.setEntryValues(R.array.qs_tile_aosp_values);
                 mPrefCatPhone.removePreference(mPrefRoamingWarningDisable);
             } else {
+                // Remove preferences not needed for ZTE V987
+                if (Build.MODEL.contains("V987") && Build.DISPLAY.contains("ZTE-CN-9B18D-P188F04")) {
+                	mPrefCatFixes.removePreference(mPrefFixDateTimeCrash);
+                	mPrefCatFixes.removePreference(mPrefFixTtsSettings);
+                	mPrefCatFixes.removePreference(mPrefFixDevOpts);
+                }
+
                 mQuickSettings.setEntries(R.array.qs_tile_entries);
                 mQuickSettings.setEntryValues(R.array.qs_tile_values);
             }

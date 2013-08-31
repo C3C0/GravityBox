@@ -90,8 +90,8 @@
     <string name="about_xposed_summary">Stworzone przez rovo89@XDA. Dotknij aby przejść do oficjalnego wątku na forum XDA.</string>
     <string name="about_donate_title">Wspomóż</string>
     <string name="about_donate_summary">Wspomóż mnie jeśli uważasz, że program jest tego warty! Wspomóż też rovo89 za jego wspaniały Xposed framework.</string>
-    <string name="reboot_confirm">Telefon zostanie zrestartowany</string>
-    <string name="reboot_confirm_recovery">Telefon zostanie zrestartowany do trybu Recovery</string>
+    <string name="reboot_confirm">%s zostanie zrestartowany.</string>
+    <string name="reboot_confirm_recovery">%s zostanie zrestartowany do trybu Recovery.</string>
     <string name="crt_off_effect_title">Efekt wyłączenia ekranu CRT</string>
     <string name="crt_off_effect_summary">Włącza animację imitującą efekt wyłączania ekranu CRT podczas wygaszania ekranu</string>
     <string name="engineering_mode_title">Tryb inżynierski</string>
@@ -118,4 +118,5 @@
     <string name="pref_cat_power_summary">Zawiera dodatkowe ustawienia związane z zasilaniem</string>
     <string name="pref_flashing_led_disable_title">Wyłącz mruganie diody LED</string>
     <string name="pref_flashing_led_disable_summary">Blokuje migającą diodę LED gdy telefon nie jest ładowany i bliski wyczerpania baterii</string>
+    <string name="device_phone">Telefon</string>
 </resources>

@@ -29,8 +29,9 @@
     <string name="sim_disable_notifications_summary">Notificações \"O SIM não está inserido.\" desativadas</string>
 
     <string name="poweroff_advanced_title">Menu de Desligar avançado</string>
-    <string name="poweroff_advanced_summary">Adiciona opção \"Reiniciar em modo de recuperação\" ao menu de desligar</string>
+    <string name="poweroff_advanced_summary">Adiciona opções para reiniciar em modo de recuperação ao menu de desligar</string>
     <string name="poweroff_recovery">Modo de recuperação</string>
+    <string name="poweroff_bootloader">Modo bootloader</string>
 
     <string name="vol_key_cursor_control_title">Tecla de Volume controla cursor</string>
     <string name="vol_key_cursor_control_summary">As teclas de volume controlam o cursor em campos de texto</string>
@@ -123,8 +124,9 @@
     <string name="about_donate_summary">Envie-me uma doação se achar que esta aplicação vale a pena! Considere também a hipótese de enviar uma doação ao <b>rovo89</b> pelo desenvolvimento do Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">O telefone irá reiniciar</string>
-    <string name="reboot_confirm_recovery">O telefone irá reiniciar em modo de recuperação</string>
+    <string name="reboot_confirm">O seu %s irá reiniciar.</string>
+    <string name="reboot_confirm_recovery">O seu %s irá reiniciar em modo de recuperação.</string>
+    <string name="reboot_confirm_bootloader">O seu %s irá reiniciar em modo bootloader.</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Efeito CRT ao desligar</string>
@@ -219,6 +221,10 @@
     <!-- Disable charging LED -->
     <string name="pref_charging_led_disable_title">Desativar luz de bateria a carregar</string>
     <string name="pref_charging_led_disable_summary">Desativa a luz vermelha quando a bateria está a carregar</string>
+
+    <!-- Device type -->
+    <string name="device_phone">telefone</string>
+    <string name="device_tablet">tablet</string>
 
 </resources>
 

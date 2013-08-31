@@ -29,8 +29,9 @@
     <string name="sim_disable_notifications_summary">Notificações \"SIM não inseirdo\" desabilitadas</string>
 
     <string name="poweroff_advanced_title">Menu de Desligar avançado</string>
-    <string name="poweroff_advanced_summary">Habilitar opção \"Reiniciar em modo recuperação\" no menu de desligar avançado</string>
+    <string name="poweroff_advanced_summary">Adiciona opções para reiniciar em modo de recuperação ao menu de desligar</string>
     <string name="poweroff_recovery">Recuperação</string>
+    <string name="poweroff_bootloader">Bootloader</string>
 
     <string name="vol_key_cursor_control_title">Tecla de volume controla cursor</string>
     <string name="vol_key_cursor_control_summary">As teclas de volume controlam o cursor em campos de texto</string>
@@ -123,8 +124,9 @@
     <string name="about_donate_summary">Faça uma doação para mim se você acha que este aplicativo vale a pena! Também considere doar para o rovo89 pelo seu exelente trabalho no Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Seu celular irá reiniciar</string>
-    <string name="reboot_confirm_recovery">Seu celular irá reiniciar em modo recuperação</string>
+    <string name="reboot_confirm">O seu %s irá reiniciar.</string>
+    <string name="reboot_confirm_recovery">O seu %s irá reiniciar em modo recuperação.</string>
+    <string name="reboot_confirm_bootloader">O seu %s irá reiniciar em modo bootloader.</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Efeito de TV antiga desligando</string>
@@ -163,5 +165,9 @@
     <!-- Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Desabilitar LED piscante</string>
     <string name="pref_flashing_led_disable_summary">Desabilitar o LED quando a bateria estiver baixa e não carregando</string>
+
+    <!-- Device type -->
+    <string name="device_phone">telefone</string>
+    <string name="device_tablet">tablet</string>
 
 </resources>

@@ -130,8 +130,8 @@
     <string name="about_donate_summary">Пожертвуйте, если считаете, что приложение стоит того! Также задумайтесь о пожертвовании rovo89 за его великолепный Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Телефон будет перезагружен</string>
-    <string name="reboot_confirm_recovery">Телефон будет перезагружен в recovery</string>
+    <string name="reboot_confirm">%s будет перезагружен.</string>
+    <string name="reboot_confirm_recovery">%s будет перезагружен в recovery.</string>
     
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT-эффект выключения экрана</string>
@@ -443,6 +443,9 @@
     <!-- Screen dim level -->
     <string name="pref_screen_dim_level_title">Уровень затухания подсветки</string>
     <string name="pref_screen_dim_level_summary">Яркость для приглушенной подсветки - когда экран почти выключился (необходима перезагрузка)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">Телефон</string>
 
 </resources>
 

@@ -129,8 +129,8 @@
     <string name="about_donate_summary">Зробіть пожертву якщо вважаєте додаток вартим цього! Приділіть також увагу пожертві для rovo89 за його чудовий Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Пристрій буде перезавантажений</string>
-    <string name="reboot_confirm_recovery">Пристрій буде перезавантажений у меню відновлення (рекавері)</string>
+    <string name="reboot_confirm">%s буде перезавантажений.</string>
+    <string name="reboot_confirm_recovery">%s буде перезавантажений у меню відновлення (рекавері).</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Ефект старого кінескопу</string>
@@ -274,5 +274,8 @@
 
     <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">Показувати день тижня</string>
+
+    <!-- Device type -->
+    <string name="device_phone">Пристрій</string>
 
 </resources>
