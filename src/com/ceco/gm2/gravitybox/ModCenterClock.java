@@ -34,6 +34,7 @@ public class ModCenterClock {
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     private static final String CLASS_TICKER = "com.android.systemui.statusbar.phone.PhoneStatusBar$MyTicker";
     private static final String CLASS_PHONE_STATUSBAR_POLICY = "com.android.systemui.statusbar.phone.PhoneStatusBarPolicy";
+    private static final boolean DEBUG = false;
 
     private static ViewGroup mIconArea;
     private static ViewGroup mRootView;
@@ -155,19 +156,28 @@ public class ModCenterClock {
                         protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                             // is this a status bar Clock instance?
                             // yes, if it contains our additional sbClock field
+                            if (DEBUG) log("getSmallTime() called. mAmPmHide=" + mAmPmHide);
                             Object sbClock = XposedHelpers.getAdditionalInstanceField(param.thisObject, "sbClock");
+                            if (DEBUG) log("Is statusbar clock: " + (sbClock == null ? "false" : "true"));
                             Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
                             String clockText = param.getResult().toString();
+                            if (DEBUG) log("Original clockText: '" + clockText + "'");
                             String amPm = calendar.getDisplayName(
                                     Calendar.AM_PM, Calendar.SHORT, Locale.getDefault());
+                            if (DEBUG) log("Locale specific AM/PM string: '" + amPm + "'");
                             int amPmIndex = clockText.indexOf(amPm);
+                            if (DEBUG) log("Original AM/PM index: " + amPmIndex);
                             if (mAmPmHide && amPmIndex != -1) {
-                                clockText = clockText.replace(amPm, "");
+                                clockText = clockText.replace(amPm, "").trim();
+                                if (DEBUG) log("AM/PM removed. New clockText: '" + clockText + "'");
                                 amPmIndex = -1;
-                            } else if (!DateFormat.is24HourFormat(mClock.getContext()) && amPmIndex == -1) {
+                            } else if (!mAmPmHide 
+                                        && !DateFormat.is24HourFormat(mClock.getContext()) 
+                                        && amPmIndex == -1) {
                                 // insert AM/PM if missing
                                 clockText += " " + amPm;
                                 amPmIndex = clockText.indexOf(amPm);
+                                if (DEBUG) log("AM/PM added. New clockText: '" + clockText + "'; New AM/PM index: " + amPmIndex);
                             }
                             CharSequence dow = "";
                             // apply day of week only to statusbar clock, not the notification panel clock
@@ -186,6 +196,7 @@ public class ModCenterClock {
                                         dow.length() + amPmIndex + amPm.length(), 
                                         Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
                             }
+                            if (DEBUG) log("Final clockText: '" + sb + "'");
                             param.setResult(sb);
                         }
                     });
