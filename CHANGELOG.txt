@@ -1,3 +1,21 @@
+Changelog 2.2.2 - 02/09/2013
+--------------------------------------
+- removed phone specific preferences on tablet devices (thanks to bgcngm)
+- reboot strings updated for tablets (thanks to bgcngm)
+- removed preferences not needed for ZTE V987 (thanks to bgcngm)
+- fixed statusbar colors for non-Gemini devices (thanks to bgcngm)
+- added option to reboot to bootloader for non-MTK devices (thanks to bgcngm)
+- improved clock hiding option to obey lockscreen clock widget policy (hides clock when lockscreen clock widget is present)
+- fixed AM/PM hiding option
+- added AM/PM hiding support also for notification panel clock
+- implemented brightness settings master switch
+--- allows devices not using standard Android brightness support to completely disable brightness tweaks to avoid
+    issues like blank screen, etc.
+- other small compatibility fixes
+- updated Russian translations (thanks to romashko)
+- updated Polish translations (thanks to xtrem007)
+- updated Hungarian translations (thanks to benjoe1)
+
 Changelog 2.2.1 - 20/08/2013
 --------------------------------------
 - fixed issues introduced in 2.2.0 affecting non-MTK devices
