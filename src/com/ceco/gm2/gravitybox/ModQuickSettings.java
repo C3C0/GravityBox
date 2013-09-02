@@ -30,7 +30,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.res.XResources;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -431,8 +430,8 @@ public class ModQuickSettings {
                     }
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 
