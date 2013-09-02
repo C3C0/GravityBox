@@ -443,4 +443,9 @@
     <!-- Device type -->
     <string name="device_phone">telefón</string>
 
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">Nastavenia jasu</string>
+    <string name="pref_brightness_master_switch_title">Povoliť nastavenia jasu</string>
+    <string name="pref_brightness_master_switch_summary">Použiť len v prípade, ak zariadenie podporuje štandardné Android nastavenia jasu. V prípade problémov s jasom je potrebné ponechať nastavenia vypnuté. (vyžaduje reštart)</string>
+
 </resources>
