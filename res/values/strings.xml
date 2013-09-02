@@ -450,4 +450,9 @@
     <string name="device_phone">phone</string>
     <string name="device_tablet">tablet</string>
 
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">Brightness settings</string>
+    <string name="pref_brightness_master_switch_title">Enable brightness settings</string>
+    <string name="pref_brightness_master_switch_summary">Use only in case your device supports standard Android brightness features. Keep disabled if you experience brightness related issues. (requires reboot)</string>
+
 </resources>

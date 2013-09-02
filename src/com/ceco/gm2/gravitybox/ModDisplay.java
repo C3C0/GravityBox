@@ -123,15 +123,20 @@ public class ModDisplay {
                     XposedHelpers.findClass(CLASS_DISPLAY_POWER_CONTROLLER, null);
             final Class<?> classLight = XposedHelpers.findClass(CLASS_LIGHT_SERVICE_LIGHT, null);
 
-            int brightnessMin = prefs.getInt(GravityBoxSettings.PREF_KEY_BRIGHTNESS_MIN, 20);
-            XResources.setSystemWideReplacement(
-                    "android", "integer", "config_screenBrightnessSettingMinimum", brightnessMin);
-            log("Minimum brightness value set to: " + brightnessMin);
+            final boolean brightnessSettingsEnabled = 
+                    prefs.getBoolean(GravityBoxSettings.PREF_KEY_BRIGHTNESS_MASTER_SWITCH, false);
 
-            int screenDim = prefs.getInt(GravityBoxSettings.PREF_KEY_SCREEN_DIM_LEVEL, 10);
-            XResources.setSystemWideReplacement(
-                    "android", "integer", "config_screenBrightnessDim", screenDim);
-            log("Screen dim level set to: " + screenDim);
+            if (brightnessSettingsEnabled) {
+                int brightnessMin = prefs.getInt(GravityBoxSettings.PREF_KEY_BRIGHTNESS_MIN, 20);
+                XResources.setSystemWideReplacement(
+                    "android", "integer", "config_screenBrightnessSettingMinimum", brightnessMin);
+                log("Minimum brightness value set to: " + brightnessMin);
+
+                int screenDim = prefs.getInt(GravityBoxSettings.PREF_KEY_SCREEN_DIM_LEVEL, 10);
+                XResources.setSystemWideReplacement(
+                        "android", "integer", "config_screenBrightnessDim", screenDim);
+                log("Screen dim level set to: " + screenDim);
+            }
 
             mButtonBacklightMode = prefs.getString(
                     GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_MODE, GravityBoxSettings.BB_MODE_DEFAULT);
@@ -153,46 +158,53 @@ public class ModDisplay {
                     }
 
                     mDisplayPowerController = param.thisObject;
-                    mScreenBrightnessRangeMinimum = XposedHelpers.getIntField(
-                            param.thisObject, "mScreenBrightnessRangeMinimum");
-                    mScreenBrightnessRangeMaximum = XposedHelpers.getIntField(
-                            param.thisObject, "mScreenBrightnessRangeMaximum");
 
-                    prefs.reload();
-                    String config = prefs.getString(GravityBoxSettings.PREF_KEY_AUTOBRIGHTNESS, null);
-                    if (config != null) {
-                        String[] luxValues = config.split("\\|")[0].split(",");
-                        String[] brightnessValues = config.split("\\|")[1].split(",");
-                        int[] luxArray = new int[luxValues.length];
-                        int index = 0;
-                        for(String s : luxValues) {
-                            luxArray[index++] = Integer.valueOf(s);
+                    if (brightnessSettingsEnabled) {
+                        mScreenBrightnessRangeMinimum = XposedHelpers.getIntField(
+                                param.thisObject, "mScreenBrightnessRangeMinimum");
+                        mScreenBrightnessRangeMaximum = XposedHelpers.getIntField(
+                                param.thisObject, "mScreenBrightnessRangeMaximum");
+    
+                        prefs.reload();
+                        String config = prefs.getString(GravityBoxSettings.PREF_KEY_AUTOBRIGHTNESS, null);
+                        if (config != null) {
+                            String[] luxValues = config.split("\\|")[0].split(",");
+                            String[] brightnessValues = config.split("\\|")[1].split(",");
+                            int[] luxArray = new int[luxValues.length];
+                            int index = 0;
+                            for(String s : luxValues) {
+                                luxArray[index++] = Integer.valueOf(s);
+                            }
+                            int[] brightnessArray = new int[brightnessValues.length];
+                            index = 0;
+                            for(String s : brightnessValues) {
+                                brightnessArray[index++] = Integer.valueOf(s);
+                            }
+                            updateAutobrightnessConfig(luxArray, brightnessArray);
                         }
-                        int[] brightnessArray = new int[brightnessValues.length];
-                        index = 0;
-                        for(String s : brightnessValues) {
-                            brightnessArray[index++] = Integer.valueOf(s);
-                        }
-                        updateAutobrightnessConfig(luxArray, brightnessArray);
                     }
 
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(ACTION_GET_AUTOBRIGHTNESS_CONFIG);
-                    intentFilter.addAction(ACTION_SET_AUTOBRIGHTNESS_CONFIG);
+                    if (brightnessSettingsEnabled) {
+                        intentFilter.addAction(ACTION_SET_AUTOBRIGHTNESS_CONFIG);
+                    }
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_BUTTON_BACKLIGHT_CHANGED);
                     mContext.registerReceiver(mBroadcastReceiver, intentFilter);
                 }
             });
 
-            XposedHelpers.findAndHookMethod(classDisplayPowerController, 
-                    "clampScreenBrightness", int.class, new XC_MethodReplacement() {
-
-                        @Override
-                        protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                            return XposedHelpers.callMethod(param.thisObject, "clamp", param.args[0],
-                                    mScreenBrightnessRangeMinimum, mScreenBrightnessRangeMaximum);
-                        }
-            });
+            if (brightnessSettingsEnabled) {
+                XposedHelpers.findAndHookMethod(classDisplayPowerController, 
+                        "clampScreenBrightness", int.class, new XC_MethodReplacement() {
+    
+                            @Override
+                            protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                                return XposedHelpers.callMethod(param.thisObject, "clamp", param.args[0],
+                                        mScreenBrightnessRangeMinimum, mScreenBrightnessRangeMaximum);
+                            }
+                });
+            }
 
             XposedHelpers.findAndHookMethod(classLight, "setLightLocked",
                     int.class, int.class, int.class, int.class, int.class, new XC_MethodHook() {

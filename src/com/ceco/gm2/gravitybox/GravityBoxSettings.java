@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.ceco.gm2.gravitybox.preference.AutoBrightnessDialogPreference;
+import com.ceco.gm2.gravitybox.preference.SeekBarPreference;
+
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -132,6 +135,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_FLASHING_LED_DISABLE = "pref_flashing_led_disable";
     public static final String PREF_KEY_CHARGING_LED_DISABLE = "pref_charging_led_disable";
 
+    public static final String PREF_KEY_BRIGHTNESS_MASTER_SWITCH = "pref_brightness_master_switch";
     public static final String PREF_KEY_BRIGHTNESS_MIN = "pref_brightness_min2";
     public static final String PREF_KEY_SCREEN_DIM_LEVEL = "pref_screen_dim_level";
     public static final String PREF_KEY_AUTOBRIGHTNESS = "pref_autobrightness";
@@ -281,7 +285,8 @@ public class GravityBoxSettings extends Activity {
             PREF_KEY_HOLO_BG_SOLID_BLACK,
             PREF_KEY_NAVBAR_DISABLE,
             PREF_KEY_HOLO_BG_DITHER,
-            PREF_KEY_SCREEN_DIM_LEVEL
+            PREF_KEY_SCREEN_DIM_LEVEL,
+            PREF_KEY_BRIGHTNESS_MASTER_SWITCH
     ));
 
     @Override
@@ -355,6 +360,10 @@ public class GravityBoxSettings extends Activity {
         private ListPreference mPrefRecentClear;
         private PreferenceScreen mPrefCatPhone;
         private CheckBoxPreference mPrefRoamingWarningDisable;
+        private CheckBoxPreference mPrefBrightnessMasterSwitch;
+        private SeekBarPreference mPrefBrightnessMin;
+        private SeekBarPreference mPrefScreenDimLevel;
+        private AutoBrightnessDialogPreference mPrefAutoBrightness;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -459,6 +468,11 @@ public class GravityBoxSettings extends Activity {
 
             mPrefCatPhone = (PreferenceScreen) findPreference(PREF_CAT_KEY_PHONE);
             mPrefRoamingWarningDisable = (CheckBoxPreference) findPreference(PREF_KEY_ROAMING_WARNING_DISABLE);
+
+            mPrefBrightnessMasterSwitch = (CheckBoxPreference) findPreference(PREF_KEY_BRIGHTNESS_MASTER_SWITCH);
+            mPrefBrightnessMin = (SeekBarPreference) findPreference(PREF_KEY_BRIGHTNESS_MIN);
+            mPrefScreenDimLevel = (SeekBarPreference) findPreference(PREF_KEY_SCREEN_DIM_LEVEL);
+            mPrefAutoBrightness = (AutoBrightnessDialogPreference) findPreference(PREF_KEY_AUTOBRIGHTNESS);
 
             // Remove Phone specific preferences on Tablet devices
             if (Utils.isTablet(getActivity())) {
@@ -645,6 +659,13 @@ public class GravityBoxSettings extends Activity {
 
             if (key == null || key.equals(PREF_KEY_RECENTS_CLEAR_ALL)) {
                 mPrefRecentClear.setSummary(mPrefRecentClear.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_BRIGHTNESS_MASTER_SWITCH)) {
+                final boolean enabled = mPrefBrightnessMasterSwitch.isChecked();
+                mPrefBrightnessMin.setEnabled(enabled);
+                mPrefScreenDimLevel.setEnabled(enabled);
+                mPrefAutoBrightness.setEnabled(enabled);
             }
         }
 
