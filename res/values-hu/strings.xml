@@ -1,65 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
     <string name="app_name">GravityBox</string>
-    <string name="battery_style_title">Akkumulátor kijelző stílusa</string>
-    <string name="battery_style_stock">Gyári akkumulátor kijelző</string>
-    <string name="battery_style_circle">Kör akkumulátor százalékkal</string>
-    <string name="battery_style_percent">Nagy százalék kijelzés</string>
-    <string name="battery_style_percent_stock">Nagy százalék kijelzés gyári ikonnal</string>
-    <string name="battery_style_none">Semmilyen</string>
-    <string name="vol_music_controls_title">Hangerő gombok kihagyják a számot</string>
-    <string name="vol_music_controls_summary">Léptetik a számot a hangerő gombok, kikapcsolt képernyőnél hosszan kell nyomni</string>
-    <string name="low_battery_warning_policy_title">Alacsony akkumulátor figyelmeztetés</string>
+
+    <string name="battery_style_title">Akkumlátor kijelző stílusa</string>	
+    <string name="battery_style_stock">Gyári akkumlátor kijezlő</string>
+    <string name="battery_style_circle">Kör akkumlátor kijezlő</string>
+    <string name="battery_style_circle_percent">Kör akkumlátor kijezlő százalékkal</string>
+    <string name="battery_style_percent">Szöveges százalékos kijezlő</string>
+    <string name="battery_style_none">Semmilyen, nincs akkumlátor kijelzés</string>
+
+    <string name="vol_music_controls_title">Hangerő gombok átugorják a számot</string>
+    <string name="vol_music_controls_summary">Kikapcsolt képernyőnél a hangerő gombok hosszú megnyomásával átugorhatjuk az aktuális számot</string>
+
+    <string name="low_battery_warning_policy_title">Alacsony akkumlátorszint figyelmeztetés</string>
     <string name="low_battery_warning_full">Felugró szöveg és hang</string>
-    <string name="low_battery_warning_popup">Csak felugró szöveg</string>
+    <string name="low_battery_warning_popup">Csak felugó szöveg</string>
     <string name="low_battery_warning_sound">Csak hang</string>
-    <string name="low_battery_warning_off">Ki</string>
-    <string name="reboot_required">A változás csak az újraindítás után lesz alkalmazva</string>
+    <string name="low_battery_warning_off">Kikapcsolva</string>
+
+    <string name="reboot_required">A változtatás csak újraindítás után lesz alkalmazva</string>
+
     <string name="signal_icon_autohide_title">Jelszint ikonok automatikus elrejtése</string>
-    <string name="signal_icon_autohide_summary">A kiválasztott SIM foglalat jelszint ikonjának automatikus elrejtése ha a SIM kártya hiányzik, letiltja a \"SIM nem található\" figyelmeztetést</string>
+    <string name="signal_icon_autohide_summary">Jelszint ikonok automatikus elrejtése a nem használt SIM foglalatnál, ha a SIM kártya nincs behelyezve, "SIM nem található" figyelmeztetés letiltása</string>
     <string name="sim_slot_1">SIM 1 foglalat automatikus elrejtése</string>
     <string name="sim_slot_2">SIM 2 foglalat automatikus elrejtése</string>
     <string name="sim_disable_notifications">Figyelmeztetés letiltása</string>
-    <string name="sim_disable_notifications_summary">\"SIM nem található\" figyelmeztetés letiltva</string>
+    <string name="sim_disable_notifications_summary">\"SIM nem található"\ figyelmeztetés letiltása</string>
+
     <string name="poweroff_advanced_title">Haladó kikapcsoló menü</string>
-    <string name="poweroff_advanced_summary">Engedélyezi a haladó kikapcsoló menüt újraindítás a recovery-be opcióval</string>
-    <string name="poweroff_recovery">Recovery</string>
-    <string name="vol_key_cursor_control_title">Hangerő gombos kurzor irányítás</string>
-    <string name="vol_key_cursor_control_summary">Irányítja a kurzort a hangerő gombokkal a szöveg mezőkben</string>
+    <string name="poweroff_advanced_summary">Engedélyezi a haladó kikapcsoló menüt újraindítás Recovery-be opcióval</string>
+    <string name="poweroff_recovery">Recovery</string>    
+
+    <string name="vol_key_cursor_control_title">Kurzor irányítás hangerő gombokkal</string>
+    <string name="vol_key_cursor_control_summary">Kurzor irányítása szöveges mezőkben a hangerő gombok használatával</string>
     <string name="vol_key_cursor_control_off">Letiltva</string>
-    <string name="vol_key_cursor_control_on">Hangerő fel/le mozgatja a kurzort balra/jobbra</string>
-    <string name="vol_key_cursor_control_on_reverse">Hangerő fel/le mozgatja a kurzort jobbra/balra</string>
+    <string name="vol_key_cursor_control_on">Hangerő fel/le a kurzort balra/jobbra mozgatja</string>
+    <string name="vol_key_cursor_control_on_reverse">Hangerő fel/le a kurzort jobbra/balra mozgatja</string>
+
     <string name="recents_clear_all_title">Töröl minden új feladatot</string>
-    <string name="recents_clear_all_summary">A gombbal törölheti az összes új feladatot egyszerre a legújabb alkalmazások ablakban</string>
-    <string name="fix_datetime_crash_title">Javítja a dátum&amp;idő beállítás hibáját</string>
-    <string name="fix_datetime_crash_summary">Engedélyezze abban az esetben, ha azt tapasztalja, hogy összeomlik a Dátum&amp;idő beállítása közben (újraindítás szükséges)</string>
+
+    <string name="fix_datetime_crash_title">Javítja a Dátum és Idő beállítás hibáját</string>
+    <string name="fix_datetime_crash_summary">Engedélyezze abban az esetben, ha összeomlást tapasztal a Dátum és Idő beállítás elérésekor (újraindítás szükséges)</string>
+
     <string name="fix_caller_id_phone_title">Javítja a telefon hívóazonosítóját</string>
-    <string name="fix_caller_id_phone_summary">Engedélyezze, ha a hívó nem egyezik a hívás fogadásakor (újraindítás szükséges)</string>
-    <string name="fix_caller_id_phone_alert">Újraindítás után, törölni és újra hozzáadni kell a kapcsolatokat a változás érvényesítéséhez! Használja a  Beállítások / Alkalmazások / Összes - menüpontot a névjegyzék szolgáltató adatainak törléséhez.</string>
+    <string name="fix_caller_id_phone_summary">Engedélyezze abban az esetben, ha a hívó nem egyezik a hívás fogadásakor (újraindítás szükséges)</string>
+    <string name="fix_caller_id_phone_alert">A változások életbe lépéséhez az újraindítás után a kapcsolatokat törölni kell és újra hozzáadni! Használja a Beállítások / Alkalmazások / Összes menüpontot a Névjegyzék szolgáltató adatainak törléséhez.</string>
+
     <string name="fix_caller_id_mms_title">Javítja az üzenetek hívóazonosítóját</string>
-    <string name="fix_caller_id_mms_summary">Engedélyezze abban az esetben, ha azt tapasztalja, hogy osztott beszélgetés szálak vannak egyazon partneről (újraindítás szükséges)</string>
-    <string name="fix_caller_id_mms_alert">Újraindítás után, törölni kell az összes osztott szálat az üzenetküldő alkalmazásban a változás érvényesítéséhez!</string>
-    <string name="fix_calendar_title">Naptár prog. javítása</string>
-    <string name="fix_calendar_summary">Engedélyezze abban az esetben, ha azt tapasztalja, hogy a képernyő rendszeresen bekapcsolja magát (újraindítás szükséges)</string>
+    <string name="fix_caller_id_mms_summary">Engedélyezze abban az esetben, ha különválasztott üzenetváltásokat tapasztal egyazon partnertől (újraindítás szükséges)</string>
+    <string name="fix_caller_id_mms_alert">A változások életbe lépéséhez az újraindítás után törölni kell az összes különválasztott üzenetet az Üzenetküldő alkalmazásban!</string>
+
+    <string name="fix_calendar_title">Javítja a Naptár programot</string>
+    <string name="fix_calendar_summary">Engedélyezze abban az esetben, ha a képernyő rendszeresen bekapcsolja magát (újraindítás szükséges)</string>
+
     <string name="important">Fontos</string>
+
     <string name="caller_fullscreen_photo_title">Teljes képernyős hívó fotó</string>
-    <string name="caller_fullscreen_photo_summary">Teljes képernyőn mutatja a hívó fotóját a bejövő hívás képernyőn</string>
+    <string name="caller_fullscreen_photo_summary">Teljes képernyőn mutatja a hívó fotóját a bejövő hívások képernyőn.</string>
 
     <!-- QuickSettings strings -->
-    <string name="quick_settings_sync_on">Szinkronizálás be</string>
-    <string name="quick_settings_sync_off">Szinkronizálás ki</string>
-    <string name="quick_settings_wifi_ap_on">Wi-Fi AP be</string>
-    <string name="quick_settings_wifi_ap_off">Wi-Fi AP ki</string>
+    <string name="quick_settings_sync_on">Szinkronizáció be</string>
+    <string name="quick_settings_sync_off">Szinkronizáció ki</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi hozzáférési pont be</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi hozzáférési pont ki</string>
     <string name="quick_settings_torch_on">Zseblámpa be</string>
     <string name="quick_settings_torch_off">Zseblámpa ki</string>
-    <string name="quick_settings_torch_off_notif">Érintse meg a lekapcsoláshoz</string>
+    <string name="quick_settings_torch_off_notif">Érintse meg a kikapcsoláshoz</string>
+    <string name="quick_settings_qr_playing">Lejátszás&#8230;</string>
+    <string name="quick_settings_qr_recording">Felvétel&#8230;</string>
+    <string name="quick_settings_qr_recorded">Felvéve</string>
+    <string name="quick_settings_qr_record">Nyomja hosszan a felvételhez</string>
+    <string name="quick_settings_qr_recording_notif">Nyomja meg a felvétel leállításához</string>
 
     <!--  QuickSettings settings -->
-    <string name="quick_settings_title">Statusbar gyorsbeállítás csempék</string>
-    <string name="quick_settings_summary">Mutatja vagy elrejti a gyorsbeállítás csempéket a statusbar-on</string>
+    <string name="quick_settings_title">Statusbar Gyorsbeállítások csempéi</string>
+    <string name="quick_settings_summary">Mutatja vagy elrejti a Gyorsbeállítások csempéket a statusbar-on</string>
     <string name="qs_tile_user_profile">Felhasználói profil</string>
     <string name="qs_tile_airplane_mode">Repülő mód</string>
-    <string name="qs_tile_battery">Akkumulátor infó</string>
+    <string name="qs_tile_battery">Akkumlátor státusz</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
@@ -73,82 +92,356 @@
     <string name="qs_tile_sync">Szinkronizálás</string>
     <string name="qs_tile_wifi_ap">Wi-Fi hozzáférési pont</string>
     <string name="qs_tile_torch">Zseblámpa</string>
-    <string name="qs_tile_gravitybox">GravityBox Magyarul</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Alvás</string>
+    <string name="qs_tile_quickrecord">Gyors Felvétel</string>
+    <string name="qs_tile_settings">Beállítások</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Szín választó</string>
-    <string name="press_color_to_apply">Nyomjon a színre a kiválasztáshoz</string>
+    <string name="press_color_to_apply">Nyomjon a színre a beállításhoz</string>
 
     <!--  Statusbar background color -->
-    <string name="statusbar_bgcolor_title">Statusbar háttér szín</string>
-    <string name="statusbar_bgcolor_summary">Lehetővé teszi, hogy állíthassa a statusbar háttér színét és az átlátszóságát</string>
+    <string name="statusbar_bgcolor_title">Statusbar háttérszín</string>
+    <string name="statusbar_bgcolor_summary">Lehetővé teszi, hogy beállíthassa a Statusbar háttérszínét és átlátszóságát</string>
 
     <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">Javítja a beszéd beállításokat</string>
-    <string name="fix_tts_settings_summary">Lehetővé teszi,a hangalapú keresést és szövegfelolvasó kimenetet a Nyelv&amp;bevitel-ben (újraindítás szükséges)</string>
+    <string name="fix_tts_settings_summary">Elérhetővé teszi a hangalapú keresést és a szövegfelolvasó kimenetet a Nyelv és Bevitel-ben (újraindítás szükséges)</string>
 
     <!--  Advanced developer options -->
     <string name="fix_dev_opts_title">Fejlett fejlesztői lehetőségek</string>
-    <string name="fix_dev_opts_summary">Lehetővé teszi, a fejlett fejlesztői lehetőségeket (újraindítás szükséges)</string>
+    <string name="fix_dev_opts_summary">Elérhetővé teszi a fejlett fejlesztői lehetőségeket (újraindítás szükséges)</string>
 
     <!-- Main preference categories -->
     <string name="pref_cat_statusbar_title">Statusbar módosítások</string>
-    <string name="pref_cat_statusbar_summary">Különféle statusbar módosításokat tartalmaz</string>
+    <string name="pref_cat_statusbar_summary">Különféle Statusbar módosításokat tartalmaz</string>
     <string name="pref_cat_misc_title">Különféle módosítások</string>
     <string name="pref_cat_misc_summary">Tartalmaz minden egyéb módosítást, ami nem tartozik a többi konkrét kategóriába</string>
     <string name="pref_cat_fixes_title">Általános javítások</string>
     <string name="pref_cat_fixes_summary">Általános MTK6589 specifikus javításokat tartalmaz. Csak akkor használja, ha szükséges.</string>
 
     <!-- About -->
-    <string name="pref_cat_about_title">A programról..</string>
+    <string name="pref_cat_about_title">A programról...</string>
     <string name="about_gb_summary">Fejlesztette C3C076@XDA. Érintse meg a hivatalos fórum meglátogatásához.</string>
     <string name="about_xposed_title">Xposed framework</string>
     <string name="about_xposed_summary">Fejlesztette rovo89@XDA. Érintse meg a hivatalos fórum meglátogatásához.</string>
     <string name="about_donate_title">Felajánlás</string>
-    <string name="about_donate_summary">Adományozzon részemre ha úgy gondolja, hogy ez a program megérdemli! Valamint fontolja meg, hogy rovo89 is adományoz a kitűnő Xposed framework-ért.</string>
+    <string name="about_donate_summary">Adományozzon a részemre, ha úgy gondolja, hogy ez a program megéri az árát! Valamint fontolja meg, hogy adományozzon rovo89-nek is a kitűnő Xposed framework-ért.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">A %s újra fog indulni.</string>
-    <string name="reboot_confirm_recovery">A %s újra fog indulni a recovery-be.</string>
+    <string name="reboot_confirm">A %s újra fog indulni</string>
+    <string name="reboot_confirm_recovery">A %s Recovery módba fog újraindulni</string>
 
     <!-- CRT effect screen off animation -->
-    <string name="crt_off_effect_title">CRT kikapcsoló effekt</string>
-    <string name="crt_off_effect_summary">Engedélyezi az animációt ami szimulálja az öreg CRT kikapcsolási effektet, ha kikapcsolódik a képernyő</string>
+    <string name="crt_off_effect_title">CRT kikapcsolási effekt</string>
+    <string name="crt_off_effect_summary">Animáció engedélyezése, ami a régi CRT kikapcsolási effektet szimulálja a képernyő kikapcsolásakor</string>
+
     <!-- Engineering mode shortcut -->
     <string name="engineering_mode_title">Tervező mód</string>
-    <string name="engineering_mode_summary">Indítja a Tervező mód programot</string>
+    <string name="engineering_mode_summary">Elindítja a Tervező mód programot</string>
 
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Dual SIM Ringer</string>
-    <string name="dual_sim_ringer_summary">Indítja a programot ami lehetővé teszi, hogy beállítson csengőhangokat és figyelmeztetési hangokat külön mindkét SIM-nek</string>
+    <string name="dual_sim_ringer_summary">Elindítja a programot, ami lehetővé teszi csengőhangok és figyelmeztető hangok beállítást külön, mindkét SIM-hez</string>
 
     <!--  Lockscreen tweaks -->
     <string name="pref_cat_lockscreen_title">Lockscreen módosítások</string>
-    <string name="pref_cat_lockscreen_summary">Különböző lockscreen módosításokat tartalmaz</string>
+    <string name="pref_cat_lockscreen_summary">Különböző Lockscreen módosításokat tartalmaz</string>
     <string name="pref_cat_lockscreen_background_title">Lockscreen háttér</string>
-    <string name="pref_lockscreen_background_title">Háttér stílus</string>
+    <string name="pref_lockscreen_background_title">Háttér sítlus</string>
     <string name="lockscreen_bg_default">Alapértelmezett háttérkép</string>
     <string name="lockscreen_bg_color">Szín kitöltés</string>
     <string name="lockscreen_bg_image">Egyéni kép</string>
-    <string name="pref_lockscreen_bg_color_title">Egyéni szín beállítás</string>
-    <string name="pref_lockscreen_bg_color_summary">Lehetővé teszi, hogy beállítson egyéni háttérszínt a lockscreen-hez</string>
-    <string name="pref_lockscreen_bg_image_title">Egyéni kép beállítás</string>
-    <string name="pref_lockscreen_bg_image_summary">Lehetővé teszi, hogy beállítson egyéni háttérképet a lockscreen-hez</string>
-    <string name="lockscreen_background_result_successful">Háttér megváltozott</string>
-    <string name="lockscreen_background_result_not_successful">Háttér nem változott</string>
-    <string name="pref_cat_lockscreen_other_title">Egyéb</string>
+    <string name="pref_lockscreen_bg_color_title">Egyéni szín beállítása</string>
+    <string name="pref_lockscreen_bg_color_summary">Lehetővé teszi egyéni háttérszín beállítását a Lockscreen-hez</string>
+    <string name="pref_lockscreen_bg_image_title">Egyéni kép beállítása</string>
+    <string name="pref_lockscreen_bg_image_summary">Lehetővé teszi egyéni háttérkép beállítását a Lockscreen-hez</string>
+    <string name="lockscreen_background_result_successful">A háttér megváltozott</string>
+    <string name="lockscreen_background_result_not_successful">A háttér nem változott meg</string>
+    <string name="pref_cat_lockscreen_other_title">Másik</string>
     <string name="pref_lockscreen_maximize_widgets_title">Widgetek maximalizálása</string>
-    <string name="pref_lockscreen_maximize_widgets_summary">Ha engedélyezve van, lockscreen widgetek maximalizálva lesznek alapértelmezetten</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Ha engedélyezve van, a Lockscreen widgetek alapértelmezetten maximalizálva lesznek</string>
 
     <!--  Power tweaks category -->
-    <string name="pref_cat_power_title">Energia módosítások</string>
-    <string name="pref_cat_power_summary">Tartalmaz különböző energiával kapcsolatos módosításokat</string>
+    <string name="pref_cat_power_title">Energia beállítások</string>
+    <string name="pref_cat_power_summary">Különböző energiával kapcsolatos módosításokat tartalmaz</string>
 
     <!--  Low battery LED flashing -->
-    <string name="pref_flashing_led_disable_title">Letiltja a LED villogást</string>
-    <string name="pref_flashing_led_disable_summary">Kikapcsolja a zavaró LED villogást, ha az akkumulátor szintje alacsony és nincs töltés</string>
+    <string name="g_led_disable_title">Letiltja a LED villogást</string>
+    <string name="pref_flashing_led_disable_summary">Kikapcsolja a zavaró LED villogást amikor az akkumlátorszint alacsony és nincs töltés</string>
 
-    <!-- Device type -->
-    <string name="device_phone">telefonja</string>
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">Kijelző módosítások</string>
+    <string name="pref_cat_display_summary">Különböző, kijelzővel kapcsolatos módosításokat tartalmaz</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">Minimum fényerő szint</string>
+    <string name="pref_brightness_min_summary">Lehetővé teszi a minimum fényerő szint beállítását. A kézi fényerőbeállításra vonatkozik. (újraindítás szükséges)</string>
+    <string name="pref_brightness_dlg_msg">Érték intervallum: 10 &#8211; 80</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">Automatikus fényerő szintek</string>
+    <string name="pref_ab_summary">Lehetővé teszi a környezeti fény szintek és a kapcsolódó LCD háttérvilágítás értékek beállítását</string>
+    <string name="level">Szint</string>
+    <string name="pref_ab_lux_max_label">Lux max</string>
+    <string name="pref_ab_brighness_label">Háttérfény (10 &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">A meghatározott érték nem lehetséges</string>
+    <string name="pref_ab_brightness_too_low">10 alatti fényerő érték beállítása nem ajánlott</string>
+    <string name="pref_ab_brightness_too_high">Fényerő nem lehet nagyobb, mint 255</string>
+    <string name="pref_ab_number_error_negative">Az értékek nem lehetnek kisebbek vagy egyenlőek 0-val</string>
+    <string name="pref_ab_number_not_ascending">A kisebb szintek értékei nem lehetnek nagyobbak mint a nagyobb szintek értékei.</string>
+    <string name="pref_ab_number_not_descending">A nagyobb szintek értékei nem lehetnek kisebbek mint az alacsonyabb szintek értékei.</string>
+    <string name="pref_ab_values_set">Értékek %-os megadása</string>
+    <string name="pref_ab_config_saved">Új automatikus fényerő konfiguráció elmentve</string>
+    <string name="pref_ab_config_cancelled">Automatikus fényerő konfiguráció NINCS elmentve</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">Lockscreen elforgatás engedélyezése</string>
+    <string name="pref_lockscreen_rotation_summary">FIGYELEM: megfordíthatja a feloldó kör célirányát olyan eszközön, ahol AOSP lockscreen már a gyártó által módosítva van</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">Menü gomb engedélyezése</string>
+    <string name="pref_lockscreen_menu_key_summary">Lehetővé teszi a menü gombbal történő gyors feloldást a Lockscreen-en (újraindítás szükséges)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">Javítja az üzenetek fogadásakori ébrentartást</string>
+    <string name="pref_mms_fix_wakelock_summary">Megakadályozza a képernyő bekapcsolását, ha új üzenet érkezik (újraindítás szükséges)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">Óra középen</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Média módosítások</string>
+    <string name="pref_cat_media_summary">Különböző beállításokat tartalmaz a média és audió rendszerhez</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">Több zene hangerő léptetés</string>
+    <string name="pref_music_volume_steps_summary">Több hangerő léptetést ad hozzá zene folyam esetén (újraindítást szükséges)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">Biztonságos fejhallgató média hangerő</string>
+    <string name="pref_safe_media_volume_summary">Aktiválja vagy deaktiválja a biztonságos fejhallgató média hangerő funkciót</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">Töltés LED tiltása</string>
+    <string name="pref_charging_led_disable_summary">Letiltja a LED-et töltés közben</string>
+
+    <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">Hardver gombok műveletei</string>
+    <string name="pref_cat_hwkey_actions_summary">Lehetővé teszi a hardver gombokhoz egyedi műveletek beállítását</string>
+    <string name="pref_hwkey_menu_longpress_title">Menü gomb hosszú érintés művelete</string>
+    <string name="pref_hwkey_menu_doubletap_title">Menü gomb dupla érintés művelete</string>
+    <string name="pref_hwkey_back_longpress_title">Vissza gomb hosszú érintés művelete</string>
+    <string name="hwkey_action_default">Alapértelmezett</string>
+    <string name="hwkey_action_search">Keresés</string>
+    <string name="hwkey_action_voice_search">Hang alapú keresés</string>
+    <string name="hwkey_action_prev_app">Váltás az előző programra</string>
+    <string name="hwkey_action_kill">Előtérben futó program bezárása</string>
+    <string name="hwkey_action_sleep">Alvás</string>
+    <string name="pref_hwkey_kill_delay_title">Program bezárás hosszú érintés késleltetése</string>
+    <string name="pref_hwkey_kill_delay_summary">Az előtérben futó program bezárására vonatkozik. Meghatározza, hogy mennyi ideig kell nyomva tartani a bezáráshoz.</string>
+    <string name="pref_hwkey_doubletap_speed_title">Dupla érintés sebessége</string>
+    <string name="pref_hwkey_doubletap_speed_summary">A Menü gomb dupla érintés műveletére vonatkozik. Meghatározza, hogy milyen gyorsan kell érinteni a dupla érintés előidézéséhez.</string>
+    <string name="app_killed">Alkalmazás bezárva</string>
+    <string name="nothing_to_kill">Nincs bezárandó alkalmazás</string>
+    <string name="no_previous_app_found">Nem található korábbi alkalmazás</string>
+
+    <!--  Phone tweaks category -->
+    <string name="pref_cat_phone_title">Telefon módosítások</string>
+    <string name="pref_cat_phone_summary">Különböző telefonnal kapcsolatos módosításokat tartalmaz.</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">Fejre fordítás művelete csengés közben</string>
+    <string name="pref_phone_flip_summary">Lehetővé teszi, hogy meghatározza azt a műveletet, amit az eszköz csengés közbeni fejjel lefelé fordításakor végrehajt</string>
+    <string name="phone_flip_action_none">Ne tegyen semmit</string>
+    <string name="phone_flip_action_mute">Csengés elnémítása</string>
+    <string name="phone_flip_action_dismiss">Hívás elutasítása</string>
+
+    <!-- Disable vibrate on call connect -->
+    <string name="pref_phone_call_connect_vibrate_disable_title">Rezgés letiltása hívás kapcsolódáskor</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">Letiltja a rezgést, amit a hívás kapcsolódás vált ki.</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">Intelligens újraindítás</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Solid fekete Holo háttér</string>
+    <string name="pref_holo_bg_solid_black_summary">A solid fekete hátteret használja az alapértelmezett Holo rendszer témához a fekete-szürke színátmenet helyett (újraindítás szükséges)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">Csempék egy sorban</string>
+    <string name="pref_qs_tiles_per_row_summary">Meghatározza, hogy mennyi Gyorsbeállítások csempe jelenjen meg soronként. A csempék ennek megfelelően kerülnek átméretezésre. Portré módra vonatkozik.</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">A hét napjának mutatása</string>
+
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Bővített hangerő panel</string>
+    <string name="pref_volume_panel_expandable_summary">Engedélyezi a bővített hangerő panelt a különböző hangfolyamokhoz tartozó értékek beállítási lehetőségével</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Csengőhang és figyelmeztető hangok értékei</string>
+    <string name="pref_link_volumes_summary">Amikor ki van kapcsolva, a csengőhang és figyelmeztető hangok értékei egymástól függetlenül állíthatóak</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">Automatikus váltás a Gyorsbeállítások panelre</string>
+    <string name="pref_auto_switch_qs_summary">A Gyorsbeállítások panel fog megjelenni automatikusan a Statusbar megnyitásakor, amennyiben nincs értesítés</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Gyors lehúzás</string>
+    <string name="pref_quick_pulldown_summary">A Statusbar szélének lehúzása megnyitja a Gyorsbeállításokat</string>
+    <string name="quick_pulldown_off">Kikapcsolva</string>
+    <string name="quick_pulldown_right">Jobb</string>
+    <string name="quick_pulldown_left">Bal</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">Letiltja a hangerő gombbal történő ébresztést</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Azon eszközök részére -mint a Jiayu G3S,G4- amelyek hangerő gombja bekapcsolja a kijelzőt</string>
+
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">Statusbar színek</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">Ikon színek engedélyezve</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">Statusbar ikon színe</string>
+    <string name="pref_statusbar_icon_color_summary">Beállítja a statusbar ikonok és az óra színét</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">Adattevékenység színe</string>
+    <string name="pref_statusbar_data_activity_color_summary">Beállítja az adattevékenység kijelzők színét</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">Gyorsbeállítások menedzsment</string>
+
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">Értesítési terület stílusa</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">Értesítési terület háttere</string>
+    <string name="notif_background_default">Alapértelmezett háttér</string>
+    <string name="notif_background_color_fill">Szín kitöltése</string>
+    <string name="notif_background_custom_image">Egyéni kép</string>
+    <string name="pref_notif_color_title">Háttérszín beállítása</string>
+    <string name="pref_notif_image_portrait_title">Portré kép beállítása</string>
+    <string name="pref_notif_image_landscape_title">Tájkép beállítása</string>
+    <string name="pref_notif_background_alpha_title">Háttér átlátszóság</string>
+    <string name="pref_notif_color_mode_title">Háttér mód</string>
+    <string name="color_fill_overlay">Átfedés</string>
+    <string name="color_fill_underlay">Alsó réteg -Underlay-</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">Roaming mutató letiltása</string>
+    <string name="pref_disable_roaming_indicators_summary">Amikor ki van kapcsolva, az R mutató nem lesz látható roaming közben. Óvatosan használd.</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Töltés (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Feltöltve</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% maradt</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Nincs szolgáltatás</string>
+    <string name="pie_phone_status_airplane_mode">Airplane mód bekapcsolva</string>
+    <string name="pie_phone_status_emergency_only">Csak segélyhívás</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">Pie Vezérlők</string>
+    <string name="pie_control_enable_title">Pie Vezérlők engedélyezve</string>
+    <string name="pie_control_search_title">Keresés gomb mutatása</string>
+    <string name="pie_control_size_title">Navigációs gomb méret</string>
+    <string name="pie_control_trigger_positions_title">Kioldógomb pozíció</string>
+    <string name="pie_control_trigger_left">Bal oldali képernyőszél</string>
+    <string name="pie_control_trigger_bottom">Alsó képernyőszél</string>
+    <string name="pie_control_trigger_right">Jobb oldali képernyőszél</string>
+    <string name="pie_control_trigger_top">Felső képernyőszél</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">Gomb háttérvilágítás mód</string>
+    <string name="button_backlight_mode_default">Alapértelmezett</string>
+    <string name="button_backlight_mode_disable">Gomb háttérvilágítás kikapcsolva</string>
+    <string name="button_backlight_mode_always_on">Bekapcsolt kijelzőnél mindig bekapcsolva</string>
+    <string name="pref_button_backlight_notifications_title">Gomb háttérvilágítás értesítések</string>
+    <string name="pref_button_backlight_notifications_summary">KÍSÉRLETI! Villogtatja a gomb háttérvilágítást amikor értesítés érkezik. Abban az esetben használd, ha az eszközödből hiányzik az értesítési LED. Fogyaszhtatja az akkumlátort.</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">Navigation bar elrejtése</string>
+    <string name="pref_navbar_disable_summary">Elrejti a Navigation bar-t, ha a Pie Vezérlők engedélyezve vannak -azon eszközöknek, amelyben van navigation bar- (újraindítás szükséges)</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">Nagyobb színmélységű Holo háttér</string>
+    <string name="pref_holo_bg_dither_summary">Lecseréli a szabvány Holo hátteret nagyobb színmélységű típusra a színátmenetek folyamatosságának megtörése ellen (újraindítás szükséges)</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">Hardver gombok letiltása</string>
+    <string name="pref_hwkeys_disable_summary">Letiltja a MENU, BACK, HOME gombokat, ha a Pie Vezérlők engedélyezve vannak. A HW gombok műveletei működni fognak. (HW gombokkal ellátot eszközök esetén)</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">Holo Sötét téma használata</string>
+    <string name="pref_gb_theme_dark_summary">Átkapcsolja a GB UI-t, hogy a Holo sötét témát használja a Holo világos helyett</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">Kikapcsolva</string>
+    <string name="recent_clear_top_left">Bal fent</string>
+    <string name="recent_clear_top_right">Jobb fent</string>
+    <string name="recent_clear_bottom_left">Bal lent</string>
+    <string name="recent_clear_bottom_right">Jobb lent</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Felső szegély beállítása</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">Roaming figyelmeztetések letiltása</string>
+    <string name="pref_roaming_warning_disable_summary">Letiltja a roaming figyelmeztetéseket miközben üzenetet küld vagy telefonhívást kezdeményez roaming közben</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">Keresés</string>
+    <string name="app_picker_none">(Nincs)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">Gyors Program elérés</string>
+    <string name="pref_cat_quickapp_tile_title">Gyors Program elérés csempe beállítások</string>
+    <string name="pref_quickapp_default_title">Elsődleges program</string>
+    <string name="pref_quickapp_slot1_title">Hosszú érintés program hely 1</string>
+    <string name="pref_quickapp_slot2_title">Hosszú érintés program hely 2</string>
+    <string name="pref_quickapp_slot3_title">Hosszú érintés program hely 3</string>
+    <string name="pref_quickapp_slot4_title">Hosszú érintés program hely 4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS bekapcsolva</string>
+    <string name="qs_tile_gps_disabled">GPS kikapcsolva</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">Mindig mutassa a menü gombot</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">Csengés mód</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">Óra beállítások</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">De/Du elrejtése</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">Óra elrejtése</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">Kioldógomb méret</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">Átlátszóság menedzsment</string>
+    <string name="pref_tm_statusbar_launcher_title">Statusbar átlátszóság launcher-nél</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Statusbar átlátszóság lockscreen-nél</string>
+    <string name="pref_tm_navbar_launcher_title">Navbar átlátszóság launcher-nél</string>
+    <string name="pref_tm_navbar_lockscreen_title">Navbar átlátszóság lockscreen-nél </string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">Ébresztő ikon elrejtése</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Képernyő elsötétedési érték</string>
+    <string name="pref_screen_dim_level_summary">A fényerő értéke az elsötétedő képernyő állapotban - amikor a képernyő hamarosan kikapcsol (újraindítás szükséges)</string>
 
 </resources>
