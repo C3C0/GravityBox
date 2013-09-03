@@ -84,7 +84,7 @@
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_mobile_data">Mobile Daten</string>
     <string name="qs_tile_network_mode">Netzmodus</string>
-    <string name="qs_tile_data_usage">Datennutzung</string>
+    <string name="qs_tile_data_usage">Mobiler Datenverkehr</string>
     <string name="qs_tile_audio">Audioprofile</string>
     <string name="qs_tile_brightness">Helligkeit</string>
     <string name="qs_tile_screen_timeout">Displayabschaltung</string>
@@ -94,7 +94,7 @@
     <string name="qs_tile_torch">Taschenlampe</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
     <string name="qs_tile_sleep">Schlafmodus</string>
-    <string name="qs_tile_quickrecord">Schnelle Aufnahme</string>
+    <string name="qs_tile_quickrecord">Aufnahme</string>
     <string name="qs_tile_settings">Einstellungen</string>
 
     <!-- Color Picker -->
@@ -130,8 +130,8 @@
     <string name="about_donate_summary">Donate to me if you think this app is worth it! Also consider donating to rovo89 for his excellent Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Your phone will reboot</string>
-    <string name="reboot_confirm_recovery">Your phone will reboot into recovery</string>
+    <string name="reboot_confirm">Your %s will reboot</string>
+    <string name="reboot_confirm_recovery">Your %s will reboot into recovery</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT screen off effect</string>
@@ -409,14 +409,14 @@
     <string name="pref_quickapp_slot4_title">Long-press app slot 4</string>
 
     <!-- GPS Tile (for non-MTK) -->
-    <string name="qs_tile_gps_enabled">GPS on</string>
-    <string name="qs_tile_gps_disabled">GPS off</string>
+    <string name="qs_tile_gps_enabled">GPS an</string>
+    <string name="qs_tile_gps_disabled">GPS aus</string>
 
     <!-- Pie control: always show menu button -->
     <string name="pie_control_menu_title">Always show menu button</string>
 
     <!-- Ringer mode tile (for non-MTK) -->
-    <string name="qs_tile_ringer_mode">Ringer mode</string>
+    <string name="qs_tile_ringer_mode">Klingelmodus</string>
 
     <!-- Clock settings category -->
     <string name="pref_cat_clock_settings_title">Clock settings</string>
