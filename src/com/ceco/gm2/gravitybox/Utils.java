@@ -60,11 +60,13 @@ public class Utils {
     public static boolean isMtkDevice() {
         return (Build.HARDWARE.toLowerCase().contains("mt6589") || Build.HARDWARE.toLowerCase().contains("mt8389"));
     }
-    
+
     public static boolean hasGeminiSupport() {
         try {
-            Class<?> classKeyguardUtils = findClass("com.android.internal.policy.impl.keyguard.KeyguardUtils", null);
-            return (isMtkDevice() && (Boolean) callStaticMethod(classKeyguardUtils, "isGemini"));
+            Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
+            String geminiSupport = (String) callStaticMethod(classSystemProperties, 
+                    "get", "ro.mediatek.gemini_support");
+            return ("true".equals(geminiSupport));
         } catch (Throwable t) {
             XposedBridge.log("Utils: hasGeminiSupport check failed. Assuming device has no Gemini support");
             return false;
