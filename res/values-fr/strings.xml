@@ -29,8 +29,9 @@
     <string name="sim_disable_notifications_summary">Message \"SIM non insérée\" désactivé</string>
 
     <string name="poweroff_advanced_title">Menu avancé de redémarrage</string>
-    <string name="poweroff_advanced_summary">Active le menu avancé de redémarrage avec la possibilité de redémarrer en mode récupération</string>
-    <string name="poweroff_recovery">Récupération</string>    
+    <string name="poweroff_advanced_summary">Active le menu avancé de redémarrage avec les options de redémarrer en mode récupération</string>
+    <string name="poweroff_recovery">Récupération</string>
+    <string name="poweroff_bootloader">Bootloader</string>
 
     <string name="vol_key_cursor_control_title">Touches de volume et curseur</string>
     <string name="vol_key_cursor_control_summary">Permet le contrôle du curseur dans un champ textuel grâce aux touches de volume</string>
@@ -130,8 +131,9 @@
     <string name="about_donate_summary">Faîtes un don si vous pensez que cette application en vaut la peine ! Faîtes également un don à rovo89 pour son excellent Xposed framework</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Votre %s va redémarrer.</string>
-    <string name="reboot_confirm_recovery">Votre %s va redémarrer en mode récupération.</string>
+    <string name="reboot_confirm">Votre %s va redémarrer</string>
+    <string name="reboot_confirm_recovery">Votre %s va redémarrer en mode récupération</string>
+    <string name="reboot_confirm_bootloader">Votre %s va redémarrer en mode bootloader</string>
     
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Effet écran CRT</string>
@@ -363,7 +365,7 @@
     <string name="button_backlight_mode_disable">Désactiver le rétroéclairage</string>
     <string name="button_backlight_mode_always_on">Toujours actif avec l\'écran</string>
     <string name="pref_button_backlight_notifications_title">Notification via bouton rétroéclairé</string>
-    <string name="pref_button_backlight_notifications_summary">EXPÉRIMENTAL! Allume le rétroéclairage du bouton lorsqu\'il y a une notification et si l\'écran est éteint. À utiliser en l\'absence de LED de notification</string>
+    <string name="pref_button_backlight_notifications_summary">EXPÉRIMENTAL! Fais clignoter le rétroéclairage du bouton lorsqu\'il y a une notification. À utiliser en l\'absence de LED de notification. Peut augmenter la consommation de batterie</string>
 
     <!-- Hide navigation bar for pie -->
     <string name="pref_navbar_disable_title">Masquer la barre de navigation</string>
@@ -411,8 +413,46 @@
     <!-- GPS Tile (for non-MTK) -->
     <string name="qs_tile_gps_enabled">GPS on</string>
     <string name="qs_tile_gps_disabled">GPS off</string>
+    
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">Toujours afficher le bouton menu</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">Mode de sonnerie</string>
+    
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">Paramètres de l\'horloge</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">Masquer AM/PM</string>
+    
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">Masquer l\'horloge</string>
+    
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">Taille de la gâchette</string>
+    
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">Gestion de la transparence</string>
+    <string name="pref_tm_statusbar_launcher_title">Transparence de la barre de status pour le lanceur</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Transparence de la barre de status pour l\'écran de déverrouillage</string>
+    <string name="pref_tm_navbar_launcher_title">Transparence de la barre de navigation pour le lanceur</string>
+    <string name="pref_tm_navbar_lockscreen_title">Transparence de la barre de navigation pour l\'écran de déverrouillage</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">Masquer l\'icône de l\'alarme</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Niveau d\'éclairage avant veille</string>
+    <string name="pref_screen_dim_level_summary">Puissance de la luminosité avant la mise en veille - lorsque l\'écran est sur le point de s\'éteindre (redémarrage nécessaire)</string>
 
     <!-- Device type -->
     <string name="device_phone">téléphone</string>
+    <string name="device_tablet">tablette</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">Paramètres de luminosité</string>
+    <string name="pref_brightness_master_switch_title">Active les paramètres de luminosité</string>
+    <string name="pref_brightness_master_switch_summary">À n\'utiliser que si votre appareil supporte les fonctionnalités standard de luminosité d\'Android. Laisser désactivé si vous rencontrez des problèmes de luminosité (redémarrage nécessaire)</string>
 
 </resources>
