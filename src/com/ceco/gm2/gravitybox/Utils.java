@@ -17,6 +17,7 @@ public class Utils {
 
     // Device type reference
     private static int mDeviceType = -1;
+    private static Boolean mHasGeminiSupport = null;
 
     private static int getScreenType(Context con) {
         if (mDeviceType == -1) {
@@ -62,11 +63,14 @@ public class Utils {
     }
 
     public static boolean hasGeminiSupport() {
+        if (mHasGeminiSupport != null) return mHasGeminiSupport;
+
         try {
             Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
             String geminiSupport = (String) callStaticMethod(classSystemProperties, 
                     "get", "ro.mediatek.gemini_support");
-            return ("true".equals(geminiSupport));
+            mHasGeminiSupport = "true".equals(geminiSupport);
+            return mHasGeminiSupport;
         } catch (Throwable t) {
             XposedBridge.log("Utils: hasGeminiSupport check failed. Assuming device has no Gemini support");
             return false;
