@@ -59,7 +59,9 @@ public class Utils {
     }
 
     public static boolean isMtkDevice() {
-        return (Build.HARDWARE.toLowerCase().contains("mt6589") || Build.HARDWARE.toLowerCase().contains("mt8389"));
+        return (Build.HARDWARE.toLowerCase().contains("mt6577")
+                || Build.HARDWARE.toLowerCase().contains("mt6589") 
+                || Build.HARDWARE.toLowerCase().contains("mt8389"));
     }
 
     public static boolean hasGeminiSupport() {
