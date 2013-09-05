@@ -18,6 +18,7 @@ public class Utils {
     // Device type reference
     private static int mDeviceType = -1;
     private static Boolean mHasGeminiSupport = null;
+    private static String mDeviceCharacteristics = null;
 
     private static int getScreenType(Context con) {
         if (mDeviceType == -1) {
@@ -77,6 +78,20 @@ public class Utils {
         } catch (Throwable t) {
             XposedBridge.log("Utils: hasGeminiSupport check failed. Assuming device has no Gemini support");
             return false;
+        }
+    }
+
+    public static String getDeviceCharacteristics() {
+        if (mDeviceCharacteristics != null) return mDeviceCharacteristics;
+
+        try {
+            Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
+            mDeviceCharacteristics = (String) callStaticMethod(classSystemProperties, 
+                    "get", "ro.build.characteristics");
+            return mDeviceCharacteristics;
+        } catch (Throwable t) {
+            XposedBridge.log("Utils: getDeviceCharacteristics failed: " + t.getMessage());
+            return null;
         }
     }
 }

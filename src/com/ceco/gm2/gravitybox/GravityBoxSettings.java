@@ -305,10 +305,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
     private static final class SystemProperties {
         public boolean hasGeminiSupport;
+        public String deviceCharacteristics;
 
         public SystemProperties(Bundle data) {
             if (data.containsKey("hasGeminiSupport")) {
                 hasGeminiSupport = data.getBoolean("hasGeminiSupport");
+            }
+            if (data.containsKey("deviceCharacteristics")) {
+                deviceCharacteristics = data.getString("deviceCharacteristics");
             }
         }
     }

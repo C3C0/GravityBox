@@ -43,6 +43,7 @@ public class SystemPropertyProvider {
                                     ResultReceiver receiver = intent.getParcelableExtra("receiver");
                                     Bundle data = new Bundle();
                                     data.putBoolean("hasGeminiSupport", Utils.hasGeminiSupport());
+                                    data.putString("deviceCharacteristics", Utils.getDeviceCharacteristics());
                                     receiver.send(RESULT_SYSTEM_PROPERTIES, data);
                                 }
                             }
