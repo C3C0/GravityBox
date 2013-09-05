@@ -20,6 +20,7 @@ import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import android.widget.Toast;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -50,6 +51,7 @@ public class ModHwKeys {
     private static boolean mIsBackLongPressed = false;
     private static int mMenuLongpressAction = 0;
     private static int mMenuDoubletapAction = 0;
+    private static int mHomeLongpressAction = 0;
     private static int mBackLongpressAction = 0;
     private static int mDoubletapSpeed = GravityBoxSettings.HWKEY_DOUBLETAP_SPEED_DEFAULT;
     private static int mKillDelay = GravityBoxSettings.HWKEY_KILL_DELAY_DEFAULT;
@@ -62,12 +64,14 @@ public class ModHwKeys {
 
     private static enum HwKey {
         MENU,
+        HOME,
         BACK
     }
 
     private static enum HwKeyTrigger {
         MENU_LONGPRESS,
         MENU_DOUBLETAP,
+        HOME_LONGPRESS,
         BACK_LONGPRESS
     }
 
@@ -89,6 +93,9 @@ public class ModHwKeys {
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_DOUBLETAP_CHANGED)) {
                 mMenuDoubletapAction = value;
                 log("Menu double-tap action set to: " + value);
+            } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_HOME_LONGPRESS_CHANGED)) {
+                mHomeLongpressAction = value;
+                log("Home long-press action set to: " + value);
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_BACK_LONGPRESS_CHANGED)) {
                 mBackLongpressAction = value;
                 log("Back long-press action set to: " + value);
@@ -116,6 +123,8 @@ public class ModHwKeys {
                         prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_MENU_LONGPRESS, "0"));
                 mMenuDoubletapAction = Integer.valueOf(
                         prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_MENU_DOUBLETAP, "0"));
+                mHomeLongpressAction = Integer.valueOf(
+                        prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_HOME_LONGPRESS, "0"));
                 mBackLongpressAction = Integer.valueOf(
                         prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_BACK_LONGPRESS, "0"));
                 mDoubletapSpeed = Integer.valueOf(
@@ -245,6 +254,26 @@ public class ModHwKeys {
                 }
             });
 
+            XposedHelpers.findAndHookMethod(classPhoneWindowManager, "handleLongPressOnHome", new XC_MethodReplacement() {
+
+                @Override
+                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                    if (!hasAction(HwKey.HOME)) {
+                        XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
+                        return null;
+                    }
+
+                    if (Build.VERSION.SDK_INT > 17) {
+                        XposedHelpers.setBooleanField(param.thisObject, "mHomeConsumed", true);
+                    } else {
+                        XposedHelpers.setBooleanField(param.thisObject, "mHomeLongPressed", true);
+                    }
+                    performAction(HwKeyTrigger.HOME_LONGPRESS);
+
+                    return null;
+                }
+            });
+
             if (Build.VERSION.SDK_INT > 16) {
                 XposedHelpers.findAndHookMethod(classPhoneWindowManager, 
                         "isWakeKeyWhenScreenOff", int.class, new XC_MethodHook() {
@@ -280,6 +309,7 @@ public class ModHwKeys {
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_LONGPRESS_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_DOUBLETAP_CHANGED);
+            intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_HOME_LONGPRESS_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_BACK_LONGPRESS_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_DOUBLETAP_SPEED_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_KILL_DELAY_CHANGED);
@@ -327,6 +357,8 @@ public class ModHwKeys {
                 action = mMenuLongpressAction;
             } else if (keyTrigger == HwKeyTrigger.MENU_DOUBLETAP) {
                 action = mMenuDoubletapAction;
+            } else if (keyTrigger == HwKeyTrigger.HOME_LONGPRESS) {
+                action = mHomeLongpressAction;
             } else if (keyTrigger == HwKeyTrigger.BACK_LONGPRESS) {
                 action = mBackLongpressAction;
             }
@@ -340,6 +372,8 @@ public class ModHwKeys {
         if (key == HwKey.MENU) {
             retVal |= getActionForHwKeyTrigger(HwKeyTrigger.MENU_LONGPRESS) != GravityBoxSettings.HWKEY_ACTION_DEFAULT;
             retVal |= getActionForHwKeyTrigger(HwKeyTrigger.MENU_DOUBLETAP) != GravityBoxSettings.HWKEY_ACTION_DEFAULT;
+        } else if (key == HwKey.HOME) {
+            retVal |= getActionForHwKeyTrigger(HwKeyTrigger.HOME_LONGPRESS) != GravityBoxSettings.HWKEY_ACTION_DEFAULT;
         } else if (key == HwKey.BACK) {
             retVal |= getActionForHwKeyTrigger(HwKeyTrigger.BACK_LONGPRESS) != GravityBoxSettings.HWKEY_ACTION_DEFAULT;
         }

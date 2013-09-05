@@ -561,6 +561,13 @@
             android:defaultValue="0" />
 
         <ListPreference
+            android:key="pref_hwkey_home_longpress"
+            android:title="@string/pref_hwkey_home_longpress_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
+        <ListPreference
             android:key="pref_hwkey_back_longpress"
             android:title="@string/pref_hwkey_back_longpress_title"
             android:entries="@array/hwkey_action_entries"

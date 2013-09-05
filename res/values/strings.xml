@@ -458,4 +458,7 @@
     <!-- HW Key Action: Recent apps -->
     <string name="hwkey_action_recent_apps">Show recent apps</string>
 
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">Home key long-press action</string>
+
 </resources>
