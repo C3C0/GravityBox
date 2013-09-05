@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import de.robv.android.xposed.XC_MethodHook;
@@ -17,7 +18,9 @@ public class ModPhone {
     private static final String TAG = "ModPhone";
     public static final String PACKAGE_NAME = "com.android.phone";
     private static final String CLASS_IN_CALL_SCREEN = "com.android.phone.InCallScreen";
-    private static final String ENUM_PHONE_STATE = "com.android.internal.telephony.PhoneConstants$State";
+    private static final String ENUM_PHONE_STATE = Build.VERSION.SDK_INT > 16 ?
+            "com.android.internal.telephony.PhoneConstants$State" :
+            "com.android.internal.telephony.Phone$State";
     private static final String CLASS_ASYNC_RESULT = "android.os.AsyncResult";
     private static final String CLASS_CALL_NOTIFIER = "com.android.phone.CallNotifier";
     private static final boolean DEBUG = false;
@@ -191,8 +194,8 @@ public class ModPhone {
                     if (DEBUG ) log("CallNotifier: onPhoneStateChanged EXITED");
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }

@@ -27,53 +27,26 @@ public class ModClearAllRecents {
     public static final String CLASS_RECENT_HORIZONTAL_SCROLL_VIEW = "com.android.systemui.recent.RecentsHorizontalScrollView";
     public static final String CLASS_RECENT_PANEL_VIEW = "com.android.systemui.recent.RecentsPanelView";
 
+    private static XSharedPreferences mPrefs;
+
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
     }
 
     public static void init(final XSharedPreferences prefs, ClassLoader classLoader) {
         try {
+            mPrefs = prefs;
             Class<?> recentPanelViewClass = XposedHelpers.findClass(CLASS_RECENT_PANEL_VIEW, classLoader);
             Class<?> recentVerticalScrollView = XposedHelpers.findClass(CLASS_RECENT_VERTICAL_SCROLL_VIEW, classLoader);
             Class<?> recentHorizontalScrollView = XposedHelpers.findClass(CLASS_RECENT_HORIZONTAL_SCROLL_VIEW, classLoader);
 
-            XposedHelpers.findAndHookMethod(recentPanelViewClass, "showImpl", boolean.class, new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
-                    if ((Boolean)param.args[0]) {
-                        prefs.reload();
-                        int gravity = Integer.valueOf(prefs.getString(
-                                GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_ALL, "53"));
-                        FrameLayout fl = (FrameLayout) param.thisObject;
-                        ImageView iv = (ImageView) fl.findViewWithTag("clearAllButton");
-                        if (iv == null) {
-                            log("WTF? Clear all recents button not found!");
-                            return;
-                        }
-
-                        List<?> recentTaskDescriptions = (List<?>) XposedHelpers.getObjectField(
-                                param.thisObject, "mRecentTaskDescriptions");
-                        boolean visible = (recentTaskDescriptions != null && recentTaskDescriptions.size() > 0);
-                        if (gravity != GravityBoxSettings.RECENT_CLEAR_OFF && visible) {
-                            FrameLayout.LayoutParams lparams = (FrameLayout.LayoutParams) iv.getLayoutParams();
-                            lparams.gravity = gravity;
-                            if ((gravity & Gravity.TOP) != 0) {
-                                int marginTop = (int) TypedValue.applyDimension(
-                                        TypedValue.COMPLEX_UNIT_DIP, 
-                                        prefs.getInt(GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_MARGIN_TOP, 0), 
-                                        iv.getResources().getDisplayMetrics());
-                                lparams.setMargins(0, marginTop, 0, 0);
-                            } else {
-                                lparams.setMargins(0, 0, 0, 0);
-                            }
-                            iv.setLayoutParams(lparams);
-                            iv.setVisibility(View.VISIBLE);
-                        } else {
-                            iv.setVisibility(View.GONE);
-                        }
-                    }
-                }
-            });
+            if (Build.VERSION.SDK_INT > 16) {
+                XposedHelpers.findAndHookMethod(recentPanelViewClass, "showImpl", 
+                        boolean.class, recentsPanelViewShowHook);
+            } else {
+                XposedHelpers.findAndHookMethod(recentPanelViewClass, "showIfReady", 
+                        recentsPanelViewShowHook);
+            }
 
             XposedHelpers.findAndHookMethod(recentPanelViewClass, "onFinishInflate", new XC_MethodHook() {
                 @Override
@@ -113,6 +86,7 @@ public class ModClearAllRecents {
                     imgView.setVisibility(View.GONE);
                     vg.addView(imgView);
                     log("clearAllButton ImageView injected");
+                    updateButtonLayout((View) param.thisObject, imgView);
                 }
             });
 
@@ -131,8 +105,63 @@ public class ModClearAllRecents {
                     handleDismissChild(param);
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
+    }
+
+    private static XC_MethodHook recentsPanelViewShowHook = new XC_MethodHook() {
+        @Override
+        protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+            try {
+                boolean show = false;
+                if (Build.VERSION.SDK_INT < 17) {
+                    show = XposedHelpers.getBooleanField(param.thisObject, "mWaitingToShow")
+                           && XposedHelpers.getBooleanField(param.thisObject, "mReadyToShow");
+                } else {
+                    show = (Boolean) param.args[0];
+                }
+                if (show) {
+                    FrameLayout fl = (FrameLayout) param.thisObject;
+                    ImageView iv = (ImageView) fl.findViewWithTag("clearAllButton");
+                    if (iv == null) {
+                        log("WTF? Clear all recents button not found!");
+                        return;
+                    }
+                    updateButtonLayout((View) param.thisObject, iv);
+                }
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+            }
+        }
+    };
+
+    private static void updateButtonLayout(View container, ImageView iv) {
+        mPrefs.reload();
+        int gravity = Integer.valueOf(mPrefs.getString(
+                GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_ALL, "53"));
+        List<?> recentTaskDescriptions = (List<?>) XposedHelpers.getObjectField(
+                container, "mRecentTaskDescriptions");
+        boolean visible = (recentTaskDescriptions != null && recentTaskDescriptions.size() > 0);
+        if (Build.VERSION.SDK_INT < 17) {
+            visible |= XposedHelpers.getBooleanField(container, "mFirstScreenful");
+        }
+        if (gravity != GravityBoxSettings.RECENT_CLEAR_OFF && visible) {
+            FrameLayout.LayoutParams lparams = (FrameLayout.LayoutParams) iv.getLayoutParams();
+            lparams.gravity = gravity;
+            if ((gravity & Gravity.TOP) != 0) {
+                int marginTop = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, 
+                        mPrefs.getInt(GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_MARGIN_TOP, 0), 
+                        iv.getResources().getDisplayMetrics());
+                lparams.setMargins(0, marginTop, 0, 0);
+            } else {
+                lparams.setMargins(0, 0, 0, 0);
+            }
+            iv.setLayoutParams(lparams);
+            iv.setVisibility(View.VISIBLE);
+        } else {
+            iv.setVisibility(View.GONE);
         }
     }
 

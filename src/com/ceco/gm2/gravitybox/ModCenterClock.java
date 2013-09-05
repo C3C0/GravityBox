@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.os.Build;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -114,12 +115,16 @@ public class ModCenterClock {
                     mAmPmHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE, false);
                     mClockHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_HIDE, false);
                     mAlarmHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_ALARM_ICON_HIDE, false);
-                    
+
+                    String iconAreaId = Build.VERSION.SDK_INT > 16 ?
+                            "system_icon_area" : "icons";
                     mIconArea = (ViewGroup) liparam.view.findViewById(
-                            liparam.res.getIdentifier("system_icon_area", "id", PACKAGE_NAME));
+                            liparam.res.getIdentifier(iconAreaId, "id", PACKAGE_NAME));
                     if (mIconArea == null) return;
 
-                    mRootView = (ViewGroup) mIconArea.getParent().getParent();
+                    mRootView = Build.VERSION.SDK_INT > 16 ?
+                            (ViewGroup) mIconArea.getParent().getParent() :
+                            (ViewGroup) mIconArea.getParent();
                     if (mRootView == null) return;
 
                     // find statusbar clock
@@ -135,8 +140,10 @@ public class ModCenterClock {
                     }
 
                     // find notification panel clock
+                    String panelHolderId = Build.VERSION.SDK_INT > 16 ?
+                            "panel_holder" : "notification_panel";
                     final ViewGroup panelHolder = (ViewGroup) liparam.view.findViewById(
-                            liparam.res.getIdentifier("panel_holder", "id", PACKAGE_NAME));
+                            liparam.res.getIdentifier(panelHolderId, "id", PACKAGE_NAME));
                     if (panelHolder != null) {
                         mClockExpanded = (TextView) panelHolder.findViewById(
                                 liparam.res.getIdentifier("clock", "id", PACKAGE_NAME));
@@ -205,8 +212,8 @@ public class ModCenterClock {
                             GravityBoxSettings.PREF_KEY_STATUSBAR_CENTER_CLOCK, false));
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 
@@ -309,8 +316,8 @@ public class ModCenterClock {
                 }
             });
         }
-        catch (Exception e) {
-            XposedBridge.log(e);
+        catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 

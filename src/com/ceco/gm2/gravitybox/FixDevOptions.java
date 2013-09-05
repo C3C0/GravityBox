@@ -73,8 +73,8 @@ public class FixDevOptions {
                     }
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 
@@ -93,8 +93,8 @@ public class FixDevOptions {
                     modRes.fwd(R.array.animator_duration_scale_entries));
             resparam.res.setReplacement(PACKAGE_NAME, "array", "animator_duration_scale_values",
                     modRes.fwd(R.array.animator_duration_scale_values));
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 
@@ -112,8 +112,8 @@ public class FixDevOptions {
                 }
             });
         }
-        catch (Exception e) {
-            XposedBridge.log(e);
+        catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }

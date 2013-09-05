@@ -45,15 +45,19 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
             }
         }
 
+        // 4.2+ only
+        if (Build.VERSION.SDK_INT > 16) {
+            FixTraceFlood.initZygote();
+            ModElectronBeam.initZygote(prefs);
+            ModLockscreen.initZygote(prefs);
+        }
+
         // Common
-        FixTraceFlood.initZygote();
         ModVolumeKeySkipTrack.init(prefs);
         ModVolKeyCursor.initZygote(prefs);
         ModCallCard.initZygote();
         ModStatusbarColor.initZygote();
         PhoneWrapper.initZygote();
-        ModElectronBeam.initZygote(prefs);
-        ModLockscreen.initZygote(prefs);
         ModLowBatteryWarning.initZygote(prefs);
         ModDisplay.initZygote(prefs);
         ModAudio.initZygote(prefs);
@@ -75,7 +79,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
             FixDevOptions.initPackageResources(prefs, resparam);
         }
 
-        if (resparam.packageName.equals(ModQuickSettings.PACKAGE_NAME)) {
+        if (Build.VERSION.SDK_INT > 16 && resparam.packageName.equals(ModQuickSettings.PACKAGE_NAME)) {
             ModQuickSettings.initResources(prefs, resparam);
         }
     }
@@ -149,7 +153,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
             ModCallCard.init(prefs, lpparam.classLoader);
         }
 
-        if (lpparam.packageName.equals(ModQuickSettings.PACKAGE_NAME)) {
+        if (Build.VERSION.SDK_INT > 16 && lpparam.packageName.equals(ModQuickSettings.PACKAGE_NAME)) {
             ModQuickSettings.init(prefs, lpparam.classLoader);
         }
 

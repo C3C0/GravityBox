@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
@@ -30,7 +31,7 @@ public class ModStatusbarColor {
     private static final String TAG = "ModStatusbarColor";
     public static final String PACKAGE_NAME = "com.android.systemui";
     private static final String CLASS_PHONE_WINDOW_MANAGER = "com.android.internal.policy.impl.PhoneWindowManager";
-    private static final String CLASS_PANEL_BAR = "com.android.systemui.statusbar.phone.PanelBar";
+    private static final String CLASS_PHONE_STATUSBAR_VIEW = "com.android.systemui.statusbar.phone.PhoneStatusBarView";
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     private static final String CLASS_SIGNAL_CLUSTER_VIEW = Utils.hasGeminiSupport() ? 
             "com.android.systemui.statusbar.SignalClusterViewGemini" :
@@ -177,18 +178,19 @@ public class ModStatusbarColor {
                             return 0;
                         }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
         try {
-            final Class<?> panelBarClass = XposedHelpers.findClass(CLASS_PANEL_BAR, classLoader);
+            final Class<?> phoneStatusbarViewClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR_VIEW, classLoader);
             final Class<?> phoneStatusbarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
             final Class<?> signalClusterViewClass = XposedHelpers.findClass(CLASS_SIGNAL_CLUSTER_VIEW, classLoader);
             final Class<?> batteryControllerClass = XposedHelpers.findClass(CLASS_BATTERY_CONTROLLER, classLoader);
-            final Class<?> notifPanelViewClass = XposedHelpers.findClass(CLASS_NOTIF_PANEL_VIEW, classLoader);
+            final Class<?> notifPanelViewClass = Build.VERSION.SDK_INT > 16 ?
+                    XposedHelpers.findClass(CLASS_NOTIF_PANEL_VIEW, classLoader) : null;
 
             mIconColorEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE, false);
             mIconManager.setIconColor(
@@ -200,7 +202,7 @@ public class ModStatusbarColor {
             mRoamingIndicatorsDisabled = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_DISABLE_ROAMING_INDICATORS, false);
 
-            XposedBridge.hookAllConstructors(panelBarClass, new XC_MethodHook() {
+            XposedBridge.hookAllConstructors(phoneStatusbarViewClass, new XC_MethodHook() {
 
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
@@ -468,34 +470,36 @@ public class ModStatusbarColor {
                 }
             });
 
-            XposedHelpers.findAndHookMethod(notifPanelViewClass, "onFinishInflate", new XC_MethodHook() {
+            if (notifPanelViewClass != null) {
+                XposedHelpers.findAndHookMethod(notifPanelViewClass, "onFinishInflate", new XC_MethodHook() {
+    
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        mNotificationPanelView = (FrameLayout) param.thisObject;
+    
+                        mNotificationWallpaper = new NotificationWallpaper(mNotificationPanelView.getContext());
+                        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                                FrameLayout.LayoutParams.MATCH_PARENT,
+                                FrameLayout.LayoutParams.MATCH_PARENT);
+                        mNotificationWallpaper.setLayoutParams(lp);
+                        mNotificationWallpaper.setType(prefs.getString(
+                                GravityBoxSettings.PREF_KEY_NOTIF_BACKGROUND,
+                                GravityBoxSettings.NOTIF_BG_DEFAULT));
+                        mNotificationWallpaper.setColor(prefs.getInt(
+                                GravityBoxSettings.PREF_KEY_NOTIF_COLOR, Color.BLACK));
+                        mNotificationWallpaper.setColorMode(prefs.getString(
+                                GravityBoxSettings.PREF_KEY_NOTIF_COLOR_MODE,
+                                GravityBoxSettings.NOTIF_BG_COLOR_MODE_OVERLAY));
+                        mNotificationWallpaper.setAlpha(prefs.getInt(
+                                GravityBoxSettings.PREF_KEY_NOTIF_BACKGROUND_ALPHA, 60));
+                        mNotificationPanelView.addView(mNotificationWallpaper);
+                        updateNotificationPanelBackground();
+                    }
+                });
+            }
 
-                @Override
-                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    mNotificationPanelView = (FrameLayout) param.thisObject;
-
-                    mNotificationWallpaper = new NotificationWallpaper(mNotificationPanelView.getContext());
-                    FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
-                            FrameLayout.LayoutParams.MATCH_PARENT,
-                            FrameLayout.LayoutParams.MATCH_PARENT);
-                    mNotificationWallpaper.setLayoutParams(lp);
-                    mNotificationWallpaper.setType(prefs.getString(
-                            GravityBoxSettings.PREF_KEY_NOTIF_BACKGROUND,
-                            GravityBoxSettings.NOTIF_BG_DEFAULT));
-                    mNotificationWallpaper.setColor(prefs.getInt(
-                            GravityBoxSettings.PREF_KEY_NOTIF_COLOR, Color.BLACK));
-                    mNotificationWallpaper.setColorMode(prefs.getString(
-                            GravityBoxSettings.PREF_KEY_NOTIF_COLOR_MODE,
-                            GravityBoxSettings.NOTIF_BG_COLOR_MODE_OVERLAY));
-                    mNotificationWallpaper.setAlpha(prefs.getInt(
-                            GravityBoxSettings.PREF_KEY_NOTIF_BACKGROUND_ALPHA, 60));
-                    mNotificationPanelView.addView(mNotificationWallpaper);
-                    updateNotificationPanelBackground();
-                }
-            });
-
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 

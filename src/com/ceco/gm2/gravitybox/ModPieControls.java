@@ -206,7 +206,7 @@ public class ModPieControls {
                     log("BaseStatusBar starting...");
                     mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                     mGbContext = mContext.createPackageContext(GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
-                    mWindowManager = (WindowManager) XposedHelpers.getObjectField(param.thisObject, "mWindowManager");
+                    mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
                     mPieController = new PieController(mContext, mGbContext);
                     mPieController.attachTo(param.thisObject);
 
@@ -270,8 +270,8 @@ public class ModPieControls {
                             | mAlwaysShowMenuItem);
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 

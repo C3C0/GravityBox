@@ -183,15 +183,19 @@ public class PieSysInfo extends PieSliceContainer implements ValueAnimator.Anima
         if (wifiManager != null) {
             final WifiInfo connectionInfo = wifiManager.getConnectionInfo();
             if (connectionInfo != null) {
-                final Object wifiSsid = XposedHelpers.callMethod(connectionInfo, "getWifiSsid");
+                final Object wifiSsid = Build.VERSION.SDK_INT > 16 ?
+                        XposedHelpers.callMethod(connectionInfo, "getWifiSsid") :
+                        XposedHelpers.callMethod(connectionInfo, "getSSID");
                 if (wifiSsid != null) {
                     ssid = wifiSsid.toString();
                 }
             }
         }
         if (TextUtils.isEmpty(ssid)) {
-            ssid = mContext.getString(mContext.getResources().getIdentifier(
-                    "quick_settings_wifi_not_connected", "string", PieController.PACKAGE_NAME));
+            int resId = mContext.getResources().getIdentifier(
+                    "quick_settings_wifi_not_connected", "string", PieController.PACKAGE_NAME);
+            // TODO: translate
+            ssid = resId == 0 ? "Not connected" : mContext.getString(resId);
         }
         return ssid;
     }

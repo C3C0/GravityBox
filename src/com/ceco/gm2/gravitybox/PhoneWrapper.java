@@ -1,10 +1,11 @@
 package com.ceco.gm2.gravitybox;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Handler;
+import android.os.Build;
 import android.os.Message;
 import android.provider.Settings;
 import de.robv.android.xposed.XC_MethodHook;
@@ -68,8 +69,8 @@ public class PhoneWrapper {
                     onInitialize();
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 
@@ -80,6 +81,7 @@ public class PhoneWrapper {
         }
     }
 
+    @SuppressLint("NewApi")
     private static void setPreferredNetworkType(int networkType) {
         Object defPhone = XposedHelpers.callStaticMethod(mClsPhoneFactory, "getDefaultPhone");
         if (defPhone == null) return;
@@ -92,15 +94,19 @@ public class PhoneWrapper {
                 paramArgs[2] = int.class;
                 XposedHelpers.callMethod(defPhone, "setPreferredNetworkTypeGemini", paramArgs, networkType, null, 0);
             } else {
-                Settings.Global.putInt(mContext.getContentResolver(), PREFERRED_NETWORK_MODE, networkType);
+                if (Build.VERSION.SDK_INT > 16) {
+                    Settings.Global.putInt(mContext.getContentResolver(), PREFERRED_NETWORK_MODE, networkType);
+                } else {
+                    Settings.Secure.putInt(mContext.getContentResolver(), PREFERRED_NETWORK_MODE, networkType);
+                }
                 Class<?>[] paramArgs = new Class<?>[2];
                 paramArgs[0] = int.class;
                 paramArgs[1] = Message.class;
                 XposedHelpers.callMethod(defPhone, "setPreferredNetworkType", paramArgs, networkType, null);
             }
-        } catch (Exception e) {
-            log("setPreferredNetworkType failed: " + e.getMessage());
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            log("setPreferredNetworkType failed: " + t.getMessage());
+            XposedBridge.log(t);
         }
     }
 
@@ -110,8 +116,8 @@ public class PhoneWrapper {
                 "getInt", "ro.telephony.default_network", NT_WCDMA_PREFERRED);
             log("getDefaultNetworkMode: mode=" + mode);
             return mode;
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
             return NT_WCDMA_PREFERRED;
         }
     }

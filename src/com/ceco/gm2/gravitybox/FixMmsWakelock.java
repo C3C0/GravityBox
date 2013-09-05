@@ -59,8 +59,8 @@ public class FixMmsWakelock {
                     log("MmsReceiver onReceive EXITED");
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
 
         try {
@@ -90,8 +90,8 @@ public class FixMmsWakelock {
                     log("smsReceiver beginStartingService EXITED");
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
 
         try {
@@ -123,8 +123,8 @@ public class FixMmsWakelock {
                     log("CBMessagingNotification updateNotification EXITED");
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
 
         try {
@@ -207,8 +207,8 @@ public class FixMmsWakelock {
                     log("MessagingNotification updateNotification EXITED");
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }

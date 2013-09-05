@@ -43,8 +43,8 @@ public class FixCallerIdPhone {
                     param.args[1] = PhoneNumberUtils.MIN_MATCH;
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }

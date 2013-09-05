@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.XResources;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
@@ -21,6 +23,7 @@ public class ModDisplay {
     private static final String TAG = "ModDisplay";
     private static final String CLASS_DISPLAY_POWER_CONTROLLER = "com.android.server.power.DisplayPowerController";
     private static final String CLASS_LIGHT_SERVICE_LIGHT = "com.android.server.LightsService$Light";
+    private static final String CLASS_LIGHT_SERVICE = "com.android.server.LightsService";
     private static final boolean DEBUG = false;
 
     public static final String ACTION_GET_AUTOBRIGHTNESS_CONFIG = "gravitybox.intent.action.GET_AUTOBRIGHTNESS_CONFIG";
@@ -67,17 +70,36 @@ public class ModDisplay {
             } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_BUTTON_BACKLIGHT_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_BB_MODE)) {
                     mButtonBacklightMode = intent.getStringExtra(GravityBoxSettings.EXTRA_BB_MODE);
+                    updateButtonBacklight();
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_BB_NOTIF)) {
                     mButtonBacklightNotif = intent.getBooleanExtra(GravityBoxSettings.EXTRA_BB_NOTIF, false);
                     if (!mButtonBacklightNotif) {
                         mPendingNotif = false;
+                        updateButtonBacklight();
                     }
                 }
+            } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)
+                        || intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                updateButtonBacklight();
             }
         }
-        
     };
+
+    private static void updateButtonBacklight() {
+        if (mLight == null || mPendingNotif) return;
+
+        int color = 0;
+        if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)
+                && (mPm != null && mPm.isScreenOn())) {
+            color = 0xff6e6e6e;
+        }
+
+        Object ls = XposedHelpers.getSurroundingThis(mLight);
+        int np = XposedHelpers.getIntField(ls, "mNativePointer");
+        XposedHelpers.callMethod(ls, "setLight_native",
+                np, LIGHT_ID_BUTTONS, color, 0, 0, 0, 0);
+    }
 
     private static boolean mPendingNotif = false;
     private static Object mLight;
@@ -119,14 +141,20 @@ public class ModDisplay {
 
     public static void initZygote(final XSharedPreferences prefs) {
         try {
-            final Class<?> classDisplayPowerController =
-                    XposedHelpers.findClass(CLASS_DISPLAY_POWER_CONTROLLER, null);
+            final Class<?> classDisplayPowerController = Build.VERSION.SDK_INT > 16 ?
+                    XposedHelpers.findClass(CLASS_DISPLAY_POWER_CONTROLLER, null) : null;
             final Class<?> classLight = XposedHelpers.findClass(CLASS_LIGHT_SERVICE_LIGHT, null);
+            final Class<?> classLightService = XposedHelpers.findClass(CLASS_LIGHT_SERVICE, null);
 
             final boolean brightnessSettingsEnabled = 
                     prefs.getBoolean(GravityBoxSettings.PREF_KEY_BRIGHTNESS_MASTER_SWITCH, false);
 
-            if (brightnessSettingsEnabled) {
+            mButtonBacklightMode = prefs.getString(
+                    GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_MODE, GravityBoxSettings.BB_MODE_DEFAULT);
+            mButtonBacklightNotif = prefs.getBoolean(
+                    GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS, false);
+            
+            if (brightnessSettingsEnabled && classDisplayPowerController != null) {
                 int brightnessMin = prefs.getInt(GravityBoxSettings.PREF_KEY_BRIGHTNESS_MIN, 20);
                 XResources.setSystemWideReplacement(
                     "android", "integer", "config_screenBrightnessSettingMinimum", brightnessMin);
@@ -136,65 +164,57 @@ public class ModDisplay {
                 XResources.setSystemWideReplacement(
                         "android", "integer", "config_screenBrightnessDim", screenDim);
                 log("Screen dim level set to: " + screenDim);
-            }
 
-            mButtonBacklightMode = prefs.getString(
-                    GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_MODE, GravityBoxSettings.BB_MODE_DEFAULT);
-            mButtonBacklightNotif = prefs.getBoolean(
-                    GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS, false);
-
-            XposedBridge.hookAllConstructors(classDisplayPowerController, new XC_MethodHook() {
-                @Override
-                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    log("DisplayPowerController constructed");
-                    if (param.args.length < 2) {
-                        log("Unsupported parameters. Aborting.");
-                        return;
-                    }
-                    mContext = (Context) param.args[1];
-                    if (mContext == null) {
-                        log("Context is null. Aborting.");
-                        return;
-                    }
-
-                    mDisplayPowerController = param.thisObject;
-
-                    if (brightnessSettingsEnabled) {
-                        mScreenBrightnessRangeMinimum = XposedHelpers.getIntField(
-                                param.thisObject, "mScreenBrightnessRangeMinimum");
-                        mScreenBrightnessRangeMaximum = XposedHelpers.getIntField(
-                                param.thisObject, "mScreenBrightnessRangeMaximum");
-    
-                        prefs.reload();
-                        String config = prefs.getString(GravityBoxSettings.PREF_KEY_AUTOBRIGHTNESS, null);
-                        if (config != null) {
-                            String[] luxValues = config.split("\\|")[0].split(",");
-                            String[] brightnessValues = config.split("\\|")[1].split(",");
-                            int[] luxArray = new int[luxValues.length];
-                            int index = 0;
-                            for(String s : luxValues) {
-                                luxArray[index++] = Integer.valueOf(s);
-                            }
-                            int[] brightnessArray = new int[brightnessValues.length];
-                            index = 0;
-                            for(String s : brightnessValues) {
-                                brightnessArray[index++] = Integer.valueOf(s);
-                            }
-                            updateAutobrightnessConfig(luxArray, brightnessArray);
+                XposedBridge.hookAllConstructors(classDisplayPowerController, new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                        log("DisplayPowerController constructed");
+                        if (param.args.length < 2) {
+                            log("Unsupported parameters. Aborting.");
+                            return;
                         }
+                        mContext = (Context) param.args[1];
+                        if (mContext == null) {
+                            log("Context is null. Aborting.");
+                            return;
+                        }
+    
+                        mDisplayPowerController = param.thisObject;
+    
+                        if (brightnessSettingsEnabled) {
+                            mScreenBrightnessRangeMinimum = XposedHelpers.getIntField(
+                                    param.thisObject, "mScreenBrightnessRangeMinimum");
+                            mScreenBrightnessRangeMaximum = XposedHelpers.getIntField(
+                                    param.thisObject, "mScreenBrightnessRangeMaximum");
+        
+                            prefs.reload();
+                            String config = prefs.getString(GravityBoxSettings.PREF_KEY_AUTOBRIGHTNESS, null);
+                            if (config != null) {
+                                String[] luxValues = config.split("\\|")[0].split(",");
+                                String[] brightnessValues = config.split("\\|")[1].split(",");
+                                int[] luxArray = new int[luxValues.length];
+                                int index = 0;
+                                for(String s : luxValues) {
+                                    luxArray[index++] = Integer.valueOf(s);
+                                }
+                                int[] brightnessArray = new int[brightnessValues.length];
+                                index = 0;
+                                for(String s : brightnessValues) {
+                                    brightnessArray[index++] = Integer.valueOf(s);
+                                }
+                                updateAutobrightnessConfig(luxArray, brightnessArray);
+                            }
+                        }
+    
+                        IntentFilter intentFilter = new IntentFilter();
+                        intentFilter.addAction(ACTION_GET_AUTOBRIGHTNESS_CONFIG);
+                        if (brightnessSettingsEnabled) {
+                            intentFilter.addAction(ACTION_SET_AUTOBRIGHTNESS_CONFIG);
+                        }
+                        mContext.registerReceiver(mBroadcastReceiver, intentFilter);
                     }
+                });
 
-                    IntentFilter intentFilter = new IntentFilter();
-                    intentFilter.addAction(ACTION_GET_AUTOBRIGHTNESS_CONFIG);
-                    if (brightnessSettingsEnabled) {
-                        intentFilter.addAction(ACTION_SET_AUTOBRIGHTNESS_CONFIG);
-                    }
-                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_BUTTON_BACKLIGHT_CHANGED);
-                    mContext.registerReceiver(mBroadcastReceiver, intentFilter);
-                }
-            });
-
-            if (brightnessSettingsEnabled) {
                 XposedHelpers.findAndHookMethod(classDisplayPowerController, 
                         "clampScreenBrightness", int.class, new XC_MethodReplacement() {
     
@@ -205,6 +225,21 @@ public class ModDisplay {
                             }
                 });
             }
+
+            XposedBridge.hookAllConstructors(classLightService, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                    if (context != null) {
+                        IntentFilter intentFilter = new IntentFilter();
+                        intentFilter.addAction(GravityBoxSettings.ACTION_PREF_BUTTON_BACKLIGHT_CHANGED);
+                        intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+                        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+                        context.registerReceiver(mBroadcastReceiver, intentFilter);
+                        log("LightsService constructed. Broadcast receiver registered.");
+                    }
+                }
+            });
 
             XposedHelpers.findAndHookMethod(classLight, "setLightLocked",
                     int.class, int.class, int.class, int.class, int.class, new XC_MethodHook() {
@@ -230,7 +265,8 @@ public class ModDisplay {
                             if (DEBUG) log("Button backlight disabled. Turning off");
                             return;
                         } else if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)) {
-                            if (mPm.isScreenOn() && ((Integer)param.args[0] == 0)) {
+                            int color = (Integer)param.args[0];
+                            if (mPm.isScreenOn() && (color == 0 || color == Color.BLACK)) {
                                 if (DEBUG) log("Button backlight always on and screen is on. Turning on");
                                 param.args[0] = 0xff6e6e6e;
                                 return;
@@ -261,8 +297,8 @@ public class ModDisplay {
                     }
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 

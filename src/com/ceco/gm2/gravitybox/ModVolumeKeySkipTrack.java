@@ -41,7 +41,7 @@ public class ModVolumeKeySkipTrack {
 
             findAndHookMethod(classPhoneWindowManager, "interceptKeyBeforeQueueing",
                     KeyEvent.class, int.class, boolean.class, handleInterceptKeyBeforeQueueing);
-        } catch (Exception e) { XposedBridge.log(e); }
+        } catch (Throwable t) { XposedBridge.log(t); }
     }
 
     private static XC_MethodHook handleInterceptKeyBeforeQueueing = new XC_MethodHook() {
