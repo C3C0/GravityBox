@@ -52,6 +52,7 @@ public class ModCenterClock {
     private static boolean mClockShowDow = false;
     private static boolean mAmPmHide = false;
     private static boolean mClockHide = false;
+    private static boolean mClockLink = false;
     private static boolean mAlarmHide = false;
     private static Object mPhoneStatusBarPolicy;
 
@@ -89,6 +90,9 @@ public class ModCenterClock {
                         mClock.setVisibility(mClockHide ? View.GONE : View.VISIBLE);
                     }
                 }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_CLOCK_LINK)) {
+                    mClockLink = intent.getBooleanExtra(GravityBoxSettings.EXTRA_CLOCK_LINK, false);
+                }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_ALARM_HIDE)) {
                     mAlarmHide = intent.getBooleanExtra(GravityBoxSettings.EXTRA_ALARM_HIDE, false);
                     if (mPhoneStatusBarPolicy != null) {
@@ -114,6 +118,7 @@ public class ModCenterClock {
                     mClockShowDow = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_DOW, false);
                     mAmPmHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE, false);
                     mClockHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_HIDE, false);
+                    mClockLink = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_LINK, false);
                     mAlarmHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_ALARM_ICON_HIDE, false);
 
                     String iconAreaId = Build.VERSION.SDK_INT > 16 ?
@@ -147,6 +152,15 @@ public class ModCenterClock {
                     if (panelHolder != null) {
                         mClockExpanded = (TextView) panelHolder.findViewById(
                                 liparam.res.getIdentifier("clock", "id", PACKAGE_NAME));
+                        if (mClockExpanded != null && Build.VERSION.SDK_INT < 17) {
+                            mClockExpanded.setClickable(true);
+                            mClockExpanded.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    launchDeskClock();
+                                }
+                            });
+                        }
                     }
                     
                     // inject new clock layout
@@ -277,6 +291,25 @@ public class ModCenterClock {
                 }
             });
 
+            if (Build.VERSION.SDK_INT > 16) {
+                XposedHelpers.findAndHookMethod(phoneStatusBarClass, "startActivityDismissingKeyguard", 
+                        Intent.class, boolean.class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        if (!mClockLink) return;
+
+                        Intent i = (Intent) param.args[0];
+                        if (i == null || i.getAction() == null) return;
+
+                        if (i.getAction().equals(Intent.ACTION_QUICK_CLOCK)) {
+                            i.setAction(Intent.ACTION_MAIN);
+                            i.addCategory(Intent.CATEGORY_LAUNCHER);
+                            i.setPackage("com.android.deskclock");
+                        }
+                    }
+                });
+            }
+
             XposedHelpers.findAndHookMethod(tickerClass, "tickerStarting", new XC_MethodHook() {
 
                 @Override
@@ -348,5 +381,23 @@ public class ModCenterClock {
         }
 
         mClockCentered = center;
+    }
+
+    private static void launchDeskClock() {
+        if (mContext == null || !mClockLink) return;
+
+        try {
+            Intent i = new Intent(Intent.ACTION_MAIN);
+            i.addCategory(Intent.CATEGORY_LAUNCHER);
+            i.setPackage("com.android.deskclock");
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            mContext.startActivity(i);
+            if (mPhoneStatusBar != null) {
+                XposedHelpers.callMethod(mPhoneStatusBar, Build.VERSION.SDK_INT > 16 ?
+                        "animateCollapsePanels" : "animateCollapse");
+            }
+        } catch (Throwable t) {
+            log(t.getMessage());
+        }
     }
 }

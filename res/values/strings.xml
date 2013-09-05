@@ -467,4 +467,8 @@
     <string name="hwkey_action_custom_app_none">No custom app assigned!</string>
     <string name="hwkey_action_custom_app_missing">Custom app not found!</string>
 
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Link to DeskClock</string>
+    <string name="pref_clock_link_summary">Links notification panel clock to DeskClock app instead of Date&amp;Time settings</string>
+
 </resources>
