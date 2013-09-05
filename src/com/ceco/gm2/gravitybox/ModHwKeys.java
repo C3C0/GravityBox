@@ -4,11 +4,14 @@ import java.util.List;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ResolveInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Handler;
@@ -39,6 +42,8 @@ public class ModHwKeys {
     private static final int FLAG_WAKE = 0x00000001;
     private static final int FLAG_WAKE_DROPPED = 0x00000002;
 
+    private static final String SEPARATOR = "#C3C0#";
+
     private static Class<?> classActivityManagerNative;
     private static Object mPhoneWindowManager;
     private static Context mContext;
@@ -46,6 +51,8 @@ public class ModHwKeys {
     private static String mStrAppKilled;
     private static String mStrNothingToKill;
     private static String mStrNoPrevApp;
+    private static String mStrCustomAppNone;
+    private static String mStrCustomAppMissing;
     private static boolean mIsMenuLongPressed = false;
     private static boolean mIsMenuDoubleTap = false;
     private static boolean mIsBackLongPressed = false;
@@ -57,6 +64,7 @@ public class ModHwKeys {
     private static int mKillDelay = GravityBoxSettings.HWKEY_KILL_DELAY_DEFAULT;
     private static boolean mVolumeRockerWakeDisabled = false;
     private static boolean mHwKeysEnabled = true;
+    private static XSharedPreferences mPrefs;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -118,6 +126,7 @@ public class ModHwKeys {
 
     public static void initZygote(final XSharedPreferences prefs) {
         try {
+            mPrefs = prefs;
             try {
                 mMenuLongpressAction = Integer.valueOf(
                         prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_MENU_LONGPRESS, "0"));
@@ -305,6 +314,8 @@ public class ModHwKeys {
             mStrAppKilled = res.getString(R.string.app_killed);
             mStrNothingToKill = res.getString(R.string.nothing_to_kill);
             mStrNoPrevApp = res.getString(R.string.no_previous_app_found);
+            mStrCustomAppNone = res.getString(R.string.hwkey_action_custom_app_none);
+            mStrCustomAppMissing = res.getString(R.string.hwkey_action_custom_app_missing);
     
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_LONGPRESS_CHANGED);
@@ -405,6 +416,8 @@ public class ModHwKeys {
             goToSleep();
         } else if (action == GravityBoxSettings.HWKEY_ACTION_RECENT_APPS) {
             toggleRecentApps();
+        } else if (action == GravityBoxSettings.HWKEY_ACTION_CUSTOM_APP) {
+            launchCustomApp();
         }
     }
 
@@ -545,5 +558,37 @@ public class ModHwKeys {
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
+    }
+
+    private static void launchCustomApp() {
+        Handler handler = (Handler) XposedHelpers.getObjectField(mPhoneWindowManager, "mHandler");
+        if (handler == null) return;
+        mPrefs.reload();
+
+        handler.post(
+            new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String appInfo = mPrefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_CUSTOM_APP, null);
+                        if (appInfo == null) {
+                            Toast.makeText(mContext, mStrCustomAppNone, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        String[] splitValue = appInfo.split(SEPARATOR);
+                        ComponentName cn = new ComponentName(splitValue[0], splitValue[1]);
+                        Intent i = new Intent();
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        i.setComponent(cn);
+                        mContext.startActivity(i);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(mContext, mStrCustomAppMissing, Toast.LENGTH_SHORT).show();
+                    } catch (Throwable t) {
+                        XposedBridge.log(t);
+                    }
+                }
+            }
+        );
     }
 }

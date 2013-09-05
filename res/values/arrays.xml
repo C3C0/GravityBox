@@ -165,6 +165,7 @@
         <item>@string/hwkey_action_kill</item>
         <item>@string/hwkey_action_sleep</item>
         <item>@string/hwkey_action_recent_apps</item>
+        <item>@string/hwkey_action_custom_app</item>
     </string-array>
 
     <string-array name="hwkey_action_values" translatable="false">
@@ -175,6 +176,7 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
+        <item>7</item>
     </string-array>
 
     <string-array name="hwkey_doubletap_speed_entries" translatable="false">

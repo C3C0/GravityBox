@@ -574,6 +574,11 @@
             android:entryValues="@array/hwkey_action_values"
             android:defaultValue="0" />
 
+        <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+            android:key="pref_hwkey_custom_app"
+            android:title="@string/pref_hwkey_custom_app_title"
+            android:summary="@string/app_picker_none" />
+
         <ListPreference
             android:key="pref_hwkey_doubletap_speed"
             android:title="@string/pref_hwkey_doubletap_speed_title"
