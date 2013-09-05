@@ -14,6 +14,7 @@ import com.ceco.gm2.gravitybox.preference.SeekBarPreference;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
@@ -22,11 +23,14 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Display;
 import android.view.Window;
 import android.widget.Toast;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -43,7 +47,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
-public class GravityBoxSettings extends Activity {
+public class GravityBoxSettings extends Activity implements GravityBoxResultReceiver.Receiver {
     public static final String PREF_KEY_QUICK_SETTINGS = "pref_quick_settings";
     public static final String PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW = "pref_qs_tiles_per_row";
     public static final String PREF_KEY_QUICK_SETTINGS_AUTOSWITCH = "pref_auto_switch_qs";
@@ -299,6 +303,40 @@ public class GravityBoxSettings extends Activity {
             PREF_KEY_BRIGHTNESS_MASTER_SWITCH
     ));
 
+    private static final class SystemProperties {
+        public boolean hasGeminiSupport;
+
+        public SystemProperties(Bundle data) {
+            if (data.containsKey("hasGeminiSupport")) {
+                hasGeminiSupport = data.getBoolean("hasGeminiSupport");
+            }
+        }
+    }
+
+    private GravityBoxResultReceiver mReceiver;
+    private Handler mHandler;
+    private SystemProperties mSystemProperties;
+    private Dialog mAlertDialog;
+    private ProgressDialog mProgressDialog;
+    private Runnable mGetSystemPropertiesTimeout = new Runnable() {
+        @Override
+        public void run() {
+            dismissProgressDialog();
+            AlertDialog.Builder builder = new AlertDialog.Builder(GravityBoxSettings.this)
+                .setTitle(R.string.app_name)
+                .setMessage(R.string.gb_startup_error)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+            mAlertDialog = builder.create();
+            mAlertDialog.show();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // set Holo Dark theme if flag file exists
@@ -309,8 +347,57 @@ public class GravityBoxSettings extends Activity {
 
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState == null)
-            getFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
+        mReceiver = new GravityBoxResultReceiver(new Handler());
+        mReceiver.setReceiver(this);
+        Intent intent = new Intent();
+        intent.setAction(SystemPropertyProvider.ACTION_GET_SYSTEM_PROPERTIES);
+        intent.putExtra("receiver", mReceiver);
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setTitle(R.string.app_name);
+        mProgressDialog.setMessage(getString(R.string.gb_startup_progress));
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
+        mHandler = new Handler();
+        mHandler.postDelayed(mGetSystemPropertiesTimeout, 5000);
+        sendBroadcast(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mHandler != null) {
+            mHandler.removeCallbacks(mGetSystemPropertiesTimeout);
+            mHandler = null;
+        }
+        dismissProgressDialog();
+        dismissAlertDialog();
+
+        super.onDestroy();
+    }
+
+    @Override
+    public void onReceiveResult(int resultCode, Bundle resultData) {
+        mHandler.removeCallbacks(mGetSystemPropertiesTimeout);
+        dismissProgressDialog();
+        Log.d("GravityBox", "result received: resultCode=" + resultCode);
+        if (resultCode == SystemPropertyProvider.RESULT_SYSTEM_PROPERTIES) {
+            mSystemProperties = new SystemProperties(resultData);
+        }
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
+    }
+
+    private void dismissProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+        mProgressDialog = null;
+    }
+
+    private void dismissAlertDialog() {
+        if (mAlertDialog != null && mAlertDialog.isShowing()) {
+            mAlertDialog.dismiss();
+        }
+        mAlertDialog = null;
     }
 
     public static class PrefsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {

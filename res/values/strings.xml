@@ -472,4 +472,8 @@
     <string name="pref_clock_link_title">Link to DeskClock</string>
     <string name="pref_clock_link_summary">Links notification panel clock to DeskClock app instead of Date&amp;Time settings</string>
 
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">Waiting for response from GravityBox system framework&#8230;</string>
+    <string name="gb_startup_error">GravityBox system framework not responding. Exiting.</string>
+
 </resources>

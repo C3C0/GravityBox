@@ -87,6 +87,10 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
     @Override
     public void handleLoadPackage(LoadPackageParam lpparam) throws Throwable {
 
+        if (lpparam.packageName.equals(SystemPropertyProvider.PACKAGE_NAME)) {
+            SystemPropertyProvider.init(lpparam.classLoader);
+        }
+
         // MTK Specific
         if (Utils.isMtkDevice()) {
             if (lpparam.packageName.equals(ModSignalIconHide.PACKAGE_NAME)) {
