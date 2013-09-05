@@ -59,7 +59,8 @@ public class Utils {
     }
 
     public static boolean isMtkDevice() {
-        return (Build.HARDWARE.toLowerCase().contains("mt6577")
+        return (Build.HARDWARE.toLowerCase().contains("mt6575")
+                || Build.HARDWARE.toLowerCase().contains("mt6577")
                 || Build.HARDWARE.toLowerCase().contains("mt6589") 
                 || Build.HARDWARE.toLowerCase().contains("mt8389"));
     }
