@@ -119,6 +119,7 @@ public class GravityBoxSettings extends Activity {
     public static final String APP_DUAL_SIM_RINGER = "dualsim.ringer";
     public static final String APP_DUAL_SIM_RINGER_CLASS = "dualsim.ringer.main";
 
+    public static final String PREF_CAT_KEY_LOCKSCREEN = "pref_cat_lockscreen";
     public static final String PREF_CAT_KEY_LOCKSCREEN_BACKGROUND = "pref_cat_lockscreen_background";
     public static final String PREF_KEY_LOCKSCREEN_BACKGROUND = "pref_lockscreen_background";
     public static final String PREF_KEY_LOCKSCREEN_BACKGROUND_COLOR = "pref_lockscreen_bg_color";
@@ -134,6 +135,8 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_FLASHING_LED_DISABLE = "pref_flashing_led_disable";
     public static final String PREF_KEY_CHARGING_LED_DISABLE = "pref_charging_led_disable";
 
+    public static final String PREF_CAT_KEY_DISPLAY = "pref_cat_display";
+    public static final String PREF_CAT_KEY_BRIGHTNESS = "pref_cat_brightness";
     public static final String PREF_KEY_BRIGHTNESS_MASTER_SWITCH = "pref_brightness_master_switch";
     public static final String PREF_KEY_BRIGHTNESS_MIN = "pref_brightness_min2";
     public static final String PREF_KEY_SCREEN_DIM_LEVEL = "pref_screen_dim_level";
@@ -141,6 +144,7 @@ public class GravityBoxSettings extends Activity {
     public static final String PREF_KEY_HOLO_BG_SOLID_BLACK = "pref_holo_bg_solid_black";
     public static final String PREF_KEY_HOLO_BG_DITHER = "pref_holo_bg_dither";
 
+    public static final String PREF_CAT_KEY_MEDIA = "pref_cat_media";
     public static final String PREF_KEY_VOL_MUSIC_CONTROLS = "pref_vol_music_controls";
     public static final String PREF_KEY_MUSIC_VOLUME_STEPS = "pref_music_volume_steps";
     public static final String PREF_KEY_SAFE_MEDIA_VOLUME = "pref_safe_media_volume";
@@ -363,6 +367,12 @@ public class GravityBoxSettings extends Activity {
         private SeekBarPreference mPrefBrightnessMin;
         private SeekBarPreference mPrefScreenDimLevel;
         private AutoBrightnessDialogPreference mPrefAutoBrightness;
+        private PreferenceScreen mPrefCatLockscreen;
+        private PreferenceScreen mPrefCatDisplay;
+        private PreferenceScreen mPrefCatBrightness;
+        private CheckBoxPreference mPrefCrtOff;
+        private PreferenceScreen mPrefCatMedia;
+        private CheckBoxPreference mPrefSafeMediaVolume;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -473,6 +483,13 @@ public class GravityBoxSettings extends Activity {
             mPrefScreenDimLevel = (SeekBarPreference) findPreference(PREF_KEY_SCREEN_DIM_LEVEL);
             mPrefAutoBrightness = (AutoBrightnessDialogPreference) findPreference(PREF_KEY_AUTOBRIGHTNESS);
 
+            mPrefCatLockscreen = (PreferenceScreen) findPreference(PREF_CAT_KEY_LOCKSCREEN);
+            mPrefCatDisplay = (PreferenceScreen) findPreference(PREF_CAT_KEY_DISPLAY);
+            mPrefCatBrightness = (PreferenceScreen) findPreference(PREF_CAT_KEY_BRIGHTNESS);
+            mPrefCrtOff = (CheckBoxPreference) findPreference(PREF_KEY_CRT_OFF_EFFECT);
+            mPrefCatMedia = (PreferenceScreen) findPreference(PREF_CAT_KEY_MEDIA);
+            mPrefSafeMediaVolume = (CheckBoxPreference) findPreference(PREF_KEY_SAFE_MEDIA_VOLUME);
+
             // Remove Phone specific preferences on Tablet devices
             if (Utils.isTablet(getActivity())) {
             	mPrefCatStatusbarQs.removePreference(mPrefAutoSwitchQs);
@@ -497,6 +514,16 @@ public class GravityBoxSettings extends Activity {
 
                 mQuickSettings.setEntries(R.array.qs_tile_entries);
                 mQuickSettings.setEntryValues(R.array.qs_tile_values);
+            }
+
+            // Remove preferences not compatible with Android 4.1
+            if (Build.VERSION.SDK_INT < 17) {
+                getPreferenceScreen().removePreference(mPrefCatLockscreen);
+                mPrefCatStatusbar.removePreference(mPrefCatStatusbarQs);
+                mPrefCatStatusbar.removePreference(mPrefCatNotifDrawerStyle);
+                mPrefCatDisplay.removePreference(mPrefCatBrightness);
+                mPrefCatDisplay.removePreference(mPrefCrtOff);
+                mPrefCatMedia.removePreference(mPrefSafeMediaVolume);
             }
 
             setDefaultValues();
