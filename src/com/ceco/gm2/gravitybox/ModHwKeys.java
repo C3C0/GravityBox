@@ -369,6 +369,8 @@ public class ModHwKeys {
             killForegroundApp();
         } else if (action == GravityBoxSettings.HWKEY_ACTION_SLEEP) {
             goToSleep();
+        } else if (action == GravityBoxSettings.HWKEY_ACTION_RECENT_APPS) {
+            toggleRecentApps();
         }
     }
 
@@ -493,6 +495,21 @@ public class ModHwKeys {
             pm.goToSleep(SystemClock.uptimeMillis());
         } catch (Exception e) {
             XposedBridge.log(e);
+        }
+    }
+
+    private static void toggleRecentApps() {
+        try {
+            if (Build.VERSION.SDK_INT > 17) {
+                XposedHelpers.callMethod(mPhoneWindowManager, "toggleRecentApps");
+            } else {
+                Object statusbar = XposedHelpers.callMethod(mPhoneWindowManager, "getStatusBarService");
+                if (statusbar != null) {
+                    XposedHelpers.callMethod(statusbar, "toggleRecentApps");
+                }
+            }
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }

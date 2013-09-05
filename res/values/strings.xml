@@ -455,4 +455,7 @@
     <string name="pref_brightness_master_switch_title">Enable brightness settings</string>
     <string name="pref_brightness_master_switch_summary">Use only in case your device supports standard Android brightness features. Keep disabled if you experience brightness related issues. (requires reboot)</string>
 
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">Show recent apps</string>
+
 </resources>
