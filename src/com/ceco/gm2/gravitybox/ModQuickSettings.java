@@ -22,6 +22,7 @@ import com.ceco.gm2.gravitybox.quicksettings.SleepTile;
 import com.ceco.gm2.gravitybox.quicksettings.TorchTile;
 import com.ceco.gm2.gravitybox.quicksettings.GravityBoxTile;
 import com.ceco.gm2.gravitybox.quicksettings.SyncTile;
+import com.ceco.gm2.gravitybox.quicksettings.VolumeTile;
 import com.ceco.gm2.gravitybox.quicksettings.WifiApTile;
 
 import android.content.BroadcastReceiver;
@@ -109,7 +110,8 @@ public class ModQuickSettings {
             R.id.network_mode_tileview,
             R.id.sleep_tileview,
             R.id.quickapp_tileview,
-            R.id.quickrecord_tileview
+            R.id.quickrecord_tileview,
+            R.id.volume_tileview
         ));
         if (!Utils.isMtkDevice()) {
             mCustomGbTileKeys.add(R.id.gps_tileview);
@@ -486,6 +488,10 @@ public class ModQuickSettings {
                     rmTile.setupQuickSettingsTile(mContainerView, inflater);
                     mTiles.add(rmTile);
                 }
+
+                VolumeTile volTile = new VolumeTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                volTile.setupQuickSettingsTile(mContainerView, inflater);
+                mTiles.add(volTile);
 
                 NetworkModeTile nmTile = new NetworkModeTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 nmTile.setupQuickSettingsTile(mContainerView, inflater);
