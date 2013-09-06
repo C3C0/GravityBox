@@ -469,8 +469,8 @@
     <string name="hwkey_action_custom_app_missing">Appli personnalisée introuvable !</string>
 
     <!-- Link notification panel clock to Deskclock -->
-    <string name="pref_clock_link_title">Lien vers DeskClock</string>
-    <string name="pref_clock_link_summary">Crée un lien du panneau de notification vers l\'appli DeskClock au lieu du paramètre Date et Heure</string>
+    <string name="pref_clock_link_title">Lien vers Horloge</string>
+    <string name="pref_clock_link_summary">Crée un lien du panneau de notification vers l\'appli Horloge au lieu des paramètres Date et Heure</string>
 
     <!-- GravityBox settings startup handling -->
     <string name="gb_startup_progress">Attente d\'une réponse de la branche système&#8230; de GravityBox</string>
