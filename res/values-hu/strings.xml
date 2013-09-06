@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
@@ -26,19 +26,20 @@
     <string name="sim_slot_1">SIM 1 foglalat automatikus elrejtése</string>
     <string name="sim_slot_2">SIM 2 foglalat automatikus elrejtése</string>
     <string name="sim_disable_notifications">Figyelmeztetés letiltása</string>
-    <string name="sim_disable_notifications_summary">\"SIM nem található"\ figyelmeztetés letiltása</string>
+    <string name="sim_disable_notifications_summary">"SIM nem található" figyelmeztetés letiltása</string>
 
     <string name="poweroff_advanced_title">Haladó kikapcsoló menü</string>
     <string name="poweroff_advanced_summary">Engedélyezi a haladó kikapcsoló menüt újraindítás Recovery-be opcióval</string>
     <string name="poweroff_recovery">Recovery</string>    
-
+    <string name="poweroff_bootloader">Bootloader</string>
+	
     <string name="vol_key_cursor_control_title">Kurzor irányítás hangerő gombokkal</string>
     <string name="vol_key_cursor_control_summary">Kurzor irányítása szöveges mezőkben a hangerő gombok használatával</string>
     <string name="vol_key_cursor_control_off">Letiltva</string>
     <string name="vol_key_cursor_control_on">Hangerő fel/le a kurzort balra/jobbra mozgatja</string>
     <string name="vol_key_cursor_control_on_reverse">Hangerő fel/le a kurzort jobbra/balra mozgatja</string>
 
-    <string name="recents_clear_all_title">Töröl minden új feladatot</string>
+    <string name="recents_clear_all_title">Töröl minden új feladatot gomb</string>
 
     <string name="fix_datetime_crash_title">Javítja a Dátum és Idő beállítás hibáját</string>
     <string name="fix_datetime_crash_summary">Engedélyezze abban az esetben, ha összeomlást tapasztal a Dátum és Idő beállítás elérésekor (újraindítás szükséges)</string>
@@ -130,9 +131,10 @@
     <string name="about_donate_summary">Adományozzon a részemre, ha úgy gondolja, hogy ez a program megéri az árát! Valamint fontolja meg, hogy adományozzon rovo89-nek is a kitűnő Xposed framework-ért.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">A %s újra fog indulni</string>
-    <string name="reboot_confirm_recovery">A %s Recovery módba fog újraindulni</string>
-
+    <string name="reboot_confirm">A %s újra fog indulni.</string>
+    <string name="reboot_confirm_recovery">A %s Recovery módba fog újraindulni.</string>
+    <string name="reboot_confirm_bootloader">A %s Bootloader módba fog újraindulni.</string>
+	
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT kikapcsolási effekt</string>
     <string name="crt_off_effect_summary">Animáció engedélyezése, ami a régi CRT kikapcsolási effektet szimulálja a képernyő kikapcsolásakor</string>
@@ -168,7 +170,7 @@
     <string name="pref_cat_power_summary">Különböző energiával kapcsolatos módosításokat tartalmaz</string>
 
     <!--  Low battery LED flashing -->
-    <string name="g_led_disable_title">Letiltja a LED villogást</string>
+    <string name="pref_flashing_led_disable_title">Letiltja a LED villogást</string>
     <string name="pref_flashing_led_disable_summary">Kikapcsolja a zavaró LED villogást amikor az akkumlátorszint alacsony és nincs töltés</string>
 
     <!-- Display tweaks category -->
@@ -217,7 +219,7 @@
 
     <!-- More music volume steps -->
     <string name="pref_music_volume_steps_title">Több zene hangerő léptetés</string>
-    <string name="pref_music_volume_steps_summary">Több hangerő léptetést ad hozzá zene folyam esetén (újraindítást szükséges)</string>
+    <string name="pref_music_volume_steps_summary">Több hangerő léptetést eredményez zene folyam esetén (újraindítás szükséges)</string>
 
     <!-- Safe headset media volume -->
     <string name="pref_safe_media_volume_title">Biztonságos fejhallgató média hangerő</string>
@@ -240,7 +242,7 @@
     <string name="hwkey_action_kill">Előtérben futó program bezárása</string>
     <string name="hwkey_action_sleep">Alvás</string>
     <string name="pref_hwkey_kill_delay_title">Program bezárás hosszú érintés késleltetése</string>
-    <string name="pref_hwkey_kill_delay_summary">Az előtérben futó program bezárására vonatkozik. Meghatározza, hogy mennyi ideig kell nyomva tartani a bezáráshoz.</string>
+    <string name="pref_hwkey_kill_delay_summary">Az előtérben futó program bezárására vonatkozik. Meghatározza, hogy mennyi ideig kell nyomva tartani a gombot a bezáráshoz.</string>
     <string name="pref_hwkey_doubletap_speed_title">Dupla érintés sebessége</string>
     <string name="pref_hwkey_doubletap_speed_summary">A Menü gomb dupla érintés műveletére vonatkozik. Meghatározza, hogy milyen gyorsan kell érinteni a dupla érintés előidézéséhez.</string>
     <string name="app_killed">Alkalmazás bezárva</string>
@@ -271,18 +273,18 @@
 
     <!-- QuickSettings tiles per row -->
     <string name="pref_qs_tiles_per_row_title">Csempék egy sorban</string>
-    <string name="pref_qs_tiles_per_row_summary">Meghatározza, hogy mennyi Gyorsbeállítások csempe jelenjen meg soronként. A csempék ennek megfelelően kerülnek átméretezésre. Portré módra vonatkozik.</string>
+    <string name="pref_qs_tiles_per_row_summary">Meghatározza, hogy mennyi Gyorsbeállítások csempe jelenjen meg soronként. A csempék ennek megfelelően kerülnek átméretezésre. Álló tájolás módra vonatkozik.</string>
 
     <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">A hét napjának mutatása</string>
 
     <!-- Expandable volume panel -->
     <string name="pref_volume_panel_expandable_title">Bővített hangerő panel</string>
-    <string name="pref_volume_panel_expandable_summary">Engedélyezi a bővített hangerő panelt a különböző hangfolyamokhoz tartozó értékek beállítási lehetőségével</string>
+    <string name="pref_volume_panel_expandable_summary">Engedélyezi a bővített hangerő panelt a különböző hangfolyamokhoz tartozó értékek külön beállítási lehetőségével</string>
 
     <!-- Link ringtone & notifications volumes -->
     <string name="pref_link_volumes_title">Csengőhang és figyelmeztető hangok értékei</string>
-    <string name="pref_link_volumes_summary">Amikor ki van kapcsolva, a csengőhang és figyelmeztető hangok értékei egymástól függetlenül állíthatóak</string>
+    <string name="pref_link_volumes_summary">Amikor ki van kapcsolva, a csengőhang és a figyelmeztető hangok értékei egymástól függetlenül állíthatóak</string>
 
     <!-- Auto-switch QuickSettings -->
     <string name="pref_auto_switch_qs_title">Automatikus váltás a Gyorsbeállítások panelre</string>
@@ -296,7 +298,7 @@
     <string name="quick_pulldown_left">Bal</string>
 
     <!-- Disable volume rocker wake -->
-    <string name="pref_volume_rocker_wake_disable_title">Letiltja a hangerő gombbal történő ébresztést</string>
+    <string name="pref_volume_rocker_wake_disable_title">Hangerő gombbal ébresztés tiltása</string>
     <string name="pref_volume_rocker_wake_disable_summary">Azon eszközök részére -mint a Jiayu G3S,G4- amelyek hangerő gombja bekapcsolja a kijelzőt</string>
 
     <!-- Statusbar colors category -->
@@ -325,8 +327,8 @@
     <string name="notif_background_color_fill">Szín kitöltése</string>
     <string name="notif_background_custom_image">Egyéni kép</string>
     <string name="pref_notif_color_title">Háttérszín beállítása</string>
-    <string name="pref_notif_image_portrait_title">Portré kép beállítása</string>
-    <string name="pref_notif_image_landscape_title">Tájkép beállítása</string>
+    <string name="pref_notif_image_portrait_title">Alló tájolás hátterének beállítása</string>
+    <string name="pref_notif_image_landscape_title">Fekvő tájolás hátterének beállítása</string>
     <string name="pref_notif_background_alpha_title">Háttér átlátszóság</string>
     <string name="pref_notif_color_mode_title">Háttér mód</string>
     <string name="color_fill_overlay">Átfedés</string>
@@ -348,7 +350,7 @@
 
     <!-- Pie Controls settings -->
     <string name="pie_control_title">Pie Vezérlők</string>
-    <string name="pie_control_enable_title">Pie Vezérlők engedélyezve</string>
+    <string name="pie_control_enable_title">Pie Vezérlők engedélyezése</string>
     <string name="pie_control_search_title">Keresés gomb mutatása</string>
     <string name="pie_control_size_title">Navigációs gomb méret</string>
     <string name="pie_control_trigger_positions_title">Kioldógomb pozíció</string>
@@ -383,10 +385,10 @@
 
     <!-- Clear all recents positions -->
     <string name="recent_clear_off">Kikapcsolva</string>
-    <string name="recent_clear_top_left">Bal fent</string>
-    <string name="recent_clear_top_right">Jobb fent</string>
-    <string name="recent_clear_bottom_left">Bal lent</string>
-    <string name="recent_clear_bottom_right">Jobb lent</string>
+    <string name="recent_clear_top_left">Balra fent</string>
+    <string name="recent_clear_top_right">Jobbra fent</string>
+    <string name="recent_clear_bottom_left">Balra lent</string>
+    <string name="recent_clear_bottom_right">Jobbra lent</string>
 
     <!-- Clear all recents top margin -->
     <string name="pref_recent_clear_margin_top_title">Felső szegély beállítása</string>
@@ -443,5 +445,14 @@
     <!-- Screen dim level -->
     <string name="pref_screen_dim_level_title">Képernyő elsötétedési érték</string>
     <string name="pref_screen_dim_level_summary">A fényerő értéke az elsötétedő képernyő állapotban - amikor a képernyő hamarosan kikapcsol (újraindítás szükséges)</string>
+
+	<!-- Device type -->
+    <string name="device_phone">telefon</string>
+    <string name="device_tablet">tablet</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">Fényerő beállítások</string>
+    <string name="pref_brightness_master_switch_title">Fényerő beállítások módosításának engedélyezése</string>
+    <string name="pref_brightness_master_switch_summary">Csak abban az esetben használd, ha az eszközöd támogotja a szabvány Android fényerő funkciókat. Fényerővel kapcsolatos hibák megjelenése esetén tiltsd le ez a funkciót. (újraindítás szükséges)</string>
 
 </resources>
