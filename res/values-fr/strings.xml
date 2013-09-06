@@ -97,7 +97,8 @@
     <string name="qs_tile_sleep">Veille</string>
     <string name="qs_tile_quickrecord">Enregistrement rapide</string>
     <string name="qs_tile_settings">Réglages</string>
-    
+    <string name="qs_tile_volume">Volume</string>
+
     <!-- Color Picker -->
     <string name="dialog_color_picker">Sélecteur de couleur</string>
     <string name="press_color_to_apply">Sélectionner votre couleur pour l\'appliquer</string>
@@ -454,5 +455,25 @@
     <string name="pref_cat_brightness_title">Paramètres de luminosité</string>
     <string name="pref_brightness_master_switch_title">Active les paramètres de luminosité</string>
     <string name="pref_brightness_master_switch_summary">À n\'utiliser que si votre appareil supporte les fonctionnalités standard de luminosité d\'Android. Laisser désactivé si vous rencontrez des problèmes de luminosité (redémarrage nécessaire)</string>
+
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">Afficher les applis récentes</string>
+    
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">Appui long touche Home</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">Lancer l\'appli personnalisée</string>
+    <string name="pref_hwkey_custom_app_title">Définir l\'appli personnalisée</string>
+    <string name="hwkey_action_custom_app_none">Aucune appli personnalisée attribuée !</string>
+    <string name="hwkey_action_custom_app_missing">Appli personnalisée introuvable !</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Lien vers Horloge</string>
+    <string name="pref_clock_link_summary">Crée un lien du panneau de notification vers l\'appli Horloge au lieu des paramètres Date et Heure</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">Attente d\'une réponse de la branche système&#8230; de GravityBox</string>
+    <string name="gb_startup_error">La branche système de GravityBox ne répond pas. Sortie</string>
 
 </resources>
