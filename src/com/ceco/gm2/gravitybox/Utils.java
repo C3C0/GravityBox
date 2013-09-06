@@ -69,29 +69,108 @@ public class Utils {
     public static boolean hasGeminiSupport() {
         if (mHasGeminiSupport != null) return mHasGeminiSupport;
 
-        try {
-            Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
-            String geminiSupport = (String) callStaticMethod(classSystemProperties, 
-                    "get", "ro.mediatek.gemini_support");
-            mHasGeminiSupport = "true".equals(geminiSupport);
-            return mHasGeminiSupport;
-        } catch (Throwable t) {
-            XposedBridge.log("Utils: hasGeminiSupport check failed. Assuming device has no Gemini support");
-            return false;
-        }
+        mHasGeminiSupport = SystemProp.getBoolean("ro.mediatek.gemini_support", false);
+        return mHasGeminiSupport;
     }
 
     public static String getDeviceCharacteristics() {
         if (mDeviceCharacteristics != null) return mDeviceCharacteristics;
 
-        try {
-            Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
-            mDeviceCharacteristics = (String) callStaticMethod(classSystemProperties, 
-                    "get", "ro.build.characteristics");
-            return mDeviceCharacteristics;
-        } catch (Throwable t) {
-            XposedBridge.log("Utils: getDeviceCharacteristics failed: " + t.getMessage());
-            return null;
+        mDeviceCharacteristics = SystemProp.get("ro.build.characteristics");
+        return mDeviceCharacteristics;
+    }
+    
+    static class SystemProp extends Utils {
+        
+        private SystemProp() {
+
+        }
+
+        // Get the value for the given key
+        // @param key: key to lookup
+        // @return null if the key isn't found
+        public static String get(String key) {
+            String ret;
+
+            try {
+                Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
+                ret = (String) callStaticMethod(classSystemProperties, "get", key);
+            } catch (Throwable t) {
+                XposedBridge.log("Utils: SystemProp.get failed: " + t.getMessage());
+                ret = null;
+            }
+            return ret;
+        }
+
+        // Get the value for the given key
+        // @param key: key to lookup
+        // @param def: default value to return
+        // @return if the key isn't found, return def if it isn't null, or an empty string otherwise
+        public static String get(String key, String def) {
+            String ret = def;
+            
+            try {
+                Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
+                ret = (String) callStaticMethod(classSystemProperties, "get", key, def);
+            } catch (Throwable t) {
+                XposedBridge.log("Utils: SystemProp.get failed: " + t.getMessage());
+                ret = def;
+            }
+            return ret;
+        }
+
+        // Get the value for the given key, and return as an integer
+        // @param key: key to lookup
+        // @param def: default value to return
+        // @return the key parsed as an integer, or def if the key isn't found or cannot be parsed
+        public static Integer getInt(String key, Integer def) {
+            Integer ret = def;
+            
+            try {
+                Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
+                ret = (Integer) callStaticMethod(classSystemProperties, "getInt", key, def);
+            } catch (Throwable t) {
+                XposedBridge.log("Utils: SystemProp.getInt failed: " + t.getMessage());
+                ret = def;
+            }
+            return ret;
+        }
+
+        // Get the value for the given key, and return as a long
+        // @param key: key to lookup
+        // @param def: default value to return
+        // @return the key parsed as a long, or def if the key isn't found or cannot be parsed
+        public static Long getLong(String key, Long def) {
+            Long ret = def;
+            
+            try {
+                Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
+                ret = (Long) callStaticMethod(classSystemProperties, "getLong", key, def);
+            } catch (Throwable t) {
+                XposedBridge.log("Utils: SystemProp.getLong failed: " + t.getMessage());
+                ret = def;
+            }
+            return ret;
+        }
+
+        // Get the value (case insensitive) for the given key, returned as a boolean
+        // Values 'n', 'no', '0', 'false' or 'off' are considered false
+        // Values 'y', 'yes', '1', 'true' or 'on' are considered true
+        // If the key does not exist, or has any other value, then the default result is returned
+        // @param key: key to lookup
+        // @param def: default value to return
+        // @return the key parsed as a boolean, or def if the key isn't found or cannot be parsed
+        public static Boolean getBoolean(String key, boolean def) {
+            Boolean ret = def;
+            
+            try {
+                Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
+                ret = (Boolean) callStaticMethod(classSystemProperties, "getBoolean", key, def);
+            } catch (Throwable t) {
+                XposedBridge.log("Utils: SystemProp.getBoolean failed: " + t.getMessage());
+                ret = def;
+            }
+            return ret;
         }
     }
 }
