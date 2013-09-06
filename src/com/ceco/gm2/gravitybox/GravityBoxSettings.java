@@ -319,7 +319,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
     private GravityBoxResultReceiver mReceiver;
     private Handler mHandler;
-    private SystemProperties mSystemProperties;
+    private static SystemProperties sSystemProperties;
     private Dialog mAlertDialog;
     private ProgressDialog mProgressDialog;
     private Runnable mGetSystemPropertiesTimeout = new Runnable() {
@@ -385,9 +385,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         dismissProgressDialog();
         Log.d("GravityBox", "result received: resultCode=" + resultCode);
         if (resultCode == SystemPropertyProvider.RESULT_SYSTEM_PROPERTIES) {
-            mSystemProperties = new SystemProperties(resultData);
+            sSystemProperties = new SystemProperties(resultData);
+            getFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
+        } else {
+            finish();
         }
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
     }
 
     private void dismissProgressDialog() {
