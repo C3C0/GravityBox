@@ -608,6 +608,12 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mQuickSettings.setEntryValues(R.array.qs_tile_aosp_values);
                 mPrefCatPhone.removePreference(mPrefRoamingWarningDisable);
             } else {
+                // Remove Gemini specific preferences for non-Gemini MTK devices
+                if (!sSystemProperties.hasGeminiSupport) {
+                    mPrefCatStatusbar.removePreference(mSignalIconAutohide);
+                    mPrefCatStatusbar.removePreference(mPrefDisableRoamingIndicators);
+                }
+
                 // Remove preferences not needed for ZTE V987
                 if (Build.MODEL.contains("V987") && Build.DISPLAY.contains("ZTE-CN-9B18D-P188F04")) {
                 	mPrefCatFixes.removePreference(mPrefFixDateTimeCrash);
