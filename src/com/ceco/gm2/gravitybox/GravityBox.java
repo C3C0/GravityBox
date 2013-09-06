@@ -34,7 +34,9 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         // MTK specific
         if (Utils.isMtkDevice()) {
-            ModSignalIconHide.initZygote(prefs);
+            if (Utils.hasGeminiSupport()) {
+                ModSignalIconHide.initZygote(prefs);
+            }
 
             if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALLER_ID_PHONE, false)) {
                 FixCallerIdPhone.initZygote(prefs);
@@ -93,7 +95,8 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         // MTK Specific
         if (Utils.isMtkDevice()) {
-            if (lpparam.packageName.equals(ModSignalIconHide.PACKAGE_NAME)) {
+            if (Utils.hasGeminiSupport() &&
+            		lpparam.packageName.equals(ModSignalIconHide.PACKAGE_NAME)) {
                 ModSignalIconHide.init(prefs, lpparam.classLoader);
             }
 
