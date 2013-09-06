@@ -53,6 +53,10 @@ public class Utils {
         return getScreenType(con) == DEVICE_TABLET;
     }
 
+    public static boolean isTablet() {
+        return "tablet".equals(getDeviceCharacteristics());
+    }
+
     public static enum MethodState {
         UNKNOWN,
         METHOD_ENTERED,

@@ -24,6 +24,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         XposedBridge.log("Device manufacturer: " + Build.MANUFACTURER);
         XposedBridge.log("Device brand: " + Build.BRAND);
         XposedBridge.log("Device model: " + Build.MODEL);
+        XposedBridge.log("Device type: " + (Utils.isTablet() ? "tablet" : "phone"));
         XposedBridge.log("Is MTK device: " + Utils.isMtkDevice());
         XposedBridge.log("Has Gemini support: " + Utils.hasGeminiSupport());
         XposedBridge.log("Android SDK: " + Build.VERSION.SDK_INT);
