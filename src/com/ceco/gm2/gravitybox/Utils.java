@@ -41,15 +41,15 @@ public class Utils {
         return mDeviceType;
     }
 
-    public static boolean isPhone(Context con) {
+    public static boolean isPhoneUI(Context con) {
         return getScreenType(con) == DEVICE_PHONE;
     }
 
-    public static boolean isHybrid(Context con) {
+    public static boolean isHybridUI(Context con) {
         return getScreenType(con) == DEVICE_HYBRID;
     }
 
-    public static boolean isTablet(Context con) {
+    public static boolean isTabletUI(Context con) {
         return getScreenType(con) == DEVICE_TABLET;
     }
 

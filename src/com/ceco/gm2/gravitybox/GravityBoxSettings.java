@@ -593,7 +593,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefSafeMediaVolume = (CheckBoxPreference) findPreference(PREF_KEY_SAFE_MEDIA_VOLUME);
 
             // Remove Phone specific preferences on Tablet devices
-            if (Utils.isTablet(getActivity())) {
+            if (Utils.isTabletUI(getActivity())) {
                 getPreferenceScreen().removePreference(mPrefCatPhone);
             	mPrefCatStatusbarQs.removePreference(mPrefAutoSwitchQs);
             	mPrefCatStatusbarQs.removePreference(mPrefQuickPulldown);
@@ -1110,7 +1110,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             // Lock screen for tablets visible section are different in landscape/portrait,
             // image need to be cropped correctly, like wallpaper setup for scrolling in background in home screen
             // other wise it does not scale correctly
-            if (Utils.isTablet(getActivity())) {
+            if (Utils.isTabletUI(getActivity())) {
                 width = getActivity().getWallpaperDesiredMinimumWidth();
                 height = getActivity().getWallpaperDesiredMinimumHeight();
                 float spotlightX = (float) display.getWidth() / width;
