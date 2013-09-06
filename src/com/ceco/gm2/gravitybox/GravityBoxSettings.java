@@ -593,7 +593,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefSafeMediaVolume = (CheckBoxPreference) findPreference(PREF_KEY_SAFE_MEDIA_VOLUME);
 
             // Remove Phone specific preferences on Tablet devices
-            if (Utils.isTabletUI(getActivity())) {
+            if (sSystemProperties.isTablet) {
                 getPreferenceScreen().removePreference(mPrefCatPhone);
             	mPrefCatStatusbarQs.removePreference(mPrefAutoSwitchQs);
             	mPrefCatStatusbarQs.removePreference(mPrefQuickPulldown);
