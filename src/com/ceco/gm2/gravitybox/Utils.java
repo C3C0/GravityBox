@@ -54,7 +54,7 @@ public class Utils {
     }
 
     public static boolean isTablet() {
-        return "tablet".equals(getDeviceCharacteristics());
+        return getDeviceCharacteristics().contains("tablet");
     }
 
     public static enum MethodState {
