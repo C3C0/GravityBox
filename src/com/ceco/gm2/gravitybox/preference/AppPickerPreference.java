@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.TypedArray;
@@ -126,12 +127,22 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
 
             @Override
             protected Void doInBackground(Void... arg0) {
+                PackageManager pm = mContext.getPackageManager();
+                List<ResolveInfo> appList = new ArrayList<ResolveInfo>();
+
+                List<PackageInfo> packages = pm.getInstalledPackages(0);
                 Intent mainIntent = new Intent(Intent.ACTION_MAIN);
                 mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-                PackageManager pm = mContext.getPackageManager();
-                List<ResolveInfo> appList = pm.queryIntentActivities(mainIntent, 0);
-                Collections.sort(appList, new ResolveInfo.DisplayNameComparator(pm));
+                for(PackageInfo pi : packages) {
+                    if (this.isCancelled()) break;
+                    mainIntent.setPackage(pi.packageName);
+                    List<ResolveInfo> activityList = pm.queryIntentActivities(mainIntent, 0);
+                    for(ResolveInfo ri : activityList) {
+                        appList.add(ri);
+                    }
+                }
 
+                Collections.sort(appList, new ResolveInfo.DisplayNameComparator(pm));
                 mListData.add(new AppItem(mContext.getString(R.string.app_picker_none), null));
                 for (ResolveInfo ri : appList) {
                     if (this.isCancelled()) break;
