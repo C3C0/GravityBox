@@ -5,7 +5,8 @@
 
     <string name="battery_style_title">Stile indicatore batteria</string>
     <string name="battery_style_stock">Indicatore batteria stock</string>
-    <string name="battery_style_circle">Batteria circolare con percentuale</string>
+    <string name="battery_style_circle">Batteria circolare no percentuale</string>
+    <string name="battery_style_circle_percent">Batteria circolare con percentuale</string>
     <string name="battery_style_percent">Testo percentuale largo</string>
     <string name="battery_style_none">Nessuno</string>
 
