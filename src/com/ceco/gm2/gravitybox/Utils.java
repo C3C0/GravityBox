@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
+import java.util.*;
 import static de.robv.android.xposed.XposedHelpers.callStaticMethod;
 import static de.robv.android.xposed.XposedHelpers.findClass;
 
@@ -17,9 +18,15 @@ public class Utils {
 
     // Device type reference
     private static int mDeviceType = -1;
+    private static Boolean mIsMtkDevice = null;
     private static Boolean mHasGeminiSupport = null;
     private static String mDeviceCharacteristics = null;
 
+    // Supported MTK devices
+    private static final Set<String> MTK_DEVICES = new HashSet<String>(Arrays.asList(
+   	     new String[] {"mt6575","mt6577","mt6589","mt8389"}
+   	));
+    
     private static int getScreenType(Context con) {
         if (mDeviceType == -1) {
             WindowManager wm = (WindowManager)con.getSystemService(Context.WINDOW_SERVICE);
@@ -41,16 +48,20 @@ public class Utils {
         return mDeviceType;
     }
 
-    public static boolean isPhone(Context con) {
+    public static boolean isPhoneUI(Context con) {
         return getScreenType(con) == DEVICE_PHONE;
     }
 
-    public static boolean isHybrid(Context con) {
+    public static boolean isHybridUI(Context con) {
         return getScreenType(con) == DEVICE_HYBRID;
     }
 
-    public static boolean isTablet(Context con) {
+    public static boolean isTabletUI(Context con) {
         return getScreenType(con) == DEVICE_TABLET;
+    }
+
+    public static boolean isTablet() {
+        return getDeviceCharacteristics().contains("tablet");
     }
 
     public static enum MethodState {
@@ -60,10 +71,10 @@ public class Utils {
     }
 
     public static boolean isMtkDevice() {
-        return (Build.HARDWARE.toLowerCase().contains("mt6575")
-                || Build.HARDWARE.toLowerCase().contains("mt6577")
-                || Build.HARDWARE.toLowerCase().contains("mt6589") 
-                || Build.HARDWARE.toLowerCase().contains("mt8389"));
+        if (mIsMtkDevice != null) return mIsMtkDevice;
+
+        mIsMtkDevice = MTK_DEVICES.contains(Build.HARDWARE.toLowerCase());
+        return mIsMtkDevice;
     }
 
     public static boolean hasGeminiSupport() {

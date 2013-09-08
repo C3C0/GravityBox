@@ -95,11 +95,11 @@ public class ModRebootMenu {
                    }
 
                	   mRebootConfirmStr = String.format(gbRes.getString(R.string.reboot_confirm),
-                           gbRes.getString(Utils.isTablet(gbContext) ? R.string.device_tablet : R.string.device_phone));
+                           gbRes.getString(Utils.isTablet() ? R.string.device_tablet : R.string.device_phone));
                    mRebootConfirmRecoveryStr = String.format(gbRes.getString(R.string.reboot_confirm_recovery),
-                           gbRes.getString(Utils.isTablet(gbContext) ? R.string.device_tablet : R.string.device_phone));
+                           gbRes.getString(Utils.isTablet() ? R.string.device_tablet : R.string.device_phone));
                	   mRebootConfirmBootloaderStr = String.format(gbRes.getString(R.string.reboot_confirm_bootloader),
-                           gbRes.getString(Utils.isTablet(gbContext) ? R.string.device_tablet : R.string.device_phone));
+                           gbRes.getString(Utils.isTablet() ? R.string.device_tablet : R.string.device_phone));
                    
                    log("GlobalActions constructed, resources set.");
                }

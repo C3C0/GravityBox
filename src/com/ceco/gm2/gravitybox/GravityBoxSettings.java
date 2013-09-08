@@ -305,14 +305,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
     private static final class SystemProperties {
         public boolean hasGeminiSupport;
-        public String deviceCharacteristics;
+        public boolean isTablet;
 
         public SystemProperties(Bundle data) {
             if (data.containsKey("hasGeminiSupport")) {
                 hasGeminiSupport = data.getBoolean("hasGeminiSupport");
             }
-            if (data.containsKey("deviceCharacteristics")) {
-                deviceCharacteristics = data.getString("deviceCharacteristics");
+            if (data.containsKey("isTablet")) {
+            	isTablet = data.getBoolean("isTablet");
             }
         }
     }
@@ -593,7 +593,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefSafeMediaVolume = (CheckBoxPreference) findPreference(PREF_KEY_SAFE_MEDIA_VOLUME);
 
             // Remove Phone specific preferences on Tablet devices
-            if (Utils.isTablet(getActivity())) {
+            if (sSystemProperties.isTablet) {
+                getPreferenceScreen().removePreference(mPrefCatPhone);
             	mPrefCatStatusbarQs.removePreference(mPrefAutoSwitchQs);
             	mPrefCatStatusbarQs.removePreference(mPrefQuickPulldown);
             }
@@ -607,6 +608,12 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mQuickSettings.setEntryValues(R.array.qs_tile_aosp_values);
                 mPrefCatPhone.removePreference(mPrefRoamingWarningDisable);
             } else {
+                // Remove Gemini specific preferences for non-Gemini MTK devices
+                if (!sSystemProperties.hasGeminiSupport) {
+                    mPrefCatStatusbar.removePreference(mSignalIconAutohide);
+                    mPrefCatStatusbar.removePreference(mPrefDisableRoamingIndicators);
+                }
+
                 // Remove preferences not needed for ZTE V987
                 if (Build.MODEL.contains("V987") && Build.DISPLAY.contains("ZTE-CN-9B18D-P188F04")) {
                 	mPrefCatFixes.removePreference(mPrefFixDateTimeCrash);
@@ -1103,7 +1110,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             // Lock screen for tablets visible section are different in landscape/portrait,
             // image need to be cropped correctly, like wallpaper setup for scrolling in background in home screen
             // other wise it does not scale correctly
-            if (Utils.isTablet(getActivity())) {
+            if (Utils.isTabletUI(getActivity())) {
                 width = getActivity().getWallpaperDesiredMinimumWidth();
                 height = getActivity().getWallpaperDesiredMinimumHeight();
                 float spotlightX = (float) display.getWidth() / width;

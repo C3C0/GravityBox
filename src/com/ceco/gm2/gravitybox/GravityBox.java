@@ -24,6 +24,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         XposedBridge.log("Device manufacturer: " + Build.MANUFACTURER);
         XposedBridge.log("Device brand: " + Build.BRAND);
         XposedBridge.log("Device model: " + Build.MODEL);
+        XposedBridge.log("Device type: " + (Utils.isTablet() ? "tablet" : "phone"));
         XposedBridge.log("Is MTK device: " + Utils.isMtkDevice());
         XposedBridge.log("Has Gemini support: " + Utils.hasGeminiSupport());
         XposedBridge.log("Android SDK: " + Build.VERSION.SDK_INT);
@@ -34,7 +35,9 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         // MTK specific
         if (Utils.isMtkDevice()) {
-            ModSignalIconHide.initZygote(prefs);
+            if (Utils.hasGeminiSupport()) {
+                ModSignalIconHide.initZygote(prefs);
+            }
 
             if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALLER_ID_PHONE, false)) {
                 FixCallerIdPhone.initZygote(prefs);
@@ -93,7 +96,8 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         // MTK Specific
         if (Utils.isMtkDevice()) {
-            if (lpparam.packageName.equals(ModSignalIconHide.PACKAGE_NAME)) {
+            if (Utils.hasGeminiSupport() &&
+            		lpparam.packageName.equals(ModSignalIconHide.PACKAGE_NAME)) {
                 ModSignalIconHide.init(prefs, lpparam.classLoader);
             }
 

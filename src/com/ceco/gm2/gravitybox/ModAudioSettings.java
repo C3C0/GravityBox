@@ -27,7 +27,13 @@ public class ModAudioSettings {
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
         try {
             final Class<?> classVolumePref = XposedHelpers.findClass(CLASS_VOLUME_PREF, classLoader);
-            final Class<?> classVolumizer = XposedHelpers.findClass(CLASS_VOLUMIZER, classLoader);
+            final Class<?> classVolumizer;
+            try {
+                classVolumizer = XposedHelpers.findClass(CLASS_VOLUMIZER, classLoader);
+        	} catch (Throwable t) {
+        		XposedBridge.log("ModAudioSettings: classVolumizer doesn't exist, exiting...");
+        		return;
+        	}
 
             XposedHelpers.findAndHookMethod(classVolumePref, "onBindDialogView", View.class, new XC_MethodHook() {
 
