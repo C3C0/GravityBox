@@ -30,10 +30,10 @@ public class ModAudioSettings {
             final Class<?> classVolumizer;
             try {
                 classVolumizer = XposedHelpers.findClass(CLASS_VOLUMIZER, classLoader);
-        	} catch (Throwable t) {
-        		XposedBridge.log("ModAudioSettings: classVolumizer doesn't exist, exiting...");
-        		return;
-        	}
+            } catch (Throwable t) {
+                XposedBridge.log("ModAudioSettings: classVolumizer doesn't exist, exiting...");
+                return;
+            }
 
             XposedHelpers.findAndHookMethod(classVolumePref, "onBindDialogView", View.class, new XC_MethodHook() {
 
@@ -94,7 +94,7 @@ public class ModAudioSettings {
                                     param2.args[0] + "," + param2.args[1] + "," + param2.args[2]);
                             if ((Integer)param2.args[0] != streamType) {
                                 log("setVolume: mAudioManager.setAudioProfileStreamVolume: " +
-                                		"Attempt to set volume of foreign Stream Type - ignoring");
+                                        "Attempt to set volume of foreign Stream Type - ignoring");
                                 param2.args[0] = streamType;
                             }
                         }
@@ -129,7 +129,7 @@ public class ModAudioSettings {
                                 protected void beforeHookedMethod(MethodHookParam param2) throws Throwable {
                                     if ((Integer) param2.args[1] != streamType) {
                                         log("revertVolume: setStreamVolume: " +
-                                        		"Attempt to set volume of foreign Stream Type - ignoring");
+                                                "Attempt to set volume of foreign Stream Type - ignoring");
                                         param2.args[1] = streamType;
                                     }
                                 }
@@ -163,7 +163,7 @@ public class ModAudioSettings {
                                 protected void beforeHookedMethod(MethodHookParam param2) throws Throwable {
                                     if ((Integer) param2.args[1] != streamType) {
                                         log("saveVolume: setStreamVolume: " +
-                                        		"Attempt to set volume of foreign Stream Type - ignoring");
+                                                "Attempt to set volume of foreign Stream Type - ignoring");
                                         param2.args[1] = streamType;
                                     }
                                 }

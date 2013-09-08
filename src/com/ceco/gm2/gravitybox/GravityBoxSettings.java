@@ -312,7 +312,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 hasGeminiSupport = data.getBoolean("hasGeminiSupport");
             }
             if (data.containsKey("isTablet")) {
-            	isTablet = data.getBoolean("isTablet");
+                isTablet = data.getBoolean("isTablet");
             }
         }
     }
@@ -595,8 +595,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
                 getPreferenceScreen().removePreference(mPrefCatPhone);
-            	mPrefCatStatusbarQs.removePreference(mPrefAutoSwitchQs);
-            	mPrefCatStatusbarQs.removePreference(mPrefQuickPulldown);
+                mPrefCatStatusbarQs.removePreference(mPrefAutoSwitchQs);
+                mPrefCatStatusbarQs.removePreference(mPrefQuickPulldown);
             }
 
             // Remove MTK specific preferences for non-MTK devices
@@ -616,9 +616,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
                 // Remove preferences not needed for ZTE V987
                 if (Build.MODEL.contains("V987") && Build.DISPLAY.contains("ZTE-CN-9B18D-P188F04")) {
-                	mPrefCatFixes.removePreference(mPrefFixDateTimeCrash);
-                	mPrefCatFixes.removePreference(mPrefFixTtsSettings);
-                	mPrefCatFixes.removePreference(mPrefFixDevOpts);
+                    mPrefCatFixes.removePreference(mPrefFixDateTimeCrash);
+                    mPrefCatFixes.removePreference(mPrefFixTtsSettings);
+                    mPrefCatFixes.removePreference(mPrefFixDevOpts);
                 }
 
                 mQuickSettings.setEntries(R.array.qs_tile_entries);

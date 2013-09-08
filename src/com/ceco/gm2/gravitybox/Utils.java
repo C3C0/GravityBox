@@ -24,9 +24,9 @@ public class Utils {
 
     // Supported MTK devices
     private static final Set<String> MTK_DEVICES = new HashSet<String>(Arrays.asList(
-   	     new String[] {"mt6575","mt6577","mt6589","mt8389"}
-   	));
-    
+        new String[] {"mt6575","mt6577","mt6589","mt8389"}
+    ));
+
     private static int getScreenType(Context con) {
         if (mDeviceType == -1) {
             WindowManager wm = (WindowManager)con.getSystemService(Context.WINDOW_SERVICE);
