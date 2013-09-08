@@ -15,17 +15,13 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.preference.DialogPreference;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -130,19 +126,11 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
                 List<ResolveInfo> appList = pm.queryIntentActivities(mainIntent, 0);
                 Collections.sort(appList, new ResolveInfo.DisplayNameComparator(pm));
 
-                Resources res = mContext.getResources();
-                int sizePx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, 
-                        res.getDisplayMetrics());
-
-                mListData.add(new AppItem(null, null, mContext.getString(R.string.app_picker_none), null));
+                mListData.add(new AppItem(mContext.getString(R.string.app_picker_none), null));
                 for (ResolveInfo ri : appList) {
                     if (this.isCancelled()) break;
                     String appName = ri.loadLabel(pm).toString();
-                    Bitmap appIcon = ((BitmapDrawable)ri.loadIcon(pm)).getBitmap();
-                    Bitmap scaledIcon = Bitmap.createScaledBitmap(appIcon, sizePx, sizePx, true);
-                    AppItem ai = new AppItem(ri.activityInfo.packageName, 
-                            ri.activityInfo.name,
-                            appName, new BitmapDrawable(res, scaledIcon));
+                    AppItem ai = new AppItem(appName, ri);
                     mListData.add(ai);
                 }
 
@@ -187,17 +175,27 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
         }
     }
 
-    class AppItem implements IIconListAdapterItem {
+    class AppItem implements IIconListAdapterItem, AppIconLoader.AppIconLoaderListener {
         private String mPackageName;
         private String mClassName;
         private String mAppName;
         private Drawable mAppIcon;
+        private ResolveInfo mResolveInfo;
 
-        public AppItem(String packageName, String className, String appName, Drawable appIcon) {
-            mPackageName = packageName;
-            mClassName = className;
+        public AppItem(String appName, ResolveInfo ri) {
             mAppName = appName;
-            mAppIcon = appIcon;
+            mResolveInfo = ri;
+            if (mResolveInfo != null) {
+                mPackageName = mResolveInfo.activityInfo.packageName;
+                mClassName = mResolveInfo.activityInfo.name;
+            }
+
+            if (AppIconLoader.isCachedIcon(getValue())) {
+                mAppIcon = AppIconLoader.getCachedIcon(getValue());
+            } else {
+                AppIconLoader iconLoader = new AppIconLoader(mContext, 40, this);
+                iconLoader.execute(mResolveInfo);
+            }
         }
 
         public String getPackageName() {
@@ -236,6 +234,19 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
         @Override
         public Drawable getIconRight() {
             return null;
+        }
+
+        @Override
+        public void onAppIconLoaded(Drawable icon) {
+            mAppIcon = icon;
+            if (mListView.getAdapter() != null) {
+                ((IconListAdapter)mListView.getAdapter()).notifyDataSetChanged();
+            }
+        }
+
+        @Override
+        public String getCachedIconKey() {
+            return getValue();
         }
     }
 }
