@@ -381,7 +381,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
-        mHandler.removeCallbacks(mGetSystemPropertiesTimeout);
+        if (mHandler != null) {
+            mHandler.removeCallbacks(mGetSystemPropertiesTimeout);
+            mHandler = null;
+        }
         dismissProgressDialog();
         Log.d("GravityBox", "result received: resultCode=" + resultCode);
         if (resultCode == SystemPropertyProvider.RESULT_SYSTEM_PROPERTIES) {
