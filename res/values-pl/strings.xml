@@ -24,6 +24,7 @@
     <string name="poweroff_advanced_title">Zaawansowane menu wyłączania</string>
     <string name="poweroff_advanced_summary">Włącza dodatkowe opcje dotyczące restartu telefonu (Recovery)</string>
     <string name="poweroff_recovery">Recovery</string>
+    <string name="poweroff_bootloader">Bootloader</string>
     <string name="vol_key_cursor_control_title">Kotroluj kursor przyciskiem głośności</string>
     <string name="vol_key_cursor_control_summary">Pozwala przesuwać kursor przyciskami głośności w polach tekstowych</string>
     <string name="vol_key_cursor_control_off">Wyłącz</string>
@@ -97,8 +98,9 @@
     <string name="about_xposed_summary">Stworzone przez rovo89@XDA. Dotknij aby przejść do oficjalnego wątku na forum XDA.</string>
     <string name="about_donate_title">Darowizna</string>
     <string name="about_donate_summary">Wspomóż mnie jeśli uważasz, że program jest tego warty! Wspomóż też rovo89 za jego wspaniały Xposed framework.</string>
-    <string name="reboot_confirm">%s zostanie zrestartowany</string>
-    <string name="reboot_confirm_recovery">%s zostanie zrestartowany do trybu Recovery</string>
+    <string name="reboot_confirm">Twój %s zostanie zrestartowany</string>
+    <string name="reboot_confirm_recovery">Twój %s zostanie zrestartowany do trybu Recovery.</string>
+    <string name="reboot_confirm_bootloader">Twój %s zostanie zrestartowany do trybu Bootloader.</string>
     <string name="crt_off_effect_title">Efekt wyłączenia ekranu CRT</string>
     <string name="crt_off_effect_summary">Włącza animację imitującą efekt wyłączania ekranu CRT podczas wygaszania ekranu</string>
     <string name="engineering_mode_title">Tryb inżynierski</string>
@@ -141,7 +143,7 @@
     <string name="pref_ab_number_error_negative">Wartości nie mogą być mniejsze lub równe zeru</string>
     <string name="pref_ab_number_not_ascending">Wartości minimalnych ustawień nie mogą być większe niż wartości maksymalnych ustawień</string>
     <string name="pref_ab_number_not_descending">Wartości maksymalnych ustawień nie mogą być mniejsze niż wartości minimalnych ustawień</string>
-    <string name="pref_ab_values_set">Ustawiono wartości dla %s </string>
+    <string name="pref_ab_values_set">Ustawiono wartości dla %s</string>
     <string name="pref_ab_config_saved">Nowa konfiguracja auto-jasności została zapisana</string>
     <string name="pref_ab_config_cancelled">Konfiguracja auto-jasności NIE została zapisana</string>
     <string name="pref_lockscreen_rotation_title">Włącz obracanie Ekranu blokady</string>
@@ -153,7 +155,7 @@
     <string name="pref_statusbar_center_clock_title">Wycentruj zegar</string>
     <string name="pref_cat_media_title">Poprawki multimediów</string>
     <string name="pref_cat_media_summary">Zawiera dodatkowe poprawki związane z multimediami i dźwiękiem</string>
-    <string name="pref_music_volume_steps_title">Więcej kroków gł. dla muzyki </string>
+    <string name="pref_music_volume_steps_title">Więcej kroków gł. dla muzyki</string>
     <string name="pref_music_volume_steps_summary">Dodaje więcej kroków głośności dla strumienia muzyki (wymagany restart)</string>
     <string name="pref_safe_media_volume_title">Bezpieczna głośność dla słuchawek</string>
     <string name="pref_safe_media_volume_summary">Włącza lub wyłącza funkcję bezpiecznego poziomu głośności przy korzystaniu ze słuchawek</string>
@@ -175,7 +177,7 @@
     <string name="pref_hwkey_doubletap_speed_title">Szybkość podwójnego przyciśnięcia</string>
     <string name="pref_hwkey_doubletap_speed_summary">Dotyczy podwójnego przyciśnięcia Menu. Określa jak szybko należy dwukrotnie przycisnąć przycisk.</string>
     <string name="app_killed">Aplikacja zakończona</string>
-    <string name="nothing_to_kill">"Nie ma nic do zakończenia"</string>
+    <string name="nothing_to_kill">Nie ma nic do zakończenia</string>
     <string name="no_previous_app_found">Brak poprzedniej aplikacji</string>
     <string name="pref_cat_phone_title">Poprawki dotyczące Telefonu</string>
     <string name="pref_cat_phone_summary">Zawiera dodatkowe poprawki dotyczące Telefonu</string>
@@ -224,11 +226,11 @@
     <string name="pref_notif_color_mode_title">Tryb obrazu tła</string>
     <string name="color_fill_overlay">Pokrycie</string>
     <string name="color_fill_underlay">Podkład</string>
-    <string name="pref_disable_roaming_indicators_title">Wyłącz wskażniki roamingu</string>
+    <string name="pref_disable_roaming_indicators_title">Wyłącz wskaźniki roamingu</string>
     <string name="pref_disable_roaming_indicators_summary">Gdy wyłączone, wskaźnik R nie będzie widoczny podczas roamingu. Używaj rozważnie.</string>
     <string name="pie_battery_status_charging">Ładowanie (%d%%)</string>
     <string name="pie_battery_status_full">Naładowana</string>
-    <string name="pie_battery_status_discharging">pozostało %d%% </string>
+    <string name="pie_battery_status_discharging">pozostało %d%%</string>
     <string name="pie_phone_status_no_service">Brak usługi</string>
     <string name="pie_phone_status_airplane_mode">Włączony Tryb Samolotowy</string>
     <string name="pie_phone_status_emergency_only">Tylko połączenia alarmowe</string>
@@ -288,4 +290,9 @@
     <string name="pref_alarm_icon_hide_title">Ukryj ikonę alarmu</string>
     <string name="pref_screen_dim_level_title">Poziom przyciemnienia ekranu</string>
     <string name="pref_screen_dim_level_summary">Poziom niskiej jasności - zanim ekran zostanie całkiem wygaszony (wymagany restart)</string>
+    <string name="device_phone">telefon</string>
+    <string name="device_tablet">tablet</string>
+    <string name="pref_cat_brightness_title">Ustawienia jasności</string>
+    <string name="pref_brightness_master_switch_title">Włącz ustawienia jasności</string>
+    <string name="pref_brightness_master_switch_summary">Należy używać tylko w przypadku, gdy urządzenie obsługuje standardowe funkcje jasności systemu Android. Pozostaw wyłączone w przypadku wystąpienia problemów związanych z jasnością. (wymagany restart)</string>
 </resources>
