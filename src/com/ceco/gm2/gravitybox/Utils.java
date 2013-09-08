@@ -61,7 +61,9 @@ public class Utils {
     }
 
     public static boolean isTablet() {
-        return getDeviceCharacteristics().contains("tablet");
+        String deviceCharacteristics = getDeviceCharacteristics();
+        return (deviceCharacteristics != null
+                    && deviceCharacteristics.contains("tablet"));
     }
 
     public static enum MethodState {
