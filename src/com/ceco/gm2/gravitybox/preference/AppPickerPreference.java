@@ -39,6 +39,12 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
     private ProgressBar mProgressBar;
     private AsyncTask<Void,Void,Void> mAsyncTask;
 
+    private enum AppIconLoadingState {
+        NOT_LOADED,
+        LOADING,
+        LOADED
+    }
+
     public AppPickerPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -181,6 +187,7 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
         private String mAppName;
         private Drawable mAppIcon;
         private ResolveInfo mResolveInfo;
+        private AppIconLoadingState mIconLoadingState;
 
         public AppItem(String appName, ResolveInfo ri) {
             mAppName = appName;
@@ -189,13 +196,7 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
                 mPackageName = mResolveInfo.activityInfo.packageName;
                 mClassName = mResolveInfo.activityInfo.name;
             }
-
-            if (AppIconLoader.isCachedIcon(getValue())) {
-                mAppIcon = AppIconLoader.getCachedIcon(getValue());
-            } else {
-                AppIconLoader iconLoader = new AppIconLoader(mContext, 40, this);
-                iconLoader.execute(mResolveInfo);
-            }
+            mIconLoadingState = AppIconLoadingState.NOT_LOADED;
         }
 
         public String getPackageName() {
@@ -228,7 +229,20 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
 
         @Override
         public Drawable getIconLeft() {
-            return mAppIcon;
+            if (mIconLoadingState == AppIconLoadingState.LOADED) return mAppIcon;
+            if (mIconLoadingState == AppIconLoadingState.LOADING
+                    || mResolveInfo == null) return null;
+
+            mAppIcon = AppIconLoader.getCachedIcon(getCachedIconKey());
+            if (mAppIcon != null) {
+                mIconLoadingState = AppIconLoadingState.LOADED;
+                return mAppIcon;
+            } else {
+                mIconLoadingState = AppIconLoadingState.LOADING;
+                AppIconLoader iconLoader = new AppIconLoader(mContext, 40, this);
+                iconLoader.execute(mResolveInfo);
+                return null;
+            }
         }
 
         @Override
@@ -238,6 +252,7 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
 
         @Override
         public void onAppIconLoaded(Drawable icon) {
+            mIconLoadingState = AppIconLoadingState.LOADED;
             mAppIcon = icon;
             if (mListView.getAdapter() != null) {
                 ((IconListAdapter)mListView.getAdapter()).notifyDataSetChanged();

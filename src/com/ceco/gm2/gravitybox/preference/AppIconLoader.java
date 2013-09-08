@@ -1,9 +1,5 @@
 package com.ceco.gm2.gravitybox.preference;
 
-import java.lang.ref.SoftReference;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -11,15 +7,25 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.util.LruCache;
 import android.util.TypedValue;
 
-public class AppIconLoader extends AsyncTask<ResolveInfo,Void,Drawable> {
+public class AppIconLoader extends AsyncTask<ResolveInfo,Void,BitmapDrawable> {
 
     private Context mContext;
     private int mSizePx;
     private AppIconLoaderListener mListener;
-    private static Map<String, SoftReference<Drawable>> sAppIconCache = 
-            new HashMap<String, SoftReference<Drawable>>();
+    private static LruCache<String, BitmapDrawable> sAppIconCache;
+
+    static {
+        final int cacheSize = Math.min((int)Runtime.getRuntime().maxMemory() / 6, 4194304);
+        sAppIconCache = new LruCache<String, BitmapDrawable>(cacheSize) {
+            @Override
+            protected int sizeOf(String key, BitmapDrawable d) {
+                return d.getBitmap().getByteCount();
+            }
+        };
+    }
 
     public interface AppIconLoaderListener {
         String getCachedIconKey();
@@ -41,24 +47,20 @@ public class AppIconLoader extends AsyncTask<ResolveInfo,Void,Drawable> {
         }
     }
 
-    public static boolean isCachedIcon(String key) {
-        return (sAppIconCache.containsKey(key) && sAppIconCache.get(key).get() != null);
-    }
-
     public static Drawable getCachedIcon(String key) {
-        return sAppIconCache.get(key).get();
+        return (key == null) ? null : sAppIconCache.get(key);
     }
 
     @Override
-    protected Drawable doInBackground(ResolveInfo... params) {
+    protected BitmapDrawable doInBackground(ResolveInfo... params) {
         if (params[0] == null) return null;
 
         try {
             PackageManager pm = mContext.getPackageManager();
             Bitmap bitmap = ((BitmapDrawable)params[0].loadIcon(pm)).getBitmap();
-            Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, mSizePx, mSizePx, true);
-            Drawable appIcon = new BitmapDrawable(mContext.getResources(), scaledBitmap);
-            sAppIconCache.put(mListener.getCachedIconKey(), new SoftReference<Drawable>(appIcon));
+            bitmap = Bitmap.createScaledBitmap(bitmap, mSizePx, mSizePx, true);
+            BitmapDrawable appIcon = new BitmapDrawable(mContext.getResources(), bitmap);
+            bitmap = null;
             return appIcon;
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,7 +69,8 @@ public class AppIconLoader extends AsyncTask<ResolveInfo,Void,Drawable> {
     }
 
     @Override
-    protected void onPostExecute(Drawable icon) {
+    protected void onPostExecute(BitmapDrawable icon) {
+        sAppIconCache.put(mListener.getCachedIconKey(), icon);
         mListener.onAppIconLoaded(icon);
     }
 }
