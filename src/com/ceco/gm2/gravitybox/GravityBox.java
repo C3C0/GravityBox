@@ -18,6 +18,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
     public void initZygote(StartupParam startupParam) throws Throwable {
         MODULE_PATH = startupParam.modulePath;
         prefs = new XSharedPreferences(PACKAGE_NAME);
+        prefs.makeWorldReadable();
 
         XposedBridge.log("Hardware: " + Build.HARDWARE);
         XposedBridge.log("Product: " + Build.PRODUCT);
