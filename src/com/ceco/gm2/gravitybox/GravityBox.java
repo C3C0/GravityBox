@@ -66,6 +66,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         ModAudio.initZygote(prefs);
         ModHwKeys.initZygote(prefs);
         PatchMasterKey.initZygote();
+        ModPhone.initZygote(prefs);
     }
 
     @Override

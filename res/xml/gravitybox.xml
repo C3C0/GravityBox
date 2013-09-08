@@ -508,6 +508,12 @@
             android:summary="@string/pref_roaming_warning_disable_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_national_roaming"
+            android:title="@string/pref_national_roaming_title"
+            android:summary="@string/pref_national_roaming_summary"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen 

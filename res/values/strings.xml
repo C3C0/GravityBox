@@ -476,4 +476,8 @@
     <string name="gb_startup_progress">Waiting for response from GravityBox system framework&#8230;</string>
     <string name="gb_startup_error">GravityBox system framework not responding. Exiting.</string>
 
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">National data roaming</string>
+    <string name="pref_national_roaming_summary">Connect to data services when nationally roaming</string>
+
 </resources>
