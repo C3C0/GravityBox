@@ -173,6 +173,8 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
     }
 
     private String getAppNameFromValue(String value) {
+        if (value == null) return null;
+
         try {
             PackageManager pm = mContext.getPackageManager();
             String[] splitValue = value.split(SEPARATOR);
