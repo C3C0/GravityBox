@@ -1,3 +1,29 @@
+Changelog 2.3.0 - 08/09/2013
+--------------------------------------
+- adapted to support Android 4.1
+- added support for MT6577
+- updated Xposed Bridge API to 30 (module now requires the latest Xposed Framework 2.2)
+- Hardware key actions extended
+--- added support for long-press on Home
+--- new action: Show recent apps
+--- new action: Launch custom app
+- option to link notification panel clock to DeskClock app instead of Date&Time settings
+- added QuickSettings Volume tile
+- option for National data roaming (MVNO)
+- improved detection of device type (phone or tablet) (thanks to bgcngm)
+- preferences adjusted according to device type (thanks to bgcngm)
+- removed Gemini specific preferences for non-Gemini MTK devices (thanks to bgcngm)
+- optimized Application Picker preference
+--- on-demand loading and caching of app icons
+--- more friendly in case of large number of apps installed
+- implemented check if module is active at GB settings start-up
+- added Indonesian translations (thanks to awaaas)
+- updated German translations (QuickSettings) (thanks to Napzter)
+- updated French translations (thanks to ch-vox)
+- updated Hungarian translations (thanks to benjoe1)
+- updated Spanish translations (thanks to klander)
+- updated Polish translations (thanks to xtrem007)
+
 Changelog 2.2.2 - 02/09/2013
 --------------------------------------
 - removed phone specific preferences on tablet devices (thanks to bgcngm)
