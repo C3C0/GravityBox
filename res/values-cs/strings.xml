@@ -451,4 +451,28 @@
     <string name="pref_brightness_master_switch_title">Povolit nastavení jasu</string>
     <string name="pref_brightness_master_switch_summary">Použit pouze v případě, pokud zařízení podporuje standardní Android nastavení jasu. V případě problémů s jasem je třeba ponechat nastavení vypnuté. (vyžaduje restart)</string>
 
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">Seznam spuštěných aplikací</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">Dlouhé podržení Domů</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">Spustit aplikaci</string>
+    <string name="pref_hwkey_custom_app_title">Nastavit aplikaci ke spuštění</string>
+    <string name="hwkey_action_custom_app_none">Aplikace není nastavena!</string>
+    <string name="hwkey_action_custom_app_missing">Aplikace nebyla nalezena!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Vazba na aplikaci Hodiny</string>
+    <string name="pref_clock_link_summary">Naváže hodiny notifikačního panelu na aplikaci Hodiny namísto nastavení data a času</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">Čekám na odpověď ze systémového modulu GravityBox&#8230;</string>
+    <string name="gb_startup_error">Systémový modul GravityBox neodpovídá.</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">Národní datový roaming</string>
+    <string name="pref_national_roaming_summary">Povolí datové služby během národního roamingu</string>
+
 </resources>
