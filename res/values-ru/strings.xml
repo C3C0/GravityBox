@@ -30,7 +30,8 @@
 
     <string name="poweroff_advanced_title">Расширенное меню перезагрузки</string>
     <string name="poweroff_advanced_summary">Включает расширенное меню перезагрузки с возможностью перезагрузки в Recovery</string>
-    <string name="poweroff_recovery">Recovery</string>    
+    <string name="poweroff_recovery">Recovery</string>
+    <string name="poweroff_bootloader">Bootloader</string>    
 
     <string name="vol_key_cursor_control_title">Управление курсором клавишами громкости</string>
     <string name="vol_key_cursor_control_summary">Позволяет управлять курсором в текстовых полях клавишами громкости</string>
@@ -40,18 +41,18 @@
 
     <string name="recents_clear_all_title">Закрыть все текущие задачи</string>
 
-    <string name="fix_datetime_crash_title">Исправление падения диалога Дата и время</string>
+    <string name="fix_datetime_crash_title">Падения диалога Дата и время</string>
     <string name="fix_datetime_crash_summary">Включить, если при входе в настройки Даты и времени происходит падение (Необходима перезагрузка)</string>
 
-    <string name="fix_caller_id_phone_title">Исправление определения номера для звонка</string>
+    <string name="fix_caller_id_phone_title">Определения номера для звонка</string>
     <string name="fix_caller_id_phone_summary">Включить, если номер звонящего не сопоставляется с контактом при входящем звонке (Необходима перезагрузка)</string>
     <string name="fix_caller_id_phone_alert">После перезагрузки необходимо удалить и заново добавить контакты, чтобы изменения вступили в силу! Используйте Настройки - Приложения - Хранилище контактов - Стереть данные.</string>
 
-    <string name="fix_caller_id_mms_title">Исправление определителя номера для сообщений</string>
+    <string name="fix_caller_id_mms_title">Определителя номера для сообщений</string>
     <string name="fix_caller_id_mms_summary">Включить, если наблюдается проблема нескольких веток сообщений для одного контакта (Необходима перезагрузка)</string>
     <string name="fix_caller_id_mms_alert">После перезагрузки необходимо удалить все раздельные ветки в приложении Сообщения, чтобы изменения вступили в силу!</string>
 
-    <string name="fix_calendar_title">Исправить приложение Календарь</string>
+    <string name="fix_calendar_title">Приложение Календарь</string>
     <string name="fix_calendar_summary">Включить, если есть проблема с периодически включающимся экраном в спящем режиме</string>
 
     <string name="important">Важно</string>
@@ -96,6 +97,7 @@
     <string name="qs_tile_sleep">Сон</string>
     <string name="qs_tile_quickrecord">Быстрая запись</string>
     <string name="qs_tile_settings">Настройки</string>
+    <string name="qs_tile_volume">Звук</string>
 
      <!-- Color Picker -->
     <string name="dialog_color_picker">Выбор цвета</string>
@@ -132,6 +134,7 @@
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">%s будет перезагружен.</string>
     <string name="reboot_confirm_recovery">%s будет перезагружен в recovery.</string>
+    <string name="reboot_confirm_bootloader">%s будет перезагружен в bootloader.</string>
     
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT-эффект выключения экрана</string>
@@ -363,7 +366,7 @@
     <string name="button_backlight_mode_disable">Отключить подсветку</string>
     <string name="button_backlight_mode_always_on">Включать всегда, когда включен экран</string>
     <string name="pref_button_backlight_notifications_title">Уведомления подсветкой клавиш</string>
-    <string name="pref_button_backlight_notifications_summary">ЭКСПЕРИМЕНТАЛЬНО! Моргающая подсветка клавиш при уведомлениях. Использовать только в сулчае отсутствия LED индикатора. Может привести к ухудшению жизни батареи.</string>
+    <string name="pref_button_backlight_notifications_summary">ЭКСПЕРИМЕНТАЛЬНО! Моргающая подсветка клавиш при уведомлениях. Использовать только в случае отсутствия LED индикатора. Может привести к ухудшению жизни батареи.</string>
 
     <!-- Hide navigation bar for pie -->
     <string name="pref_navbar_disable_title">Скрыть панель навигации</string>
@@ -401,7 +404,7 @@
 
     <!-- QuickApp tile settings -->
     <string name="qs_tile_quickapp">Быстрый запуск</string>
-    <string name="pref_cat_quickapp_tile_title">Настрйоки тайла Быстрого запуска</string>
+    <string name="pref_cat_quickapp_tile_title">Настройки тайла Быстрого запуска</string>
     <string name="pref_quickapp_default_title">Основное приложение</string>
     <string name="pref_quickapp_slot1_title">Долгий тап, слот 1</string>
     <string name="pref_quickapp_slot2_title">Долгий тап, слот 2</string>
@@ -444,8 +447,39 @@
     <string name="pref_screen_dim_level_title">Уровень затухания подсветки</string>
     <string name="pref_screen_dim_level_summary">Яркость для приглушенной подсветки - когда экран почти выключился (необходима перезагрузка)</string>
 
-    <!-- Device type -->
+	<!-- Device type -->
     <string name="device_phone">Телефон</string>
+    <string name="device_tablet">Планшет</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">Настройки яркости</string>
+    <string name="pref_brightness_master_switch_title">Включить настройку яркости</string>
+    <string name="pref_brightness_master_switch_summary">Включить только в случае, если устройство использует стандартный механизм Android для регулировки яркости. Оставьте выключенным, если есть проблемы, как-то связанные с яркостью. (Необходима перезагрузка)</string>
+
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">Показать недвание приложения</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">Действие по долгому нажатию Home</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">Запустить приложение</string>
+    <string name="pref_hwkey_custom_app_title">Выбрать приложение</string>
+    <string name="hwkey_action_custom_app_none">Приложение не выбрано!</string>
+    <string name="hwkey_action_custom_app_missing">Приложение не найдено!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Связать с DeskClock</string>
+    <string name="pref_clock_link_summary">Связывает часы на статусбаре с приложение DeskClock вместо настроек Даты и времени</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">Ожидание отклика от системного фреймворка GravityBox&#8230;</string>
+    <string name="gb_startup_error">Системный фреймворк GravityBox не отвечает. Выход.</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">Национальный роуминг</string>
+    <string name="pref_national_roaming_summary">Подключаться к службам передачи данных в национальном роуминге</string>
 
 </resources>
+
 
