@@ -78,6 +78,7 @@
     <string name="qs_tile_sleep">Uśpienie</string>
     <string name="qs_tile_quickrecord">Dyktafon</string>
     <string name="qs_tile_settings">Ustawienia</string>
+    <string name="qs_tile_volume">Głośność</string>
     <string name="dialog_color_picker">Wybór koloru</string>
     <string name="press_color_to_apply">Naciśnij na kolor aby ustawić</string>
     <string name="statusbar_bgcolor_title">Kolor tła paska statusu</string>
@@ -289,10 +290,22 @@
     <string name="pref_tm_navbar_lockscreen_title">Przezr. paska nawi. ekranu blokady</string>
     <string name="pref_alarm_icon_hide_title">Ukryj ikonę alarmu</string>
     <string name="pref_screen_dim_level_title">Poziom przyciemnienia ekranu</string>
-    <string name="pref_screen_dim_level_summary">Poziom niskiej jasności - zanim ekran zostanie całkiem wygaszony (wymagany restart)</string>
+    <string name="pref_screen_dim_level_summary">Poziom niskiej jasności, zanim ekran zostanie całkiem wygaszony (wymagany restart)</string>
     <string name="device_phone">telefon</string>
     <string name="device_tablet">tablet</string>
     <string name="pref_cat_brightness_title">Ustawienia jasności</string>
     <string name="pref_brightness_master_switch_title">Włącz ustawienia jasności</string>
     <string name="pref_brightness_master_switch_summary">Należy używać tylko w przypadku, gdy urządzenie obsługuje standardowe funkcje jasności systemu Android. Pozostaw wyłączone w przypadku wystąpienia problemów związanych z jasnością. (wymagany restart)</string>
+    <string name="hwkey_action_recent_apps">Pokaż najnowsze aplikacje</string>
+    <string name="pref_hwkey_home_longpress_title">Akcja długiego naciśnięcia HOME</string>
+    <string name="hwkey_action_custom_app">Uruchom własną aplikację</string>
+    <string name="pref_hwkey_custom_app_title">Ustaw własną aplikację</string>
+    <string name="hwkey_action_custom_app_none">Nie przypisano własnej aplikacji!</string>
+    <string name="hwkey_action_custom_app_missing">Nie znaleziono własnej aplikacji!</string>
+    <string name="pref_clock_link_title">Link do Zegara</string>
+    <string name="pref_clock_link_summary">Link zegara na panelu powiadomień do aplikacji Zegara zamiast do ustawień Daty i Czasu</string>
+    <string name="gb_startup_progress">Czekam na odpowiedź z GravityBox framework...</string>
+    <string name="gb_startup_error">GravityBox framework nie odpowiada. Kończenie.</string>
+    <string name="pref_national_roaming_title">Dane w roamingu krajowym</string>
+    <string name="pref_national_roaming_summary">Połącz z usługami transmisji danych podczas roamingu krajowego</string>
 </resources>
