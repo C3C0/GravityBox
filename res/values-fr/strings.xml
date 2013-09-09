@@ -435,10 +435,10 @@
     
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Gestion de la transparence</string>
-    <string name="pref_tm_statusbar_launcher_title">Transparence de la barre de status pour le lanceur</string>
-    <string name="pref_tm_statusbar_lockscreen_title">Transparence de la barre de status pour l\'écran de déverrouillage</string>
-    <string name="pref_tm_navbar_launcher_title">Transparence de la barre de navigation pour le lanceur</string>
-    <string name="pref_tm_navbar_lockscreen_title">Transparence de la barre de navigation pour l\'écran de déverrouillage</string>
+    <string name="pref_tm_statusbar_launcher_title">Barre de statut : lanceur</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Barre de statut : écran de déverrouillage</string>
+    <string name="pref_tm_navbar_launcher_title">Barre de navigation : lanceur</string>
+    <string name="pref_tm_navbar_lockscreen_title">Barre de navigation : écran de déverrouillage</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Masquer l\'icône de l\'alarme</string>
@@ -473,7 +473,11 @@
     <string name="pref_clock_link_summary">Crée un lien du panneau de notification vers l\'appli Horloge au lieu des paramètres Date et Heure</string>
 
     <!-- GravityBox settings startup handling -->
-    <string name="gb_startup_progress">Attente d\'une réponse de la branche système&#8230; de GravityBox</string>
+    <string name="gb_startup_progress">Attente d\'une réponse de la branche système de GravityBox&#8230;</string>
     <string name="gb_startup_error">La branche système de GravityBox ne répond pas. Sortie</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">Itinérance de données nationale</string>
+    <string name="pref_national_roaming_summary">Se connecter aux services de données en itinérance nationale</string>
 
 </resources>
