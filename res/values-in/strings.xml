@@ -364,8 +364,8 @@
     <string name="button_backlight_mode_disable">Matikan lampu latar tombol</string>
     <string name="button_backlight_mode_always_on">Selalu hidupkan ketika layar hidup</string>
     <string name="pref_button_backlight_notifications_title">Notifikasi lampu latar tombol</string>
-
     <string name="pref_button_backlight_notifications_summary">EKSPERIMENTAL! Membuat lampu latar tombol berkedip ketika ada notifikasi. Gunakan jika perangkat anda tidak menyediakan LED notifikasi. Dapat menguras batrei.</string>
+
     <!-- Hide navigation bar for pie -->
     <string name="pref_navbar_disable_title">Sembunyikan bar navigasi</string>
     <string name="pref_navbar_disable_summary">Menyembunyikan bar navigasi ketika kontrol Pie dihidupkan (untuk perangkat yang memiliki bar navigasi, membutuhkan restart)</string>
@@ -429,8 +429,8 @@
     <string name="pref_clock_hide_title">Sembunyikan jam</string>
 
     <!-- Pie trigger size -->
-
     <string name="pie_control_trigger_size_title">Besar pemicu</string>
+
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Manajemen transparansi</string>
     <string name="pref_tm_statusbar_launcher_title">Transparansi statusbar untuk launcher</string>
@@ -444,7 +444,6 @@
     <!-- Screen dim level -->
     <string name="pref_screen_dim_level_title">Level keredupan layar</string>
     <string name="pref_screen_dim_level_summary">Jumlah kecerahan ketika layar redup - ketika layar hendak mati (membutuhkan restart)</string>
-
 
     <!-- Device type -->
     <string name="device_phone">Perangkat</string>
@@ -466,5 +465,17 @@
     <string name="pref_hwkey_custom_app_title">Tetapkan aplikasi kustom</string>
     <string name="hwkey_action_custom_app_none">Tidak ada aplikasi kustom yang ditetapkan!</string>
     <string name="hwkey_action_custom_app_missing">Aplikasi kustom tidak ditemukan!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Sambungkan ke DeskClock</string>
+    <string name="pref_clock_link_summary">Sambungkan jam di panel notifikasi ke aplikasi DeskClock daripada ke pengaturan Tanggal&amp;Waktu</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">Menunggu respon dari GravityBox system framework&#8230;</string>
+    <string name="gb_startup_error">GravityBox system framework tidak merespon. Keluar.</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">Roaming paket data nasional</string>
+    <string name="pref_national_roaming_summary">Koneksikan paket data ketika sedang roaming nasional</string>
 
 </resources>
