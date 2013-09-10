@@ -132,8 +132,8 @@
     <string name="about_donate_summary">Fai una donazione a me se credi che questa app se la meriti! Considera anche una donazione a rovo89 per il suo eccellente framework Xposed.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Il %s si riavvierà.</string>
-    <string name="reboot_confirm_recovery">Il %s si riavvierà in ripristino.</string>
+    <string name="reboot_confirm">Il %s si riavvierà</string>
+    <string name="reboot_confirm_recovery">Il %s si riavvierà in ripristino</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Effetto spegni schermo CRT</string>
@@ -291,14 +291,14 @@
     <string name="pref_auto_switch_qs_summary">I QuickSettings saranno visibili automaticamente aprendo la barra delle notifiche, se non sono già presenti notifiche</string>
 
     <!-- Quick pulldown -->
-    <string name="pref_quick_pulldown_title">Visualizzaione rapida</string>
+    <string name="pref_quick_pulldown_title">Visualizzazione rapida</string>
     <string name="pref_quick_pulldown_summary">Trascinando un bordo dello schermo appariranno direttamente i QuickSettings</string>
     <string name="quick_pulldown_off">Spento</string>
     <string name="quick_pulldown_right">Destra</string>
     <string name="quick_pulldown_left">Sinistra</string>
 
     <!-- Disable volume rocker wake -->
-    <string name="pref_volume_rocker_wake_disable_title">Disable volume rocker wake</string>
+    <string name="pref_volume_rocker_wake_disable_title">Disabilita sblocco schermo con tasti volume</string>
     <string name="pref_volume_rocker_wake_disable_summary">Per modelli come Jiayu G3s,G4 in cui i tasti volume accendono lo schermo</string>
 
     <!-- Statusbar colors category -->
@@ -381,7 +381,7 @@
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Usa il tema Holo Dark</string>
-    <string name="pref_gb_theme_dark_summary">Passa a interfaccia GB per usare il tema Holo Dark invece di Holo Light</string>
+    <string name="pref_gb_theme_dark_summary">Cambia interfaccia di GB, usa il tema Holo Dark invece di Holo Light</string>
 
     <!-- Clear all recents positions -->
     <string name="recent_clear_off">Off</string>
@@ -445,8 +445,38 @@
     <!-- Screen dim level -->
     <string name="pref_screen_dim_level_title">Modalità attenuazione luminosità</string>
     <string name="pref_screen_dim_level_summary">Imposta luminosità per attenuazione schermo - quando lo schermo sta per spegnersi (necessita riavvio)</string>
-
+    
     <!-- Device type -->
     <string name="device_phone">telefono</string>
+    <string name="device_tablet">tablet</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">Impostazioni luminosità</string>
+    <string name="pref_brightness_master_switch_title">Abilita impostazioni luminosità</string>
+    <string name="pref_brightness_master_switch_summary">Usare solo nel caso in cui il proprio terminale supporti le impostazioni di luminosità standard di Android. Lascia disattivato se riscontri problemi con impostazione attivata. (richiede riavvio)</string>
+
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">Mostra applicazioni recenti</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">Azione per pressione prolungata tasto Home</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">Avvia applicazione specifica</string>
+    <string name="pref_hwkey_custom_app_title">Imposta applicazione specifica</string>
+    <string name="hwkey_action_custom_app_none">Nessuna applicazione assegnata!</string>
+    <string name="hwkey_action_custom_app_missing">Applicazione specifica non trovata!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Collegamento ad app Orologio</string>
+    <string name="pref_clock_link_summary">Collega l\'orologio del pannello notifiche all\'applicazione Orologio al posto dell\'app Impostazioni data&amp;ora</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">In attesa di risposta dal modulo GravityBox&#8230;</string>
+    <string name="gb_startup_error">Il modulo GravityBox non risponde, Chiusura in corso.</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">Roaming dati in territorio nazionale</string>
+    <string name="pref_national_roaming_summary">Collegati al servizio dati in roaming nazionale</string>
 
 </resources>

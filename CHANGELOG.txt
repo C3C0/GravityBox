@@ -1,3 +1,15 @@
+Changelog 2.3.1 - 10/09/2013
+--------------------------------------
+- improved AppPickerPreference to support larger number of installed apps (thanks sag999 for testing)
+- fixed potential crash in Battery status settings
+- updated French translations (thanks to ch-vox)
+- updated Indonesian translations (thanks to awaaas)
+- updated Polish translations (thanks to xtrem007)
+- updated Russian translations (thanks to romashko)
+- updated Chinese (Traditional) translations (thanks to jwchen119)
+- updated Hungarian translations (thanks to benjoe1)
+- updated Italian translations (thanks to pitone02)
+
 Changelog 2.3.0 - 08/09/2013
 --------------------------------------
 - adapted to support Android 4.1
