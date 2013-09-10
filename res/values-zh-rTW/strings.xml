@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
 
     <string name="battery_style_title">電量指示圖案樣式</string>	
     <string name="battery_style_stock">原廠電量指示圖案</string>
-    <string name="battery_style_circle">圓形電量圖示（包含百分比）</string>
+    <string name="battery_style_circle">圓形電量圖示（不包含百分比）</string>
+    <string name="battery_style_circle_percent">圓形電量圖示（包含百分比）</string>
     <string name="battery_style_percent">電量百分比文字</string>
     <string name="battery_style_none">無</string>
 
@@ -30,6 +31,7 @@
     <string name="poweroff_advanced_title">進階重新啟動選單</string>
     <string name="poweroff_advanced_summary">啟用有重新啟動至 Recovery 選項的進階重新啟動選單</string>
     <string name="poweroff_recovery">Recovery</string>
+    <string name="poweroff_bootloader">Bootloader</string>
 
     <string name="vol_key_cursor_control_title">音量鍵游標控制</string>
     <string name="vol_key_cursor_control_summary">在文字輸入區域內，以音量鍵控制游標位置</string>
@@ -38,7 +40,6 @@
     <string name="vol_key_cursor_control_on_reverse">音量增/減鈕控制游標向右/向左</string>
 
     <string name="recents_clear_all_title">清除全部最近使用的應用程式</string>
-    <string name="recents_clear_all_summary">在「最近使用的應用程式」畫面增加一個可以清除所有應用程式的按鈕</string>
 
     <string name="fix_datetime_crash_title">修正「日期與時間設定」錯誤</string>
     <string name="fix_datetime_crash_summary">當您進入日期與時間設定時發生錯誤時，啟用這個選項（需要重新啟動）</string>
@@ -67,7 +68,7 @@
     <string name="quick_settings_torch_on">手電筒開啟</string>
     <string name="quick_settings_torch_off">手電筒關閉</string>
     <string name="quick_settings_torch_off_notif">按下以關閉</string>
-	<string name="quick_settings_qr_playing">播放中&#8230;</string>
+	  <string name="quick_settings_qr_playing">播放中&#8230;</string>
     <string name="quick_settings_qr_recording">錄音中&#8230;</string>
     <string name="quick_settings_qr_recorded">已錄音</string>
     <string name="quick_settings_qr_record">長按以錄音</string>
@@ -85,7 +86,7 @@
     <string name="qs_tile_mobile_data">資料連結</string>
     <string name="qs_tile_network_mode">網路模式</string>
     <string name="qs_tile_data_usage">資料用量</string>
-	<string name="qs_tile_audio">情境模式</string>
+	  <string name="qs_tile_audio">情境模式</string>
     <string name="qs_tile_brightness">亮度</string>
     <string name="qs_tile_screen_timeout">休眠</string>
     <string name="qs_tile_autorotation">自動旋轉</string>
@@ -95,7 +96,9 @@
     <string name="qs_tile_gravitybox">GravityBox</string>
     <string name="qs_tile_sleep">關閉螢幕</string>
     <string name="qs_tile_quickrecord">快速錄音</string>
-	
+    <string name="qs_tile_settings">設定</string>
+    <string name="qs_tile_volume">音量</string>
+
     <!-- Color Picker -->
     <string name="dialog_color_picker">顏色選擇器</string>
     <string name="press_color_to_apply">在顏色上按下以套用</string>
@@ -129,8 +132,9 @@
     <string name="about_donate_summary">若您覺得這個 app 好用的話，請贊助我！也請考慮捐助給編寫出優秀的 Xposed 框架的 rovo89。</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">您的手機將重新啟動</string>
-    <string name="reboot_confirm_recovery">您的手機將重新啟動至 Recovery</string>
+    <string name="reboot_confirm">您的 %s 將重新啟動</string>
+    <string name="reboot_confirm_recovery">您的 %s 將重新啟動至 Recovery</string>
+    <string name="reboot_confirm_bootloader">您的 %s 將重新啟動至 Bootloader.</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT 螢幕關閉特效</string>
@@ -227,8 +231,8 @@
     <string name="pref_charging_led_disable_summary">停用當充電時會亮起的 LED 燈號</string>
 
     <!-- Hardware key actions -->
-    <string name="pref_cat_hwkey_actions_title">硬體按鍵動作</string>
-    <string name="pref_cat_hwkey_actions_summary">可在此為硬體按鍵設定自訂的動作</string>
+    <string name="pref_cat_hwkey_actions_title">實體按鍵動作</string>
+    <string name="pref_cat_hwkey_actions_summary">可在此為實體按鍵設定自訂的動作</string>
     <string name="pref_hwkey_menu_longpress_title">選單鍵長按動作</string>
     <string name="pref_hwkey_menu_doubletap_title">選單鍵雙擊動作</string>
     <string name="pref_hwkey_back_longpress_title">返回鍵長按動作</string>
@@ -237,7 +241,7 @@
     <string name="hwkey_action_voice_search">語音搜尋</string>
     <string name="hwkey_action_prev_app">切換至上一個應用程式</string>
     <string name="hwkey_action_kill">結束正在使用的應用程式</string>
-	<string name="hwkey_action_sleep">使裝置休眠</string>
+	  <string name="hwkey_action_sleep">使裝置休眠</string>
     <string name="pref_hwkey_kill_delay_title">結束應用程式的長按延遲</string>
     <string name="pref_hwkey_kill_delay_summary">適用於「結束正在使用的應用程式」動作。定義按鍵需要按下持續多久才會觸發動作</string>
     <string name="pref_hwkey_doubletap_speed_title">雙擊速度</string>
@@ -260,19 +264,220 @@
     <!-- Disable vibrate on call connect -->
     <string name="pref_phone_call_connect_vibrate_disable_title">停用接通時的震動</string>
     <string name="pref_phone_call_connect_vibrate_disable_summary">停用在通話接通時所觸發的震動</string>
-	
+
     <!-- Soft reboot -->
     <string name="reboot_soft">軟重啟</string>
-	
-	 <!--  Solid black Holo background -->
+
+	  <!--  Solid black Holo background -->
     <string name="pref_holo_bg_solid_black_title">純黑色背景</string>
     <string name="pref_holo_bg_solid_black_summary">在預設的 Holo 系統內建佈景主題內使用純黑色的背景，而不是黑-灰色的漸層（需要重新啟動）</string>
 
-	 <!-- QuickSettings tiles per row -->
+	  <!-- QuickSettings tiles per row -->
     <string name="pref_qs_tiles_per_row_title">每列磁貼數</string>
     <string name="pref_qs_tiles_per_row_summary">定義快速設定內每列有幾個磁貼。磁貼會根據您的設定自動縮放。適用於豎屏。</string>
  
-	<!--  Status bar clock - show day of week -->
+	  <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">顯示目前是一週的哪一天</string>
+    
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">可擴展的音量面板</string>
+    <string name="pref_volume_panel_expandable_summary">啟用此選項使您可以調整不同串流的音量</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">將鈴聲音量與通知音量連結</string>
+    <string name="pref_link_volumes_summary">當關閉時，鈴聲音量與通知音量將可以分別調整</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">自動切換快速選單</string>
+    <string name="pref_auto_switch_qs_summary">當沒有通知時，下拉狀態列自動切換成快速設定選單</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">快速設定選單下拉位置</string>
+    <string name="pref_quick_pulldown_summary">選擇下拉狀態列邊緣啟用快速選單的位置</string>
+    <string name="quick_pulldown_off">關閉</string>
+    <string name="quick_pulldown_right">右邊</string>
+    <string name="quick_pulldown_left">左邊</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">關閉音量鍵喚醒螢幕</string>
+    <string name="pref_volume_rocker_wake_disable_summary">佳域 G3s 和 G4 的實體音量鍵會喚醒螢幕</string>
+
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">狀態列顏色</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">開啟更改狀態列圖示顏色</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">狀態列圖示顏色</string>
+    <string name="pref_statusbar_icon_color_summary">設定狀態列圖示和時鐘的顏色</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">資料傳輸顏色</string>
+    <string name="pref_statusbar_data_activity_color_summary">設定傳輸資料時的顏色</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">管理快速設定選單</string>
+
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">通知列樣式</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">通知列背景</string>
+    <string name="notif_background_default">預設背景</string>
+    <string name="notif_background_color_fill">純色</string>
+    <string name="notif_background_custom_image">自訂圖案</string>
+    <string name="pref_notif_color_title">設定背景顏色</string>
+    <string name="pref_notif_image_portrait_title">設定肖像圖片</string>
+    <string name="pref_notif_image_landscape_title">設定風景圖片</string>
+    <string name="pref_notif_background_alpha_title">背景透明度</string>
+    <string name="pref_notif_color_mode_title">背景模式</string>
+    <string name="color_fill_overlay">疊加</string>
+    <string name="color_fill_underlay">襯底</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">隱藏漫遊指示</string>
+    <string name="pref_disable_roaming_indicators_summary">當隱藏時，漫遊指示器上的 R 會消失，請小心使用</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">充電中 (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">電量已滿</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% remaining</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">沒有服務</string>
+    <string name="pie_phone_status_airplane_mode">飛航模式啟用</string>
+    <string name="pie_phone_status_emergency_only">僅能撥打緊急電話</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">Pie Controls</string>
+    <string name="pie_control_enable_title">啟用 Pie Controls</string>
+    <string name="pie_control_search_title">顯示搜尋按鍵</string>
+    <string name="pie_control_size_title">導航鍵大小</string>
+    <string name="pie_control_trigger_positions_title">觸發位置</string>
+    <string name="pie_control_trigger_left">螢幕左邊緣</string>
+    <string name="pie_control_trigger_bottom">螢幕下邊緣</string>
+    <string name="pie_control_trigger_right">螢幕右邊緣</string>
+    <string name="pie_control_trigger_top">螢幕上邊緣</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">背光燈行為模式</string>
+    <string name="button_backlight_mode_default">預設</string>
+    <string name="button_backlight_mode_disable">關閉背光燈</string>
+    <string name="button_backlight_mode_always_on">當螢幕喚醒時背光燈永遠打開</string>
+    <string name="pref_button_backlight_notifications_title">背光燈通知效果</string>
+    <string name="pref_button_backlight_notifications_summary">這個設定是實驗性的！當收到通知時背光燈會閃爍提醒。當您的裝置沒有 LED 通知燈時才開啟，此功能可能會消耗部分電量</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">隱藏海苔條</string>
+    <string name="pref_navbar_disable_summary">當 Pie Controls 啟用時隱藏海苔條（需要重新啟動）</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">優化 Holo 背景</string>
+    <string name="pref_holo_bg_dither_summary">取代原本不完美漸層的預設 Holo 黑-灰色背景（需要重新啟動）</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">關閉實體按鍵</string>
+    <string name="pref_hwkeys_disable_summary">當 Pie Controls 啟用時將會關閉選單鍵、返回鍵與 HOME 鍵功能，但是實體按鍵功能仍可使用（如果您的裝置有實體按鍵）</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">使用 Holo 黑色主題</string>
+    <string name="pref_gb_theme_dark_summary">將 GravityBox 的 Holo 白色背景主題換成 Holo 黑色背景主題</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">關閉</string>
+    <string name="recent_clear_top_left">左上角</string>
+    <string name="recent_clear_top_right">右上角</string>
+    <string name="recent_clear_bottom_left">左下角</string>
+    <string name="recent_clear_bottom_right">右下角</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Adjust top margin</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">關閉漫遊警告</string>
+    <string name="pref_roaming_warning_disable_summary">關閉當漫遊時傳送訊息或撥打電話的警告</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">搜尋</string>
+    <string name="app_picker_none">(無)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">快速應用程式選單</string>
+    <string name="pref_cat_quickapp_tile_title">QuickApp tile settings</string>
+    <string name="pref_quickapp_default_title">主要應用程式</string>
+    <string name="pref_quickapp_slot1_title">長按應用程式槽 1</string>
+    <string name="pref_quickapp_slot2_title">長按應用程式槽 2</string>
+    <string name="pref_quickapp_slot3_title">長按應用程式槽 3</string>
+    <string name="pref_quickapp_slot4_title">長按應用程式槽 4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">開啟 GPS</string>
+    <string name="qs_tile_gps_disabled">關閉 GPS</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">總是顯示選單按鍵</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">鈴聲模式</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">時鐘設定</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">隱藏 AM/PM</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">隱藏時鐘</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">觸發位置大小</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">管理透明度調整</string>
+    <string name="pref_tm_statusbar_launcher_title">啟動器下的狀態列透明度</string>
+    <string name="pref_tm_statusbar_lockscreen_title">鎖定畫面時的狀態列透明度</string>
+    <string name="pref_tm_navbar_launcher_title">啟動器下的海苔條透明度</string>
+    <string name="pref_tm_navbar_lockscreen_title">鎖定畫面時的海苔條透明度</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">隱藏鬧鐘圖示</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Screen dim level</string>
+    <string name="pref_screen_dim_level_summary">Amount of brightness for dim state - when screen is about to be turned off (requires reboot)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">手機</string>
+    <string name="device_tablet">平板</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">亮度設定</string>
+    <string name="pref_brightness_master_switch_title">啟用亮度設定</string>
+    <string name="pref_brightness_master_switch_summary">這個功能只能在您的手機支援標準的 Android 亮度調整。如果您遇到任何亮度問題請關閉此選項（需要重新啟動）</string>
+
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">顯示最近使用的應用程式</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">長按 HOME 鍵行為</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">執行自訂的應用程式</string>
+    <string name="pref_hwkey_custom_app_title">設定自訂應用程式</string>
+    <string name="hwkey_action_custom_app_none">沒有指定應用程式!</string>
+    <string name="hwkey_action_custom_app_missing">未找到自訂應用程式!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">與應用程式時鐘做連結</string>
+    <string name="pref_clock_link_summary">啟用此功能後狀態列的時間將與應用程式「時鐘」做連結而非原本「日期與時間設定」</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">等待 GravityBox 系統框架的回應&#8230;</string>
+    <string name="gb_startup_error">GravityBoy 系統框架無反應。離開中</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">National data roaming</string>
+    <string name="pref_national_roaming_summary">Connect to data services when nationally roaming</string>
 
 </resources>
