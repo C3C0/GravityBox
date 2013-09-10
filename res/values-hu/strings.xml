@@ -39,7 +39,7 @@
     <string name="vol_key_cursor_control_on">Hangerő fel/le a kurzort balra/jobbra mozgatja</string>
     <string name="vol_key_cursor_control_on_reverse">Hangerő fel/le a kurzort jobbra/balra mozgatja</string>
 
-    <string name="recents_clear_all_title">Töröl minden új feladatot gomb</string>
+    <string name="recents_clear_all_title">Legutóbbi feladatok törlése gomb</string>
 
     <string name="fix_datetime_crash_title">Javítja a Dátum és Idő beállítás hibáját</string>
     <string name="fix_datetime_crash_summary">Engedélyezze abban az esetben, ha összeomlást tapasztal a Dátum és Idő beállítás elérésekor (újraindítás szükséges)</string>
@@ -97,6 +97,7 @@
     <string name="qs_tile_sleep">Alvás</string>
     <string name="qs_tile_quickrecord">Gyors Felvétel</string>
     <string name="qs_tile_settings">Beállítások</string>
+	<string name="qs_tile_volume">Hangerő</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Szín választó</string>
@@ -161,7 +162,7 @@
     <string name="pref_lockscreen_bg_image_summary">Lehetővé teszi egyéni háttérkép beállítását a Lockscreen-hez</string>
     <string name="lockscreen_background_result_successful">A háttér megváltozott</string>
     <string name="lockscreen_background_result_not_successful">A háttér nem változott meg</string>
-    <string name="pref_cat_lockscreen_other_title">Másik</string>
+    <string name="pref_cat_lockscreen_other_title">Egyéb</string>
     <string name="pref_lockscreen_maximize_widgets_title">Widgetek maximalizálása</string>
     <string name="pref_lockscreen_maximize_widgets_summary">Ha engedélyezve van, a Lockscreen widgetek alapértelmezetten maximalizálva lesznek</string>
 
@@ -399,7 +400,7 @@
 
     <!-- AppPickerPreference -->
     <string name="app_picker_search">Keresés</string>
-    <string name="app_picker_none">(Nincs)</string>
+    <string name="app_picker_none">(Semmi)</string>
 
     <!-- QuickApp tile settings -->
     <string name="qs_tile_quickapp">Gyors Program elérés</string>
@@ -455,4 +456,28 @@
     <string name="pref_brightness_master_switch_title">Fényerő beállítások módosításának engedélyezése</string>
     <string name="pref_brightness_master_switch_summary">Csak abban az esetben használd, ha az eszközöd támogotja a szabvány Android fényerő funkciókat. Fényerővel kapcsolatos hibák megjelenése esetén tiltsd le ez a funkciót. (újraindítás szükséges)</string>
 
+	<!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">Legutóbb használt alkalmazások megjelenítése</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">Home gomb hosszú érintés művelete</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">Egyéni alkalmazás indítása</string>
+    <string name="pref_hwkey_custom_app_title">Egyéni alkalmazás beállítása</string>
+    <string name="hwkey_action_custom_app_none">Nincs engedélyezve egyéni alkalmazás!</string>
+    <string name="hwkey_action_custom_app_missing">Egyéni alkalmazás nem található!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Átirányítás DeskClock-ra</string>
+    <string name="pref_clock_link_summary">Az értesítési panel órájának megérintésével a DeskClock alkalmazás megnyitása a Dátum&amp;Idő beállításai helyett</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">Várakozás a GravityBox keretrendszer válaszára&#8230;</string>
+    <string name="gb_startup_error">GravityBox keretrendszer nem válaszol. Kilépés.</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">Hazai adat roaming (MVNO)</string>
+    <string name="pref_national_roaming_summary">Csatlakozás adat szolgálatáshoz hazai roaming esetén</string>
+	
 </resources>
