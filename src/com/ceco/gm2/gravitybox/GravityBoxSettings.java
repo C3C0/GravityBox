@@ -352,20 +352,22 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
         super.onCreate(savedInstanceState);
 
-        mReceiver = new GravityBoxResultReceiver(new Handler());
-        mReceiver.setReceiver(this);
-        Intent intent = new Intent();
-        intent.setAction(SystemPropertyProvider.ACTION_GET_SYSTEM_PROPERTIES);
-        intent.putExtra("receiver", mReceiver);
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setTitle(R.string.app_name);
-        mProgressDialog.setMessage(getString(R.string.gb_startup_progress));
-        mProgressDialog.setCancelable(false);
-        mProgressDialog.show();
-        mHandler = new Handler();
-        mHandler.postDelayed(mGetSystemPropertiesTimeout, 5000);
-        sendBroadcast(intent);
+        if (savedInstanceState == null || sSystemProperties == null) {
+            mReceiver = new GravityBoxResultReceiver(new Handler());
+            mReceiver.setReceiver(this);
+            Intent intent = new Intent();
+            intent.setAction(SystemPropertyProvider.ACTION_GET_SYSTEM_PROPERTIES);
+            intent.putExtra("receiver", mReceiver);
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.setTitle(R.string.app_name);
+            mProgressDialog.setMessage(getString(R.string.gb_startup_progress));
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.show();
+            mHandler = new Handler();
+            mHandler.postDelayed(mGetSystemPropertiesTimeout, 5000);
+            sendBroadcast(intent);
+        }
     }
 
     @Override
