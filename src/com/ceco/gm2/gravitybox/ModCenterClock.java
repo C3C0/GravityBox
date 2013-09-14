@@ -4,13 +4,17 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import com.ceco.gm2.gravitybox.preference.AppPickerPreference;
+
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -52,7 +56,7 @@ public class ModCenterClock {
     private static boolean mClockShowDow = false;
     private static boolean mAmPmHide = false;
     private static boolean mClockHide = false;
-    private static boolean mClockLink = false;
+    private static String mClockLink;
     private static boolean mAlarmHide = false;
     private static Object mPhoneStatusBarPolicy;
 
@@ -91,7 +95,7 @@ public class ModCenterClock {
                     }
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_CLOCK_LINK)) {
-                    mClockLink = intent.getBooleanExtra(GravityBoxSettings.EXTRA_CLOCK_LINK, false);
+                    mClockLink = intent.getStringExtra(GravityBoxSettings.EXTRA_CLOCK_LINK);
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_ALARM_HIDE)) {
                     mAlarmHide = intent.getBooleanExtra(GravityBoxSettings.EXTRA_ALARM_HIDE, false);
@@ -118,7 +122,7 @@ public class ModCenterClock {
                     mClockShowDow = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_DOW, false);
                     mAmPmHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE, false);
                     mClockHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_HIDE, false);
-                    mClockLink = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_LINK, false);
+                    mClockLink = prefs.getString(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_LINK, null);
                     mAlarmHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_ALARM_ICON_HIDE, false);
 
                     String iconAreaId = Build.VERSION.SDK_INT > 16 ?
@@ -157,7 +161,7 @@ public class ModCenterClock {
                             mClockExpanded.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    launchDeskClock();
+                                    launchClockApp();
                                 }
                             });
                         }
@@ -296,15 +300,16 @@ public class ModCenterClock {
                         Intent.class, boolean.class, new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                        if (!mClockLink) return;
+                        if (mClockLink == null) return;
 
                         Intent i = (Intent) param.args[0];
-                        if (i == null || i.getAction() == null) return;
-
-                        if (i.getAction().equals(Intent.ACTION_QUICK_CLOCK)) {
-                            i.setAction(Intent.ACTION_MAIN);
-                            i.addCategory(Intent.CATEGORY_LAUNCHER);
-                            i.setPackage("com.android.deskclock");
+                        if (i != null && Intent.ACTION_QUICK_CLOCK.equals(i.getAction())) {
+                            final ComponentName cn = getComponentNameFromClockLink();
+                            if (cn != null) {
+                                i = new Intent();
+                                i.setComponent(cn);
+                                param.args[0] = i;
+                            }
                         }
                     }
                 });
@@ -383,21 +388,35 @@ public class ModCenterClock {
         mClockCentered = center;
     }
 
-    private static void launchDeskClock() {
-        if (mContext == null || !mClockLink) return;
+    private static ComponentName getComponentNameFromClockLink() {
+        if (mClockLink == null) return null;
 
         try {
-            Intent i = new Intent(Intent.ACTION_MAIN);
-            i.addCategory(Intent.CATEGORY_LAUNCHER);
-            i.setPackage("com.android.deskclock");
+            String[] splitValue = mClockLink.split(AppPickerPreference.SEPARATOR);
+            ComponentName cn = new ComponentName(splitValue[0], splitValue[1]);
+            return cn;
+        } catch (Exception e) {
+            log("Error getting ComponentName from clock link: " + e.getMessage());
+            return null;
+        }
+    }
+
+    private static void launchClockApp() {
+        if (mContext == null || mClockLink == null) return;
+
+        try {
+            Intent i = new Intent();
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.setComponent(getComponentNameFromClockLink());
             mContext.startActivity(i);
             if (mPhoneStatusBar != null) {
                 XposedHelpers.callMethod(mPhoneStatusBar, Build.VERSION.SDK_INT > 16 ?
                         "animateCollapsePanels" : "animateCollapse");
             }
+        } catch (ActivityNotFoundException e) {
+            log("Error launching assigned app for clock: " + e.getMessage());
         } catch (Throwable t) {
-            log(t.getMessage());
+            XposedBridge.log(t);
         }
     }
 }

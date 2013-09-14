@@ -461,8 +461,8 @@
     <string name="hwkey_action_custom_app_missing">Aplikácia nebola nájdená!</string>
 
     <!-- Link notification panel clock to Deskclock -->
-    <string name="pref_clock_link_title">Väzba na aplikáciu Hodiny</string>
-    <string name="pref_clock_link_summary">Naviaže hodiny notifikačného panelu na aplikáciu Hodiny namiesto nastavenia dátumu a času</string>
+    <string name="pref_clock_link_title">Aplikácia hodín notifikačného panelu</string>
+    <string name="pref_clock_link_summary">Naviaže hodiny notifikačného panelu na zvolenú aplikáciu namiesto nastavenia dátumu a času</string>
 
     <!-- GravityBox settings startup handling -->
     <string name="gb_startup_progress">Čakám na odpoveď zo systémového modulu GravityBox&#8230;</string>
