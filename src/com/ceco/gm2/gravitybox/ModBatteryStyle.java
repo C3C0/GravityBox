@@ -76,6 +76,8 @@ public class ModBatteryStyle {
                         percText.setVisibility(View.GONE);
                         vg.addView(percText);
                         XposedBridge.log("ModBatteryStyle: Battery percent text injected");
+                    } else {
+                        percText.setTag("percentage");
                     }
                     ModStatusbarColor.setPercentage(percText);
 
@@ -94,6 +96,7 @@ public class ModBatteryStyle {
                             LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
                     circleBattery.setLayoutParams(lParams);
                     circleBattery.setPadding(4, 0, 0, 0);
+                    circleBattery.setVisibility(View.GONE);
                     ModStatusbarColor.setCircleBattery(circleBattery);
                     vg.addView(circleBattery);
                     XposedBridge.log("ModBatteryStyle: CmCircleBattery injected");
@@ -101,7 +104,10 @@ public class ModBatteryStyle {
                     // find battery
                     ImageView battery = (ImageView) vg.findViewById(
                             liparam.res.getIdentifier("battery", "id", PACKAGE_NAME));
-                    ModStatusbarColor.setBattery(battery);
+                    if (battery != null) {
+                        battery.setTag("stock_battery");
+                        ModStatusbarColor.setBattery(battery);
+                    }
                 }
                 
             });
@@ -135,12 +141,18 @@ public class ModBatteryStyle {
 
                     TextView percText = (TextView) mStatusBarView.findViewWithTag("percentage");
                     if (percText != null) {
-                        // add percent text only in case there is no other label view present
-                        // which might be another percent text coming from stock ROM with id other than "percentage"
+                        // add percent text only in case there is no label with "percentage" tag present
                         @SuppressWarnings("unchecked")
                         ArrayList<TextView> mLabelViews = 
                             (ArrayList<TextView>) XposedHelpers.getObjectField(mBatteryController, "mLabelViews");
-                        if (mLabelViews.isEmpty()) {
+                        boolean percentTextExists = false;
+                        for (TextView tv : mLabelViews) {
+                            if ("percentage".equals(tv.getTag())) {
+                                percentTextExists = true;
+                                break;
+                            }
+                        }
+                        if (!percentTextExists) {
                             XposedHelpers.callMethod(mBatteryController, "addLabelView", percText);
                             XposedBridge.log("ModBatteryStyle: BatteryController.addLabelView(percText)");
                         }
@@ -187,21 +199,19 @@ public class ModBatteryStyle {
     private static void updateBatteryStyle() {
         if (mBatteryController == null) return;
 
-        @SuppressWarnings("unchecked")
-        ArrayList<ImageView> mIconViews = 
-            (ArrayList<ImageView>) XposedHelpers.getObjectField(mBatteryController, "mIconViews");
-        @SuppressWarnings("unchecked")
-        ArrayList<TextView> mLabelViews = 
-            (ArrayList<TextView>) XposedHelpers.getObjectField(mBatteryController, "mLabelViews");
-
-        if (!mIconViews.isEmpty()) {
-            mIconViews.get(0).setVisibility(
-                    (mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_STOCK) ?
-                             View.VISIBLE : View.GONE);
-
-            if (mIconViews.size() >= 2) {
-                ImageView iv = mIconViews.get(1);
-                if (iv instanceof CmCircleBattery) {
+        try {
+            @SuppressWarnings("unchecked")
+            ArrayList<ImageView> mIconViews = 
+                (ArrayList<ImageView>) XposedHelpers.getObjectField(mBatteryController, "mIconViews");
+            @SuppressWarnings("unchecked")
+            ArrayList<TextView> mLabelViews = 
+                (ArrayList<TextView>) XposedHelpers.getObjectField(mBatteryController, "mLabelViews");
+    
+            for (ImageView iv : mIconViews) {
+                if ("stock_battery".equals(iv.getTag())) {
+                    iv.setVisibility((mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_STOCK) ?
+                                 View.VISIBLE : View.GONE);
+                } else if ("circle_battery".equals(iv.getTag())) {
                     iv.setVisibility((mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE ||
                             mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE_PERCENT) ?
                             View.VISIBLE : View.GONE);
@@ -209,11 +219,15 @@ public class ModBatteryStyle {
                             mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE_PERCENT);
                 }
             }
-        }
-
-        if (!mLabelViews.isEmpty()) {
-            mLabelViews.get(0).setVisibility(
-                    (mBatteryPercentText ? View.VISIBLE : View.GONE));
+    
+            for (TextView tv : mLabelViews) {
+                if ("percentage".equals(tv.getTag())) {
+                    tv.setVisibility(
+                            (mBatteryPercentText ? View.VISIBLE : View.GONE));
+                }
+            }
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }
