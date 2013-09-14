@@ -31,7 +31,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 public class AppPickerPreference extends DialogPreference implements OnItemClickListener {
-    private static final String SEPARATOR = "#C3C0#";
+    public static final String SEPARATOR = "#C3C0#";
 
     private Context mContext;
     private ListView mListView;
@@ -39,6 +39,7 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
     private EditText mSearch;
     private ProgressBar mProgressBar;
     private AsyncTask<Void,Void,Void> mAsyncTask;
+    private String mDefaultSummaryText;
 
     private enum AppIconLoadingState {
         NOT_LOADED,
@@ -50,8 +51,9 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
         super(context, attrs);
 
         mContext = context;
-        setDialogLayoutResource(R.layout.app_picker_preference);
+        mDefaultSummaryText = (String) getSummary();
 
+        setDialogLayoutResource(R.layout.app_picker_preference);
         setPositiveButtonText(null);
     }
 
@@ -106,10 +108,10 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
         if (restoreValue) {
             String value = getPersistedString(null);
             String appName = getAppNameFromValue(value);
-            setSummary(appName == null ? mContext.getString(R.string.app_picker_none) : appName);
+            setSummary(appName == null ? mDefaultSummaryText : appName);
         } else {
             setValue(null);
-            setSummary(mContext.getString(R.string.app_picker_none));
+            setSummary(mDefaultSummaryText);
         }
     } 
 
@@ -173,7 +175,7 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         AppItem item = (AppItem) parent.getItemAtPosition(position);
         setValue(item.getValue());
-        setSummary(item.getAppName());
+        setSummary(item.getValue() == null ? mDefaultSummaryText : item.getAppName());
         getDialog().dismiss();
     }
 
