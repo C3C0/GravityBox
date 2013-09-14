@@ -14,8 +14,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,10 +49,14 @@ public class ModRebootMenu {
     private static Drawable mRebootSoftIcon;
     private static Drawable mRecoveryIcon;
     private static Drawable mBootloaderIcon;
+    private static Drawable mExpandedDesktopIcon;
     private static List<IIconListAdapterItem> mRebootItemList;
     private static String mRebootConfirmStr;
     private static String mRebootConfirmRecoveryStr;
     private static String mRebootConfirmBootloaderStr;
+    private static String mExpandedDesktopStr;
+    private static String mExpandedDesktopOnStr;
+    private static String mExpandedDesktopOffStr;
     private static Unhook mRebootActionHook;
 
     private static void log(String message) {
@@ -80,11 +86,15 @@ public class ModRebootMenu {
                    mRebootSoftStr = gbRes.getString(rebootSoftStrId);
                    mRecoveryStr = gbRes.getString(recoveryStrId);
                    mBootloaderStr = gbRes.getString(bootloaderStrId);
+                   mExpandedDesktopStr = gbRes.getString(R.string.action_expanded_desktop_title);
+                   mExpandedDesktopOnStr = gbRes.getString(R.string.action_expanded_desktop_on);
+                   mExpandedDesktopOffStr = gbRes.getString(R.string.action_expanded_desktop_off);
 
                    mRebootIcon = gbRes.getDrawable(R.drawable.ic_lock_reboot);
                    mRebootSoftIcon = gbRes.getDrawable(R.drawable.ic_lock_reboot_soft);
                    mRecoveryIcon = gbRes.getDrawable(R.drawable.ic_lock_recovery);
                    mBootloaderIcon = gbRes.getDrawable(R.drawable.ic_lock_bootloader);
+                   mExpandedDesktopIcon = gbRes.getDrawable(R.drawable.ic_lock_expanded_desktop);
 
                    mRebootItemList = new ArrayList<IIconListAdapterItem>();
                    mRebootItemList.add(new BasicIconListItem(mRebootStr, null, mRebootIcon, null));
@@ -121,73 +131,80 @@ public class ModRebootMenu {
                     if (mContext == null) return;
 
                     prefs.reload();
-                    if (!prefs.getBoolean(GravityBoxSettings.PREF_KEY_POWEROFF_ADVANCED, false)) {
-                        return;
-                    }
 
                     @SuppressWarnings("unchecked")
                     List<Object> mItems = (List<Object>) XposedHelpers.getObjectField(param.thisObject, "mItems");
+                    BaseAdapter mAdapter = (BaseAdapter) XposedHelpers.getObjectField(param.thisObject, "mAdapter");
 
-                    // try to find out if reboot action item already exists in the list of GlobalActions items
-                    // strategy:
-                    // 1) check if Action has mIconResId field or mMessageResId field
-                    // 2) check if the name of the corresponding resource contains "reboot" or "restart" substring
-                    log("Searching for existing reboot action item...");
-                    Object rebootActionItem = null;
-                    Resources res = mContext.getResources();
-                    for (Object o : mItems) {
-                        // search for drawable
-                        try {
-                            Field f = XposedHelpers.findField(o.getClass(), "mIconResId");
-                            String resName = res.getResourceEntryName((Integer) f.get(o)).toLowerCase(Locale.US);
-                            log("Drawable resName = " + resName);
-                            if (resName.contains("reboot") || resName.contains("restart")) {
-                                rebootActionItem = o;
-                                break;
+                    if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_POWEROFF_ADVANCED, false)) {
+                        // try to find out if reboot action item already exists in the list of GlobalActions items
+                        // strategy:
+                        // 1) check if Action has mIconResId field or mMessageResId field
+                        // 2) check if the name of the corresponding resource contains "reboot" or "restart" substring
+                        log("Searching for existing reboot action item...");
+                        Object rebootActionItem = null;
+                        Resources res = mContext.getResources();
+                        for (Object o : mItems) {
+                            // search for drawable
+                            try {
+                                Field f = XposedHelpers.findField(o.getClass(), "mIconResId");
+                                String resName = res.getResourceEntryName((Integer) f.get(o)).toLowerCase(Locale.US);
+                                log("Drawable resName = " + resName);
+                                if (resName.contains("reboot") || resName.contains("restart")) {
+                                    rebootActionItem = o;
+                                    break;
+                                }
+                            } catch (NoSuchFieldError nfe) {
+                                // continue
+                            } catch (Resources.NotFoundException resnfe) { 
+                                // continue
+                            } catch (IllegalArgumentException iae) {
+                                // continue
                             }
-                        } catch (NoSuchFieldError nfe) {
-                            // continue
-                        } catch (Resources.NotFoundException resnfe) { 
-                            // continue
-                        } catch (IllegalArgumentException iae) {
-                            // continue
+    
+                            // search for text
+                            try {
+                                Field f = XposedHelpers.findField(o.getClass(), "mMessageResId");
+                                String resName = res.getResourceEntryName((Integer) f.get(o)).toLowerCase(Locale.US);
+                                log("Text resName = " + resName);
+                                if (resName.contains("reboot") || resName.contains("restart")) {
+                                    rebootActionItem = o;
+                                    break;
+                                }
+                            } catch (NoSuchFieldError nfe) {
+                                // continue
+                            } catch (Resources.NotFoundException resnfe) { 
+                                // continue
+                            } catch (IllegalArgumentException iae) {
+                                // continue
+                            }
                         }
-
-                        // search for text
-                        try {
-                            Field f = XposedHelpers.findField(o.getClass(), "mMessageResId");
-                            String resName = res.getResourceEntryName((Integer) f.get(o)).toLowerCase(Locale.US);
-                            log("Text resName = " + resName);
-                            if (resName.contains("reboot") || resName.contains("restart")) {
-                                rebootActionItem = o;
-                                break;
-                            }
-                        } catch (NoSuchFieldError nfe) {
-                            // continue
-                        } catch (Resources.NotFoundException resnfe) { 
-                            // continue
-                        } catch (IllegalArgumentException iae) {
-                            // continue
+    
+                        if (rebootActionItem != null) {
+                            log("Existing Reboot action item found! Replacing onPress()");
+                            mRebootActionHook = XposedHelpers.findAndHookMethod(rebootActionItem.getClass(), 
+                                    "onPress", new XC_MethodReplacement () {
+                                @Override
+                                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                                    showDialog();
+                                    return null;
+                                }
+                            });
+                        } else {
+                            log("Existing Reboot action item NOT found! Adding new RebootAction item");
+                            Object action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass }, 
+                                    new RebootAction());
+                            // add to the second position
+                            mItems.add(1, action);
+                            mAdapter.notifyDataSetChanged();
                         }
                     }
 
-                    if (rebootActionItem != null) {
-                        log("Existing Reboot action item found! Replacing onPress()");
-                        mRebootActionHook = XposedHelpers.findAndHookMethod(rebootActionItem.getClass(), 
-                                "onPress", new XC_MethodReplacement () {
-                            @Override
-                            protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                                showDialog();
-                                return null;
-                            }
-                        });
-                    } else {
-                        log("Existing Reboot action item NOT found! Adding new RebootAction item");
-                        Object action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass }, 
-                                new RebootAction());
-                        // add to the second position
-                        mItems.add(1, action);
-                        BaseAdapter mAdapter = (BaseAdapter) XposedHelpers.getObjectField(param.thisObject, "mAdapter");
+                    // Add Expanded Desktop action if enabled
+                    if (isExpandedDesktopEnabled(mContext)) {
+                        Object action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass },
+                                new ExpandedDesktopAction());
+                        mItems.add(mItems.size() - 1, action);
                         mAdapter.notifyDataSetChanged();
                     }
                 }
@@ -330,5 +347,85 @@ public class ModRebootMenu {
             }
         }
         
+    }
+
+    private static boolean isExpandedDesktopEnabled(Context context) {
+        return (Settings.System.getInt(mContext.getContentResolver(),
+                ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_MODE, 0) != 0);
+    }
+
+    private static boolean isExpandedDesktopOn(Context context) {
+        return (Settings.System.getInt(context.getContentResolver(),
+                ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE, 0) == 1);
+    }
+
+    private static class ExpandedDesktopAction implements InvocationHandler {
+        private Context mContext;
+        private TextView mStatus;
+        private Handler mHandler;
+
+        public ExpandedDesktopAction() {
+        }
+
+        private void updateStatus() {
+            mStatus.setText(isExpandedDesktopOn(mContext) ? 
+                    mExpandedDesktopOnStr : mExpandedDesktopOffStr);
+        }
+
+        private void toggleStatus() {
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Settings.System.putInt(mContext.getContentResolver(),
+                            ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE,
+                            isExpandedDesktopOn(mContext) ? 0 : 1);
+                    updateStatus();
+                }
+            }, 200);
+        };
+
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            String methodName = method.getName();
+
+            if (methodName.equals("create")) {
+                mContext = (Context) args[0];
+                mHandler = new Handler();
+
+                Resources res = mContext.getResources();
+                LayoutInflater li = (LayoutInflater) args[3];
+                int layoutId = res.getIdentifier(
+                        "global_actions_item", "layout", "android");
+                View v = li.inflate(layoutId, (ViewGroup) args[2], false);
+
+                ImageView icon = (ImageView) v.findViewById(res.getIdentifier(
+                        "icon", "id", "android"));
+                icon.setImageDrawable(mExpandedDesktopIcon);
+
+                TextView messageView = (TextView) v.findViewById(res.getIdentifier(
+                        "message", "id", "android"));
+                messageView.setText(mExpandedDesktopStr);
+
+                mStatus = (TextView) v.findViewById(res.getIdentifier(
+                        "status", "id", "android"));
+                mStatus.setVisibility(View.VISIBLE);
+                updateStatus();
+
+                return v;
+            } else if (methodName.equals("onPress")) {
+                toggleStatus();
+                return null;
+            } else if (methodName.equals("onLongPress")) {
+                return false;
+            } else if (methodName.equals("showDuringKeyguard")) {
+                return true;
+            } else if (methodName.equals("showBeforeProvisioning")) {
+                return true;
+            } else if (methodName.equals("isEnabled")) {
+                return true;
+            } else {
+                return null;
+            }
+        }
     }
 }

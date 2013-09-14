@@ -142,6 +142,13 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_CHARGING_LED_DISABLE = "pref_charging_led_disable";
 
     public static final String PREF_CAT_KEY_DISPLAY = "pref_cat_display";
+    public static final String PREF_KEY_EXPANDED_DESKTOP = "pref_expanded_desktop";
+    public static final int ED_DISABLED = 0;
+    public static final int ED_STATUSBAR = 1;
+    public static final int ED_NAVBAR = 2;
+    public static final int ED_BOTH = 3;
+    public static final String ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED = "gravitybox.intent.action.EXPANDED_DESKTOP_MODE_CHANGED";
+    public static final String EXTRA_ED_MODE = "expandedDesktopMode";
     public static final String PREF_CAT_KEY_BRIGHTNESS = "pref_cat_brightness";
     public static final String PREF_KEY_BRIGHTNESS_MASTER_SWITCH = "pref_brightness_master_switch";
     public static final String PREF_KEY_BRIGHTNESS_MIN = "pref_brightness_min2";
@@ -480,6 +487,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefCrtOff;
         private PreferenceScreen mPrefCatMedia;
         private CheckBoxPreference mPrefSafeMediaVolume;
+        private ListPreference mPrefExpandedDesktop;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -597,6 +605,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCrtOff = (CheckBoxPreference) findPreference(PREF_KEY_CRT_OFF_EFFECT);
             mPrefCatMedia = (PreferenceScreen) findPreference(PREF_CAT_KEY_MEDIA);
             mPrefSafeMediaVolume = (CheckBoxPreference) findPreference(PREF_KEY_SAFE_MEDIA_VOLUME);
+
+            mPrefExpandedDesktop = (ListPreference) findPreference(PREF_KEY_EXPANDED_DESKTOP);
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
@@ -812,6 +822,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefScreenDimLevel.setEnabled(enabled);
                 mPrefAutoBrightness.setEnabled(enabled);
             }
+
+            if (key == null || key.equals(PREF_KEY_EXPANDED_DESKTOP)) {
+                mPrefExpandedDesktop.setSummary(mPrefExpandedDesktop.getEntry());
+            }
         }
 
         @Override
@@ -1003,6 +1017,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_QUICKAPP_SLOT4)) {
                 intent.setAction(ACTION_PREF_QUICKAPP_CHANGED);
                 intent.putExtra(EXTRA_QUICKAPP_SLOT4, prefs.getString(PREF_KEY_QUICKAPP_SLOT4, null));
+            } else if (key.equals(PREF_KEY_EXPANDED_DESKTOP)) {
+                intent.setAction(ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED);
+                intent.putExtra(EXTRA_ED_MODE, Integer.valueOf(
+                        prefs.getString(PREF_KEY_EXPANDED_DESKTOP, "0")));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);

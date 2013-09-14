@@ -480,4 +480,14 @@
     <string name="pref_national_roaming_title">National data roaming</string>
     <string name="pref_national_roaming_summary">Connect to data services when nationally roaming</string>
 
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Expanded desktop mode</string>
+    <string name="expanded_desktop_disabled">Disabled</string>
+    <string name="expanded_desktop_statusbar">Hide statusbar</string>
+    <string name="expanded_desktop_navbar">Hide navigation bar</string>
+    <string name="expanded_desktop_both">Hide both</string>
+    <string name="action_expanded_desktop_title">Expanded desktop</string>
+    <string name="action_expanded_desktop_on">Expanded desktop is ON</string>
+    <string name="action_expanded_desktop_off">Expanded desktop is OFF</string>
+
 </resources>
