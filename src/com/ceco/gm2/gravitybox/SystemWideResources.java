@@ -13,11 +13,6 @@ public class SystemWideResources {
 
             XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
 
-            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_PIE_CONTROL_ENABLE, false)
-                    && prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_DISABLE, false)) {
-                XResources.setSystemWideReplacement("android", "bool", "config_showNavigationBar", false);
-            }
-
             boolean holoBgDither = prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_DITHER, false);
             if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_SOLID_BLACK, false)) {
                 XResources.setSystemWideReplacement(

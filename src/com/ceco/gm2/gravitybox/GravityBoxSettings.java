@@ -228,7 +228,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_PIE_CONTROL_TRIGGERS = "pref_pie_control_trigger_positions";
     public static final String PREF_KEY_PIE_CONTROL_TRIGGER_SIZE = "pref_pie_control_trigger_size";
     public static final String PREF_KEY_PIE_CONTROL_SIZE = "pref_pie_control_size";
-    public static final String PREF_KEY_NAVBAR_DISABLE = "pref_navbar_disable";
     public static final String PREF_KEY_HWKEYS_DISABLE = "pref_hwkeys_disable";
     public static final String ACTION_PREF_PIE_CHANGED = "gravitybox.intent.action.PREF_PIE_CHANGED";
     public static final String EXTRA_PIE_ENABLE = "pieEnable";
@@ -305,7 +304,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             PREF_KEY_FIX_MMS_WAKELOCK,
             PREF_KEY_MUSIC_VOLUME_STEPS,
             PREF_KEY_HOLO_BG_SOLID_BLACK,
-            PREF_KEY_NAVBAR_DISABLE,
             PREF_KEY_HOLO_BG_DITHER,
             PREF_KEY_SCREEN_DIM_LEVEL,
             PREF_KEY_BRIGHTNESS_MASTER_SWITCH
@@ -471,7 +469,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefDisableRoamingIndicators;
         private ListPreference mPrefButtonBacklightMode;
         private CheckBoxPreference mPrefPieEnabled;
-        private CheckBoxPreference mPrefPieNavBarDisabled;
         private CheckBoxPreference mPrefPieHwKeysDisabled;
         private CheckBoxPreference mPrefGbThemeDark;
         private ListPreference mPrefRecentClear;
@@ -582,7 +579,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefButtonBacklightMode = (ListPreference) findPreference(PREF_KEY_BUTTON_BACKLIGHT_MODE);
 
             mPrefPieEnabled = (CheckBoxPreference) findPreference(PREF_KEY_PIE_CONTROL_ENABLE);
-            mPrefPieNavBarDisabled = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_DISABLE);
             mPrefPieHwKeysDisabled = (CheckBoxPreference) findPreference(PREF_KEY_HWKEYS_DISABLE);
 
             mPrefGbThemeDark = (CheckBoxPreference) findPreference(PREF_KEY_GB_THEME_DARK);
@@ -790,14 +786,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             if (key == null || key.equals(PREF_KEY_PIE_CONTROL_ENABLE)) {
                 if (!mPrefPieEnabled.isChecked()) {
-                    if (mPrefPieNavBarDisabled.isChecked()) {
-                        Editor e = mPrefs.edit();
-                        e.putBoolean(PREF_KEY_NAVBAR_DISABLE, false);
-                        e.commit();
-                        mPrefPieNavBarDisabled.setChecked(false);
-                        Toast.makeText(getActivity(), getString(
-                                R.string.reboot_required), Toast.LENGTH_SHORT).show();
-                    }
                     if (mPrefPieHwKeysDisabled.isChecked()) {
                         Editor e = mPrefs.edit();
                         e.putBoolean(PREF_KEY_HWKEYS_DISABLE, false);
@@ -805,9 +793,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                         mPrefPieHwKeysDisabled.setChecked(false);
                     }
                     mPrefPieHwKeysDisabled.setEnabled(false);
-                    mPrefPieNavBarDisabled.setEnabled(false);
                 } else {
-                    mPrefPieNavBarDisabled.setEnabled(true);
                     mPrefPieHwKeysDisabled.setEnabled(true);
                 }
             }
