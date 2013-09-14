@@ -73,6 +73,9 @@
     <string name="quick_settings_qr_recorded">Recorded</string>
     <string name="quick_settings_qr_record">Long Press To Record</string>
     <string name="quick_settings_qr_recording_notif">Touch to stop recording</string>
+    <string name="quick_settings_expanded_desktop_disabled">Disabled</string>
+    <string name="quick_settings_expanded_desktop_normal">Normal</string>
+    <string name="quick_settings_expanded_desktop_expanded">Expanded</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Statusbar QuickSettings tiles</string>
@@ -98,6 +101,7 @@
     <string name="qs_tile_quickrecord">Quick Record</string>
     <string name="qs_tile_settings">Settings</string>
     <string name="qs_tile_volume">Volume</string>
+    <string name="qs_tile_expanded_desktop">Expanded desktop</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>

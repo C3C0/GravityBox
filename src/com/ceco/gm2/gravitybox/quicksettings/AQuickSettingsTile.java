@@ -73,6 +73,10 @@ public abstract class AQuickSettingsTile implements OnClickListener {
     protected void startActivity(Intent intent) {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         mContext.startActivity(intent);
+        collapsePanels();
+    }
+
+    protected void collapsePanels() {
         XposedHelpers.callMethod(mStatusBar, "animateCollapsePanels");
     }
 }

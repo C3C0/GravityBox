@@ -13,6 +13,7 @@ import java.util.Set;
 
 import com.ceco.gm2.gravitybox.Utils.MethodState;
 import com.ceco.gm2.gravitybox.quicksettings.AQuickSettingsTile;
+import com.ceco.gm2.gravitybox.quicksettings.ExpandedDesktopTile;
 import com.ceco.gm2.gravitybox.quicksettings.GpsTile;
 import com.ceco.gm2.gravitybox.quicksettings.NetworkModeTile;
 import com.ceco.gm2.gravitybox.quicksettings.QuickAppTile;
@@ -111,7 +112,8 @@ public class ModQuickSettings {
             R.id.sleep_tileview,
             R.id.quickapp_tileview,
             R.id.quickrecord_tileview,
-            R.id.volume_tileview
+            R.id.volume_tileview,
+            R.id.expanded_tileview
         ));
         if (!Utils.isMtkDevice()) {
             mCustomGbTileKeys.add(R.id.gps_tileview);
@@ -520,6 +522,10 @@ public class ModQuickSettings {
                 QuickAppTile qAppTile = new QuickAppTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 qAppTile.setupQuickSettingsTile(mContainerView, inflater);
                 mTiles.add(qAppTile);
+
+                ExpandedDesktopTile edTile = new ExpandedDesktopTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                edTile.setupQuickSettingsTile(mContainerView, inflater);
+                mTiles.add(edTile);
 
                 GravityBoxTile gbTile = new GravityBoxTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 gbTile.setupQuickSettingsTile(mContainerView, inflater);
