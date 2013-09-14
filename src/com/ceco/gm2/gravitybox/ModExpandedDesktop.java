@@ -409,15 +409,18 @@ public class ModExpandedDesktop {
             try {
                 mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                 mPhoneWindowManager = param.thisObject;
-    
+
+                Settings.System.putInt(mContext.getContentResolver(),
+                        SETTING_EXPANDED_DESKTOP_STATE, 0);
+
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction(GravityBoxSettings.ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED);
                 mContext.registerReceiver(mBroadcastReceiver, intentFilter);
-    
+
                 mSettingsObserver = new SettingsObserver(
                         (Handler) XposedHelpers.getObjectField(param.thisObject, "mHandler"));
                 mSettingsObserver.observe();
-    
+
                 if (DEBUG) log("Phone window manager initialized");
             } catch (Throwable t) {
                 XposedBridge.log(t);
