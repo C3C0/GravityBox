@@ -455,8 +455,10 @@
     <string name="pref_hwkey_home_longpress_title">Dlhé podržanie Domov</string>
 
     <!-- HW Key Action: Launch cutom app -->
-    <string name="hwkey_action_custom_app">Spustiť aplikáciu</string>
-    <string name="pref_hwkey_custom_app_title">Nastaviť aplikáciu na spustenie</string>
+    <string name="hwkey_action_custom_app">Spustiť aplikáciu 1</string>
+    <string name="pref_hwkey_custom_app_title">Nastaviť aplikáciu na spustenie 1</string>
+    <string name="hwkey_action_custom_app2">Spustiť aplikáciu 2</string>
+    <string name="pref_hwkey_custom_app_title2">Nastaviť aplikáciu na spustenie 2</string>
     <string name="hwkey_action_custom_app_none">Aplikácia nie je nastavená!</string>
     <string name="hwkey_action_custom_app_missing">Aplikácia nebola nájdená!</string>
 

@@ -467,8 +467,10 @@
     <string name="pref_hwkey_home_longpress_title">Home key long-press action</string>
 
     <!-- HW Key Action: Launch cutom app -->
-    <string name="hwkey_action_custom_app">Launch custom app</string>
-    <string name="pref_hwkey_custom_app_title">Set custom app</string>
+    <string name="hwkey_action_custom_app">Launch custom app 1</string>
+    <string name="pref_hwkey_custom_app_title">Set custom app 1</string>
+    <string name="hwkey_action_custom_app2">Launch custom app 2</string>
+    <string name="pref_hwkey_custom_app_title2">Set custom app 2</string>
     <string name="hwkey_action_custom_app_none">No custom app assigned!</string>
     <string name="hwkey_action_custom_app_missing">Custom app not found!</string>
 

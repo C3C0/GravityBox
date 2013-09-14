@@ -458,8 +458,10 @@
     <string name="pref_hwkey_home_longpress_title">Dlouhé podržení Domů</string>
 
     <!-- HW Key Action: Launch cutom app -->
-    <string name="hwkey_action_custom_app">Spustit aplikaci</string>
-    <string name="pref_hwkey_custom_app_title">Nastavit aplikaci ke spuštění</string>
+    <string name="hwkey_action_custom_app">Spustit aplikaci 1</string>
+    <string name="pref_hwkey_custom_app_title">Nastavit aplikaci ke spuštění 1</string>
+    <string name="hwkey_action_custom_app2">Spustit aplikaci 2</string>
+    <string name="pref_hwkey_custom_app_title2">Nastavit aplikaci ke spuštění 2</string>
     <string name="hwkey_action_custom_app_none">Aplikace není nastavena!</string>
     <string name="hwkey_action_custom_app_missing">Aplikace nebyla nalezena!</string>
 

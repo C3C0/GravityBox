@@ -416,8 +416,9 @@ public class ModHwKeys {
             goToSleep();
         } else if (action == GravityBoxSettings.HWKEY_ACTION_RECENT_APPS) {
             toggleRecentApps();
-        } else if (action == GravityBoxSettings.HWKEY_ACTION_CUSTOM_APP) {
-            launchCustomApp();
+        } else if (action == GravityBoxSettings.HWKEY_ACTION_CUSTOM_APP
+                    || action == GravityBoxSettings.HWKEY_ACTION_CUSTOM_APP2) {
+            launchCustomApp(action);
         }
     }
 
@@ -560,7 +561,7 @@ public class ModHwKeys {
         }
     }
 
-    private static void launchCustomApp() {
+    private static void launchCustomApp(final int action) {
         Handler handler = (Handler) XposedHelpers.getObjectField(mPhoneWindowManager, "mHandler");
         if (handler == null) return;
         mPrefs.reload();
@@ -570,7 +571,9 @@ public class ModHwKeys {
                 @Override
                 public void run() {
                     try {
-                        String appInfo = mPrefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_CUSTOM_APP, null);
+                        String appInfo = (action == GravityBoxSettings.HWKEY_ACTION_CUSTOM_APP) ?
+                                mPrefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_CUSTOM_APP, null) :
+                                    mPrefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_CUSTOM_APP2, null);
                         if (appInfo == null) {
                             Toast.makeText(mContext, mStrCustomAppNone, Toast.LENGTH_SHORT).show();
                             return;
