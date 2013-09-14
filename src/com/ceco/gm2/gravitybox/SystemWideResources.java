@@ -2,6 +2,7 @@ package com.ceco.gm2.gravitybox;
 
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
+import android.os.Build;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 
@@ -11,7 +12,9 @@ public class SystemWideResources {
         try {
             XModuleResources modRes = XModuleResources.createInstance(GravityBox.MODULE_PATH, null);
 
-            XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
+            if (Build.VERSION.SDK_INT > 16) {
+                XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
+            }
 
             boolean holoBgDither = prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_DITHER, false);
             if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_SOLID_BLACK, false)) {
