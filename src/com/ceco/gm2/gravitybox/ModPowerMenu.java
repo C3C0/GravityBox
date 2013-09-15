@@ -34,7 +34,7 @@ import de.robv.android.xposed.XposedHelpers;
 
 import com.ceco.gm2.gravitybox.adapters.*;
 
-public class ModRebootMenu {
+public class ModPowerMenu {
     private static final String TAG = "ModRebootMenu";
     public static final String PACKAGE_NAME = "android";
     public static final String CLASS_GLOBAL_ACTIONS = "com.android.internal.policy.impl.GlobalActions";
