@@ -38,6 +38,7 @@ public class ModExpandedDesktop {
     private static boolean mExpandedDesktop;
     private static int mExpandedDesktopMode;
     private static Unhook mNavbarShowLwHook;
+    private static Unhook mStatusbarShowLwHook;
 
     public static final String SETTING_EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
     public static final String SETTING_EXPANDED_DESKTOP_MODE = "expanded_desktop_mode";
@@ -71,17 +72,24 @@ public class ModExpandedDesktop {
     private static BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            if (DEBUG) log("Broadcast received: " + intent.toString());
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED)
                     && intent.hasExtra(GravityBoxSettings.EXTRA_ED_MODE)) {
                 final int expandedDesktopMode = intent.getIntExtra(
                         GravityBoxSettings.EXTRA_ED_MODE, GravityBoxSettings.ED_DISABLED);
                 Settings.System.putInt(mContext.getContentResolver(), 
                         SETTING_EXPANDED_DESKTOP_MODE, expandedDesktopMode);
+            } else if (intent.getAction().equals(ModStatusbarColor.ACTION_PHONE_STATUSBAR_VIEW_MADE)) {
+                updateSettings(true);
             }
         }
     };
 
     private static void updateSettings() {
+        updateSettings(false);
+    }
+
+    private static void updateSettings(boolean forceUpdateDisplayMetrics) {
         if (mContext == null || mPhoneWindowManager == null) return;
 
         try {
@@ -95,7 +103,7 @@ public class ModExpandedDesktop {
                     return;
             }
 
-            boolean updateDisplayMetrics = false;
+            boolean updateDisplayMetrics = false | forceUpdateDisplayMetrics;
             if (mExpandedDesktop != expandedDesktop) {
                 mExpandedDesktop = expandedDesktop;
                 updateDisplayMetrics = true;
@@ -172,51 +180,31 @@ public class ModExpandedDesktop {
                         CLASS_LOCAL_POWER_MANAGER, phoneWindowManagerInitHook);
             }
 
-            XposedHelpers.findAndHookMethod(classPhoneWindowManager, 
-                    Build.VERSION.SDK_INT > 16 ? "applyPostLayoutPolicyLw" : "animatingWindowLw", 
-                    CLASS_POLICY_WINDOW_STATE, WindowManager.LayoutParams.class, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod(classPhoneWindowManager,
+                    Build.VERSION.SDK_INT > 16 ? 
+                            "finishPostLayoutPolicyLw" : "finishAnimationLw", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    final Object statusBar = XposedHelpers.getObjectField(param.thisObject, "mStatusBar");
+                    if (statusBar == null || !expandedDesktopHidesStatusbar()) return;
+
+                    mStatusbarShowLwHook = XposedHelpers.findAndHookMethod(
+                            statusBar.getClass(), "showLw", boolean.class, new XC_MethodReplacement() {
+                                @Override
+                                protected Object replaceHookedMethod(MethodHookParam param2) throws Throwable {
+                                    if (param2.thisObject == statusBar) {
+                                        return XposedHelpers.callMethod(param2.thisObject, "hideLw", true);
+                                    } else {
+                                        return XposedBridge.invokeOriginalMethod(param2.method, param2.thisObject, param2.args);
+                                    }
+                                }
+                    });
+                }
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    final Object topFullscreenOpaqueWindowState = 
-                          XposedHelpers.getObjectField(param.thisObject, "mTopFullscreenOpaqueWindowState");
-                    if (topFullscreenOpaqueWindowState == null) return;
-
-                    final WindowManager.LayoutParams lp = (WindowManager.LayoutParams)
-                            XposedHelpers.callMethod(topFullscreenOpaqueWindowState, "getAttrs");
-
-                    if (expandedDesktopHidesStatusbar()) {
-                        if (XposedHelpers.getAdditionalInstanceField(
-                                topFullscreenOpaqueWindowState, "wasFullscreen") == null) {
-                            final Boolean wasFullscreen = 
-                                    (lp.flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
-                            XposedHelpers.setAdditionalInstanceField(
-                                    topFullscreenOpaqueWindowState, "wasFullscreen", wasFullscreen);
-    
-                            if (DEBUG) {
-                                final Object session = XposedHelpers.getObjectField(
-                                        topFullscreenOpaqueWindowState, "mSession");
-                                final String sessionInfo = session == null ? null :
-                                    (String) XposedHelpers.getObjectField(session, "mStringName");
-                                log("WindowState.wasFullscreen set for " + sessionInfo + " to " + wasFullscreen);
-                            }
-                        }
-                        lp.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
-                    } else {
-                        final Boolean wasFullscreen = (Boolean) XposedHelpers.getAdditionalInstanceField(
-                                topFullscreenOpaqueWindowState, "wasFullscreen");
-                        if (wasFullscreen != null) {
-                            if (!wasFullscreen) {
-                                lp.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
-                                if (DEBUG) {
-                                    final Object session = XposedHelpers.getObjectField(
-                                            topFullscreenOpaqueWindowState, "mSession");
-                                    final String sessionInfo = session == null ? null :
-                                        (String) XposedHelpers.getObjectField(session, "mStringName");
-                                    log("FULL_SCREEN flag cleared for " + sessionInfo);
-                                }
-                            }
-                            XposedHelpers.removeAdditionalInstanceField(topFullscreenOpaqueWindowState, "wasFullscreen");
-                        }
+                    if (mStatusbarShowLwHook != null) {
+                        mStatusbarShowLwHook.unhook();
+                        mStatusbarShowLwHook = null;
                     }
                 }
             });
@@ -284,7 +272,7 @@ public class ModExpandedDesktop {
                                         XposedHelpers.getIntField(param.thisObject, "mUnrestrictedScreenHeight");
                             }
                             if (expandedDesktopHidesStatusbar()) {
-                                cf.set(pf);
+                                cf.top = pf.top;
                             }
                             shouldRecomputeFrame = true;
                         }
@@ -410,11 +398,9 @@ public class ModExpandedDesktop {
                 mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                 mPhoneWindowManager = param.thisObject;
 
-                Settings.System.putInt(mContext.getContentResolver(),
-                        SETTING_EXPANDED_DESKTOP_STATE, 0);
-
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction(GravityBoxSettings.ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED);
+                intentFilter.addAction(ModStatusbarColor.ACTION_PHONE_STATUSBAR_VIEW_MADE);
                 mContext.registerReceiver(mBroadcastReceiver, intentFilter);
 
                 mSettingsObserver = new SettingsObserver(
@@ -655,8 +641,10 @@ public class ModExpandedDesktop {
             XposedHelpers.callMethod(displayManagerService, "setDisplayInfoOverrideFromWindowManager",
                     XposedHelpers.callMethod(displayContent, "getDisplayId"), displayInfo);
  
-            Object animator = XposedHelpers.getObjectField(windowManager, "mAnimator");
-            XposedHelpers.callMethod(animator, "setDisplayDimensions", m.dw, m.dh, m.appWidth, m.appHeight);
+            if (Build.VERSION.SDK_INT < 18) {
+                Object animator = XposedHelpers.getObjectField(windowManager, "mAnimator");
+                XposedHelpers.callMethod(animator, "setDisplayDimensions", m.dw, m.dh, m.appWidth, m.appHeight);
+            }
         }
 
         if (DEBUG) log("updateApplicationDisplayMetricsLocked: m=" + m.toString());

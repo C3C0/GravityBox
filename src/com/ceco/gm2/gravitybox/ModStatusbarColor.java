@@ -39,6 +39,8 @@ public class ModStatusbarColor {
     private static final String CLASS_BATTERY_CONTROLLER = "com.android.systemui.statusbar.policy.BatteryController";
     private static final String CLASS_NOTIF_PANEL_VIEW = "com.android.systemui.statusbar.phone.NotificationPanelView";
 
+    public static final String ACTION_PHONE_STATUSBAR_VIEW_MADE = "gravitybox.intent.action.PHONE_STATUSBAR_VIEW_MADE";
+
     private static View mPanelBar;
     private static StatusBarIconManager mIconManager;
     private static Object mSignalClusterView;
@@ -241,6 +243,9 @@ public class ModStatusbarColor {
                     int bgColor = prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK);
                     setStatusbarBgColor(bgColor);
                     applyIconColors();
+
+                    Intent i = new Intent(ACTION_PHONE_STATUSBAR_VIEW_MADE);
+                    context.sendBroadcast(i);
                 }
             });
 
