@@ -23,7 +23,6 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.PowerManager;
 import android.os.RemoteException;
-import android.os.UserHandle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +45,7 @@ public class ModPowerMenu {
     public static final String PACKAGE_NAME = "android";
     public static final String CLASS_GLOBAL_ACTIONS = "com.android.internal.policy.impl.GlobalActions";
     public static final String CLASS_ACTION = "com.android.internal.policy.impl.GlobalActions.Action";
+    private static final boolean DEBUG = false;
 
     private static Context mContext;
     private static Handler mHandler;
@@ -124,7 +124,7 @@ public class ModPowerMenu {
                    mRebootConfirmBootloaderStr = String.format(gbRes.getString(R.string.reboot_confirm_bootloader),
                            gbRes.getString(Utils.isTablet() ? R.string.device_tablet : R.string.device_phone));
 
-                   log("GlobalActions constructed, resources set.");
+                   if (DEBUG) log("GlobalActions constructed, resources set.");
                }
             });
 
@@ -133,7 +133,7 @@ public class ModPowerMenu {
                 @Override
                 protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
                     if (mRebootActionHook != null) {
-                        log("Unhooking previous hook of reboot action item");
+                        if (DEBUG) log("Unhooking previous hook of reboot action item");
                         mRebootActionHook.unhook();
                         mRebootActionHook = null;
                     }
@@ -151,12 +151,13 @@ public class ModPowerMenu {
                     int index = 1;
                     Object action;
 
+                    // Add/hook reboot action if enabled
                     if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_POWEROFF_ADVANCED, false)) {
                         // try to find out if reboot action item already exists in the list of GlobalActions items
                         // strategy:
                         // 1) check if Action has mIconResId field or mMessageResId field
                         // 2) check if the name of the corresponding resource contains "reboot" or "restart" substring
-                        log("Searching for existing reboot action item...");
+                        if (DEBUG) log("Searching for existing reboot action item...");
                         Object rebootActionItem = null;
                         Resources res = mContext.getResources();
                         for (Object o : mItems) {
@@ -164,7 +165,7 @@ public class ModPowerMenu {
                             try {
                                 Field f = XposedHelpers.findField(o.getClass(), "mIconResId");
                                 String resName = res.getResourceEntryName((Integer) f.get(o)).toLowerCase(Locale.US);
-                                log("Drawable resName = " + resName);
+                                if (DEBUG) log("Drawable resName = " + resName);
                                 if (resName.contains("reboot") || resName.contains("restart")) {
                                     rebootActionItem = o;
                                     break;
@@ -181,7 +182,7 @@ public class ModPowerMenu {
                             try {
                                 Field f = XposedHelpers.findField(o.getClass(), "mMessageResId");
                                 String resName = res.getResourceEntryName((Integer) f.get(o)).toLowerCase(Locale.US);
-                                log("Text resName = " + resName);
+                                if (DEBUG) log("Text resName = " + resName);
                                 if (resName.contains("reboot") || resName.contains("restart")) {
                                     rebootActionItem = o;
                                     break;
@@ -196,17 +197,17 @@ public class ModPowerMenu {
                         }
     
                         if (rebootActionItem != null) {
-                            log("Existing Reboot action item found! Replacing onPress()");
+                            if (DEBUG) log("Existing Reboot action item found! Replacing onPress()");
                             mRebootActionHook = XposedHelpers.findAndHookMethod(rebootActionItem.getClass(), 
                                     "onPress", new XC_MethodReplacement () {
                                 @Override
                                 protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                                    showRebootDialog();
+                                    RebootAction.showRebootDialog(mContext);
                                     return null;
                                 }
                             });
                         } else {
-                            log("Existing Reboot action item NOT found! Adding new RebootAction item");
+                            if (DEBUG) log("Existing Reboot action item NOT found! Adding new RebootAction item");
                             action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass }, 
                                     new RebootAction());
                             // add to the second position
@@ -214,13 +215,13 @@ public class ModPowerMenu {
                         }
                     }
 
-                    // Add screenshot
+                    // Add screenshot action
                     action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass },
                             new ScreenshotAction(mHandler));
                     mItems.add(index++, action);
 
                     // Add Expanded Desktop action if enabled
-                    if (isExpandedDesktopEnabled(mContext)) {
+                    if (ExpandedDesktopAction.isExpandedDesktopEnabled(mContext)) {
                         action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass },
                                 new ExpandedDesktopAction());
                         mItems.add(index++, action);
@@ -234,95 +235,95 @@ public class ModPowerMenu {
         }
     }
 
-    private static void showRebootDialog() {
-        if (mContext == null) {
-            log("mContext is null - aborting");
-            return;
-        }
-
-        try {
-            log("about to build reboot dialog");
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
-                .setTitle(mRebootStr)
-                .setAdapter(new IconListAdapter(mContext, mRebootItemList), new DialogInterface.OnClickListener() {
-                    
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        log("onClick() item = " + which);
-                        handleReboot(mContext, mRebootStr, which);
-                    }
-                })
-                .setNegativeButton(android.R.string.no,
-                        new DialogInterface.OnClickListener() {
-    
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                });
-            AlertDialog dialog = builder.create();
-            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
-            dialog.show();
-        } catch (Throwable t) {
-            XposedBridge.log(t);
-        }
-    }
-
-    private static void handleReboot(Context context, String caption, final int mode) {
-        try {
-            final PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-            String message = mRebootConfirmStr;
-            if (mode == 2) {
-                message = mRebootConfirmRecoveryStr;
-            } else if (mode == 3) {
-                message = mRebootConfirmBootloaderStr;
-            }
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
-                .setTitle(caption)
-                .setMessage(message)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        if (mode == 0) {
-                            pm.reboot(null);
-                        } else if (mode == 1) {
-                            Class<?> classSm = XposedHelpers.findClass("android.os.ServiceManager", null);
-                            Class<?> classIpm = XposedHelpers.findClass("android.os.IPowerManager.Stub", null);
-                            IBinder b = (IBinder) XposedHelpers.callStaticMethod(
-                                    classSm, "getService", Context.POWER_SERVICE);
-                            Object ipm = XposedHelpers.callStaticMethod(classIpm, "asInterface", b);
-                            XposedHelpers.callMethod(ipm, "crash", "Hot reboot");
-                        } else if (mode == 2) {
-                            pm.reboot("recovery");
-                        } else if (mode == 3) {
-                            pm.reboot("bootloader");
-                        }
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-            AlertDialog dialog = builder.create();
-            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
-            dialog.show();
-        } catch (Throwable t) {
-            XposedBridge.log(t);
-        }
-    }
-
     private static class RebootAction implements InvocationHandler {
         private Context mContext;
 
         public RebootAction() {
+        }
+
+        public static void showRebootDialog(final Context context) {
+            if (context == null) {
+                if (DEBUG) log("Context is null - aborting");
+                return;
+            }
+
+            try {
+                if (DEBUG) log("about to build reboot dialog");
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                    .setTitle(mRebootStr)
+                    .setAdapter(new IconListAdapter(context, mRebootItemList), new DialogInterface.OnClickListener() {
+                        
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            if (DEBUG) log("onClick() item = " + which);
+                            handleReboot(context, mRebootStr, which);
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no,
+                            new DialogInterface.OnClickListener() {
+        
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                    });
+                AlertDialog dialog = builder.create();
+                dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+                dialog.show();
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+            }
+        }
+
+        private static void handleReboot(Context context, String caption, final int mode) {
+            try {
+                final PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+                String message = mRebootConfirmStr;
+                if (mode == 2) {
+                    message = mRebootConfirmRecoveryStr;
+                } else if (mode == 3) {
+                    message = mRebootConfirmBootloaderStr;
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                    .setTitle(caption)
+                    .setMessage(message)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            if (mode == 0) {
+                                pm.reboot(null);
+                            } else if (mode == 1) {
+                                Class<?> classSm = XposedHelpers.findClass("android.os.ServiceManager", null);
+                                Class<?> classIpm = XposedHelpers.findClass("android.os.IPowerManager.Stub", null);
+                                IBinder b = (IBinder) XposedHelpers.callStaticMethod(
+                                        classSm, "getService", Context.POWER_SERVICE);
+                                Object ipm = XposedHelpers.callStaticMethod(classIpm, "asInterface", b);
+                                XposedHelpers.callMethod(ipm, "crash", "Hot reboot");
+                            } else if (mode == 2) {
+                                pm.reboot("recovery");
+                            } else if (mode == 3) {
+                                pm.reboot("bootloader");
+                            }
+                        }
+                    })
+                    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                        
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                AlertDialog dialog = builder.create();
+                dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+                dialog.show();
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+            }
         }
 
         @Override
@@ -351,7 +352,7 @@ public class ModPowerMenu {
 
                 return v;
             } else if (methodName.equals("onPress")) {
-                showRebootDialog();
+                showRebootDialog(mContext);
                 return null;
             } else if (methodName.equals("onLongPress")) {
                 handleReboot(mContext, mRebootStr, 0);
@@ -366,17 +367,6 @@ public class ModPowerMenu {
                 return null;
             }
         }
-        
-    }
-
-    private static boolean isExpandedDesktopEnabled(Context context) {
-        return (Settings.System.getInt(mContext.getContentResolver(),
-                ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_MODE, 0) != 0);
-    }
-
-    private static boolean isExpandedDesktopOn(Context context) {
-        return (Settings.System.getInt(context.getContentResolver(),
-                ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE, 0) == 1);
     }
 
     private static class ExpandedDesktopAction implements InvocationHandler {
@@ -387,21 +377,35 @@ public class ModPowerMenu {
         public ExpandedDesktopAction() {
         }
 
+        public static boolean isExpandedDesktopEnabled(Context context) {
+            return (Settings.System.getInt(context.getContentResolver(),
+                    ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_MODE, 0) != 0);
+        }
+
+        public static boolean isExpandedDesktopOn(Context context) {
+            return (Settings.System.getInt(context.getContentResolver(),
+                    ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE, 0) == 1);
+        }
+
         private void updateStatus() {
             mStatus.setText(isExpandedDesktopOn(mContext) ? 
                     mExpandedDesktopOnStr : mExpandedDesktopOffStr);
         }
 
         private void toggleStatus() {
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Settings.System.putInt(mContext.getContentResolver(),
-                            ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE,
-                            isExpandedDesktopOn(mContext) ? 0 : 1);
-                    updateStatus();
-                }
-            }, 200);
+            try {
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Settings.System.putInt(mContext.getContentResolver(),
+                                ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE,
+                                isExpandedDesktopOn(mContext) ? 0 : 1);
+                        updateStatus();
+                    }
+                }, 200);
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+            }
         };
 
         @Override
