@@ -496,4 +496,7 @@
     <string name="action_expanded_desktop_on">Expanded desktop is ON</string>
     <string name="action_expanded_desktop_off">Expanded desktop is OFF</string>
 
+    <!-- Power menu screenshot -->
+    <string name="screenshot">Screenshot</string>
+
 </resources>

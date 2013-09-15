@@ -10,13 +10,20 @@ import java.util.Locale;
 
 import android.app.AlertDialog;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
 import android.os.PowerManager;
+import android.os.RemoteException;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +48,7 @@ public class ModPowerMenu {
     public static final String CLASS_ACTION = "com.android.internal.policy.impl.GlobalActions.Action";
 
     private static Context mContext;
+    private static Handler mHandler;
     private static String mRebootStr;
     private static String mRebootSoftStr;
     private static String mRecoveryStr;
@@ -50,6 +58,7 @@ public class ModPowerMenu {
     private static Drawable mRecoveryIcon;
     private static Drawable mBootloaderIcon;
     private static Drawable mExpandedDesktopIcon;
+    private static Drawable mScreenshotIcon;
     private static List<IIconListAdapterItem> mRebootItemList;
     private static String mRebootConfirmStr;
     private static String mRebootConfirmRecoveryStr;
@@ -57,6 +66,7 @@ public class ModPowerMenu {
     private static String mExpandedDesktopStr;
     private static String mExpandedDesktopOnStr;
     private static String mExpandedDesktopOffStr;
+    private static String mScreenshotStr;
     private static Unhook mRebootActionHook;
 
     private static void log(String message) {
@@ -73,6 +83,7 @@ public class ModPowerMenu {
                @Override
                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                    mContext = (Context) param.args[0];
+                   mHandler = (Handler) XposedHelpers.getObjectField(param.thisObject, "mHandler");
                    Context gbContext = mContext.createPackageContext(
                            GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
                    Resources res = mContext.getResources();
@@ -89,12 +100,14 @@ public class ModPowerMenu {
                    mExpandedDesktopStr = gbRes.getString(R.string.action_expanded_desktop_title);
                    mExpandedDesktopOnStr = gbRes.getString(R.string.action_expanded_desktop_on);
                    mExpandedDesktopOffStr = gbRes.getString(R.string.action_expanded_desktop_off);
+                   mScreenshotStr = gbRes.getString(R.string.screenshot);
 
                    mRebootIcon = gbRes.getDrawable(R.drawable.ic_lock_reboot);
                    mRebootSoftIcon = gbRes.getDrawable(R.drawable.ic_lock_reboot_soft);
                    mRecoveryIcon = gbRes.getDrawable(R.drawable.ic_lock_recovery);
                    mBootloaderIcon = gbRes.getDrawable(R.drawable.ic_lock_bootloader);
                    mExpandedDesktopIcon = gbRes.getDrawable(R.drawable.ic_lock_expanded_desktop);
+                   mScreenshotIcon = gbRes.getDrawable(R.drawable.ic_lock_screenshot);
 
                    mRebootItemList = new ArrayList<IIconListAdapterItem>();
                    mRebootItemList.add(new BasicIconListItem(mRebootStr, null, mRebootIcon, null));
@@ -135,6 +148,8 @@ public class ModPowerMenu {
                     @SuppressWarnings("unchecked")
                     List<Object> mItems = (List<Object>) XposedHelpers.getObjectField(param.thisObject, "mItems");
                     BaseAdapter mAdapter = (BaseAdapter) XposedHelpers.getObjectField(param.thisObject, "mAdapter");
+                    int index = 1;
+                    Object action;
 
                     if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_POWEROFF_ADVANCED, false)) {
                         // try to find out if reboot action item already exists in the list of GlobalActions items
@@ -186,27 +201,32 @@ public class ModPowerMenu {
                                     "onPress", new XC_MethodReplacement () {
                                 @Override
                                 protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                                    showDialog();
+                                    showRebootDialog();
                                     return null;
                                 }
                             });
                         } else {
                             log("Existing Reboot action item NOT found! Adding new RebootAction item");
-                            Object action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass }, 
+                            action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass }, 
                                     new RebootAction());
                             // add to the second position
-                            mItems.add(1, action);
-                            mAdapter.notifyDataSetChanged();
+                            mItems.add(index++, action);
                         }
                     }
 
+                    // Add screenshot
+                    action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass },
+                            new ScreenshotAction(mHandler));
+                    mItems.add(index++, action);
+
                     // Add Expanded Desktop action if enabled
                     if (isExpandedDesktopEnabled(mContext)) {
-                        Object action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass },
+                        action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass },
                                 new ExpandedDesktopAction());
-                        mItems.add(mItems.size() - 1, action);
-                        mAdapter.notifyDataSetChanged();
+                        mItems.add(index++, action);
                     }
+
+                    mAdapter.notifyDataSetChanged();
                 }
             });
         } catch (Throwable t) {
@@ -214,7 +234,7 @@ public class ModPowerMenu {
         }
     }
 
-    private static void showDialog() {
+    private static void showRebootDialog() {
         if (mContext == null) {
             log("mContext is null - aborting");
             return;
@@ -331,7 +351,7 @@ public class ModPowerMenu {
 
                 return v;
             } else if (methodName.equals("onPress")) {
-                showDialog();
+                showRebootDialog();
                 return null;
             } else if (methodName.equals("onLongPress")) {
                 handleReboot(mContext, mRebootStr, 0);
@@ -417,6 +437,133 @@ public class ModPowerMenu {
                 return null;
             } else if (methodName.equals("onLongPress")) {
                 return false;
+            } else if (methodName.equals("showDuringKeyguard")) {
+                return true;
+            } else if (methodName.equals("showBeforeProvisioning")) {
+                return true;
+            } else if (methodName.equals("isEnabled")) {
+                return true;
+            } else {
+                return null;
+            }
+        }
+    }
+
+    private static class ScreenshotAction implements InvocationHandler {
+        private Context mContext;
+        private Handler mHandler;
+
+        public ScreenshotAction(Handler handler) {
+            mHandler = handler;
+        }
+
+        final Object mScreenshotLock = new Object();
+        ServiceConnection mScreenshotConnection = null;
+
+        final Runnable mScreenshotTimeout = new Runnable() {
+            @Override public void run() {
+                synchronized (mScreenshotLock) {
+                    if (mScreenshotConnection != null) {
+                        mContext.unbindService(mScreenshotConnection);
+                        mScreenshotConnection = null;
+                    }
+                }
+            }
+        };
+
+        private void takeScreenshot() {
+            if (mContext == null || mHandler == null) return;
+
+            try {
+                synchronized (mScreenshotLock) {
+                    if (mScreenshotConnection != null) {
+                        return;
+                    }
+                    ComponentName cn = new ComponentName("com.android.systemui",
+                            "com.android.systemui.screenshot.TakeScreenshotService");
+                    Intent intent = new Intent();
+                    intent.setComponent(cn);
+                    ServiceConnection conn = new ServiceConnection() {
+                        @Override
+                        public void onServiceConnected(ComponentName name, IBinder service) {
+                            synchronized (mScreenshotLock) {
+                                if (mScreenshotConnection != this) {
+                                    return;
+                                }
+                                Messenger messenger = new Messenger(service);
+                                Message msg = Message.obtain(null, 1);
+                                final ServiceConnection myConn = this;
+                                Handler h = new Handler(mHandler.getLooper()) {
+                                    @Override
+                                    public void handleMessage(Message msg) {
+                                        synchronized (mScreenshotLock) {
+                                            if (mScreenshotConnection == myConn) {
+                                                mContext.unbindService(mScreenshotConnection);
+                                                mScreenshotConnection = null;
+                                                mHandler.removeCallbacks(mScreenshotTimeout);
+                                            }
+                                        }
+                                    }
+                                };
+                                msg.replyTo = new Messenger(h);
+                                msg.arg1 = msg.arg2 = 0;
+
+                                /* wait for the dialog box to close */
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException ie) {
+                                }
+
+                                /* take the screenshot */
+                                try {
+                                    messenger.send(msg);
+                                } catch (RemoteException e) {
+                                }
+                            }
+                        }
+                        @Override
+                        public void onServiceDisconnected(ComponentName name) {}
+                    };
+                    if (mContext.bindService(intent, conn, Context.BIND_AUTO_CREATE)) {
+                        mScreenshotConnection = conn;
+                        mHandler.postDelayed(mScreenshotTimeout, 10000);
+                    }
+                }
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+            }
+        }
+
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            String methodName = method.getName();
+
+            if (methodName.equals("create")) {
+                mContext = (Context) args[0];
+                Resources res = mContext.getResources();
+                LayoutInflater li = (LayoutInflater) args[3];
+                int layoutId = res.getIdentifier(
+                        "global_actions_item", "layout", "android");
+                View v = li.inflate(layoutId, (ViewGroup) args[2], false);
+
+                ImageView icon = (ImageView) v.findViewById(res.getIdentifier(
+                        "icon", "id", "android"));
+                icon.setImageDrawable(mScreenshotIcon);
+
+                TextView messageView = (TextView) v.findViewById(res.getIdentifier(
+                        "message", "id", "android"));
+                messageView.setText(mScreenshotStr);
+
+                TextView statusView = (TextView) v.findViewById(res.getIdentifier(
+                        "status", "id", "android"));
+                statusView.setVisibility(View.GONE);
+
+                return v;
+            } else if (methodName.equals("onPress")) {
+                takeScreenshot();
+                return null;
+            } else if (methodName.equals("onLongPress")) {
+                return true;
             } else if (methodName.equals("showDuringKeyguard")) {
                 return true;
             } else if (methodName.equals("showBeforeProvisioning")) {
