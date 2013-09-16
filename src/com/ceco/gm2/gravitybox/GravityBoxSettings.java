@@ -187,6 +187,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final int HWKEY_ACTION_CUSTOM_APP = 7;
     public static final int HWKEY_ACTION_CUSTOM_APP2 = 8;
     public static final int HWKEY_ACTION_MENU = 9;
+    public static final int HWKEY_ACTION_EXPANDED_DESKTOP = 10;
     public static final int HWKEY_DOUBLETAP_SPEED_DEFAULT = 400;
     public static final int HWKEY_KILL_DELAY_DEFAULT = 1000;
     public static final String ACTION_PREF_HWKEY_MENU_LONGPRESS_CHANGED = "gravitybox.intent.action.HWKEY_MENU_LONGPRESS_CHANGED";

@@ -502,4 +502,8 @@
     <!-- HW Key Action: Show menu -->
     <string name="hwkey_action_menu">Show menu</string>
 
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">Toggle expanded desktop</string>
+    <string name="hwkey_action_expanded_desktop_disabled">Expanded desktop mode is disabled!</string>
+
 </resources>
