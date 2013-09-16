@@ -517,5 +517,6 @@
     <string name="pref_navbar_height_summary">Applies to portrait orientation</string>
     <string name="pref_navbar_width_title">Navigation bar width</string>
     <string name="pref_navbar_width_summary">Applies to landscape orientation</string>
+    <string name="pref_navbar_menukey_title">Always show menu key</string>
 
 </resources>

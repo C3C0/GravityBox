@@ -401,6 +401,11 @@
             monitorBoxUnit="%"
             android:defaultValue="100" />
 
+        <CheckBoxPreference 
+            android:key="pref_navbar_menukey"
+            android:title="@string/pref_navbar_menukey_title"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen
