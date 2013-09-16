@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import de.robv.android.xposed.XC_MethodHook;
@@ -40,10 +41,14 @@ public class SystemPropertyProvider {
                                 log("Broadcast received: " + intent.toString());
                                 if (intent.getAction().equals(ACTION_GET_SYSTEM_PROPERTIES)
                                         && intent.hasExtra("receiver")) {
+                                    final Resources res = context.getResources();
                                     ResultReceiver receiver = intent.getParcelableExtra("receiver");
                                     Bundle data = new Bundle();
                                     data.putBoolean("hasGeminiSupport", Utils.hasGeminiSupport());
                                     data.putBoolean("isTablet", Utils.isTablet());
+                                    data.putBoolean("hasNavigationBar", res.getBoolean(
+                                            res.getIdentifier("config_showNavigationBar", 
+                                                    "bool", "android")));
                                     receiver.send(RESULT_SYSTEM_PROPERTIES, data);
                                 }
                             }

@@ -316,6 +316,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     private static final class SystemProperties {
         public boolean hasGeminiSupport;
         public boolean isTablet;
+        public boolean hasNavigationBar;
 
         public SystemProperties(Bundle data) {
             if (data.containsKey("hasGeminiSupport")) {
@@ -323,6 +324,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             }
             if (data.containsKey("isTablet")) {
                 isTablet = data.getBoolean("isTablet");
+            }
+            if (data.containsKey("hasNavigationBar")) {
+                hasNavigationBar = data.getBoolean("hasNavigationBar");
             }
         }
     }
