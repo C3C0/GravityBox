@@ -499,4 +499,7 @@
     <!-- Power menu screenshot -->
     <string name="screenshot">Screenshot</string>
 
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">Show menu</string>
+
 </resources>

@@ -13,6 +13,7 @@ import android.content.IntentFilter;
 import android.content.pm.ResolveInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
+import android.hardware.input.InputManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.PowerManager;
@@ -419,6 +420,8 @@ public class ModHwKeys {
         } else if (action == GravityBoxSettings.HWKEY_ACTION_CUSTOM_APP
                     || action == GravityBoxSettings.HWKEY_ACTION_CUSTOM_APP2) {
             launchCustomApp(action);
+        } else if (action == GravityBoxSettings.HWKEY_ACTION_MENU) {
+            injectMenuKey();
         }
     }
 
@@ -593,5 +596,29 @@ public class ModHwKeys {
                 }
             }
         );
+    }
+
+    private static void injectMenuKey() {
+        Handler handler = (Handler) XposedHelpers.getObjectField(mPhoneWindowManager, "mHandler");
+        if (handler == null) return;
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    final long eventTime = SystemClock.uptimeMillis();
+                    final InputManager inputManager = (InputManager)
+                            mContext.getSystemService(Context.INPUT_SERVICE);
+                    XposedHelpers.callMethod(inputManager, "injectInputEvent",
+                            new KeyEvent(eventTime - 50, eventTime - 50, KeyEvent.ACTION_DOWN, 
+                                    KeyEvent.KEYCODE_MENU, 0), 0);
+                    XposedHelpers.callMethod(inputManager, "injectInputEvent",
+                            new KeyEvent(eventTime - 50, eventTime - 25, KeyEvent.ACTION_UP, 
+                                    KeyEvent.KEYCODE_MENU, 0), 0);
+                } catch (Throwable t) {
+                        XposedBridge.log(t);
+                }
+            }
+        });
     }
 }
