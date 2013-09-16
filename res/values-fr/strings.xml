@@ -510,8 +510,13 @@
     <string name="pref_cat_navigation_bar_title">Modifications barre de navigation</string>
     <string name="pref_cat_navigation_bar_summary">Contient diverses modifications liées à la barre de navigation</string>
     <string name="pref_navbar_override_title">Remplace les paramètres système par défaut</string>
-    <string name="pref_navbar_override_summary">Interrupteur général pour les modifications de la barre de navigation</string>
+    <string name="pref_navbar_override_summary">Interrupteur général pour les modifications de la barre de navigation (redémarrage nécessaire)</string>
     <string name="pref_navbar_enable_title">Activer la barre de navigation</string>
-    <string name="pref_navbar_enable_summary">Nécessite un redémarrage</string>
+    <string name="pref_navbar_enable_summary">Redémarrage nécessaire</string>
+    <string name="pref_navbar_height_title">Hauteur barre de navigation</string>
+    <string name="pref_navbar_height_summary">Valable pour l\'orientation portrait</string>
+    <string name="pref_navbar_width_title">Largeur barre de navigation</string>
+    <string name="pref_navbar_width_summary">Valable pour l\'orientation paysage</string>
+    <string name="pref_navbar_menukey_title">Toujours afficher la touche menu</string>
 
 </resources>
