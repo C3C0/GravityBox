@@ -72,7 +72,10 @@
     <string name="quick_settings_qr_recording">Запись&#8230;</string>
     <string name="quick_settings_qr_recorded">Записано</string>
     <string name="quick_settings_qr_record">Удержите для записи</string>
-    <string name="quick_settings_qr_recording_notif">Косниться чтобы остановить запись</string>
+    <string name="quick_settings_qr_recording_notif">Коснитесь чтобы остановить запись</string>
+    <string name="quick_settings_expanded_desktop_disabled">Отключено</string>
+    <string name="quick_settings_expanded_desktop_normal">Нормальный</string>
+    <string name="quick_settings_expanded_desktop_expanded">Расширенный</string>
     
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Иконки быстрых настроек в статусбаре</string>
@@ -98,6 +101,7 @@
     <string name="qs_tile_quickrecord">Быстрая запись</string>
     <string name="qs_tile_settings">Настройки</string>
     <string name="qs_tile_volume">Звук</string>
+    <string name="qs_tile_expanded_desktop">Расширенный рабочий стол</string>
 
      <!-- Color Picker -->
     <string name="dialog_color_picker">Выбор цвета</string>
@@ -463,14 +467,16 @@
     <string name="pref_hwkey_home_longpress_title">Действие по долгому нажатию Home</string>
 
     <!-- HW Key Action: Launch cutom app -->
-    <string name="hwkey_action_custom_app">Запустить приложение</string>
-    <string name="pref_hwkey_custom_app_title">Выбрать приложение</string>
+    <string name="hwkey_action_custom_app">Запустить приложение 1</string>
+    <string name="pref_hwkey_custom_app_title">Выбрать приложение 1</string>
+    <string name="hwkey_action_custom_app2">Запустить приложение 2</string>
+    <string name="pref_hwkey_custom_app_title2">Выбрать приложение 2</string>
     <string name="hwkey_action_custom_app_none">Приложение не выбрано!</string>
     <string name="hwkey_action_custom_app_missing">Приложение не найдено!</string>
 
     <!-- Link notification panel clock to Deskclock -->
-    <string name="pref_clock_link_title">Связать с DeskClock</string>
-    <string name="pref_clock_link_summary">Связывает часы на статусбаре с приложение DeskClock вместо настроек Даты и времени</string>
+    <string name="pref_clock_link_title">Приложение-часы для панели уведомлений</string>
+    <string name="pref_clock_link_summary">Связывает часы на статусбаре с выбранным приложением вместо настроек Даты и времени</string>
 
     <!-- GravityBox settings startup handling -->
     <string name="gb_startup_progress">Ожидание отклика от системного фреймворка GravityBox&#8230;</string>
@@ -480,6 +486,17 @@
     <string name="pref_national_roaming_title">Национальный роуминг</string>
     <string name="pref_national_roaming_summary">Подключаться к службам передачи данных в национальном роуминге</string>
 
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Расширенный рабочий стол</string>
+    <string name="expanded_desktop_disabled">Отключено</string>
+    <string name="expanded_desktop_statusbar">Спрятать статусбар</string>
+    <string name="expanded_desktop_navbar">Спрятать панель навигации</string>
+    <string name="expanded_desktop_both">Прятать все</string>
+    <string name="action_expanded_desktop_title">Расширенный рабочий стол</string>
+    <string name="action_expanded_desktop_on">Расшренный рабочий стол ВКЛЮЧЕН</string>
+    <string name="action_expanded_desktop_off">Расшренный рабочий стол ВЫКЛЮЧЕН</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">Снимок экрана</string>
+    
 </resources>
-
-
