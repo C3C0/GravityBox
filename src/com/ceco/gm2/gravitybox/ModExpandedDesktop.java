@@ -39,6 +39,9 @@ public class ModExpandedDesktop {
     private static int mExpandedDesktopMode;
     private static Unhook mNavbarShowLwHook;
     private static Unhook mStatusbarShowLwHook;
+    private static boolean mNavbarOverride;
+    private static float mNavbarHeightScaleFactor = 1;
+    private static float mNavbarWidthScaleFactor = 1;
 
     public static final String SETTING_EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
     public static final String SETTING_EXPANDED_DESKTOP_MODE = "expanded_desktop_mode";
@@ -80,6 +83,16 @@ public class ModExpandedDesktop {
                 Settings.System.putInt(mContext.getContentResolver(), 
                         SETTING_EXPANDED_DESKTOP_MODE, expandedDesktopMode);
             } else if (intent.getAction().equals(ModStatusbarColor.ACTION_PHONE_STATUSBAR_VIEW_MADE)) {
+                updateSettings(true);
+            } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_NAVBAR_CHANGED)) {
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_NAVBAR_HEIGHT)) {
+                    mNavbarHeightScaleFactor = 
+                            (float)intent.getIntExtra(GravityBoxSettings.EXTRA_NAVBAR_HEIGHT, 100) / 100f;
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_NAVBAR_WIDTH)) {
+                    mNavbarWidthScaleFactor = 
+                            (float)intent.getIntExtra(GravityBoxSettings.EXTRA_NAVBAR_WIDTH, 100) / 100f;
+                }
                 updateSettings(true);
             }
         }
@@ -143,16 +156,19 @@ public class ModExpandedDesktop {
 
                 navigationBarHeightForRotation[portraitRotation] =
                 navigationBarHeightForRotation[upsideDownRotation] =
-                    mContext.getResources().getDimensionPixelSize(resHeightId);
+                    (int) (mContext.getResources().getDimensionPixelSize(resHeightId)
+                    * mNavbarHeightScaleFactor);
                 navigationBarHeightForRotation[landscapeRotation] =
                 navigationBarHeightForRotation[seascapeRotation] =
-                    mContext.getResources().getDimensionPixelSize(resHeightLandscapeId);
+                    (int) (mContext.getResources().getDimensionPixelSize(resHeightLandscapeId)
+                    * mNavbarHeightScaleFactor);
 
                 navigationBarWidthForRotation[portraitRotation] =
                 navigationBarWidthForRotation[upsideDownRotation] =
                 navigationBarWidthForRotation[landscapeRotation] =
                 navigationBarWidthForRotation[seascapeRotation] =
-                    mContext.getResources().getDimensionPixelSize(resWidthId);
+                    (int) (mContext.getResources().getDimensionPixelSize(resWidthId)
+                    * mNavbarWidthScaleFactor);
             }
 
             XposedHelpers.setObjectField(mPhoneWindowManager, "mNavigationBarWidthForRotation", navigationBarWidthForRotation);
@@ -170,6 +186,14 @@ public class ModExpandedDesktop {
     public static void initZygote(final XSharedPreferences prefs) {
         try {
             final Class<?> classPhoneWindowManager = XposedHelpers.findClass(CLASS_PHONE_WINDOW_MANAGER, null);
+
+            mNavbarOverride = prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_OVERRIDE, false);
+            if (mNavbarOverride) {
+                mNavbarHeightScaleFactor = 
+                        (float) prefs.getInt(GravityBoxSettings.PREF_KEY_NAVBAR_HEIGHT, 100) / 100f;
+                mNavbarWidthScaleFactor = 
+                        (float) prefs.getInt(GravityBoxSettings.PREF_KEY_NAVBAR_WIDTH, 100) / 100f;
+            }
 
             if (Build.VERSION.SDK_INT > 16) {
                 XposedHelpers.findAndHookMethod(classPhoneWindowManager, "init",
@@ -401,6 +425,9 @@ public class ModExpandedDesktop {
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction(GravityBoxSettings.ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED);
                 intentFilter.addAction(ModStatusbarColor.ACTION_PHONE_STATUSBAR_VIEW_MADE);
+                if (mNavbarOverride) {
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_NAVBAR_CHANGED);
+                }
                 mContext.registerReceiver(mBroadcastReceiver, intentFilter);
 
                 mSettingsObserver = new SettingsObserver(

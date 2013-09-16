@@ -379,6 +379,28 @@
             android:title="@string/pref_navbar_enable_title"
             android:summary="@string/pref_navbar_enable_summary" />
 
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+            android:key="pref_navbar_height"
+            android:title="@string/pref_navbar_height_title"
+            android:summary="@string/pref_navbar_height_summary"
+            minimum="50"
+            maximum="150"
+            interval="1"
+            monitorBoxEnabled="true"
+            monitorBoxUnit="%"
+            android:defaultValue="100" />
+
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+            android:key="pref_navbar_width"
+            android:title="@string/pref_navbar_width_title"
+            android:summary="@string/pref_navbar_width_summary"
+            minimum="50"
+            maximum="150"
+            interval="1"
+            monitorBoxEnabled="true"
+            monitorBoxUnit="%"
+            android:defaultValue="100" />
+
     </PreferenceScreen>
 
     <PreferenceScreen
