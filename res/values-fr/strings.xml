@@ -73,6 +73,9 @@
     <string name="quick_settings_qr_recorded">Enregistré</string>
     <string name="quick_settings_qr_record">Appui long pour enregistrer</string>
     <string name="quick_settings_qr_recording_notif">Touchez pour stopper l\'enregistrement</string>
+    <string name="quick_settings_expanded_desktop_disabled">Désactivé</string>
+    <string name="quick_settings_expanded_desktop_normal">Normal</string>
+    <string name="quick_settings_expanded_desktop_expanded">Étendu</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Touches des paramètres rapides</string>
@@ -98,6 +101,7 @@
     <string name="qs_tile_quickrecord">Enregistrement rapide</string>
     <string name="qs_tile_settings">Réglages</string>
     <string name="qs_tile_volume">Volume</string>
+    <string name="qs_tile_expanded_desktop">Bureau étendu</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Sélecteur de couleur</string>
@@ -463,21 +467,51 @@
     <string name="pref_hwkey_home_longpress_title">Appui long touche Home</string>
 
     <!-- HW Key Action: Launch cutom app -->
-    <string name="hwkey_action_custom_app">Lancer l\'appli personnalisée</string>
-    <string name="pref_hwkey_custom_app_title">Définir l\'appli personnalisée</string>
+    <string name="hwkey_action_custom_app">Lancer l\'appli personnalisée 1</string>
+    <string name="pref_hwkey_custom_app_title">Définir l\'appli personnalisée 1</string>
+    <string name="hwkey_action_custom_app2">Lancer l\'appli personnalisée 2</string>
+    <string name="pref_hwkey_custom_app_title2">Définir l\'appli personnalisée 2</string>
     <string name="hwkey_action_custom_app_none">Aucune appli personnalisée attribuée !</string>
     <string name="hwkey_action_custom_app_missing">Appli personnalisée introuvable !</string>
 
     <!-- Link notification panel clock to Deskclock -->
-    <string name="pref_clock_link_title">Lien vers Horloge</string>
-    <string name="pref_clock_link_summary">Crée un lien du panneau de notification vers l\'appli Horloge au lieu des paramètres Date et Heure</string>
+    <string name="pref_clock_link_title">Appli horloge depuis panneau de notification</string>
+    <string name="pref_clock_link_summary">Crée un lien du panneau de notification vers une application spécifique au lieu des paramètres Date et Heure</string>
 
     <!-- GravityBox settings startup handling -->
     <string name="gb_startup_progress">Attente d\'une réponse de la branche système de GravityBox&#8230;</string>
-    <string name="gb_startup_error">La branche système de GravityBox ne répond pas. Sortie</string>
+    <string name="gb_startup_error">La branche système de GravityBox ne répond pas. Fin de tâche</string>
 
     <!-- National data roaming -->
     <string name="pref_national_roaming_title">Itinérance de données nationale</string>
     <string name="pref_national_roaming_summary">Se connecter aux services de données en itinérance nationale</string>
+
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Mode bureau étendu</string>
+    <string name="expanded_desktop_disabled">Désactivé</string>
+    <string name="expanded_desktop_statusbar">Masquer la barre de statuT</string>
+    <string name="expanded_desktop_navbar">Masquer la barre de navigation</string>
+    <string name="expanded_desktop_both">Masquer les deux</string>
+    <string name="action_expanded_desktop_title">Bureau étendu</string>
+    <string name="action_expanded_desktop_on">Bureau étendu : ON</string>
+    <string name="action_expanded_desktop_off">Bureau étendu : OFF</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">Capture d\'écran</string>
+
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">Afficher le menu</string>
+
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">Basculer vers bureau étendu</string>
+    <string name="hwkey_action_expanded_desktop_disabled">Le mode bureau étendu est désactivé !</string>
+
+    <!-- Navigation bar tweaks category -->
+    <string name="pref_cat_navigation_bar_title">Modifications barre de navigation</string>
+    <string name="pref_cat_navigation_bar_summary">Contient diverses modifications liées à la barre de navigation</string>
+    <string name="pref_navbar_override_title">Remplace les paramètres système par défaut</string>
+    <string name="pref_navbar_override_summary">Interrupteur général pour les modifications de la barre de navigation</string>
+    <string name="pref_navbar_enable_title">Activer la barre de navigation</string>
+    <string name="pref_navbar_enable_summary">Nécessite un redémarrage</string>
 
 </resources>
