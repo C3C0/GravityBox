@@ -364,6 +364,24 @@
     </PreferenceScreen>
 
     <PreferenceScreen
+        android:key="pref_cat_navigation_bar"
+        android:title="@string/pref_cat_navigation_bar_title"
+        android:summary="@string/pref_cat_navigation_bar_summary">
+
+        <CheckBoxPreference 
+            android:key="pref_navbar_override"
+            android:title="@string/pref_navbar_override_title"
+            android:summary="@string/pref_navbar_override_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
+            android:key="pref_navbar_enable"
+            android:title="@string/pref_navbar_enable_title"
+            android:summary="@string/pref_navbar_enable_summary" />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen
         android:key="pref_cat_power"
         android:title="@string/pref_cat_power_title"
         android:summary="@string/pref_cat_power_summary">
