@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">电量指示图桉样式</string>	
+    <string name="battery_style_stock">原厂电量指示图桉</string>
+    <string name="battery_style_circle">圆形电量图示（不包含百分比）</string>
+    <string name="battery_style_circle_percent">圆形电量图示（包含百分比）</string>
+    <string name="battery_style_percent">电量百分比文字</string>
+    <string name="battery_style_none">无</string>
+
+    <string name="vol_music_controls_title">音量键跳过曲目</string>
+    <string name="vol_music_controls_summary">当萤幕关闭时，长按音量键以跳过曲目</string>
+
+    <string name="low_battery_warning_policy_title">低电量警告</string>
+    <string name="low_battery_warning_full">弹出视窗以及音效</string>
+    <string name="low_battery_warning_popup">仅弹出视窗</string>
+    <string name="low_battery_warning_sound">仅音效</string>
+    <string name="low_battery_warning_off">关闭</string>
+
+    <string name="reboot_required">重新启动以后才会套用更动</string>
+
+    <string name="signal_icon_autohide_title">自动隐藏讯号强度图示</string>
+    <string name="signal_icon_autohide_summary">隐藏指定 SIM 卡槽的讯号强度图示（若该卡槽未插入 SIM 卡时）、停用「SIM 卡未插入」提醒</string>
+    <string name="sim_slot_1">自动隐藏 SIM 卡槽 1</string>
+    <string name="sim_slot_2">自动隐藏 SIM 卡槽 2</string>
+    <string name="sim_disable_notifications">关闭提醒</string>
+    <string name="sim_disable_notifications_summary">「SIM 卡未插入」提醒已停用</string>
+
+    <string name="poweroff_advanced_title">进阶重新启动选单</string>
+    <string name="poweroff_advanced_summary">启用有重新启动至 Recovery 选项的进阶重新启动选单</string>
+    <string name="poweroff_recovery">Recovery</string>
+    <string name="poweroff_bootloader">Bootloader</string>
+
+    <string name="vol_key_cursor_control_title">音量键游标控制</string>
+    <string name="vol_key_cursor_control_summary">在文字输入区域内，以音量键控制游标位置</string>
+    <string name="vol_key_cursor_control_off">停用</string>
+    <string name="vol_key_cursor_control_on">音量增/减钮控制游标向左/向右</string>
+    <string name="vol_key_cursor_control_on_reverse">音量增/减钮控制游标向右/向左</string>
+
+    <string name="recents_clear_all_title">清除全部最近使用的应用程式</string>
+
+    <string name="fix_datetime_crash_title">修正「日期与时间设定」错误</string>
+    <string name="fix_datetime_crash_summary">当您进入日期与时间设定时发生错误时，启用这个选项（需要重新启动）</string>
+
+    <string name="fix_caller_id_phone_title">修正通话的来电显示</string>
+    <string name="fix_caller_id_phone_summary">若您来电画面上显示的联络人与您的通讯录不合，启用这个选项（需要重新启动）</string>
+    <string name="fix_caller_id_phone_alert">为了让更动生效，您应该在重新启动后删除并重新添加所有联络人！（请于 设定>应用程式>全部 分页中找寻「联络人」应用程式并且选择清除资料）</string>
+
+    <string name="fix_caller_id_mms_title">修正简讯的来电显示</string>
+    <string name="fix_caller_id_mms_summary">如果来自同一个人的简讯被分成不同的会话串，启用这个选项（需要重新启动）</string>
+    <string name="fix_caller_id_mms_alert">为了让更动生效，您应该在重新启动后，于「讯息」应用程式内删除全部被拆散的会话串！</string>
+
+    <string name="fix_calendar_title">修正「行事曆」应用程式</string>
+    <string name="fix_calendar_summary">若您週期性地遇到萤幕自动开启时，启用这个选项（需要重新启动）</string>
+
+    <string name="important">重要</string>
+
+    <string name="caller_fullscreen_photo_title">全萤幕的来电者相片</string>
+    <string name="caller_fullscreen_photo_summary">在来电画面内显示来电者的全萤幕相片</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">同步处理开启</string>
+    <string name="quick_settings_sync_off">同步处理关闭</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP 开启</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP 关闭</string>
+    <string name="quick_settings_torch_on">手电筒开启</string>
+    <string name="quick_settings_torch_off">手电筒关闭</string>
+    <string name="quick_settings_torch_off_notif">按下以关闭</string>
+	  <string name="quick_settings_qr_playing">播放中&#8230;</string>
+    <string name="quick_settings_qr_recording">录音中&#8230;</string>
+    <string name="quick_settings_qr_recorded">已录音</string>
+    <string name="quick_settings_qr_record">长按以录音</string>
+    <string name="quick_settings_qr_recording_notif">按下以停止录音</string>
+    <string name="quick_settings_expanded_desktop_disabled">关闭</string>
+    <string name="quick_settings_expanded_desktop_normal">正常</string>
+    <string name="quick_settings_expanded_desktop_expanded">开启</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">状态列快速设定磁贴</string>
+    <string name="quick_settings_summary">可以设定状态列的快速设定内，各个磁贴选项的显示或隐藏</string>
+    <string name="qs_tile_user_profile">拥有者</string>
+    <string name="qs_tile_airplane_mode">飞航模式</string>
+    <string name="qs_tile_battery">电池状态</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">蓝牙</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">资料连结</string>
+    <string name="qs_tile_network_mode">网路模式</string>
+    <string name="qs_tile_data_usage">资料用量</string>
+	  <string name="qs_tile_audio">情境模式</string>
+    <string name="qs_tile_brightness">亮度</string>
+    <string name="qs_tile_screen_timeout">休眠</string>
+    <string name="qs_tile_autorotation">自动旋转</string>
+    <string name="qs_tile_sync">同步功能</string>
+    <string name="qs_tile_wifi_ap">Wi-Fi 存取点</string>
+    <string name="qs_tile_torch">手电筒</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">关闭萤幕</string>
+    <string name="qs_tile_quickrecord">快速录音</string>
+    <string name="qs_tile_settings">设定</string>
+    <string name="qs_tile_volume">音量</string>
+    <string name="qs_tile_expanded_desktop">全萤幕功能</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">颜色选择器</string>
+    <string name="press_color_to_apply">在颜色上按下以套用</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">状态列背景颜色</string>
+    <string name="statusbar_bgcolor_summary">可在此设定状态列的背景颜色与透明度</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">修正语音设定</string>
+    <string name="fix_tts_settings_summary">解锁位在语言与输入设定内的「文字转语音输出」设定（需要重新启动）</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">进阶的开发人员选项</string>
+    <string name="fix_dev_opts_summary">解锁进阶的开发人员选项（需要重新启动）</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">状态列调校</string>
+    <string name="pref_cat_statusbar_summary">包含各种状态列的调校选项</string>
+    <string name="pref_cat_misc_title">杂项</string>
+    <string name="pref_cat_misc_summary">包含所有不属于特定类别的调校选项</string>
+    <string name="pref_cat_fixes_title">通用修正</string>
+    <string name="pref_cat_fixes_summary">包含 MTK6589 通用的修正。请只在有需要时使用。</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">关于</string>
+    <string name="about_gb_summary">由 C3C076@XDA 编写。点选此处以拜访官方的讨论串。</string>
+    <string name="about_xposed_title">Xposed 框架</string>
+    <string name="about_xposed_summary">由 rovo89@XDA 编写。点选此处以拜访官方的讨论串。</string>
+    <string name="about_donate_title">捐助</string>
+    <string name="about_donate_summary">若您觉得这个 app 好用的话，请贊助我！也请考虑捐助给编写出优秀的 Xposed 框架的 rovo89。</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">您的 %s 将重新启动</string>
+    <string name="reboot_confirm_recovery">您的 %s 将重新启动至 Recovery</string>
+    <string name="reboot_confirm_bootloader">您的 %s 将重新启动至 Bootloader</string>
+
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">CRT 萤幕关闭特效</string>
+    <string name="crt_off_effect_summary">当萤幕关闭时，使用旧式 CRT 萤幕关闭时的特效</string>
+
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">工程模式</string>
+    <string name="engineering_mode_summary">启动「工程模式」应用程式</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">双 SIM 卡铃声</string>
+    <string name="dual_sim_ringer_summary">启动可以设定各个 SIM 卡的铃声与通知音效的应用程式</string>
+
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">锁定画面调校</string>
+    <string name="pref_cat_lockscreen_summary">包含各种锁定画面的调校选项</string>
+    <string name="pref_cat_lockscreen_background_title">锁定画面背景</string>
+    <string name="pref_lockscreen_background_title">背景样式</string>
+    <string name="lockscreen_bg_default">预设桌布</string>
+    <string name="lockscreen_bg_color">纯色</string>
+    <string name="lockscreen_bg_image">自订图桉</string>
+    <string name="pref_lockscreen_bg_color_title">设定自订颜色</string>
+    <string name="pref_lockscreen_bg_color_summary">可以为锁定画面设定自订的背景颜色</string>
+    <string name="pref_lockscreen_bg_image_title">设定自订影像</string>
+    <string name="pref_lockscreen_bg_image_summary">可以为锁定画面设定自订的背景影像</string>
+    <string name="lockscreen_background_result_successful">背景已更改</string>
+    <string name="lockscreen_background_result_not_successful">背景未更改</string>
+    <string name="pref_cat_lockscreen_other_title">其他</string>
+    <string name="pref_lockscreen_maximize_widgets_title">最大化小工具</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">若启用这个选项，锁定画面的小工具预设都会被最大化</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">电源调校</string>
+    <string name="pref_cat_power_summary">包含各种电源相关的调校选项</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">停用 LED 闪烁</string>
+    <string name="pref_flashing_led_disable_summary">停掉当低电量且未充电时会出现的扰人 LED 闪烁</string>
+
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">显示调校</string>
+    <string name="pref_cat_display_summary">包含各种显示相关的调校选项</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">最低亮度层级</string>
+    <string name="pref_brightness_min_summary">可以设定最低的亮度层级。在手动设定亮度时适用。（需要重新启动）</string>
+    <string name="pref_brightness_dlg_msg">设定值的范围：10 &#8211; 80</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">自动亮度层级</string>
+    <string name="pref_ab_summary">可以设置环境的亮度层级与相对应的 LCD 背光值</string>
+    <string name="level">层级</string>
+    <string name="pref_ab_lux_max_label">最大照度（lux）</string>
+    <string name="pref_ab_brighness_label">亮度（10 &#8211; 255）</string>
+    <string name="pref_ab_number_error_general">指定的值不被接受</string>
+    <string name="pref_ab_brightness_too_low">不建议将亮度设为 10 以下</string>
+    <string name="pref_ab_brightness_too_high">亮度无法大于 255</string>
+    <string name="pref_ab_number_error_negative">值无法低于 0</string>
+    <string name="pref_ab_number_not_ascending">较低层级的值无法大于较高层级的值</string>
+    <string name="pref_ab_number_not_descending">较高层级的值无法小于较低层级的值</string>
+    <string name="pref_ab_values_set">已设定%s 的值</string>
+    <string name="pref_ab_config_saved">已储存新的自动亮度组态</string>
+    <string name="pref_ab_config_cancelled">「没有」储存新的自动亮度组态</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">启用锁定画面旋转</string>
+    <string name="pref_lockscreen_rotation_summary">警告：若 AOSP 的锁定萤幕曾被厂商修改，某些装置的解锁环目标可能遭到互换</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">启用选单键</string>
+    <string name="pref_lockscreen_menu_key_summary">令选单键在锁定画面可以用来快速地解锁装置（需要重新启动）</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">修正讯息的唤醒锁</string>
+    <string name="pref_mms_fix_wakelock_summary">避免在收到新讯息时唤醒萤幕（需要重新启动）</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">时钟置中</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">媒体调校</string>
+    <string name="pref_cat_media_summary">包含各种媒体与声音系统的调校选项</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">更多音乐音量的调整段数</string>
+    <string name="pref_music_volume_steps_summary">为音乐串流添加更多的音量调整段数（需要重新启动）</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">安全的耳机媒体音量</string>
+    <string name="pref_safe_media_volume_summary">启用或停用安全的耳机媒体音量功能</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">停用充电 LED 灯号</string>
+    <string name="pref_charging_led_disable_summary">停用当充电时会亮起的 LED 灯号</string>
+
+    <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">实体按键动作</string>
+    <string name="pref_cat_hwkey_actions_summary">可在此为实体按键设定自订的动作</string>
+    <string name="pref_hwkey_menu_longpress_title">选单键长按动作</string>
+    <string name="pref_hwkey_menu_doubletap_title">选单键双击动作</string>
+    <string name="pref_hwkey_back_longpress_title">返回键长按动作</string>
+    <string name="hwkey_action_default">预设</string>
+    <string name="hwkey_action_search">搜寻</string>
+    <string name="hwkey_action_voice_search">语音搜寻</string>
+    <string name="hwkey_action_prev_app">切换至上一个应用程式</string>
+    <string name="hwkey_action_kill">结束正在使用的应用程式</string>
+	  <string name="hwkey_action_sleep">使装置休眠</string>
+    <string name="pref_hwkey_kill_delay_title">结束应用程式的长按延迟</string>
+    <string name="pref_hwkey_kill_delay_summary">适用于「结束正在使用的应用程式」动作。定义按键需要按下持续多久才会触发动作</string>
+    <string name="pref_hwkey_doubletap_speed_title">双击速度</string>
+    <string name="pref_hwkey_doubletap_speed_summary">适用于选单键的双击动作。定义按键需要在多少时间内连续按两下才会触发动作</string>
+    <string name="app_killed">应用程式已结束</string>
+    <string name="nothing_to_kill">无应用程式可结束</string>
+    <string name="no_previous_app_found">找不到上一个应用程式</string>
+
+    <!--  Phone tweaks category -->
+    <string name="pref_cat_phone_title">电话调校</string>
+    <string name="pref_cat_phone_summary">包含各种通话的调校选项</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">响铃时的手机翻转动作</string>
+    <string name="pref_phone_flip_summary">可定义在响铃时，翻转使得萤幕向下时执行的动作</string>
+    <string name="phone_flip_action_none">无</string>
+    <string name="phone_flip_action_mute">铃声静音</string>
+    <string name="phone_flip_action_dismiss">拒接电话</string>
+
+    <!-- Disable vibrate on call connect -->
+    <string name="pref_phone_call_connect_vibrate_disable_title">停用接通时的震动</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">停用在通话接通时所触发的震动</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">软重启</string>
+
+	  <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">纯黑色背景</string>
+    <string name="pref_holo_bg_solid_black_summary">在预设的 Holo 系统内建佈景主题内使用纯黑色的背景，而不是黑-灰色的渐层（需要重新启动）</string>
+
+	  <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">每列磁贴数</string>
+    <string name="pref_qs_tiles_per_row_summary">定义快速设定内每列有几个磁贴。磁贴会根据您的设定自动缩放。适用于竖屏。</string>
+ 
+	  <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">显示目前是一週的哪一天</string>
+    
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">可扩展音量面板</string>
+    <string name="pref_volume_panel_expandable_summary">启用此选项使您可以调整不同串流的音量</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">将铃声音量与通知音量连结</string>
+    <string name="pref_link_volumes_summary">当启用时，铃声音量与通知音量将可以分别调整</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">自动切换快速选单</string>
+    <string name="pref_auto_switch_qs_summary">当没有通知时，下拉状态列自动切换成快速设定选单</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">快速设定选单下拉位置</string>
+    <string name="pref_quick_pulldown_summary">选择下拉状态列边缘启用快速选单的位置</string>
+    <string name="quick_pulldown_off">关闭</string>
+    <string name="quick_pulldown_right">右边</string>
+    <string name="quick_pulldown_left">左边</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">关闭音量键唤醒萤幕</string>
+    <string name="pref_volume_rocker_wake_disable_summary">佳域 G3s 和 G4 的实体音量键会唤醒萤幕</string>
+
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">状态列颜色</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">开启更改状态列图示颜色</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">状态列图示颜色</string>
+    <string name="pref_statusbar_icon_color_summary">设定状态列图示和时钟的颜色</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">资料传输颜色</string>
+    <string name="pref_statusbar_data_activity_color_summary">设定传输资料时的颜色</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">管理快速设定选单</string>
+
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">通知列样式</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">通知列背景</string>
+    <string name="notif_background_default">预设背景</string>
+    <string name="notif_background_color_fill">纯色</string>
+    <string name="notif_background_custom_image">自订图桉</string>
+    <string name="pref_notif_color_title">设定背景颜色</string>
+    <string name="pref_notif_image_portrait_title">设定直向图片</string>
+    <string name="pref_notif_image_landscape_title">设定横向图片</string>
+    <string name="pref_notif_background_alpha_title">背景透明度</string>
+    <string name="pref_notif_color_mode_title">背景模式</string>
+    <string name="color_fill_overlay">叠加</string>
+    <string name="color_fill_underlay">衬底</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">隐藏漫游指示</string>
+    <string name="pref_disable_roaming_indicators_summary">当隐藏时，漫游指示器上的 R 会消失，请小心使用</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">充电中 (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">电量已满</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% remaining</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">没有服务</string>
+    <string name="pie_phone_status_airplane_mode">飞航模式启用</string>
+    <string name="pie_phone_status_emergency_only">仅能拨打紧急电话</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">Pie Controls</string>
+    <string name="pie_control_enable_title">启用 Pie Controls</string>
+    <string name="pie_control_search_title">显示搜寻按键</string>
+    <string name="pie_control_size_title">导航键大小</string>
+    <string name="pie_control_trigger_positions_title">触发位置</string>
+    <string name="pie_control_trigger_left">萤幕左边缘</string>
+    <string name="pie_control_trigger_bottom">萤幕下边缘</string>
+    <string name="pie_control_trigger_right">萤幕右边缘</string>
+    <string name="pie_control_trigger_top">萤幕上边缘</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">背光灯行为模式</string>
+    <string name="button_backlight_mode_default">预设</string>
+    <string name="button_backlight_mode_disable">关闭背光灯</string>
+    <string name="button_backlight_mode_always_on">当萤幕唤醒时背光灯永远打开</string>
+    <string name="pref_button_backlight_notifications_title">背光灯通知效果</string>
+    <string name="pref_button_backlight_notifications_summary">这个设定是实验性的！当收到通知时背光灯会闪烁提醒。建议当您的装置没有 LED 通知灯时才开启，此功能可能会消耗部分电量</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">隐藏海苔条</string>
+    <string name="pref_navbar_disable_summary">当 Pie Controls 启用时隐藏海苔条（需要重新启动）</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">优化 Holo 背景</string>
+    <string name="pref_holo_bg_dither_summary">取代原本不完美渐层的预设 Holo 黑-灰色背景（需要重新启动）</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">关闭实体按键</string>
+    <string name="pref_hwkeys_disable_summary">当 Pie Controls 启用时将会关闭选单键、返回键与 HOME 键功能，但是实体按键功能仍可使用（如果您的装置有实体按键）</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">使用 Holo 黑色背景主题</string>
+    <string name="pref_gb_theme_dark_summary">将 GravityBox 的 Holo 白色背景主题换成 Holo 黑色背景主题</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">关闭</string>
+    <string name="recent_clear_top_left">左上角</string>
+    <string name="recent_clear_top_right">右上角</string>
+    <string name="recent_clear_bottom_left">左下角</string>
+    <string name="recent_clear_bottom_right">右下角</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Adjust top margin</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">关闭漫游警告</string>
+    <string name="pref_roaming_warning_disable_summary">关闭当漫游时传送讯息或拨打电话的警告</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">搜寻</string>
+    <string name="app_picker_none">(无)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">快速应用程式选单</string>
+    <string name="pref_cat_quickapp_tile_title">快速应用程式选单设定</string>
+    <string name="pref_quickapp_default_title">主要应用程式</string>
+    <string name="pref_quickapp_slot1_title">长按应用程式槽 1</string>
+    <string name="pref_quickapp_slot2_title">长按应用程式槽 2</string>
+    <string name="pref_quickapp_slot3_title">长按应用程式槽 3</string>
+    <string name="pref_quickapp_slot4_title">长按应用程式槽 4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">开启 GPS</string>
+    <string name="qs_tile_gps_disabled">关闭 GPS</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">总是显示选单按键</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">铃声模式</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">时钟设定</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">隐藏 AM/PM</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">隐藏时钟</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">触发位置大小</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">透明度调整</string>
+    <string name="pref_tm_statusbar_launcher_title">启动器下的状态列透明度</string>
+    <string name="pref_tm_statusbar_lockscreen_title">锁定画面时的状态列透明度</string>
+    <string name="pref_tm_navbar_launcher_title">启动器下的海苔条透明度</string>
+    <string name="pref_tm_navbar_lockscreen_title">锁定画面时的海苔条透明度</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">隐藏闹钟图示</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Screen dim level</string>
+    <string name="pref_screen_dim_level_summary">Amount of brightness for dim state - when screen is about to be turned off (requires reboot)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">手机</string>
+    <string name="device_tablet">平板</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">亮度设定</string>
+    <string name="pref_brightness_master_switch_title">启用亮度设定</string>
+    <string name="pref_brightness_master_switch_summary">这个功能只能在您的手机支援标准的 Android 亮度调整才启用。如果您遇到任何亮度问题请关闭此选项（需要重新启动）</string>
+
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">显示最近使用的应用程式</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">长按 HOME 键动作</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">执行自订的应用程式 1</string>
+    <string name="pref_hwkey_custom_app_title">设定自订应用程式 1</string>
+    <string name="hwkey_action_custom_app2">执行自订的应用程式 2</string>
+    <string name="pref_hwkey_custom_app_title2">设定自订应用程式 2</string>
+    <string name="hwkey_action_custom_app_none">没有指定应用程式!</string>
+    <string name="hwkey_action_custom_app_missing">未找到自订应用程式!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">与「时钟」应用程式做连结</string>
+    <string name="pref_clock_link_summary">启用此功能后状态列的时间将与应用程式「时钟」做连结而非原本「日期与时间设定」</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">等待 GravityBox 系统框架的回应&#8230;</string>
+    <string name="gb_startup_error">GravityBoy 系统框架无反应。离开中</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">National data roaming</string>
+    <string name="pref_national_roaming_summary">Connect to data services when nationally roaming</string>
+    
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">全萤幕模式</string>
+    <string name="expanded_desktop_disabled">关闭</string>
+    <string name="expanded_desktop_statusbar">隐藏状态列</string>
+    <string name="expanded_desktop_navbar">隐藏海苔条</string>
+    <string name="expanded_desktop_both">隐藏状态列与海苔条</string>
+    <string name="action_expanded_desktop_title">全萤幕功能</string>
+    <string name="action_expanded_desktop_on">全萤幕功能现在为开启状态</string>
+    <string name="action_expanded_desktop_off">全萤幕功能现在为关闭状态</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">萤幕截图</string>
+
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">显示选单</string>
+
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">切换全萤幕功能</string>
+    <string name="hwkey_action_expanded_desktop_disabled">全萤幕模式已关闭！</string>
+
+    <!-- Navigation bar tweaks category -->
+    <string name="pref_cat_navigation_bar_title">海苔条调教</string>
+    <string name="pref_cat_navigation_bar_summary">包含各种关于海苔条的调教</string>
+    <string name="pref_navbar_override_title">复盖系统预设值</string>
+    <string name="pref_navbar_override_summary">新增海苔条调教的主控键（需要重新启动）</string>
+    <string name="pref_navbar_enable_title">启用海苔条功能</string>
+    <string name="pref_navbar_enable_summary">需要重新启动</string>
+    <string name="pref_navbar_height_title">海苔条高度</string>
+    <string name="pref_navbar_height_summary">应用于当萤幕呈现直立方向</string>
+    <string name="pref_navbar_width_title">海苔条宽度</string>
+    <string name="pref_navbar_width_summary">应用于当萤幕呈现横放方向</string>
+    <string name="pref_navbar_menukey_title">永远显示选单键</string>
+
+</resources>
