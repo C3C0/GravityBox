@@ -1,3 +1,29 @@
+Changelog 2.4.0 - 17/09/2013
+--------------------------------------
+- Expanded desktop:
+--- 4 modes: disabled, hide statusbar, hide navigation bar, hide both
+--- Power menu action for expanded desktop toggling
+--- QuickSettings tile for expanded desktop toggling
+--- hardware key action for expanded desktop toggling
+- Battery styles: improved compatibility with custom ROMs and 3rd party battery mods
+- Fixed blank display issue for Android 4.1 devices
+- Option to link notification panel clock to any app (specified by user)
+- Additional custom app for hardware key actions
+- Added Screenshot action to power menu
+- Hardware key actions:
+--- action for invoking menu (mimics menu key)
+--- action for toggling expanded desktop
+- Navigation bar tweaks
+--- Enable/disable navigation bar
+--- Option to set navbar height (for portrait mode)
+--- Option to set navbar width (for landscape mode)
+--- Option to always show menu key
+- Potential fix of Expandable Volume Panel for S4 GE devices (needs testing)
+- Updated French translations (thanks to ch-vox)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+- Updated Indonesian translations (thanks to awaaas)
+- Updated Chinese translations (thanks to jwchen119)
+
 Changelog 2.3.1 - 10/09/2013
 --------------------------------------
 - improved AppPickerPreference to support larger number of installed apps (thanks sag999 for testing)
