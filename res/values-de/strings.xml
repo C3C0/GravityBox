@@ -445,6 +445,10 @@
     <string name="pref_screen_dim_level_title">Screen dim level</string>
     <string name="pref_screen_dim_level_summary">Amount of brightness for dim state - when screen is about to be turned off (requires reboot)</string>
 
+    <!-- Device type -->
+    <string name="device_phone">Telefon</string>
+    <string name="device_tablet">Tablet</string>
+    
     <!-- Expanded Desktop -->
     <string name="pref_expanded_desktop_title">Expanded desktop mode</string>
     <string name="expanded_desktop_disabled">Disabled</string>
