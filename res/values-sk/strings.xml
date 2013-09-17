@@ -72,6 +72,9 @@
     <string name="quick_settings_qr_recorded">Zaznamenané</string>
     <string name="quick_settings_qr_record">Podržte pre záznam</string>
     <string name="quick_settings_qr_recording_notif">Dotykom zastavíte záznam</string>
+    <string name="quick_settings_expanded_desktop_disabled">Vypnuté</string>
+    <string name="quick_settings_expanded_desktop_normal">Normálna plocha</string>
+    <string name="quick_settings_expanded_desktop_expanded">Rozšírená plocha</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Dlaždice QuickSettings panelu</string>
@@ -95,6 +98,8 @@
     <string name="qs_tile_gravitybox">GravityBox</string>
     <string name="qs_tile_sleep">Uspať</string>
     <string name="qs_tile_quickrecord">Rýchly záznam zvuku</string>
+    <string name="qs_tile_volume">Hlasitosť</string>
+    <string name="qs_tile_expanded_desktop">Rozšírená plocha</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Výber farby</string>
@@ -473,5 +478,38 @@
     <!-- National data roaming -->
     <string name="pref_national_roaming_title">Národný dátový roaming</string>
     <string name="pref_national_roaming_summary">Povolí dátové služby počas národného roamingu</string>
+
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Režim rozšírenej plochy</string>
+    <string name="expanded_desktop_disabled">Vypnuté</string>
+    <string name="expanded_desktop_statusbar">Skryť stavový riadok</string>
+    <string name="expanded_desktop_navbar">Skryť navigačnú lištu</string>
+    <string name="expanded_desktop_both">Skryť stavový riadok aj navigačnú lištu</string>
+    <string name="action_expanded_desktop_title">Rozšírená plocha</string>
+    <string name="action_expanded_desktop_on">Rozšírená plocha je ZAP</string>
+    <string name="action_expanded_desktop_off">Rozšírená plocha je VYP</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">Screenshot</string>
+
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">Vyvolať menu</string>
+
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">Prepnúť rozšírenie plochy</string>
+    <string name="hwkey_action_expanded_desktop_disabled">Režim rozšírenej plochy je vypnutý!</string>
+
+    <!-- Navigation bar tweaks category -->
+    <string name="pref_cat_navigation_bar_title">Nastavenia navigačnej lišty</string>
+    <string name="pref_cat_navigation_bar_summary">Obsahuje rôzne nastavenia týkajúce sa navigačnej lišty</string>
+    <string name="pref_navbar_override_title">Obísť systémové nastavenia</string>
+    <string name="pref_navbar_override_summary">Hlavný prepínač pre povolenie nastavení navigačnej lišty (vyžaduje reštart)</string>
+    <string name="pref_navbar_enable_title">Povoliť navigačnú lištu</string>
+    <string name="pref_navbar_enable_summary">Vyžaduje reštart</string>
+    <string name="pref_navbar_height_title">Výška navigačnej lišty</string>
+    <string name="pref_navbar_height_summary">Pre orientáciu na výšku</string>
+    <string name="pref_navbar_width_title">Šírka navigačnej lišty</string>
+    <string name="pref_navbar_width_summary">Pre orientáciu na šírku</string>
+    <string name="pref_navbar_menukey_title">Vždy zobraziť menu tlačidlo</string>
 
 </resources>
