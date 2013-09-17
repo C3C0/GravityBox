@@ -73,6 +73,9 @@
     <string name="quick_settings_qr_recorded">Direkam</string>
     <string name="quick_settings_qr_record">Tahan untuk merekam</string>
     <string name="quick_settings_qr_recording_notif">Sentuh untuk berhenti merekam</string>
+    <string name="quick_settings_expanded_desktop_disabled">Dimatikan</string>
+    <string name="quick_settings_expanded_desktop_normal">Normal</string>
+    <string name="quick_settings_expanded_desktop_expanded">Diperluas</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Kotak-kotak QuickSettings Statusbar</string>
@@ -97,6 +100,8 @@
     <string name="qs_tile_sleep">Matikan layar</string>
     <string name="qs_tile_quickrecord">Rekam Cepat</string>
     <string name="qs_tile_settings">Setting</string>
+    <string name="qs_tile_volume">Volume</string>
+    <string name="qs_tile_expanded_desktop">Perluasan Desktop</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Pilihan Warna</string>
@@ -133,6 +138,7 @@
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">%s anda akan reboot</string>
     <string name="reboot_confirm_recovery">%s anda akan reboot ke recovery</string>
+    <string name="reboot_confirm_bootloader">%s anda akan reboot ke bootloader</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Animasi layar mati CRT</string>
@@ -463,6 +469,8 @@
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">Jalankan aplikasi kustom</string>
     <string name="pref_hwkey_custom_app_title">Tetapkan aplikasi kustom</string>
+    <string name="hwkey_action_custom_app2">Jalankan aplikasi kustom2</string>
+    <string name="pref_hwkey_custom_app_title2">Tetapkan aplikasi kustom 2</string>
     <string name="hwkey_action_custom_app_none">Tidak ada aplikasi kustom yang ditetapkan!</string>
     <string name="hwkey_action_custom_app_missing">Aplikasi kustom tidak ditemukan!</string>
 
@@ -477,5 +485,38 @@
     <!-- National data roaming -->
     <string name="pref_national_roaming_title">Roaming paket data nasional</string>
     <string name="pref_national_roaming_summary">Koneksikan paket data ketika sedang roaming nasional</string>
+
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Mode perluasan desktop</string>
+    <string name="expanded_desktop_disabled">Dimatikan</string>
+    <string name="expanded_desktop_statusbar">Sembunyikan statusbar</string>
+    <string name="expanded_desktop_navbar">Sembunyikan navigation bar</string>
+    <string name="expanded_desktop_both">Sembunyikan keduanya</string>
+    <string name="action_expanded_desktop_title">Perluasan desktop</string>
+    <string name="action_expanded_desktop_on">Perluasan desktop HIDUP</string>
+    <string name="action_expanded_desktop_off">Perluasan desktop MATI</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">Screenshot</string>
+
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">Tampilkan menu</string>
+
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">Ubah mode perluasan desktop</string>
+    <string name="hwkey_action_expanded_desktop_disabled">Perluasan dekstop dimatikan!</string>
+
+    <!-- Navigation bar tweaks category -->
+    <string name="pref_cat_navigation_bar_title">Tweak navigation bar</string>
+    <string name="pref_cat_navigation_bar_summary">Memuat berbagai tweak yang berkaitan dengan navigation bar</string>
+    <string name="pref_navbar_override_title">Acuhkan aturan bawaan sistem</string>
+    <string name="pref_navbar_override_summary">Tombol utama untuk tweak navigation bar (membutuhkan restart)</string>
+    <string name="pref_navbar_enable_title">Hidupkan navigation bar</string>
+    <string name="pref_navbar_enable_summary">Membutuhkan reboot</string>
+    <string name="pref_navbar_height_title">Tinggi navigation bar</string>
+    <string name="pref_navbar_height_summary">Berlaku untuk orientasi potret/berdiri</string>
+    <string name="pref_navbar_width_title">Lebar navigation bar</string>
+    <string name="pref_navbar_width_summary">Berlaku untuk orientasi lanskap/tidur</string>
+    <string name="pref_navbar_menukey_title">Selalu tampilkan tombol menu</string>
 
 </resources>
