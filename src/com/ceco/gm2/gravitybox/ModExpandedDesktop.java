@@ -43,8 +43,8 @@ public class ModExpandedDesktop {
     private static float mNavbarHeightScaleFactor = 1;
     private static float mNavbarWidthScaleFactor = 1;
 
-    public static final String SETTING_EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
-    public static final String SETTING_EXPANDED_DESKTOP_MODE = "expanded_desktop_mode";
+    public static final String SETTING_EXPANDED_DESKTOP_STATE = "gravitybox_expanded_desktop_state";
+    public static final String SETTING_EXPANDED_DESKTOP_MODE = "gravitybox_expanded_desktop_mode";
     private static final int SEND_NEW_CONFIGURATION = 18;
 
     private static void log(String message) {
