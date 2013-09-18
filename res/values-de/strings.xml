@@ -96,6 +96,7 @@
     <string name="qs_tile_sleep">Schlafmodus</string>
     <string name="qs_tile_quickrecord">Aufnahme</string>
     <string name="qs_tile_settings">Einstellungen</string>
+    <string name="qs_tile_expanded_desktop">Erweiterter Desktop</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
@@ -130,8 +131,8 @@
     <string name="about_donate_summary">Donate to me if you think this app is worth it! Also consider donating to rovo89 for his excellent Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Your %s will reboot</string>
-    <string name="reboot_confirm_recovery">Your %s will reboot into recovery</string>
+    <string name="reboot_confirm">%s wird neu gestartet.</string>
+    <string name="reboot_confirm_recovery">%s startet in die Recovery.</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT screen off effect</string>
@@ -263,7 +264,7 @@
     <string name="pref_phone_call_connect_vibrate_disable_summary">Disables vibration that is triggered when call is connected</string>
 
     <!-- Soft reboot -->
-    <string name="reboot_soft">Soft reboot</string>
+    <string name="reboot_soft">Sanfter Neustart</string>
 
     <!--  Solid black Holo background -->
     <string name="pref_holo_bg_solid_black_title">Solid black background</string>
@@ -342,9 +343,9 @@
     <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% remaining</string>
 
     <!-- Phone status in pie controls -->
-    <string name="pie_phone_status_no_service">No service</string>
-    <string name="pie_phone_status_airplane_mode">Airplane mode on</string>
-    <string name="pie_phone_status_emergency_only">Emergency calls only</string>
+    <string name="pie_phone_status_no_service">Kein Netz</string>
+    <string name="pie_phone_status_airplane_mode">Flugmodus</string>
+    <string name="pie_phone_status_emergency_only">Nur Notrufe</string>
 
     <!-- Pie Controls settings -->
     <string name="pie_control_title">Pie controls</string>
@@ -444,4 +445,18 @@
     <string name="pref_screen_dim_level_title">Screen dim level</string>
     <string name="pref_screen_dim_level_summary">Amount of brightness for dim state - when screen is about to be turned off (requires reboot)</string>
 
+    <!-- Device type -->
+    <string name="device_phone">Telefon</string>
+    <string name="device_tablet">Tablet</string>
+    
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Expanded desktop mode</string>
+    <string name="expanded_desktop_disabled">Disabled</string>
+    <string name="expanded_desktop_statusbar">Hide statusbar</string>
+    <string name="expanded_desktop_navbar">Hide navigation bar</string>
+    <string name="expanded_desktop_both">Hide both</string>
+    <string name="action_expanded_desktop_title">Erweiterter Desktop</string>
+    <string name="action_expanded_desktop_on">Erweiterter Desktop ist AN</string>
+    <string name="action_expanded_desktop_off">Erweiterter Desktop ist AUS</string>
+    
 </resources>
