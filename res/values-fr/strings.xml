@@ -489,7 +489,7 @@
     <!-- Expanded Desktop -->
     <string name="pref_expanded_desktop_title">Mode bureau étendu</string>
     <string name="expanded_desktop_disabled">Désactivé</string>
-    <string name="expanded_desktop_statusbar">Masquer la barre de statuT</string>
+    <string name="expanded_desktop_statusbar">Masquer la barre de statut</string>
     <string name="expanded_desktop_navbar">Masquer la barre de navigation</string>
     <string name="expanded_desktop_both">Masquer les deux</string>
     <string name="action_expanded_desktop_title">Bureau étendu</string>
