@@ -516,4 +516,7 @@
     <string name="pref_navbar_width_summary">Pro orientaci na šířku</string>
     <string name="pref_navbar_menukey_title">Vždy zobrazit menu tlačítko</string>
 
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Screenshot v menu napájení</string>
+
 </resources>
