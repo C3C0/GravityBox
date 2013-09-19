@@ -1,3 +1,17 @@
+Changelog 2.4.1 - 19/09/2013
+--------------------------------------
+- Fixed expandable volume panel option for S4 GE devices
+- Disabled more music volume steps option for S4 GE devices
+- Screenshot in power menu is now optional
+- Expanded desktop: better names for system settings variables
+  to avoid potential conflicts
+- Minor Button Backlight options improvements
+- Updated French translations (thanks to ch-vox)
+- Updated German translations (thanks to Wikiwix)
+- Updated Hungarian translations (thanks to benjoe1)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+
 Changelog 2.4.0 - 17/09/2013
 --------------------------------------
 - Expanded desktop:
