@@ -81,24 +81,33 @@ public class ModDisplay {
                 }
             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)
                         || intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-                updateButtonBacklight();
+                updateButtonBacklight(intent.getAction().equals(Intent.ACTION_SCREEN_ON));
             }
         }
     };
 
     private static void updateButtonBacklight() {
+        updateButtonBacklight(true);
+    }
+
+    private static void updateButtonBacklight(boolean isScreenOn) {
         if (mLight == null || mPendingNotif) return;
 
-        int color = 0;
-        if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)
-                && (mPm != null && mPm.isScreenOn())) {
-            color = 0xff6e6e6e;
+        Integer color = null;
+        if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)) {
+            color = isScreenOn ? 0xff6e6e6e : 0;
+        } else if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_DISABLE)) {
+            color = 0;
+        } else if (!isScreenOn) {
+            color = 0;
         }
 
-        Object ls = XposedHelpers.getSurroundingThis(mLight);
-        int np = XposedHelpers.getIntField(ls, "mNativePointer");
-        XposedHelpers.callMethod(ls, "setLight_native",
-                np, LIGHT_ID_BUTTONS, color, 0, 0, 0, 0);
+        if (color != null) {
+            Object ls = XposedHelpers.getSurroundingThis(mLight);
+            int np = XposedHelpers.getIntField(ls, "mNativePointer");
+            XposedHelpers.callMethod(ls, "setLight_native",
+                    np, LIGHT_ID_BUTTONS, color, 0, 0, 0, 0);
+        }
     }
 
     private static boolean mPendingNotif = false;
