@@ -218,10 +218,12 @@ public class ModPowerMenu {
                         index++;
                     }
 
-                    // Add screenshot action
-                    action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass },
-                            new ScreenshotAction(mHandler));
-                    mItems.add(index++, action);
+                    // Add screenshot action if enabled
+                    if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_POWERMENU_SCREENSHOT, false)) {
+                        action = Proxy.newProxyInstance(classLoader, new Class<?>[] { actionClass },
+                                new ScreenshotAction(mHandler));
+                        mItems.add(index++, action);
+                    }
 
                     // Add Expanded Desktop action if enabled
                     if (ExpandedDesktopAction.isExpandedDesktopEnabled(mContext)) {

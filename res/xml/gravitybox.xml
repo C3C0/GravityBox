@@ -419,6 +419,11 @@
             android:summary="@string/poweroff_advanced_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_powermenu_screenshot"
+            android:title="@string/pref_powermenu_screenshot_title"
+            android:defaultValue="false" />
+
         <ListPreference
             android:key="pref_low_battery_warning_policy"
             android:title="@string/low_battery_warning_policy_title"

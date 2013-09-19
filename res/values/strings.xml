@@ -519,4 +519,7 @@
     <string name="pref_navbar_width_summary">Applies to landscape orientation</string>
     <string name="pref_navbar_menukey_title">Always show menu key</string>
 
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Screenshot in power menu</string>
+
 </resources>
