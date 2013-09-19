@@ -158,13 +158,10 @@ public class CmCircleBattery extends ImageView {
         mPaintSystem = new Paint(mPaintFont);
         mPaintRed = new Paint(mPaintFont);
 
-        int statusbarBlue = android.R.color.holo_blue_dark;
-        if (statusbarBlue == 17170451)
-            statusbarBlue = 0xFF2789AF; //not sure about the colorcode
-        mPaintFont.setColor(res.getColor(statusbarBlue));
-        mPaintSystem.setColor(res.getColor(statusbarBlue));
+        mPaintFont.setColor(res.getColor(android.R.color.holo_blue_dark));
+        mPaintSystem.setColor(res.getColor(android.R.color.holo_blue_dark));
         // could not find the darker definition anywhere in resources
-        // if holo_blue_dark is as expected change to the fitting color, otherwise stay the same 
+        // do not want to use static 0x404040 color value. would break theming.
         mPaintGray.setColor(res.getColor(android.R.color.darker_gray));
         mPaintRed.setColor(res.getColor(android.R.color.holo_red_light));
 
