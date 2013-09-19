@@ -461,7 +461,7 @@
     <string name="pref_brightness_master_switch_summary">Включить только в случае, если устройство использует стандартный механизм Android для регулировки яркости. Оставьте выключенным, если есть проблемы, как-то связанные с яркостью. (Необходима перезагрузка)</string>
 
     <!-- HW Key Action: Recent apps -->
-    <string name="hwkey_action_recent_apps">Показать недвание приложения</string>
+    <string name="hwkey_action_recent_apps">Показать недавние приложения</string>
 
     <!-- HW Key Action: Home long-press -->
     <string name="pref_hwkey_home_longpress_title">Действие по долгому нажатию Home</string>
@@ -519,4 +519,7 @@
     <string name="pref_navbar_width_summary">Применимо к ландшафтной ориентации</string>
     <string name="pref_navbar_menukey_title">Всегда показывать кнопку меню</string>
 
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Скриншот в меню выключения</string>
+    
 </resources>
