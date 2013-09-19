@@ -512,4 +512,7 @@
     <string name="pref_navbar_width_summary">Pre orientáciu na šírku</string>
     <string name="pref_navbar_menukey_title">Vždy zobraziť menu tlačidlo</string>
 
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Screenshot v menu napájania</string>
+
 </resources>
