@@ -18,6 +18,7 @@ public class ModVolumePanel {
     public static final String PACKAGE_NAME = "android";
     private static final String CLASS_VOLUME_PANEL = "android.view.VolumePanel";
     private static final String CLASS_AUDIO_SERVICE = "android.media.AudioService";
+    private static final boolean DEBUG = false;
 
     private static int STREAM_RING = 2;
     private static int STREAM_NOTIFICATION = 5;
@@ -75,6 +76,25 @@ public class ModVolumePanel {
                 }
             });
 
+            XposedHelpers.findAndHookMethod(classVolumePanel, "createSliders", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    final boolean voiceCapableOrig = XposedHelpers.getBooleanField(param.thisObject, "mVoiceCapable");
+                    if (DEBUG) log("createSliders: original mVoiceCapable = " + voiceCapableOrig);
+                    XposedHelpers.setAdditionalInstanceField(param.thisObject, "mGbVoiceCapableOrig", voiceCapableOrig);
+                    XposedHelpers.setBooleanField(param.thisObject, "mVoiceCapable", false);
+                }
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    final Boolean voiceCapableOrig =  (Boolean)XposedHelpers.getAdditionalInstanceField(
+                            param.thisObject, "mGbVoiceCapableOrig");
+                    if (voiceCapableOrig != null) {
+                        if (DEBUG) log("createSliders: restoring original mVoiceCapable");
+                        XposedHelpers.setBooleanField(param.thisObject, "mVoiceCapable", voiceCapableOrig);
+                    }
+                }
+            });
+
             XposedHelpers.findAndHookMethod(classVolumePanel, "expand", new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
@@ -110,8 +130,6 @@ public class ModVolumePanel {
         mDivider.setVisibility(expandable ? View.VISIBLE : View.GONE);
 
         XposedHelpers.setBooleanField(mVolumePanel, "mShowCombinedVolumes", expandable);
-        XposedHelpers.setBooleanField(mVolumePanel, "mVoiceCapable", false);
-        XposedHelpers.setObjectField(mVolumePanel, "mStreamControls", null);
         log("VolumePanel mode changed to: " + ((expandable) ? "EXPANDABLE" : "SIMPLE"));
     }
 
