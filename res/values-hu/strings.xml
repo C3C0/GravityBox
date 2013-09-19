@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
@@ -73,20 +73,23 @@
     <string name="quick_settings_qr_recorded">Felvéve</string>
     <string name="quick_settings_qr_record">Nyomja hosszan a felvételhez</string>
     <string name="quick_settings_qr_recording_notif">Nyomja meg a felvétel leállításához</string>
-
+    <string name="quick_settings_expanded_desktop_disabled">Letiltva</string>
+    <string name="quick_settings_expanded_desktop_normal">Normál</string>
+    <string name="quick_settings_expanded_desktop_expanded">Kiterjesztett</string>
+	
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Statusbar Gyorsbeállítások csempéi</string>
     <string name="quick_settings_summary">Mutatja vagy elrejti a Gyorsbeállítások csempéket a statusbar-on</string>
     <string name="qs_tile_user_profile">Felhasználói profil</string>
-    <string name="qs_tile_airplane_mode">Repülő mód</string>
+    <string name="qs_tile_airplane_mode">Repülő üzemmód</string>
     <string name="qs_tile_battery">Akkumlátor státusz</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_mobile_data">Mobil adat</string>
-    <string name="qs_tile_network_mode">Hálózat mód</string>
+    <string name="qs_tile_network_mode">Hálózati üzemmód</string>
     <string name="qs_tile_data_usage">Adat használat</string>
-    <string name="qs_tile_audio">Hang profilok</string>
+    <string name="qs_tile_audio">Audió profilok</string>
     <string name="qs_tile_brightness">Fényerő</string>
     <string name="qs_tile_screen_timeout">Képernyő időtúllépés</string>
     <string name="qs_tile_autorotation">Automatikus forgatás</string>
@@ -98,7 +101,8 @@
     <string name="qs_tile_quickrecord">Gyors Felvétel</string>
     <string name="qs_tile_settings">Beállítások</string>
 	<string name="qs_tile_volume">Hangerő</string>
-
+    <string name="qs_tile_expanded_desktop">Kiterjesztett asztal</string>
+	
     <!-- Color Picker -->
     <string name="dialog_color_picker">Szín választó</string>
     <string name="press_color_to_apply">Nyomjon a színre a beállításhoz</string>
@@ -141,12 +145,12 @@
     <string name="crt_off_effect_summary">Animáció engedélyezése, ami a régi CRT kikapcsolási effektet szimulálja a képernyő kikapcsolásakor</string>
 
     <!-- Engineering mode shortcut -->
-    <string name="engineering_mode_title">Tervező mód</string>
-    <string name="engineering_mode_summary">Elindítja a Tervező mód programot</string>
+    <string name="engineering_mode_title">Tervező üzemmód</string>
+    <string name="engineering_mode_summary">Elindítja a Tervező üzemmód programot</string>
 
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Dual SIM Ringer</string>
-    <string name="dual_sim_ringer_summary">Elindítja a programot, ami lehetővé teszi csengőhangok és figyelmeztető hangok beállítást külön, mindkét SIM-hez</string>
+    <string name="dual_sim_ringer_summary">Elindítja a programot, ami lehetővé teszi csengőhangok és figyelmeztető hangok beállítását külön, mindkét SIM-hez</string>
 
     <!--  Lockscreen tweaks -->
     <string name="pref_cat_lockscreen_title">Lockscreen módosítások</string>
@@ -331,7 +335,7 @@
     <string name="pref_notif_image_portrait_title">Alló tájolás hátterének beállítása</string>
     <string name="pref_notif_image_landscape_title">Fekvő tájolás hátterének beállítása</string>
     <string name="pref_notif_background_alpha_title">Háttér átlátszóság</string>
-    <string name="pref_notif_color_mode_title">Háttér mód</string>
+    <string name="pref_notif_color_mode_title">Háttér üzemmód</string>
     <string name="color_fill_overlay">Átfedés</string>
     <string name="color_fill_underlay">Alsó réteg -Underlay-</string>
 
@@ -346,7 +350,7 @@
 
     <!-- Phone status in pie controls -->
     <string name="pie_phone_status_no_service">Nincs szolgáltatás</string>
-    <string name="pie_phone_status_airplane_mode">Airplane mód bekapcsolva</string>
+    <string name="pie_phone_status_airplane_mode">Airplane üzemmód bekapcsolva</string>
     <string name="pie_phone_status_emergency_only">Csak segélyhívás</string>
 
     <!-- Pie Controls settings -->
@@ -361,7 +365,7 @@
     <string name="pie_control_trigger_top">Felső képernyőszél</string>
 
     <!-- Button backlight options -->
-    <string name="pref_button_backlight_mode_title">Gomb háttérvilágítás mód</string>
+    <string name="pref_button_backlight_mode_title">Gomb háttérvilágítás üzemmód</string>
     <string name="button_backlight_mode_default">Alapértelmezett</string>
     <string name="button_backlight_mode_disable">Gomb háttérvilágítás kikapcsolva</string>
     <string name="button_backlight_mode_always_on">Bekapcsolt kijelzőnél mindig bekapcsolva</string>
@@ -369,8 +373,8 @@
     <string name="pref_button_backlight_notifications_summary">KÍSÉRLETI! Villogtatja a gomb háttérvilágítást amikor értesítés érkezik. Abban az esetben használd, ha az eszközödből hiányzik az értesítési LED. Fogyaszhtatja az akkumlátort.</string>
 
     <!-- Hide navigation bar for pie -->
-    <string name="pref_navbar_disable_title">Navigation bar elrejtése</string>
-    <string name="pref_navbar_disable_summary">Elrejti a Navigation bar-t, ha a Pie Vezérlők engedélyezve vannak -azon eszközöknek, amelyben van navigation bar- (újraindítás szükséges)</string>
+    <string name="pref_navbar_disable_title">Navigációs sáv elrejtése</string>
+    <string name="pref_navbar_disable_summary">Elrejti a Navigációs sávot, ha a Pie Vezérlők engedélyezve vannak -azon eszközök részére, amelyben van navigációs sáv- (újraindítás szükséges)</string>
 
     <!--  Dithered Holo background -->
     <string name="pref_holo_bg_dither_title">Nagyobb színmélységű Holo háttér</string>
@@ -382,7 +386,7 @@
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Holo Sötét téma használata</string>
-    <string name="pref_gb_theme_dark_summary">Átkapcsolja a GB UI-t, hogy a Holo sötét témát használja a Holo világos helyett</string>
+    <string name="pref_gb_theme_dark_summary">Átkapcsolja a Gravitybox felhasználói felületét, hogy a Holo sötét témát használja a Holo világos helyett</string>
 
     <!-- Clear all recents positions -->
     <string name="recent_clear_off">Kikapcsolva</string>
@@ -419,7 +423,7 @@
     <string name="pie_control_menu_title">Mindig mutassa a menü gombot</string>
 
     <!-- Ringer mode tile (for non-MTK) -->
-    <string name="qs_tile_ringer_mode">Csengés mód</string>
+    <string name="qs_tile_ringer_mode">Csengés üzemmód</string>
 
     <!-- Clock settings category -->
     <string name="pref_cat_clock_settings_title">Óra beállítások</string>
@@ -463,14 +467,16 @@
     <string name="pref_hwkey_home_longpress_title">Home gomb hosszú érintés művelete</string>
 
     <!-- HW Key Action: Launch cutom app -->
-    <string name="hwkey_action_custom_app">Egyéni alkalmazás indítása</string>
-    <string name="pref_hwkey_custom_app_title">Egyéni alkalmazás beállítása</string>
+    <string name="hwkey_action_custom_app">Egyéni alkalmazás 1 indítása</string>
+    <string name="pref_hwkey_custom_app_title">Egyéni alkalmazás 1 beállítása</string>
+	<string name="hwkey_action_custom_app2">Egyéni alkalmazás 2 indítása</string>
+    <string name="pref_hwkey_custom_app_title2">Egyéni alkalmazás 2 beállítása</string>
     <string name="hwkey_action_custom_app_none">Nincs engedélyezve egyéni alkalmazás!</string>
-    <string name="hwkey_action_custom_app_missing">Egyéni alkalmazás nem található!</string>
+    <string name="hwkey_action_custom_app_missing">Az egyéni alkalmazás nem található!</string>
 
     <!-- Link notification panel clock to Deskclock -->
-    <string name="pref_clock_link_title">Átirányítás DeskClock-ra</string>
-    <string name="pref_clock_link_summary">Az értesítési panel órájának megérintésével a DeskClock alkalmazás megnyitása a Dátum&amp;Idő beállításai helyett</string>
+    <string name="pref_clock_link_title">Értesítési panel óra alkalmazás</string>
+    <string name="pref_clock_link_summary">Az értesítési panel órájának megérintésével egy meghatározott alkalmazás megnyitása a Dátum&amp;Idő beállításai helyett</string>
 
     <!-- GravityBox settings startup handling -->
     <string name="gb_startup_progress">Várakozás a GravityBox keretrendszer válaszára&#8230;</string>
@@ -478,6 +484,39 @@
 
     <!-- National data roaming -->
     <string name="pref_national_roaming_title">Hazai adat roaming (MVNO)</string>
-    <string name="pref_national_roaming_summary">Csatlakozás adat szolgálatáshoz hazai roaming esetén</string>
+    <string name="pref_national_roaming_summary">Csatlakozás adat szolgáltatáshoz hazai roaming esetén</string>
 	
+	 <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Kiterjesztett asztal üzemmód</string>
+    <string name="expanded_desktop_disabled">Letiltva</string>
+    <string name="expanded_desktop_statusbar">Statusbar elrejtése</string>
+    <string name="expanded_desktop_navbar">Navigációs sáv elrejtése</string>
+    <string name="expanded_desktop_both">Mindkettő elrejtése</string>
+    <string name="action_expanded_desktop_title">Kiterjesztett asztal</string>
+    <string name="action_expanded_desktop_on">Kiterjesztett asztal bekapcsolva</string>
+    <string name="action_expanded_desktop_off">Kiterjesztett asztal kikapcsolva</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">Képernyőkép</string>
+
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">Menü mutatása</string>
+
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">Kiterjesztett asztal ki-bekapcsolása</string>
+    <string name="hwkey_action_expanded_desktop_disabled">A kiterjesztett asztal üzemmód ki van kapcsolva!</string>
+
+    <!-- Navigation bar tweaks category -->
+    <string name="pref_cat_navigation_bar_title">Navigációs sáv beállítások</string>
+    <string name="pref_cat_navigation_bar_summary">Különféle navigációs sáv módosításokat tartalmaz</string>
+    <string name="pref_navbar_override_title">Rendszerbeállítások felülírása</string>
+    <string name="pref_navbar_override_summary">Főkapcsoló a navigációs sáv módosításokhoz (újraindítás szükséges)</string>
+    <string name="pref_navbar_enable_title">Navigációs sáv engedélyezése</string>
+    <string name="pref_navbar_enable_summary">Újraindítás szükséges</string>
+    <string name="pref_navbar_height_title">Navigációs sáv magassága</string>
+    <string name="pref_navbar_height_summary">Álló tájolás módra vonatkozik</string>
+    <string name="pref_navbar_width_title">Navigációs sáv szélessége</string>
+    <string name="pref_navbar_width_summary">Fekvő tájolás módra vonatkozik</string>
+    <string name="pref_navbar_menukey_title">Menü gomb állandó megjelenítése</string>
+
 </resources>
