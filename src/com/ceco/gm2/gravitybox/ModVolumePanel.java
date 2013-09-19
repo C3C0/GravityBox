@@ -1,5 +1,6 @@
 package com.ceco.gm2.gravitybox;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 
 import android.content.BroadcastReceiver;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
@@ -17,6 +19,7 @@ public class ModVolumePanel {
     private static final String TAG = "ModVolumePanel";
     public static final String PACKAGE_NAME = "android";
     private static final String CLASS_VOLUME_PANEL = "android.view.VolumePanel";
+    private static final String CLASS_STREAM_CONTROL = "android.view.VolumePanel$StreamControl";
     private static final String CLASS_AUDIO_SERVICE = "android.media.AudioService";
     private static final boolean DEBUG = false;
 
@@ -50,6 +53,7 @@ public class ModVolumePanel {
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
         try {
             final Class<?> classVolumePanel = XposedHelpers.findClass(CLASS_VOLUME_PANEL, classLoader);
+            final Class<?> classStreamControl = XposedHelpers.findClass(CLASS_STREAM_CONTROL, classLoader);
             final Class<?> classAudioService = XposedHelpers.findClass(CLASS_AUDIO_SERVICE, classLoader);
 
             XposedBridge.hookAllConstructors(classVolumePanel, new XC_MethodHook() {
@@ -102,6 +106,25 @@ public class ModVolumePanel {
                 }
             });
 
+            try {
+                final Field fldVolTitle = XposedHelpers.findField(classStreamControl, "volTitle");
+                if (DEBUG) log("Hooking StreamControl constructor for volTitle field initialization");
+                XposedBridge.hookAllConstructors(classStreamControl, new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                        Context context = (Context) XposedHelpers.getObjectField(
+                                XposedHelpers.getSurroundingThis(param.thisObject), "mContext");
+                        if (context != null) {
+                            TextView tv = new TextView(context);
+                            fldVolTitle.set(param.thisObject, tv);
+                            if (DEBUG) log("StreamControl: volTitle field initialized");
+                        }
+                    }
+                });
+            } catch(Throwable t) {
+                if (DEBUG) log("StreamControl: exception while initializing volTitle field: " + t.getMessage());
+            }
+
             XposedBridge.hookAllConstructors(classAudioService, new XC_MethodHook() {
 
                 @Override
@@ -130,6 +153,7 @@ public class ModVolumePanel {
         mDivider.setVisibility(expandable ? View.VISIBLE : View.GONE);
 
         XposedHelpers.setBooleanField(mVolumePanel, "mShowCombinedVolumes", expandable);
+        XposedHelpers.setObjectField(mVolumePanel, "mStreamControls", null);
         log("VolumePanel mode changed to: " + ((expandable) ? "EXPANDABLE" : "SIMPLE"));
     }
 
