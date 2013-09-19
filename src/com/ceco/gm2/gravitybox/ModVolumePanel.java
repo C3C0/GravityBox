@@ -16,7 +16,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class ModVolumePanel {
-    private static final String TAG = "ModVolumePanel";
+    private static final String TAG = "GB:ModVolumePanel";
     public static final String PACKAGE_NAME = "android";
     private static final String CLASS_VOLUME_PANEL = "android.view.VolumePanel";
     private static final String CLASS_STREAM_CONTROL = "android.view.VolumePanel$StreamControl";
@@ -43,7 +43,7 @@ public class ModVolumePanel {
                 updateVolumePanelMode(expandable);
             } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_LINK_VOLUMES_CHANGED)) {
                 mVolumesLinked = intent.getBooleanExtra(GravityBoxSettings.EXTRA_LINKED, true);
-                log("mVolumesLinked set to: " + mVolumesLinked);
+                if (DEBUG) log("mVolumesLinked set to: " + mVolumesLinked);
                 updateStreamVolumeAlias();
             }
         }
@@ -62,7 +62,7 @@ public class ModVolumePanel {
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     mVolumePanel = param.thisObject;
                     Context context = (Context) XposedHelpers.getObjectField(mVolumePanel, "mContext");
-                    log("VolumePanel constructed; mVolumePanel set");
+                    if (DEBUG) log("VolumePanel constructed; mVolumePanel set");
 
                     boolean expandable = prefs.getBoolean(
                             GravityBoxSettings.PREF_KEY_VOLUME_PANEL_EXPANDABLE, true);
@@ -131,7 +131,7 @@ public class ModVolumePanel {
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     mAudioService = param.thisObject;
                     mVolumesLinked = prefs.getBoolean(GravityBoxSettings.PREF_KEY_LINK_VOLUMES, true);
-                    log("AudioService constructed: mAudioService set");
+                    if (DEBUG) log("AudioService constructed: mAudioService set");
                     updateStreamVolumeAlias();
                 }
             });
@@ -154,7 +154,7 @@ public class ModVolumePanel {
 
         XposedHelpers.setBooleanField(mVolumePanel, "mShowCombinedVolumes", expandable);
         XposedHelpers.setObjectField(mVolumePanel, "mStreamControls", null);
-        log("VolumePanel mode changed to: " + ((expandable) ? "EXPANDABLE" : "SIMPLE"));
+        if (DEBUG) log("VolumePanel mode changed to: " + ((expandable) ? "EXPANDABLE" : "SIMPLE"));
     }
 
     private static void hideNotificationSliderIfLinked() {
@@ -170,7 +170,7 @@ public class ModVolumePanel {
                 View v = (View) XposedHelpers.getObjectField(o, "group");
                 if (v != null) {
                     v.setVisibility(View.GONE);
-                    log("Notification volume slider hidden");
+                    if (DEBUG) log("Notification volume slider hidden");
                     break;
                 }
             }
@@ -183,7 +183,7 @@ public class ModVolumePanel {
         int[] streamVolumeAlias = (int[]) XposedHelpers.getObjectField(mAudioService, "mStreamVolumeAlias");
         streamVolumeAlias[STREAM_NOTIFICATION] = mVolumesLinked ? STREAM_RING : STREAM_NOTIFICATION;
         XposedHelpers.setObjectField(mAudioService, "mStreamVolumeAlias", streamVolumeAlias);
-        log("AudioService mStreamVolumeAlias updated, STREAM_NOTIFICATION set to: " + 
+        if (DEBUG) log("AudioService mStreamVolumeAlias updated, STREAM_NOTIFICATION set to: " + 
                 streamVolumeAlias[STREAM_NOTIFICATION]);
     }
 }
