@@ -72,6 +72,9 @@
     <string name="quick_settings_qr_recorded">Aufgenommen</string>
     <string name="quick_settings_qr_record">Lange drücken zum Aufnehmen</string>
     <string name="quick_settings_qr_recording_notif">Drücken, um Aufnahme zu stoppen</string>
+    <string name="quick_settings_expanded_desktop_disabled">Deaktiviert</string>
+    <string name="quick_settings_expanded_desktop_normal">Normal</string>
+    <string name="quick_settings_expanded_desktop_expanded">Erweitert</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Statusbar QuickSettings tiles</string>
@@ -133,6 +136,7 @@
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">%s wird neu gestartet.</string>
     <string name="reboot_confirm_recovery">%s startet in die Recovery.</string>
+    <string name="reboot_confirm_bootloader">%s startet in den Bootloader.</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT screen off effect</string>
