@@ -7,9 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
@@ -81,39 +79,6 @@ public class ModVolumePanel {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     hideNotificationSliderIfLinked();
-                }
-            });
-
-            XposedHelpers.findAndHookMethod(classVolumePanel, "reorderSliders", int.class, new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
-                    final Object streamControls = XposedHelpers.getObjectField(param.thisObject, "mStreamControls");
-                    if (streamControls == null) {
-                        XposedHelpers.callMethod(param.thisObject, "createSliders");
-                    }
-
-                    final Object sliderGroup = XposedHelpers.getObjectField(param.thisObject, "mSliderGroup");
-                    if (sliderGroup == null) {
-                        final Context context = (Context) XposedHelpers.getObjectField(
-                                param.thisObject, "mContext");
-                        LinearLayout sg = new LinearLayout(context);
-                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-                        sg.setLayoutParams(lp);
-                        sg.setOrientation(LinearLayout.VERTICAL);
-                        ViewGroup vg = (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mPanel");
-                        vg.addView(sg, 0);
-                        ((ViewGroup)vg.getParent()).requestLayout();
-                        ((ViewGroup)vg.getParent()).invalidate();
-                        XposedHelpers.setObjectField(param.thisObject, "mSliderGroup", sg);
-                    }
-                }
-                @Override
-                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    if (param.hasThrowable()) {
-                        XposedBridge.log(param.getThrowable());
-                        param.setThrowable(null);
-                    }
                 }
             });
 
