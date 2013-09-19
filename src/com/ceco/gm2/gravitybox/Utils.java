@@ -92,7 +92,12 @@ public class Utils {
         mDeviceCharacteristics = SystemProp.get("ro.build.characteristics");
         return mDeviceCharacteristics;
     }
-    
+
+    public static boolean shouldAllowMoreVolumeSteps() {
+        return !("GT-I9505G".equals(Build.MODEL) &&
+                    !isMtkDevice());
+    }
+
     static class SystemProp extends Utils {
         
         private SystemProp() {

@@ -43,7 +43,8 @@ public class ModAudio {
         try {
             final Class<?> classAudioService = XposedHelpers.findClass(CLASS_AUDIO_SERVICE, null);
 
-            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_MUSIC_VOLUME_STEPS, false)) {
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_MUSIC_VOLUME_STEPS, false)
+                    && Utils.shouldAllowMoreVolumeSteps()) {
                 initMusicStream();
             }
 

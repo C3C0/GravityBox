@@ -509,6 +509,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private SeekBarPreference mPrefNavbarHeight;
         private SeekBarPreference mPrefNavbarWidth;
         private CheckBoxPreference mPrefNavbarMenukey;
+        private CheckBoxPreference mPrefMusicVolumeSteps;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -625,6 +626,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCrtOff = (CheckBoxPreference) findPreference(PREF_KEY_CRT_OFF_EFFECT);
             mPrefCatMedia = (PreferenceScreen) findPreference(PREF_CAT_KEY_MEDIA);
             mPrefSafeMediaVolume = (CheckBoxPreference) findPreference(PREF_KEY_SAFE_MEDIA_VOLUME);
+            mPrefMusicVolumeSteps = (CheckBoxPreference) findPreference(PREF_KEY_MUSIC_VOLUME_STEPS);
 
             mPrefExpandedDesktop = (ListPreference) findPreference(PREF_KEY_EXPANDED_DESKTOP);
 
@@ -674,6 +676,12 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefCatDisplay.removePreference(mPrefCatBrightness);
                 mPrefCatDisplay.removePreference(mPrefCrtOff);
                 mPrefCatMedia.removePreference(mPrefSafeMediaVolume);
+            }
+
+            // Remove more music volume steps option if necessary
+            if (!Utils.shouldAllowMoreVolumeSteps()) {
+                mPrefs.edit().putBoolean(PREF_KEY_MUSIC_VOLUME_STEPS, false).commit();
+                mPrefCatMedia.removePreference(mPrefMusicVolumeSteps);
             }
 
             setDefaultValues();
