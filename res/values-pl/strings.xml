@@ -337,4 +337,5 @@
     <string name="pref_navbar_width_title">Szerokość paska nawigacji</string>
     <string name="pref_navbar_width_summary">Dotyczy orientacji poziomej</string>
     <string name="pref_navbar_menukey_title">Zawsze pokazuj klawisz menu</string>
+    <string name="pref_powermenu_screenshot_title">Zrzut ekranu w menu zasilania</string>
 </resources>
