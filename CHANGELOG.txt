@@ -1,3 +1,11 @@
+Changelog 2.4.2 - 20/09/2013
+--------------------------------------
+- Yet another fix for Samsung's expandable volume panel
+- StatusbarIconManager: improved handling of default system colors (when icon coloring is disabled)
+- Updated French translations (thanks to ch-vox)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Italian translations (thanks to pitone02)
+
 Changelog 2.4.1 - 19/09/2013
 --------------------------------------
 - Fixed expandable volume panel option for S4 GE devices
