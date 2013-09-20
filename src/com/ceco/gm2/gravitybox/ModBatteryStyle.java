@@ -72,7 +72,8 @@ public class ModBatteryStyle {
                         percText.setLayoutParams(lParams);
                         percText.setPadding(4, 0, 0, 0);
                         percText.setTextSize(1, 16);
-                        percText.setTextColor(StatusBarIconManager.DEFAULT_ICON_COLOR);
+                        percText.setTextColor(vg.getContext().getResources().getColor(
+                                android.R.color.holo_blue_dark));
                         percText.setVisibility(View.GONE);
                         vg.addView(percText);
                         XposedBridge.log("ModBatteryStyle: Battery percent text injected");

@@ -100,7 +100,7 @@ public class ModStatusbarColor {
                     setStatusbarBgColor(bgColor);
                 } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR)) {
                     int iconColor = intent.getIntExtra(
-                            GravityBoxSettings.EXTRA_SB_ICON_COLOR, StatusBarIconManager.DEFAULT_ICON_COLOR);
+                            GravityBoxSettings.EXTRA_SB_ICON_COLOR, mIconManager.getDefaultIconColor());
                     mIconManager.setIconColor(iconColor);
                     applyIconColors();
                 } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR)) {
@@ -197,7 +197,7 @@ public class ModStatusbarColor {
             mIconColorEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE, false);
             mIconManager.setIconColor(
                     prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR,
-                            StatusBarIconManager.DEFAULT_ICON_COLOR));
+                            mIconManager.getDefaultIconColor()));
             mIconManager.setDataActivityColor(
                     prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR, 
                             StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
@@ -523,7 +523,7 @@ public class ModStatusbarColor {
         }
 
         final int iconColor = mIconColorEnabled ? 
-                mIconManager.getIconColor() : StatusBarIconManager.DEFAULT_ICON_COLOR;
+                mIconManager.getIconColor() : mIconManager.getDefaultIconColor();
 
         if (mClock != null) {
             if (mClockDefaultColor == null) {

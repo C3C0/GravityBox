@@ -15,7 +15,6 @@ import android.graphics.drawable.Drawable;
 public class StatusBarIconManager {
     private static final String TAG = "StatusBarIconStore";
     private static final boolean DEBUG = false;
-    public static final int DEFAULT_ICON_COLOR = 0xff33b5e5;
     public static final int DEFAULT_DATA_ACTIVITY_COLOR = Color.WHITE;
 
     private Resources mResources;
@@ -32,7 +31,7 @@ public class StatusBarIconManager {
 
     public StatusBarIconManager(Resources res) {
         mResources = res;
-        mIconColor = DEFAULT_ICON_COLOR;
+        mIconColor = getDefaultIconColor();
         mDataActivityColor = DEFAULT_DATA_ACTIVITY_COLOR;
 
         Map<String, Integer> tmpMap = new HashMap<String, Integer>();
@@ -90,6 +89,10 @@ public class StatusBarIconManager {
         mBatteryIconIds = Collections.unmodifiableMap(tmpMap);
 
         mIconCache = new HashMap<String, SoftReference<Drawable>>();
+    }
+
+    public int getDefaultIconColor() {
+        return mResources.getColor(android.R.color.holo_blue_dark);
     }
 
     public int getIconColor() {
