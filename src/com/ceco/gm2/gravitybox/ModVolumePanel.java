@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodHook.Unhook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -21,6 +23,7 @@ public class ModVolumePanel {
     private static final String CLASS_VOLUME_PANEL = "android.view.VolumePanel";
     private static final String CLASS_STREAM_CONTROL = "android.view.VolumePanel$StreamControl";
     private static final String CLASS_AUDIO_SERVICE = "android.media.AudioService";
+    private static final String CLASS_VIEW_GROUP = "android.view.ViewGroup";
     private static final boolean DEBUG = false;
 
     private static int STREAM_RING = 2;
@@ -29,6 +32,7 @@ public class ModVolumePanel {
     private static Object mVolumePanel;
     private static Object mAudioService;
     private static boolean mVolumesLinked;
+    private static Unhook mViewGroupAddViewHook;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -55,6 +59,7 @@ public class ModVolumePanel {
             final Class<?> classVolumePanel = XposedHelpers.findClass(CLASS_VOLUME_PANEL, classLoader);
             final Class<?> classStreamControl = XposedHelpers.findClass(CLASS_STREAM_CONTROL, classLoader);
             final Class<?> classAudioService = XposedHelpers.findClass(CLASS_AUDIO_SERVICE, classLoader);
+            final Class<?> classViewGroup = XposedHelpers.findClass(CLASS_VIEW_GROUP, classLoader);
 
             XposedBridge.hookAllConstructors(classVolumePanel, new XC_MethodHook() {
 
@@ -124,6 +129,37 @@ public class ModVolumePanel {
             } catch(Throwable t) {
                 if (DEBUG) log("StreamControl: exception while initializing volTitle field: " + t.getMessage());
             }
+
+            // Samsung bug workaround
+            XposedHelpers.findAndHookMethod(classVolumePanel, "addOtherVolumes", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (DEBUG) log("addOtherVolumes: hooking ViewGroup.addViewInner");
+
+                    mViewGroupAddViewHook = XposedHelpers.findAndHookMethod(classViewGroup, "addViewInner", 
+                            View.class, int.class, ViewGroup.LayoutParams.class, 
+                            boolean.class, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(final MethodHookParam param2) throws Throwable {
+                            if (DEBUG) log("ViewGroup.addViewInner called from VolumePanel.addOtherVolumes()");
+                            View child = (View) param2.args[0];
+                            if (child.getParent() != null) {
+                                if (DEBUG) log("Ignoring addView for child: " + child.toString());
+                                param2.setResult(null);
+                                return;
+                            }
+                        }
+                    });
+                }
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (mViewGroupAddViewHook != null) {
+                        if (DEBUG) log("addOtherVolumes: unhooking ViewGroup.addViewInner");
+                        mViewGroupAddViewHook.unhook();
+                        mViewGroupAddViewHook = null;
+                    }
+                }
+            });
 
             XposedBridge.hookAllConstructors(classAudioService, new XC_MethodHook() {
 
