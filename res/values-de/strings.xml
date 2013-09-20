@@ -342,9 +342,9 @@
     <string name="pref_disable_roaming_indicators_summary">When disabled, R indicator will not be visible while roaming. Use with caution.</string>
 
     <!-- Battery status in pie controls -->
-    <string name="pie_battery_status_charging">Charging (<xliff:g id="percent">%d</xliff:g>%%)</string>
-    <string name="pie_battery_status_full">Charged</string>
-    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% remaining</string>
+    <string name="pie_battery_status_charging">Lädt (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Aufgeladen</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% verbleibend</string>
 
     <!-- Phone status in pie controls -->
     <string name="pie_phone_status_no_service">Kein Netz</string>
