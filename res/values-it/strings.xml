@@ -22,7 +22,7 @@
 
     <string name="reboot_required">Le modifiche saranno applicate dopo il riavvio</string>
 
-    <string name="signal_icon_autohide_title">Auto-nascondi icone segnalazione</string>
+    <string name="signal_icon_autohide_title">Notifica Sim assente</string>
     <string name="signal_icon_autohide_summary">Nascondi automaticamente le icone di segnalazione per gli slot SIM selezionati se la SIM non è inserita, Disabilita la notifica \"SIM non inserita\"</string>
     <string name="sim_slot_1">Nascondi automaticamente lo slot SIM 1</string>
     <string name="sim_slot_2">Nascondi automaticamente lo slot SIM 2</string>
@@ -496,21 +496,21 @@
     <string name="hwkey_action_menu">Mostra menù</string>
 
     <!-- HW Key Action: Expanded desktop -->
-    <string name="hwkey_action_expanded_desktop">Toggle expanded desktop</string>
+    <string name="hwkey_action_expanded_desktop">Attiva/disattiva expanded desktop</string>
     <string name="hwkey_action_expanded_desktop_disabled">La modalità Desktop Esteso è spenta!</string>
 
     <!-- Navigation bar tweaks category -->
     <string name="pref_cat_navigation_bar_title">Ottimizzazioni barra di navigazione</string>
     <string name="pref_cat_navigation_bar_summary">Contiene varie ottimizzaioni relative alla barra di navigazione</string>
     <string name="pref_navbar_override_title">Sovrascrivi i valori standard di sistema</string>
-    <string name="pref_navbar_override_summary">Master switch for navigation bar tweaks (requires reboot)</string>
-    <string name="pref_navbar_enable_title">Enable navigation bar</string>
-    <string name="pref_navbar_enable_summary">Requires reboot</string>
-    <string name="pref_navbar_height_title">Navigation bar height</string>
-    <string name="pref_navbar_height_summary">Applies to portrait orientation</string>
-    <string name="pref_navbar_width_title">Navigation bar width</string>
-    <string name="pref_navbar_width_summary">Applies to landscape orientation</string>
-    <string name="pref_navbar_menukey_title">Always show menu key</string>
+    <string name="pref_navbar_override_summary">Attivazione ottimizzaioni barra di navigazione (richiede riavvio)</string>
+    <string name="pref_navbar_enable_title">Abilita Barra di navigazione</string>
+    <string name="pref_navbar_enable_summary">Richiede riavvio</string>
+    <string name="pref_navbar_height_title">Altezza Barra di navigazione</string>
+    <string name="pref_navbar_height_summary">Applica alla visualizzaione verticale</string>
+    <string name="pref_navbar_width_title">Larghezza Barra di navigazione</string>
+    <string name="pref_navbar_width_summary">Applica alla visualizzazione orizzontale</string>
+    <string name="pref_navbar_menukey_title">Mostra sempre tasto menu</string>
 
 
 
