@@ -519,4 +519,7 @@
     <string name="pref_navbar_width_summary">Valable pour l\'orientation paysage</string>
     <string name="pref_navbar_menukey_title">Toujours afficher la touche menu</string>
 
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Capture d\'écran dans le menu d\'extinction</string>
+
 </resources>
