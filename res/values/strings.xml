@@ -529,4 +529,8 @@
     <string name="pref_lockscreen_targets_app_title">Target application %s</string>
     <string name="pref_lockscreen_targets_bottom_offset_title">Unlock ring bottom offset</string>
 
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">Enable brightness control</string>
+    <string name="pref_statusbar_brightness_summary">Adjusts brightness by sliding over statusbar</string>
+
 </resources>

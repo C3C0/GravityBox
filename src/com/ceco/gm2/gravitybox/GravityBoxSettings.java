@@ -315,6 +315,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     };
     public static final String PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET = "pref_lockscreen_targets_bottom_offset";
 
+    public static final String PREF_KEY_STATUSBAR_BRIGHTNESS = "pref_statusbar_brightness";
+    public static final String ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED = "gravitybox.intent.action.STATUSBAR_BRIGHTNESS_CHANGED";
+    public static final String EXTRA_SB_BRIGHTNESS = "sbBrightness";
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR,
@@ -1097,6 +1101,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_NAVBAR_MENUKEY)) {
                 intent.setAction(ACTION_PREF_NAVBAR_CHANGED);
                 intent.putExtra(EXTRA_NAVBAR_MENUKEY, prefs.getBoolean(PREF_KEY_NAVBAR_MENUKEY, false));
+            } else if (key.equals(PREF_KEY_STATUSBAR_BRIGHTNESS)) {
+                intent.setAction(ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED);
+                intent.putExtra(EXTRA_SB_BRIGHTNESS, prefs.getBoolean(PREF_KEY_STATUSBAR_BRIGHTNESS, false));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);

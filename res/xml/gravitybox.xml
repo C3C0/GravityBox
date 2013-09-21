@@ -395,6 +395,12 @@
             android:title="@string/battery_style_percent"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_statusbar_brightness"
+            android:title="@string/pref_statusbar_brightness_title"
+            android:summary="@string/pref_statusbar_brightness_summary"
+            android:defaultValue="false" />
+
         <MultiSelectListPreference
             android:key="pref_signal_icon_autohide"
             android:title="@string/signal_icon_autohide_title"

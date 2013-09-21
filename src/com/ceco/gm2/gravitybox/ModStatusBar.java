@@ -15,18 +15,26 @@ import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResou
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.os.Build;
+import android.os.Handler;
+import android.os.IBinder;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.format.DateFormat;
 import android.text.style.RelativeSizeSpan;
 import android.view.Gravity;
+import android.view.HapticFeedbackConstants;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
@@ -39,7 +47,13 @@ public class ModStatusBar {
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     private static final String CLASS_TICKER = "com.android.systemui.statusbar.phone.PhoneStatusBar$MyTicker";
     private static final String CLASS_PHONE_STATUSBAR_POLICY = "com.android.systemui.statusbar.phone.PhoneStatusBarPolicy";
+    private static final String CLASS_POWER_MANAGER = "android.os.PowerManager";
     private static final boolean DEBUG = false;
+
+    private static final float BRIGHTNESS_CONTROL_PADDING = 0.15f;
+    private static final int BRIGHTNESS_CONTROL_LONG_PRESS_TIMEOUT = 750; // ms
+    private static final int BRIGHTNESS_CONTROL_LINGER_THRESHOLD = 20;
+    private static final int STATUS_BAR_DISABLE_EXPAND = 0x00010000;
 
     private static ViewGroup mIconArea;
     private static ViewGroup mRootView;
@@ -47,6 +61,7 @@ public class ModStatusBar {
     private static TextView mClock;
     private static TextView mClockExpanded;
     private static Object mPhoneStatusBar;
+    private static Object mStatusBarView;
     private static Context mContext;
     private static int mAnimPushUpOut;
     private static int mAnimPushDownIn;
@@ -59,6 +74,18 @@ public class ModStatusBar {
     private static String mClockLink;
     private static boolean mAlarmHide = false;
     private static Object mPhoneStatusBarPolicy;
+    private static SettingsObserver mSettingsObserver;
+
+    // Brightness control
+    private static boolean mBrightnessControlEnabled;
+    private static boolean mBrightnessControl;
+    private static float mScreenWidth;
+    private static int mMinBrightness;
+    private static int mLinger;
+    private static int mInitialTouchX;
+    private static int mInitialTouchY;
+    private static int BRIGHTNESS_ON = 255;
+    private static VelocityTracker mVelocityTracker;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -107,9 +134,42 @@ public class ModStatusBar {
                         XposedHelpers.callMethod(mPhoneStatusBarPolicy, "updateAlarm", i);
                     }
                 }
+            } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED)
+                    && intent.hasExtra(GravityBoxSettings.EXTRA_SB_BRIGHTNESS)) {
+                mBrightnessControlEnabled = intent.getBooleanExtra(
+                        GravityBoxSettings.EXTRA_SB_BRIGHTNESS, false);
+                if (mSettingsObserver != null) {
+                    mSettingsObserver.update();
+                }
             }
         }
     };
+
+    static class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SCREEN_BRIGHTNESS_MODE), false, this);
+            update();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
+        }
+
+        public void update() {
+            ContentResolver resolver = mContext.getContentResolver();
+            int brightnessValue = Settings.System.getInt(resolver,
+                    Settings.System.SCREEN_BRIGHTNESS_MODE, 0);
+            mBrightnessControl = brightnessValue != Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
+                    && mBrightnessControlEnabled;
+        }
+    }
 
     public static void initResources(final XSharedPreferences prefs, final InitPackageResourcesParam resparam) {
         try {
@@ -243,10 +303,14 @@ public class ModStatusBar {
                     XposedHelpers.findClass(CLASS_TICKER, classLoader);
             final Class<?> phoneStatusBarPolicyClass = 
                     XposedHelpers.findClass(CLASS_PHONE_STATUSBAR_POLICY, classLoader);
+            final Class<?> powerManagerClass = XposedHelpers.findClass(CLASS_POWER_MANAGER, classLoader);
 
             final Class<?>[] loadAnimParamArgs = new Class<?>[2];
             loadAnimParamArgs[0] = int.class;
             loadAnimParamArgs[1] = Animation.AnimationListener.class;
+
+            mBrightnessControlEnabled = prefs.getBoolean(
+                    GravityBoxSettings.PREF_KEY_STATUSBAR_BRIGHTNESS, false);
 
             XposedBridge.hookAllConstructors(phoneStatusBarPolicyClass, new XC_MethodHook() {
                 @Override
@@ -273,15 +337,26 @@ public class ModStatusBar {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     mPhoneStatusBar = param.thisObject;
+                    mStatusBarView = XposedHelpers.getObjectField(mPhoneStatusBar, "mStatusBarView");
                     mContext = (Context) XposedHelpers.getObjectField(mPhoneStatusBar, "mContext");
                     Resources res = mContext.getResources();
                     mAnimPushUpOut = res.getIdentifier("push_up_out", "anim", "android");
                     mAnimPushDownIn = res.getIdentifier("push_down_in", "anim", "android");
                     mAnimFadeIn = res.getIdentifier("fade_in", "anim", "android");
 
+                    mScreenWidth = (float) res.getDisplayMetrics().widthPixels;
+                    mMinBrightness = res.getInteger(res.getIdentifier(
+                            "config_screenBrightnessDim", "integer", "android"));
+                    BRIGHTNESS_ON = XposedHelpers.getStaticIntField(powerManagerClass, "BRIGHTNESS_ON");
+
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_CLOCK_CHANGED);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED);
                     mContext.registerReceiver(mBroadcastReceiver, intentFilter);
+
+                    mSettingsObserver = new SettingsObserver(
+                            (Handler) XposedHelpers.getObjectField(mPhoneStatusBar, "mHandler"));
+                    mSettingsObserver.observe();
                 }
             });
 
@@ -353,6 +428,20 @@ public class ModStatusBar {
                     mLayoutClock.startAnimation(anim);
                 }
             });
+
+            XposedHelpers.findAndHookMethod(phoneStatusBarClass, 
+                    "interceptTouchEvent", MotionEvent.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    if (!mBrightnessControl) return;
+
+                    brightnessControl((MotionEvent) param.args[0]);
+                    if ((XposedHelpers.getIntField(param.thisObject, "mDisabled")
+                            & STATUS_BAR_DISABLE_EXPAND) != 0) {
+                        param.setResult(true);
+                    }
+                }
+            });
         }
         catch (Throwable t) {
             XposedBridge.log(t);
@@ -415,6 +504,103 @@ public class ModStatusBar {
             }
         } catch (ActivityNotFoundException e) {
             log("Error launching assigned app for clock: " + e.getMessage());
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
+    }
+
+    private static Runnable mLongPressBrightnessChange = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                XposedHelpers.callMethod(mStatusBarView, "performHapticFeedback", 
+                        HapticFeedbackConstants.LONG_PRESS);
+                adjustBrightness(mInitialTouchX);
+                mLinger = BRIGHTNESS_CONTROL_LINGER_THRESHOLD + 1;
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+            }
+        }
+    };
+
+    private static void adjustBrightness(int x) {
+        try {
+            float raw = ((float) x) / mScreenWidth;
+    
+            // Add a padding to the brightness control on both sides to
+            // make it easier to reach min/max brightness
+            float padded = Math.min(1.0f - BRIGHTNESS_CONTROL_PADDING,
+                    Math.max(BRIGHTNESS_CONTROL_PADDING, raw));
+            float value = (padded - BRIGHTNESS_CONTROL_PADDING) /
+                    (1 - (2.0f * BRIGHTNESS_CONTROL_PADDING));
+    
+            int newBrightness = mMinBrightness + (int) Math.round(value *
+                    (BRIGHTNESS_ON - mMinBrightness));
+            newBrightness = Math.min(newBrightness, BRIGHTNESS_ON);
+            newBrightness = Math.max(newBrightness, mMinBrightness);
+
+            Class<?> classSm = XposedHelpers.findClass("android.os.ServiceManager", null);
+            Class<?> classIpm = XposedHelpers.findClass("android.os.IPowerManager.Stub", null);
+            IBinder b = (IBinder) XposedHelpers.callStaticMethod(
+                    classSm, "getService", Context.POWER_SERVICE);
+            Object power = XposedHelpers.callStaticMethod(classIpm, "asInterface", b);
+            if (power != null) {
+                XposedHelpers.callMethod(power, "setTemporaryScreenBrightnessSettingOverride", 
+                        newBrightness);
+                Settings.System.putInt(mContext.getContentResolver(),
+                        Settings.System.SCREEN_BRIGHTNESS, newBrightness);
+            }
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
+    }
+
+    private static void brightnessControl(MotionEvent event) {
+        try {
+            final int action = event.getAction();
+            final int x = (int) event.getRawX();
+            final int y = (int) event.getRawY();
+            Handler handler = (Handler) XposedHelpers.getObjectField(mPhoneStatusBar, "mHandler");
+            int notificationHeaderHeight = 
+                    XposedHelpers.getIntField(mPhoneStatusBar, "mNotificationHeaderHeight");
+    
+            if (action == MotionEvent.ACTION_DOWN) {
+                mLinger = 0;
+                mInitialTouchX = x;
+                mInitialTouchY = y;
+                mVelocityTracker = VelocityTracker.obtain();
+                handler.removeCallbacks(mLongPressBrightnessChange);
+                if ((y) < notificationHeaderHeight) {
+                    handler.postDelayed(mLongPressBrightnessChange,
+                            BRIGHTNESS_CONTROL_LONG_PRESS_TIMEOUT);
+                }
+            } else if (action == MotionEvent.ACTION_MOVE) {
+                if ((y) < notificationHeaderHeight) {
+                    mVelocityTracker.computeCurrentVelocity(1000);
+                    float yVel = mVelocityTracker.getYVelocity();
+                    yVel = Math.abs(yVel);
+                    if (yVel < 50.0f) {
+                        if (mLinger > BRIGHTNESS_CONTROL_LINGER_THRESHOLD) {
+                            adjustBrightness(x);
+                        } else {
+                            mLinger++;
+                        }
+                    }
+                    int touchSlop = ViewConfiguration.get(mContext).getScaledTouchSlop();
+                    if (Math.abs(x - mInitialTouchX) > touchSlop ||
+                            Math.abs(y - mInitialTouchY) > touchSlop) {
+                        handler.removeCallbacks(mLongPressBrightnessChange);
+                    }
+                } else {
+                    handler.removeCallbacks(mLongPressBrightnessChange);
+                }
+            } else if (action == MotionEvent.ACTION_UP
+                    || action == MotionEvent.ACTION_CANCEL) {
+                mVelocityTracker.recycle();
+                mVelocityTracker = null;
+                handler.removeCallbacks(mLongPressBrightnessChange);
+                mLinger = 0;
+            }
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
