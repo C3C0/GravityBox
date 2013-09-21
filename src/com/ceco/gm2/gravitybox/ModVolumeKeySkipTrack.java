@@ -9,6 +9,7 @@ import static de.robv.android.xposed.XposedHelpers.setAdditionalInstanceField;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.SystemClock;
 import android.view.KeyEvent;
 import android.view.ViewConfiguration;
@@ -17,12 +18,19 @@ import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 
 public class ModVolumeKeySkipTrack {
+    private static final String TAG = "GB:ModVolumeKeySkipTrack";
+    private static final boolean DEBUG = false;
+
     private static boolean mIsLongPress = false;
-    private static boolean allowSkipTrack;
+    private static boolean allowSkipTrack; 
+
+    private static void log(String message) {
+        XposedBridge.log(TAG + ": " + message);
+    }
 
     static void init(final XSharedPreferences prefs) {
         try {
-            XposedBridge.log("ModVolumeKeySkipTrack: init");
+            if (DEBUG) log("init");
 
             updatePreference(prefs);
 
@@ -34,7 +42,7 @@ public class ModVolumeKeySkipTrack {
 
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("ModVolumeKeySkipTrack: screenTurnedOff");
+                    if (DEBUG) log("screenTurnedOff");
                     updatePreference(prefs);
                 }
             });
@@ -115,7 +123,6 @@ public class ModVolumeKeySkipTrack {
     };
 
     private static void sendMediaButtonEvent(Object phoneWindowManager, int code) {
-        Context mContext = (Context) getObjectField(phoneWindowManager, "mContext");
         long eventtime = SystemClock.uptimeMillis();
         Intent keyIntent = new Intent(Intent.ACTION_MEDIA_BUTTON, null);
         KeyEvent keyEvent = new KeyEvent(eventtime, eventtime, KeyEvent.ACTION_DOWN, code, 0);
@@ -144,7 +151,7 @@ public class ModVolumeKeySkipTrack {
             IBinder iBinder = (IBinder) Class.forName("android.os.ServiceManager")
                     .getDeclaredMethod("checkService", String.class)
                     .invoke(null, Context.AUDIO_SERVICE);
-            XposedBridge.log("ModVolumeKeySkipTrack: Got Binder");
+            if (DEBUG ) log("Got Binder");
 
             // get audioService from IAudioService.Stub.asInterface(IBinder)
             Object audioService  = Class.forName("android.media.IAudioService$Stub")
@@ -155,8 +162,8 @@ public class ModVolumeKeySkipTrack {
             Class.forName("android.media.IAudioService")
                     .getDeclaredMethod("dispatchMediaKeyEvent",KeyEvent.class)
                     .invoke(audioService, keyEvent);
-        } catch (Exception e1) {
-            e1.printStackTrace();
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 
@@ -181,6 +188,6 @@ public class ModVolumeKeySkipTrack {
     private static void updatePreference(final XSharedPreferences prefs) {
         prefs.reload();
         allowSkipTrack = prefs.getBoolean(GravityBoxSettings.PREF_KEY_VOL_MUSIC_CONTROLS, false);
-        XposedBridge.log("ModVolumeKeySkipTrack: allowSkipTrack = " + allowSkipTrack);
+        if (DEBUG) log("allowSkipTrack = " + allowSkipTrack);
     }
 }
