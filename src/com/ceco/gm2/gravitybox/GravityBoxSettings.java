@@ -319,6 +319,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED = "gravitybox.intent.action.STATUSBAR_BRIGHTNESS_CHANGED";
     public static final String EXTRA_SB_BRIGHTNESS = "sbBrightness";
 
+    public static final String PREF_KEY_MMS_UNICODE_STRIPPING = "pref_mms_unicode_stripping";
+    public static final String UNISTR_LEAVE_INTACT = "leave_intact";
+    public static final String UNISTR_NON_ENCODABLE = "non_encodable";
+    public static final String UNISTR_ALL = "all";
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR,

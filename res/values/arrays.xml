@@ -411,4 +411,16 @@
         <item>3</item>
     </string-array>
 
+    <string-array name="unicode_stripping_entries" translatable="false">
+        <item>@string/unicode_stripping_leave_intact</item>
+        <item>@string/unicode_stripping_non_encodable</item>
+        <item>@string/unicode_stripping_all</item>
+    </string-array>
+
+    <string-array name="unicode_stripping_values" translatable="false">
+        <item>leave_intact</item>
+        <item>non_encodable</item>
+        <item>all</item>
+    </string-array>
+
 </resources>

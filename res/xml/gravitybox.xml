@@ -585,38 +585,57 @@
         android:title="@string/pref_cat_phone_title"
         android:summary="@string/pref_cat_phone_summary">
 
-        <ListPreference
-            android:key="pref_phone_flip"
-            android:title="@string/pref_phone_flip_title"
-            android:summary="@string/pref_phone_flip_summary"
-            android:entries="@array/phone_flip_action_entries"
-            android:entryValues="@array/phone_flip_action_values"
-            android:defaultValue="0" />
+        <PreferenceCategory
+            android:key="pref_cat_phone_telephony"
+            android:title="@string/pref_cat_phone_telephony_title">
 
-        <CheckBoxPreference 
-            android:key="pref_phone_call_connect_vibrate_disable"
-            android:title="@string/pref_phone_call_connect_vibrate_disable_title"
-            android:summary="@string/pref_phone_call_connect_vibrate_disable_summary"
-            android:defaultValue="false" />
+            <ListPreference
+                android:key="pref_phone_flip"
+                android:title="@string/pref_phone_flip_title"
+                android:summary="@string/pref_phone_flip_summary"
+                android:entries="@array/phone_flip_action_entries"
+                android:entryValues="@array/phone_flip_action_values"
+                android:defaultValue="0" />
 
-        <CheckBoxPreference 
-            android:key="pref_caller_fullscreen_photo"
-            android:title="@string/caller_fullscreen_photo_title"
-            android:summary="@string/caller_fullscreen_photo_summary"
-            android:defaultValue="false" />
+            <CheckBoxPreference 
+                android:key="pref_phone_call_connect_vibrate_disable"
+                android:title="@string/pref_phone_call_connect_vibrate_disable_title"
+                android:summary="@string/pref_phone_call_connect_vibrate_disable_summary"
+                android:defaultValue="false" />
 
-        <CheckBoxPreference 
-            android:key="pref_roaming_warning_disable"
-            android:title="@string/pref_roaming_warning_disable_title"
-            android:summary="@string/pref_roaming_warning_disable_summary"
-            android:defaultValue="false" />
+            <CheckBoxPreference 
+                android:key="pref_caller_fullscreen_photo"
+                android:title="@string/caller_fullscreen_photo_title"
+                android:summary="@string/caller_fullscreen_photo_summary"
+                android:defaultValue="false" />
 
-        <CheckBoxPreference 
-            android:key="pref_national_roaming"
-            android:title="@string/pref_national_roaming_title"
-            android:summary="@string/pref_national_roaming_summary"
-            android:defaultValue="false" />
+            <CheckBoxPreference 
+                android:key="pref_roaming_warning_disable"
+                android:title="@string/pref_roaming_warning_disable_title"
+                android:summary="@string/pref_roaming_warning_disable_summary"
+                android:defaultValue="false" />
 
+            <CheckBoxPreference 
+                android:key="pref_national_roaming"
+                android:title="@string/pref_national_roaming_title"
+                android:summary="@string/pref_national_roaming_summary"
+                android:defaultValue="false" />
+
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            android:key="pref_cat_phone_messaging"
+            android:title="@string/pref_cat_phone_messaging_title">
+
+            <ListPreference
+                android:key="pref_mms_unicode_stripping"
+                android:title="@string/pref_mms_unicode_stripping_title"
+                android:summary="@string/pref_mms_unicode_stripping_summary"
+                android:entries="@array/unicode_stripping_entries"
+                android:entryValues="@array/unicode_stripping_values"
+                android:defaultValue="leave_intact" />
+
+        </PreferenceCategory>
     </PreferenceScreen>
 
     <PreferenceScreen 

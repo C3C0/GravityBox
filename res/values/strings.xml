@@ -533,4 +533,15 @@
     <string name="pref_statusbar_brightness_title">Enable brightness control</string>
     <string name="pref_statusbar_brightness_summary">Adjusts brightness by sliding over statusbar</string>
 
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Telephony</string>
+    <string name="pref_cat_phone_messaging_title">Messaging</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Strip unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">Converts unicode characters to normal characters. Decreases overall message size.</string>
+    <string name="unicode_stripping_leave_intact">Leave characters intact</string>
+    <string name="unicode_stripping_non_encodable">Strip non-encodable characters</string>
+    <string name="unicode_stripping_all">Strip all unicode characters</string>
+
 </resources>
