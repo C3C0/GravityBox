@@ -33,9 +33,9 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class ModCenterClock {
+public class ModStatusBar {
     public static final String PACKAGE_NAME = "com.android.systemui";
-    private static final String TAG = "ModCenterClock";
+    private static final String TAG = "GB:ModStatusBar";
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     private static final String CLASS_TICKER = "com.android.systemui.statusbar.phone.PhoneStatusBar$MyTicker";
     private static final String CLASS_PHONE_STATUSBAR_POLICY = "com.android.systemui.statusbar.phone.PhoneStatusBarPolicy";
