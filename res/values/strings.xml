@@ -536,6 +536,7 @@
     <!-- Phone tweaks categories -->
     <string name="pref_cat_phone_telephony_title">Telephony</string>
     <string name="pref_cat_phone_messaging_title">Messaging</string>
+    <string name="pref_cat_phone_mobile_data_title">Mobile data</string>
 
     <!-- Messaging: Strip unicode -->
     <string name="pref_mms_unicode_stripping_title">Strip unicode</string>
@@ -543,5 +544,9 @@
     <string name="unicode_stripping_leave_intact">Leave characters intact</string>
     <string name="unicode_stripping_non_encodable">Strip non-encodable characters</string>
     <string name="unicode_stripping_all">Strip all unicode characters</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Disable slow 2G data warning</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Disables warning about slow data speed when turning on mobile data in QuickSettings for SIM in 2G mode</string>
 
 </resources>

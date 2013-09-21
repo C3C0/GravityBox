@@ -615,12 +615,6 @@
                 android:summary="@string/pref_roaming_warning_disable_summary"
                 android:defaultValue="false" />
 
-            <CheckBoxPreference 
-                android:key="pref_national_roaming"
-                android:title="@string/pref_national_roaming_title"
-                android:summary="@string/pref_national_roaming_summary"
-                android:defaultValue="false" />
-
         </PreferenceCategory>
 
         <PreferenceCategory
@@ -636,6 +630,25 @@
                 android:defaultValue="leave_intact" />
 
         </PreferenceCategory>
+
+        <PreferenceCategory 
+            android:key="pref_cat_phone_mobile_data"
+            android:title="@string/pref_cat_phone_mobile_data_title">
+
+            <CheckBoxPreference 
+                android:key="pref_national_roaming"
+                android:title="@string/pref_national_roaming_title"
+                android:summary="@string/pref_national_roaming_summary"
+                android:defaultValue="false" />
+
+            <CheckBoxPreference 
+                android:key="pref_mobile_data_slow2g_disable"
+                android:title="@string/pref_mobile_data_slow2g_disable_title"
+                android:summary="@string/pref_mobile_data_slow2g_disable_summary"
+                android:defaultValue="false" />
+
+        </PreferenceCategory>
+
     </PreferenceScreen>
 
     <PreferenceScreen 

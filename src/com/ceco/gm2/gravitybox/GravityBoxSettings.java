@@ -324,6 +324,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String UNISTR_NON_ENCODABLE = "non_encodable";
     public static final String UNISTR_ALL = "all";
 
+    public static final String PREF_CAT_KEY_PHONE_TELEPHONY = "pref_cat_phone_telephony";
+    public static final String PREF_CAT_KEY_PHONE_MOBILE_DATA = "pref_cat_phone_mobile_data";
+    public static final String PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE = "pref_mobile_data_slow2g_disable";
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR,
@@ -530,6 +534,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefMusicVolumeSteps;
         private AppPickerPreference[] mPrefLockscreenTargetsApp;
         private SeekBarPreference mPrefLockscreenTargetsBottomOffset;
+        private CheckBoxPreference mPrefMobileDataSlow2gDisable;
+        private PreferenceCategory mPrefCatPhoneTelephony;
+        private PreferenceCategory mPrefCatPhoneMobileData;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -667,6 +674,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefLockscreenTargetsBottomOffset = (SeekBarPreference) findPreference(
                     PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET);
 
+            mPrefCatPhoneTelephony = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_TELEPHONY);
+            mPrefCatPhoneMobileData = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MOBILE_DATA);
+            mPrefMobileDataSlow2gDisable = (CheckBoxPreference) findPreference(PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE);
+
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
                 getPreferenceScreen().removePreference(mPrefCatPhone);
@@ -681,12 +692,13 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefCatStatusbar.removePreference(mPrefDisableRoamingIndicators);
                 mQuickSettings.setEntries(R.array.qs_tile_aosp_entries);
                 mQuickSettings.setEntryValues(R.array.qs_tile_aosp_values);
-                mPrefCatPhone.removePreference(mPrefRoamingWarningDisable);
+                mPrefCatPhoneTelephony.removePreference(mPrefRoamingWarningDisable);
             } else {
                 // Remove Gemini specific preferences for non-Gemini MTK devices
                 if (!sSystemProperties.hasGeminiSupport) {
                     mPrefCatStatusbar.removePreference(mSignalIconAutohide);
                     mPrefCatStatusbar.removePreference(mPrefDisableRoamingIndicators);
+                    mPrefCatPhoneMobileData.removePreference(mPrefMobileDataSlow2gDisable);
                 }
 
                 // Remove preferences not needed for ZTE V987
