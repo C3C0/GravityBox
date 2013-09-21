@@ -6,6 +6,53 @@
         android:title="@string/pref_cat_lockscreen_title"
         android:summary="@string/pref_cat_lockscreen_summary">
 
+        <PreferenceScreen 
+            android:key="pref_cat_lockscreen_targets"
+            android:title="@string/pref_cat_lockscreen_targets_title">
+
+            <CheckBoxPreference 
+                android:key="pref_lockscreen_targets_enable"
+                android:title="@string/pref_lockscreen_targets_enable_title"
+                android:summary="@string/pref_lockscreen_targets_enable_summary"
+                android:defaultValue="false" />
+
+            <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                android:key="pref_lockscreen_targets_app0"
+                android:title="@string/pref_lockscreen_targets_app_title"
+                android:summary="@string/app_picker_none" />
+
+            <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                android:key="pref_lockscreen_targets_app1"
+                android:title="@string/pref_lockscreen_targets_app_title"
+                android:summary="@string/app_picker_none" />
+
+            <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                android:key="pref_lockscreen_targets_app2"
+                android:title="@string/pref_lockscreen_targets_app_title"
+                android:summary="@string/app_picker_none" />
+
+            <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                android:key="pref_lockscreen_targets_app3"
+                android:title="@string/pref_lockscreen_targets_app_title"
+                android:summary="@string/app_picker_none" />
+
+            <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                android:key="pref_lockscreen_targets_app4"
+                android:title="@string/pref_lockscreen_targets_app_title"
+                android:summary="@string/app_picker_none" />
+
+            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+                android:key="pref_lockscreen_targets_bottom_offset"
+                android:title="@string/pref_lockscreen_targets_bottom_offset_title"
+                minimum="0"
+                maximum="30"
+                interval="1"
+                monitorBoxEnabled="true"
+                monitorBoxUnit="px" 
+                android:defaultValue="0" />
+
+        </PreferenceScreen>
+
         <PreferenceCategory 
             android:key="pref_cat_lockscreen_background"
             android:title="@string/pref_cat_lockscreen_background_title">

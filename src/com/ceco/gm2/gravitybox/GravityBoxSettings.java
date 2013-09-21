@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.ceco.gm2.gravitybox.preference.AppPickerPreference;
 import com.ceco.gm2.gravitybox.preference.AutoBrightnessDialogPreference;
 import com.ceco.gm2.gravitybox.preference.SeekBarPreference;
 
@@ -307,6 +308,13 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_NAVBAR_WIDTH = "navbarWidth";
     public static final String EXTRA_NAVBAR_MENUKEY = "navbarMenukey";
 
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_ENABLE = "pref_lockscreen_targets_enable";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_APP[] = new String[] {
+        "pref_lockscreen_targets_app0", "pref_lockscreen_targets_app1", "pref_lockscreen_targets_app2",
+        "pref_lockscreen_targets_app3", "pref_lockscreen_targets_app4"
+    };
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET = "pref_lockscreen_targets_bottom_offset";
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR,
@@ -511,6 +519,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private SeekBarPreference mPrefNavbarWidth;
         private CheckBoxPreference mPrefNavbarMenukey;
         private CheckBoxPreference mPrefMusicVolumeSteps;
+        private AppPickerPreference[] mPrefLockscreenTargetsApp;
+        private SeekBarPreference mPrefLockscreenTargetsBottomOffset;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -635,6 +645,18 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefNavbarHeight = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_HEIGHT);
             mPrefNavbarWidth = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_WIDTH);
             mPrefNavbarMenukey = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_MENUKEY);
+
+            mPrefLockscreenTargetsApp = new AppPickerPreference[5];
+            for (int i=0; i<=4; i++) {
+                mPrefLockscreenTargetsApp[i] = (AppPickerPreference) findPreference(
+                        PREF_KEY_LOCKSCREEN_TARGETS_APP[i]);
+                String title = String.format(
+                        getString(R.string.pref_lockscreen_targets_app_title), (i+1));
+                mPrefLockscreenTargetsApp[i].setTitle(title);
+                mPrefLockscreenTargetsApp[i].setDialogTitle(title);
+            }
+            mPrefLockscreenTargetsBottomOffset = (SeekBarPreference) findPreference(
+                    PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET);
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
@@ -862,6 +884,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefNavbarHeight.setEnabled(override && mPrefNavbarEnable.isChecked());
                 mPrefNavbarWidth.setEnabled(override && mPrefNavbarEnable.isChecked());
                 mPrefNavbarMenukey.setEnabled(override && mPrefNavbarEnable.isChecked());
+            }
+
+            if (key == null || key.equals(PREF_KEY_LOCKSCREEN_TARGETS_ENABLE)) {
+                final boolean enabled = mPrefs.getBoolean(PREF_KEY_LOCKSCREEN_TARGETS_ENABLE, false);
+                for(Preference p : mPrefLockscreenTargetsApp) {
+                    p.setEnabled(enabled);
+                }
+                mPrefLockscreenTargetsBottomOffset.setEnabled(enabled);
             }
         }
 
