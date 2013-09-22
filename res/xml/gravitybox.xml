@@ -159,6 +159,13 @@
 
             </PreferenceScreen>
 
+            <ListPreference
+                android:key="pref_network_mode_tile_mode" 
+                android:title="@string/pref_network_mode_tile_mode_title"
+                android:entries="@array/network_mode_tile_mode_entries"
+                android:entryValues="@array/network_mode_tile_mode_values"
+                android:defaultValue="0" />
+
             <CheckBoxPreference 
                 android:key="pref_auto_switch_qs"
                 android:title="@string/pref_auto_switch_qs_title"

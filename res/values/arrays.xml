@@ -423,4 +423,14 @@
         <item>all</item>
     </string-array>
 
+    <string-array name="network_mode_tile_mode_entries" translatable="false">
+        <item>@string/nm_tile_mode1</item>
+        <item>@string/nm_tile_mode2</item>
+    </string-array>
+
+    <string-array name="network_mode_tile_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
 </resources>

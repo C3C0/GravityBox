@@ -163,6 +163,11 @@ public class ModQuickSettings {
                             GravityBoxSettings.EXTRA_QUICK_PULLDOWN, 
                             GravityBoxSettings.QUICK_PULLDOWN_OFF);
                 }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_NMT_MODE)) {
+                    Settings.System.putInt(mContext.getContentResolver(),
+                            NetworkModeTile.SETTING_NETWORK_MODE_TILE_MODE,
+                            intent.getIntExtra(GravityBoxSettings.EXTRA_NMT_MODE, 0));
+                }
             } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKAPP_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_DEFAULT)) {
                     Settings.System.putString(mContext.getContentResolver(),

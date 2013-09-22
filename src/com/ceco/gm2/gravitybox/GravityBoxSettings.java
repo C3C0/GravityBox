@@ -330,6 +330,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_CAT_KEY_PHONE_MOBILE_DATA = "pref_cat_phone_mobile_data";
     public static final String PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE = "pref_mobile_data_slow2g_disable";
 
+    public static final String PREF_KEY_NETWORK_MODE_TILE_MODE = "pref_network_mode_tile_mode";
+    public static final String EXTRA_NMT_MODE = "networkModeTileMode";
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR,
@@ -539,6 +542,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefMobileDataSlow2gDisable;
         private PreferenceCategory mPrefCatPhoneTelephony;
         private PreferenceCategory mPrefCatPhoneMobileData;
+        private ListPreference mPrefNetworkModeTileMode;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -679,6 +683,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCatPhoneTelephony = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_TELEPHONY);
             mPrefCatPhoneMobileData = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MOBILE_DATA);
             mPrefMobileDataSlow2gDisable = (CheckBoxPreference) findPreference(PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE);
+
+            mPrefNetworkModeTileMode = (ListPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_MODE);
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
@@ -916,6 +922,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 }
                 mPrefLockscreenTargetsBottomOffset.setEnabled(enabled);
             }
+
+            if (key == null || key.equals(PREF_KEY_NETWORK_MODE_TILE_MODE)) {
+                mPrefNetworkModeTileMode.setSummary(mPrefNetworkModeTileMode.getEntry());
+            }
         }
 
         @Override
@@ -1127,6 +1137,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_STATUSBAR_BRIGHTNESS)) {
                 intent.setAction(ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED);
                 intent.putExtra(EXTRA_SB_BRIGHTNESS, prefs.getBoolean(PREF_KEY_STATUSBAR_BRIGHTNESS, false));
+            } else if (key.equals(PREF_KEY_NETWORK_MODE_TILE_MODE)) {
+                intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
+                intent.putExtra(EXTRA_NMT_MODE, Integer.valueOf(
+                        prefs.getString(PREF_KEY_NETWORK_MODE_TILE_MODE, "0")));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);

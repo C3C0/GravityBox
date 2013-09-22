@@ -19,9 +19,12 @@ import android.widget.TextView;
 public class NetworkModeTile extends AQuickSettingsTile {
     private static final String TAG = "NetworkModeTile";
 
+    public static final String SETTING_NETWORK_MODE_TILE_MODE = "gb_network_mode_tile_mode";
+
     private TextView mTextView;
     private int mNetworkType;
     private int mDefaultNetworkType;
+    private boolean mAllow3gOnly;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -38,14 +41,22 @@ public class NetworkModeTile extends AQuickSettingsTile {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(
                     Settings.Global.getUriFor(PhoneWrapper.PREFERRED_NETWORK_MODE), false, this);
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(SETTING_NETWORK_MODE_TILE_MODE), false, this);
         }
 
         @SuppressLint("NewApi")
         @Override
         public void onChange(boolean selfChange) {
-            mNetworkType = Settings.Global.getInt(mContext.getContentResolver(), 
+            ContentResolver cr = mContext.getContentResolver();
+            mNetworkType = Settings.Global.getInt(cr, 
                     PhoneWrapper.PREFERRED_NETWORK_MODE, PhoneWrapper.NT_WCDMA_PREFERRED);
-            log("SettingsObserver onChange; mNetworkType = " + mNetworkType);
+            mAllow3gOnly = Settings.System.getInt(cr, 
+                    SETTING_NETWORK_MODE_TILE_MODE, 0) == 0;
+
+            log("SettingsObserver onChange; mNetworkType = " + mNetworkType +
+                    "; mAllow3gOnly = " + mAllow3gOnly);
+
             updateResources();
         }
     }
@@ -70,8 +81,8 @@ public class NetworkModeTile extends AQuickSettingsTile {
                                 PhoneWrapper.NT_WCDMA_PREFERRED);
                         break;
                     case PhoneWrapper.NT_GSM_ONLY:
-                        i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
-                                PhoneWrapper.NT_WCDMA_ONLY);
+                        i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, mAllow3gOnly ?
+                                    PhoneWrapper.NT_WCDMA_ONLY : PhoneWrapper.NT_WCDMA_PREFERRED);
                         break;
                     default:
                         if (hasLte()) {
@@ -100,8 +111,12 @@ public class NetworkModeTile extends AQuickSettingsTile {
         mTextView = (TextView) mTile.findViewById(R.id.network_mode_tileview);
 
         mDefaultNetworkType = PhoneWrapper.getDefaultNetworkType();
-        mNetworkType = Settings.Global.getInt(mContext.getContentResolver(), 
+
+        ContentResolver cr = mContext.getContentResolver();
+        mNetworkType = Settings.Global.getInt(cr, 
                 PhoneWrapper.PREFERRED_NETWORK_MODE, mDefaultNetworkType);
+        mAllow3gOnly = Settings.System.getInt(cr,
+                SETTING_NETWORK_MODE_TILE_MODE, 0) == 0;
 
         SettingsObserver observer = new SettingsObserver(new Handler());
         observer.observe();
