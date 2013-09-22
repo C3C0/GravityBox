@@ -5,6 +5,7 @@ import com.ceco.gm2.gravitybox.R;
 
 import de.robv.android.xposed.XposedBridge;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -32,12 +33,14 @@ public class NetworkModeTile extends AQuickSettingsTile {
             super(handler);
         }
 
+        @SuppressLint("NewApi")
         public void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(
                     Settings.Global.getUriFor(PhoneWrapper.PREFERRED_NETWORK_MODE), false, this);
         }
 
+        @SuppressLint("NewApi")
         @Override
         public void onChange(boolean selfChange) {
             mNetworkType = Settings.Global.getInt(mContext.getContentResolver(), 
@@ -59,7 +62,8 @@ public class NetworkModeTile extends AQuickSettingsTile {
                     case PhoneWrapper.NT_WCDMA_PREFERRED:
                     case PhoneWrapper.NT_GSM_WCDMA_AUTO:
                         i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
-                                PhoneWrapper.NT_GSM_ONLY);
+                                hasLte() ? mDefaultNetworkType : 
+                                    PhoneWrapper.NT_GSM_ONLY);
                         break;
                     case PhoneWrapper.NT_WCDMA_ONLY:
                         i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
@@ -67,7 +71,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
                         break;
                     case PhoneWrapper.NT_GSM_ONLY:
                         i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
-                                hasLte() ? mDefaultNetworkType : PhoneWrapper.NT_WCDMA_ONLY);
+                                PhoneWrapper.NT_WCDMA_ONLY);
                         break;
                     default:
                         if (hasLte()) {
@@ -85,6 +89,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
         };
     }
 
+    @SuppressLint("NewApi")
     @Override
     protected void onTileCreate() {
         mLabel = mGbResources.getString(R.string.qs_tile_network_mode);
@@ -117,8 +122,9 @@ public class NetworkModeTile extends AQuickSettingsTile {
                 mDrawableId = R.drawable.ic_qs_2g_on;
                 break;
             default:
-                if (mNetworkType < PhoneWrapper.NT_MODE_UNKNOWN) {
-                    mDrawableId = R.drawable.ic_qs_3g_on;
+                if (mNetworkType >= PhoneWrapper.NT_LTE_CDMA_EVDO 
+                        && mNetworkType < PhoneWrapper.NT_MODE_UNKNOWN) {
+                    mDrawableId = R.drawable.ic_qs_lte;
                 } else {
                     mDrawableId = R.drawable.ic_qs_unexpected_network;
                     log("updateTile: Unknown or unsupported network type: mNetworkType = " + mNetworkType);
