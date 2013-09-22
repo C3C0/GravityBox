@@ -101,6 +101,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_CAT_KEY_STATUSBAR = "pref_cat_statusbar";
     public static final String PREF_CAT_KEY_STATUSBAR_QS = "pref_cat_statusbar_qs";
     public static final String PREF_KEY_STATUSBAR_BGCOLOR = "pref_statusbar_bgcolor2";
+    public static final String PREF_KEY_STATUSBAR_COLOR_FOLLOW_STOCK_BATTERY = "pref_sbcolor_follow_stock_battery";
     public static final String PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE = "pref_statusbar_icon_color_enable";
     public static final String PREF_KEY_STATUSBAR_ICON_COLOR = "pref_statusbar_icon_color";
     public static final String PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR = "pref_statusbar_data_activity_color";
@@ -273,6 +274,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
     public static final String ACTION_PREF_STATUSBAR_COLOR_CHANGED = "gravitybox.intent.action.STATUSBAR_COLOR_CHANGED";
     public static final String EXTRA_SB_BG_COLOR = "bgColor";
+    public static final String EXTRA_SB_COLOR_FOLLOW = "sbColorFollow";
     public static final String EXTRA_SB_ICON_COLOR_ENABLE = "iconColorEnable";
     public static final String EXTRA_SB_ICON_COLOR = "iconColor";
     public static final String EXTRA_SB_DATA_ACTIVITY_COLOR = "dataActivityColor";
@@ -951,6 +953,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_STATUSBAR_BGCOLOR)) {
                 intent.setAction(ACTION_PREF_STATUSBAR_COLOR_CHANGED);
                 intent.putExtra(EXTRA_SB_BG_COLOR, prefs.getInt(PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK));
+            } else if (key.equals(PREF_KEY_STATUSBAR_COLOR_FOLLOW_STOCK_BATTERY)) {
+                intent.setAction(ACTION_PREF_STATUSBAR_COLOR_CHANGED);
+                intent.putExtra(EXTRA_SB_COLOR_FOLLOW, prefs.getBoolean(
+                        PREF_KEY_STATUSBAR_COLOR_FOLLOW_STOCK_BATTERY, false));
             } else if (key.equals(PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE)) {
                 intent.setAction(ACTION_PREF_STATUSBAR_COLOR_CHANGED);
                 intent.putExtra(EXTRA_SB_ICON_COLOR_ENABLE,

@@ -186,6 +186,12 @@
                 android:defaultValue="@integer/COLOR_BLACK" />
 
             <CheckBoxPreference 
+                android:key="pref_sbcolor_follow_stock_battery"
+                android:title="@string/pref_sbcolor_follow_stock_battery_title"
+                android:summary="@string/pref_sbcolor_follow_stock_battery_summary"
+                android:defaultValue="false" />
+
+            <CheckBoxPreference 
                 android:key="pref_statusbar_icon_color_enable"
                 android:title="@string/pref_statusbar_icon_color_enable_title"
                 android:defaultValue="false" />

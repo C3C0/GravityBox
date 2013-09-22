@@ -54,8 +54,6 @@ public class ModStatusbarColor {
     private static Object mBatteryController;
     private static FrameLayout mNotificationPanelView;
     private static NotificationWallpaper mNotificationWallpaper;
-    private static Integer mClockDefaultColor;
-    private static Integer mPercentageDefaultColor;
     private static boolean mRoamingIndicatorsDisabled;
     private static TransparencyManager mTransparencyManager;
 
@@ -64,8 +62,6 @@ public class ModStatusbarColor {
         mIconColorEnabled = false;
         mBatteryLevel = 0;
         mBatteryPlugged = false;
-        mClockDefaultColor = null;
-        mPercentageDefaultColor = null;
         mRoamingIndicatorsDisabled = false;
     }
 
@@ -131,6 +127,10 @@ public class ModStatusbarColor {
                     Settings.System.putInt(context.getContentResolver(),
                             TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN,
                             intent.getIntExtra(GravityBoxSettings.EXTRA_TM_NB_LOCKSCREEN, 0));
+                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_COLOR_FOLLOW)) {
+                    boolean follow = intent.getBooleanExtra(GravityBoxSettings.EXTRA_SB_COLOR_FOLLOW, false);
+                    mIconManager.setFollowStockBatteryColor(follow);
+                    applyIconColors();
                 }
             }
 
@@ -201,6 +201,8 @@ public class ModStatusbarColor {
             mIconManager.setDataActivityColor(
                     prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR, 
                             StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
+            mIconManager.setFollowStockBatteryColor(prefs.getBoolean(
+                    GravityBoxSettings.PREF_KEY_STATUSBAR_COLOR_FOLLOW_STOCK_BATTERY, false));
             mRoamingIndicatorsDisabled = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_DISABLE_ROAMING_INDICATORS, false);
 
@@ -215,6 +217,8 @@ public class ModStatusbarColor {
                     intentFilter.addAction(GravityBoxSettings.ACTION_NOTIF_BACKGROUND_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_DISABLE_ROAMING_INDICATORS_CHANGED);
                     mPanelBar.getContext().registerReceiver(mBroadcastReceiver, intentFilter);
+
+                    mIconManager.initStockBatteryColor(mPanelBar.getContext());
                 }
             });
 
@@ -522,25 +526,25 @@ public class ModStatusbarColor {
             XposedHelpers.callMethod(mSignalClusterView, "apply");
         }
 
-        final int iconColor = mIconColorEnabled ? 
-                mIconManager.getIconColor() : mIconManager.getDefaultIconColor();
-
         if (mClock != null) {
-            if (mClockDefaultColor == null) {
-                mClockDefaultColor = mClock.getCurrentTextColor();
+            if (mIconManager.getDefaultClockColor() == null) {
+                mIconManager.setDefaultClockColor(mClock.getCurrentTextColor());
             }
-            mClock.setTextColor(mIconColorEnabled ? iconColor : mClockDefaultColor);
+            mClock.setTextColor(mIconColorEnabled ? 
+                    mIconManager.getIconColor() : mIconManager.getClockColor());
         }
 
         if (mCircleBattery != null) {
-            mCircleBattery.setColor(iconColor);
+            mCircleBattery.setColor(mIconColorEnabled ?
+                    mIconManager.getIconColor() : mIconManager.getDefaultIconColor());
         }
 
         if (mPercentage != null) {
-            if (mPercentageDefaultColor == null) {
-                mPercentageDefaultColor = mPercentage.getCurrentTextColor();
+            if (mIconManager.getDefaultBatteryPercentageColor() == null) {
+                mIconManager.setDefaultBatteryPercentageColor(mPercentage.getCurrentTextColor());
             }
-            mPercentage.setTextColor(mIconColorEnabled ? iconColor : mPercentageDefaultColor);
+            mPercentage.setTextColor(mIconColorEnabled ? 
+                    mIconManager.getIconColor() : mIconManager.getBatteryPercentageColor());
         }
 
         if (mBatteryController != null && mBattery != null) {

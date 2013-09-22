@@ -549,4 +549,8 @@
     <string name="pref_mobile_data_slow2g_disable_title">Disable slow 2G data warning</string>
     <string name="pref_mobile_data_slow2g_disable_summary">Disables warning about slow data speed when turning on mobile data in QuickSettings for SIM in 2G mode</string>
 
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">Follow stock battery color</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Makes statusbar clock, percentage and circle battery use the color of stock battery icon. Applies when icon coloring is off.</string>
+
 </resources>

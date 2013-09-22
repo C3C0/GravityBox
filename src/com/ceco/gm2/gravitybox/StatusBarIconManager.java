@@ -7,13 +7,16 @@ import java.util.Map;
 
 import de.robv.android.xposed.XposedBridge;
 
+import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 
 public class StatusBarIconManager {
-    private static final String TAG = "StatusBarIconStore";
+    private static final String TAG = "GB:StatusBarIconManager";
     private static final boolean DEBUG = false;
     public static final int DEFAULT_DATA_ACTIVITY_COLOR = Color.WHITE;
 
@@ -24,6 +27,10 @@ public class StatusBarIconManager {
     private Map<String, Integer> mMobileIconIds;
     private Map<String, Integer> mBatteryIconIds;
     private Map<String, SoftReference<Drawable>> mIconCache;
+    private Integer mStockBatteryColor;
+    private Integer mDefaultClockColor;
+    private Integer mDefaultBatteryPercentageColor;
+    private boolean mFollowStockBatteryColor;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -33,6 +40,7 @@ public class StatusBarIconManager {
         mResources = res;
         mIconColor = getDefaultIconColor();
         mDataActivityColor = DEFAULT_DATA_ACTIVITY_COLOR;
+        mFollowStockBatteryColor = false;
 
         Map<String, Integer> tmpMap = new HashMap<String, Integer>();
         tmpMap.put("stat_sys_wifi_signal_0", R.drawable.stat_sys_wifi_signal_0);
@@ -92,7 +100,67 @@ public class StatusBarIconManager {
     }
 
     public int getDefaultIconColor() {
-        return mResources.getColor(android.R.color.holo_blue_dark);
+        if (mFollowStockBatteryColor && mStockBatteryColor != null) {
+            return mStockBatteryColor;
+        } else {
+            return mResources.getColor(android.R.color.holo_blue_dark);
+        }
+    }
+
+    public void initStockBatteryColor(Context context) {
+        try {
+            final Resources res = context.getResources();
+            final int resId = res.getIdentifier(
+                    "stat_sys_battery_100", "drawable", "com.android.systemui");
+            if (resId != 0) {
+                final Bitmap b = BitmapFactory.decodeResource(res, resId);
+                final int x = b.getWidth() / 2;
+                final int y = b.getHeight() / 2;
+                mStockBatteryColor = b.getPixel(x, y);
+            }
+            if (DEBUG) log("mStockBatteryColor = " + 
+                    ((mStockBatteryColor != null ) ? Integer.toHexString(mStockBatteryColor) : "NULL"));
+        } catch (Throwable t) {
+            log("Error initializing stock battery color: " + t.getMessage());
+        }
+    }
+
+    public void setFollowStockBatteryColor(boolean follow) {
+        mFollowStockBatteryColor = follow;
+    }
+
+    public void setDefaultClockColor(int color) {
+        mDefaultClockColor = color;
+    }
+
+    public Integer getDefaultClockColor() {
+        return mDefaultClockColor;
+    }
+
+    public int getClockColor() {
+        if (mFollowStockBatteryColor && mStockBatteryColor != null) {
+            return mStockBatteryColor;
+        } else {
+            return (mDefaultClockColor != null ?
+                    mDefaultClockColor : getDefaultIconColor());
+        }
+    }
+
+    public void setDefaultBatteryPercentageColor(int color) {
+        mDefaultBatteryPercentageColor = color;
+    }
+
+    public Integer getDefaultBatteryPercentageColor() {
+        return mDefaultBatteryPercentageColor;
+    }
+
+    public int getBatteryPercentageColor() {
+        if (mFollowStockBatteryColor && mStockBatteryColor != null) {
+            return mStockBatteryColor;
+        } else {
+            return (mDefaultBatteryPercentageColor != null ?
+                    mDefaultBatteryPercentageColor : getDefaultIconColor());
+        }
     }
 
     public int getIconColor() {
