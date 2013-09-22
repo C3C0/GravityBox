@@ -533,4 +533,20 @@
     <string name="pref_statusbar_brightness_title">Activer le contrôle de la luminosité</string>
     <string name="pref_statusbar_brightness_summary">Ajuste la luminosité en glissant le doigt sur la barre de statut</string>
 
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Téléphonie</string>
+    <string name="pref_cat_phone_messaging_title">Messagerie</string>
+    <string name="pref_cat_phone_mobile_data_title">Données mobile</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Alléger unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">Convertit les caractères unicode en caractères normaux. Réduit la taille globale du message</string>
+    <string name="unicode_stripping_leave_intact">Laisser les caractères tels quels</string>
+    <string name="unicode_stripping_non_encodable">Alléger les caractères non-encodables</string>
+    <string name="unicode_stripping_all">Alléger tous les caractères unicode</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Désactiver l\'avertissement faible débit 2G</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Désactive l\'avertissement lié au faible débit des données lorsque l\'on active les données mobile dans les paramètres rapides de SIM en mode 2G</string>
+
 </resources>
