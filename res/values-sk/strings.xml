@@ -75,6 +75,8 @@
     <string name="quick_settings_expanded_desktop_disabled">Vypnuté</string>
     <string name="quick_settings_expanded_desktop_normal">Normálna plocha</string>
     <string name="quick_settings_expanded_desktop_expanded">Rozšírená plocha</string>
+    <string name="quick_settings_stay_awake_on">Bdenie zap</string>
+    <string name="quick_settings_stay_awake_off">Bdenie vyp</string> 
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Dlaždice QuickSettings panelu</string>
@@ -100,6 +102,8 @@
     <string name="qs_tile_quickrecord">Rýchly záznam zvuku</string>
     <string name="qs_tile_volume">Hlasitosť</string>
     <string name="qs_tile_expanded_desktop">Rozšírená plocha</string>
+    <string name="qs_tile_stay_awake">Bdenie</string>
+    <string name="qs_tile_screenshot">Screenshot</string>  
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Výber farby</string>
@@ -412,6 +416,7 @@
     <!-- GPS Tile (for non-MTK) -->
     <string name="qs_tile_gps_enabled">GPS zap</string>
     <string name="qs_tile_gps_disabled">GPS vyp</string>
+    <string name="qs_tile_gps_locked">GPS fix</string> 
 
     <!-- Pie control: always show menu button -->
     <string name="pie_control_menu_title">Vždy zobraziť menu tlačidlo</string>
@@ -514,5 +519,47 @@
 
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Screenshot v menu napájania</string>
+
+    <!-- Lockscreen targets -->
+    <string name="pref_cat_lockscreen_targets_title">Skratky obrazovky uzamknutia</string>
+    <string name="pref_lockscreen_targets_enable_title">Povoliť skratky</string>
+    <string name="pref_lockscreen_targets_enable_summary">Hlavný vypínač pre skratky obrazovky uzamknutia</string>
+    <string name="pref_lockscreen_targets_app_title">Aplikácia pre skratku %s</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Spodný okraj prstenca</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">Povoliť ovládanie jasu</string>
+    <string name="pref_statusbar_brightness_summary">Povolí ovládanie jasu posúvaním prsta po stavovej lište</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Telefón</string>
+    <string name="pref_cat_phone_messaging_title">Správy</string>
+    <string name="pref_cat_phone_mobile_data_title">Mobilné dáta</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Konverzia diakritiky</string>
+    <string name="pref_mms_unicode_stripping_summary">Odstráni diakritiku zo správy pred jej odoslaním. Znižuje nároky na počet znakov správy.</string>
+    <string name="unicode_stripping_leave_intact">Ponechať predvolené</string>
+    <string name="unicode_stripping_non_encodable">Konverzia nekódovateľných znakov</string>
+    <string name="unicode_stripping_all">Konverzia všetkých znakov</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Vypnúť varovanie pomalých 2G dát</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Vypne varovanie o pomalých 2G dátach pre SIM v režime 2G, pri zapnutí dát použitím dlaždice</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">Kopírovať farbu stock batérie</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Nastaví farbu hodín, percent batérie a kruhového indikátora podľa farby stock batérie (v prípade ak je vypnuté vlastné vyfarbovanie)</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">Režim dlaždice typu mobilnej siete</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
+    <string name="nm_tile_mode2">2G/2G+3G</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">Skryť GPS notifikácie</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">Povoliť všetky rotácie</string>
 
 </resources>
