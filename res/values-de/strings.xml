@@ -75,6 +75,8 @@
     <string name="quick_settings_expanded_desktop_disabled">Deaktiviert</string>
     <string name="quick_settings_expanded_desktop_normal">Normal</string>
     <string name="quick_settings_expanded_desktop_expanded">Erweitert</string>
+    <string name="quick_settings_stay_awake_on">Wach halten an</string>
+    <string name="quick_settings_stay_awake_off">Wach halten aus</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Statusbar QuickSettings tiles</string>
@@ -100,6 +102,7 @@
     <string name="qs_tile_quickrecord">Aufnahme</string>
     <string name="qs_tile_settings">Einstellungen</string>
     <string name="qs_tile_expanded_desktop">Erweiterter Desktop</string>
+    <string name="qs_tile_stay_awake">Wach halten</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
