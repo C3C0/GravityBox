@@ -333,6 +333,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_NETWORK_MODE_TILE_MODE = "pref_network_mode_tile_mode";
     public static final String EXTRA_NMT_MODE = "networkModeTileMode";
 
+    public static final String PREF_KEY_GPS_NOTIF_DISABLE = "pref_gps_notif_disable";
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR,

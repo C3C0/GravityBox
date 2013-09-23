@@ -427,6 +427,11 @@
             android:summary="@string/pref_disable_roaming_indicators_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_gps_notif_disable"
+            android:title="@string/pref_gps_notif_disable_title"
+            android:defaultValue="false" />
+
     </PreferenceScreen>
 
     <PreferenceScreen
