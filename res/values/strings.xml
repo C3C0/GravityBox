@@ -105,6 +105,7 @@
     <string name="qs_tile_volume">Volume</string>
     <string name="qs_tile_expanded_desktop">Expanded desktop</string>
     <string name="qs_tile_stay_awake">Stay awake</string>
+    <string name="qs_tile_screenshot">Screenshot</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>

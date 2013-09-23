@@ -19,6 +19,7 @@ import com.ceco.gm2.gravitybox.quicksettings.NetworkModeTile;
 import com.ceco.gm2.gravitybox.quicksettings.QuickAppTile;
 import com.ceco.gm2.gravitybox.quicksettings.QuickRecordTile;
 import com.ceco.gm2.gravitybox.quicksettings.RingerModeTile;
+import com.ceco.gm2.gravitybox.quicksettings.ScreenshotTile;
 import com.ceco.gm2.gravitybox.quicksettings.SleepTile;
 import com.ceco.gm2.gravitybox.quicksettings.StayAwakeTile;
 import com.ceco.gm2.gravitybox.quicksettings.TorchTile;
@@ -115,7 +116,8 @@ public class ModQuickSettings {
             R.id.quickrecord_tileview,
             R.id.volume_tileview,
             R.id.expanded_tileview,
-            R.id.stay_awake_tileview
+            R.id.stay_awake_tileview,
+            R.id.screenshot_tileview
         ));
         if (!Utils.isMtkDevice()) {
             mCustomGbTileKeys.add(R.id.gps_tileview);
@@ -534,6 +536,10 @@ public class ModQuickSettings {
                 ExpandedDesktopTile edTile = new ExpandedDesktopTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 edTile.setupQuickSettingsTile(mContainerView, inflater);
                 mTiles.add(edTile);
+
+                ScreenshotTile ssTile = new ScreenshotTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                ssTile.setupQuickSettingsTile(mContainerView, inflater);
+                mTiles.add(ssTile);
 
                 GravityBoxTile gbTile = new GravityBoxTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 gbTile.setupQuickSettingsTile(mContainerView, inflater);

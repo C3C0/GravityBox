@@ -78,6 +78,7 @@
         <item>@string/qs_tile_quickrecord</item>
         <item>@string/qs_tile_quickapp</item>
         <item>@string/qs_tile_expanded_desktop</item>
+        <item>@string/qs_tile_screenshot</item>
         <item>@string/qs_tile_gravitybox</item>
     </string-array>
 
@@ -104,6 +105,7 @@
         <item>quickrecord_tileview</item>
         <item>quickapp_tileview</item>
         <item>expanded_tileview</item>
+        <item>screenshot_tileview</item>
         <item>gravitybox_tileview</item>
     </string-array>
 
@@ -129,6 +131,7 @@
         <item>@string/qs_tile_quickrecord</item>
         <item>@string/qs_tile_quickapp</item>
         <item>@string/qs_tile_expanded_desktop</item>
+        <item>@string/qs_tile_screenshot</item>
         <item>@string/qs_tile_gravitybox</item>
     </string-array>
 
@@ -154,6 +157,7 @@
         <item>quickrecord_tileview</item>
         <item>quickapp_tileview</item>
         <item>expanded_tileview</item>
+        <item>screenshot_tileview</item>
         <item>gravitybox_tileview</item>
     </string-array>
 
