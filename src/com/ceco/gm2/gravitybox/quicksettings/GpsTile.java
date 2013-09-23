@@ -14,9 +14,14 @@ import android.view.View;
 import android.widget.TextView;
 
 public class GpsTile extends AQuickSettingsTile {
-    private static final String TAG = "GpsTile";
+    private static final String TAG = "GB:GpsTile";
+    private static final boolean DEBUG = false;
+
+    public static final String GPS_FIX_CHANGE_ACTION = "android.location.GPS_FIX_CHANGE";
+    public static final String EXTRA_GPS_ENABLED = "enabled";
 
     private boolean mGpsEnabled;
+    private boolean mGpsFixed;
     private TextView mTextView;
 
     private static void log(String message) {
@@ -27,9 +32,16 @@ public class GpsTile extends AQuickSettingsTile {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            mGpsEnabled = Settings.Secure.isLocationProviderEnabled(
-                    mContext.getContentResolver(), LocationManager.GPS_PROVIDER);
-            log("Broadcast received: mGpsEnabled = " + mGpsEnabled);
+            final String action = intent.getAction();
+            if (action.equals(LocationManager.PROVIDERS_CHANGED_ACTION)) {
+                mGpsEnabled = Settings.Secure.isLocationProviderEnabled(
+                        mContext.getContentResolver(), LocationManager.GPS_PROVIDER);
+                mGpsFixed &= mGpsEnabled;
+            } else if (action.equals(GPS_FIX_CHANGE_ACTION)) {
+                mGpsFixed = intent.getBooleanExtra(EXTRA_GPS_ENABLED, false);
+            }
+            if (DEBUG) log("Broadcast received: mGpsEnabled = " + mGpsEnabled +
+                    "; mGpsFixed = " + mGpsFixed);
             updateResources();
         }
     };
@@ -57,10 +69,7 @@ public class GpsTile extends AQuickSettingsTile {
 
         mGpsEnabled = Settings.Secure.isLocationProviderEnabled(
                 mContext.getContentResolver(), LocationManager.GPS_PROVIDER);
-
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION);
-        mContext.registerReceiver(mLocationManagerReceiver, intentFilter);
+        mGpsFixed = false;
     }
 
     @Override
@@ -71,10 +80,22 @@ public class GpsTile extends AQuickSettingsTile {
     }
 
     @Override
+    protected void onTilePostCreate() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION);
+        intentFilter.addAction(GPS_FIX_CHANGE_ACTION);
+        mContext.registerReceiver(mLocationManagerReceiver, intentFilter);
+
+        super.onTilePostCreate();
+    }
+
+    @Override
     protected synchronized void updateTile() {
         if (mGpsEnabled) {
-            mLabel = mGbContext.getString(R.string.qs_tile_gps_enabled);
-            mDrawableId = R.drawable.ic_qs_gps_enable;
+            mLabel = mGpsFixed ? mGbContext.getString(R.string.qs_tile_gps_locked) :
+                    mGbContext.getString(R.string.qs_tile_gps_enabled);
+            mDrawableId = mGpsFixed ? R.drawable.ic_qs_gps_locked :
+                    R.drawable.ic_qs_gps_enable;
         } else {
             mLabel = mGbContext.getString(R.string.qs_tile_gps_disabled);
             mDrawableId = R.drawable.ic_qs_gps_disable;
