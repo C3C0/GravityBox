@@ -20,6 +20,7 @@ import com.ceco.gm2.gravitybox.quicksettings.QuickAppTile;
 import com.ceco.gm2.gravitybox.quicksettings.QuickRecordTile;
 import com.ceco.gm2.gravitybox.quicksettings.RingerModeTile;
 import com.ceco.gm2.gravitybox.quicksettings.SleepTile;
+import com.ceco.gm2.gravitybox.quicksettings.StayAwakeTile;
 import com.ceco.gm2.gravitybox.quicksettings.TorchTile;
 import com.ceco.gm2.gravitybox.quicksettings.GravityBoxTile;
 import com.ceco.gm2.gravitybox.quicksettings.SyncTile;
@@ -113,7 +114,8 @@ public class ModQuickSettings {
             R.id.quickapp_tileview,
             R.id.quickrecord_tileview,
             R.id.volume_tileview,
-            R.id.expanded_tileview
+            R.id.expanded_tileview,
+            R.id.stay_awake_tileview
         ));
         if (!Utils.isMtkDevice()) {
             mCustomGbTileKeys.add(R.id.gps_tileview);
@@ -263,13 +265,10 @@ public class ModQuickSettings {
 
                 // bubble up in view hierarchy to find QuickSettingsTileView parent view
                 View rootView = view;
-                if (rootView.getClass() != mQuickSettingsTileViewClass &&
-                        rootView.getClass() != mQuickSettingsBasicTileClass) {
-                    do {
-                        rootView = (View) rootView.getParent();
-                    } while (rootView != null && 
+                while (rootView != null && 
                              rootView.getClass() != mQuickSettingsTileViewClass &&
-                             rootView.getClass() != mQuickSettingsBasicTileClass);
+                             rootView.getClass() != mQuickSettingsBasicTileClass) {
+                    rootView = (View) rootView.getParent();
                 }
 
                 if (DEBUG) {
@@ -519,6 +518,10 @@ public class ModQuickSettings {
                 SleepTile sleepTile = new SleepTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 sleepTile.setupQuickSettingsTile(mContainerView, inflater);
                 mTiles.add(sleepTile);
+
+                StayAwakeTile swTile = new StayAwakeTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                swTile.setupQuickSettingsTile(mContainerView, inflater);
+                mTiles.add(swTile);
 
                 QuickRecordTile qrTile = new QuickRecordTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 qrTile.setupQuickSettingsTile(mContainerView, inflater);

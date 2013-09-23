@@ -74,6 +74,7 @@
         <item>@string/qs_tile_wifi_ap</item>
         <item>@string/qs_tile_torch</item>
         <item>@string/qs_tile_sleep</item>
+        <item>@string/qs_tile_stay_awake</item>
         <item>@string/qs_tile_quickrecord</item>
         <item>@string/qs_tile_quickapp</item>
         <item>@string/qs_tile_expanded_desktop</item>
@@ -99,6 +100,7 @@
         <item>wifi_ap_tileview</item>
         <item>torch_tileview</item>
         <item>sleep_tileview</item>
+        <item>stay_awake_tileview</item>
         <item>quickrecord_tileview</item>
         <item>quickapp_tileview</item>
         <item>expanded_tileview</item>
@@ -123,6 +125,7 @@
         <item>@string/qs_tile_wifi_ap</item>
         <item>@string/qs_tile_torch</item>
         <item>@string/qs_tile_sleep</item>
+        <item>@string/qs_tile_stay_awake</item>
         <item>@string/qs_tile_quickrecord</item>
         <item>@string/qs_tile_quickapp</item>
         <item>@string/qs_tile_expanded_desktop</item>
@@ -147,6 +150,7 @@
         <item>wifi_ap_tileview</item>
         <item>torch_tileview</item>
         <item>sleep_tileview</item>
+        <item>stay_awake_tileview</item>
         <item>quickrecord_tileview</item>
         <item>quickapp_tileview</item>
         <item>expanded_tileview</item>
