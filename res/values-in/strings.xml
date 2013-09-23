@@ -109,7 +109,7 @@
 
     <!--  Statusbar background color -->
     <string name="statusbar_bgcolor_title">Warna latar Statusbar</string>
-    <string name="statusbar_bgcolor_summary">Membolehkan untuk mengeset warna latar dan transparansi statusbar</string>
+    <string name="statusbar_bgcolor_summary">Membolehkan untuk men-set warna latar dan transparansi statusbar</string>
 
     <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">Perbaiki setting Bicara</string>
@@ -518,5 +518,35 @@
     <string name="pref_navbar_width_title">Lebar navigation bar</string>
     <string name="pref_navbar_width_summary">Berlaku untuk orientasi lanskap/tidur</string>
     <string name="pref_navbar_menukey_title">Selalu tampilkan tombol menu</string>
+
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Screenshot di menu power</string>
+
+    <!-- Lockscreen targets -->
+    <string name="pref_cat_lockscreen_targets_title">Target Lockscreen</string>
+    <string name="pref_lockscreen_targets_enable_title">Hidupkan target lockscreen</string>
+    <string name="pref_lockscreen_targets_enable_summary">Hidupkan pengaturan target lockscreen</string>
+    <string name="pref_lockscreen_targets_app_title">Aplikasi target %s</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Jarak bawah cincin unlock</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">Hidupkan kontrol kecerahan</string>
+    <string name="pref_statusbar_brightness_summary">Atur kecerahan layar dengan menggeser staturbar</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Telepon</string>
+    <string name="pref_cat_phone_messaging_title">Perpesanan</string>
+    <string name="pref_cat_phone_mobile_data_title">Paket data</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Hilangkan unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">Mengubah karakter unicode ke karakter normal. Mengurangi ukuran pesan secara keseluruhan.</string>
+    <string name="unicode_stripping_leave_intact">Biarkan karakter secara utuh</string>
+    <string name="unicode_stripping_non_encodable">Hilangkan karakter yang tidak bisa dirubah</string>
+    <string name="unicode_stripping_all">Hilangkan semua karakter unicode</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Hilangkan peringatan koneksi 2G yang lambat</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Mematikan peringatan tentang lambatnya koneksi ketika menghidupkan paket data untuk SIM dalam mode 2G di QuickSettings</string>
 
 </resources>
