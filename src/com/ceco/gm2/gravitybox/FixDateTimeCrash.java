@@ -34,8 +34,8 @@ public class FixDateTimeCrash {
                                     append(tz.getDisplayName(tz.inDaylightTime(now), TimeZone.LONG)).toString();
                         }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 

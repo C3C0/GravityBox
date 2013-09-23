@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.XResources;
+import android.os.Build;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
@@ -39,53 +40,58 @@ public class ModAudio {
     };
 
     public static void initZygote(final XSharedPreferences prefs) {
+        try {
+            final Class<?> classAudioService = XposedHelpers.findClass(CLASS_AUDIO_SERVICE, null);
 
-        XResources.setSystemWideReplacement("android", "bool", "config_safe_media_volume_enabled", true);
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_MUSIC_VOLUME_STEPS, false)
+                    && Utils.shouldAllowMoreVolumeSteps()) {
+                initMusicStream();
+            }
 
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_MUSIC_VOLUME_STEPS, false)) {
-            initMusicStream();
+            XposedBridge.hookAllConstructors(classAudioService, new XC_MethodHook() {
+    
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                    if (context == null) return;
+    
+                    IntentFilter intentFilter = new IntentFilter();
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED);
+                    context.registerReceiver(mBroadcastReceiver, intentFilter);
+                    log("AudioService constructed. Broadcast receiver registered");
+                }
+            });
+
+            if (Build.VERSION.SDK_INT > 16) {
+                XResources.setSystemWideReplacement("android", "bool", "config_safe_media_volume_enabled", true);
+                mSafeMediaVolumeEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_SAFE_MEDIA_VOLUME, false);
+                log("Safe headset media volume set to: " + mSafeMediaVolumeEnabled);
+                XposedHelpers.findAndHookMethod(classAudioService, "enforceSafeMediaVolume", new XC_MethodHook() {
+
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        if (!mSafeMediaVolumeEnabled) {
+                            param.setResult(null);
+                            return;
+                        }
+                    }
+                });
+
+                XposedHelpers.findAndHookMethod(classAudioService, "checkSafeMediaVolume", 
+                        int.class, int.class, int.class, new XC_MethodHook() {
+        
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        if (!mSafeMediaVolumeEnabled) {
+                            param.setResult(true);
+                            return;
+                        }
+                    }
+                });
+            }
+        } catch(Throwable t) {
+            XposedBridge.log(t);
         }
-
-        final Class<?> classAudioService = XposedHelpers.findClass(CLASS_AUDIO_SERVICE, null);
-        mSafeMediaVolumeEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_SAFE_MEDIA_VOLUME, false);
-        log("Safe headset media volume set to: " + mSafeMediaVolumeEnabled);
-
-        XposedBridge.hookAllConstructors(classAudioService, new XC_MethodHook() {
-
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
-                if (context == null) return;
-
-                IntentFilter intentFilter = new IntentFilter();
-                intentFilter.addAction(GravityBoxSettings.ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED);
-                context.registerReceiver(mBroadcastReceiver, intentFilter);
-                log("AudioService constructed. Broadcast receiver registered");
-            }
-        });
-
-        XposedHelpers.findAndHookMethod(classAudioService, "enforceSafeMediaVolume", new XC_MethodHook() {
-
-            @Override
-            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                if (!mSafeMediaVolumeEnabled) {
-                    param.setResult(null);
-                    return;
-                }
-            }
-        });
-
-        XposedHelpers.findAndHookMethod(classAudioService, "checkSafeMediaVolume", 
-                int.class, int.class, int.class, new XC_MethodHook() {
-
-            @Override
-            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                if (!mSafeMediaVolumeEnabled) {
-                    param.setResult(true);
-                    return;
-                }
-            }
-        });
     }
 
     private static void initMusicStream() {
@@ -120,8 +126,8 @@ public class ModAudio {
                 }
             });
 
-        } catch(Exception e) {
-            XposedBridge.log(e);
+        } catch(Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }

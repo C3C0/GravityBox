@@ -6,6 +6,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.IBinder;
 
@@ -74,6 +75,7 @@ public class TorchService extends Service {
             Camera.Parameters camParams = mCamera.getParameters();
             camParams.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             mCamera.setParameters(camParams);
+            mCamera.setPreviewTexture(new SurfaceTexture(0));
             mCamera.startPreview();
 
             mTorchStatus = TORCH_STATUS_ON;

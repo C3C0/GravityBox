@@ -89,8 +89,8 @@ public class ModVolKeyCursor {
                 }
             });
 
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }

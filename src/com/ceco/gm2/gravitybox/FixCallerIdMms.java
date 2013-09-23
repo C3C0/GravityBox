@@ -68,8 +68,8 @@ public class FixCallerIdMms {
                     param.setResult(key);
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }

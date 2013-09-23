@@ -5,12 +5,12 @@
 
     <string name="battery_style_title">Estilo do indicador de bateria</string>
     <string name="battery_style_stock">Indicador de bateria pré-definido</string>
-    <string name="battery_style_circle">Indicador de bateria circular com percentagem</string>
-    <string name="battery_style_percent">Texto de percentagem grande</string>
-    <string name="battery_style_percent_stock">Texto de percentagem com icone pré-definido</string>
+    <string name="battery_style_circle">Indicador de bateria circular</string>
+    <string name="battery_style_circle_percent">Indicador de bateria circular com percentagem</string>
+    <string name="battery_style_percent">Texto de percentagem de bateria</string>
     <string name="battery_style_none">Nenhum</string>
 
-    <string name="vol_music_controls_title">Mudar de faixa utilizado teclas de volume</string>
+    <string name="vol_music_controls_title">Mudar de faixa utilizando teclas de volume</string>
     <string name="vol_music_controls_summary">As teclas de volume mudam de faixa após manter a respectiva tecla pressionada com o ecrã desligado</string>
 
     <string name="low_battery_warning_policy_title">Aviso de bateria fraca</string>
@@ -19,27 +19,28 @@
     <string name="low_battery_warning_sound">Apenas aviso sonoro</string>
     <string name="low_battery_warning_off">Desligado</string>
 
-    <string name="reboot_required">As alterações serão aplicadas após reiniciar o telefone</string>
+    <string name="reboot_required">As alterações serão aplicadas após reiniciar o sistema</string>
 
-    <string name="signal_icon_autohide_title">Esconder automaticamente as barras de sinal</string>
+    <string name="signal_icon_autohide_title">Esconder barras de sinal</string>
     <string name="signal_icon_autohide_summary">Esconder as barras de sinal do cartão SIM escolhido quando este não estiver inserido. Desativa as notificações de \"O SIM não está inserido.\"</string>
-    <string name="sim_slot_1">Esconder automaticamente barras de sinal do cartão SIM 1</string>
-    <string name="sim_slot_2">Esconder automaticamente barras de sinal do cartão SIM 2</string>
+    <string name="sim_slot_1">Esconder barras de sinal do cartão SIM 1</string>
+    <string name="sim_slot_2">Esconder barras de sinal do cartão SIM 2</string>
     <string name="sim_disable_notifications">Desativar notificações</string>
     <string name="sim_disable_notifications_summary">Notificações \"O SIM não está inserido.\" desativadas</string>
 
-    <string name="poweroff_advanced_title">Menu de Desligar avançado</string>
-    <string name="poweroff_advanced_summary">Adiciona opção \"Reiniciar em modo de recuperação\" ao menu de desligar</string>
+    <string name="poweroff_advanced_title">Menu Desligar avançado</string>
+    <string name="poweroff_advanced_summary">Adiciona opções para reiniciar em modo de recuperação ao Menu Desligar</string>
     <string name="poweroff_recovery">Modo de recuperação</string>
+    <string name="poweroff_bootloader">Modo bootloader</string>
 
-    <string name="vol_key_cursor_control_title">Tecla de Volume controla cursor</string>
+    <string name="vol_key_cursor_control_title">Teclas de volume controlam cursor</string>
     <string name="vol_key_cursor_control_summary">As teclas de volume controlam o cursor em campos de texto</string>
     <string name="vol_key_cursor_control_off">Desativado</string>
-    <string name="vol_key_cursor_control_on">Teclas de Volume +/- movem o cursor para a esquerda/direita</string>
-    <string name="vol_key_cursor_control_on_reverse">Teclas de Volume +/- movem o cursor para a direita/esquerda</string>
+    <string name="vol_key_cursor_control_on">Teclas de volume +/- movem o cursor para a esquerda/direita</string>
+    <string name="vol_key_cursor_control_on_reverse">Teclas de volume +/- movem o cursor para a direita/esquerda</string>
 
     <string name="recents_clear_all_title">Limpar todas as tarefas recentes</string>
-    <string name="recents_clear_all_summary">Ativa botão que possibilita limpar todas as tarefas recentes de uma vez na janela de tarefas recentes</string>
+    <string name="recents_clear_all_summary">Ativa botão que possibilita limpar todas as tarefas recentes de uma só vez na janela de tarefas recentes</string>
 
     <string name="fix_datetime_crash_title">Corrigir problema nas definições de data e hora</string>
     <string name="fix_datetime_crash_summary">Selecionar caso tenha problemas ao aceder à configuração de data e hora nas definições do telefone (necessário reiniciar)</string>
@@ -91,12 +92,12 @@
     <string name="qs_tile_gravitybox">GravityBox</string>
 
     <!-- Color Picker -->
-    <string name="dialog_color_picker">Escolha a cor</string>
+    <string name="dialog_color_picker">Escolher cor</string>
     <string name="press_color_to_apply">Carregue na cor escolhida para aplicar</string>
 
     <!-- Statusbar background color -->
     <string name="statusbar_bgcolor_title">Cor do fundo da Barra de Status</string>
-    <string name="statusbar_bgcolor_summary">Permite escolher a cor e transparência do fundo</string>
+    <string name="statusbar_bgcolor_summary">Permite escolher a cor do fundo</string>
 
     <!-- Fix speech settings -->
     <string name="fix_tts_settings_title">Desbloquear definições de voz</string>
@@ -107,8 +108,8 @@
     <string name="fix_dev_opts_summary">Desbloqueia as opções de programador avançadas nas definições do telefone (necessário reiniciar)</string>
 
     <!-- Main preference categories -->
-    <string name="pref_cat_statusbar_title">Ajustes da barra de status</string>
-    <string name="pref_cat_statusbar_summary">Contém vários ajustes relacionados com a barra de status</string>
+    <string name="pref_cat_statusbar_title">Ajustes da Barra de Status</string>
+    <string name="pref_cat_statusbar_summary">Contém vários ajustes relacionados com a Barra de Status</string>
     <string name="pref_cat_misc_title">Ajustes diversos</string>
     <string name="pref_cat_misc_summary">Contém todos os ajustes que não são classificados numa categoria específica</string>
     <string name="pref_cat_fixes_title">Ajustes gerais</string>
@@ -123,8 +124,9 @@
     <string name="about_donate_summary">Envie-me uma doação se achar que esta aplicação vale a pena! Considere também a hipótese de enviar uma doação ao <b>rovo89</b> pelo desenvolvimento do Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">O telefone irá reiniciar</string>
-    <string name="reboot_confirm_recovery">O telefone irá reiniciar em modo de recuperação</string>
+    <string name="reboot_confirm">O seu %s irá reiniciar.</string>
+    <string name="reboot_confirm_recovery">O seu %s irá reiniciar em modo de recuperação.</string>
+    <string name="reboot_confirm_bootloader">O seu %s irá reiniciar em modo bootloader.</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Efeito CRT ao desligar</string>
@@ -143,10 +145,10 @@
     <string name="pref_cat_lockscreen_summary">Contém vários ajustes relacionados com o ecrã de bloqueio</string>
     <string name="pref_cat_lockscreen_background_title">Fundo do ecrã de bloqueio</string>
     <string name="pref_lockscreen_background_title">Estilo do fundo</string>
-    <string name="lockscreen_bg_default">Imagem de fundo pré-definida</string>
-    <string name="lockscreen_bg_color">Cor</string>
+    <string name="lockscreen_bg_default">Fundo pré-definido</string>
+    <string name="lockscreen_bg_color">Preencher com cor</string>
     <string name="lockscreen_bg_image">Imagem personalizada</string>
-    <string name="pref_lockscreen_bg_color_title">Escolha a cor</string>
+    <string name="pref_lockscreen_bg_color_title">Escolher cor</string>
     <string name="pref_lockscreen_bg_color_summary">Permite definir uma cor para o ecrã de bloqueio</string>
     <string name="pref_lockscreen_bg_image_title">Escolha uma imagem</string>
     <string name="pref_lockscreen_bg_image_summary">Permite escolher uma imagem para o ecrã de bloqueio</string>
@@ -171,16 +173,16 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Nível de brilho mínimo</string>
     <string name="pref_brightness_min_summary">Permite definir o nível de brilho mínimo, aplicável apenas ao modo manual (necessário reiniciar)</string>
-    <string name="pref_brightness_dlg_msg">Intervalo de valores: 20 &#8211; 80</string>
+    <string name="pref_brightness_dlg_msg">Intervalo de valores: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Níveis de brilho automático</string>
     <string name="pref_ab_summary">Permite ajustar os níveis de luz ambiente e os correspondentes valores para o brilho do ecrã</string>
     <string name="level">Nível</string>
     <string name="pref_ab_lux_max_label">Lux máx.</string>
-    <string name="pref_ab_brighness_label">Brilho (20 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Brilho (10 &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Valor especificado inválido</string>
-    <string name="pref_ab_brightness_too_low">Não é aconselhável um valor inferior a 20</string>
+    <string name="pref_ab_brightness_too_low">Não é aconselhável um valor inferior a 10</string>
     <string name="pref_ab_brightness_too_high">O valor não pode ser superior a 255</string>
     <string name="pref_ab_number_error_negative">O valor não pode ser negativo</string>
     <string name="pref_ab_number_not_ascending">O valor do patamar inferior não pode ser maior que o do patamar superior</string>
@@ -220,5 +222,327 @@
     <string name="pref_charging_led_disable_title">Desativar luz de bateria a carregar</string>
     <string name="pref_charging_led_disable_summary">Desativa a luz vermelha quando a bateria está a carregar</string>
 
-</resources>
+    <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">Ações teclas físicas</string>
+    <string name="pref_cat_hwkey_actions_summary">Permite personalizar ações para as teclas físicas</string>
+    <string name="pref_hwkey_menu_longpress_title">Menu key long-press action</string>
+    <string name="pref_hwkey_menu_doubletap_title">Menu key double-tap action</string>
+    <string name="pref_hwkey_back_longpress_title">Back key long-press action</string>
+    <string name="hwkey_action_default">Por defeito</string>
+    <string name="hwkey_action_search">Pesquisa</string>
+    <string name="hwkey_action_voice_search">Pesquisa por voz</string>
+    <string name="hwkey_action_prev_app">Mudar para a aplicação anterior</string>
+    <string name="hwkey_action_kill">Fechar aplicação em curso</string>
+    <string name="pref_hwkey_kill_delay_title">Kill app long-press delay</string>
+    <string name="pref_hwkey_kill_delay_summary">Applies to Kill foreground app action. Defines for how long key must be pressed to trigger kill</string>
+    <string name="pref_hwkey_doubletap_speed_title">Double-tap speed</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Applies to Menu key double-tap action. Defines how fast key must be tapped to trigger double-tap</string>
+    <string name="app_killed">Aplicação fechada</string>
+    <string name="nothing_to_kill">Nenhuma aplicação por fechar</string>
+    <string name="no_previous_app_found">Nenhuma aplicação anterior encontrada</string>
 
+    <!--  Phone tweaks category -->
+    <string name="pref_cat_phone_title">Ajustes de telefone</string>
+    <string name="pref_cat_phone_summary">Contém vários ajustes relacionados com o telefone</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">Ação ao virar telefone durante toque de chamada</string>
+    <string name="pref_phone_flip_summary">Permite definir uma ação a executar quando o telefone é virado com o ecrã para baixo durante toque de chamada</string>
+    <string name="phone_flip_action_none">Nenhuma ação</string>
+    <string name="phone_flip_action_mute">Desativar som de toque</string>
+    <string name="phone_flip_action_dismiss">Rejeitar chamada</string>
+
+    <!-- Disable vibrate on call connect -->
+    <string name="pref_phone_call_connect_vibrate_disable_title">Desativar vibração ao estabelecer chamada</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">Desativa a curta vibração que ocorre quando uma chamada de voz é estabelecida</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">Reiniciar rápido</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Fundo preto sólido</string>
+    <string name="pref_holo_bg_solid_black_summary">Utilizar fundo preto sólido no tema Holo predefinido em vez do gradiente preto-cinzento (necessário reiniciar)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">Painéis por linha</string>
+    <string name="pref_qs_tiles_per_row_summary">Permite definir quantos painéis são mostrados por linha nas definições rápidas. O tamanho dos painéis é alterado de acordo com a escolha. Aplicável à orientação de ecrã vertical.</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">Mostrar dia da semana</string>
+
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Painel de volume expandido</string>
+    <string name="pref_volume_panel_expandable_summary">Ativa painel de volume expandido com possibilidade de controlar o volume de diferentes fontes</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Volumes de toque e notificações interligados</string>
+    <string name="pref_link_volumes_summary">Quando desativado, os volumes de toque e notificações podem ser controlados de forma independente</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">Comutação automática das definições rápidas</string>
+    <string name="pref_auto_switch_qs_summary">Mostra as definições rápidas automaticamente quando a Barra de Status é deslizada para baixo e não existem notificações</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Acesso rápido</string>
+    <string name="pref_quick_pulldown_summary">Acesso às definições rápidas a partir da borda da Barra de Status</string>
+    <string name="quick_pulldown_off">Desligado</string>
+    <string name="quick_pulldown_right">Direita</string>
+    <string name="quick_pulldown_left">Esquerda</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">Desativar ligar com teclas de volume</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Para dispositivos como o Jiayu G3S/G4, onde as teclas de volume ligam o ecrã</string>
+
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">Cores da Barra de Status</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">Ativar coloração de símbolos</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">Cor dos símbolos</string>
+    <string name="pref_statusbar_icon_color_summary">Permite escolher a cor dos símbolos e do relógio</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">Cor da atividade de dados</string>
+    <string name="pref_statusbar_data_activity_color_summary">Permite definir a cor dos indicadores de atividade de dados</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">Gestão das definições rápidas</string>
+
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">Estilo do painel de notificações</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">Fundo do painel de notificações</string>
+    <string name="notif_background_default">Fundo pré-definido</string>
+    <string name="notif_background_color_fill">Preencher com cor</string>
+    <string name="notif_background_custom_image">Imagem personalizada</string>
+    <string name="pref_notif_color_title">Escolher cor</string>
+    <string name="pref_notif_image_portrait_title">Definir imagem para orientação de ecrã vertical</string>
+    <string name="pref_notif_image_landscape_title">Definir imagem para orientação de ecrã horizontal</string>
+    <string name="pref_notif_background_alpha_title">Transparência do fundo</string>
+    <string name="pref_notif_color_mode_title">Modo de fundo</string>
+    <string name="color_fill_overlay">Por cima</string>
+    <string name="color_fill_underlay">Por trás</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">Desativar indicadores de roaming</string>
+    <string name="pref_disable_roaming_indicators_summary">Quando selecionado, o indicador R não será visível em roaming (usar com cautela)</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">A carregar (%d%%)</string>
+    <string name="pie_battery_status_full">Carregado</string>
+    <string name="pie_battery_status_discharging">%d%% restante</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Sem serviço</string>
+    <string name="pie_phone_status_airplane_mode">Modo de avião ativado</string>
+    <string name="pie_phone_status_emergency_only">Apenas chamadas de emergência</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">Pie controls</string>
+    <string name="pie_control_enable_title">Enable pie controls</string>
+    <string name="pie_control_search_title">Show search button</string>
+    <string name="pie_control_size_title">Navigation key size</string>
+    <string name="pie_control_trigger_positions_title">Trigger positions</string>
+    <string name="pie_control_trigger_left">Left screen border</string>
+    <string name="pie_control_trigger_bottom">Bottom screen border</string>
+    <string name="pie_control_trigger_right">Right screen border</string>
+    <string name="pie_control_trigger_top">Top screen border</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">Button backlight mode</string>
+    <string name="button_backlight_mode_default">Default</string>
+    <string name="button_backlight_mode_disable">Disable button backlight</string>
+    <string name="button_backlight_mode_always_on">Always on while screen is on</string>
+    <string name="pref_button_backlight_notifications_title">Button backlight notifications</string>
+    <string name="pref_button_backlight_notifications_summary">EXPERIMENTAL! Blinks button backlight when there is a notification. Use in case your device lacks notification LED. May consume battery.</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">Hide navigation bar</string>
+    <string name="pref_navbar_disable_summary">Hides navigation bar while Pie Controls are enabled (for devices that have navigation bar, requires reboot)</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">Dithered Holo background</string>
+    <string name="pref_holo_bg_dither_summary">Replaces standard Holo background with dithered one to suppress color banding (requires reboot)</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">Disable hardware keys</string>
+    <string name="pref_hwkeys_disable_summary">Disables MENU, BACK, HOME while Pie Controls are enabled. HW keys actions will still work. (for devices having HW keys)</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">Utilizar tema escuro</string>
+    <string name="pref_gb_theme_dark_summary">Altera a interface de utilizador da aplicação GB para o tema escuro em vez do tema claro</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">Desativado</string>
+    <string name="recent_clear_top_left">Canto superior esquerdo</string>
+    <string name="recent_clear_top_right">Canto superior direito</string>
+    <string name="recent_clear_bottom_left">Canto inferior esquerdo</string>
+    <string name="recent_clear_bottom_right">Canto inferior direito</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Ajustar margem superior</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">Desativa avisos de roaming</string>
+    <string name="pref_roaming_warning_disable_summary">Desativa os avisos de roaming aquando do envio de mensagens ou realização de chamadas em roaming</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">Pesquisa</string>
+    <string name="app_picker_none">(Nenhuma)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">Aplicação rápida</string>
+    <string name="pref_cat_quickapp_tile_title">Definições do painel Aplicação rápida</string>
+    <string name="pref_quickapp_default_title">Aplicação principal</string>
+    <string name="pref_quickapp_slot1_title">Pressão longa aplicação posição 1</string>
+    <string name="pref_quickapp_slot2_title">Pressão longa aplicação posição 2</string>
+    <string name="pref_quickapp_slot3_title">Pressão longa aplicação posição 3</string>
+    <string name="pref_quickapp_slot4_title">Pressão longa aplicação posição 4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS ativado</string>
+    <string name="qs_tile_gps_disabled">GPS desativado</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">Always show menu button</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">Ringer mode</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">Definições do relógio</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">Esconder AM/PM</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">Esconder relógio</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">Trigger size</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">Transparency management</string>
+    <string name="pref_tm_statusbar_launcher_title">Statusbar transparency for launcher</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Statusbar transparency for lockscreen</string>
+    <string name="pref_tm_navbar_launcher_title">Navbar transparency for launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Navbar transparency for lockscreen</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">Esconder símbolo de alarme</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Screen dim level</string>
+    <string name="pref_screen_dim_level_summary">Amount of brightness for dim state - when screen is about to be turned off (requires reboot)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">telefone</string>
+    <string name="device_tablet">tablet</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">Definições de brilho</string>
+    <string name="pref_brightness_master_switch_title">Ativar definições de brilho</string>
+    <string name="pref_brightness_master_switch_summary">Utilizar apenas caso o dispositivo suporte as funcionalidades de brilho padrão do Android. Manter desativado caso verifique problemas relacionados com o brilho (necessário reiniciar)</string>
+
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">Mostrar aplicações recentes</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">Home key long-press action</string>
+
+    <!-- HW Key Action: Launch custom app -->
+    <string name="hwkey_action_custom_app">Iniciar aplicação 1</string>
+    <string name="pref_hwkey_custom_app_title">Definir aplicação 1</string>
+    <string name="hwkey_action_custom_app2">Iniciar aplicação 2</string>
+    <string name="pref_hwkey_custom_app_title2">Definir aplicação 2</string>
+    <string name="hwkey_action_custom_app_none">Nenhuma aplicação definida!</string>
+    <string name="hwkey_action_custom_app_missing">Aplicação não encontrada!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Relógio do painel de notificações</string>
+    <string name="pref_clock_link_summary">Associar relógio do painel de notificações a uma aplicação específica em vez das Definições de data e hora</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">Waiting for response from GravityBox system framework&#8230;</string>
+    <string name="gb_startup_error">GravityBox system framework not responding. Exiting.</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">National data roaming</string>
+    <string name="pref_national_roaming_summary">Connect to data services when nationally roaming</string>
+
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Expanded desktop mode</string>
+    <string name="expanded_desktop_disabled">Disabled</string>
+    <string name="expanded_desktop_statusbar">Hide statusbar</string>
+    <string name="expanded_desktop_navbar">Hide navigation bar</string>
+    <string name="expanded_desktop_both">Hide both</string>
+    <string name="action_expanded_desktop_title">Expanded desktop</string>
+    <string name="action_expanded_desktop_on">Expanded desktop is ON</string>
+    <string name="action_expanded_desktop_off">Expanded desktop is OFF</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">Captura de ecrã</string>
+
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">Mostrar menu</string>
+
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">Toggle expanded desktop</string>
+    <string name="hwkey_action_expanded_desktop_disabled">Expanded desktop mode is disabled!</string>
+
+    <!-- Navigation bar tweaks category -->
+    <string name="pref_cat_navigation_bar_title">Ajustes da Barra de Navegação</string>
+    <string name="pref_cat_navigation_bar_summary">Contém vários ajustes relacionados com a Barra de Navegação</string>
+    <string name="pref_navbar_override_title">Ignorar predefinições de sistema</string>
+    <string name="pref_navbar_override_summary">Ativação global dos ajustes da barra de navegação (necessário reiniciar)</string>
+    <string name="pref_navbar_enable_title">Ativar barra de navegação</string>
+    <string name="pref_navbar_enable_summary">Necessário reiniciar</string>
+    <string name="pref_navbar_height_title">Altura da barra de navegação</string>
+    <string name="pref_navbar_height_summary">Aplicável à orientação de ecrã vertical</string>
+    <string name="pref_navbar_width_title">Largura da barra de navegação</string>
+    <string name="pref_navbar_width_summary">Aplicável à orientação de ecrã horizontal</string>
+    <string name="pref_navbar_menukey_title">Mostar sempre botão Menu</string>
+
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Captura de ecrã no Menu Desligar</string>
+
+    <!-- Lockscreen targets -->
+    <string name="pref_cat_lockscreen_targets_title">Lockscreen targets</string>
+    <string name="pref_lockscreen_targets_enable_title">Enable lockscreen targets</string>
+    <string name="pref_lockscreen_targets_enable_summary">Master switch for lockscreen targets</string>
+    <string name="pref_lockscreen_targets_app_title">Target application %s</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Unlock ring bottom offset</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">Ativar controlo de brilho</string>
+    <string name="pref_statusbar_brightness_summary">Permite ajustar o brilho ao deslizar sobre a Barra de Status</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Telefone</string>
+    <string name="pref_cat_phone_messaging_title">Mensagens</string>
+    <string name="pref_cat_phone_mobile_data_title">Dados móveis</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Strip unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">Converts unicode characters to normal characters. Decreases overall message size.</string>
+    <string name="unicode_stripping_leave_intact">Leave characters intact</string>
+    <string name="unicode_stripping_non_encodable">Strip non-encodable characters</string>
+    <string name="unicode_stripping_all">Strip all unicode characters</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Disable slow 2G data warning</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Disables warning about slow data speed when turning on mobile data in QuickSettings for SIM in 2G mode</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">Follow stock battery color</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Makes statusbar clock, percentage and circle battery use the color of stock battery icon. Applies when icon coloring is off.</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">Network mode tile mode</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
+    <string name="nm_tile_mode2">2G/2G+3G</string>
+
+</resources>

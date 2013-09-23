@@ -1,6 +1,6 @@
 package com.ceco.gm2.gravitybox.quicksettings;
 
-import com.ceco.gm2.gravitybox.GravityBox;
+import com.ceco.gm2.gravitybox.R;
 
 import de.robv.android.xposed.XposedBridge;
 import android.content.Context;
@@ -31,19 +31,16 @@ public class SleepTile extends AQuickSettingsTile {
 
     @Override
     protected void onTileCreate() {
-        mDrawableId = mGbResources.getIdentifier("ic_qs_sleep", "drawable", GravityBox.PACKAGE_NAME);
-        mLabel = mGbResources.getString(mGbResources.getIdentifier(
-                "qs_tile_sleep", "string", GravityBox.PACKAGE_NAME));
+        mDrawableId = R.drawable.ic_qs_sleep;
+        mLabel = mGbResources.getString(R.string.qs_tile_sleep);
 
-        int mTileLayoutId = mGbResources.getIdentifier("quick_settings_tile_sleep", "layout", GravityBox.PACKAGE_NAME);
         LayoutInflater inflater = LayoutInflater.from(mGbContext);
-        inflater.inflate(mTileLayoutId, mTile);
+        inflater.inflate(R.layout.quick_settings_tile_sleep, mTile);
     }
 
     @Override
     protected void updateTile() {
-        TextView tv = (TextView) mTile.findViewById(
-                mGbResources.getIdentifier("sleep_tileview", "id", GravityBox.PACKAGE_NAME));
+        TextView tv = (TextView) mTile.findViewById(R.id.sleep_tileview);
         tv.setText(mLabel);
         tv.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
     }

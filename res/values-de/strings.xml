@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Battery indicator style</string>	
+    <string name="battery_style_stock">Stock battery indicator</string>
+    <string name="battery_style_circle">Circle battery</string>
+    <string name="battery_style_circle_percent">Circle battery with percentage</string>
+    <string name="battery_style_percent">Battery percent text</string>
+    <string name="battery_style_none">None</string>
+
+    <string name="vol_music_controls_title">Volume keys skip track</string>
+    <string name="vol_music_controls_summary">Skip tracks on volume keys long-press while screen is off</string>
+
+    <string name="low_battery_warning_policy_title">Low battery warning</string>
+    <string name="low_battery_warning_full">Pop-up and sound</string>
+    <string name="low_battery_warning_popup">Pop-up only</string>
+    <string name="low_battery_warning_sound">Sound only</string>
+    <string name="low_battery_warning_off">Off</string>
+
+    <string name="reboot_required">Change will be applied after reboot</string>
+
+    <string name="signal_icon_autohide_title">Auto-hide signal icons</string>
+    <string name="signal_icon_autohide_summary">Auto-hides signal icons for selected SIM slots when SIM card is not inserted, disables \"SIM not inserted\" notifications</string>
+    <string name="sim_slot_1">Auto-hide SIM Slot 1</string>
+    <string name="sim_slot_2">Auto-hide SIM Slot 2</string>
+    <string name="sim_disable_notifications">Disable notifications</string>
+    <string name="sim_disable_notifications_summary">\"SIM not inserted\" notifications disabled</string>
+
+    <string name="poweroff_advanced_title">Advanced reboot menu</string>
+    <string name="poweroff_advanced_summary">Enables advanced reboot menu with option to reboot to recovery</string>
+    <string name="poweroff_recovery">Recovery</string>    
+
+    <string name="vol_key_cursor_control_title">Volume key cursor control</string>
+    <string name="vol_key_cursor_control_summary">Controls cursor using volume keys in text fields</string>
+    <string name="vol_key_cursor_control_off">Disabled</string>
+    <string name="vol_key_cursor_control_on">Volume up/down moves cursor left/right</string>
+    <string name="vol_key_cursor_control_on_reverse">Volume up/down moves cursor right/left</string>
+
+    <string name="recents_clear_all_title">Clear all recent tasks</string>
+
+    <string name="fix_datetime_crash_title">Fix Date&amp;Time settings crash</string>
+    <string name="fix_datetime_crash_summary">Enable in case you experience crash while accessing Date&amp;Time settings (requires reboot)</string>
+
+    <string name="fix_caller_id_phone_title">Fix caller ID for phone</string>
+    <string name="fix_caller_id_phone_summary">Enable in case your contact is not matched when receiving call (requires reboot)</string>
+    <string name="fix_caller_id_phone_alert">After reboot, you should clear and re-add your contacts for change to take effect! Use Settings / Applications / All - to clear data of Contacts provider.</string>
+
+    <string name="fix_caller_id_mms_title">Fix caller ID for messages</string>
+    <string name="fix_caller_id_mms_summary">Enable in case you experience splitted conversation threads for the same contact (requires reboot)</string>
+    <string name="fix_caller_id_mms_alert">After reboot, you should delete all splitted threads in messaging app for change to take effect!</string>
+
+    <string name="fix_calendar_title">Fix calendar app</string>
+    <string name="fix_calendar_summary">Enable in case you experience periodic self-turning on of the screen (requires reboot)</string>
+
+    <string name="important">Important</string>
+
+    <string name="caller_fullscreen_photo_title">Fullscreen caller photo</string>
+    <string name="caller_fullscreen_photo_summary">Displays fullscreen caller photo on incoming call screen</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Sync an</string>
+    <string name="quick_settings_sync_off">Sync aus</string>
+    <string name="quick_settings_wifi_ap_on">Hotspot an</string>
+    <string name="quick_settings_wifi_ap_off">Hotspot aus</string>
+    <string name="quick_settings_torch_on">Lampe an</string>
+    <string name="quick_settings_torch_off">Lampe aus</string>
+    <string name="quick_settings_torch_off_notif">Drücken, um Lampe auszuschalten</string>
+    <string name="quick_settings_qr_playing">Wiedergabe&#8230;</string>
+    <string name="quick_settings_qr_recording">Aufnahme&#8230;</string>
+    <string name="quick_settings_qr_recorded">Aufgenommen</string>
+    <string name="quick_settings_qr_record">Lange drücken zum Aufnehmen</string>
+    <string name="quick_settings_qr_recording_notif">Drücken, um Aufnahme zu stoppen</string>
+    <string name="quick_settings_expanded_desktop_disabled">Deaktiviert</string>
+    <string name="quick_settings_expanded_desktop_normal">Normal</string>
+    <string name="quick_settings_expanded_desktop_expanded">Erweitert</string>
+    <string name="quick_settings_stay_awake_on">Wach halten an</string>
+    <string name="quick_settings_stay_awake_off">Wach halten aus</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">Statusbar QuickSettings tiles</string>
+    <string name="quick_settings_summary">Allows to show or hide QuickSettings tiles in statusbar</string>
+    <string name="qs_tile_user_profile">Benutzerprofil</string>
+    <string name="qs_tile_airplane_mode">Flugmodus</string>
+    <string name="qs_tile_battery">Akku</string>
+    <string name="qs_tile_wifi">WLAN</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_mobile_data">Mobile Daten</string>
+    <string name="qs_tile_network_mode">Netzmodus</string>
+    <string name="qs_tile_data_usage">Mobiler Datenverkehr</string>
+    <string name="qs_tile_audio">Audioprofile</string>
+    <string name="qs_tile_brightness">Helligkeit</string>
+    <string name="qs_tile_screen_timeout">Displayabschaltung</string>
+    <string name="qs_tile_autorotation">Autorotation</string>
+    <string name="qs_tile_sync">Synchronisation</string>
+    <string name="qs_tile_wifi_ap">WLAN-Hotspot</string>
+    <string name="qs_tile_torch">Taschenlampe</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Schlafmodus</string>
+    <string name="qs_tile_quickrecord">Aufnahme</string>
+    <string name="qs_tile_settings">Einstellungen</string>
+    <string name="qs_tile_expanded_desktop">Erweiterter Desktop</string>
+    <string name="qs_tile_stay_awake">Wach halten</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Color Picker</string>
+    <string name="press_color_to_apply">Press on Color to apply</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Statusbar background color</string>
+    <string name="statusbar_bgcolor_summary">Allows to set statusbar background color and transparency</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Fix speech settings</string>
+    <string name="fix_tts_settings_summary">Unlocks voice search and text-to-speech settings in Language&amp;Input (requires reboot)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">Advanced developer options</string>
+    <string name="fix_dev_opts_summary">Unlocks advanced developer options (requires reboot)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Statusbar tweaks</string>
+    <string name="pref_cat_statusbar_summary">Contains various statusbar tweaks</string>
+    <string name="pref_cat_misc_title">Miscellaneous tweaks</string>
+    <string name="pref_cat_misc_summary">Contains all other tweaks not falling into specific category</string>
+    <string name="pref_cat_fixes_title">General fixes</string>
+    <string name="pref_cat_fixes_summary">Contains general MTK6589 specific fixes. Use only if needed.</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">About</string>
+    <string name="about_gb_summary">Coded by C3C076@XDA. Touch to visit official thread.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Coded by rovo89@XDA. Touch to visit official thread.</string>
+    <string name="about_donate_title">Donate</string>
+    <string name="about_donate_summary">Donate to me if you think this app is worth it! Also consider donating to rovo89 for his excellent Xposed framework.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">%s wird neu gestartet.</string>
+    <string name="reboot_confirm_recovery">%s startet in die Recovery.</string>
+    <string name="reboot_confirm_bootloader">%s startet in den Bootloader.</string>
+
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">CRT screen off effect</string>
+    <string name="crt_off_effect_summary">Enables animation that simulates old CRT off effect when turning off the screen</string>
+
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Engineering mode</string>
+    <string name="engineering_mode_summary">Launches Engineering mode application</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Dual SIM Ringer</string>
+    <string name="dual_sim_ringer_summary">Launches application that allows to set ringtone and notification sounds separately for each SIM</string>
+
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Lockscreen tweaks</string>
+    <string name="pref_cat_lockscreen_summary">Contains various lockscreen tweaks</string>
+    <string name="pref_cat_lockscreen_background_title">Lockscreen background</string>
+    <string name="pref_lockscreen_background_title">Background style</string>
+    <string name="lockscreen_bg_default">Default wallpaper</string>
+    <string name="lockscreen_bg_color">Color fill</string>
+    <string name="lockscreen_bg_image">Custom image</string>
+    <string name="pref_lockscreen_bg_color_title">Set custom color</string>
+    <string name="pref_lockscreen_bg_color_summary">Allows to set custom background color for lockscreen</string>
+    <string name="pref_lockscreen_bg_image_title">Set custom image</string>
+    <string name="pref_lockscreen_bg_image_summary">Allows to set custom background image for lockscreen</string>
+    <string name="lockscreen_background_result_successful">Background changed</string>
+    <string name="lockscreen_background_result_not_successful">Background not changed</string>
+    <string name="pref_cat_lockscreen_other_title">Other</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Maximize widgets</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">When enabled, lockscreen widgets will be maximized by default</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Power tweaks</string>
+    <string name="pref_cat_power_summary">Contains various power related tweaks</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Disable LED flashing</string>
+    <string name="pref_flashing_led_disable_summary">Disables intrusive LED flashing when battery is low and not charging</string>
+
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">Display tweaks</string>
+    <string name="pref_cat_display_summary">Contains various display tweaks</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">Minimum brightness level</string>
+    <string name="pref_brightness_min_summary">Allows to set minimum brightness level. Applies to manual brightness setting. (requires reboot)</string>
+    <string name="pref_brightness_dlg_msg">Value from interval: 10 &#8211; 80</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">Autobrightness levels</string>
+    <string name="pref_ab_summary">Allows to set ambient light levels and corresponding LCD backlight values</string>
+    <string name="level">Level</string>
+    <string name="pref_ab_lux_max_label">Lux max</string>
+    <string name="pref_ab_brighness_label">Brightness (10 &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">Specified number is not valid</string>
+    <string name="pref_ab_brightness_too_low">It is not recommended to set brightness below 10</string>
+    <string name="pref_ab_brightness_too_high">Brightness cannot be greater than 255</string>
+    <string name="pref_ab_number_error_negative">Values cannot be lower or equal to zero</string>
+    <string name="pref_ab_number_not_ascending">Values on lower levels cannot be greater than values on higher levels</string>
+    <string name="pref_ab_number_not_descending">Values on higher levels cannot be smaller than values on lower levels</string>
+    <string name="pref_ab_values_set">Values for %s set</string>
+    <string name="pref_ab_config_saved">New autobrightness configuration saved</string>
+    <string name="pref_ab_config_cancelled">Autobrightness configuration was NOT saved</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">Enable lockscreen rotation</string>
+    <string name="pref_lockscreen_rotation_summary">WARNING: can swap unlock ring targets on some devices in case AOSP lockscreen has been modified by vendor</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">Enable menu key</string>
+    <string name="pref_lockscreen_menu_key_summary">Allows menu key to be used for quick-unlocking the device while on lockscreen (requires reboot)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">Fix messaging wakelock</string>
+    <string name="pref_mms_fix_wakelock_summary">Prevents screen from turning on when new message arrives (requires reboot)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">Center clock</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Media tweaks</string>
+    <string name="pref_cat_media_summary">Contains various tweaks for media and audio system</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">More music volume steps</string>
+    <string name="pref_music_volume_steps_summary">Adds more volume steps for music stream (requires reboot)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">Safe headset media volume</string>
+    <string name="pref_safe_media_volume_summary">Activates or deactivates safe headset media volume feature</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">Disable charging LED</string>
+    <string name="pref_charging_led_disable_summary">Disables LED while charging</string>
+
+    <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">Hardware key actions</string>
+    <string name="pref_cat_hwkey_actions_summary">Allows to set custom actions on hardware keys</string>
+    <string name="pref_hwkey_menu_longpress_title">Menu key long-press action</string>
+    <string name="pref_hwkey_menu_doubletap_title">Menu key double-tap action</string>
+    <string name="pref_hwkey_back_longpress_title">Back key long-press action</string>
+    <string name="hwkey_action_default">Default</string>
+    <string name="hwkey_action_search">Search</string>
+    <string name="hwkey_action_voice_search">Voice search</string>
+    <string name="hwkey_action_prev_app">Switch to previous app</string>
+    <string name="hwkey_action_kill">Kill foreground app</string>
+    <string name="hwkey_action_sleep">Go to sleep</string>
+    <string name="pref_hwkey_kill_delay_title">Kill app long-press delay</string>
+    <string name="pref_hwkey_kill_delay_summary">Applies to Kill foreground app action. Defines for how long key must be pressed to trigger kill</string>
+    <string name="pref_hwkey_doubletap_speed_title">Double-tap speed</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Applies to Menu key double-tap action. Defines how fast key must be tapped to trigger double-tap</string>
+    <string name="app_killed">Application killed</string>
+    <string name="nothing_to_kill">There\'s nothing to kill</string>
+    <string name="no_previous_app_found">No previous app found</string>
+
+    <!--  Phone tweaks category -->
+    <string name="pref_cat_phone_title">Phone tweaks</string>
+    <string name="pref_cat_phone_summary">Contains various telephony tweaks</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">Flip action while ringing</string>
+    <string name="pref_phone_flip_summary">Allows to define action to be performed when device is flipped face down while ringing</string>
+    <string name="phone_flip_action_none">Do nothing</string>
+    <string name="phone_flip_action_mute">Mute ringer</string>
+    <string name="phone_flip_action_dismiss">Dismiss call</string>
+
+    <!-- Disable vibrate on call connect -->
+    <string name="pref_phone_call_connect_vibrate_disable_title">Disable vibrate on call connect</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">Disables vibration that is triggered when call is connected</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">Sanfter Neustart</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Solid black background</string>
+    <string name="pref_holo_bg_solid_black_summary">Use solid black background for default Holo system theme instead of black-grey gradient (requires reboot)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">Tiles per row</string>
+    <string name="pref_qs_tiles_per_row_summary">Defines how many QuickSettings tiles to display per one row. Tiles will be resized accordingly. Applies to portrait mode.</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">Show day of week</string>
+
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Expandable volume panel</string>
+    <string name="pref_volume_panel_expandable_summary">Enables expandable volume panel with ability to set volumes for different streams</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Link ringtone &amp; notifications volumes</string>
+    <string name="pref_link_volumes_summary">When disabled, volumes for ringtone and notifications can be set independently</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">Auto-switch QuickSettings</string>
+    <string name="pref_auto_switch_qs_summary">QuickSettings will show automatically when status bar is pulled down while there are no notifications</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Quick pulldown</string>
+    <string name="pref_quick_pulldown_summary">Edge of the status bar pulls down QuickSettings</string>
+    <string name="quick_pulldown_off">Off</string>
+    <string name="quick_pulldown_right">Right</string>
+    <string name="quick_pulldown_left">Left</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">Disable volume rocker wake</string>
+    <string name="pref_volume_rocker_wake_disable_summary">For devices like Jiayu G3s,G4 where volume keys turn on screen</string>
+
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">Statusbar colors</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">Enable icon colors</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">Statusbar icon color</string>
+    <string name="pref_statusbar_icon_color_summary">Sets color for statusbar icons and clock</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">Data activity color</string>
+    <string name="pref_statusbar_data_activity_color_summary">Sets color for data activity indicators</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">QuickSettings management</string>
+
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">Notification drawer style</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">Notification drawer background</string>
+    <string name="notif_background_default">Default background</string>
+    <string name="notif_background_color_fill">Color fill</string>
+    <string name="notif_background_custom_image">Custom image</string>
+    <string name="pref_notif_color_title">Set background color</string>
+    <string name="pref_notif_image_portrait_title">Set portrait image</string>
+    <string name="pref_notif_image_landscape_title">Set landscape image</string>
+    <string name="pref_notif_background_alpha_title">Background transparency</string>
+    <string name="pref_notif_color_mode_title">Background mode</string>
+    <string name="color_fill_overlay">Overlay</string>
+    <string name="color_fill_underlay">Underlay</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">Disable roaming indicators</string>
+    <string name="pref_disable_roaming_indicators_summary">When disabled, R indicator will not be visible while roaming. Use with caution.</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Lädt (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Aufgeladen</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% verbleibend</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Kein Netz</string>
+    <string name="pie_phone_status_airplane_mode">Flugmodus</string>
+    <string name="pie_phone_status_emergency_only">Nur Notrufe</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">Pie controls</string>
+    <string name="pie_control_enable_title">Enable pie controls</string>
+    <string name="pie_control_search_title">Show search button</string>
+    <string name="pie_control_size_title">Navigation key size</string>
+    <string name="pie_control_trigger_positions_title">Trigger positions</string>
+    <string name="pie_control_trigger_left">Left screen border</string>
+    <string name="pie_control_trigger_bottom">Bottom screen border</string>
+    <string name="pie_control_trigger_right">Right screen border</string>
+    <string name="pie_control_trigger_top">Top screen border</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">Button backlight mode</string>
+    <string name="button_backlight_mode_default">Default</string>
+    <string name="button_backlight_mode_disable">Disable button backlight</string>
+    <string name="button_backlight_mode_always_on">Always on while screen is on</string>
+    <string name="pref_button_backlight_notifications_title">Button backlight notifications</string>
+    <string name="pref_button_backlight_notifications_summary">EXPERIMENTAL! Blinks button backlight when there is a notification. Use in case your device lacks notification LED. May consume battery.</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">Hide navigation bar</string>
+    <string name="pref_navbar_disable_summary">Hides navigation bar while Pie Controls are enabled (for devices that have navigation bar, requires reboot)</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">Dithered Holo background</string>
+    <string name="pref_holo_bg_dither_summary">Replaces standard Holo background with dithered one to suppress color banding (requires reboot)</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">Disable hardware keys</string>
+    <string name="pref_hwkeys_disable_summary">Disables MENU, BACK, HOME while Pie Controls are enabled. HW keys actions will still work. (for devices having HW keys)</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">Use Holo Dark theme</string>
+    <string name="pref_gb_theme_dark_summary">Switches GB UI to use Holo Dark theme instead of Holo Light</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">Off</string>
+    <string name="recent_clear_top_left">Top left</string>
+    <string name="recent_clear_top_right">Top right</string>
+    <string name="recent_clear_bottom_left">Bottom left</string>
+    <string name="recent_clear_bottom_right">Bottom right</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Adjust top margin</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">Disable roaming warnings</string>
+    <string name="pref_roaming_warning_disable_summary">Disables roaming warnings when sending messages or making phone calls while roaming</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">Search</string>
+    <string name="app_picker_none">(None)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">Quick App</string>
+    <string name="pref_cat_quickapp_tile_title">QuickApp tile settings</string>
+    <string name="pref_quickapp_default_title">Main application</string>
+    <string name="pref_quickapp_slot1_title">Long-press app slot 1</string>
+    <string name="pref_quickapp_slot2_title">Long-press app slot 2</string>
+    <string name="pref_quickapp_slot3_title">Long-press app slot 3</string>
+    <string name="pref_quickapp_slot4_title">Long-press app slot 4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS an</string>
+    <string name="qs_tile_gps_disabled">GPS aus</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">Always show menu button</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">Klingelmodus</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">Clock settings</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">Hide AM/PM</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">Hide clock</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">Trigger size</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">Transparency management</string>
+    <string name="pref_tm_statusbar_launcher_title">Statusbar transparency for launcher</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Statusbar transparency for lockscreen</string>
+    <string name="pref_tm_navbar_launcher_title">Navbar transparency for launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Navbar transparency for lockscreen</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">Hide alarm icon</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Screen dim level</string>
+    <string name="pref_screen_dim_level_summary">Amount of brightness for dim state - when screen is about to be turned off (requires reboot)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">Telefon</string>
+    <string name="device_tablet">Tablet</string>
+    
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Expanded desktop mode</string>
+    <string name="expanded_desktop_disabled">Disabled</string>
+    <string name="expanded_desktop_statusbar">Hide statusbar</string>
+    <string name="expanded_desktop_navbar">Hide navigation bar</string>
+    <string name="expanded_desktop_both">Hide both</string>
+    <string name="action_expanded_desktop_title">Erweiterter Desktop</string>
+    <string name="action_expanded_desktop_on">Erweiterter Desktop ist AN</string>
+    <string name="action_expanded_desktop_off">Erweiterter Desktop ist AUS</string>
+    
+</resources>

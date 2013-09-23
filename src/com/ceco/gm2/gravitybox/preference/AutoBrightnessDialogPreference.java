@@ -177,10 +177,10 @@ public class AutoBrightnessDialogPreference extends DialogPreference
         try {
             lux = Integer.valueOf(mTxtLux.getText().toString());
             brightness = Integer.valueOf(mTxtBrightness.getText().toString());
-            if (lux < 0) {
+            if (lux <= 0) {
                 Toast.makeText(getContext(), R.string.pref_ab_number_error_negative, Toast.LENGTH_LONG).show();
                 return;
-            } else if (brightness < 20) {
+            } else if (brightness < 10) {
                 Toast.makeText(getContext(), R.string.pref_ab_brightness_too_low, Toast.LENGTH_LONG).show();
                 return;
             } else if (brightness > 255) {

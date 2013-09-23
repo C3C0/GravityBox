@@ -4,12 +4,14 @@
     <string-array name="battery_style_entries" translatable="false">
         <item>@string/battery_style_stock</item>
         <item>@string/battery_style_circle</item>
+        <item>@string/battery_style_circle_percent</item>
         <item>@string/battery_style_none</item>
     </string-array>
 
     <string-array name="battery_style_values" translatable="false">
         <item>1</item>
         <item>2</item>
+        <item>3</item>
         <item>0</item>
     </string-array>
 
@@ -64,6 +66,7 @@
         <item>@string/qs_tile_network_mode</item>
         <item>@string/qs_tile_data_usage</item>
         <item>@string/qs_tile_audio</item>
+        <item>@string/qs_tile_volume</item>
         <item>@string/qs_tile_brightness</item>
         <item>@string/qs_tile_screen_timeout</item>
         <item>@string/qs_tile_autorotation</item>
@@ -71,7 +74,11 @@
         <item>@string/qs_tile_wifi_ap</item>
         <item>@string/qs_tile_torch</item>
         <item>@string/qs_tile_sleep</item>
+        <item>@string/qs_tile_stay_awake</item>
         <item>@string/qs_tile_quickrecord</item>
+        <item>@string/qs_tile_quickapp</item>
+        <item>@string/qs_tile_expanded_desktop</item>
+        <item>@string/qs_tile_screenshot</item>
         <item>@string/qs_tile_gravitybox</item>
     </string-array>
 
@@ -86,6 +93,7 @@
         <item>network_mode_tileview</item>
         <item>rssi_textview</item>
         <item>audio_profile_textview</item>
+        <item>volume_tileview</item>
         <item>brightness_textview</item>
         <item>timeout_textview</item>
         <item>auto_rotate_textview</item>
@@ -93,7 +101,63 @@
         <item>wifi_ap_tileview</item>
         <item>torch_tileview</item>
         <item>sleep_tileview</item>
+        <item>stay_awake_tileview</item>
         <item>quickrecord_tileview</item>
+        <item>quickapp_tileview</item>
+        <item>expanded_tileview</item>
+        <item>screenshot_tileview</item>
+        <item>gravitybox_tileview</item>
+    </string-array>
+
+    <string-array name="qs_tile_aosp_entries" translatable="false">
+        <item>@string/qs_tile_user_profile</item>
+        <item>@string/qs_tile_brightness</item>
+        <item>@string/qs_tile_settings</item>
+        <item>@string/qs_tile_wifi</item>
+        <item>@string/qs_tile_data_usage</item>
+        <item>@string/qs_tile_autorotation</item>
+        <item>@string/qs_tile_battery</item>
+        <item>@string/qs_tile_airplane_mode</item>
+        <item>@string/qs_tile_bluetooth</item>
+        <item>@string/qs_tile_gps</item>
+        <item>@string/qs_tile_ringer_mode</item>
+        <item>@string/qs_tile_volume</item>
+        <item>@string/qs_tile_network_mode</item>
+        <item>@string/qs_tile_sync</item>
+        <item>@string/qs_tile_wifi_ap</item>
+        <item>@string/qs_tile_torch</item>
+        <item>@string/qs_tile_sleep</item>
+        <item>@string/qs_tile_stay_awake</item>
+        <item>@string/qs_tile_quickrecord</item>
+        <item>@string/qs_tile_quickapp</item>
+        <item>@string/qs_tile_expanded_desktop</item>
+        <item>@string/qs_tile_screenshot</item>
+        <item>@string/qs_tile_gravitybox</item>
+    </string-array>
+
+    <string-array name="qs_tile_aosp_values" translatable="false">
+        <item>user_textview</item>
+        <item>brightness_textview</item>
+        <item>settings</item>
+        <item>wifi_textview</item>
+        <item>rssi_textview</item>
+        <item>auto_rotate_textview</item>
+        <item>battery_textview</item>
+        <item>airplane_mode_textview</item>
+        <item>bluetooth_textview</item>
+        <item>gps_tileview</item>
+        <item>ringer_mode_tileview</item>
+        <item>volume_tileview</item>
+        <item>network_mode_tileview</item>
+        <item>sync_tileview</item>
+        <item>wifi_ap_tileview</item>
+        <item>torch_tileview</item>
+        <item>sleep_tileview</item>
+        <item>stay_awake_tileview</item>
+        <item>quickrecord_tileview</item>
+        <item>quickapp_tileview</item>
+        <item>expanded_tileview</item>
+        <item>screenshot_tileview</item>
         <item>gravitybox_tileview</item>
     </string-array>
 
@@ -116,6 +180,11 @@
         <item>@string/hwkey_action_prev_app</item>
         <item>@string/hwkey_action_kill</item>
         <item>@string/hwkey_action_sleep</item>
+        <item>@string/hwkey_action_recent_apps</item>
+        <item>@string/hwkey_action_custom_app</item>
+        <item>@string/hwkey_action_custom_app2</item>
+        <item>@string/hwkey_action_menu</item>
+        <item>@string/hwkey_action_expanded_desktop</item>
     </string-array>
 
     <string-array name="hwkey_action_values" translatable="false">
@@ -125,6 +194,11 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
     </string-array>
 
     <string-array name="hwkey_doubletap_speed_entries" translatable="false">
@@ -261,6 +335,110 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+    </string-array>
+
+    <string-array name="notif_background_entries" translatable="false">
+        <item>@string/notif_background_default</item>
+        <item>@string/notif_background_color_fill</item>
+        <item>@string/notif_background_custom_image</item>
+    </string-array>
+
+    <string-array name="notif_background_values" translatable="false">
+        <item>default</item>
+        <item>color</item>
+        <item>image</item>
+    </string-array>
+
+    <string-array name="notif_color_mode_entries" translatable="false">
+        <item>@string/color_fill_overlay</item>
+        <item>@string/color_fill_underlay</item>
+    </string-array>
+
+    <string-array name="notif_color_mode_values" translatable="false">
+        <item>overlay</item>
+        <item>underlay</item>
+    </string-array>
+
+    <string-array name="pie_control_trigger_position_entries" translatable="false">
+        <item>@string/pie_control_trigger_left</item>
+        <item>@string/pie_control_trigger_bottom</item>
+        <item>@string/pie_control_trigger_right</item>
+        <item>@string/pie_control_trigger_top</item>
+    </string-array>
+
+    <string-array name="pie_control_trigger_position_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>8</item>
+    </string-array>
+
+    <string-array name="pie_control_trigger_position_default" translatable="false">
+        <item>2</item>
+    </string-array>
+
+    <string-array name="button_backlight_mode_entries" translatable="false">
+        <item>@string/button_backlight_mode_default</item>
+        <item>@string/button_backlight_mode_disable</item>
+        <item>@string/button_backlight_mode_always_on</item>
+    </string-array>
+
+    <string-array name="button_backlight_mode_values" translatable="false">
+        <item>default</item>
+        <item>disable</item>
+        <item>always_on</item>
+    </string-array>
+
+    <string-array name="recents_clear_entries" translatable="false">
+        <item>@string/recent_clear_off</item>
+        <item>@string/recent_clear_top_left</item>
+        <item>@string/recent_clear_top_right</item>
+        <item>@string/recent_clear_bottom_left</item>
+        <item>@string/recent_clear_bottom_right</item>
+    </string-array>
+
+    <string-array name="recents_clear_values" translatable="false">
+        <item>0</item>
+        <item>51</item>
+        <item>53</item>
+        <item>83</item>
+        <item>85</item>
+    </string-array>
+
+    <string-array name="expanded_desktop_entries" translatable="false">
+        <item>@string/expanded_desktop_disabled</item>
+        <item>@string/expanded_desktop_statusbar</item>
+        <item>@string/expanded_desktop_navbar</item>
+        <item>@string/expanded_desktop_both</item>
+    </string-array>
+
+    <string-array name="expanded_desktop_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="unicode_stripping_entries" translatable="false">
+        <item>@string/unicode_stripping_leave_intact</item>
+        <item>@string/unicode_stripping_non_encodable</item>
+        <item>@string/unicode_stripping_all</item>
+    </string-array>
+
+    <string-array name="unicode_stripping_values" translatable="false">
+        <item>leave_intact</item>
+        <item>non_encodable</item>
+        <item>all</item>
+    </string-array>
+
+    <string-array name="network_mode_tile_mode_entries" translatable="false">
+        <item>@string/nm_tile_mode1</item>
+        <item>@string/nm_tile_mode2</item>
+    </string-array>
+
+    <string-array name="network_mode_tile_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
     </string-array>
 
 </resources>

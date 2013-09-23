@@ -2,6 +2,7 @@ package com.ceco.gm2.gravitybox.quicksettings;
 
 import com.ceco.gm2.gravitybox.GravityBox;
 import com.ceco.gm2.gravitybox.GravityBoxSettings;
+import com.ceco.gm2.gravitybox.R;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,18 +28,16 @@ public class GravityBoxTile extends AQuickSettingsTile {
 
     @Override
     protected void onTileCreate() {
-        mDrawableId = mGbResources.getIdentifier("ic_launcher", "drawable", GravityBox.PACKAGE_NAME);
+        mDrawableId = R.drawable.ic_launcher;
         mLabel = "GravityBox";
 
-        int mTileLayoutId = mGbResources.getIdentifier("quick_settings_tile_gravity", "layout", GravityBox.PACKAGE_NAME);
         LayoutInflater inflater = LayoutInflater.from(mGbContext);
-        inflater.inflate(mTileLayoutId, mTile);
+        inflater.inflate(R.layout.quick_settings_tile_gravity, mTile);
     }
 
     @Override
     protected synchronized void updateTile() {
-        TextView tv = (TextView) mTile.findViewById(
-                mGbResources.getIdentifier("gravitybox_tileview", "id", GravityBox.PACKAGE_NAME));
+        TextView tv = (TextView) mTile.findViewById(R.id.gravitybox_tileview);
         tv.setText(mLabel);
         tv.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
     }

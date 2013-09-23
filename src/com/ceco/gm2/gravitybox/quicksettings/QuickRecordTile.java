@@ -3,7 +3,7 @@ package com.ceco.gm2.gravitybox.quicksettings;
 import java.io.File;
 import java.io.IOException;
 
-import com.ceco.gm2.gravitybox.GravityBox;
+import com.ceco.gm2.gravitybox.R;
 import com.ceco.gm2.gravitybox.RecordingService;
 
 import de.robv.android.xposed.XposedBridge;
@@ -130,11 +130,9 @@ public class QuickRecordTile extends AQuickSettingsTile {
 
     @Override
     protected void onTileCreate() {
-        int mTileLayoutId = mGbResources.getIdentifier("quick_settings_tile_quickrecord", "layout", GravityBox.PACKAGE_NAME);
         LayoutInflater inflater = LayoutInflater.from(mGbContext);
-        inflater.inflate(mTileLayoutId, mTile);
-        mTextView = (TextView) mTile.findViewById(
-                mGbResources.getIdentifier("quickrecord_tileview", "id", GravityBox.PACKAGE_NAME));
+        inflater.inflate(R.layout.quick_settings_tile_quickrecord, mTile);
+        mTextView = (TextView) mTile.findViewById(R.id.quickrecord_tileview);
 
         IntentFilter intentFilter = new IntentFilter(RecordingService.ACTION_RECORDING_STATUS_CHANGED);
         mContext.registerReceiver(mBroadcastReceiver, intentFilter);
@@ -151,30 +149,25 @@ public class QuickRecordTile extends AQuickSettingsTile {
 
         switch (mRecordingState) {
             case STATE_PLAYING:
-                mLabel = res.getString(res.getIdentifier("" +
-                        "quick_settings_qr_playing", "string", GravityBox.PACKAGE_NAME));
-                mDrawableId = res.getIdentifier("ic_qs_qr_playing", "drawable", GravityBox.PACKAGE_NAME);
+                mLabel = res.getString(R.string.quick_settings_qr_playing);
+                mDrawableId = R.drawable.ic_qs_qr_playing;
                 break;
             case STATE_RECORDING:
-                mLabel = res.getString(res.getIdentifier("" +
-                        "quick_settings_qr_recording", "string", GravityBox.PACKAGE_NAME));
-                mDrawableId = res.getIdentifier("ic_qs_qr_recording", "drawable", GravityBox.PACKAGE_NAME);
+                mLabel = res.getString(R.string.quick_settings_qr_recording);
+                mDrawableId = R.drawable.ic_qs_qr_recording;
                 break;
             case STATE_JUST_RECORDED:
-                mLabel = res.getString(res.getIdentifier("" +
-                        "quick_settings_qr_recorded", "string", GravityBox.PACKAGE_NAME));
-                mDrawableId = res.getIdentifier("ic_qs_qr_recorded", "drawable", GravityBox.PACKAGE_NAME);
+                mLabel = res.getString(R.string.quick_settings_qr_recorded);
+                mDrawableId = R.drawable.ic_qs_qr_recorded;
                 break;
             case STATE_NO_RECORDING:
-                mLabel = res.getString(res.getIdentifier("" +
-                        "quick_settings_qr_record", "string", GravityBox.PACKAGE_NAME));
-                mDrawableId = res.getIdentifier("ic_qs_qr_record", "drawable", GravityBox.PACKAGE_NAME);
+                mLabel = res.getString(R.string.quick_settings_qr_record);
+                mDrawableId = R.drawable.ic_qs_qr_record;
                 break;
             case STATE_IDLE:
             default:
-                mLabel = res.getString(res.getIdentifier(
-                        "qs_tile_quickrecord", "string", GravityBox.PACKAGE_NAME));
-                mDrawableId = res.getIdentifier("ic_qs_qr_record", "drawable", GravityBox.PACKAGE_NAME);
+                mLabel = res.getString(R.string.qs_tile_quickrecord);
+                mDrawableId = R.drawable.ic_qs_qr_record;
                 break;
         }
 

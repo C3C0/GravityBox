@@ -1,7 +1,11 @@
 package com.ceco.gm2.gravitybox;
 
+import java.util.List;
+
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Handler;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,63 +21,72 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.XC_MethodHook.MethodHookParam;
 
 public class ModClearAllRecents {
+    private static final String TAG = "ModClearAllRecents";
     public static final String PACKAGE_NAME = "com.android.systemui";
     public static final String CLASS_RECENT_VERTICAL_SCROLL_VIEW = "com.android.systemui.recent.RecentsVerticalScrollView";
     public static final String CLASS_RECENT_HORIZONTAL_SCROLL_VIEW = "com.android.systemui.recent.RecentsHorizontalScrollView";
     public static final String CLASS_RECENT_PANEL_VIEW = "com.android.systemui.recent.RecentsPanelView";
 
+    private static XSharedPreferences mPrefs;
+
+    private static void log(String message) {
+        XposedBridge.log(TAG + ": " + message);
+    }
+
     public static void init(final XSharedPreferences prefs, ClassLoader classLoader) {
-        XposedBridge.log("ModClearAllRecents: init");
-
         try {
-
+            mPrefs = prefs;
             Class<?> recentPanelViewClass = XposedHelpers.findClass(CLASS_RECENT_PANEL_VIEW, classLoader);
             Class<?> recentVerticalScrollView = XposedHelpers.findClass(CLASS_RECENT_VERTICAL_SCROLL_VIEW, classLoader);
             Class<?> recentHorizontalScrollView = XposedHelpers.findClass(CLASS_RECENT_HORIZONTAL_SCROLL_VIEW, classLoader);
 
+            if (Build.VERSION.SDK_INT > 16) {
+                XposedHelpers.findAndHookMethod(recentPanelViewClass, "showImpl", 
+                        boolean.class, recentsPanelViewShowHook);
+            } else {
+                XposedHelpers.findAndHookMethod(recentPanelViewClass, "showIfReady", 
+                        recentsPanelViewShowHook);
+            }
+
             XposedHelpers.findAndHookMethod(recentPanelViewClass, "onFinishInflate", new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    prefs.reload();
-                    if (!prefs.getBoolean(GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_ALL, false))
-                        return;
-                    
-                    XposedBridge.log("ModClearAllRecents: RecentsPanelView onFinishInflate");
-
                     View view = (View) param.thisObject;
                     Resources res = view.getResources();
                     ViewGroup vg = (ViewGroup) view.findViewById(res.getIdentifier("recents_bg_protect", "id", PACKAGE_NAME));
 
-                    // GM2 already has this image view and own implementation of all recents clear, so skip it if exists
-                    if (vg.findViewById(res.getIdentifier("recents_clear", "id", PACKAGE_NAME)) != null) {
-                        XposedBridge.log("ModClearAllRecents: recents_clear ImageView already exists (GM2?) - skipping");
-                        return;
+                    // GM2 already has this image view so remove it if exists
+                    if (Build.DISPLAY.toLowerCase().contains("gravitymod")) {
+                        View rcv = vg.findViewById(res.getIdentifier("recents_clear", "id", PACKAGE_NAME));
+                        if (rcv != null) {
+                            log("recents_clear ImageView found (GM2?) - removing");
+                            vg.removeView(rcv);
+                        }
                     }
 
-                    // otherwise create and inject new ImageView and set onClick listener to handle action
+                    // create and inject new ImageView and set onClick listener to handle action
                     ImageView imgView = new ImageView(vg.getContext());
                     imgView.setImageDrawable(res.getDrawable(res.getIdentifier("ic_notify_clear", "drawable", PACKAGE_NAME)));
-                    int sizeDp = (int)(50 * res.getDisplayMetrics().density);
-                    FrameLayout.LayoutParams lParams = new FrameLayout.LayoutParams(
-                            sizeDp, sizeDp, Gravity.TOP | Gravity.RIGHT);
-                    lParams.topMargin = 10;
-                    lParams.rightMargin = 10;
+                    int sizePx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, res.getDisplayMetrics());
+                    FrameLayout.LayoutParams lParams = new FrameLayout.LayoutParams(sizePx, sizePx);
                     imgView.setLayoutParams(lParams);
                     imgView.setScaleType(ScaleType.CENTER);
                     imgView.setClickable(true);
+                    imgView.setTag("clearAllButton");
                     imgView.setOnClickListener(new View.OnClickListener() {
                         
                         @Override
                         public void onClick(View v) {
-                            XposedBridge.log("ModClearAllRecents: recents_clear ImageView onClick();");
                             ViewGroup mRecentsContainer = (ViewGroup) XposedHelpers.getObjectField(
                                     param.thisObject, "mRecentsContainer");
                             // passing null parameter in this case is our action flag to remove all views
                             mRecentsContainer.removeViewInLayout(null);
                         }
                     });
+                    imgView.setVisibility(View.GONE);
                     vg.addView(imgView);
-                    XposedBridge.log("ModClearAllRecents: ImageView injected");
+                    log("clearAllButton ImageView injected");
+                    updateButtonLayout((View) param.thisObject, imgView);
                 }
             });
 
@@ -92,8 +105,63 @@ public class ModClearAllRecents {
                     handleDismissChild(param);
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
+    }
+
+    private static XC_MethodHook recentsPanelViewShowHook = new XC_MethodHook() {
+        @Override
+        protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+            try {
+                boolean show = false;
+                if (Build.VERSION.SDK_INT < 17) {
+                    show = XposedHelpers.getBooleanField(param.thisObject, "mWaitingToShow")
+                           && XposedHelpers.getBooleanField(param.thisObject, "mReadyToShow");
+                } else {
+                    show = (Boolean) param.args[0];
+                }
+                if (show) {
+                    FrameLayout fl = (FrameLayout) param.thisObject;
+                    ImageView iv = (ImageView) fl.findViewWithTag("clearAllButton");
+                    if (iv == null) {
+                        log("WTF? Clear all recents button not found!");
+                        return;
+                    }
+                    updateButtonLayout((View) param.thisObject, iv);
+                }
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+            }
+        }
+    };
+
+    private static void updateButtonLayout(View container, ImageView iv) {
+        mPrefs.reload();
+        int gravity = Integer.valueOf(mPrefs.getString(
+                GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_ALL, "53"));
+        List<?> recentTaskDescriptions = (List<?>) XposedHelpers.getObjectField(
+                container, "mRecentTaskDescriptions");
+        boolean visible = (recentTaskDescriptions != null && recentTaskDescriptions.size() > 0);
+        if (Build.VERSION.SDK_INT < 17) {
+            visible |= XposedHelpers.getBooleanField(container, "mFirstScreenful");
+        }
+        if (gravity != GravityBoxSettings.RECENT_CLEAR_OFF && visible) {
+            FrameLayout.LayoutParams lparams = (FrameLayout.LayoutParams) iv.getLayoutParams();
+            lparams.gravity = gravity;
+            if ((gravity & Gravity.TOP) != 0) {
+                int marginTop = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, 
+                        mPrefs.getInt(GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_MARGIN_TOP, 0), 
+                        iv.getResources().getDisplayMetrics());
+                lparams.setMargins(0, marginTop, 0, 0);
+            } else {
+                lparams.setMargins(0, 0, 0, 0);
+            }
+            iv.setLayoutParams(lparams);
+            iv.setVisibility(View.VISIBLE);
+        } else {
+            iv.setVisibility(View.GONE);
         }
     }
 
@@ -102,7 +170,7 @@ public class ModClearAllRecents {
         if (param.args[0] != null)
             return;
 
-        XposedBridge.log("ModClearAllRecents: handleDismissChild - removing all views");
+        log("handleDismissChild - removing all views");
 
         LinearLayout mLinearLayout = (LinearLayout) XposedHelpers.getObjectField(param.thisObject, "mLinearLayout");
         Handler handler = new Handler();

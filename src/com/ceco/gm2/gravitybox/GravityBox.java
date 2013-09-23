@@ -1,11 +1,11 @@
 package com.ceco.gm2.gravitybox;
 
-import android.content.res.XModuleResources;
-import android.content.res.XResources;
+import android.os.Build;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XSharedPreferences;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
@@ -18,43 +18,57 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
     public void initZygote(StartupParam startupParam) throws Throwable {
         MODULE_PATH = startupParam.modulePath;
         prefs = new XSharedPreferences(PACKAGE_NAME);
-        XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, null);
+        prefs.makeWorldReadable();
 
-        XResources.setSystemWideReplacement("android", "bool", "config_animateScreenLights", true);
+        XposedBridge.log("Hardware: " + Build.HARDWARE);
+        XposedBridge.log("Product: " + Build.PRODUCT);
+        XposedBridge.log("Device manufacturer: " + Build.MANUFACTURER);
+        XposedBridge.log("Device brand: " + Build.BRAND);
+        XposedBridge.log("Device model: " + Build.MODEL);
+        XposedBridge.log("Device type: " + (Utils.isTablet() ? "tablet" : "phone"));
+        XposedBridge.log("Is MTK device: " + Utils.isMtkDevice());
+        XposedBridge.log("Has Gemini support: " + Utils.hasGeminiSupport());
+        XposedBridge.log("Android SDK: " + Build.VERSION.SDK_INT);
+        XposedBridge.log("Android Release: " + Build.VERSION.RELEASE);
+        XposedBridge.log("ROM: " + Build.DISPLAY);
 
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_HOLO_BG_SOLID_BLACK, false)) {
-            XResources.setSystemWideReplacement(
-                "android", "drawable", "background_holo_dark", modRes.fwd(R.drawable.background_holo_dark_solid));
-        } else {
-            XResources.setSystemWideReplacement(
-                    "android", "drawable", "background_holo_dark", modRes.fwd(R.drawable.background_holo_dark));
+        SystemWideResources.initResources(prefs);
+
+        // MTK specific
+        if (Utils.isMtkDevice()) {
+            if (Utils.hasGeminiSupport()) {
+                ModSignalIconHide.initZygote(prefs);
+            }
+
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALLER_ID_PHONE, false)) {
+                FixCallerIdPhone.initZygote(prefs);
+            }
+
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_DEV_OPTS, false)) {
+                FixDevOptions.initZygote();
+            }
         }
-        XResources.setSystemWideReplacement(
-                "android", "drawable", "background_holo_light", modRes.fwd(R.drawable.background_holo_light));
 
-        FixTraceFlood.initZygote();
+        // 4.2+ only
+        if (Build.VERSION.SDK_INT > 16) {
+            FixTraceFlood.initZygote();
+            ModElectronBeam.initZygote(prefs);
+            ModLockscreen.initZygote(prefs);
+        }
+
+        // Common
         ModVolumeKeySkipTrack.init(prefs);
-        ModSignalIconHide.initZygote(prefs);
         ModVolKeyCursor.initZygote(prefs);
-
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALLER_ID_PHONE, false))
-            FixCallerIdPhone.initZygote(prefs);
-
         ModCallCard.initZygote();
         ModStatusbarColor.initZygote();
-
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_DEV_OPTS, false))
-            FixDevOptions.initZygote();
-
-        GeminiPhoneWrapper.initZygote();
-        ModElectronBeam.initZygote(prefs);
-        ModLockscreen.initZygote(prefs);
+        PhoneWrapper.initZygote();
         ModLowBatteryWarning.initZygote(prefs);
         ModDisplay.initZygote(prefs);
-
         ModAudio.initZygote(prefs);
         ModHwKeys.initZygote(prefs);
         PatchMasterKey.initZygote();
+        ModPhone.initZygote(prefs);
+        ModExpandedDesktop.initZygote(prefs);
     }
 
     @Override
@@ -63,71 +77,108 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         if (resparam.packageName.equals(ModBatteryStyle.PACKAGE_NAME))
             ModBatteryStyle.initResources(prefs, resparam);
 
-        if (resparam.packageName.equals(ModCenterClock.PACKAGE_NAME)) {
-            ModCenterClock.initResources(prefs, resparam);
+        if (resparam.packageName.equals(ModStatusBar.PACKAGE_NAME)) {
+            ModStatusBar.initResources(prefs, resparam);
         }
 
         if (resparam.packageName.equals(FixDevOptions.PACKAGE_NAME)) {
             FixDevOptions.initPackageResources(prefs, resparam);
+        }
+
+        if (Build.VERSION.SDK_INT > 16 && resparam.packageName.equals(ModQuickSettings.PACKAGE_NAME)) {
+            ModQuickSettings.initResources(prefs, resparam);
         }
     }
 
     @Override
     public void handleLoadPackage(LoadPackageParam lpparam) throws Throwable {
 
-        if (lpparam.packageName.equals(ModBatteryStyle.PACKAGE_NAME))
+        if (lpparam.packageName.equals(SystemPropertyProvider.PACKAGE_NAME)) {
+            SystemPropertyProvider.init(lpparam.classLoader);
+        }
+
+        // MTK Specific
+        if (Utils.isMtkDevice()) {
+            if (Utils.hasGeminiSupport() &&
+                    lpparam.packageName.equals(ModSignalIconHide.PACKAGE_NAME)) {
+                ModSignalIconHide.init(prefs, lpparam.classLoader);
+            }
+
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALLER_ID_MMS, false) &&
+                    lpparam.packageName.equals(FixCallerIdMms.PACKAGE_NAME)) {
+                FixCallerIdMms.init(prefs, lpparam.classLoader);
+            }
+
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALENDAR, false) &&
+                    lpparam.packageName.equals(FixCalendar.PACKAGE_NAME)) {
+                FixCalendar.init(prefs, lpparam.classLoader);
+            }
+
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_DATETIME_CRASH, false) &&
+                    lpparam.packageName.equals(FixDateTimeCrash.PACKAGE_NAME)) {
+                FixDateTimeCrash.init(prefs, lpparam.classLoader);
+            }
+
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_TTS_SETTINGS, false) &&
+                    lpparam.packageName.equals(FixTtsSettings.PACKAGE_NAME)) {
+                FixTtsSettings.init(prefs, lpparam.classLoader);
+            }
+
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_DEV_OPTS, false) &&
+                    lpparam.packageName.equals(FixDevOptions.PACKAGE_NAME)) {
+                FixDevOptions.init(prefs, lpparam.classLoader);
+            }
+
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_MMS_WAKELOCK, false) && 
+                    lpparam.packageName.equals(FixMmsWakelock.PACKAGE_NAME)) {
+                FixMmsWakelock.init(prefs, lpparam.classLoader);
+            }
+
+            if (lpparam.packageName.equals(ModAudioSettings.PACKAGE_NAME)) {
+                ModAudioSettings.init(prefs, lpparam.classLoader);
+            }
+
+            if (lpparam.packageName.equals(ModCellConnService.PACKAGE_NAME)) {
+                ModCellConnService.init(prefs, lpparam.classLoader);
+            }
+
+            if (Utils.hasGeminiSupport()
+                    && lpparam.packageName.equals(ModMtkToolbar.PACKAGE_NAME)) {
+                ModMtkToolbar.init(prefs, lpparam.classLoader);
+            }
+        }
+
+        // Common
+        if (lpparam.packageName.equals(ModBatteryStyle.PACKAGE_NAME)) {
             ModBatteryStyle.init(prefs, lpparam.classLoader);
+        }
 
-        if (lpparam.packageName.equals(ModLowBatteryWarning.PACKAGE_NAME))
+        if (lpparam.packageName.equals(ModLowBatteryWarning.PACKAGE_NAME)) {
             ModLowBatteryWarning.init(prefs, lpparam.classLoader);
+        }
 
-        if (lpparam.packageName.equals(ModSignalIconHide.PACKAGE_NAME))
-            ModSignalIconHide.init(prefs, lpparam.classLoader);
-
-        if (lpparam.packageName.equals(ModClearAllRecents.PACKAGE_NAME))
+        if (lpparam.packageName.equals(ModClearAllRecents.PACKAGE_NAME)) {
             ModClearAllRecents.init(prefs, lpparam.classLoader);
-
-        if (lpparam.packageName.equals(ModRebootMenu.PACKAGE_NAME))
-            ModRebootMenu.init(prefs, lpparam.classLoader);
-
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALLER_ID_MMS, false) &&
-                lpparam.packageName.equals(FixCallerIdMms.PACKAGE_NAME))
-            FixCallerIdMms.init(prefs, lpparam.classLoader);
-
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALENDAR, false) &&
-                lpparam.packageName.equals(FixCalendar.PACKAGE_NAME))
-            FixCalendar.init(prefs, lpparam.classLoader);
-
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_DATETIME_CRASH, false) &&
-                lpparam.packageName.equals(FixDateTimeCrash.PACKAGE_NAME)) {
-            FixDateTimeCrash.init(prefs, lpparam.classLoader);
         }
 
-        if (lpparam.packageName.equals(ModCallCard.PACKAGE_NAME))
+        if (lpparam.packageName.equals(ModPowerMenu.PACKAGE_NAME)) {
+            ModPowerMenu.init(prefs, lpparam.classLoader);
+        }
+
+        if (lpparam.packageName.equals(ModCallCard.PACKAGE_NAME)) {
             ModCallCard.init(prefs, lpparam.classLoader);
+        }
 
-        if (lpparam.packageName.equals(ModQuickSettings.PACKAGE_NAME))
+        if (Build.VERSION.SDK_INT > 16 && lpparam.packageName.equals(ModQuickSettings.PACKAGE_NAME)) {
             ModQuickSettings.init(prefs, lpparam.classLoader);
+        }
 
-        if (lpparam.packageName.equals(ModStatusbarColor.PACKAGE_NAME))
+        if (lpparam.packageName.equals(ModStatusbarColor.PACKAGE_NAME)) {
             ModStatusbarColor.init(prefs, lpparam.classLoader);
-
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_TTS_SETTINGS, false) &&
-                lpparam.packageName.equals(FixTtsSettings.PACKAGE_NAME)) {
-            FixTtsSettings.init(prefs, lpparam.classLoader);
         }
 
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_DEV_OPTS, false) &&
-                lpparam.packageName.equals(FixDevOptions.PACKAGE_NAME))
-            FixDevOptions.init(prefs, lpparam.classLoader);
-
-        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_MMS_WAKELOCK, false) && 
-                lpparam.packageName.equals(FixMmsWakelock.PACKAGE_NAME)) {
-            FixMmsWakelock.init(prefs, lpparam.classLoader);
-        }
-
-        if (lpparam.packageName.equals(ModCenterClock.PACKAGE_NAME)) {
-            ModCenterClock.init(prefs, lpparam.classLoader);
+        if (lpparam.packageName.equals(ModStatusBar.PACKAGE_NAME)) {
+            ModStatusBar.init(prefs, lpparam.classLoader);
         }
 
         if (lpparam.packageName.equals(ModPhone.PACKAGE_NAME)) {
@@ -142,8 +193,17 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
             ModVolumePanel.init(prefs, lpparam.classLoader);
         }
 
-        if (lpparam.packageName.equals(ModAudioSettings.PACKAGE_NAME)) {
-            ModAudioSettings.init(prefs, lpparam.classLoader);
+        if (lpparam.packageName.equals(ModPieControls.PACKAGE_NAME)) {
+            ModPieControls.init(prefs, lpparam.classLoader);
+        }
+
+        if (lpparam.packageName.equals(ModNavigationBar.PACKAGE_NAME)
+                && prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_OVERRIDE, false)) {
+            ModNavigationBar.init(prefs, lpparam.classLoader);
+        }
+
+        if (lpparam.packageName.equals(ModMms.PACKAGE_NAME)) {
+            ModMms.init(prefs, lpparam.classLoader);
         }
     }
 }

@@ -1,75 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">GravityBox</string>
-
     <string name="battery_style_title">Indicador de batería</string>
     <string name="battery_style_stock">Indicador por defecto</string>
     <string name="battery_style_circle">Circular con porcentaje</string>
     <string name="battery_style_percent">Solo texto grande</string>
     <string name="battery_style_none">Ninguno</string>
-
     <string name="vol_music_controls_title">Teclas de volumen para cambiar la pista</string>
     <string name="vol_music_controls_summary">Pulsación larga de las teclas de volumen cambia la pista, mientras la pantalla está apagada</string>
-
     <string name="low_battery_warning_policy_title">Alarma de batería baja</string>
     <string name="low_battery_warning_full">Notificación y sonido</string>
     <string name="low_battery_warning_popup">Solo notificación</string>
     <string name="low_battery_warning_sound">Solo sonido</string>
     <string name="low_battery_warning_off">Desactivado</string>
-
     <string name="reboot_required">Los cambios se aplicarán después de reiniciar</string>
-
     <string name="signal_icon_autohide_title">Ocultar iconos de señal</string>
     <string name="signal_icon_autohide_summary">Ocultar iconos de señal para las ranuras SIM cuando no hay SIM insertada, desactiva las notificaciones \"SIM no insertada\"</string>
     <string name="sim_slot_1">Ocultar ranura SIM 1</string>
     <string name="sim_slot_2">Ocultar ranura SIM 2</string>
     <string name="sim_disable_notifications">Desactivar notificaciones</string>
     <string name="sim_disable_notifications_summary">Desactivar las notificaciones \"SIM no insertada\"</string>
-
     <string name="poweroff_advanced_title">Menú avanzado de apagado</string>
     <string name="poweroff_advanced_summary">Habilita el menú avanzado de apagado, con la opción de reiniciar en modo recuperación</string>
-    <string name="poweroff_recovery">Modo recuperación</string>    
-
+    <string name="poweroff_recovery">Modo recuperación</string>
     <string name="vol_key_cursor_control_title">Control del cursor con las teclas de volumen</string>
     <string name="vol_key_cursor_control_summary">Controlar el cursor con las teclas de volumen, en campos de texto</string>
     <string name="vol_key_cursor_control_off">Deshabilitado</string>
     <string name="vol_key_cursor_control_on">El cursor se mueve izquierda/derecha</string>
     <string name="vol_key_cursor_control_on_reverse">El cursor se mueve derecha/izquierda</string>
-
     <string name="recents_clear_all_title">Borrado de tareas recientes</string>
-    <string name="recents_clear_all_summary">Habilita el botón para borrar todas las tareas recientes a la vez</string>
-
-    <string name="pref_group_mods_title">Personalizaciones</string>
-    <string name="pref_group_fixes_title">Parches - Activar solo en caso necesario</string>
-
     <string name="fix_datetime_crash_title">Parche para el error de Fecha y Hora</string>
     <string name="fix_datetime_crash_summary">Habilitar en caso de experimentar errores al acceder a la configuración de Fecha y Hora (requiere reiniciar)</string>
-
     <string name="fix_caller_id_phone_title">Parche para el ID de llamada</string>
     <string name="fix_caller_id_phone_summary">Habilitar si no se muestra correctamente el contacto al recibir una llamada (requiere reiniciar)</string>
-    <string name="fix_caller_id_phone_alert">¡Después de reiniciar, se deben borrar y restaurar los contactos para que el cambio haga efecto!  Seleccione Ajustes / Aplicaciones / Todas y borre los datos de la aplicación de contactos.</string>
-
+    <string name="fix_caller_id_phone_alert">¡Después de reiniciar, se deben borrar y restaurar los contactos para que el cambio haga efecto! Seleccione Ajustes / Aplicaciones / Todas y borre los datos de la aplicación de contactos.</string>
     <string name="fix_caller_id_mms_title">Parche para el ID de contacto en mensajes</string>
     <string name="fix_caller_id_mms_summary">Habilitar en caso de experimentar conversaciones separadas para un mismo contacto (requiere reiniciar)</string>
     <string name="fix_caller_id_mms_alert">¡Después de reiniciar, debe borrar todas las conversaciones en la aplicación de mensajería para que se apliquen los cambios!</string>
-
     <string name="fix_calendar_title">Parche para el calendario</string>
     <string name="fix_calendar_summary">Habilitar en caso de experimentar encendidos esporádicos de la pantalla (requiere reiniciar)</string>
-
     <string name="important">Importante</string>
-
     <string name="caller_fullscreen_photo_title">Fotografía a pantalla completa del contacto</string>
     <string name="caller_fullscreen_photo_summary">Muestra la fotografía del contacto a pantalla completa en la pantalla de llamada entrante</string>
-
-    <!-- QuickSettings strings -->
     <string name="quick_settings_sync_on">Sincronización activada</string>
     <string name="quick_settings_sync_off">Sincronización desactivada</string>
     <string name="quick_settings_wifi_ap_on">Wi-Fi AP activado</string>
     <string name="quick_settings_wifi_ap_off">Wi-Fi AP desactivado</string>
-
-    <!--  QuickSettings settings -->
-    <string name="quick_settings_title">Ajuste de los íconos del cajón"</string>
+    <string name="quick_settings_title">Ajuste de los íconos del cajón</string>
     <string name="quick_settings_summary">Permite seleccionar los íconos que se muestran en el cajón</string>
     <string name="qs_tile_user_profile">Perfil de usuario</string>
     <string name="qs_tile_airplane_mode">Airplane mode</string>
@@ -86,56 +63,34 @@
     <string name="qs_tile_sync">Sincronización</string>
     <string name="qs_tile_wifi_ap">Punto de acceso Wi-Fi</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
-
-    <!-- Color Picker -->
     <string name="dialog_color_picker">Selección de color</string>
     <string name="press_color_to_apply">Toque en el color para seleccionar</string>
-
-    <!--  Statusbar background color -->
     <string name="statusbar_bgcolor_title">Color de fondo de la barra de estado</string>
     <string name="statusbar_bgcolor_summary">Permite seleccionar el color de la barra de estado y su transparencia</string>
-
-    <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">Parche para las preferencias de habla</string>
     <string name="fix_tts_settings_summary">Habilita la busqueda por voz y los ajustes de texto-a-voz&amp;en entrada. (requiere reiniciar)</string>
-
-    <!--  Advanced developer options -->
     <string name="fix_dev_opts_title">Opciones avanzadas de desarrolador</string>
     <string name="fix_dev_opts_summary">Habilita las opciones avanzadas de desarrolador (requiere reinicio)</string>
-
-    <!-- Main preference categories -->
     <string name="pref_cat_statusbar_title">Personalización de la barra de estado</string>
     <string name="pref_cat_statusbar_summary">Personalizaciones varias de la barra de estado</string>
     <string name="pref_cat_misc_title">Personalizaciones varias</string>
     <string name="pref_cat_misc_summary">Personalizaciones que no tienen cabida en otras categorias</string>
     <string name="pref_cat_fixes_title">Parches generales</string>
-    <string name="pref_cat_fixes_summary">Parches para MTK6589.  Usar solo en caso necesario.</string>
-
-    <!-- About -->
+    <string name="pref_cat_fixes_summary">Parches para MTK6589. Usar solo en caso necesario.</string>
     <string name="pref_cat_about_title">Acerca de</string>
     <string name="about_gb_summary">Programado por C3C076@XDA. Toque para visitar el foro oficial.</string>
     <string name="about_xposed_title">Xposed framework</string>
     <string name="about_xposed_summary">Programado por rovo89@XDA. Toque para visitar el foro oficial.</string>
     <string name="about_donate_title">Donar</string>
     <string name="about_donate_summary">Hazme una donación si crees que esta aplicación lo vale! Considera también donar a rovo89 por su excelente trabajo con el framework Xposed.</string>
-
-    <!-- Reboot confirmation -->
-    <string name="reboot_confirm">El teléfono se reiniciará</string>
-    <string name="reboot_confirm_recovery">El teléfono se reiniciaré en modo de restauración</string>
-
-    <!-- CRT effect screen off animation -->
+    <string name="reboot_confirm">El %s se reiniciará</string>
+    <string name="reboot_confirm_recovery">El %s se reiniciaré en modo de restauración</string>
     <string name="crt_off_effect_title">Efecto de CRT al apagar la pantalla</string>
     <string name="crt_off_effect_summary">Habilita la animación de apagado de pantalla que simula una pantalla antigua</string>
-
-    <!-- Engineering mode shortcut -->
     <string name="engineering_mode_title">Modo ingeniero</string>
     <string name="engineering_mode_summary">Accede al codo ingeniero</string>
-
-    <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Timbre Dual SIM</string>
     <string name="dual_sim_ringer_summary">Permite configurar el tono de llamada y de notificación para cada SIM por separado</string>
-
-    <!--  Lockscreen tweaks -->
     <string name="pref_cat_lockscreen_title">Configuración de la Pantalla de Bloqueo</string>
     <string name="pref_cat_lockscreen_summary">Configuraciones varias de la pantalla de bloqueo</string>
     <string name="pref_cat_lockscreen_background_title">Color de fondo de la pantalla de bloqueo</string>
@@ -152,13 +107,175 @@
     <string name="pref_cat_lockscreen_other_title">Otro</string>
     <string name="pref_lockscreen_maximize_widgets_title">Maximizar Widgets</string>
     <string name="pref_lockscreen_maximize_widgets_summary">Cuando está habilitado, los Widgets de la pantalla de bloqueo serán maximizados por defecto</string>
-
-    <!--  Power tweaks category -->
     <string name="pref_cat_power_title">Opciones de Energía</string>
     <string name="pref_cat_power_summary">Contiene varias opciones relacionadas con el uso de la energía</string>
-
-    <!--  Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Deshabilitar el parpadeo del LED de notificaciones</string>
     <string name="pref_flashing_led_disable_summary">Deshabilita el LED de notificaciones cuando queda poca carga en la batería y no se está cargando</string>
-
-</resources>
+    <string name="recents_clear_all_summary">Habilita el botón para borrar todas las tareas recientes a la vez</string>
+    <string name="pref_group_mods_title">Personalizaciones</string>
+    <string name="pref_group_fixes_title">Parches - Activar solo en caso necesario</string>
+    <string name="pref_cat_display_title">Mostrar ajustes</string>
+    <string name="pref_cat_display_summary">Contiene diversos ajustes de visualización</string>
+    <string name="pref_brightness_min_title">Nivel mínimo de brillo</string>
+    <string name="pref_brightness_min_summary">Permite ajustar el nivel de brillo mínimo.Se aplica a la configuración de brillo manual . (requires reboot)</string>
+    <string name="pref_brightness_dlg_msg">Valor de intervalo: 10 – 80</string>
+    <string name="pref_ab_title">Niveles de brillo automático</string>
+    <string name="pref_ab_summary">Permite ajustar los niveles de luz ambiental y los valores de retroiluminación LCD correspondientes</string>
+    <string name="level">Nivel</string>
+    <string name="pref_ab_lux_max_label">Lux max</string>
+    <string name="pref_ab_brighness_label">Brillo (10 – 255)</string>
+    <string name="pref_ab_number_error_general">Número especificado no es válido</string>
+    <string name="pref_ab_brightness_too_low">No se recomienda configurar el brillo por debajo de 10</string>
+    <string name="pref_ab_brightness_too_high">El Brillo no puede ser mayor que 255</string>
+    <string name="pref_ab_number_error_negative">Los valores no pueden ser inferiores o iguales a cero</string>
+    <string name="pref_ab_number_not_ascending">Los valores de los niveles inferiores no pueden ser mayores que los valores sobre los niveles más altos</string>
+    <string name="pref_ab_number_not_descending">Los valores en los niveles más altos no pueden ser más pequeños que los valores de los niveles inferiores</string>
+    <string name="pref_ab_values_set">Para los valores %s establecer</string>
+    <string name="pref_ab_config_saved">Nueva configuración de brillo automático guardado</string>
+    <string name="pref_ab_config_cancelled">Configuración de brillo automático no se guardó</string>
+    <string name="pref_lockscreen_rotation_title">Activar rotación LockScreen</string>
+    <string name="pref_lockscreen_rotation_summary">ADVERTENCIA: puede cambiar desbloquear objetivos del anillo en algunos dispositivos en caso de AOSP LockScreen ha sido modificado por el vendedor</string>
+    <string name="pref_lockscreen_menu_key_title">Activada tecla de menú</string>
+    <string name="pref_lockscreen_menu_key_summary">Permite que la tecla de menú se utilice para desbloquear rápido el dispositivo, mientras que está en LockScreen (requiere reinicio)</string>
+    <string name="pref_mms_fix_wakelock_title">Fijar mensajería wakelock</string>
+    <string name="pref_mms_fix_wakelock_summary">Evita que la pantalla se encienda cuando llega un nuevo mensaje (requiere reinicio)</string>
+    <string name="pref_statusbar_center_clock_title">Reloj en el Centro</string>
+    <string name="pref_cat_media_title">Ajustes de medios</string>
+    <string name="pref_cat_media_summary">Contiene diversos ajustes para los medios de comunicación y el sistema de audio</string>
+    <string name="pref_music_volume_steps_title">Más pasos en volumen de música</string>
+    <string name="pref_music_volume_steps_summary">Añade más medidas de volumen para escuchar música (requiere reinicio)</string>
+    <string name="pref_safe_media_volume_title">Salva el volumen de auriculares</string>
+    <string name="pref_safe_media_volume_summary">Activa y desactiva la función de volumen seguro en auriculares </string>
+    <string name="pref_charging_led_disable_title">Desactivar LED de carga</string>
+    <string name="pref_charging_led_disable_summary">Desactiva el LED durante la carga</string>
+    <string name="pref_cat_hwkey_actions_title">Acciones hardware keys</string>
+    <string name="pref_cat_hwkey_actions_summary">Permite configurar acciones personalizadas en las teclas de hardware</string>
+    <string name="pref_hwkey_menu_longpress_title">Menú tecla larga pulsación</string>
+    <string name="pref_hwkey_menu_doubletap_title">Menú tecla de acción doble toque</string>
+    <string name="pref_hwkey_back_longpress_title">Acccion larga pulsación en tecla atras</string>
+    <string name="hwkey_action_default">Por defecto</string>
+    <string name="hwkey_action_search">Buscar</string>
+    <string name="hwkey_action_voice_search">Búsqueda por voz</string>
+    <string name="hwkey_action_prev_app">Cambiar a la aplicación anterior</string>
+    <string name="hwkey_action_kill">Matar aplicación en primer plano</string>
+    <string name="hwkey_action_sleep">Ir a dormir</string>
+    <string name="pref_hwkey_kill_delay_title">retraso en matar app con larga pulsación</string>
+    <string name="pref_hwkey_kill_delay_summary">Aplica para matar la acción aplicación en primer plano. Definido por cuánto retraso para matar la app</string>
+    <string name="pref_hwkey_doubletap_speed_title">Velocidad de doble pulsación</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Se aplica a Menú tecla de acción doble toque. Define cómo debe ser aprovechado teclas de acceso rápido para activar la doble pulsación</string>
+    <string name="app_killed">Aplicación matada</string>
+    <string name="nothing_to_kill">"No hay nada para matar"</string>
+    <string name="no_previous_app_found">Aplicación previa no encontrada</string>
+    <string name="pref_cat_phone_title">Ajustes del teléfono</string>
+    <string name="pref_cat_phone_summary">Contiene diversos ajustes de telefonía</string>
+    <string name="pref_phone_flip_title">Voltear mientras suena</string>
+    <string name="pref_phone_flip_summary">Permite definir la acción que se realizará cuando el dispositivo se voltea boca abajo mientras suena</string>
+    <string name="phone_flip_action_none">No hacer nada</string>
+    <string name="phone_flip_action_mute">Silenciar sonido</string>
+    <string name="phone_flip_action_dismiss">Descartar llamar</string>
+    <string name="pref_phone_call_connect_vibrate_disable_title">Desactivar la vibración en llamada conectada</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">Desactiva la vibración que se activa cuando se conecta llamada</string>
+    <string name="reboot_soft">Software reboot</string>
+    <string name="pref_holo_bg_solid_black_title">Fondo negro sólido</string>
+    <string name="pref_holo_bg_solid_black_summary">Utilice fondo negro sólido para el tema Holo predeterminado en lugar del gradiente de negro-gris (requiere reinicio)</string>
+    <string name="pref_qs_tiles_per_row_title">Paneles por fila</string>
+    <string name="pref_qs_tiles_per_row_summary">Define el número de paneles para mostrar por fila.Los paneles se cambiarán en consecuencia. Se aplica a modo de retrato .</string>
+    <string name="pref_statusbar_clock_dow_title">Mostrar día de la semana</string>
+    <string name="pref_volume_panel_expandable_title">Panel volumen ampliable</string>
+    <string name="pref_volume_panel_expandable_summary">Panel de volumen ampliable con capacidad de establecer volúmenes de diferentes corrientes</string>
+    <string name="pref_link_volumes_title">Enlace ringtone &amp; volumenes de notificación</string>
+    <string name="pref_link_volumes_summary">Cuando está desactivado, el volumen de tono de llamada y notificaciones se pueden configurar de forma independiente</string>
+    <string name="pref_auto_switch_qs_title">Auto-switch Configuración Rápida</string>
+    <string name="pref_auto_switch_qs_summary">Configuración rápida se muestra automáticamente cuando la barra de estado se tira hacia abajo, mientras que no hay notificaciones</string>
+    <string name="pref_quick_pulldown_title">Desplegable Rápido</string>
+    <string name="pref_quick_pulldown_summary">El borde de la barra de estado baja en configuración Rápida</string>
+    <string name="quick_pulldown_off">Apagadof</string>
+    <string name="quick_pulldown_right">Derecha</string>
+    <string name="quick_pulldown_left">Izquierda</string>
+    <string name="pref_volume_rocker_wake_disable_title">Desactivar despertar con volumen</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Para dispositivos como Jiayu G3, G4, donde las teclas de volumen a su vez en la pantalla</string>
+    <string name="pref_cat_statusbar_colors_title">Colores de la barra de estado</string>
+    <string name="pref_statusbar_icon_color_enable_title">Habilitar colores de los iconos</string>
+    <string name="pref_statusbar_icon_color_title">Colores de los iconos de la barra de estado</string>
+    <string name="pref_statusbar_icon_color_summary">Define el color de los iconos de la barra de estado y el reloj</string>
+    <string name="pref_statusbar_data_activity_color_title">Color de la actividad de datos</string>
+    <string name="pref_statusbar_data_activity_color_summary">Define el color de los indicadores de actividad de datos</string>
+    <string name="pref_cat_statusbar_qs_title">Gestión de configuración rápida</string>
+    <string name="pref_cat_notification_drawer_style_title">Estilo Cajones de  Notificación</string>
+    <string name="pref_notif_background_title">Fondo del cajón de notificación</string>
+    <string name="notif_background_default">Fondo por defecto</string>
+    <string name="notif_background_color_fill">Color de relleno</string>
+    <string name="notif_background_custom_image">Imagen personalizada</string>
+    <string name="pref_notif_color_title">Establecer color de fondo</string>
+    <string name="pref_notif_image_portrait_title">Establecer imagen retrato</string>
+    <string name="pref_notif_image_landscape_title">Ajuste la imagen del paisaje</string>
+    <string name="pref_notif_background_alpha_title">Transparencia de fondo</string>
+    <string name="pref_notif_color_mode_title">Modo de fondo</string>
+    <string name="color_fill_overlay">Sobrepuesto</string>
+    <string name="color_fill_underlay">Poner debajo</string>
+    <string name="pref_disable_roaming_indicators_title">Desactivar los indicadores de roaming</string>
+    <string name="pref_disable_roaming_indicators_summary">Cuando está desactivado, el indicador R no será visible en itinerancia. Utilizar con precaución.</string>
+    <string name="pie_battery_status_charging">Cargando (%d%%)</string>
+    <string name="pie_battery_status_full">Cargado</string>
+    <string name="pie_battery_status_discharging">%d%% restante</string>
+    <string name="pie_phone_status_no_service">Sin servicio</string>
+    <string name="pie_phone_status_airplane_mode">Modo avión activo</string>
+    <string name="pie_phone_status_emergency_only">Solo llamadas de emergencia</string>
+    <string name="pie_control_title">Controles Pie</string>
+    <string name="pie_control_enable_title">habilitados controles Pie</string>
+    <string name="pie_control_search_title">Mostrar el botón de búsqueda</string>
+    <string name="pie_control_size_title">Tamaño de las teclas de navegación</string>
+    <string name="pie_control_trigger_positions_title">Posiciones del disparador</string>
+    <string name="pie_control_trigger_left">Borde izquierdo de la pantalla</string>
+    <string name="pie_control_trigger_bottom">Borde inferior de la pantalla</string>
+    <string name="pie_control_trigger_right">Borde derecho de la pantalla</string>
+    <string name="pie_control_trigger_top">Borde superior de la pantalla</string>
+    <string name="pref_button_backlight_mode_title">Modo de luz de fondo del botón</string>
+    <string name="button_backlight_mode_default">Defecto</string>
+    <string name="button_backlight_mode_disable">Boton retroiluminación desactivado</string>
+    <string name="button_backlight_mode_always_on">Siempre mientras se esta en la pantalla</string>
+    <string name="pref_button_backlight_notifications_title">Iluminacion del botón de notificaciones</string>
+    <string name="pref_button_backlight_notifications_summary">EXPERIMENTAL! Botón de luz de fondo parpadea cuando hay una notificación. El uso en caso de que su dispositivo carezca LED de notificación. Puede consumir batería.</string>
+    <string name="pref_navbar_disable_title">Ocultar la barra de navegación</string>
+    <string name="pref_navbar_disable_summary">Barra de navegación oculta, mientras que los controles PIE están habilitados (para dispositivos con barra de navegación, requiere reinicio)</string>
+    <string name="pref_holo_bg_dither_title">Fondo Holo nervioso</string>
+    <string name="pref_holo_bg_dither_summary">Sustituye fondo Holo estándar interpolado para suprimir bandas de color (requiere reinicio)</string>
+    <string name="pref_hwkeys_disable_title">Deshabilitar teclas de hardware</string>
+    <string name="pref_hwkeys_disable_summary">Deshabilitados botones MENU, BACK, HOME mientras que los controles PIE están habilitados. HW keys actions will still work. (for devices having HW keys)</string>
+    <string name="pref_gb_theme_dark_title">Usar Dark theme Holo</string>
+    <string name="pref_gb_theme_dark_summary">Switches GB UI utilizar Holo Dark theme en vez de	Holo Light</string>
+    <string name="recent_clear_off">Off</string>
+    <string name="recent_clear_top_left">Arriba a la izquierda</string>
+    <string name="recent_clear_top_right">Arriba a la derecha</string>
+    <string name="recent_clear_bottom_left">Abajo a la izquierda</string>
+    <string name="recent_clear_bottom_right">Abajo a la derecha</string>
+    <string name="pref_recent_clear_margin_top_title">Ajuste el margen superior</string>
+    <string name="pref_roaming_warning_disable_title">Deshabilitar las advertencias de itinerancia</string>
+    <string name="pref_roaming_warning_disable_summary">Deshabilita las advertencias de itinerancia al enviar mensajes o realizar llamadas telefónicas en itinerancia</string>
+    <string name="app_picker_search">Buscar</string>
+    <string name="app_picker_none">(Ninguno)</string>
+    <string name="qs_tile_quickapp">App Rápida</string>
+    <string name="pref_cat_quickapp_tile_title">Configuración de paneles de App rápida</string>
+    <string name="pref_quickapp_default_title">Aplicaciones Principales</string>
+    <string name="pref_quickapp_slot1_title">Pulsación larga en ranura de app 1</string>
+    <string name="pref_quickapp_slot2_title">Pulsación larga en ranura de app 2</string>
+    <string name="pref_quickapp_slot3_title">Pulsación larga en ranura de app 3</string>
+    <string name="pref_quickapp_slot4_title">Pulsación larga en ranura de app3</string>
+    <string name="qs_tile_gps_enabled">GPS encendido</string>
+    <string name="qs_tile_gps_disabled">GPS apagadof</string>
+    <string name="pie_control_menu_title">Mostrar siempre el botón de menú</string>
+    <string name="qs_tile_ringer_mode">Modo de tono</string>
+    <string name="pref_cat_clock_settings_title">Configuración del reloj</string>
+    <string name="pref_clock_ampm_hide_title">Ocultar AM/PM</string>
+    <string name="pref_clock_hide_title">Ocultar reloj</string>
+    <string name="pie_control_trigger_size_title">Tamaño de disparador</string>
+    <string name="pref_cat_transparency_manager_title">Gestión de transparencia</string>
+    <string name="pref_tm_statusbar_launcher_title">Transparencia en la barra de estado de lanzador</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Transparencia en la barra de estado para LockScreen</string>
+    <string name="pref_tm_navbar_launcher_title">Transparencia Navbar del lanzador</string>
+    <string name="pref_tm_navbar_lockscreen_title">Transparencia Navbar de LockScreen</string>
+    <string name="pref_alarm_icon_hide_title">Ocultar el icono de alarma</string>
+    <string name="pref_screen_dim_level_title">Nivel de atenuación de la pantalla</string>
+    <string name="pref_screen_dim_level_summary">Cantidad de brillo para el estado atenuado - cuando la pantalla está a punto de apagarse (requiere reinicio)</string>
+    <string name="device_phone">teléfono</string>
+ </resources>   

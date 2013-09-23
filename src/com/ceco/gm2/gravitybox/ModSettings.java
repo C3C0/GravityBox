@@ -27,6 +27,7 @@ public class ModSettings {
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     PreferenceGroup appListGroup = (PreferenceGroup) XposedHelpers.getObjectField(
                             param.thisObject, "mAppListGroup");
+                    if (appListGroup == null) return;
 
                     int prefCount = appListGroup.getPreferenceCount();
                     for (int i = 0; i < prefCount; i++) {
@@ -34,7 +35,7 @@ public class ModSettings {
                         // Assumption is a mother of all fuckups, thus:
                         // TODO: make this more bullet-proof
                         Preference pref = appListGroup.getPreference(i);
-                        if (pref instanceof CheckBoxPreference) {
+                        if (pref != null && pref instanceof CheckBoxPreference) {
                             log("CheckBoxPreference found: " + pref.getTitle() + " - removing");
                             appListGroup.removePreference(pref);
                             break;
@@ -42,8 +43,8 @@ public class ModSettings {
                     }
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }

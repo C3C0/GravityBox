@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -19,7 +20,9 @@ import de.robv.android.xposed.XposedHelpers;
 public class ModSignalIconHide {
     public static final String PACKAGE_NAME = "com.android.systemui";
     private static final String CLASS_SIGNAL_CLUSTER_VIEW = "com.android.systemui.statusbar.SignalClusterViewGemini";
-    private static final String CLASS_UICC_CONTROLLER = "com.android.internal.telephony.uicc.UiccController";
+    private static final String CLASS_UICC_CONTROLLER = Build.VERSION.SDK_INT > 16 ?
+            "com.android.internal.telephony.uicc.UiccController" :
+            "com.android.internal.telephony.IccCard";
     private static boolean autohideSlot1;
     private static boolean autohideSlot2;
 
@@ -88,8 +91,8 @@ public class ModSignalIconHide {
                     }
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 
@@ -111,8 +114,8 @@ public class ModSignalIconHide {
                     }
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }

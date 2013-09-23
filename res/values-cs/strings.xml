@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
 
     <string name="battery_style_title">Styl indikátoru baterie</string>	
     <string name="battery_style_stock">Základní</string>
-    <string name="battery_style_circle">Kruhový s procenty</string>
+    <string name="battery_style_circle">Kruhový bez procent</string>
+    <string name="battery_style_circle_percent">Kruhový s procenty</string>
     <string name="battery_style_percent">Procentuální text stavu baterie</string>
     <string name="battery_style_none">Žádný</string>
 
@@ -75,6 +76,11 @@
     <string name="quick_settings_qr_recorded">Zaznamenáno</string>
     <string name="quick_settings_qr_record">Podržte pro záznam</string>
     <string name="quick_settings_qr_recording_notif">Dotykem zastavíte záznam</string>
+    <string name="quick_settings_expanded_desktop_disabled">Vypnuto</string>
+    <string name="quick_settings_expanded_desktop_normal">Normální plocha</string>
+    <string name="quick_settings_expanded_desktop_expanded">Rozšířená plocha</string>
+    <string name="quick_settings_stay_awake_on">Bdění zap</string>
+    <string name="quick_settings_stay_awake_off">Bdění vyp</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Dlaždice QuickSettings panelu</string>
@@ -94,12 +100,16 @@
     <string name="qs_tile_autorotation">Automatické otáčení obrazovky</string>
     <string name="qs_tile_sync">Synchronizace</string>
     <string name="qs_tile_wifi_ap">Wi-Fi Přístupový bod</string>
-	<string name="qs_tile_torch">Světlo</string>
+    <string name="qs_tile_torch">Světlo</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
     <string name="qs_tile_sleep">Uspát</string>
     <string name="qs_tile_quickrecord">Rychlý záznam zvuku</string>
-	
-	<!-- Color Picker -->
+    <string name="qs_tile_volume">Hlasitost</string>
+    <string name="qs_tile_expanded_desktop">Rozšířená plocha</string>
+    <string name="qs_tile_stay_awake">Bdění</string>
+    <string name="qs_tile_screenshot">Screenshot</string>
+
+    <!-- Color Picker -->
     <string name="dialog_color_picker">Výběr barvy</string>
     <string name="press_color_to_apply">Dotykem potvrdíte barvu</string>
 
@@ -132,8 +142,8 @@
     <string name="about_donate_summary">Přispějte přes PayPal pokud si myslíte, že tato aplikace za to stojí! Zvažte též příspěvek pro rovo89 za jeho excelentní Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Váš telefon bude restartovaný</string>
-    <string name="reboot_confirm_recovery">Váš telefon bude restartovaný do režimu Recovery</string>
+    <string name="reboot_confirm">Váš %s bude restartovaný</string>
+    <string name="reboot_confirm_recovery">Váš %s bude restartovaný do režimu Recovery</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT efekt vypnutí obrazovky</string>
@@ -180,18 +190,18 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Minimální úroveň jasu</string>
     <string name="pref_brightness_min_summary">Umožňuje nastavit minimální úroveň jasu pro manuální nastavení jasu (vyžaduje restart)</string>
-    <string name="pref_brightness_dlg_msg">Hodnota z intervalu: 20 &#8211; 80</string>
+    <string name="pref_brightness_dlg_msg">Hodnota z intervalu: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Úrovně automatického jasu</string>
     <string name="pref_ab_summary">Umožňuje nastavit úrovně světla prostředí a odpovídající úrovně podsvícení obrazovky</string>
     <string name="level">Úroveň</string>
     <string name="pref_ab_lux_max_label">Lux max</string>
-    <string name="pref_ab_brighness_label">Jas (20 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Jas (10 &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Zadané číslo není platné</string>
-    <string name="pref_ab_brightness_too_low">Nedoporučuje se nastavit úroveň jasu menší než 20</string>
+    <string name="pref_ab_brightness_too_low">Nedoporučuje se nastavit úroveň jasu menší než 10</string>
     <string name="pref_ab_brightness_too_high">Úroveň jasu nesmí být větší než 255</string>
-    <string name="pref_ab_number_error_negative">Hodnoty nesmí být menší než nula</string>
+    <string name="pref_ab_number_error_negative">Hodnoty nesmí být menší nebo rovné nule</string>
     <string name="pref_ab_number_not_ascending">Hodnoty na nižších úrovních nesmí být větší než hodnoty na vyšších úrovních</string>
     <string name="pref_ab_number_not_descending">Hodnoty na vyšších úrovních nesmí být nižší než hodnoty na nižších úrovních</string>
     <string name="pref_ab_values_set">Hodnoty pro %s nastaveny</string>
@@ -297,5 +307,263 @@
     <!-- Disable volume rocker wake -->
     <string name="pref_volume_rocker_wake_disable_title">Zakázat probouzení tlačítky hlasitosti</string>
     <string name="pref_volume_rocker_wake_disable_summary">Pro zařízení jako Jiayu G3S, G4, u kterých tlačítka hlasitosti probouzejí zařízení</string>
+
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">Barvy stavového řádku</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">Povolit vybarvování ikon</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">Barva ikon</string>
+    <string name="pref_statusbar_icon_color_summary">Nastaví barvu pro ikony stavového řádku a pro hodiny</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">Barva indikátoru datové aktivity</string>
+    <string name="pref_statusbar_data_activity_color_summary">Nastaví barvu pro indikátory datové aktivity</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">QuickSettings nastavení</string>
+
+        <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">Nastavení notifikačního panelu</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">Pozadí notifikačního panelu</string>
+    <string name="notif_background_default">Původní</string>
+    <string name="notif_background_color_fill">Barevná výplň</string>
+    <string name="notif_background_custom_image">Vlastní obrázek</string>
+    <string name="pref_notif_color_title">Nastavit barvu pozadí</string>
+    <string name="pref_notif_image_portrait_title">Nastavit obrázek na výšku</string>
+    <string name="pref_notif_image_landscape_title">Nastavit obázek na šířku</string>
+    <string name="pref_notif_background_alpha_title">Průhlednost pozadí</string>
+    <string name="pref_notif_color_mode_title">Režim pozadí</string>
+    <string name="color_fill_overlay">Překrýt</string>
+    <string name="color_fill_underlay">Podklad</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">Vypnout roaming indikátory</string>
+    <string name="pref_disable_roaming_indicators_summary">Pokud vypnuto, R indikátory nebudou zobrazeny během roamingu. Použít s opatrností.</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Nabíjení (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Nabito</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% zůstává</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Bez signálu</string>
+    <string name="pie_phone_status_airplane_mode">Režim v letadle</string>
+    <string name="pie_phone_status_emergency_only">Jen nouzová volání</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">Koláč</string>
+    <string name="pie_control_enable_title">Zapnout koláč</string>
+    <string name="pie_control_search_title">Povolit tlačítko hledání</string>
+    <string name="pie_control_size_title">Velikost koláče</string>
+    <string name="pie_control_trigger_positions_title">Pozice koláče</string>
+    <string name="pie_control_trigger_left">Levý okraj obrazovky</string>
+    <string name="pie_control_trigger_bottom">Spodní okraj obrazovky</string>
+    <string name="pie_control_trigger_right">Pravý okraj obrazovky</string>
+    <string name="pie_control_trigger_top">Horní okraj obrazovky</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">Režim podsvícení tlačítek</string>
+    <string name="button_backlight_mode_default">Standardní</string>
+    <string name="button_backlight_mode_disable">Vypnout podsvícení</string>
+    <string name="button_backlight_mode_always_on">Vždy zapnuto během zapnuté obrazovky</string>
+    <string name="pref_button_backlight_notifications_title">Notifikace podsvícením</string>
+    <string name="pref_button_backlight_notifications_summary">EXPERIMENTÁLNÍ! Zapne podsvícení tlačítek v případě nové notifikace během vypnuté obrazovky. Použít v případě, že zařízení nemá oznamovací LED.</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">Skrýt navigační lištu</string>
+    <string name="pref_navbar_disable_summary">Skryje navigační lištu pokud je zapnutý koláč (pro zařízení s navigační lištou, vyžaduje restart)</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">Vyhlazené Holo pozadí</string>
+    <string name="pref_holo_bg_dither_summary">Nahradí standardní Holo pozadí vyhlazeným obrázkem za účelem eliminace pruhů barevného přechodu (vyžaduje restart)</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">Zablokovat HW tlačítka</string>
+    <string name="pref_hwkeys_disable_summary">Zablokuje MENU, ZPĚT, DOMŮ pokud je zapnutý koláč. Akce HW tlačítek budou nadále fungovat (pro zařízení s HW tlačítky)</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">Použít tmavé téma</string>
+    <string name="pref_gb_theme_dark_summary">Přepne GB UI na tmavé téma</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">Vypnuto</string>
+    <string name="recent_clear_top_left">Vlevo nahoře</string>
+    <string name="recent_clear_top_right">Vpravo nahoře</string>
+    <string name="recent_clear_bottom_left">Vlevo dole</string>
+    <string name="recent_clear_bottom_right">Vpravo dole</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Přizpůsobit horní okraj</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">Vypnout roaming varování</string>
+    <string name="pref_roaming_warning_disable_summary">Vypne zobrazování varování při posílání zpráv a volání v roamingu</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">Hledat</string>
+    <string name="app_picker_none">(Žádná)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">Quick App</string>
+    <string name="pref_cat_quickapp_tile_title">Nastavení QuickApp dlaždice</string>
+    <string name="pref_quickapp_default_title">Hlavní aplikace</string>
+    <string name="pref_quickapp_slot1_title">Dlouhé stisknutí - app slot 1</string>
+    <string name="pref_quickapp_slot2_title">Dlouhé stisknutí - app slot 2</string>
+    <string name="pref_quickapp_slot3_title">Dlouhé stisknutí - app slot 3</string>
+    <string name="pref_quickapp_slot4_title">Dlouhé stisknutí - app slot 4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS zap</string>
+    <string name="qs_tile_gps_disabled">GPS vyp</string>
+    <string name="qs_tile_gps_locked">GPS fix</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">Vždy zobrazit menu tlačítko</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">Režim zvonění</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">Nastavení hodin</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">Skrýt AM/PM</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">Skrýt hodiny</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">Velikost aktivátoru</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">Nastavení průhlednosti</string>
+    <string name="pref_tm_statusbar_launcher_title">Stavového řádku pro launcher</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Stavového řádku pro lockscreen</string>
+    <string name="pref_tm_navbar_launcher_title">Navigační lišty pro launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Navigační lišty pro lockscreen</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">Skrýt ikonu alarmu</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Úroveň zatmavení obrazovky</string>
+    <string name="pref_screen_dim_level_summary">Úroveň jasu pro zatmavení obrazovky těsně před jejím vypnutím (vyžaduje restart)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">telefon</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">Nastavení jasu</string>
+    <string name="pref_brightness_master_switch_title">Povolit nastavení jasu</string>
+    <string name="pref_brightness_master_switch_summary">Použit pouze v případě, pokud zařízení podporuje standardní Android nastavení jasu. V případě problémů s jasem je třeba ponechat nastavení vypnuté. (vyžaduje restart)</string>
+
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">Seznam spuštěných aplikací</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">Dlouhé podržení Domů</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">Spustit aplikaci 1</string>
+    <string name="pref_hwkey_custom_app_title">Nastavit aplikaci ke spuštění 1</string>
+    <string name="hwkey_action_custom_app2">Spustit aplikaci 2</string>
+    <string name="pref_hwkey_custom_app_title2">Nastavit aplikaci ke spuštění 2</string>
+    <string name="hwkey_action_custom_app_none">Aplikace není nastavena!</string>
+    <string name="hwkey_action_custom_app_missing">Aplikace nebyla nalezena!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Aplikace hodin notifikačního panelu</string>
+    <string name="pref_clock_link_summary">Naváže hodiny notifikačního panelu na zvolenou aplikaci namísto nastavení data a času</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">Čekám na odpověď ze systémového modulu GravityBox&#8230;</string>
+    <string name="gb_startup_error">Systémový modul GravityBox neodpovídá.</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">Národní datový roaming</string>
+    <string name="pref_national_roaming_summary">Povolí datové služby během národního roamingu</string>
+
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Režim rozšířené plochy</string>
+    <string name="expanded_desktop_disabled">Vypnuto</string>
+    <string name="expanded_desktop_statusbar">Skrýt stavový řádek</string>
+    <string name="expanded_desktop_navbar">Skrýt navigační lištu</string>
+    <string name="expanded_desktop_both">Skrýt stavový řádek i navigační lištu</string>
+    <string name="action_expanded_desktop_title">Rozšířená plocha</string>
+    <string name="action_expanded_desktop_on">Rozšířená plocha je ZAP</string>
+    <string name="action_expanded_desktop_off">Rozšířená plocha je VYP</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">Screenshot</string>
+
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">Vyvolat menu</string>
+
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">Přepnout rozšíření plochy</string>
+    <string name="hwkey_action_expanded_desktop_disabled">Režim rozšířené plochy je vypnutý!</string>
+
+    <!-- Navigation bar tweaks category -->
+    <string name="pref_cat_navigation_bar_title">Nastavení navigační lišty</string>
+    <string name="pref_cat_navigation_bar_summary">Obsahuje různá nastavení týkající se navigační lišty</string>
+    <string name="pref_navbar_override_title">Obejít systémová nastavení</string>
+    <string name="pref_navbar_override_summary">Hlavní přepínač pro povolení nastavení navigační lišty (vyžaduje restart)</string>
+    <string name="pref_navbar_enable_title">Povolit navigační lištu</string>
+    <string name="pref_navbar_enable_summary">Vyžaduje restart</string>
+    <string name="pref_navbar_height_title">Výška navigační lišty</string>
+    <string name="pref_navbar_height_summary">Pro orientaci na výšku</string>
+    <string name="pref_navbar_width_title">Šířka navigační lišty</string>
+    <string name="pref_navbar_width_summary">Pro orientaci na šířku</string>
+    <string name="pref_navbar_menukey_title">Vždy zobrazit menu tlačítko</string>
+
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Screenshot v menu napájení</string>
+
+    <!-- Lockscreen targets -->
+    <string name="pref_cat_lockscreen_targets_title">Zkratky obrazovky uzamčení</string>
+    <string name="pref_lockscreen_targets_enable_title">Povolit zkratky</string>
+    <string name="pref_lockscreen_targets_enable_summary">Hlavní vypínač pro zkratky obrazovky uzamčení</string>
+    <string name="pref_lockscreen_targets_app_title">Aplikace pro zkratku %s</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Spodní okraj prstence</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">Povolit ovládání jasu</string>
+    <string name="pref_statusbar_brightness_summary">Povolí ovládání jasu posouváním prstu po stavové liště</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Telefon</string>
+    <string name="pref_cat_phone_messaging_title">Zprávy</string>
+    <string name="pref_cat_phone_mobile_data_title">Mobilní data</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Konverze diakritiky</string>
+    <string name="pref_mms_unicode_stripping_summary">Odstraní diakritiku ze zprávy před jejím odesláním. Snižuje nároky na počet znaků zprávy.</string>
+    <string name="unicode_stripping_leave_intact">Ponechat výchozí</string>
+    <string name="unicode_stripping_non_encodable">Konverze nekódovatelných znaků</string>
+    <string name="unicode_stripping_all">Konverze všech znaků</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Vypnout varování pomalých 2G dat</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Vypne varování o pomalých 2G datech pro SIM v režimu 2G, při zapnutí dat použitím dlaždice</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">Kopírovat barvu stock baterie</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Nastaví barvu hodin, procent baterie a kruhového indikátoru podle barvy stock baterie (v případě pokud je vypnuto vlastní vybarvování)</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">Režim dlaždice typu mobilní sítě</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
+    <string name="nm_tile_mode2">2G/2G+3G</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">Skrýt GPS notifikace</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">Povolit všechny rotace</string>
 
 </resources>

@@ -5,10 +5,12 @@ import java.lang.reflect.Method;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodHook.Unhook;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -17,9 +19,14 @@ public class ModPhone {
     private static final String TAG = "ModPhone";
     public static final String PACKAGE_NAME = "com.android.phone";
     private static final String CLASS_IN_CALL_SCREEN = "com.android.phone.InCallScreen";
-    private static final String ENUM_PHONE_STATE = "com.android.internal.telephony.PhoneConstants$State";
+    private static final String ENUM_PHONE_STATE = Build.VERSION.SDK_INT > 16 ?
+            "com.android.internal.telephony.PhoneConstants$State" :
+            "com.android.internal.telephony.Phone$State";
     private static final String CLASS_ASYNC_RESULT = "android.os.AsyncResult";
     private static final String CLASS_CALL_NOTIFIER = "com.android.phone.CallNotifier";
+    private static final String CLASS_SERVICE_STATE_EXT = "com.mediatek.op.telephony.ServiceStateExt";
+    private static final String CLASS_GSM_SERVICE_STATE_TRACKER = 
+            "com.android.internal.telephony.gsm.GsmServiceStateTracker";
     private static final boolean DEBUG = false;
 
     private static SensorManager mSensorManager;
@@ -87,6 +94,57 @@ public class ModPhone {
         mSensorListenerAttached = false;
 
         log("Sensor listener detached");
+    }
+
+    public static void initZygote(final XSharedPreferences prefs) {
+        try {
+            if (Utils.hasGeminiSupport()) {
+                final Class<?> classServiceStateExt = XposedHelpers.findClass(CLASS_SERVICE_STATE_EXT, null);
+
+                XposedHelpers.findAndHookMethod(classServiceStateExt, "ignoreDomesticRoaming", 
+                        new XC_MethodReplacement() {
+
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        prefs.reload();
+                        boolean mvno = prefs.getBoolean(GravityBoxSettings.PREF_KEY_NATIONAL_ROAMING, false);
+                        if (DEBUG) log("ignoreDomesticRoaming: " + mvno);
+                        return mvno;
+                    }
+                });
+            } else {
+                final Class<?> classGsmServiceStateTracker = XposedHelpers.findClass(
+                        CLASS_GSM_SERVICE_STATE_TRACKER, null);
+
+                XposedHelpers.findAndHookMethod(classGsmServiceStateTracker, "isRoamingBetweenOperators", 
+                        boolean.class, "android.telephony.ServiceState", new XC_MethodHook() {
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        prefs.reload();
+                        boolean mvno = prefs.getBoolean(GravityBoxSettings.PREF_KEY_NATIONAL_ROAMING, false);
+                        final Class<?> classSystemProperties = 
+                                XposedHelpers.findClass("android.os.SystemProperties", null);
+                        String simNumeric = (String) XposedHelpers.callStaticMethod(
+                                classSystemProperties, "get", "gsm.sim.operator.numeric", "");
+                        String operatorNumeric = (String) XposedHelpers.callMethod(
+                                param.args[1], "getOperatorNumeric");
+                        boolean equalsMcc = true;
+                        try {
+                            equalsMcc = simNumeric.substring(0, 3).
+                                    equals(operatorNumeric.substring(0, 3));
+                        } catch (Exception e) { }
+
+                        boolean result = (Boolean) param.getResult();
+                        result = result && !(equalsMcc && mvno);
+                        if (DEBUG) log("isRoamingBetweenOperators: " + result);
+                        param.setResult(result);
+                    }
+                });
+            }
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
     }
 
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
@@ -191,8 +249,8 @@ public class ModPhone {
                     if (DEBUG ) log("CallNotifier: onPhoneStateChanged EXITED");
                 }
             });
-        } catch (Exception e) {
-            XposedBridge.log(e);
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 }

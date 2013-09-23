@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
 
     <string name="battery_style_title">Вид индикатора заряда</string>	
     <string name="battery_style_stock">Стоковый индикатор</string>
-    <string name="battery_style_circle">Круглый индикатор с процентами</string>
+    <string name="battery_style_circle">Круглый индикатор</string>
+    <string name="battery_style_circle_percent">Круглый индикатор с процентами</string>
     <string name="battery_style_percent">Индикатор с процентами</string>
     <string name="battery_style_none">Не показывать</string>
 
@@ -29,7 +30,8 @@
 
     <string name="poweroff_advanced_title">Расширенное меню перезагрузки</string>
     <string name="poweroff_advanced_summary">Включает расширенное меню перезагрузки с возможностью перезагрузки в Recovery</string>
-    <string name="poweroff_recovery">Recovery</string>    
+    <string name="poweroff_recovery">Recovery</string>
+    <string name="poweroff_bootloader">Bootloader</string>    
 
     <string name="vol_key_cursor_control_title">Управление курсором клавишами громкости</string>
     <string name="vol_key_cursor_control_summary">Позволяет управлять курсором в текстовых полях клавишами громкости</string>
@@ -38,20 +40,19 @@
     <string name="vol_key_cursor_control_on_reverse">Звук вверх/вниз для перемещения курсора вправо/влево</string>
 
     <string name="recents_clear_all_title">Закрыть все текущие задачи</string>
-    <string name="recents_clear_all_summary">Включает кнопку для закрытия всех текущих задач в диалоге \"Недавние приложения\"</string>
 
-    <string name="fix_datetime_crash_title">Исправление падения диалога Дата и время</string>
+    <string name="fix_datetime_crash_title">Падения диалога Дата и время</string>
     <string name="fix_datetime_crash_summary">Включить, если при входе в настройки Даты и времени происходит падение (Необходима перезагрузка)</string>
 
-    <string name="fix_caller_id_phone_title">Исправление определения номера для звонка</string>
+    <string name="fix_caller_id_phone_title">Определения номера для звонка</string>
     <string name="fix_caller_id_phone_summary">Включить, если номер звонящего не сопоставляется с контактом при входящем звонке (Необходима перезагрузка)</string>
     <string name="fix_caller_id_phone_alert">После перезагрузки необходимо удалить и заново добавить контакты, чтобы изменения вступили в силу! Используйте Настройки - Приложения - Хранилище контактов - Стереть данные.</string>
 
-    <string name="fix_caller_id_mms_title">Исправление определителя номера для сообщений</string>
+    <string name="fix_caller_id_mms_title">Определителя номера для сообщений</string>
     <string name="fix_caller_id_mms_summary">Включить, если наблюдается проблема нескольких веток сообщений для одного контакта (Необходима перезагрузка)</string>
     <string name="fix_caller_id_mms_alert">После перезагрузки необходимо удалить все раздельные ветки в приложении Сообщения, чтобы изменения вступили в силу!</string>
 
-    <string name="fix_calendar_title">Исправить приложение Календарь</string>
+    <string name="fix_calendar_title">Приложение Календарь</string>
     <string name="fix_calendar_summary">Включить, если есть проблема с периодически включающимся экраном в спящем режиме</string>
 
     <string name="important">Важно</string>
@@ -71,7 +72,10 @@
     <string name="quick_settings_qr_recording">Запись&#8230;</string>
     <string name="quick_settings_qr_recorded">Записано</string>
     <string name="quick_settings_qr_record">Удержите для записи</string>
-    <string name="quick_settings_qr_recording_notif">Косниться чтобы остановить запись</string>
+    <string name="quick_settings_qr_recording_notif">Коснитесь чтобы остановить запись</string>
+    <string name="quick_settings_expanded_desktop_disabled">Отключено</string>
+    <string name="quick_settings_expanded_desktop_normal">Нормальный</string>
+    <string name="quick_settings_expanded_desktop_expanded">Расширенный</string>
     
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Иконки быстрых настроек в статусбаре</string>
@@ -95,6 +99,9 @@
     <string name="qs_tile_gravitybox">GravityBox</string>
     <string name="qs_tile_sleep">Сон</string>
     <string name="qs_tile_quickrecord">Быстрая запись</string>
+    <string name="qs_tile_settings">Настройки</string>
+    <string name="qs_tile_volume">Звук</string>
+    <string name="qs_tile_expanded_desktop">Расширенный рабочий стол</string>
 
      <!-- Color Picker -->
     <string name="dialog_color_picker">Выбор цвета</string>
@@ -129,20 +136,21 @@
     <string name="about_donate_summary">Пожертвуйте, если считаете, что приложение стоит того! Также задумайтесь о пожертвовании rovo89 за его великолепный Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Телефон будет перезагружен</string>
-    <string name="reboot_confirm_recovery">Телефон будет перезагружен в recovery</string>
+    <string name="reboot_confirm">%s будет перезагружен.</string>
+    <string name="reboot_confirm_recovery">%s будет перезагружен в recovery.</string>
+    <string name="reboot_confirm_bootloader">%s будет перезагружен в bootloader.</string>
     
-     <!-- CRT effect screen off animation -->
+    <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT-эффект выключения экрана</string>
     <string name="crt_off_effect_summary">Позволяет включить анимацию, имитирующую выключение старых ЭЛТ-мониторов, при выключении экрана</string>
         
-        <!-- Engineering mode shortcut -->
+    <!-- Engineering mode shortcut -->
     <string name="engineering_mode_title">Инженерное меню</string>
     <string name="engineering_mode_summary">Позволяет запустить Инженерное меню</string>
 
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Мелодия звонка для 2-х SIM</string>
-    <string name="dual_sim_ringer_summary">Позволяет запустить приложение, которое позволяет установить мелодию звонка и уведомлений отдельно для каждой SIM-карты</string>
+    <string name="dual_sim_ringer_summary">Запускает приложение, которое позволяет установить мелодию звонка и уведомлений отдельно для каждой SIM-карты</string>
     
 	<!--  Lockscreen tweaks -->
     <string name="pref_cat_lockscreen_title">Настройки экрана блокировки</string>
@@ -152,7 +160,7 @@
     <string name="lockscreen_bg_default">Стандартные обои</string>
     <string name="lockscreen_bg_color">Заполнение цветом</string>
     <string name="lockscreen_bg_image">Пользовательское изображение</string>
-    <string name="pref_lockscreen_bg_color_title">Задать цыет</string>
+    <string name="pref_lockscreen_bg_color_title">Задать цвет</string>
     <string name="pref_lockscreen_bg_color_summary">Позволяет задать цвет фона для экрана блокировки</string>
     <string name="pref_lockscreen_bg_image_title">Задать изображение</string>
     <string name="pref_lockscreen_bg_image_summary">Позволяет установить пользовательское изображение для экрана блокировки</string>
@@ -177,16 +185,16 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Минимальный уровень яркости</string>
     <string name="pref_brightness_min_summary">Позволяет установить минимальный уровень яркости. Применимо к ручной настройке яркости. (Необходима перезагрузка)</string>
-    <string name="pref_brightness_dlg_msg">Значения из интервала: 20 &#8211; 80</string>
+    <string name="pref_brightness_dlg_msg">Значения из интервала: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Уровни автояркости</string>
     <string name="pref_ab_summary">Позволяет настроить уровни яркости подсветки в зависимости от внешней освещенности</string>
     <string name="level">Уровень</string>
     <string name="pref_ab_lux_max_label">Максимальная освещенность</string>
-    <string name="pref_ab_brighness_label">Яркость (20 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Яркость (10 &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Некорректное значение</string>
-    <string name="pref_ab_brightness_too_low">Не рекомендуется устнавливать яркость ниже 20</string>
+    <string name="pref_ab_brightness_too_low">Не рекомендуется устнавливать яркость ниже 10</string>
     <string name="pref_ab_brightness_too_high">Яркость не может быть выше 255</string>
     <string name="pref_ab_number_error_negative">Значение не должно быть меньше 0</string>
     <string name="pref_ab_number_not_ascending">Значение на нижнем уровне не может быть выше значений на верхних уровнях</string>
@@ -269,10 +277,249 @@
     <string name="pref_holo_bg_solid_black_summary">Использовать черный фон для ситемной Holo-темы по умолчанию вместо темно-серого градиента (Необходима перезагрузка)</string>
 
     <!-- QuickSettings tiles per row -->
-    <string name="pref_qs_tiles_per_row_title">иконок в ряд</string>
+    <string name="pref_qs_tiles_per_row_title">Иконок в ряд</string>
     <string name="pref_qs_tiles_per_row_summary">Определяет, как много иконок быстрых настроек будет показано в одном ряду. Размеры изменятся соответственно. Применимо к портретному режиму.</string>
 
     <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">Отображать день недели</string>
+    
+     <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Расширяемая звуковая панель</string>
+    <string name="pref_volume_panel_expandable_summary">Включает расширяемую звуковую панель, на которой можно менять звук для разных потоков</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Связать громкость рингтона и уведомлений</string>
+    <string name="pref_link_volumes_summary">Когда отключено, громкость уведомлений и ренгтона можно задавать независимо</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">Автовключение быстрых настроек</string>
+    <string name="pref_auto_switch_qs_summary">Быстрые настройки будут показаны автоматически (если нет уведомлений) при вытягивании статусбара</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Быстрое вытягивание</string>
+    <string name="pref_quick_pulldown_summary">За край статусбара можно вытянуть быстрые настройки</string>
+    <string name="quick_pulldown_off">Выключено</string>
+    <string name="quick_pulldown_right">Справа</string>
+    <string name="quick_pulldown_left">Слева</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">Отключение выхода из сна клавишами громкости</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Для устройств вроде Jiayu G3s,G4 где изменение звука будит устройство</string>
+    
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">Цвета статусбара</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">Включить цвета иконок</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">Цвет иконок статусбара</string>
+    <string name="pref_statusbar_icon_color_summary">Задает цвета для иконок статусбара и часов</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">Цвет активности данных</string>
+    <string name="pref_statusbar_data_activity_color_summary">Задает цвета для индикаторов активности данных</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">Управление Быстрыми настройками</string>
+    
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">Стиль шторки уведомлений</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">Фон шторки уведомлений</string>
+    <string name="notif_background_default">Стандартный фон</string>
+    <string name="notif_background_color_fill">Заполнение цветом</string>
+    <string name="notif_background_custom_image">Пользовательское изображение</string>
+    <string name="pref_notif_color_title">Задать цвет фона</string>
+    <string name="pref_notif_image_portrait_title">Задать портретную картинку</string>
+    <string name="pref_notif_image_landscape_title">Задать ландшафтную картинку</string>
+    <string name="pref_notif_background_alpha_title">Прозрачность фона</string>
+    <string name="pref_notif_color_mode_title">Режим фона</string>
+    <string name="color_fill_overlay">Передний план</string>
+    <string name="color_fill_underlay">Задний план</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">Отключить индикатор роуминга</string>
+    <string name="pref_disable_roaming_indicators_summary">При отключении R-индикатор не будет отображаться. Используйте с осторожностью.</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Зарядка (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Заряжен</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% осталось</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Нет сети</string>
+    <string name="pie_phone_status_airplane_mode">Режим полета</string>
+    <string name="pie_phone_status_emergency_only">Только экстренные</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">Веерное меню</string>
+    <string name="pie_control_enable_title">Включить веерное меню</string>
+    <string name="pie_control_search_title">Включить кнопку поиска</string>
+    <string name="pie_control_size_title">Размер навигационных кнопок</string>
+    <string name="pie_control_trigger_positions_title">Позиция переключателей</string>
+    <string name="pie_control_trigger_left">Левая граница</string>
+    <string name="pie_control_trigger_bottom">Нижняя граница</string>
+    <string name="pie_control_trigger_right">Правая граница</string>
+    <string name="pie_control_trigger_top">Верхняя граница</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">Режим подсветки клавиш</string>
+    <string name="button_backlight_mode_default">Стандартный</string>
+    <string name="button_backlight_mode_disable">Отключить подсветку</string>
+    <string name="button_backlight_mode_always_on">Включать всегда, когда включен экран</string>
+    <string name="pref_button_backlight_notifications_title">Уведомления подсветкой клавиш</string>
+    <string name="pref_button_backlight_notifications_summary">ЭКСПЕРИМЕНТАЛЬНО! Моргающая подсветка клавиш при уведомлениях. Использовать только в случае отсутствия LED индикатора. Может привести к ухудшению жизни батареи.</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">Скрыть панель навигации</string>
+    <string name="pref_navbar_disable_summary">Скрывает панель навигации, когда включено веерное меню (для устройств с программными кнопками навигации, необходима перезагрузка)</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">Сглаженный Holo фон</string>
+    <string name="pref_holo_bg_dither_summary">Заменяет стандартный фон на сглаженный для избежания неплавного градиента (необходима перезагрузка)</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">Отключить железные кнопки</string>
+    <string name="pref_hwkeys_disable_summary">Отключает кнопки НАЗАД, ДОМОЙ, МЕНЮ при включенном веерном меню. Нестандартные действия этих кнопок по прежнему будут работать. (Для устройств с железными кнопками)</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">Изпользовать тему Holo Dark</string>
+    <string name="pref_gb_theme_dark_summary">Переключает тему интерфейса GravityBox со светлой на темную</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">Выключено</string>
+    <string name="recent_clear_top_left">Сверху слева</string>
+    <string name="recent_clear_top_right">Сверху справа</string>
+    <string name="recent_clear_bottom_left">Снизу слева</string>
+    <string name="recent_clear_bottom_right">Снизу справа</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Настроить отступ сверху</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">Отключить предупреждения о роуминге</string>
+    <string name="pref_roaming_warning_disable_summary">Отключить предупреждения о роуминге при отправке сообщений или совершении звонков в роуминге</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">Поиск</string>
+    <string name="app_picker_none">(нет)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">Быстрый запуск</string>
+    <string name="pref_cat_quickapp_tile_title">Настройки тайла Быстрого запуска</string>
+    <string name="pref_quickapp_default_title">Основное приложение</string>
+    <string name="pref_quickapp_slot1_title">Долгий тап, слот 1</string>
+    <string name="pref_quickapp_slot2_title">Долгий тап, слот 2</string>
+    <string name="pref_quickapp_slot3_title">Долгий тап, слот 3</string>
+    <string name="pref_quickapp_slot4_title">Долгий тап, слот 4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS вкл</string>
+    <string name="qs_tile_gps_disabled">GPS выкл</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">Всегда показывать "Меню"</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">Режим звонка</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">Настройки часов</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">Прятать AM/PM</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">Прятать часы</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">Размер переключателей</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">Управление прозрачностью</string>
+    <string name="pref_tm_statusbar_launcher_title">Статусбар для ланчера</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Статусбара для экрана блокировки</string>
+    <string name="pref_tm_navbar_launcher_title">Панель навиг. для ланчера</string>
+    <string name="pref_tm_navbar_lockscreen_title">Панель навиг. для экрана блокировки</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">Спрятать значок будильника</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Уровень затухания подсветки</string>
+    <string name="pref_screen_dim_level_summary">Яркость для приглушенной подсветки - когда экран почти выключился (необходима перезагрузка)</string>
+
+	<!-- Device type -->
+    <string name="device_phone">Телефон</string>
+    <string name="device_tablet">Планшет</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">Настройки яркости</string>
+    <string name="pref_brightness_master_switch_title">Включить настройку яркости</string>
+    <string name="pref_brightness_master_switch_summary">Включить только в случае, если устройство использует стандартный механизм Android для регулировки яркости. Оставьте выключенным, если есть проблемы, как-то связанные с яркостью. (Необходима перезагрузка)</string>
+
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">Показать недавние приложения</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">Действие по долгому нажатию Home</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">Запустить приложение 1</string>
+    <string name="pref_hwkey_custom_app_title">Выбрать приложение 1</string>
+    <string name="hwkey_action_custom_app2">Запустить приложение 2</string>
+    <string name="pref_hwkey_custom_app_title2">Выбрать приложение 2</string>
+    <string name="hwkey_action_custom_app_none">Приложение не выбрано!</string>
+    <string name="hwkey_action_custom_app_missing">Приложение не найдено!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Приложение-часы для панели уведомлений</string>
+    <string name="pref_clock_link_summary">Связывает часы на статусбаре с выбранным приложением вместо настроек Даты и времени</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">Ожидание отклика от системного фреймворка GravityBox&#8230;</string>
+    <string name="gb_startup_error">Системный фреймворк GravityBox не отвечает. Выход.</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">Национальный роуминг</string>
+    <string name="pref_national_roaming_summary">Подключаться к службам передачи данных в национальном роуминге</string>
+
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Расширенный рабочий стол</string>
+    <string name="expanded_desktop_disabled">Отключено</string>
+    <string name="expanded_desktop_statusbar">Спрятать статусбар</string>
+    <string name="expanded_desktop_navbar">Спрятать панель навигации</string>
+    <string name="expanded_desktop_both">Прятать все</string>
+    <string name="action_expanded_desktop_title">Расширенный рабочий стол</string>
+    <string name="action_expanded_desktop_on">Расшренный рабочий стол ВКЛЮЧЕН</string>
+    <string name="action_expanded_desktop_off">Расшренный рабочий стол ВЫКЛЮЧЕН</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">Снимок экрана</string>
+    
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">Показать меню</string>
+
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">Включить расширенный рабочий стол</string>
+    <string name="hwkey_action_expanded_desktop_disabled">Расширенный рабочий стол отключен!</string>
+
+    <!-- Navigation bar tweaks category -->
+    <string name="pref_cat_navigation_bar_title">Настройки панели навигации</string>
+    <string name="pref_cat_navigation_bar_summary">Содержит различные настройки панели навигации</string>
+    <string name="pref_navbar_override_title">Переписать настройки по умолчанию</string>
+    <string name="pref_navbar_override_summary">Позволяет включить все твики панели навигации (Необходима перезагрузка)</string>
+    <string name="pref_navbar_enable_title">Включить панель навигации</string>
+    <string name="pref_navbar_enable_summary">Необходима перезагрузка</string>
+    <string name="pref_navbar_height_title">Высота панели навигации</string>
+    <string name="pref_navbar_height_summary">Применимо к портретной ориентации</string>
+    <string name="pref_navbar_width_title">Ширина панели навигации</string>
+    <string name="pref_navbar_width_summary">Применимо к ландшафтной ориентации</string>
+    <string name="pref_navbar_menukey_title">Всегда показывать кнопку меню</string>
+
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Скриншот в меню выключения</string>
     
 </resources>
