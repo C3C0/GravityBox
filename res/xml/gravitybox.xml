@@ -566,6 +566,11 @@
         </PreferenceScreen>
 
         <CheckBoxPreference 
+            android:key="pref_display_allow_all_rotations"
+            android:title="@string/pref_display_allow_all_rotations_title"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference 
             android:key="pref_crt_off_effect"
             android:title="@string/crt_off_effect_title"
             android:summary="@string/crt_off_effect_summary"

@@ -566,4 +566,7 @@
     <!-- Disable GPS notifications -->
     <string name="pref_gps_notif_disable_title">Disable GPS notifications</string>
 
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">Allow all rotations</string>
+
 </resources>
