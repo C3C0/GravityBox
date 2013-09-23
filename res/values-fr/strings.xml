@@ -76,6 +76,8 @@
     <string name="quick_settings_expanded_desktop_disabled">Désactivé</string>
     <string name="quick_settings_expanded_desktop_normal">Normal</string>
     <string name="quick_settings_expanded_desktop_expanded">Étendu</string>
+    <string name="quick_settings_stay_awake_on">Rester allumé on</string>
+    <string name="quick_settings_stay_awake_off">Rester allumé off</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Touches des paramètres rapides</string>
@@ -102,6 +104,8 @@
     <string name="qs_tile_settings">Réglages</string>
     <string name="qs_tile_volume">Volume</string>
     <string name="qs_tile_expanded_desktop">Bureau étendu</string>
+    <string name="qs_tile_stay_awake">Rester allumé</string>
+    <string name="qs_tile_screenshot">Capture d\'écran</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Sélecteur de couleur</string>
@@ -418,7 +422,8 @@
     <!-- GPS Tile (for non-MTK) -->
     <string name="qs_tile_gps_enabled">GPS on</string>
     <string name="qs_tile_gps_disabled">GPS off</string>
-    
+    <string name="qs_tile_gps_locked">GPS connecté</string>    
+
     <!-- Pie control: always show menu button -->
     <string name="pie_control_menu_title">Toujours afficher le bouton menu</string>
 
@@ -548,5 +553,20 @@
     <!-- Disable slow 2G data warning -->
     <string name="pref_mobile_data_slow2g_disable_title">Désactiver l\'avertissement faible débit 2G</string>
     <string name="pref_mobile_data_slow2g_disable_summary">Désactive l\'avertissement lié au faible débit des données lorsque l\'on active les données mobile dans les paramètres rapides de SIM en mode 2G</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">Follow stock battery color</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Makes statusbar clock, percentage and circle battery use the color of stock battery icon. Applies when icon coloring is off.</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">Network mode tile mode</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
+    <string name="nm_tile_mode2">2G/2G+3G</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">Désactiver les notifications du GPS</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">Permettre toutes les rotations</string>
 
 </resources>
