@@ -44,6 +44,7 @@ public class ModHwKeys {
 
     private static final int FLAG_WAKE = 0x00000001;
     private static final int FLAG_WAKE_DROPPED = 0x00000002;
+    public static final String ACTION_SCREENSHOT = "gravitybox.intent.action.SCREENSHOT";
 
     private static final String SEPARATOR = "#C3C0#";
 
@@ -124,6 +125,8 @@ public class ModHwKeys {
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_PIE_CHANGED) && 
                     intent.hasExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE)) {
                 mHwKeysEnabled = !intent.getBooleanExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE, false);
+            } else if (action.equals(ACTION_SCREENSHOT) && mPhoneWindowManager != null) {
+                XposedHelpers.callMethod(mPhoneWindowManager, "takeScreenshot");
             }
         }
     };
@@ -331,6 +334,7 @@ public class ModHwKeys {
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_KILL_DELAY_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_VOLUME_ROCKER_WAKE_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_PIE_CHANGED);
+            intentFilter.addAction(ACTION_SCREENSHOT);
             mContext.registerReceiver(mBroadcastReceiver, intentFilter);
     
             log("Phone window manager initialized");
