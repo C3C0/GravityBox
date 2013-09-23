@@ -79,6 +79,8 @@
     <string name="quick_settings_expanded_desktop_disabled">Vypnuto</string>
     <string name="quick_settings_expanded_desktop_normal">Normální plocha</string>
     <string name="quick_settings_expanded_desktop_expanded">Rozšířená plocha</string>
+    <string name="quick_settings_stay_awake_on">Bdění zap</string>
+    <string name="quick_settings_stay_awake_off">Bdění vyp</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Dlaždice QuickSettings panelu</string>
@@ -98,14 +100,16 @@
     <string name="qs_tile_autorotation">Automatické otáčení obrazovky</string>
     <string name="qs_tile_sync">Synchronizace</string>
     <string name="qs_tile_wifi_ap">Wi-Fi Přístupový bod</string>
-	<string name="qs_tile_torch">Světlo</string>
+    <string name="qs_tile_torch">Světlo</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
     <string name="qs_tile_sleep">Uspát</string>
     <string name="qs_tile_quickrecord">Rychlý záznam zvuku</string>
     <string name="qs_tile_volume">Hlasitost</string>
     <string name="qs_tile_expanded_desktop">Rozšířená plocha</string>
-	
-	<!-- Color Picker -->
+    <string name="qs_tile_stay_awake">Bdění</string>
+    <string name="qs_tile_screenshot">Screenshot</string>
+
+    <!-- Color Picker -->
     <string name="dialog_color_picker">Výběr barvy</string>
     <string name="press_color_to_apply">Dotykem potvrdíte barvu</string>
 
@@ -416,6 +420,7 @@
     <!-- GPS Tile (for non-MTK) -->
     <string name="qs_tile_gps_enabled">GPS zap</string>
     <string name="qs_tile_gps_disabled">GPS vyp</string>
+    <string name="qs_tile_gps_locked">GPS fix</string>
 
     <!-- Pie control: always show menu button -->
     <string name="pie_control_menu_title">Vždy zobrazit menu tlačítko</string>
@@ -518,5 +523,47 @@
 
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Screenshot v menu napájení</string>
+
+    <!-- Lockscreen targets -->
+    <string name="pref_cat_lockscreen_targets_title">Zkratky obrazovky uzamčení</string>
+    <string name="pref_lockscreen_targets_enable_title">Povolit zkratky</string>
+    <string name="pref_lockscreen_targets_enable_summary">Hlavní vypínač pro zkratky obrazovky uzamčení</string>
+    <string name="pref_lockscreen_targets_app_title">Aplikace pro zkratku %s</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Spodní okraj prstence</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">Povolit ovládání jasu</string>
+    <string name="pref_statusbar_brightness_summary">Povolí ovládání jasu posouváním prstu po stavové liště</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Telefon</string>
+    <string name="pref_cat_phone_messaging_title">Zprávy</string>
+    <string name="pref_cat_phone_mobile_data_title">Mobilní data</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Konverze diakritiky</string>
+    <string name="pref_mms_unicode_stripping_summary">Odstraní diakritiku ze zprávy před jejím odesláním. Snižuje nároky na počet znaků zprávy.</string>
+    <string name="unicode_stripping_leave_intact">Ponechat výchozí</string>
+    <string name="unicode_stripping_non_encodable">Konverze nekódovatelných znaků</string>
+    <string name="unicode_stripping_all">Konverze všech znaků</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Vypnout varování pomalých 2G dat</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Vypne varování o pomalých 2G datech pro SIM v režimu 2G, při zapnutí dat použitím dlaždice</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">Kopírovat barvu stock baterie</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Nastaví barvu hodin, procent baterie a kruhového indikátoru podle barvy stock baterie (v případě pokud je vypnuto vlastní vybarvování)</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">Režim dlaždice typu mobilní sítě</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
+    <string name="nm_tile_mode2">2G/2G+3G</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">Skrýt GPS notifikace</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">Povolit všechny rotace</string>
 
 </resources>
