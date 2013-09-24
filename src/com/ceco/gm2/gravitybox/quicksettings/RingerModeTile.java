@@ -19,7 +19,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class RingerModeTile extends AQuickSettingsTile {
-    private static final String TAG = "RingerModeTile";
+    private static final String TAG = "GB:RingerModeTile";
     private static final boolean DEBUG = false;
 
     public static final String SETTING_VIBRATE_WHEN_RINGING = "vibrate_when_ringing";
@@ -30,16 +30,13 @@ public class RingerModeTile extends AQuickSettingsTile {
     private final Ringer mVibrateRinger = new Ringer(AudioManager.RINGER_MODE_VIBRATE, true);
     private final Ringer mSoundRinger = new Ringer(AudioManager.RINGER_MODE_NORMAL, false);
     private final Ringer mSoundVibrateRinger = new Ringer(AudioManager.RINGER_MODE_NORMAL, true);
-    private final Ringer[] mRingers = new Ringer[] {
-            mSilentRinger, mVibrateRinger, mSoundRinger, mSoundVibrateRinger
-    };
 
+    private Ringer[] mRingers;
     private int mRingersIndex;
-    private int[] mRingerValues = new int[] {
-            0, 1, 2, 3
-    };
+    private int[] mRingerValues;
     private int mRingerValuesIndex;
     private TextView mTextView;
+    private boolean mHasVibrator;
 
     private AudioManager mAudioManager;
     private SettingsObserver mSettingsObserver;
@@ -79,6 +76,24 @@ public class RingerModeTile extends AQuickSettingsTile {
                 return true;
             }
         };
+
+        try {
+            Vibrator v = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
+            mHasVibrator = v.hasVibrator();
+            if (DEBUG) log("Device has vibrator: " + mHasVibrator);
+        } catch (Throwable t) {
+            log("Error checking if device has vibrator. Assuming it doesn't");
+            mHasVibrator = false;
+        }
+
+        if (mHasVibrator) {
+            mRingers = new Ringer[] { 
+                    mSilentRinger, mVibrateRinger, mSoundRinger, mSoundVibrateRinger };
+            mRingerValues = new int[] { 0, 1, 2, 3 };
+        } else {
+            mRingers = new Ringer[] { mSilentRinger, mSoundRinger };
+            mRingerValues = new int[] { 0, 1 };
+        }
     }
 
     @Override
@@ -107,7 +122,8 @@ public class RingerModeTile extends AQuickSettingsTile {
                 mDrawableId = R.drawable.ic_qs_ring_off;
                 break;
             case 1:
-                mDrawableId = R.drawable.ic_qs_vibrate_on;
+                mDrawableId = mHasVibrator ? 
+                        R.drawable.ic_qs_vibrate_on : R.drawable.ic_qs_ring_on;
                 break;
             case 2:
                 mDrawableId = R.drawable.ic_qs_ring_on;
@@ -145,8 +161,8 @@ public class RingerModeTile extends AQuickSettingsTile {
 
     private void findCurrentState() {
         ContentResolver resolver = mContext.getContentResolver();
-        boolean vibrateWhenRinging = Settings.System.getInt(resolver,
-                SETTING_VIBRATE_WHEN_RINGING, 0) == 1;
+        boolean vibrateWhenRinging = mHasVibrator ? Settings.System.getInt(resolver,
+                SETTING_VIBRATE_WHEN_RINGING, 0) == 1 : false;
         int ringerMode = mAudioManager.getRingerMode();
 
         Ringer ringer = new Ringer(ringerMode, vibrateWhenRinging);
@@ -168,8 +184,10 @@ public class RingerModeTile extends AQuickSettingsTile {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
                     SETTING_MODE_RINGER), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    SETTING_VIBRATE_WHEN_RINGING), false, this);
+            if (mHasVibrator) {
+                resolver.registerContentObserver(Settings.System.getUriFor(
+                        SETTING_VIBRATE_WHEN_RINGING), false, this);
+            }
         }
 
         @Override
