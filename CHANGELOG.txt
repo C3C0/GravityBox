@@ -1,3 +1,11 @@
+Changelog 2.5.1 - 24/09/2013
+--------------------------------------
+- Lockscreen Targets: 
+--- fixed crash when accessibility services enabled
+--- app names added into accessibility descriptions (e.g. they will be spoken when using TalkBack)
+- Other minor optimizations
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+
 Changelog 2.5.0 - 24/09/2013
 --------------------------------------
 - Lockscreen targets:
