@@ -523,4 +523,47 @@
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">電源選單顯示螢幕截圖</string>
 
+
+    <!-- Lockscreen targets -->
+    <string name="pref_cat_lockscreen_targets_title">螢幕鎖定目標</string>
+    <string name="pref_lockscreen_targets_enable_title">啟用螢幕鎖定目標</string>
+    <string name="pref_lockscreen_targets_enable_summary">鎖定螢幕滑動主滑動</string>
+    <string name="pref_lockscreen_targets_app_title">目標應用程式 %s</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">解鎖環底部偏移</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">啟用亮度控制</string>
+    <string name="pref_statusbar_brightness_summary">調整滑動狀態列時的亮度</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">電話</string>
+    <string name="pref_cat_phone_messaging_title">訊息</string>
+    <string name="pref_cat_phone_mobile_data_title">行動資料</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">去除 unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">正常字符轉換成 unicode 字符。降低整體郵件大小.</string>
+    <string name="unicode_stripping_leave_intact">保留字符不變</string>
+    <string name="unicode_stripping_non_encodable">去除非可編碼字符</string>
+    <string name="unicode_stripping_all">去除所有 unicode 字符</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">停用 2G 網路延遲警告</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">停用當 SIM 卡處於 2G 模式下開啟行動資料時網路遲緩警告</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">按照預設電池顏色</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">當圖示自訂顏色停用時讓狀態列上的時鐘，電量百分比與圓形電池顯示預設電池顏色.</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">網路模式瓷貼模式</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
+    <string name="nm_tile_mode2">2G/2G+3G</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">停用 GPS 通知</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">允許所有旋轉</string>
+
 </resources>
