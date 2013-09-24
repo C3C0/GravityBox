@@ -335,6 +335,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
     public static final String PREF_KEY_GPS_NOTIF_DISABLE = "pref_gps_notif_disable";
 
+    public static final String PREF_KEY_DISPLAY_ALLOW_ALL_ROTATIONS = "pref_display_allow_all_rotations";
+    public static final String ACTION_PREF_DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED = 
+            "gravitybox.intent.action.DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED";
+    public static final String EXTRA_ALLOW_ALL_ROTATIONS = "allowAllRotations";
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR,
@@ -1143,6 +1148,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
                 intent.putExtra(EXTRA_NMT_MODE, Integer.valueOf(
                         prefs.getString(PREF_KEY_NETWORK_MODE_TILE_MODE, "0")));
+            } else if (key.equals(PREF_KEY_DISPLAY_ALLOW_ALL_ROTATIONS)) {
+                intent.setAction(ACTION_PREF_DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED);
+                intent.putExtra(EXTRA_ALLOW_ALL_ROTATIONS, 
+                        prefs.getBoolean(PREF_KEY_DISPLAY_ALLOW_ALL_ROTATIONS, false));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);
