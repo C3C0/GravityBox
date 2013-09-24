@@ -4,6 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
@@ -72,6 +76,25 @@ public class ModNavigationBar {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     param.args[0] = (Boolean) param.args[0] || mAlwaysShowMenukey;
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(navbarViewClass, "onFinishInflate", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    final Resources res = ((View) param.thisObject).getContext().getResources();
+                    final int backButtonResId = res.getIdentifier("back", "id", PACKAGE_NAME);
+                    final View[] rotatedViews = 
+                            (View[]) XposedHelpers.getObjectField(param.thisObject, "mRotatedViews");
+
+                    if (backButtonResId != 0 && rotatedViews != null) {
+                        for(View v : rotatedViews) {
+                            ImageView backButton = (ImageView) v.findViewById(backButtonResId);
+                            if (backButton != null) {
+                                backButton.setScaleType(ScaleType.FIT_CENTER);
+                            }
+                        }
+                    }
                 }
             });
         } catch(Throwable t) {
