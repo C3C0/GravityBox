@@ -555,11 +555,11 @@
     <string name="pref_mobile_data_slow2g_disable_summary">Désactive l\'avertissement lié au faible débit des données lorsque l\'on active les données mobile dans les paramètres rapides de SIM en mode 2G</string>
 
     <!-- Follow stock battery color -->
-    <string name="pref_sbcolor_follow_stock_battery_title">Follow stock battery color</string>
-    <string name="pref_sbcolor_follow_stock_battery_summary">Makes statusbar clock, percentage and circle battery use the color of stock battery icon. Applies when icon coloring is off.</string>
+    <string name="pref_sbcolor_follow_stock_battery_title">Adopter la couleur de batterie d\'origine</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Permet d\'utiliser la couleur de l\'icône de la batterie d\'origine dans la barre de statut pour l\'horloge, la batterie circulaire et le pourcentage. Valable lorsque la coloration personnalisée des icônes est désactivée</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Network mode tile mode</string>
+    <string name="pref_network_mode_tile_mode_title">Modalités touche mode réseau</string>
     <string name="nm_tile_mode1">2G/2G+3G/3G</string>
     <string name="nm_tile_mode2">2G/2G+3G</string>
 
