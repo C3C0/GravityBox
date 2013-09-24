@@ -202,25 +202,26 @@ public class ModQuickSettings {
         }
     };
 
-    // TODO: quickfix that needs some optimizations
-    private static boolean isCustomizableTile(View view) {
+    private static String getTileKey(View view) {
+        if (view == null) return null;
+
         Resources res = mContext.getResources();
         for (String key : mCustomSystemTileKeys) {
             int resId = res.getIdentifier(key, "id", PACKAGE_NAME);
             if (view.findViewById(resId) != null || 
                     view.findViewWithTag(mAospTileTags.get(key)) != null) {
-                return true;
+                return key;
             }
         }
 
         res = mGbContext.getResources();
         for (Integer key : mCustomGbTileKeys) {
             if (view.findViewById(key) != null) {
-                return true;
+                return res.getResourceEntryName(key);
             }
         }
 
-        return false;
+        return null;
     }
 
     private static void updateTileVisibility() {
@@ -230,57 +231,14 @@ public class ModQuickSettings {
             return;
         }
 
+        // hide/unhide tiles according to preferences
         int tileCount = mContainerView.getChildCount();
-
-        // hide all tiles first
         for(int i = 0; i < tileCount; i++) {
             View view = mContainerView.getChildAt(i);
-            if (view != null && isCustomizableTile(view)) {
-                view.setVisibility(View.GONE);
-            }
-        }
-
-        // unhide only those tiles present in mActiveTileKeys set
-        for(String tileKey : mActiveTileKeys) {
-            // search within mContext resources (system specific tiles)
-            View view = mContainerView.findViewById(mContext.getResources().getIdentifier(
-                    tileKey, "id", PACKAGE_NAME));
-            if (view == null) {
-                // search for tagged tiles
-                view = mContainerView.findViewWithTag(mAospTileTags.get(tileKey.toString()));
-                if (DEBUG) {
-                    log("updateTileVisibility: findViewWithTag('" + tileKey + "') = " +
-                            ((view == null) ? "null" : view.toString()));
-                }
-                if (view == null) {
-                    // search within mGbContext (our additional GB specific tiles)
-                    view = mContainerView.findViewById(mGbContext.getResources().getIdentifier(
-                            tileKey, "id", GravityBox.PACKAGE_NAME));
-                }
-            }
-
-            if (view != null) {
-                if (DEBUG) {
-                    log("updateTileVisibility: unhiding tile for key: " + tileKey + "; " +
-                            "view=" + ((view == null) ? "null" : view.toString()));
-                }
-
-                // bubble up in view hierarchy to find QuickSettingsTileView parent view
-                View rootView = view;
-                while (rootView != null && 
-                             rootView.getClass() != mQuickSettingsTileViewClass &&
-                             rootView.getClass() != mQuickSettingsBasicTileClass) {
-                    rootView = (View) rootView.getParent();
-                }
-
-                if (DEBUG) {
-                    log("updateTileVisibility: finished searching for root view; rootView=" +
-                            ((rootView == null) ? "null" : rootView.toString()));
-                }
-
-                if (rootView != null) {
-                    rootView.setVisibility(View.VISIBLE);
-                }
+            final String key = getTileKey(view);
+            if (key != null) {
+                view.setVisibility(mActiveTileKeys.contains(key) ?
+                        View.VISIBLE : View.GONE);
             }
         }
     }
