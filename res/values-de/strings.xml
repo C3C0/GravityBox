@@ -419,6 +419,7 @@
     <!-- GPS Tile (for non-MTK) -->
     <string name="qs_tile_gps_enabled">GPS an</string>
     <string name="qs_tile_gps_disabled">GPS aus</string>
+    <string name="qs_tile_gps_locked">GPS fixiert</string>
 
     <!-- Pie control: always show menu button -->
     <string name="pie_control_menu_title">Always show menu button</string>
