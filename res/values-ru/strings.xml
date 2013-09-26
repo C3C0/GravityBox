@@ -568,5 +568,21 @@
 
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Разрешить все повороты</string>
+    
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">Заменить стандартное поведение тайлов</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Заменяет поведение касания/долгого касания для выбранных тайлов (необходима перезагрузка) </string>
+    
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">Слот SIM для тайла Режим сети</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Определяет слот, для которого работает тайл Режим сети (%s)</string>
+    <string name="sim_slot1">SIM slot 1</string>
+    <string name="sim_slot2">SIM slot 2</string>
 
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">Никогда</string>
+    <string name="pie_controls_enabled_always">Всегда</string>
+    <string name="pie_controls_enabled_expanded">При включенном расширенном дисплее</string>
+    <string name="pie_controls_enabled_expanded_navbar">Когда расширенный дисплей без панели навигации</string>
+    
 </resources>
