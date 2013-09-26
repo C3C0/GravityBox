@@ -581,4 +581,10 @@
     <string name="sim_slot1">SIM slot 1</string>
     <string name="sim_slot2">SIM slot 2</string>
 
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">Never</string>
+    <string name="pie_controls_enabled_always">Always</string>
+    <string name="pie_controls_enabled_expanded">When expanded desktop on</string>
+    <string name="pie_controls_enabled_expanded_navbar">When expanded desktop hides navigation bar</string>
+
 </resources>

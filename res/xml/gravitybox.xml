@@ -326,10 +326,12 @@
             android:key="pref_cat_pie_control"
             android:title="@string/pie_control_title">
 
-            <CheckBoxPreference 
-                android:key="pref_pie_control_enable"
+            <ListPreference 
+                android:key="pref_pie_control_enable2"
                 android:title="@string/pie_control_enable_title"
-                android:defaultValue="false" />
+                android:entries="@array/pie_controls_enable_entries"
+                android:entryValues="@array/pie_controls_enable_values"
+                android:defaultValue="0" />
 
             <CheckBoxPreference 
                 android:key="pref_pie_control_search"

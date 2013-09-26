@@ -229,7 +229,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_BG_COLOR_MODE = "bgColorMode";
     public static final String EXTRA_BG_ALPHA = "bgAlpha";
 
-    public static final String PREF_KEY_PIE_CONTROL_ENABLE = "pref_pie_control_enable";
+    public static final String PREF_KEY_PIE_CONTROL_ENABLE = "pref_pie_control_enable2";
     public static final String PREF_KEY_PIE_CONTROL_SEARCH = "pref_pie_control_search";
     public static final String PREF_KEY_PIE_CONTROL_MENU = "pref_pie_control_menu";
     public static final String PREF_KEY_PIE_CONTROL_TRIGGERS = "pref_pie_control_trigger_positions";
@@ -530,7 +530,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private ListPreference mPrefNotifColorMode;
         private CheckBoxPreference mPrefDisableRoamingIndicators;
         private ListPreference mPrefButtonBacklightMode;
-        private CheckBoxPreference mPrefPieEnabled;
+        private ListPreference mPrefPieEnabled;
         private CheckBoxPreference mPrefPieHwKeysDisabled;
         private CheckBoxPreference mPrefGbThemeDark;
         private ListPreference mPrefRecentClear;
@@ -653,7 +653,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefDisableRoamingIndicators = (CheckBoxPreference) findPreference(PREF_KEY_DISABLE_ROAMING_INDICATORS);
             mPrefButtonBacklightMode = (ListPreference) findPreference(PREF_KEY_BUTTON_BACKLIGHT_MODE);
 
-            mPrefPieEnabled = (CheckBoxPreference) findPreference(PREF_KEY_PIE_CONTROL_ENABLE);
+            mPrefPieEnabled = (ListPreference) findPreference(PREF_KEY_PIE_CONTROL_ENABLE);
             mPrefPieHwKeysDisabled = (CheckBoxPreference) findPreference(PREF_KEY_HWKEYS_DISABLE);
 
             mPrefGbThemeDark = (CheckBoxPreference) findPreference(PREF_KEY_GB_THEME_DARK);
@@ -901,7 +901,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             }
 
             if (key == null || key.equals(PREF_KEY_PIE_CONTROL_ENABLE)) {
-                if (!mPrefPieEnabled.isChecked()) {
+                final int pieMode = 
+                        Integer.valueOf(mPrefs.getString(PREF_KEY_PIE_CONTROL_ENABLE, "0"));
+                if (pieMode == 0) {
                     if (mPrefPieHwKeysDisabled.isChecked()) {
                         Editor e = mPrefs.edit();
                         e.putBoolean(PREF_KEY_HWKEYS_DISABLE, false);
@@ -912,6 +914,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 } else {
                     mPrefPieHwKeysDisabled.setEnabled(true);
                 }
+                mPrefPieEnabled.setSummary(mPrefPieEnabled.getEntry());
             }
 
             if (key == null || key.equals(PREF_KEY_RECENTS_CLEAR_ALL)) {
@@ -1101,9 +1104,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                         prefs.getBoolean(PREF_KEY_DISABLE_ROAMING_INDICATORS, false));
             } else if (key.equals(PREF_KEY_PIE_CONTROL_ENABLE)) {
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
-                boolean enabled = prefs.getBoolean(PREF_KEY_PIE_CONTROL_ENABLE, false);
-                intent.putExtra(EXTRA_PIE_ENABLE, enabled);
-                if (!enabled) {
+                int mode = Integer.valueOf(prefs.getString(PREF_KEY_PIE_CONTROL_ENABLE, "0"));
+                intent.putExtra(EXTRA_PIE_ENABLE, mode);
+                if (mode == 0) {
                     intent.putExtra(EXTRA_PIE_HWKEYS_DISABLE, false);
                 }
             } else if (key.equals(PREF_KEY_PIE_CONTROL_SEARCH)) {
