@@ -123,12 +123,10 @@ public class ModQuickSettings {
             R.id.volume_tileview,
             R.id.expanded_tileview,
             R.id.stay_awake_tileview,
-            R.id.screenshot_tileview
+            R.id.screenshot_tileview,
+            R.id.gps_tileview,
+            R.id.ringer_mode_tileview
         ));
-        if (!Utils.isMtkDevice()) {
-            mCustomGbTileKeys.add(R.id.gps_tileview);
-            mCustomGbTileKeys.add(R.id.ringer_mode_tileview);
-        }
 
         Map<String, Integer> tmpMap = new HashMap<String, Integer>();
         tmpMap.put("user_textview", 1);
@@ -453,15 +451,13 @@ public class ModQuickSettings {
 
                 mTiles = new ArrayList<AQuickSettingsTile>();
 
-                if (!Utils.isMtkDevice()) {
-                    GpsTile gpsTile = new GpsTile(mContext, mGbContext, mStatusBar, mPanelBar);
-                    gpsTile.setupQuickSettingsTile(mContainerView, inflater);
-                    mTiles.add(gpsTile);
+                GpsTile gpsTile = new GpsTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                gpsTile.setupQuickSettingsTile(mContainerView, inflater);
+                mTiles.add(gpsTile);
 
-                    RingerModeTile rmTile = new RingerModeTile(mContext, mGbContext, mStatusBar, mPanelBar);
-                    rmTile.setupQuickSettingsTile(mContainerView, inflater);
-                    mTiles.add(rmTile);
-                }
+                RingerModeTile rmTile = new RingerModeTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                rmTile.setupQuickSettingsTile(mContainerView, inflater);
+                mTiles.add(rmTile);
 
                 VolumeTile volTile = new VolumeTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 volTile.setupQuickSettingsTile(mContainerView, inflater);
