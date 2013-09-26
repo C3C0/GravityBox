@@ -461,4 +461,14 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="network_mode_sim_slot_entries" translatable="false">
+        <item>@string/sim_slot1</item>
+        <item>@string/sim_slot2</item>
+    </string-array>
+
+    <string-array name="network_mode_sim_slot_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
 </resources>
