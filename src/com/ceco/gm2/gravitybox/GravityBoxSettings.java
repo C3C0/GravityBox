@@ -340,6 +340,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             "gravitybox.intent.action.DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED";
     public static final String EXTRA_ALLOW_ALL_ROTATIONS = "allowAllRotations";
 
+    public static final String PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE = "pref_qs_tile_behaviour_override";
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR,
@@ -356,7 +358,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             PREF_KEY_SCREEN_DIM_LEVEL,
             PREF_KEY_BRIGHTNESS_MASTER_SWITCH,
             PREF_KEY_NAVBAR_OVERRIDE,
-            PREF_KEY_NAVBAR_ENABLE
+            PREF_KEY_NAVBAR_ENABLE,
+            PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE
     ));
 
     private static final class SystemProperties {
@@ -550,6 +553,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private PreferenceCategory mPrefCatPhoneTelephony;
         private PreferenceCategory mPrefCatPhoneMobileData;
         private ListPreference mPrefNetworkModeTileMode;
+        private MultiSelectListPreference mPrefQsTileBehaviourOverride;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -692,6 +696,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefMobileDataSlow2gDisable = (CheckBoxPreference) findPreference(PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE);
 
             mPrefNetworkModeTileMode = (ListPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_MODE);
+            mPrefQsTileBehaviourOverride = 
+                    (MultiSelectListPreference) findPreference(PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE);
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
@@ -725,6 +731,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
                 mQuickSettings.setEntries(R.array.qs_tile_entries);
                 mQuickSettings.setEntryValues(R.array.qs_tile_values);
+                mPrefCatStatusbarQs.removePreference(mPrefQsTileBehaviourOverride);
             }
 
             // Remove preferences not compatible with Android 4.1

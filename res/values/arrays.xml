@@ -161,6 +161,20 @@
         <item>gravitybox_tileview</item>
     </string-array>
 
+    <string-array name="qs_tile_override_entries" translatable="false">
+        <item>@string/qs_tile_wifi</item>
+        <item>@string/qs_tile_bluetooth</item>
+        <item>@string/qs_tile_data_usage</item>
+        <item>@string/qs_tile_airplane_mode</item>
+    </string-array>
+
+    <string-array name="qs_tile_override_values" translatable="false">
+        <item>wifi_textview</item>
+        <item>bluetooth_textview</item>
+        <item>rssi_textview</item>
+        <item>airplane_mode_textview</item>
+    </string-array>
+
     <string-array name="lockscreen_bg_entries" translatable="false">
         <item>@string/lockscreen_bg_default</item>
         <item>@string/lockscreen_bg_color</item>

@@ -119,7 +119,7 @@
                 android:key="pref_quick_settings"
                 android:title="@string/quick_settings_title"
                 android:summary="@string/quick_settings_summary" />
-    
+
             <ListPreference
                 android:key="pref_qs_tiles_per_row" 
                 android:title="@string/pref_qs_tiles_per_row_title"
@@ -127,6 +127,14 @@
                 android:entries="@array/qs_tiles_per_row_entries"
                 android:entryValues="@array/qs_tiles_per_row_values"
                 android:defaultValue="3" />
+
+            <MultiSelectListPreference 
+                android:key="pref_qs_tile_behaviour_override"
+                android:title="@string/pref_qs_tile_behaviour_override_title"
+                android:summary="@string/pref_qs_tile_behaviour_override_summary"
+                android:entries="@array/qs_tile_override_entries"
+                android:entryValues="@array/qs_tile_override_values"
+                android:defaultValue="@array/empty_array" />
 
             <PreferenceScreen
                 android:key="pref_cat_quick_app_tile"

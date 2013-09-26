@@ -69,6 +69,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         PatchMasterKey.initZygote();
         ModPhone.initZygote(prefs);
         ModExpandedDesktop.initZygote(prefs);
+        ConnectivityServiceWrapper.initZygote();
     }
 
     @Override

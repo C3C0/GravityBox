@@ -28,12 +28,17 @@ import com.ceco.gm2.gravitybox.quicksettings.SyncTile;
 import com.ceco.gm2.gravitybox.quicksettings.VolumeTile;
 import com.ceco.gm2.gravitybox.quicksettings.WifiApTile;
 
+import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -52,13 +57,12 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 
 public class ModQuickSettings {
-    private static final String TAG = "ModQuickSettings";
+    private static final String TAG = "GB:ModQuickSettings";
     public static final String PACKAGE_NAME = "com.android.systemui";
     private static final String CLASS_QUICK_SETTINGS = "com.android.systemui.statusbar.phone.QuickSettings";
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     private static final String CLASS_PANEL_BAR = "com.android.systemui.statusbar.phone.PanelBar";
     private static final String CLASS_QS_TILEVIEW = "com.android.systemui.statusbar.phone.QuickSettingsTileView";
-    private static final String CLASS_QS_BASIC_TILE = "com.android.systemui.statusbar.phone.QuickSettingsBasicTile";
     private static final String CLASS_NOTIF_PANELVIEW = "com.android.systemui.statusbar.phone.NotificationPanelView";
     private static final String CLASS_QS_CONTAINER_VIEW = "com.android.systemui.statusbar.phone.QuickSettingsContainerView";
     private static final String CLASS_QS_MODEL = "com.android.systemui.statusbar.phone.QuickSettingsModel";
@@ -75,7 +79,6 @@ public class ModQuickSettings {
     private static Object mStatusBar;
     private static Set<String> mActiveTileKeys;
     private static Class<?> mQuickSettingsTileViewClass;
-    private static Class<?> mQuickSettingsBasicTileClass;
     private static Object mSimSwitchPanelView;
     private static int mNumColumns = 3;
     private static int mLpOriginalHeight = -1;
@@ -85,6 +88,9 @@ public class ModQuickSettings {
     private static List<String> mCustomSystemTileKeys;
     private static List<Integer> mCustomGbTileKeys;
     private static Map<String, Integer> mAospTileTags;
+    private static Object mQuickSettings;
+    private static WifiManagerWrapper mWifiManager;
+    private static Set<String> mOverrideTileKeys;
 
     private static ArrayList<AQuickSettingsTile> mTiles;
 
@@ -145,7 +151,7 @@ public class ModQuickSettings {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            log("received broadcast: " + intent.toString());
+            if (DEBUG) log("received broadcast: " + intent.toString());
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKSETTINGS_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_QS_PREFS)) {
                     String[] qsPrefs = intent.getStringArrayExtra(GravityBoxSettings.EXTRA_QS_PREFS);
@@ -227,7 +233,7 @@ public class ModQuickSettings {
     private static void updateTileVisibility() {
 
         if (mActiveTileKeys == null) {
-            log("updateTileVisibility: mActiveTileKeys is null - skipping");
+            if (DEBUG) log("updateTileVisibility: mActiveTileKeys is null - skipping");
             return;
         }
 
@@ -298,7 +304,7 @@ public class ModQuickSettings {
     }
 
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
-        log("init");
+        if (DEBUG) log("init");
 
         try {
             final ThreadLocal<MethodState> removeNotificationState = 
@@ -307,7 +313,12 @@ public class ModQuickSettings {
 
             prefs.reload();
             mActiveTileKeys = prefs.getStringSet(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS, null);
-            log("got tile prefs: mActiveTileKeys = " + (mActiveTileKeys == null ? "null" : mActiveTileKeys.toString()));
+            if (DEBUG) log("got tile prefs: mActiveTileKeys = " + 
+                    (mActiveTileKeys == null ? "null" : mActiveTileKeys.toString()));
+            mOverrideTileKeys = prefs.getStringSet(
+                    GravityBoxSettings.PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE, new HashSet<String>());
+            if (DEBUG) log("got tile override prefs: mOverrideTileKeys = " +
+                    (mOverrideTileKeys == null ? "null" : mOverrideTileKeys.toString()));
 
             try {
                 mNumColumns = Integer.valueOf(prefs.getString(
@@ -330,8 +341,6 @@ public class ModQuickSettings {
             final Class<?> panelBarClass = XposedHelpers.findClass(CLASS_PANEL_BAR, classLoader);
             mQuickSettingsTileViewClass = XposedHelpers.findClass(CLASS_QS_TILEVIEW, classLoader);
             methodGetColumnSpan = mQuickSettingsTileViewClass.getDeclaredMethod("getColumnSpan");
-            mQuickSettingsBasicTileClass = Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1 ?
-                    XposedHelpers.findClass(CLASS_QS_BASIC_TILE, classLoader) : mQuickSettingsTileViewClass;
             final Class<?> notifPanelViewClass = XposedHelpers.findClass(CLASS_NOTIF_PANELVIEW, classLoader);
             final Class<?> quickSettingsContainerViewClass = XposedHelpers.findClass(CLASS_QS_CONTAINER_VIEW, classLoader);
 
@@ -360,17 +369,13 @@ public class ModQuickSettings {
             XposedHelpers.findAndHookMethod(phoneStatusBarClass, "removeNotification", IBinder.class, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
-                    if (DEBUG) {
-                        log("removeNotification method ENTER");
-                    }
+                    if (DEBUG) log("removeNotification method ENTER");
                     removeNotificationState.set(MethodState.METHOD_ENTERED);
                 }
 
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    if (DEBUG) {
-                        log("removeNotification method EXIT");
-                    }
+                    if (DEBUG) log("removeNotification method EXIT");
                     removeNotificationState.set(MethodState.METHOD_EXITED);
                 }
             });
@@ -379,7 +384,7 @@ public class ModQuickSettings {
                 @Override
                 protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
                     if (removeNotificationState.get().equals(MethodState.METHOD_ENTERED)) {
-                        log("animateCollapsePanels called from removeNotification method");
+                        if (DEBUG) log("animateCollapsePanels called from removeNotification method");
 
                         boolean hasFlipSettings = XposedHelpers.getBooleanField(param.thisObject, "mHasFlipSettings");
                         boolean animating = Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1 ? false : 
@@ -392,7 +397,8 @@ public class ModQuickSettings {
                         if (ndSize == 0 && !animating && !isShowingSettings) {
                             // let the original method finish its work
                         } else {
-                            log("animateCollapsePanels: all notifications removed but showing QuickSettings - do nothing");
+                            if (DEBUG) log("animateCollapsePanels: all notifications removed " +
+                            		"but showing QuickSettings - do nothing");
                             param.setResult(null);
                         }
                     }
@@ -407,11 +413,13 @@ public class ModQuickSettings {
 
         @Override
         protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-            log("QuickSettings constructed - initializing local members");
+            if (DEBUG) log("QuickSettings constructed - initializing local members");
 
+            mQuickSettings = param.thisObject;
             mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
             mGbContext = mContext.createPackageContext(GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
             mContainerView = (ViewGroup) XposedHelpers.getObjectField(param.thisObject, "mContainerView");
+            mWifiManager = new WifiManagerWrapper(mContext);
 
             IntentFilter intentFilter = new IntentFilter(GravityBoxSettings.ACTION_PREF_QUICKSETTINGS_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_QUICKAPP_CHANGED);
@@ -423,7 +431,7 @@ public class ModQuickSettings {
         @Override
         protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
             mPanelBar = param.args[0];
-            log("mPanelBar set");
+            if (DEBUG) log("mPanelBar set");
         }
     };
 
@@ -431,14 +439,14 @@ public class ModQuickSettings {
         @Override
         protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
             mStatusBar = param.args[0];
-            log("mStatusBar set");
+            if (DEBUG) log("mStatusBar set");
         }
     };
 
     private static XC_MethodHook quickSettingsAddSystemTilesHook = new XC_MethodHook() {
         @Override
         protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-            log("about to add tiles");
+            if (DEBUG) log("about to add tiles");
 
             try {
                 LayoutInflater inflater = (LayoutInflater) param.args[1];
@@ -467,7 +475,7 @@ public class ModQuickSettings {
                 syncTile.setupQuickSettingsTile(mContainerView, inflater);
                 mTiles.add(syncTile);
 
-                WifiApTile wifiApTile = new WifiApTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                WifiApTile wifiApTile = new WifiApTile(mContext, mGbContext, mStatusBar, mPanelBar, mWifiManager);
                 wifiApTile.setupQuickSettingsTile(mContainerView, inflater);
                 mTiles.add(wifiApTile);
 
@@ -513,9 +521,7 @@ public class ModQuickSettings {
     private static XC_MethodHook quickSettingsUpdateResourcesHook = new XC_MethodHook() {
         @Override
         protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
-            if (DEBUG) {
-                log("updateResources - updating all tiles");
-            }
+            if (DEBUG) log("updateResources - updating all tiles");
 
             for (AQuickSettingsTile t : mTiles) {
                 t.updateResources();
@@ -600,7 +606,7 @@ public class ModQuickSettings {
                     Object toolbarView = XposedHelpers.getObjectField(param.thisObject, "mToolBarView");
                     if (toolbarView != null) {
                         mSimSwitchPanelView = XposedHelpers.getObjectField(toolbarView, "mSimSwitchPanelView");
-                        log("makeStatusBarView: SimSwitchPanelView found");
+                        if (DEBUG) log("makeStatusBarView: SimSwitchPanelView found");
                     }
                 } catch (NoSuchFieldError e) {
                     //
@@ -612,7 +618,7 @@ public class ModQuickSettings {
     private static XC_MethodHook qsContainerViewUpdateResources = new XC_MethodHook() {
         @Override
         protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-            if (DEBUG ) log("qsContainerView updateResources called");
+            if (DEBUG) log("qsContainerView updateResources called");
             // do this only for portrait mode
             FrameLayout fl = (FrameLayout) param.thisObject;
             final int orientation = fl.getContext().getResources().getConfiguration().orientation;
@@ -758,7 +764,25 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag(mAospTileTags.get("wifi_textview"));
+                    final View tile = (View) param.args[0];
+                    tile.setTag(mAospTileTags.get("wifi_textview"));
+                    if (mOverrideTileKeys.contains("wifi_textview")) {
+                        tile.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mWifiManager.toggleWifiEnabled();
+                            }
+                        });
+                        tile.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View v) {
+                                XposedHelpers.callMethod(mQuickSettings, "startSettingsActivity", 
+                                        android.provider.Settings.ACTION_WIFI_SETTINGS);
+                                tile.setPressed(false);
+                                return true;
+                            }
+                        });
+                    }
                 }
             });
         } catch (Throwable t) {
@@ -770,7 +794,33 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag(mAospTileTags.get("rssi_textview"));
+                    final View tile = (View) param.args[0];
+                    tile.setTag(mAospTileTags.get("rssi_textview"));
+                    if (mOverrideTileKeys.contains("rssi_textview")) {
+                        tile.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                final ConnectivityManager cm = 
+                                       (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+                                final boolean mobileDataEnabled = 
+                                        (Boolean) XposedHelpers.callMethod(cm, "getMobileDataEnabled");
+                                Intent intent = new Intent(ConnectivityServiceWrapper.ACTION_SET_MOBILE_DATA_ENABLED);
+                                intent.putExtra(ConnectivityServiceWrapper.EXTRA_ENABLED, !mobileDataEnabled);
+                                mContext.sendBroadcast(intent);
+                            }
+                        });
+                        tile.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View v) {
+                                Intent intent = new Intent();
+                                intent.setComponent(new ComponentName("com.android.settings", 
+                                        "com.android.settings.Settings$DataUsageSummaryActivity"));
+                                XposedHelpers.callMethod(mQuickSettings, "startSettingsActivity", intent);
+                                tile.setPressed(false);
+                                return true;
+                            }
+                        });
+                    }
                 }
             });
         } catch (Throwable t) {
@@ -806,7 +856,24 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag(mAospTileTags.get("airplane_mode_textview"));
+                    final View tile = (View) param.args[0];
+                    tile.setTag(mAospTileTags.get("airplane_mode_textview"));
+                    if (mOverrideTileKeys.contains("airplane_mode_textview")) {
+                        tile.setOnClickListener(new View.OnClickListener() {
+                            @SuppressLint("NewApi")
+                            @Override
+                            public void onClick(View v) {
+                                final ContentResolver cr = mContext.getContentResolver();
+                                final boolean amOn = Settings.Global.getInt(cr,
+                                        Settings.Global.AIRPLANE_MODE_ON, 0) == 1;
+                                Settings.Global.putInt(cr, Settings.Global.AIRPLANE_MODE_ON,
+                                        amOn ? 0 : 1);
+                                Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+                                intent.putExtra("state", !amOn);
+                                mContext.sendBroadcast(intent);
+                            }
+                        });
+                    }
                 }
             });
         } catch (Throwable t) {
@@ -818,7 +885,30 @@ public class ModQuickSettings {
                     CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    ((View)param.args[0]).setTag(mAospTileTags.get("bluetooth_textview"));
+                    final View tile = (View) param.args[0];
+                    tile.setTag(mAospTileTags.get("bluetooth_textview"));
+                    if (mOverrideTileKeys.contains("bluetooth_textview")) {
+                        tile.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+                                if (btAdapter.isEnabled()) {
+                                    btAdapter.disable();
+                                } else {
+                                    btAdapter.enable();
+                                }
+                            }
+                        });
+                        tile.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View v) {
+                                XposedHelpers.callMethod(mQuickSettings, "startSettingsActivity", 
+                                        android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
+                                tile.setPressed(false);
+                                return true;
+                            }
+                        });
+                    }
                 }
             });
         } catch (Throwable t) {
