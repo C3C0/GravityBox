@@ -21,10 +21,10 @@
 
     <string name="reboot_required">As alterações serão aplicadas após reiniciar o sistema</string>
 
-    <string name="signal_icon_autohide_title">Esconder barras de sinal</string>
-    <string name="signal_icon_autohide_summary">Esconder as barras de sinal do cartão SIM escolhido quando este não estiver inserido. Desativa as notificações de \"O SIM não está inserido.\"</string>
-    <string name="sim_slot_1">Esconder barras de sinal do cartão SIM 1</string>
-    <string name="sim_slot_2">Esconder barras de sinal do cartão SIM 2</string>
+    <string name="signal_icon_autohide_title">Ocultar barras de sinal</string>
+    <string name="signal_icon_autohide_summary">Ocultar as barras de sinal do cartão SIM escolhido quando este não estiver inserido. Desativa as notificações de \"O SIM não está inserido.\"</string>
+    <string name="sim_slot_1">Ocultar barras de sinal do cartão SIM 1</string>
+    <string name="sim_slot_2">Ocultar barras de sinal do cartão SIM 2</string>
     <string name="sim_disable_notifications">Desativar notificações</string>
     <string name="sim_disable_notifications_summary">Notificações \"O SIM não está inserido.\" desativadas</string>
 
@@ -68,12 +68,22 @@
     <string name="quick_settings_wifi_ap_off">PA Wi-Fi desligado</string>
     <string name="quick_settings_torch_on">Lanterna ligada</string>
     <string name="quick_settings_torch_off">Lanterna desligada</string>
-    <string name="quick_settings_torch_off_notif">Toque para desligar</string>
+    <string name="quick_settings_torch_off_notif">Tocar para desligar</string>
+    <string name="quick_settings_qr_playing">A reproduzir&#8230;</string>
+    <string name="quick_settings_qr_recording">A gravar&#8230;</string>
+    <string name="quick_settings_qr_recorded">Gravado</string>
+    <string name="quick_settings_qr_record">Manter pressionado para gravar</string>
+    <string name="quick_settings_qr_recording_notif">Tocar para parar gravação</string>
+    <string name="quick_settings_expanded_desktop_disabled">Desativado</string>
+    <string name="quick_settings_expanded_desktop_normal">Normal</string>
+    <string name="quick_settings_expanded_desktop_expanded">Expandido</string>
+    <string name="quick_settings_stay_awake_on">Manter ligado</string>
+    <string name="quick_settings_stay_awake_off">Não manter ligado</string>
 
     <!-- QuickSettings settings -->
     <string name="quick_settings_title">Definições rápidas na Barra de Status</string>
-    <string name="quick_settings_summary">Permite mostrar/esconder definições rápidas</string>
-    <string name="qs_tile_user_profile">Proprietário</string>
+    <string name="quick_settings_summary">Permite mostrar ou ocultar definições rápidas</string>
+    <string name="qs_tile_user_profile">Perfil de utilizador</string>
     <string name="qs_tile_airplane_mode">Modo de avião</string>
     <string name="qs_tile_battery">Estado da bateria</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
@@ -90,6 +100,13 @@
     <string name="qs_tile_wifi_ap">Ponto de Acesso Wi-Fi</string>
     <string name="qs_tile_torch">Lanterna</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Hibernar</string>
+    <string name="qs_tile_quickrecord">Gravação rápida</string>
+    <string name="qs_tile_settings">Definições</string>
+    <string name="qs_tile_volume">Volume</string>
+    <string name="qs_tile_expanded_desktop">Ambiente de trabalho expandido</string>
+    <string name="qs_tile_stay_awake">Manter ligado</string>
+    <string name="qs_tile_screenshot">Captura de ecrã</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Escolher cor</string>
@@ -223,20 +240,21 @@
     <string name="pref_charging_led_disable_summary">Desativa a luz vermelha quando a bateria está a carregar</string>
 
     <!-- Hardware key actions -->
-    <string name="pref_cat_hwkey_actions_title">Ações teclas físicas</string>
+    <string name="pref_cat_hwkey_actions_title">Ações para teclas físicas</string>
     <string name="pref_cat_hwkey_actions_summary">Permite personalizar ações para as teclas físicas</string>
-    <string name="pref_hwkey_menu_longpress_title">Menu key long-press action</string>
-    <string name="pref_hwkey_menu_doubletap_title">Menu key double-tap action</string>
-    <string name="pref_hwkey_back_longpress_title">Back key long-press action</string>
+    <string name="pref_hwkey_menu_longpress_title">Ação ao manter pressionada tecla Menu</string>
+    <string name="pref_hwkey_menu_doubletap_title">Ação após duplo toque na tecla Menu</string>
+    <string name="pref_hwkey_back_longpress_title">Ação ao manter pressionada tecla Atrás</string>
     <string name="hwkey_action_default">Por defeito</string>
     <string name="hwkey_action_search">Pesquisa</string>
     <string name="hwkey_action_voice_search">Pesquisa por voz</string>
     <string name="hwkey_action_prev_app">Mudar para a aplicação anterior</string>
     <string name="hwkey_action_kill">Fechar aplicação em curso</string>
-    <string name="pref_hwkey_kill_delay_title">Kill app long-press delay</string>
-    <string name="pref_hwkey_kill_delay_summary">Applies to Kill foreground app action. Defines for how long key must be pressed to trigger kill</string>
-    <string name="pref_hwkey_doubletap_speed_title">Double-tap speed</string>
-    <string name="pref_hwkey_doubletap_speed_summary">Applies to Menu key double-tap action. Defines how fast key must be tapped to trigger double-tap</string>
+    <string name="hwkey_action_sleep">Hibernar</string>
+    <string name="pref_hwkey_kill_delay_title">Atraso no fecho da aplicação ao manter tecla pressionada</string>
+    <string name="pref_hwkey_kill_delay_summary">Aplicável à ação \"Fechar aplicação em curso\". Permite temporizar o fecho da aplicação após a tecla ter sido pressionada</string>
+    <string name="pref_hwkey_doubletap_speed_title">Velocidade do duplo toque</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Aplicável à ação após duplo toque na tecla Menu. Permite definir o tempo máximo admissível entre toques</string>
     <string name="app_killed">Aplicação fechada</string>
     <string name="nothing_to_kill">Nenhuma aplicação por fechar</string>
     <string name="no_previous_app_found">Nenhuma aplicação anterior encontrada</string>
@@ -297,11 +315,11 @@
     <string name="pref_cat_statusbar_colors_title">Cores da Barra de Status</string>
 
     <!-- Enable icon colors -->
-    <string name="pref_statusbar_icon_color_enable_title">Ativar coloração de símbolos</string>
+    <string name="pref_statusbar_icon_color_enable_title">Ativar coloração de indicadores</string>
 
     <!-- Statusbar icon color -->
-    <string name="pref_statusbar_icon_color_title">Cor dos símbolos</string>
-    <string name="pref_statusbar_icon_color_summary">Permite escolher a cor dos símbolos e do relógio</string>
+    <string name="pref_statusbar_icon_color_title">Cor dos indicadores</string>
+    <string name="pref_statusbar_icon_color_summary">Permite escolher a cor dos indicadores e do relógio</string>
 
     <!-- Statusbar data activity color -->
     <string name="pref_statusbar_data_activity_color_title">Cor da atividade de dados</string>
@@ -336,40 +354,40 @@
     <string name="pie_battery_status_discharging">%d%% restante</string>
 
     <!-- Phone status in pie controls -->
-    <string name="pie_phone_status_no_service">Sem serviço</string>
+    <string name="pie_phone_status_no_service">Fora de serviço</string>
     <string name="pie_phone_status_airplane_mode">Modo de avião ativado</string>
     <string name="pie_phone_status_emergency_only">Apenas chamadas de emergência</string>
 
     <!-- Pie Controls settings -->
-    <string name="pie_control_title">Pie controls</string>
-    <string name="pie_control_enable_title">Enable pie controls</string>
-    <string name="pie_control_search_title">Show search button</string>
-    <string name="pie_control_size_title">Navigation key size</string>
-    <string name="pie_control_trigger_positions_title">Trigger positions</string>
-    <string name="pie_control_trigger_left">Left screen border</string>
-    <string name="pie_control_trigger_bottom">Bottom screen border</string>
-    <string name="pie_control_trigger_right">Right screen border</string>
-    <string name="pie_control_trigger_top">Top screen border</string>
+    <string name="pie_control_title">Controlos Pie</string>
+    <string name="pie_control_enable_title">Ativar controlos Pie</string>
+    <string name="pie_control_search_title">Mostrar botão Pesquisa</string>
+    <string name="pie_control_size_title">Dimensão dos botões de navegação</string>
+    <string name="pie_control_trigger_positions_title">Posições de ativação</string>
+    <string name="pie_control_trigger_left">Borda esquerda do ecrã</string>
+    <string name="pie_control_trigger_bottom">Borda inferior do ecrã</string>
+    <string name="pie_control_trigger_right">Borda direita do ecrã</string>
+    <string name="pie_control_trigger_top">Borda superior do ecrã</string>
 
     <!-- Button backlight options -->
-    <string name="pref_button_backlight_mode_title">Button backlight mode</string>
-    <string name="button_backlight_mode_default">Default</string>
-    <string name="button_backlight_mode_disable">Disable button backlight</string>
-    <string name="button_backlight_mode_always_on">Always on while screen is on</string>
-    <string name="pref_button_backlight_notifications_title">Button backlight notifications</string>
-    <string name="pref_button_backlight_notifications_summary">EXPERIMENTAL! Blinks button backlight when there is a notification. Use in case your device lacks notification LED. May consume battery.</string>
+    <string name="pref_button_backlight_mode_title">Modo de retro-iluminação das teclas</string>
+    <string name="button_backlight_mode_default">Por defeito</string>
+    <string name="button_backlight_mode_disable">Desativar retro-iluminação</string>
+    <string name="button_backlight_mode_always_on">Sempre ligada com o ecrã aceso</string>
+    <string name="pref_button_backlight_notifications_title">Notificações por retro-iluminação das teclas</string>
+    <string name="pref_button_backlight_notifications_summary">EXPERIMENTAL! Permite utilizar a retro-iluminação das teclas de forma intermitente para alerta de notificações. Utilizar caso o dispositivo não possua luz de notificações (pode consumir bateria)</string>
 
     <!-- Hide navigation bar for pie -->
-    <string name="pref_navbar_disable_title">Hide navigation bar</string>
-    <string name="pref_navbar_disable_summary">Hides navigation bar while Pie Controls are enabled (for devices that have navigation bar, requires reboot)</string>
+    <string name="pref_navbar_disable_title">Ocultar Barra de Navegação</string>
+    <string name="pref_navbar_disable_summary">Oculta a Barra de Navegação quando os controlos Pie estão ativados (para dispositivos com Barra de Navegação, necessário reiniciar)</string>
 
     <!--  Dithered Holo background -->
-    <string name="pref_holo_bg_dither_title">Dithered Holo background</string>
-    <string name="pref_holo_bg_dither_summary">Replaces standard Holo background with dithered one to suppress color banding (requires reboot)</string>
+    <string name="pref_holo_bg_dither_title">Fundo pontilhado</string>
+    <string name="pref_holo_bg_dither_summary">Substituir o fundo do tema Holo predefinido por um pontilhado por forma a evitar o efeito de bandas de cores (necessário reiniciar)</string>
 
     <!-- Disable hardware keys for pie -->
-    <string name="pref_hwkeys_disable_title">Disable hardware keys</string>
-    <string name="pref_hwkeys_disable_summary">Disables MENU, BACK, HOME while Pie Controls are enabled. HW keys actions will still work. (for devices having HW keys)</string>
+    <string name="pref_hwkeys_disable_title">Desativar teclas físicas</string>
+    <string name="pref_hwkeys_disable_summary">Desativa as teclas de Menu, Atrás e Casa quando os controlos Pie estão ativados. As teclas físicas continuam a funcionar (para dispositivos com teclas físicas)</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Utilizar tema escuro</string>
@@ -386,7 +404,7 @@
     <string name="pref_recent_clear_margin_top_title">Ajustar margem superior</string>
 
     <!-- Disable roaming warnings -->
-    <string name="pref_roaming_warning_disable_title">Desativa avisos de roaming</string>
+    <string name="pref_roaming_warning_disable_title">Desativar avisos de roaming</string>
     <string name="pref_roaming_warning_disable_summary">Desativa os avisos de roaming aquando do envio de mensagens ou realização de chamadas em roaming</string>
 
     <!-- AppPickerPreference -->
@@ -405,38 +423,39 @@
     <!-- GPS Tile (for non-MTK) -->
     <string name="qs_tile_gps_enabled">GPS ativado</string>
     <string name="qs_tile_gps_disabled">GPS desativado</string>
+    <string name="qs_tile_gps_locked">GPS fixado</string>
 
     <!-- Pie control: always show menu button -->
-    <string name="pie_control_menu_title">Always show menu button</string>
+    <string name="pie_control_menu_title">Mostrar sempre botão Menu</string>
 
     <!-- Ringer mode tile (for non-MTK) -->
-    <string name="qs_tile_ringer_mode">Ringer mode</string>
+    <string name="qs_tile_ringer_mode">Modo de Toque</string>
 
     <!-- Clock settings category -->
     <string name="pref_cat_clock_settings_title">Definições do relógio</string>
 
     <!-- Clock: hide am/pm -->
-    <string name="pref_clock_ampm_hide_title">Esconder AM/PM</string>
+    <string name="pref_clock_ampm_hide_title">Ocultar AM/PM</string>
 
     <!-- Clock: hide clock -->
-    <string name="pref_clock_hide_title">Esconder relógio</string>
+    <string name="pref_clock_hide_title">Ocultar relógio</string>
 
     <!-- Pie trigger size -->
-    <string name="pie_control_trigger_size_title">Trigger size</string>
+    <string name="pie_control_trigger_size_title">Limite mínimo para ativação</string>
 
     <!-- Transparency management -->
-    <string name="pref_cat_transparency_manager_title">Transparency management</string>
-    <string name="pref_tm_statusbar_launcher_title">Statusbar transparency for launcher</string>
-    <string name="pref_tm_statusbar_lockscreen_title">Statusbar transparency for lockscreen</string>
-    <string name="pref_tm_navbar_launcher_title">Navbar transparency for launcher</string>
-    <string name="pref_tm_navbar_lockscreen_title">Navbar transparency for lockscreen</string>
+    <string name="pref_cat_transparency_manager_title">Gestão de transparências</string>
+    <string name="pref_tm_statusbar_launcher_title">Barra de Status no inicializador</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Barra de Status no ecrã de bloqueio</string>
+    <string name="pref_tm_navbar_launcher_title">Barra de Navegação no inicializador</string>
+    <string name="pref_tm_navbar_lockscreen_title">Barra de Navegação no ecrã de bloqueio</string>
 
     <!-- Hide alarm icon -->
-    <string name="pref_alarm_icon_hide_title">Esconder símbolo de alarme</string>
+    <string name="pref_alarm_icon_hide_title">Ocultar indicador de alarme</string>
 
     <!-- Screen dim level -->
-    <string name="pref_screen_dim_level_title">Screen dim level</string>
-    <string name="pref_screen_dim_level_summary">Amount of brightness for dim state - when screen is about to be turned off (requires reboot)</string>
+    <string name="pref_screen_dim_level_title">Nível de brilho antes de desligar</string>
+    <string name="pref_screen_dim_level_summary">Permite definir o nível de brilho aplicável quando em espera, antes do ecrã desligar (necessário reiniciar)</string>
 
     <!-- Device type -->
     <string name="device_phone">telefone</string>
@@ -451,7 +470,7 @@
     <string name="hwkey_action_recent_apps">Mostrar aplicações recentes</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">Home key long-press action</string>
+    <string name="pref_hwkey_home_longpress_title">Ação ao manter pressionada tecla Casa</string>
 
     <!-- HW Key Action: Launch custom app -->
     <string name="hwkey_action_custom_app">Iniciar aplicação 1</string>
@@ -466,22 +485,22 @@
     <string name="pref_clock_link_summary">Associar relógio do painel de notificações a uma aplicação específica em vez das Definições de data e hora</string>
 
     <!-- GravityBox settings startup handling -->
-    <string name="gb_startup_progress">Waiting for response from GravityBox system framework&#8230;</string>
-    <string name="gb_startup_error">GravityBox system framework not responding. Exiting.</string>
+    <string name="gb_startup_progress">A aguardar resposta da estrutura de sistema do GravityBox&#8230;</string>
+    <string name="gb_startup_error">Estrutura de sistema do GravityBox não responde. A sair.</string>
 
     <!-- National data roaming -->
-    <string name="pref_national_roaming_title">National data roaming</string>
-    <string name="pref_national_roaming_summary">Connect to data services when nationally roaming</string>
+    <string name="pref_national_roaming_title">Roaming de dados nacionais</string>
+    <string name="pref_national_roaming_summary">Permite o estabelecimento de ligação de dados durante roaming em território nacional</string>
 
     <!-- Expanded Desktop -->
-    <string name="pref_expanded_desktop_title">Expanded desktop mode</string>
-    <string name="expanded_desktop_disabled">Disabled</string>
-    <string name="expanded_desktop_statusbar">Hide statusbar</string>
-    <string name="expanded_desktop_navbar">Hide navigation bar</string>
-    <string name="expanded_desktop_both">Hide both</string>
-    <string name="action_expanded_desktop_title">Expanded desktop</string>
-    <string name="action_expanded_desktop_on">Expanded desktop is ON</string>
-    <string name="action_expanded_desktop_off">Expanded desktop is OFF</string>
+    <string name="pref_expanded_desktop_title">Modo ambiente de trabalho expandido</string>
+    <string name="expanded_desktop_disabled">Desativado</string>
+    <string name="expanded_desktop_statusbar">Ocultar Barra de Status</string>
+    <string name="expanded_desktop_navbar">Ocultar Barra de Navegação</string>
+    <string name="expanded_desktop_both">Ocultar ambas</string>
+    <string name="action_expanded_desktop_title">Ambiente de trabalho expandido</string>
+    <string name="action_expanded_desktop_on">Ambiente de trabalho expandido ativado</string>
+    <string name="action_expanded_desktop_off">Ambiente de trabalho expandido desativado</string>
 
     <!-- Power menu screenshot -->
     <string name="screenshot">Captura de ecrã</string>
@@ -490,19 +509,19 @@
     <string name="hwkey_action_menu">Mostrar menu</string>
 
     <!-- HW Key Action: Expanded desktop -->
-    <string name="hwkey_action_expanded_desktop">Toggle expanded desktop</string>
-    <string name="hwkey_action_expanded_desktop_disabled">Expanded desktop mode is disabled!</string>
+    <string name="hwkey_action_expanded_desktop">Alternar ambiente de trabalho expandido</string>
+    <string name="hwkey_action_expanded_desktop_disabled">O modo ambiente de trabalho expandido está desativado!</string>
 
     <!-- Navigation bar tweaks category -->
     <string name="pref_cat_navigation_bar_title">Ajustes da Barra de Navegação</string>
     <string name="pref_cat_navigation_bar_summary">Contém vários ajustes relacionados com a Barra de Navegação</string>
     <string name="pref_navbar_override_title">Ignorar predefinições de sistema</string>
-    <string name="pref_navbar_override_summary">Ativação global dos ajustes da barra de navegação (necessário reiniciar)</string>
-    <string name="pref_navbar_enable_title">Ativar barra de navegação</string>
+    <string name="pref_navbar_override_summary">Ativação global dos ajustes da Barra de Navegação (necessário reiniciar)</string>
+    <string name="pref_navbar_enable_title">Ativar Barra de Navegação</string>
     <string name="pref_navbar_enable_summary">Necessário reiniciar</string>
-    <string name="pref_navbar_height_title">Altura da barra de navegação</string>
+    <string name="pref_navbar_height_title">Altura da Barra de Navegação</string>
     <string name="pref_navbar_height_summary">Aplicável à orientação de ecrã vertical</string>
-    <string name="pref_navbar_width_title">Largura da barra de navegação</string>
+    <string name="pref_navbar_width_title">Largura da Barra de Navegação</string>
     <string name="pref_navbar_width_summary">Aplicável à orientação de ecrã horizontal</string>
     <string name="pref_navbar_menukey_title">Mostar sempre botão Menu</string>
 
@@ -510,11 +529,11 @@
     <string name="pref_powermenu_screenshot_title">Captura de ecrã no Menu Desligar</string>
 
     <!-- Lockscreen targets -->
-    <string name="pref_cat_lockscreen_targets_title">Lockscreen targets</string>
-    <string name="pref_lockscreen_targets_enable_title">Enable lockscreen targets</string>
-    <string name="pref_lockscreen_targets_enable_summary">Master switch for lockscreen targets</string>
-    <string name="pref_lockscreen_targets_app_title">Target application %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Unlock ring bottom offset</string>
+    <string name="pref_cat_lockscreen_targets_title">Alvos do anel de desbloqueio</string>
+    <string name="pref_lockscreen_targets_enable_title">Ativar alvos do anel de desbloqueio</string>
+    <string name="pref_lockscreen_targets_enable_summary">Permite definir até cinco aplicações como alvo no anel de desbloqueio</string>
+    <string name="pref_lockscreen_targets_app_title">Aplicação %s</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Desvio do anel de desbloqueio da margem inferior</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Ativar controlo de brilho</string>
@@ -526,23 +545,29 @@
     <string name="pref_cat_phone_mobile_data_title">Dados móveis</string>
 
     <!-- Messaging: Strip unicode -->
-    <string name="pref_mms_unicode_stripping_title">Strip unicode</string>
-    <string name="pref_mms_unicode_stripping_summary">Converts unicode characters to normal characters. Decreases overall message size.</string>
-    <string name="unicode_stripping_leave_intact">Leave characters intact</string>
-    <string name="unicode_stripping_non_encodable">Strip non-encodable characters</string>
-    <string name="unicode_stripping_all">Strip all unicode characters</string>
+    <string name="pref_mms_unicode_stripping_title">Remover unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">Converte caracteres unicode em caracteres normais, permitindo reduzir o tamanho da mensagem</string>
+    <string name="unicode_stripping_leave_intact">Não alterar os caracteres</string>
+    <string name="unicode_stripping_non_encodable">Remover caracteres não encriptáveis</string>
+    <string name="unicode_stripping_all">Remover todos os caracteres unicode</string>
 
     <!-- Disable slow 2G data warning -->
-    <string name="pref_mobile_data_slow2g_disable_title">Disable slow 2G data warning</string>
-    <string name="pref_mobile_data_slow2g_disable_summary">Disables warning about slow data speed when turning on mobile data in QuickSettings for SIM in 2G mode</string>
+    <string name="pref_mobile_data_slow2g_disable_title">Desativar aviso ligação de dados lenta</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Desativa o aviso de ligação de dados lenta que ocorre quando se altera o modo de rede para 2G nas definições rápidas</string>
 
     <!-- Follow stock battery color -->
-    <string name="pref_sbcolor_follow_stock_battery_title">Follow stock battery color</string>
-    <string name="pref_sbcolor_follow_stock_battery_summary">Makes statusbar clock, percentage and circle battery use the color of stock battery icon. Applies when icon coloring is off.</string>
+    <string name="pref_sbcolor_follow_stock_battery_title">Associar cor pré-definida da bateria</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Força o uso da cor pré-definida para o indicador de bateria na fonte do relógio, percentagem e no indicador de bateria circular. Aplicável quando a coloração dos indicadores está desativada.</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Network mode tile mode</string>
+    <string name="pref_network_mode_tile_mode_title">Modo do painel Modo de Rede</string>
     <string name="nm_tile_mode1">2G/2G+3G/3G</string>
     <string name="nm_tile_mode2">2G/2G+3G</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">Desativar notificações GPS</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">Permitir todas as orientações</string>
 
 </resources>
