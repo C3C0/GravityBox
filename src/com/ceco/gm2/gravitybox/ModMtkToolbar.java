@@ -1,5 +1,9 @@
 package com.ceco.gm2.gravitybox;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import android.content.Context;
 import android.content.res.Resources;
 import de.robv.android.xposed.XC_MethodHook;
@@ -14,6 +18,13 @@ public class ModMtkToolbar {
 
     private static final String CLASS_MOBILE_STATE_TRACKER = 
             "com.android.systemui.statusbar.toolbar.QuickSettingsConnectionModel$MobileStateTracker";
+
+    private static List<String> mSlow2gStrings = new ArrayList<String>(Arrays.asList(
+            "gemini_3g_disable_warning",
+            "gemini_3g_disable_warning_cu",
+            "gemini_3g_disable_warning_case1",
+            "gemini_3g_disable_warning_case2"
+    ));
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -42,8 +53,7 @@ public class ModMtkToolbar {
 
                     final String msgResName = res.getResourceEntryName(msgResId);
                     if (DEBUG) log("Message resource name: " + msgResName);
-                    if ("gemini_3g_disable_warning_case1".equals(msgResName)
-                            || "gemini_3g_disable_warning_case2".equals(msgResName)) {
+                    if (mSlow2gStrings.contains(msgResName)) {
                         if (DEBUG) log("Skipping slow data warning dialog");
                         param.setResult(-1);
                     }

@@ -25,6 +25,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
     private int mNetworkType;
     private int mDefaultNetworkType;
     private boolean mAllow3gOnly;
+    private boolean mAllow2g3g;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -51,8 +52,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
             ContentResolver cr = mContext.getContentResolver();
             mNetworkType = Settings.Global.getInt(cr, 
                     PhoneWrapper.PREFERRED_NETWORK_MODE, PhoneWrapper.NT_WCDMA_PREFERRED);
-            mAllow3gOnly = Settings.System.getInt(cr, 
-                    SETTING_NETWORK_MODE_TILE_MODE, 0) == 0;
+            updateFlags(Settings.System.getInt(cr, SETTING_NETWORK_MODE_TILE_MODE, 0));
 
             log("SettingsObserver onChange; mNetworkType = " + mNetworkType +
                     "; mAllow3gOnly = " + mAllow3gOnly);
@@ -77,8 +77,12 @@ public class NetworkModeTile extends AQuickSettingsTile {
                                     PhoneWrapper.NT_GSM_ONLY);
                         break;
                     case PhoneWrapper.NT_WCDMA_ONLY:
-                        i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, 
-                                PhoneWrapper.NT_WCDMA_PREFERRED);
+                        if (!mAllow2g3g) {
+                            i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE,
+                                    hasLte() ? mDefaultNetworkType : PhoneWrapper.NT_GSM_ONLY);
+                        } else {
+                            i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, PhoneWrapper.NT_WCDMA_PREFERRED);
+                        }
                         break;
                     case PhoneWrapper.NT_GSM_ONLY:
                         i.putExtra(PhoneWrapper.EXTRA_NETWORK_TYPE, mAllow3gOnly ?
@@ -115,11 +119,16 @@ public class NetworkModeTile extends AQuickSettingsTile {
         ContentResolver cr = mContext.getContentResolver();
         mNetworkType = Settings.Global.getInt(cr, 
                 PhoneWrapper.PREFERRED_NETWORK_MODE, mDefaultNetworkType);
-        mAllow3gOnly = Settings.System.getInt(cr,
-                SETTING_NETWORK_MODE_TILE_MODE, 0) == 0;
+
+        updateFlags(Settings.System.getInt(cr, SETTING_NETWORK_MODE_TILE_MODE, 0));
 
         SettingsObserver observer = new SettingsObserver(new Handler());
         observer.observe();
+    }
+
+    private void updateFlags(int nmMode) {
+        mAllow3gOnly = (nmMode == 0) || (nmMode == 2);
+        mAllow2g3g = (nmMode < 2);
     }
 
     @Override

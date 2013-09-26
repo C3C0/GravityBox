@@ -48,6 +48,11 @@ public class ModPieControls {
     public static final String SETTING_PIE_SIZE = "pie_size";
     public static final String SETTING_PIE_TRIGGER_SIZE = "pie_trigger_size";
 
+    public static final int PIE_DISABLED = 0;
+    public static final int PIE_ENABLED_ALWAYS = 1;
+    public static final int PIE_ENABLED_ED = 2;
+    public static final int PIE_ENABLED_ED_NAVBAR_HIDDEN = 3;
+
     private static PieController mPieController;
     private static PieLayout mPieContainer;
     private static int mPieTriggerSlots;
@@ -71,9 +76,8 @@ public class ModPieControls {
             ContentResolver cr = mContext.getContentResolver();
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_PIE_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_ENABLE)) {
-                    int enable = intent.getBooleanExtra(
-                            GravityBoxSettings.EXTRA_PIE_ENABLE, false) ? 1 : 0;
-                    Settings.System.putInt(cr, SETTING_PIE_CONTROLS, enable);
+                    Settings.System.putInt(cr, SETTING_PIE_CONTROLS,
+                            intent.getIntExtra(GravityBoxSettings.EXTRA_PIE_ENABLE, 0));
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_SEARCH)) {
                     int search = intent.getBooleanExtra(
@@ -288,6 +292,10 @@ public class ModPieControls {
                     SETTING_PIE_GRAVITY), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     SETTING_PIE_TRIGGER_SIZE), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_MODE), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE), false, this);
         }
 
         @Override
@@ -301,10 +309,27 @@ public class ModPieControls {
     }
 
     private static boolean isPieEnabled() {
-        int pie = Settings.System.getInt(mContext.getContentResolver(), 
-                SETTING_PIE_CONTROLS, 0);
-        if (DEBUG) log("isPieEnabled: SETTING_PIE_CONTROLS = " + pie);
-        return (pie == 1);
+        final ContentResolver cr = mContext.getContentResolver();
+        final int pieMode = Settings.System.getInt(cr, SETTING_PIE_CONTROLS, 0);
+        if (DEBUG) log("isPieEnabled: SETTING_PIE_CONTROLS = " + pieMode);
+
+        switch(pieMode) {
+            case PIE_DISABLED: return false;
+            case PIE_ENABLED_ALWAYS: return true;
+            case PIE_ENABLED_ED:
+            case PIE_ENABLED_ED_NAVBAR_HIDDEN:
+                final int edMode = Settings.System.getInt(
+                        cr, ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_MODE, 0);
+                if (DEBUG) log("isPieEnabled: SETTING_EXPANDED_DESKTOP_MODE = " + edMode);
+                final boolean edEnabled = Settings.System.getInt(
+                        cr, ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE, 0) == 1;
+                if (DEBUG) log("isPieEnabled: SETTING_EXPANDED_DESKTOP_STATE = " + edEnabled);
+                return edEnabled && (pieMode == PIE_ENABLED_ED ||
+                        (pieMode == PIE_ENABLED_ED_NAVBAR_HIDDEN 
+                            && (edMode == GravityBoxSettings.ED_NAVBAR ||
+                                edMode == GravityBoxSettings.ED_BOTH)));
+            default: return false;
+        }
     }
 
     private static void attachPie() {
