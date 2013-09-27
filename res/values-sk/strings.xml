@@ -512,9 +512,9 @@
     <string name="pref_navbar_enable_title">Povoliť navigačnú lištu</string>
     <string name="pref_navbar_enable_summary">Vyžaduje reštart</string>
     <string name="pref_navbar_height_title">Výška navigačnej lišty</string>
-    <string name="pref_navbar_height_summary">Pre orientáciu na výšku</string>
+    <string name="pref_navbar_height_summary">Pre horizontálnu navigačnú lištu</string>
     <string name="pref_navbar_width_title">Šírka navigačnej lišty</string>
-    <string name="pref_navbar_width_summary">Pre orientáciu na šírku</string>
+    <string name="pref_navbar_width_summary">Pre vertikálnu navigačnú lištu</string>
     <string name="pref_navbar_menukey_title">Vždy zobraziť menu tlačidlo</string>
 
     <!-- Screenshot in power menu -->

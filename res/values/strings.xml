@@ -520,9 +520,9 @@
     <string name="pref_navbar_enable_title">Enable navigation bar</string>
     <string name="pref_navbar_enable_summary">Requires reboot</string>
     <string name="pref_navbar_height_title">Navigation bar height</string>
-    <string name="pref_navbar_height_summary">Applies to portrait orientation</string>
+    <string name="pref_navbar_height_summary">Applies to horizontal navigation bar</string>
     <string name="pref_navbar_width_title">Navigation bar width</string>
-    <string name="pref_navbar_width_summary">Applies to landscape orientation</string>
+    <string name="pref_navbar_width_summary">Applies to vertical navigation bar</string>
     <string name="pref_navbar_menukey_title">Always show menu key</string>
 
     <!-- Screenshot in power menu -->
