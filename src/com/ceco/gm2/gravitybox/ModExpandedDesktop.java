@@ -41,6 +41,7 @@ public class ModExpandedDesktop {
     private static Unhook mStatusbarShowLwHook;
     private static boolean mNavbarOverride;
     private static float mNavbarHeightScaleFactor = 1;
+    private static float mNavbarHeightLandscapeScaleFactor = 1;
     private static float mNavbarWidthScaleFactor = 1;
 
     public static final String SETTING_EXPANDED_DESKTOP_STATE = "gravitybox_expanded_desktop_state";
@@ -88,6 +89,10 @@ public class ModExpandedDesktop {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_NAVBAR_HEIGHT)) {
                     mNavbarHeightScaleFactor = 
                             (float)intent.getIntExtra(GravityBoxSettings.EXTRA_NAVBAR_HEIGHT, 100) / 100f;
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_NAVBAR_HEIGHT_LANDSCAPE)) {
+                    mNavbarHeightLandscapeScaleFactor = (float)intent.getIntExtra(
+                                    GravityBoxSettings.EXTRA_NAVBAR_HEIGHT_LANDSCAPE,  100) / 100f;
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_NAVBAR_WIDTH)) {
                     mNavbarWidthScaleFactor = 
@@ -161,7 +166,7 @@ public class ModExpandedDesktop {
                 navigationBarHeightForRotation[landscapeRotation] =
                 navigationBarHeightForRotation[seascapeRotation] =
                     (int) (mContext.getResources().getDimensionPixelSize(resHeightLandscapeId)
-                    * mNavbarHeightScaleFactor);
+                    * mNavbarHeightLandscapeScaleFactor);
 
                 navigationBarWidthForRotation[portraitRotation] =
                 navigationBarWidthForRotation[upsideDownRotation] =
@@ -191,6 +196,8 @@ public class ModExpandedDesktop {
             if (mNavbarOverride) {
                 mNavbarHeightScaleFactor = 
                         (float) prefs.getInt(GravityBoxSettings.PREF_KEY_NAVBAR_HEIGHT, 100) / 100f;
+                mNavbarHeightLandscapeScaleFactor = 
+                        (float) prefs.getInt(GravityBoxSettings.PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE, 100) / 100f;
                 mNavbarWidthScaleFactor = 
                         (float) prefs.getInt(GravityBoxSettings.PREF_KEY_NAVBAR_WIDTH, 100) / 100f;
             }

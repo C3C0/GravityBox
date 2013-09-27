@@ -516,7 +516,8 @@
     <string name="pref_navbar_enable_title">Povolit navigační lištu</string>
     <string name="pref_navbar_enable_summary">Vyžaduje restart</string>
     <string name="pref_navbar_height_title">Výška navigační lišty</string>
-    <string name="pref_navbar_height_summary">Pro horizontální navigační lištu</string>
+    <string name="pref_navbar_height_summary">Pro horizontální navigační lištu a orientaci na výšku</string>
+    <string name="pref_navbar_height_landscape_summary">Pro horizontální navigační lištu a orientaci na šířku</string>
     <string name="pref_navbar_width_title">Šířka navigační lišty</string>
     <string name="pref_navbar_width_summary">Pro vertikální navigační lištu</string>
     <string name="pref_navbar_menukey_title">Vždy zobrazit menu tlačítko</string>

@@ -305,10 +305,12 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_NAVBAR_OVERRIDE = "pref_navbar_override";
     public static final String PREF_KEY_NAVBAR_ENABLE = "pref_navbar_enable";
     public static final String PREF_KEY_NAVBAR_HEIGHT = "pref_navbar_height";
+    public static final String PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE = "pref_navbar_height_landscape";
     public static final String PREF_KEY_NAVBAR_WIDTH = "pref_navbar_width";
     public static final String PREF_KEY_NAVBAR_MENUKEY = "pref_navbar_menukey";
     public static final String ACTION_PREF_NAVBAR_CHANGED = "gravitybox.intent.action.ACTION_NAVBAR_CHANGED";
     public static final String EXTRA_NAVBAR_HEIGHT = "navbarHeight";
+    public static final String EXTRA_NAVBAR_HEIGHT_LANDSCAPE = "navbarHeightLandscape";
     public static final String EXTRA_NAVBAR_WIDTH = "navbarWidth";
     public static final String EXTRA_NAVBAR_MENUKEY = "navbarMenukey";
 
@@ -552,6 +554,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private ListPreference mPrefExpandedDesktop;
         private CheckBoxPreference mPrefNavbarEnable;
         private SeekBarPreference mPrefNavbarHeight;
+        private SeekBarPreference mPrefNavbarHeightLandscape;
         private SeekBarPreference mPrefNavbarWidth;
         private CheckBoxPreference mPrefNavbarMenukey;
         private CheckBoxPreference mPrefMusicVolumeSteps;
@@ -688,6 +691,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             mPrefNavbarEnable = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_ENABLE);
             mPrefNavbarHeight = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_HEIGHT);
+            mPrefNavbarHeightLandscape = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE);
             mPrefNavbarWidth = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_WIDTH);
             mPrefNavbarMenukey = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_MENUKEY);
 
@@ -946,6 +950,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 final boolean override = mPrefs.getBoolean(PREF_KEY_NAVBAR_OVERRIDE, false);
                 mPrefNavbarEnable.setEnabled(override);
                 mPrefNavbarHeight.setEnabled(override && mPrefNavbarEnable.isChecked());
+                mPrefNavbarHeightLandscape.setEnabled(override && mPrefNavbarEnable.isChecked());
                 mPrefNavbarWidth.setEnabled(override && mPrefNavbarEnable.isChecked());
                 mPrefNavbarMenukey.setEnabled(override && mPrefNavbarEnable.isChecked());
             }
@@ -1174,6 +1179,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_NAVBAR_HEIGHT)) {
                 intent.setAction(ACTION_PREF_NAVBAR_CHANGED);
                 intent.putExtra(EXTRA_NAVBAR_HEIGHT, prefs.getInt(PREF_KEY_NAVBAR_HEIGHT, 100));
+            } else if (key.equals(PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE)) {
+                intent.setAction(ACTION_PREF_NAVBAR_CHANGED);
+                intent.putExtra(EXTRA_NAVBAR_HEIGHT_LANDSCAPE, 
+                        prefs.getInt(PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE, 100));
             } else if (key.equals(PREF_KEY_NAVBAR_WIDTH)) {
                 intent.setAction(ACTION_PREF_NAVBAR_CHANGED);
                 intent.putExtra(EXTRA_NAVBAR_WIDTH, prefs.getInt(PREF_KEY_NAVBAR_WIDTH, 100));
