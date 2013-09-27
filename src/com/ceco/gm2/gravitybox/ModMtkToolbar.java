@@ -7,6 +7,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.res.Resources;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -18,6 +19,8 @@ public class ModMtkToolbar {
 
     private static final String CLASS_MOBILE_STATE_TRACKER = 
             "com.android.systemui.statusbar.toolbar.QuickSettingsConnectionModel$MobileStateTracker";
+    private static final String CLASS_WIFI_STATE_TRACKER = 
+            "com.android.systemui.statusbar.toolbar.QuickSettingsConnectionModel$WifiStateTracker";
 
     private static List<String> mSlow2gStrings = new ArrayList<String>(Arrays.asList(
             "gemini_3g_disable_warning",
@@ -34,6 +37,8 @@ public class ModMtkToolbar {
         try {
             final Class<?> mobileStateTrackerClass = 
                     XposedHelpers.findClass(CLASS_MOBILE_STATE_TRACKER, classLoader);
+            final Class<?> wifiStateTrackerClass = 
+                    XposedHelpers.findClass(CLASS_WIFI_STATE_TRACKER, classLoader);
 
             XposedHelpers.findAndHookMethod(mobileStateTrackerClass, "dataSwitchConfirmDlgMsg", 
                     long.class, new XC_MethodHook() {
@@ -59,6 +64,10 @@ public class ModMtkToolbar {
                     }
                 }
             });
+
+            XposedHelpers.findAndHookMethod(wifiStateTrackerClass, "isClickable",
+                    XC_MethodReplacement.returnConstant(true));
+
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
