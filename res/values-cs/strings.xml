@@ -91,6 +91,7 @@
     <string name="qs_tile_wifi">Wi-Fi</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_gps_alt">GPS (CM styl)</string>
     <string name="qs_tile_mobile_data">Mobilní data</string>
     <string name="qs_tile_network_mode">Typ síte</string>
     <string name="qs_tile_data_usage">Využití dat</string>
@@ -531,6 +532,7 @@
     <string name="pref_lockscreen_targets_enable_summary">Hlavní vypínač pro zkratky obrazovky uzamčení</string>
     <string name="pref_lockscreen_targets_app_title">Aplikace pro zkratku %s</string>
     <string name="pref_lockscreen_targets_bottom_offset_title">Spodní okraj prstence</string>
+    <string name="pref_lockscreen_targets_right_offset_title">Pravý okraj prstence</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Povolit ovládání jasu</string>
@@ -566,5 +568,25 @@
 
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Povolit všechny rotace</string>
+
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">Změnit standardní chování dlaždic</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Změní akce na dotek / dlouhý dotek pro zvolené dlaždice (vyžaduje restart)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">SIM slot pro typ mobilní sítě</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Definuje SIM slot, na který se vztahuje dlaždice změny režimu mobilní sítě (%s)</string>
+    <string name="sim_slot1">SIM slot 1</string>
+    <string name="sim_slot2">SIM slot 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">Nikdy</string>
+    <string name="pie_controls_enabled_always">Vždy aktivní</string>
+    <string name="pie_controls_enabled_expanded">Jen během rozšířené plochy</string>
+    <string name="pie_controls_enabled_expanded_navbar">V případě, že režim rozšířené plochy skryje navigační lištu</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Nevybarvovat stock ikonu baterie</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Použít v případě, pokud byla stock ikona baterie nahrazena jinou (např. použitím externího modu baterie)</string>
 
 </resources>
