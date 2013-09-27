@@ -257,7 +257,7 @@
                 android:title="@string/pref_tm_statusbar_launcher_title"
                 minimum="0"
                 maximum="100"
-                interval="5"
+                interval="1"
                 monitorBoxEnabled="true"
                 monitorBoxUnit="%" />
 
@@ -266,7 +266,7 @@
                 android:title="@string/pref_tm_statusbar_lockscreen_title"
                 minimum="0"
                 maximum="100"
-                interval="5"
+                interval="1"
                 monitorBoxEnabled="true"
                 monitorBoxUnit="%" />
 
@@ -463,7 +463,7 @@
                 android:title="@string/pref_tm_navbar_launcher_title"
                 minimum="0"
                 maximum="100"
-                interval="5"
+                interval="1"
                 monitorBoxEnabled="true"
                 monitorBoxUnit="%" />
 
@@ -472,7 +472,7 @@
                 android:title="@string/pref_tm_navbar_lockscreen_title"
                 minimum="0"
                 maximum="100"
-                interval="5"
+                interval="1"
                 monitorBoxEnabled="true"
                 monitorBoxUnit="%" />
 
