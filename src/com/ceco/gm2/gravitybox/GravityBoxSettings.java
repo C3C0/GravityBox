@@ -229,7 +229,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_BG_COLOR_MODE = "bgColorMode";
     public static final String EXTRA_BG_ALPHA = "bgAlpha";
 
-    public static final String PREF_KEY_PIE_CONTROL_ENABLE = "pref_pie_control_enable";
+    public static final String PREF_KEY_PIE_CONTROL_ENABLE = "pref_pie_control_enable2";
     public static final String PREF_KEY_PIE_CONTROL_SEARCH = "pref_pie_control_search";
     public static final String PREF_KEY_PIE_CONTROL_MENU = "pref_pie_control_menu";
     public static final String PREF_KEY_PIE_CONTROL_TRIGGERS = "pref_pie_control_trigger_positions";
@@ -340,6 +340,13 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             "gravitybox.intent.action.DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED";
     public static final String EXTRA_ALLOW_ALL_ROTATIONS = "allowAllRotations";
 
+    public static final String PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE = "pref_qs_tile_behaviour_override";
+
+    public static final String PREF_KEY_QS_NETWORK_MODE_SIM_SLOT = "pref_qs_network_mode_sim_slot";
+    public static final String ACTION_PREF_QS_NETWORK_MODE_SIM_SLOT_CHANGED =
+            "gravitybox.intent.action.QS_NETWORK_MODE_SIM_SLOT_CHANGED";
+    public static final String EXTRA_SIM_SLOT = "simSlot";
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR,
@@ -356,7 +363,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             PREF_KEY_SCREEN_DIM_LEVEL,
             PREF_KEY_BRIGHTNESS_MASTER_SWITCH,
             PREF_KEY_NAVBAR_OVERRIDE,
-            PREF_KEY_NAVBAR_ENABLE
+            PREF_KEY_NAVBAR_ENABLE,
+            PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE
     ));
 
     private static final class SystemProperties {
@@ -522,7 +530,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private ListPreference mPrefNotifColorMode;
         private CheckBoxPreference mPrefDisableRoamingIndicators;
         private ListPreference mPrefButtonBacklightMode;
-        private CheckBoxPreference mPrefPieEnabled;
+        private ListPreference mPrefPieEnabled;
         private CheckBoxPreference mPrefPieHwKeysDisabled;
         private CheckBoxPreference mPrefGbThemeDark;
         private ListPreference mPrefRecentClear;
@@ -550,6 +558,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private PreferenceCategory mPrefCatPhoneTelephony;
         private PreferenceCategory mPrefCatPhoneMobileData;
         private ListPreference mPrefNetworkModeTileMode;
+        private MultiSelectListPreference mPrefQsTileBehaviourOverride;
+        private ListPreference mPrefQsNetworkModeSimSlot;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -643,7 +653,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefDisableRoamingIndicators = (CheckBoxPreference) findPreference(PREF_KEY_DISABLE_ROAMING_INDICATORS);
             mPrefButtonBacklightMode = (ListPreference) findPreference(PREF_KEY_BUTTON_BACKLIGHT_MODE);
 
-            mPrefPieEnabled = (CheckBoxPreference) findPreference(PREF_KEY_PIE_CONTROL_ENABLE);
+            mPrefPieEnabled = (ListPreference) findPreference(PREF_KEY_PIE_CONTROL_ENABLE);
             mPrefPieHwKeysDisabled = (CheckBoxPreference) findPreference(PREF_KEY_HWKEYS_DISABLE);
 
             mPrefGbThemeDark = (CheckBoxPreference) findPreference(PREF_KEY_GB_THEME_DARK);
@@ -692,6 +702,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefMobileDataSlow2gDisable = (CheckBoxPreference) findPreference(PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE);
 
             mPrefNetworkModeTileMode = (ListPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_MODE);
+            mPrefQsTileBehaviourOverride = 
+                    (MultiSelectListPreference) findPreference(PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE);
+            mPrefQsNetworkModeSimSlot = (ListPreference) findPreference(PREF_KEY_QS_NETWORK_MODE_SIM_SLOT);
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
@@ -708,12 +721,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mQuickSettings.setEntries(R.array.qs_tile_aosp_entries);
                 mQuickSettings.setEntryValues(R.array.qs_tile_aosp_values);
                 mPrefCatPhoneTelephony.removePreference(mPrefRoamingWarningDisable);
+                mPrefCatStatusbarQs.removePreference(mPrefQsNetworkModeSimSlot);
             } else {
                 // Remove Gemini specific preferences for non-Gemini MTK devices
                 if (!sSystemProperties.hasGeminiSupport) {
                     mPrefCatStatusbar.removePreference(mSignalIconAutohide);
                     mPrefCatStatusbar.removePreference(mPrefDisableRoamingIndicators);
                     mPrefCatPhoneMobileData.removePreference(mPrefMobileDataSlow2gDisable);
+                    mPrefCatStatusbarQs.removePreference(mPrefQsNetworkModeSimSlot);
                 }
 
                 // Remove preferences not needed for ZTE V987
@@ -725,6 +740,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
                 mQuickSettings.setEntries(R.array.qs_tile_entries);
                 mQuickSettings.setEntryValues(R.array.qs_tile_values);
+                mPrefCatStatusbarQs.removePreference(mPrefQsTileBehaviourOverride);
             }
 
             // Remove preferences not compatible with Android 4.1
@@ -885,7 +901,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             }
 
             if (key == null || key.equals(PREF_KEY_PIE_CONTROL_ENABLE)) {
-                if (!mPrefPieEnabled.isChecked()) {
+                final int pieMode = 
+                        Integer.valueOf(mPrefs.getString(PREF_KEY_PIE_CONTROL_ENABLE, "0"));
+                if (pieMode == 0) {
                     if (mPrefPieHwKeysDisabled.isChecked()) {
                         Editor e = mPrefs.edit();
                         e.putBoolean(PREF_KEY_HWKEYS_DISABLE, false);
@@ -896,6 +914,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 } else {
                     mPrefPieHwKeysDisabled.setEnabled(true);
                 }
+                mPrefPieEnabled.setSummary(mPrefPieEnabled.getEntry());
             }
 
             if (key == null || key.equals(PREF_KEY_RECENTS_CLEAR_ALL)) {
@@ -932,6 +951,12 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             if (key == null || key.equals(PREF_KEY_NETWORK_MODE_TILE_MODE)) {
                 mPrefNetworkModeTileMode.setSummary(mPrefNetworkModeTileMode.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_QS_NETWORK_MODE_SIM_SLOT)) {
+                mPrefQsNetworkModeSimSlot.setSummary(
+                        String.format(getString(R.string.pref_qs_network_mode_sim_slot_summary),
+                                mPrefQsNetworkModeSimSlot.getEntry()));
             }
         }
 
@@ -1079,9 +1104,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                         prefs.getBoolean(PREF_KEY_DISABLE_ROAMING_INDICATORS, false));
             } else if (key.equals(PREF_KEY_PIE_CONTROL_ENABLE)) {
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
-                boolean enabled = prefs.getBoolean(PREF_KEY_PIE_CONTROL_ENABLE, false);
-                intent.putExtra(EXTRA_PIE_ENABLE, enabled);
-                if (!enabled) {
+                int mode = Integer.valueOf(prefs.getString(PREF_KEY_PIE_CONTROL_ENABLE, "0"));
+                intent.putExtra(EXTRA_PIE_ENABLE, mode);
+                if (mode == 0) {
                     intent.putExtra(EXTRA_PIE_HWKEYS_DISABLE, false);
                 }
             } else if (key.equals(PREF_KEY_PIE_CONTROL_SEARCH)) {
@@ -1152,6 +1177,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 intent.setAction(ACTION_PREF_DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED);
                 intent.putExtra(EXTRA_ALLOW_ALL_ROTATIONS, 
                         prefs.getBoolean(PREF_KEY_DISPLAY_ALLOW_ALL_ROTATIONS, false));
+            } else if (key.equals(PREF_KEY_QS_NETWORK_MODE_SIM_SLOT)) {
+                intent.setAction(ACTION_PREF_QS_NETWORK_MODE_SIM_SLOT_CHANGED);
+                intent.putExtra(EXTRA_SIM_SLOT, Integer.valueOf(
+                        prefs.getString(PREF_KEY_QS_NETWORK_MODE_SIM_SLOT, "0")));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);

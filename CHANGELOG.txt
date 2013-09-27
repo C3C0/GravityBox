@@ -1,3 +1,51 @@
+Changelog 2.5.1 - 24/09/2013
+--------------------------------------
+- Lockscreen Targets: 
+--- fixed crash when accessibility services enabled
+--- app names added into accessibility descriptions (e.g. they will be spoken when using TalkBack)
+- Other minor optimizations
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+
+Changelog 2.5.0 - 24/09/2013
+--------------------------------------
+- Lockscreen targets:
+--- ability to add as many as 5 lockscreen targets for launching apps
+--- replaces all original targets apart from the unlocking one when enabled
+--- option to adjust bottom margin of unlock ring
+--- known issue: stock browser might not be launched properly from lockscreen
+--- available for Android 4.2+ only
+- Statusbar tweaks:
+--- Statusbar brightness control:
+------ continuous brightness adjustment by sliding over statusbar
+------ immediate brighntess adjustment by long-touching statusbar
+------ applies to manual brightness (autobrightness must be off)
+------ works also on lockscreen
+--- option for statusbar element colors to follow stock battery color (more info: http://tinyurl.com/qzbecat)
+--- option to disable GPS notifications
+- QuickSettings Tiles:
+--- NetworkMode tile: allow LTE phones to switch 2G/2G+3G/3G/LTE (for LTE, it uses device specific default LTE mode. Typically LTE_GSM_WCDMA)
+--- option to set mode of network mode tile (2G/2G+3G/3G vs. 2G/2G+3G. For LTE: 2G/2G+3G/3G/LTE vs. 2G/2G+3G/LTE)
+--- Stay Awake Tile (prevents the screen from turning off when enabled)
+--- Screenshot Tile
+--- improved GPS tile for non-MTK devices (better icon + indication of position fix)
+--- improved Ringer Mode Tile to take into account whether device has vibrator (non-MTK)
+- Phone tweaks:
+--- option for stripping unicode characters from message before sending (for stock messaging app)
+--- option to disable slow mobile data warning for SIM in 2G mode (for MTK Dual Sims - mobile data tile)
+- Display tweaks:
+--- option to allow all display rotations (e.g. upside down)
+- Other improvements:
+--- improved volume keys skip track for better support of 3rd party players (thanks to bparker98)
+--- power menu dialog optimizations
+--- button backlight notifications: make buttons lit for a bit longer
+--- fixed scaling of Back button in navigation bar
+- Updated French translations (thanks to ch-vox)
+- Updated German translations (thanks to Wikiwix)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Indonesian translations (thanks to awaaas)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+
 Changelog 2.4.2 - 20/09/2013
 --------------------------------------
 - Yet another fix for Samsung's expandable volume panel

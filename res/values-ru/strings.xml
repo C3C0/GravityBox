@@ -76,6 +76,8 @@
     <string name="quick_settings_expanded_desktop_disabled">Отключено</string>
     <string name="quick_settings_expanded_desktop_normal">Нормальный</string>
     <string name="quick_settings_expanded_desktop_expanded">Расширенный</string>
+    <string name="quick_settings_stay_awake_on">Не засыпать вкл.</string>
+    <string name="quick_settings_stay_awake_off">Не засыпать выкл.</string>
     
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Иконки быстрых настроек в статусбаре</string>
@@ -102,7 +104,9 @@
     <string name="qs_tile_settings">Настройки</string>
     <string name="qs_tile_volume">Звук</string>
     <string name="qs_tile_expanded_desktop">Расширенный рабочий стол</string>
-
+	<string name="qs_tile_stay_awake">Не засыпать</string>
+    <string name="qs_tile_screenshot">Снимок экрана</string>
+    
      <!-- Color Picker -->
     <string name="dialog_color_picker">Выбор цвета</string>
     <string name="press_color_to_apply">Нажмите на цвет для применения</string>
@@ -418,6 +422,7 @@
     <!-- GPS Tile (for non-MTK) -->
     <string name="qs_tile_gps_enabled">GPS вкл</string>
     <string name="qs_tile_gps_disabled">GPS выкл</string>
+    <string name="qs_tile_gps_locked">GPS блок</string>
 
     <!-- Pie control: always show menu button -->
     <string name="pie_control_menu_title">Всегда показывать "Меню"</string>
@@ -521,5 +526,63 @@
 
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Скриншот в меню выключения</string>
+    
+	<!-- Lockscreen targets -->
+    <string name="pref_cat_lockscreen_targets_title">Цели экрана блокировки</string>
+    <string name="pref_lockscreen_targets_enable_title">Включить цели экрана блокировки</string>
+    <string name="pref_lockscreen_targets_enable_summary">Общий переключатель целей экрана блокировки</string>
+    <string name="pref_lockscreen_targets_app_title">Целевое приложение %s</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Нижнее смещение кольца разблокировки</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">Включить контроль яркости</string>
+    <string name="pref_statusbar_brightness_summary">Менять яркость слайдом вдоль статусбара</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Телефония</string>
+    <string name="pref_cat_phone_messaging_title">Сообщения</string>
+    <string name="pref_cat_phone_mobile_data_title">Передача данных</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Изменять unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">Конвертирует unicode символы в обычные символы. Уменьшает общий размер сообщения.</string>
+    <string name="unicode_stripping_leave_intact">Не изменять символы</string>
+    <string name="unicode_stripping_non_encodable">Изменять некодируемые символы</string>
+    <string name="unicode_stripping_all">Изменять все unicode символы</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Отключить 2g предупреждение</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Отключает предупреждение о низкойскорости передачи данных когда в быстрых настройках включен режим 2g для SIM-карты</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">Следовать цвету батареи</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Позволяет часам в статусбаре, батарее и тексту с процентами использовать цвет стоковой батареи. Работает при выключенном изменении цветов иконок.</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">Режим тайла "Режим сети"</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
+    <string name="nm_tile_mode2">2G/2G+3G</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">Отключить GPS уведомления</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">Разрешить все повороты</string>
+    
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">Заменить стандартное поведение тайлов</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Заменяет поведение касания/долгого касания для выбранных тайлов (необходима перезагрузка) </string>
+    
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">Слот SIM для тайла Режим сети</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Определяет слот, для которого работает тайл Режим сети (%s)</string>
+    <string name="sim_slot1">SIM slot 1</string>
+    <string name="sim_slot2">SIM slot 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">Никогда</string>
+    <string name="pie_controls_enabled_always">Всегда</string>
+    <string name="pie_controls_enabled_expanded">При включенном расширенном дисплее</string>
+    <string name="pie_controls_enabled_expanded_navbar">Когда расширенный дисплей без панели навигации</string>
     
 </resources>

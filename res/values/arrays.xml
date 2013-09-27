@@ -62,10 +62,12 @@
         <item>@string/qs_tile_wifi</item>
         <item>@string/qs_tile_bluetooth</item>
         <item>@string/qs_tile_gps</item>
+        <item>@string/qs_tile_gps_alt</item>
         <item>@string/qs_tile_mobile_data</item>
         <item>@string/qs_tile_network_mode</item>
         <item>@string/qs_tile_data_usage</item>
         <item>@string/qs_tile_audio</item>
+        <item>@string/qs_tile_ringer_mode</item>
         <item>@string/qs_tile_volume</item>
         <item>@string/qs_tile_brightness</item>
         <item>@string/qs_tile_screen_timeout</item>
@@ -89,10 +91,12 @@
         <item>wifi_textview</item>
         <item>bluetooth_textview</item>
         <item>gps_textview</item>
+        <item>gps_tileview</item>
         <item>data_conn_textview</item>
         <item>network_mode_tileview</item>
         <item>rssi_textview</item>
         <item>audio_profile_textview</item>
+        <item>ringer_mode_tileview</item>
         <item>volume_tileview</item>
         <item>brightness_textview</item>
         <item>timeout_textview</item>
@@ -159,6 +163,20 @@
         <item>expanded_tileview</item>
         <item>screenshot_tileview</item>
         <item>gravitybox_tileview</item>
+    </string-array>
+
+    <string-array name="qs_tile_override_entries" translatable="false">
+        <item>@string/qs_tile_wifi</item>
+        <item>@string/qs_tile_bluetooth</item>
+        <item>@string/qs_tile_data_usage</item>
+        <item>@string/qs_tile_airplane_mode</item>
+    </string-array>
+
+    <string-array name="qs_tile_override_values" translatable="false">
+        <item>wifi_textview</item>
+        <item>bluetooth_textview</item>
+        <item>rssi_textview</item>
+        <item>airplane_mode_textview</item>
     </string-array>
 
     <string-array name="lockscreen_bg_entries" translatable="false">
@@ -434,11 +452,37 @@
     <string-array name="network_mode_tile_mode_entries" translatable="false">
         <item>@string/nm_tile_mode1</item>
         <item>@string/nm_tile_mode2</item>
+        <item>@string/nm_tile_mode3</item>
     </string-array>
 
     <string-array name="network_mode_tile_mode_values" translatable="false">
         <item>0</item>
         <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="network_mode_sim_slot_entries" translatable="false">
+        <item>@string/sim_slot1</item>
+        <item>@string/sim_slot2</item>
+    </string-array>
+
+    <string-array name="network_mode_sim_slot_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="pie_controls_enable_entries" translatable="false">
+        <item>@string/pie_controls_disabled</item>
+        <item>@string/pie_controls_enabled_always</item>
+        <item>@string/pie_controls_enabled_expanded</item>
+        <item>@string/pie_controls_enabled_expanded_navbar</item>
+    </string-array>
+
+    <string-array name="pie_controls_enable_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
     </string-array>
 
 </resources>

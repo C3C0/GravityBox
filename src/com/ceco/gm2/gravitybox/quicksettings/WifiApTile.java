@@ -17,10 +17,10 @@ public class WifiApTile extends AQuickSettingsTile implements WifiApStateChangeL
     private TextView mTextView;
 
     public WifiApTile(Context context, Context gbContext, Object statusBar,
-            Object panelBar) {
+            Object panelBar, WifiManagerWrapper wifiManager) {
         super(context, gbContext, statusBar, panelBar);
 
-        mWifiManager = new WifiManagerWrapper(mContext);
+        mWifiManager = wifiManager;
 
         mOnClick = new View.OnClickListener() {
 

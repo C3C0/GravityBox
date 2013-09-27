@@ -134,7 +134,7 @@ public class ModDisplay {
                         mPendingNotifColor = 0xff6e6e6e;
                         XposedHelpers.callMethod(ls, "setLight_native",
                             np, LIGHT_ID_BUTTONS, mPendingNotifColor, 0, 0, 0, 0);
-                        mHandler.postDelayed(mPendingNotifRunnable, 200);
+                        mHandler.postDelayed(mPendingNotifRunnable, 500);
                     } else {
                         mPendingNotifColor = 0;
                         XposedHelpers.callMethod(ls, "setLight_native",

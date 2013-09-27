@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.Settings;
 
@@ -92,6 +93,23 @@ public class WifiManagerWrapper {
 
     public void setWifiEnabled(boolean enable) {
         mWifiManager.setWifiEnabled(enable);
+    }
+
+    public void toggleWifiEnabled() {
+        final boolean enable = 
+                (getWifiState() != WifiManagerWrapper.WIFI_STATE_ENABLED);
+        new AsyncTask<Void,Void,Void>() {
+            @Override
+            protected Void doInBackground(Void... args) {
+                final int wifiApState = getWifiApState();
+                if (enable && (wifiApState == WifiManagerWrapper.WIFI_AP_STATE_ENABLING
+                               || wifiApState == WifiManagerWrapper.WIFI_AP_STATE_ENABLED)) {
+                    setWifiApEnabled(false);
+                }
+                setWifiEnabled(enable);
+                return null;
+            }
+        }.execute();
     }
 
     public boolean isWifiApEnabled() {

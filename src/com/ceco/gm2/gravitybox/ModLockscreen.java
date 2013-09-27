@@ -196,7 +196,13 @@ public class ModLockscreen {
                     final ArrayList<Object> targets = (ArrayList<Object>) XposedHelpers.getObjectField(
                             gpView, "mTargetDrawables");
                     final ArrayList<Object> newTargets = new ArrayList<Object>();
+                    final ArrayList<String> newDescriptions = new ArrayList<String>();
+                    final ArrayList<String> newDirections = new ArrayList<String>();
                     final ArrayList<AppInfo> appInfoList = new ArrayList<AppInfo>(5);
+                    final int unlockDescResId = res.getIdentifier("description_target_unlock", 
+                            "string", "android");
+                    final int unlockDirecResId = res.getIdentifier("description_direction_right", 
+                            "string", "android");
 
                     // fill appInfoList helper with apps from preferences
                     for (int i=0; i<=4; i++) {
@@ -210,30 +216,51 @@ public class ModLockscreen {
 
                     // get target from position 0 supposing it's unlock ring
                     newTargets.add(targets.get(0));
+                    newDescriptions.add(unlockDescResId == 0 ? null : res.getString(unlockDescResId));
+                    newDirections.add(unlockDirecResId == 0 ? null : res.getString(unlockDirecResId));
 
                     // create and fill custom targets with proper layout based on number of targets
                     switch(appInfoList.size()) {
                         case 1:
                             newTargets.add(createTargetDrawable(res, null));
+                            newDescriptions.add(null);
+                            newDirections.add(null);
                             newTargets.add(createTargetDrawable(res, appInfoList.get(0)));
+                            newDescriptions.add(appInfoList.get(0).name);
+                            newDirections.add(null);
                             newTargets.add(createTargetDrawable(res, null));
+                            newDescriptions.add(null);
+                            newDirections.add(null);
                             break;
                         case 2:
                             newTargets.add(createTargetDrawable(res, appInfoList.get(0)));
+                            newDescriptions.add(appInfoList.get(0).name);
+                            newDirections.add(null);
                             newTargets.add(createTargetDrawable(res, appInfoList.get(1)));
+                            newDescriptions.add(appInfoList.get(1).name);
+                            newDirections.add(null);
                             newTargets.add(createTargetDrawable(res, null));
+                            newDescriptions.add(null);
+                            newDirections.add(null);
                             break;
                         case 3:
                         case 4:
                         case 5:
                             for (int i=0; i<=4; i++) {
-                                newTargets.add(i >= appInfoList.size() ?
-                                        createTargetDrawable(res, null) :
-                                            createTargetDrawable(res, appInfoList.get(i)));
+                                if (i >= appInfoList.size()) {
+                                    newTargets.add(createTargetDrawable(res, null));
+                                    newDescriptions.add(null);
+                                } else {
+                                    newTargets.add(createTargetDrawable(res, appInfoList.get(i)));
+                                    newDescriptions.add(appInfoList.get(i).name);
+                                }
+                                newDirections.add(null);
                             }
                             break;
                     }
                     XposedHelpers.setObjectField(gpView, "mTargetDrawables", newTargets);
+                    XposedHelpers.setObjectField(gpView, "mTargetDescriptions", newDescriptions);
+                    XposedHelpers.setObjectField(gpView, "mDirectionDescriptions", newDirections);
                     XposedHelpers.callMethod(param.thisObject, "updateTargets");
                 }
             });
@@ -283,6 +310,7 @@ public class ModLockscreen {
         public String key;
         public Intent intent;
         public Drawable icon;
+        public String name;
     }
 
     private static AppInfo getAppInfo(Context context, String app) {
@@ -304,6 +332,7 @@ public class ModLockscreen {
             PackageManager pm = context.getPackageManager();
             Resources res = context.getResources();
             ActivityInfo ai = pm.getActivityInfo(cn, 0);
+            appInfo.name = (String) ai.loadLabel(pm);
             Bitmap appIcon = ((BitmapDrawable)ai.loadIcon(pm)).getBitmap();
             int sizePx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, 
                     res.getDisplayMetrics());

@@ -119,7 +119,7 @@
                 android:key="pref_quick_settings"
                 android:title="@string/quick_settings_title"
                 android:summary="@string/quick_settings_summary" />
-    
+
             <ListPreference
                 android:key="pref_qs_tiles_per_row" 
                 android:title="@string/pref_qs_tiles_per_row_title"
@@ -127,6 +127,14 @@
                 android:entries="@array/qs_tiles_per_row_entries"
                 android:entryValues="@array/qs_tiles_per_row_values"
                 android:defaultValue="3" />
+
+            <MultiSelectListPreference 
+                android:key="pref_qs_tile_behaviour_override"
+                android:title="@string/pref_qs_tile_behaviour_override_title"
+                android:summary="@string/pref_qs_tile_behaviour_override_summary"
+                android:entries="@array/qs_tile_override_entries"
+                android:entryValues="@array/qs_tile_override_values"
+                android:defaultValue="@array/empty_array" />
 
             <PreferenceScreen
                 android:key="pref_cat_quick_app_tile"
@@ -164,6 +172,13 @@
                 android:title="@string/pref_network_mode_tile_mode_title"
                 android:entries="@array/network_mode_tile_mode_entries"
                 android:entryValues="@array/network_mode_tile_mode_values"
+                android:defaultValue="0" />
+
+            <ListPreference
+                android:key="pref_qs_network_mode_sim_slot" 
+                android:title="@string/pref_qs_network_mode_sim_slot_title"
+                android:entries="@array/network_mode_sim_slot_entries"
+                android:entryValues="@array/network_mode_sim_slot_values"
                 android:defaultValue="0" />
 
             <CheckBoxPreference 
@@ -239,24 +254,6 @@
                 monitorBoxEnabled="true"
                 monitorBoxUnit="%" />
 
-            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-                android:key="pref_tm_navbar_launcher"
-                android:title="@string/pref_tm_navbar_launcher_title"
-                minimum="0"
-                maximum="100"
-                interval="5"
-                monitorBoxEnabled="true"
-                monitorBoxUnit="%" />
-
-            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-                android:key="pref_tm_navbar_lockscreen"
-                android:title="@string/pref_tm_navbar_lockscreen_title"
-                minimum="0"
-                maximum="100"
-                interval="5"
-                monitorBoxEnabled="true"
-                monitorBoxUnit="%" />
-
         </PreferenceScreen>
 
         <PreferenceScreen
@@ -311,10 +308,12 @@
             android:key="pref_cat_pie_control"
             android:title="@string/pie_control_title">
 
-            <CheckBoxPreference 
-                android:key="pref_pie_control_enable"
+            <ListPreference 
+                android:key="pref_pie_control_enable2"
                 android:title="@string/pie_control_enable_title"
-                android:defaultValue="false" />
+                android:entries="@array/pie_controls_enable_entries"
+                android:entryValues="@array/pie_controls_enable_values"
+                android:defaultValue="0" />
 
             <CheckBoxPreference 
                 android:key="pref_pie_control_search"
@@ -476,6 +475,24 @@
             android:key="pref_navbar_menukey"
             android:title="@string/pref_navbar_menukey_title"
             android:defaultValue="false" />
+
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+            android:key="pref_tm_navbar_launcher"
+            android:title="@string/pref_tm_navbar_launcher_title"
+            minimum="0"
+            maximum="100"
+            interval="5"
+            monitorBoxEnabled="true"
+            monitorBoxUnit="%" />
+
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+            android:key="pref_tm_navbar_lockscreen"
+            android:title="@string/pref_tm_navbar_lockscreen_title"
+            minimum="0"
+            maximum="100"
+            interval="5"
+            monitorBoxEnabled="true"
+            monitorBoxUnit="%" />
 
     </PreferenceScreen>
 

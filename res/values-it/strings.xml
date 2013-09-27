@@ -512,6 +512,50 @@
     <string name="pref_navbar_width_summary">Applica alla visualizzazione orizzontale</string>
     <string name="pref_navbar_menukey_title">Mostra sempre tasto menu</string>
 
+ <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Abilita Fotografa schermo nel menu apegnimento</string>
+
+    <!-- Lockscreen targets -->
+    <string name="pref_cat_lockscreen_targets_title">Applicazioni in Lockscreen</string>
+    <string name="pref_lockscreen_targets_enable_title">Abilita app in lockscreen</string>
+    <string name="pref_lockscreen_targets_enable_summary">Attivazione Applicazioni in Lockscreen</string>
+    <string name="pref_lockscreen_targets_app_title">Applicazione %s</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Scostamento dell\'anello di sblocco, margine inferiore</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">Abilita controllo luminosità</string>
+    <string name="pref_statusbar_brightness_summary">Adjusts brightness by sliding over statusbar</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Telefonate</string>
+    <string name="pref_cat_phone_messaging_title">Messaggistica</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Elimina Unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">Converte i caratteri unicode in normali caratteri. Diminuisce la dimensione totale del messaggio.</string>
+    <string name="unicode_stripping_leave_intact">Lascia caratteri invariati</string>
+    <string name="unicode_stripping_non_encodable">Elimina caratteri non convertibili</string>
+    <string name="unicode_stripping_all">Elimina tutti i caratteri unicode</string>
+    
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Disabilita avviso di connessione lenta in 2G</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Disabilita avviso di velocità di connessione lenta causata dalla connessione in 2G, attivando la connessione da QuickSetting per SIM in modalità 2G</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">Segui il colore dell\'icona batteria stock</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Imposta colore dell\'orologio nella barra di stato, percentuale, e icona batteria come quello dell\'icona stock. Attivabile se impostazioni colore icone è spento.</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">Modalità attivazione reti nel relativo tile dei quicksetting</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
+    <string name="nm_tile_mode2">2G/2G+3G</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">Disabilita notifiche GPS</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">Abilita tutte le rotazioni</string>
+
 
 
 </resources>
