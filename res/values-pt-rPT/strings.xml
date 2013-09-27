@@ -4,7 +4,7 @@
     <string name="app_name">GravityBox</string>
 
     <string name="battery_style_title">Estilo do indicador de bateria</string>
-    <string name="battery_style_stock">Indicador de bateria pré-definido</string>
+    <string name="battery_style_stock">Indicador de bateria padrão</string>
     <string name="battery_style_circle">Indicador de bateria circular</string>
     <string name="battery_style_circle_percent">Indicador de bateria circular com percentagem</string>
     <string name="battery_style_percent">Texto de percentagem de bateria</string>
@@ -162,7 +162,7 @@
     <string name="pref_cat_lockscreen_summary">Contém vários ajustes relacionados com o ecrã de bloqueio</string>
     <string name="pref_cat_lockscreen_background_title">Fundo do ecrã de bloqueio</string>
     <string name="pref_lockscreen_background_title">Estilo do fundo</string>
-    <string name="lockscreen_bg_default">Fundo pré-definido</string>
+    <string name="lockscreen_bg_default">Fundo padrão</string>
     <string name="lockscreen_bg_color">Preencher com cor</string>
     <string name="lockscreen_bg_image">Imagem personalizada</string>
     <string name="pref_lockscreen_bg_color_title">Escolher cor</string>
@@ -279,7 +279,7 @@
 
     <!--  Solid black Holo background -->
     <string name="pref_holo_bg_solid_black_title">Fundo preto sólido</string>
-    <string name="pref_holo_bg_solid_black_summary">Utilizar fundo preto sólido no tema Holo predefinido em vez do gradiente preto-cinzento (necessário reiniciar)</string>
+    <string name="pref_holo_bg_solid_black_summary">Utilizar fundo preto sólido no tema padrão em vez do gradiente preto-cinzento (necessário reiniciar)</string>
 
     <!-- QuickSettings tiles per row -->
     <string name="pref_qs_tiles_per_row_title">Painéis por linha</string>
@@ -333,7 +333,7 @@
 
     <!-- Notification drawer background -->
     <string name="pref_notif_background_title">Fundo do painel de notificações</string>
-    <string name="notif_background_default">Fundo pré-definido</string>
+    <string name="notif_background_default">Fundo padrão</string>
     <string name="notif_background_color_fill">Preencher com cor</string>
     <string name="notif_background_custom_image">Imagem personalizada</string>
     <string name="pref_notif_color_title">Escolher cor</string>
@@ -383,7 +383,7 @@
 
     <!--  Dithered Holo background -->
     <string name="pref_holo_bg_dither_title">Fundo pontilhado</string>
-    <string name="pref_holo_bg_dither_summary">Substituir o fundo do tema Holo predefinido por um pontilhado por forma a evitar o efeito de bandas de cores (necessário reiniciar)</string>
+    <string name="pref_holo_bg_dither_summary">Substituir o fundo do tema padrão por um pontilhado por forma a evitar o efeito de bandas de cores (necessário reiniciar)</string>
 
     <!-- Disable hardware keys for pie -->
     <string name="pref_hwkeys_disable_title">Desativar teclas físicas</string>
@@ -520,9 +520,10 @@
     <string name="pref_navbar_enable_title">Ativar Barra de Navegação</string>
     <string name="pref_navbar_enable_summary">Necessário reiniciar</string>
     <string name="pref_navbar_height_title">Altura da Barra de Navegação</string>
-    <string name="pref_navbar_height_summary">Aplicável à orientação de ecrã vertical</string>
+    <string name="pref_navbar_height_summary">Aplicável à barra horizontal e orientação de ecrã vertical</string>
+    <string name="pref_navbar_height_landscape_summary">Aplicável à barra horizontal e orientação de ecrã horizontal</string>
     <string name="pref_navbar_width_title">Largura da Barra de Navegação</string>
-    <string name="pref_navbar_width_summary">Aplicável à orientação de ecrã horizontal</string>
+    <string name="pref_navbar_width_summary">Aplicável à barra vertical</string>
     <string name="pref_navbar_menukey_title">Mostar sempre botão Menu</string>
 
     <!-- Screenshot in power menu -->
@@ -533,7 +534,8 @@
     <string name="pref_lockscreen_targets_enable_title">Ativar alvos do anel de desbloqueio</string>
     <string name="pref_lockscreen_targets_enable_summary">Permite definir até cinco aplicações como alvo no anel de desbloqueio</string>
     <string name="pref_lockscreen_targets_app_title">Aplicação %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Desvio do anel de desbloqueio da margem inferior</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Desvio do anel em relação à margem inferior</string>
+    <string name="pref_lockscreen_targets_right_offset_title">Desvio do anel em relação à margem direita</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Ativar controlo de brilho</string>
@@ -556,13 +558,14 @@
     <string name="pref_mobile_data_slow2g_disable_summary">Desativa o aviso de ligação de dados lenta que ocorre quando se altera o modo de rede para 2G nas definições rápidas</string>
 
     <!-- Follow stock battery color -->
-    <string name="pref_sbcolor_follow_stock_battery_title">Associar cor pré-definida da bateria</string>
-    <string name="pref_sbcolor_follow_stock_battery_summary">Força o uso da cor pré-definida para o indicador de bateria na fonte do relógio, percentagem e no indicador de bateria circular. Aplicável quando a coloração dos indicadores está desativada.</string>
+    <string name="pref_sbcolor_follow_stock_battery_title">Associar cor padrão da bateria</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Força o uso da cor padrão para o indicador de bateria na fonte do relógio, percentagem e no indicador de bateria circular. Aplicável quando a coloração dos indicadores está desativada.</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
     <string name="pref_network_mode_tile_mode_title">Modo do painel Modo de Rede</string>
     <string name="nm_tile_mode1">2G/2G+3G/3G</string>
     <string name="nm_tile_mode2">2G/2G+3G</string>
+    <string name="nm_tile_mode3">2G/3G/4G</string>
 
     <!-- Disable GPS notifications -->
     <string name="pref_gps_notif_disable_title">Desativar notificações GPS</string>
@@ -585,5 +588,9 @@
     <string name="pie_controls_enabled_always">Sempre</string>
     <string name="pie_controls_enabled_expanded">Quando o modo ambiente de trabalho expandido estiver ativado</string>
     <string name="pie_controls_enabled_expanded_navbar">Quando o modo ambiente de trabalho expandido ocultar a Barra de Navegação</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Não alterar o indicador de bateria</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Utilizar caso o indicador de bateria padrão já tenha sido modificado por outro método</string>
 
 </resources>
