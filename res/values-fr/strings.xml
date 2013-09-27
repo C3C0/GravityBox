@@ -520,9 +520,10 @@
     <string name="pref_navbar_enable_title">Activer la barre de navigation</string>
     <string name="pref_navbar_enable_summary">Redémarrage nécessaire</string>
     <string name="pref_navbar_height_title">Hauteur barre de navigation</string>
-    <string name="pref_navbar_height_summary">Valable pour l\'orientation portrait</string>
+    <string name="pref_navbar_height_summary">Valable pour la barre de navigation horizontale et l\'orientation portrait</string>
+    <string name="pref_navbar_height_landscape_summary">Valable pour la barre de navigation horizontale et l\'orientation paysage</string>
     <string name="pref_navbar_width_title">Largeur barre de navigation</string>
-    <string name="pref_navbar_width_summary">Valable pour l\'orientation paysage</string>
+    <string name="pref_navbar_width_summary">Valable pour la barre de navigation verticale</string>
     <string name="pref_navbar_menukey_title">Toujours afficher la touche menu</string>
 
     <!-- Screenshot in power menu -->
@@ -533,7 +534,8 @@
     <string name="pref_lockscreen_targets_enable_title">Activer les cibles de l\'écran de déverrouillage</string>
     <string name="pref_lockscreen_targets_enable_summary">Interrupteur général pour les cibles de l\'écran de déverrouillage</string>
     <string name="pref_lockscreen_targets_app_title">Application cible %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Marge inférieure anneau de déverrouillage</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Marge verticale anneau de déverrouillage</string>
+    <string name="pref_lockscreen_targets_right_offset_title">Marge horizontale anneau de déverrouillage</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Activer le contrôle de la luminosité</string>
@@ -586,5 +588,9 @@
     <string name="pie_controls_enabled_always">Toujours</string>
     <string name="pie_controls_enabled_expanded">Quand le bureau étendu est actif</string>
     <string name="pie_controls_enabled_expanded_navbar">Quand le bureau étendu masque la barre de navigation</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Laisser l\'icône d\'origine de la batterie intacte</string>
+    <string name="pref_statusbar_color_skip_battery_summary">À utiliser dans la cas où l\'icône originelle de la batterie serait remplacée par une batterie modifiée de tierce partie</string>
 
 </resources>
