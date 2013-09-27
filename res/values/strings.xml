@@ -587,4 +587,8 @@
     <string name="pie_controls_enabled_expanded">When expanded desktop on</string>
     <string name="pie_controls_enabled_expanded_navbar">When expanded desktop hides navigation bar</string>
 
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Leave stock battery icon intact</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Use in case stock battery icon was replaced with 3rd party battery mod</string>
+
 </resources>

@@ -230,6 +230,12 @@
                 android:summary="@string/pref_statusbar_data_activity_color_summary"
                 android:defaultValue="@integer/COLOR_WHITE" />
 
+            <CheckBoxPreference 
+                android:key="pref_statusbar_color_skip_battery"
+                android:title="@string/pref_statusbar_color_skip_battery_title"
+                android:summary="@string/pref_statusbar_color_skip_battery_summary"
+                android:defaultValue="false" />
+
         </PreferenceScreen>
 
         <PreferenceScreen 
