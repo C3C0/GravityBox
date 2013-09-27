@@ -36,7 +36,7 @@ public class GpsTile extends AQuickSettingsTile {
             if (action.equals(LocationManager.PROVIDERS_CHANGED_ACTION)) {
                 mGpsEnabled = Settings.Secure.isLocationProviderEnabled(
                         mContext.getContentResolver(), LocationManager.GPS_PROVIDER);
-                mGpsFixed &= mGpsEnabled;
+                mGpsFixed = false;
             } else if (action.equals(GPS_FIX_CHANGE_ACTION)) {
                 mGpsFixed = intent.getBooleanExtra(EXTRA_GPS_ENABLED, false);
             }
