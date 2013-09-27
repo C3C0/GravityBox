@@ -40,7 +40,6 @@
     <string name="vol_key_cursor_control_on_reverse">Teclas de volume +/- movem o cursor para a direita/esquerda</string>
 
     <string name="recents_clear_all_title">Limpar todas as tarefas recentes</string>
-    <string name="recents_clear_all_summary">Ativa botão que possibilita limpar todas as tarefas recentes de uma só vez na janela de tarefas recentes</string>
 
     <string name="fix_datetime_crash_title">Corrigir problema nas definições de data e hora</string>
     <string name="fix_datetime_crash_summary">Selecionar caso tenha problemas ao aceder à configuração de data e hora nas definições do telefone (necessário reiniciar)</string>
@@ -89,6 +88,7 @@
     <string name="qs_tile_wifi">Wi-Fi</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_gps_alt">GPS (estilo CM)</string>
     <string name="qs_tile_mobile_data">Dados 3G</string>
     <string name="qs_tile_network_mode">Modo de Rede</string>
     <string name="qs_tile_data_usage">Utilização de dados</string>
@@ -569,5 +569,21 @@
 
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Permitir todas as orientações</string>
+
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">Substituir comportamento padrão dos painéis</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Permite substituir o comportamento padrão dos painéis seleccionados ao tocar / manter pressionado (necessário reiniciar)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">Modo de Rede por cartão SIM</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Permite definir qual o cartão SIM que será controlado pelo painel Modo de Rede (%s)</string>
+    <string name="sim_slot1">Cartão SIM 1</string>
+    <string name="sim_slot2">Cartão SIM 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">Nunca</string>
+    <string name="pie_controls_enabled_always">Sempre</string>
+    <string name="pie_controls_enabled_expanded">Quando o modo ambiente de trabalho expandido estiver ativado</string>
+    <string name="pie_controls_enabled_expanded_navbar">Quando o modo ambiente de trabalho expandido ocultar a Barra de Navegação</string>
 
 </resources>
