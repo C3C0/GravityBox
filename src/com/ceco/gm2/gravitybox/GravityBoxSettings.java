@@ -318,6 +318,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         "pref_lockscreen_targets_app3", "pref_lockscreen_targets_app4"
     };
     public static final String PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET = "pref_lockscreen_targets_bottom_offset";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET = "pref_lockscreen_targets_right_offset";
 
     public static final String PREF_KEY_STATUSBAR_BRIGHTNESS = "pref_statusbar_brightness";
     public static final String ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED = "gravitybox.intent.action.STATUSBAR_BRIGHTNESS_CHANGED";
@@ -556,6 +557,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefMusicVolumeSteps;
         private AppPickerPreference[] mPrefLockscreenTargetsApp;
         private SeekBarPreference mPrefLockscreenTargetsBottomOffset;
+        private SeekBarPreference mPrefLockscreenTargetsRightOffset;
         private CheckBoxPreference mPrefMobileDataSlow2gDisable;
         private PreferenceCategory mPrefCatPhoneTelephony;
         private PreferenceCategory mPrefCatPhoneMobileData;
@@ -700,6 +702,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             }
             mPrefLockscreenTargetsBottomOffset = (SeekBarPreference) findPreference(
                     PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET);
+            mPrefLockscreenTargetsRightOffset = (SeekBarPreference) findPreference(
+                    PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET);
 
             mPrefCatPhoneTelephony = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_TELEPHONY);
             mPrefCatPhoneMobileData = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MOBILE_DATA);
@@ -952,6 +956,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                     p.setEnabled(enabled);
                 }
                 mPrefLockscreenTargetsBottomOffset.setEnabled(enabled);
+                mPrefLockscreenTargetsRightOffset.setEnabled(enabled);
             }
 
             if (key == null || key.equals(PREF_KEY_NETWORK_MODE_TILE_MODE)) {

@@ -51,6 +51,16 @@
                 monitorBoxUnit="px" 
                 android:defaultValue="0" />
 
+            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+                android:key="pref_lockscreen_targets_right_offset"
+                android:title="@string/pref_lockscreen_targets_right_offset_title"
+                minimum="0"
+                maximum="20"
+                interval="1"
+                monitorBoxEnabled="true"
+                monitorBoxUnit="px" 
+                android:defaultValue="0" />
+
         </PreferenceScreen>
 
         <PreferenceCategory 
