@@ -172,8 +172,6 @@ public class ModLockscreen {
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     if (DEBUG) log("KeyGuardSelectorView onFinishInflate()");
                     prefs.reload();
-                    if (!prefs.getBoolean(
-                            GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_ENABLE, false)) return;
 
                     final Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                     final Resources res = context.getResources();
@@ -183,10 +181,10 @@ public class ModLockscreen {
                     try {
                         final FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) gpView.getLayoutParams();
                         final int bottomMarginOffsetPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
-                                prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET, 0),
+                                prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_VERTICAL_OFFSET, 0),
                                 res.getDisplayMetrics());
                         final int rightMarginOffsetPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
-                                prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET, 0),
+                                prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_HORIZONTAL_OFFSET, 0),
                                 res.getDisplayMetrics());
                         lp.setMargins(lp.leftMargin, lp.topMargin, lp.rightMargin - rightMarginOffsetPx, 
                                 lp.bottomMargin - bottomMarginOffsetPx);
@@ -194,6 +192,9 @@ public class ModLockscreen {
                     } catch (Throwable t) {
                         log("Lockscreen targets: error while trying to modify GlowPadView layout" + t.getMessage());
                     }
+
+                    if (!prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_ENABLE, false)) return;
 
                     @SuppressWarnings("unchecked")
                     final ArrayList<Object> targets = (ArrayList<Object>) XposedHelpers.getObjectField(

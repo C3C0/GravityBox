@@ -529,13 +529,13 @@
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Capture d\'écran dans le menu d\'extinction</string>
 
-    <!-- Lockscreen targets -->
-    <string name="pref_cat_lockscreen_targets_title">Cibles de l\'écran de déverrouillage</string>
-    <string name="pref_lockscreen_targets_enable_title">Activer les cibles de l\'écran de déverrouillage</string>
-    <string name="pref_lockscreen_targets_enable_summary">Interrupteur général pour les cibles de l\'écran de déverrouillage</string>
-    <string name="pref_lockscreen_targets_app_title">Application cible %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Marge verticale anneau de déverrouillage</string>
-    <string name="pref_lockscreen_targets_right_offset_title">Marge horizontale anneau de déverrouillage</string>
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">Cibles de l\'écran de déverrouillage</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Activer les cibles de l\'écran de déverrouillage</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">Interrupteur général pour les cibles de l\'écran de déverrouillage</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Application cible %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Marge verticale anneau de déverrouillage</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">Marge horizontale anneau de déverrouillage</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Activer le contrôle de la luminosité</string>

@@ -343,11 +343,11 @@
     <string name="pref_navbar_width_summary">Dotyczy orientacji poziomej</string>
     <string name="pref_navbar_menukey_title">Zawsze pokazuj klawisz menu</string>
     <string name="pref_powermenu_screenshot_title">Zrzut ekranu w menu zasilania</string>
-    <string name="pref_cat_lockscreen_targets_title">Cele Ekranu Blokady</string>
-    <string name="pref_lockscreen_targets_enable_title">Włącz Cele Ekranu blokady</string>
-    <string name="pref_lockscreen_targets_enable_summary">Główny wyłącznik Celów Ekranu Blokady</string>
-    <string name="pref_lockscreen_targets_app_title">Aplikacja docelowa %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Przesunięcie pierścienia odblokowania</string>
+    <string name="pref_cat_lockscreen_ring_settings_title">Cele Ekranu Blokady</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Włącz Cele Ekranu blokady</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">Główny wyłącznik Celów Ekranu Blokady</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Aplikacja docelowa %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Przesunięcie pierścienia odblokowania</string>
     <string name="pref_statusbar_brightness_title">Włącz kontrolę jasności</string>
     <string name="pref_statusbar_brightness_summary">Regulacja jasności przy przesuwaniu palcem na pasku stanu</string>
     <string name="pref_cat_phone_telephony_title">Telefon</string>

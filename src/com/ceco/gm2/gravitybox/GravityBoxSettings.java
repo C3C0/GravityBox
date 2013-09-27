@@ -314,13 +314,13 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_NAVBAR_WIDTH = "navbarWidth";
     public static final String EXTRA_NAVBAR_MENUKEY = "navbarMenukey";
 
-    public static final String PREF_KEY_LOCKSCREEN_TARGETS_ENABLE = "pref_lockscreen_targets_enable";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_ENABLE = "pref_lockscreen_ring_targets_enable";
     public static final String PREF_KEY_LOCKSCREEN_TARGETS_APP[] = new String[] {
-        "pref_lockscreen_targets_app0", "pref_lockscreen_targets_app1", "pref_lockscreen_targets_app2",
-        "pref_lockscreen_targets_app3", "pref_lockscreen_targets_app4"
+        "pref_lockscreen_ring_targets_app0", "pref_lockscreen_ring_targets_app1", "pref_lockscreen_ring_targets_app2",
+        "pref_lockscreen_ring_targets_app3", "pref_lockscreen_ring_targets_app4"
     };
-    public static final String PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET = "pref_lockscreen_targets_bottom_offset2";
-    public static final String PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET = "pref_lockscreen_targets_right_offset2";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_VERTICAL_OFFSET = "pref_lockscreen_ring_targets_vertical_offset";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_HORIZONTAL_OFFSET = "pref_lockscreen_ring_targets_horizontal_offset";
 
     public static final String PREF_KEY_STATUSBAR_BRIGHTNESS = "pref_statusbar_brightness";
     public static final String ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED = "gravitybox.intent.action.STATUSBAR_BRIGHTNESS_CHANGED";
@@ -559,8 +559,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefNavbarMenukey;
         private CheckBoxPreference mPrefMusicVolumeSteps;
         private AppPickerPreference[] mPrefLockscreenTargetsApp;
-        private SeekBarPreference mPrefLockscreenTargetsBottomOffset;
-        private SeekBarPreference mPrefLockscreenTargetsRightOffset;
+        private SeekBarPreference mPrefLockscreenTargetsVerticalOffset;
+        private SeekBarPreference mPrefLockscreenTargetsHorizontalOffset;
         private CheckBoxPreference mPrefMobileDataSlow2gDisable;
         private PreferenceCategory mPrefCatPhoneTelephony;
         private PreferenceCategory mPrefCatPhoneMobileData;
@@ -700,14 +700,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefLockscreenTargetsApp[i] = (AppPickerPreference) findPreference(
                         PREF_KEY_LOCKSCREEN_TARGETS_APP[i]);
                 String title = String.format(
-                        getString(R.string.pref_lockscreen_targets_app_title), (i+1));
+                        getString(R.string.pref_lockscreen_ring_targets_app_title), (i+1));
                 mPrefLockscreenTargetsApp[i].setTitle(title);
                 mPrefLockscreenTargetsApp[i].setDialogTitle(title);
             }
-            mPrefLockscreenTargetsBottomOffset = (SeekBarPreference) findPreference(
-                    PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET);
-            mPrefLockscreenTargetsRightOffset = (SeekBarPreference) findPreference(
-                    PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET);
+            mPrefLockscreenTargetsVerticalOffset = (SeekBarPreference) findPreference(
+                    PREF_KEY_LOCKSCREEN_TARGETS_VERTICAL_OFFSET);
+            mPrefLockscreenTargetsHorizontalOffset = (SeekBarPreference) findPreference(
+                    PREF_KEY_LOCKSCREEN_TARGETS_HORIZONTAL_OFFSET);
 
             mPrefCatPhoneTelephony = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_TELEPHONY);
             mPrefCatPhoneMobileData = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MOBILE_DATA);
@@ -960,9 +960,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 for(Preference p : mPrefLockscreenTargetsApp) {
                     p.setEnabled(enabled);
                 }
-                mPrefLockscreenTargetsBottomOffset.setEnabled(enabled);
-                mPrefLockscreenTargetsRightOffset.setEnabled(enabled);
             }
+            mPrefLockscreenTargetsVerticalOffset.setEnabled(true);
+            mPrefLockscreenTargetsHorizontalOffset.setEnabled(true);
 
             if (key == null || key.equals(PREF_KEY_NETWORK_MODE_TILE_MODE)) {
                 mPrefNetworkModeTileMode.setSummary(mPrefNetworkModeTileMode.getEntry());
