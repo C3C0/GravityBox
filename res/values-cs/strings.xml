@@ -531,8 +531,8 @@
     <string name="pref_lockscreen_targets_enable_title">Povolit zkratky</string>
     <string name="pref_lockscreen_targets_enable_summary">Hlavní vypínač pro zkratky obrazovky uzamčení</string>
     <string name="pref_lockscreen_targets_app_title">Aplikace pro zkratku %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Spodní okraj prstence</string>
-    <string name="pref_lockscreen_targets_right_offset_title">Pravý okraj prstence</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Vertikální ofset prstence</string>
+    <string name="pref_lockscreen_targets_right_offset_title">Horizontální ofset prstence</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Povolit ovládání jasu</string>

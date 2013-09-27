@@ -534,8 +534,8 @@
     <string name="pref_lockscreen_targets_enable_title">Enable lockscreen targets</string>
     <string name="pref_lockscreen_targets_enable_summary">Master switch for lockscreen targets</string>
     <string name="pref_lockscreen_targets_app_title">Target application %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Unlock ring bottom offset</string>
-    <string name="pref_lockscreen_targets_right_offset_title">Unlock ring right offset</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Unlock ring vertical offset</string>
+    <string name="pref_lockscreen_targets_right_offset_title">Unlock ring horizontal offset</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Enable brightness control</string>

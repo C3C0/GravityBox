@@ -188,8 +188,8 @@ public class ModLockscreen {
                         final int rightMarginOffsetPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
                                 prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET, 0),
                                 res.getDisplayMetrics());
-                        lp.setMargins(lp.leftMargin, lp.topMargin, lp.rightMargin + rightMarginOffsetPx, 
-                                lp.bottomMargin + bottomMarginOffsetPx);
+                        lp.setMargins(lp.leftMargin, lp.topMargin, lp.rightMargin - rightMarginOffsetPx, 
+                                lp.bottomMargin - bottomMarginOffsetPx);
                         gpView.setLayoutParams(lp);
                     } catch (Throwable t) {
                         log("Lockscreen targets: error while trying to modify GlowPadView layout" + t.getMessage());

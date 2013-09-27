@@ -42,20 +42,20 @@
                 android:summary="@string/app_picker_none" />
 
             <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-                android:key="pref_lockscreen_targets_bottom_offset"
+                android:key="pref_lockscreen_targets_bottom_offset2"
                 android:title="@string/pref_lockscreen_targets_bottom_offset_title"
-                minimum="0"
-                maximum="30"
+                minimum="-50"
+                maximum="50"
                 interval="1"
                 monitorBoxEnabled="true"
                 monitorBoxUnit="px" 
                 android:defaultValue="0" />
 
             <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-                android:key="pref_lockscreen_targets_right_offset"
+                android:key="pref_lockscreen_targets_right_offset2"
                 android:title="@string/pref_lockscreen_targets_right_offset_title"
-                minimum="0"
-                maximum="20"
+                minimum="-30"
+                maximum="30"
                 interval="1"
                 monitorBoxEnabled="true"
                 monitorBoxUnit="px" 

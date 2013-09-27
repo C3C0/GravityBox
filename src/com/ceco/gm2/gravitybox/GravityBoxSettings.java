@@ -319,8 +319,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         "pref_lockscreen_targets_app0", "pref_lockscreen_targets_app1", "pref_lockscreen_targets_app2",
         "pref_lockscreen_targets_app3", "pref_lockscreen_targets_app4"
     };
-    public static final String PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET = "pref_lockscreen_targets_bottom_offset";
-    public static final String PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET = "pref_lockscreen_targets_right_offset";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET = "pref_lockscreen_targets_bottom_offset2";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET = "pref_lockscreen_targets_right_offset2";
 
     public static final String PREF_KEY_STATUSBAR_BRIGHTNESS = "pref_statusbar_brightness";
     public static final String ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED = "gravitybox.intent.action.STATUSBAR_BRIGHTNESS_CHANGED";
