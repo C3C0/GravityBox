@@ -9,7 +9,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class FixCalendar {
-    public static final String TAG = "FixCalendar";
+    public static final String TAG = "GB:FixCalendar";
     public static final String PACKAGE_NAME = "com.android.calendar";
     private static final boolean DEBUG = false;
 
@@ -24,7 +24,7 @@ public class FixCalendar {
     private static final String QRA_EXTRA_EVENT_ID = "eventId";
 
     public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
-        XposedBridge.log(TAG + ": init");
+        if (DEBUG) XposedBridge.log(TAG + ": init");
 
         try {
             final Class<?> alertReceiverClass = XposedHelpers.findClass(CLASS_ALERT_RECEIVER, classLoader);

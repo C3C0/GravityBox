@@ -32,7 +32,7 @@ public class TransparencyManager {
     
     public static final float KEYGUARD_ALPHA = 0.44f;
 
-    private static final String TAG = "TransparencyManager";
+    private static final String TAG = "GB:TransparencyManager";
 
     Object mNavbar;
     Object mStatusbar;

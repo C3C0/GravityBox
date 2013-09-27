@@ -32,8 +32,9 @@ import android.view.WindowManager.LayoutParams;
 import android.widget.TextView;
 
 public class QuickAppTile extends AQuickSettingsTile {
-    private static final String TAG = "QuickAppTile";
+    private static final String TAG = "GB:QuickAppTile";
     private static final String SEPARATOR = "#C3C0#";
+    private static final boolean DEBUG = false;
 
     public static final String SETTING_QUICKAPP_DEFAULT = "quick_app_default";
     public static final String SETTING_QUICKAPP_SLOT1 = "quick_app_slot1";
@@ -157,7 +158,7 @@ public class QuickAppTile extends AQuickSettingsTile {
 
         @Override
         public void onChange(boolean selfChange) {
-            log("SettingsObserver onChange()");
+            if (DEBUG) log("SettingsObserver onChange()");
             String value;
             AppInfo ai;
             ContentResolver cr = mContext.getContentResolver();

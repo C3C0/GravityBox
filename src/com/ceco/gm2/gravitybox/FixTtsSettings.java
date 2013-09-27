@@ -8,9 +8,10 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class FixTtsSettings {
-    private static final String TAG = "FixTtsSettings";
+    private static final String TAG = "GB:FixTtsSettings";
     public static final String PACKAGE_NAME = "com.android.settings";
     private static final String CLASS_VOICEIO_SETTINGS = "com.android.settings.VoiceInputOutputSettings";
+    private static final boolean DEBUG = false;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -21,7 +22,7 @@ public class FixTtsSettings {
 
             final Class<?> classVoiceIoSettings = XposedHelpers.findClass(CLASS_VOICEIO_SETTINGS, classLoader);
 
-            log("replacing populateOrRemovePreferences method");
+            if (DEBUG) log("replacing populateOrRemovePreferences method");
             XposedHelpers.findAndHookMethod(classVoiceIoSettings, "populateOrRemovePreferences", 
                     new XC_MethodReplacement() {
 
@@ -31,7 +32,7 @@ public class FixTtsSettings {
                                             "populateOrRemoveRecognizerPrefs");
                             boolean hasTts = (Boolean) XposedHelpers.callMethod(param.thisObject,
                                             "populateOrRemoveTtsPrefs");
-                            log("populateOrRemovePreferences: hasRecognizer=" + hasRecognizer + "; hasTts=" + hasTts);
+                            if (DEBUG) log("populateOrRemovePreferences: hasRecognizer=" + hasRecognizer + "; hasTts=" + hasTts);
 
                             if (hasRecognizer || hasTts) {
                                 return null;

@@ -12,7 +12,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class ModCallCard {
-    private static final String TAG = "ModCallCard";
+    private static final String TAG = "GB:ModCallCard";
     public static final String PACKAGE_NAME = "com.android.phone";
     private static final String CLASS_CALLCARD = "com.android.phone.CallCard";
     private static final String CLASS_PHONE_CONSTANTS_STATE = Build.VERSION.SDK_INT > 16 ?
@@ -20,13 +20,14 @@ public class ModCallCard {
             "com.android.internal.telephony.Phone$State";
     private static final String CLASS_CALL = "com.android.internal.telephony.Call";
     private static final String CLASS_IN_CALL_TOUCH_UI = "com.android.phone.InCallTouchUi";
+    private static final boolean DEBUG = false;
     
     private static Class<?> phoneConstStateClass;
     private static Class<?> callClass;
 
     public static void initZygote() {
         try {
-            XposedBridge.log(TAG + ": initZygote");
+            if (DEBUG) XposedBridge.log(TAG + ": initZygote");
             phoneConstStateClass = XposedHelpers.findClass(CLASS_PHONE_CONSTANTS_STATE, null);
             callClass = XposedHelpers.findClass(CLASS_CALL, null);
         } catch (Throwable t) {
@@ -35,7 +36,7 @@ public class ModCallCard {
     }
 
     public static void init(final XSharedPreferences prefs, ClassLoader classLoader) {
-        XposedBridge.log(TAG + ": init");
+        if (DEBUG) XposedBridge.log(TAG + ": init");
 
         try {
             Class<?> callCardClass = XposedHelpers.findClass(CLASS_CALLCARD, classLoader);
@@ -48,7 +49,7 @@ public class ModCallCard {
                     prefs.reload();
                     if (!prefs.getBoolean(GravityBoxSettings.PREF_KEY_CALLER_FULLSCREEN_PHOTO, false))
                         return;
-                    XposedBridge.log(TAG + ": CallCard: after updateCallInfoLayout");
+                    if (DEBUG) XposedBridge.log(TAG + ": CallCard: after updateCallInfoLayout");
 
                     LinearLayout layout = (LinearLayout) param.thisObject;
                     ViewGroup.MarginLayoutParams mlParams = 
@@ -67,7 +68,7 @@ public class ModCallCard {
                         prefs.reload();
                         if (!prefs.getBoolean(GravityBoxSettings.PREF_KEY_CALLER_FULLSCREEN_PHOTO, false))
                             return;
-                        XposedBridge.log(TAG + ": CallCard: after updateCallBannerBackground");
+                        if (DEBUG) XposedBridge.log(TAG + ": CallCard: after updateCallBannerBackground");
     
                         TextView simIndicator = 
                                 (TextView) XposedHelpers.getObjectField(param.thisObject, "mSimIndicator");
@@ -94,7 +95,7 @@ public class ModCallCard {
                     callClass, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    XposedBridge.log(TAG + ": InCallTouchUi: after showIncomingCallWidget");
+                    if (DEBUG) XposedBridge.log(TAG + ": InCallTouchUi: after showIncomingCallWidget");
                     prefs.reload();
                     boolean showFullscreen = 
                             prefs.getBoolean(GravityBoxSettings.PREF_KEY_CALLER_FULLSCREEN_PHOTO, false);

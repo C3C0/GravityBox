@@ -20,17 +20,17 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         prefs = new XSharedPreferences(PACKAGE_NAME);
         prefs.makeWorldReadable();
 
-        XposedBridge.log("Hardware: " + Build.HARDWARE);
-        XposedBridge.log("Product: " + Build.PRODUCT);
-        XposedBridge.log("Device manufacturer: " + Build.MANUFACTURER);
-        XposedBridge.log("Device brand: " + Build.BRAND);
-        XposedBridge.log("Device model: " + Build.MODEL);
-        XposedBridge.log("Device type: " + (Utils.isTablet() ? "tablet" : "phone"));
-        XposedBridge.log("Is MTK device: " + Utils.isMtkDevice());
-        XposedBridge.log("Has Gemini support: " + Utils.hasGeminiSupport());
-        XposedBridge.log("Android SDK: " + Build.VERSION.SDK_INT);
-        XposedBridge.log("Android Release: " + Build.VERSION.RELEASE);
-        XposedBridge.log("ROM: " + Build.DISPLAY);
+        XposedBridge.log("GB:Hardware: " + Build.HARDWARE);
+        XposedBridge.log("GB:Product: " + Build.PRODUCT);
+        XposedBridge.log("GB:Device manufacturer: " + Build.MANUFACTURER);
+        XposedBridge.log("GB:Device brand: " + Build.BRAND);
+        XposedBridge.log("GB:Device model: " + Build.MODEL);
+        XposedBridge.log("GB:Device type: " + (Utils.isTablet() ? "tablet" : "phone"));
+        XposedBridge.log("GB:Is MTK device: " + Utils.isMtkDevice());
+        XposedBridge.log("GB:Has Gemini support: " + Utils.hasGeminiSupport());
+        XposedBridge.log("GB:Android SDK: " + Build.VERSION.SDK_INT);
+        XposedBridge.log("GB:Android Release: " + Build.VERSION.RELEASE);
+        XposedBridge.log("GB:ROM: " + Build.DISPLAY);
 
         SystemWideResources.initResources(prefs);
 

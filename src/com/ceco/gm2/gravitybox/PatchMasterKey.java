@@ -23,7 +23,7 @@ import libcore.io.HeapBufferIterator;
 import libcore.io.Streams;
 
 public class PatchMasterKey {
-    private static final String TAG = "PatchMasterKey";
+    private static final String TAG = "GB:PatchMasterKey";
 
     private static final long CENSIG = 0x2014b50;
     private static final int GPBF_ENCRYPTED_FLAG = 1 << 0;

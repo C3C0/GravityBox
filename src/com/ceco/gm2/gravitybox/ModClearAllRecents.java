@@ -21,11 +21,12 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.XC_MethodHook.MethodHookParam;
 
 public class ModClearAllRecents {
-    private static final String TAG = "ModClearAllRecents";
+    private static final String TAG = "GB:ModClearAllRecents";
     public static final String PACKAGE_NAME = "com.android.systemui";
     public static final String CLASS_RECENT_VERTICAL_SCROLL_VIEW = "com.android.systemui.recent.RecentsVerticalScrollView";
     public static final String CLASS_RECENT_HORIZONTAL_SCROLL_VIEW = "com.android.systemui.recent.RecentsHorizontalScrollView";
     public static final String CLASS_RECENT_PANEL_VIEW = "com.android.systemui.recent.RecentsPanelView";
+    private static final boolean DEBUG = false;
 
     private static XSharedPreferences mPrefs;
 
@@ -59,7 +60,7 @@ public class ModClearAllRecents {
                     if (Build.DISPLAY.toLowerCase().contains("gravitymod")) {
                         View rcv = vg.findViewById(res.getIdentifier("recents_clear", "id", PACKAGE_NAME));
                         if (rcv != null) {
-                            log("recents_clear ImageView found (GM2?) - removing");
+                            if (DEBUG) log("recents_clear ImageView found (GM2?) - removing");
                             vg.removeView(rcv);
                         }
                     }
@@ -85,7 +86,7 @@ public class ModClearAllRecents {
                     });
                     imgView.setVisibility(View.GONE);
                     vg.addView(imgView);
-                    log("clearAllButton ImageView injected");
+                    if (DEBUG) log("clearAllButton ImageView injected");
                     updateButtonLayout((View) param.thisObject, imgView);
                 }
             });
@@ -170,7 +171,7 @@ public class ModClearAllRecents {
         if (param.args[0] != null)
             return;
 
-        log("handleDismissChild - removing all views");
+        if (DEBUG) log("handleDismissChild - removing all views");
 
         LinearLayout mLinearLayout = (LinearLayout) XposedHelpers.getObjectField(param.thisObject, "mLinearLayout");
         Handler handler = new Handler();

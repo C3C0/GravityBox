@@ -8,12 +8,17 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class ModVolKeyCursor {
-    public static final String TAG = "ModVolKeyCursor";
+    public static final String TAG = "GB:ModVolKeyCursor";
     public static final String CLASS_IME_SERVICE = "android.inputmethodservice.InputMethodService";
     private static int mVolKeyCursorControl = GravityBoxSettings.VOL_KEY_CURSOR_CONTROL_OFF;
+    private static final boolean DEBUG = false;
+
+    private static void log (String message) {
+        XposedBridge.log(TAG + ": " + message);
+    }
 
     public static void initZygote(final XSharedPreferences prefs) {
-        XposedBridge.log(TAG + ": initZygote");
+        if (DEBUG) log("initZygote");
 
         try {
             final Class<?> imeClass = XposedHelpers.findClass(CLASS_IME_SERVICE, null);
@@ -24,7 +29,7 @@ public class ModVolKeyCursor {
                     prefs.reload();
                     mVolKeyCursorControl = 
                             Integer.valueOf(prefs.getString(GravityBoxSettings.PREF_KEY_VOL_KEY_CURSOR_CONTROL, "0")); 
-                    XposedBridge.log(TAG + ": onShowInputRequested: refreshing configuartion; " +
+                    if (DEBUG) log("onShowInputRequested: refreshing configuartion; " +
                     		"mVolKeyCursorControl = " + mVolKeyCursorControl);
                 } 
             });
@@ -34,7 +39,7 @@ public class ModVolKeyCursor {
                 protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
                     InputMethodService imeService = (InputMethodService) param.thisObject; 
                     if (imeService == null) {
-                        XposedBridge.log(TAG + ": failed to cast param.thisObject to InputMethodService");
+                        if (DEBUG) log("failed to cast param.thisObject to InputMethodService");
                         return;
                     }
 
@@ -72,7 +77,7 @@ public class ModVolKeyCursor {
                 protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
                     InputMethodService imeService = (InputMethodService) param.thisObject; 
                     if (imeService == null) {
-                        XposedBridge.log(TAG + ": failed to cast param.thisObject to InputMethodService");
+                        log("failed to cast param.thisObject to InputMethodService");
                         return;
                     }
                     

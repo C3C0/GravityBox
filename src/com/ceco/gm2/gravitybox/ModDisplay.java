@@ -20,7 +20,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class ModDisplay {
-    private static final String TAG = "ModDisplay";
+    private static final String TAG = "GB:ModDisplay";
     private static final String CLASS_DISPLAY_POWER_CONTROLLER = "com.android.server.power.DisplayPowerController";
     private static final String CLASS_LIGHT_SERVICE_LIGHT = "com.android.server.LightsService$Light";
     private static final String CLASS_LIGHT_SERVICE = "com.android.server.LightsService";
@@ -50,7 +50,7 @@ public class ModDisplay {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            log("Broadcast received: " + intent.toString());
+            if (DEBUG) log("Broadcast received: " + intent.toString());
             if(intent.getAction().equals(ACTION_GET_AUTOBRIGHTNESS_CONFIG) &&
                     intent.hasExtra("receiver")) {
                 ResultReceiver receiver = intent.getParcelableExtra("receiver");
@@ -167,17 +167,17 @@ public class ModDisplay {
                 int brightnessMin = prefs.getInt(GravityBoxSettings.PREF_KEY_BRIGHTNESS_MIN, 20);
                 XResources.setSystemWideReplacement(
                     "android", "integer", "config_screenBrightnessSettingMinimum", brightnessMin);
-                log("Minimum brightness value set to: " + brightnessMin);
+                if (DEBUG) log("Minimum brightness value set to: " + brightnessMin);
 
                 int screenDim = prefs.getInt(GravityBoxSettings.PREF_KEY_SCREEN_DIM_LEVEL, 10);
                 XResources.setSystemWideReplacement(
                         "android", "integer", "config_screenBrightnessDim", screenDim);
-                log("Screen dim level set to: " + screenDim);
+                if (DEBUG) log("Screen dim level set to: " + screenDim);
 
                 XposedBridge.hookAllConstructors(classDisplayPowerController, new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                        log("DisplayPowerController constructed");
+                        if (DEBUG) log("DisplayPowerController constructed");
                         if (param.args.length < 2) {
                             log("Unsupported parameters. Aborting.");
                             return;
@@ -245,7 +245,7 @@ public class ModDisplay {
                         intentFilter.addAction(Intent.ACTION_SCREEN_ON);
                         intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
                         context.registerReceiver(mBroadcastReceiver, intentFilter);
-                        log("LightsService constructed. Broadcast receiver registered.");
+                        if (DEBUG) log("LightsService constructed. Broadcast receiver registered.");
                     }
                 }
             });
@@ -258,7 +258,7 @@ public class ModDisplay {
                     if (mHandler == null) mHandler = new Handler();
                     if (mLight == null) mLight = param.thisObject;
                     int id = XposedHelpers.getIntField(param.thisObject, "mId");
-                    if (DEBUG ) log("lightId=" + id + "; color=" + param.args[0] + 
+                    if (DEBUG) log("lightId=" + id + "; color=" + param.args[0] + 
                             "; mode=" + param.args[1] + "; " + "onMS=" + param.args[2] + 
                             "; offMS=" + param.args[3] + "; bMode=" + param.args[4]);
 
@@ -287,7 +287,7 @@ public class ModDisplay {
                         if (id == LIGHT_ID_NOTIFICATIONS || id == LIGHT_ID_ATTENTION) {
                             if ((Integer)param.args[0] != 0) {
                                 if (!mPendingNotif) {
-                                    log("New notification. Entering PendingNotif state");
+                                    if (DEBUG) log("New notification. Entering PendingNotif state");
                                     mPendingNotif = true;
                                     mWakeLock = mPm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "GbModDisplay");
                                     mWakeLock.acquire(3600000);
@@ -295,7 +295,7 @@ public class ModDisplay {
                                     mHandler.post(mPendingNotifRunnable);
                                 }
                             } else if (mPendingNotif) {
-                                log("Notification dismissed. Leaving PendingNotif state");
+                                if (DEBUG) log("Notification dismissed. Leaving PendingNotif state");
                                 mPendingNotif = false;
                                 if (mWakeLock.isHeld()) {
                                     mWakeLock.release();
@@ -340,6 +340,6 @@ public class ModDisplay {
         mScreenBrightnessRangeMinimum = (Integer) XposedHelpers.callMethod(
                 mDisplayPowerController, "clampAbsoluteBrightness", screenBrightnessMinimum);
 
-        log("Autobrightness config updated");
+        if (DEBUG) log("Autobrightness config updated");
     }
 }

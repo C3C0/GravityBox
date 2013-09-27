@@ -12,8 +12,9 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class SystemPropertyProvider {
-    private static final String TAG = "SystemPropertyProvider";
+    private static final String TAG = "GB:SystemPropertyProvider";
     public static final String PACKAGE_NAME = "com.android.systemui";
+    private static final boolean DEBUG = false;
 
     public static final String ACTION_GET_SYSTEM_PROPERTIES = 
             "gravitybox.intent.action.ACTION_GET_SYSTEM_PROPERTIES";
@@ -32,13 +33,13 @@ public class SystemPropertyProvider {
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     Context context = (Context) param.thisObject;
                     if (context != null) {
-                        log("SystemUIService created. Registering BroadcastReceiver");
+                        if (DEBUG) log("SystemUIService created. Registering BroadcastReceiver");
                         IntentFilter intentFilter = new IntentFilter();
                         intentFilter.addAction(ACTION_GET_SYSTEM_PROPERTIES);
                         context.registerReceiver(new BroadcastReceiver() {
                             @Override
                             public void onReceive(Context context, Intent intent) {
-                                log("Broadcast received: " + intent.toString());
+                                if (DEBUG) log("Broadcast received: " + intent.toString());
                                 if (intent.getAction().equals(ACTION_GET_SYSTEM_PROPERTIES)
                                         && intent.hasExtra("receiver")) {
                                     final Resources res = context.getResources();

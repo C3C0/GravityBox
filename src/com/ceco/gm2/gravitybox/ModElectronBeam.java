@@ -7,7 +7,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class ModElectronBeam {
-    private static final String TAG = "ModElectronBeam";
+    private static final String TAG = "GB:ModElectronBeam";
     private static final String CLASS_DISPLAY_POWER_STATE = "com.android.server.power.DisplayPowerState";
     private static final String CLASS_DISPLAY_POWER_CONTROLLER = "com.android.server.power.DisplayPowerController";
 

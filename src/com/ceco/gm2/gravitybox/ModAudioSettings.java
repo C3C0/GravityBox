@@ -10,7 +10,7 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.XC_MethodHook.Unhook;
 
 public class ModAudioSettings {
-    private static final String TAG = "ModAudioSettings";
+    private static final String TAG = "GB:ModAudioSettings";
     public static final String PACKAGE_NAME = "com.android.settings";
     private static final String CLASS_VOLUME_PREF = "com.mediatek.audioprofile.RingerVolumePreference";
     private static final String CLASS_VOLUMIZER = "com.mediatek.audioprofile.RingerVolumePreference$SeekBarVolumizer";
@@ -93,7 +93,7 @@ public class ModAudioSettings {
                             if (DEBUG) log ("mAudioManager setAudioProfileStreamVolume: " + 
                                     param2.args[0] + "," + param2.args[1] + "," + param2.args[2]);
                             if ((Integer)param2.args[0] != streamType) {
-                                log("setVolume: mAudioManager.setAudioProfileStreamVolume: " +
+                                if (DEBUG) log("setVolume: mAudioManager.setAudioProfileStreamVolume: " +
                                         "Attempt to set volume of foreign Stream Type - ignoring");
                                 param2.args[0] = streamType;
                             }
@@ -128,7 +128,7 @@ public class ModAudioSettings {
                                 @Override
                                 protected void beforeHookedMethod(MethodHookParam param2) throws Throwable {
                                     if ((Integer) param2.args[1] != streamType) {
-                                        log("revertVolume: setStreamVolume: " +
+                                        if (DEBUG) log("revertVolume: setStreamVolume: " +
                                                 "Attempt to set volume of foreign Stream Type - ignoring");
                                         param2.args[1] = streamType;
                                     }
@@ -162,7 +162,7 @@ public class ModAudioSettings {
                                 @Override
                                 protected void beforeHookedMethod(MethodHookParam param2) throws Throwable {
                                     if ((Integer) param2.args[1] != streamType) {
-                                        log("saveVolume: setStreamVolume: " +
+                                        if (DEBUG) log("saveVolume: setStreamVolume: " +
                                                 "Attempt to set volume of foreign Stream Type - ignoring");
                                         param2.args[1] = streamType;
                                     }

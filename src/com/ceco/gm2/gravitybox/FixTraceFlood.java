@@ -5,11 +5,12 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class FixTraceFlood {
-    private static final String TAG = "FixTraceFlood";
+    private static final String TAG = "GB:FixTraceFlood";
     private static final String CLASS_TRACE = "android.os.Trace";
+    private static final boolean DEBUG = false;
 
     public static void initZygote() {
-        XposedBridge.log(TAG + ": initZygote");
+        if (DEBUG) XposedBridge.log(TAG + ": initZygote");
 
         try {
             final Class<?> traceClass = XposedHelpers.findClass(CLASS_TRACE, null);

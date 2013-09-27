@@ -9,12 +9,13 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class FixDateTimeCrash {
-    private static final String TAG = "FixDateTimeCrash";
+    private static final String TAG = "GB:FixDateTimeCrash";
     public static final String PACKAGE_NAME = "com.android.settings";
     public static final String CLASS_DATETIME_SETTINGS = "com.android.settings.DateTimeSettings";
+    private static final boolean DEBUG = false;
 
     public static void init (final XSharedPreferences prefs, final ClassLoader classLoader) {
-        XposedBridge.log(TAG + ": init");
+        if (DEBUG) XposedBridge.log(TAG + ": init");
 
         try {
             Class<?> dtSettingsClass = XposedHelpers.findClass(CLASS_DATETIME_SETTINGS, classLoader);
@@ -26,7 +27,7 @@ public class FixDateTimeCrash {
                         protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
                             // Similar to new SimpleDateFormat("'GMT'Z, zzzz").format(new Date()), but
                             // we want "GMT-03:00" rather than "GMT-0300".
-                            XposedBridge.log(TAG + ": running replaced getTimeZoneText() method");
+                            if (DEBUG) XposedBridge.log(TAG + ": running replaced getTimeZoneText() method");
                             TimeZone tz = (TimeZone) param.args[0];
                             Date now = new Date();
                             return formatOffset(new StringBuilder(), tz, now).

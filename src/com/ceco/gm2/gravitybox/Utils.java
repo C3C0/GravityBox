@@ -10,6 +10,8 @@ import static de.robv.android.xposed.XposedHelpers.callStaticMethod;
 import static de.robv.android.xposed.XposedHelpers.findClass;
 
 public class Utils {
+    private static final String TAG = "GB:Utils";
+    private static final boolean DEBUG = false;
 
     // Device types
     private static final int DEVICE_PHONE = 0;
@@ -26,6 +28,10 @@ public class Utils {
     private static final Set<String> MTK_DEVICES = new HashSet<String>(Arrays.asList(
         new String[] {"mt6575","mt6577","mt6589","mt8389"}
     ));
+
+    private static void log(String message) {
+        XposedBridge.log(TAG + ": " + message);
+    }
 
     private static int getScreenType(Context con) {
         if (mDeviceType == -1) {
@@ -114,7 +120,7 @@ public class Utils {
                 Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
                 ret = (String) callStaticMethod(classSystemProperties, "get", key);
             } catch (Throwable t) {
-                XposedBridge.log("Utils: SystemProp.get failed: " + t.getMessage());
+                log("SystemProp.get failed: " + t.getMessage());
                 ret = null;
             }
             return ret;
@@ -131,7 +137,7 @@ public class Utils {
                 Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
                 ret = (String) callStaticMethod(classSystemProperties, "get", key, def);
             } catch (Throwable t) {
-                XposedBridge.log("Utils: SystemProp.get failed: " + t.getMessage());
+                log("SystemProp.get failed: " + t.getMessage());
                 ret = def;
             }
             return ret;
@@ -148,7 +154,7 @@ public class Utils {
                 Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
                 ret = (Integer) callStaticMethod(classSystemProperties, "getInt", key, def);
             } catch (Throwable t) {
-                XposedBridge.log("Utils: SystemProp.getInt failed: " + t.getMessage());
+                log("SystemProp.getInt failed: " + t.getMessage());
                 ret = def;
             }
             return ret;
@@ -165,7 +171,7 @@ public class Utils {
                 Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
                 ret = (Long) callStaticMethod(classSystemProperties, "getLong", key, def);
             } catch (Throwable t) {
-                XposedBridge.log("Utils: SystemProp.getLong failed: " + t.getMessage());
+                log("SystemProp.getLong failed: " + t.getMessage());
                 ret = def;
             }
             return ret;
@@ -185,7 +191,7 @@ public class Utils {
                 Class<?> classSystemProperties = findClass("android.os.SystemProperties", null);
                 ret = (Boolean) callStaticMethod(classSystemProperties, "getBoolean", key, def);
             } catch (Throwable t) {
-                XposedBridge.log("Utils: SystemProp.getBoolean failed: " + t.getMessage());
+                log("SystemProp.getBoolean failed: " + t.getMessage());
                 ret = def;
             }
             return ret;
