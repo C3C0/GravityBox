@@ -73,7 +73,7 @@ import de.robv.android.xposed.XposedHelpers.ClassNotFoundError;
  */
 public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnClickListener {
     public static final String PACKAGE_NAME = "com.android.systemui";
-    public static final String TAG = "PieController";
+    public static final String TAG = "GB:PieController";
     private static final String CLASS_BASE_STATUSBAR = "com.android.systemui.statusbar.BaseStatusBar";
     public static final boolean DEBUG = false;
 

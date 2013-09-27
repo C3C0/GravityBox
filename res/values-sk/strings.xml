@@ -87,6 +87,7 @@
     <string name="qs_tile_wifi">Wi-Fi</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_gps_alt">GPS (CM štýl)</string> 
     <string name="qs_tile_mobile_data">Mobilné dáta</string>
     <string name="qs_tile_network_mode">Typ siete</string>
     <string name="qs_tile_data_usage">Využitie dát</string>
@@ -512,9 +513,10 @@
     <string name="pref_navbar_enable_title">Povoliť navigačnú lištu</string>
     <string name="pref_navbar_enable_summary">Vyžaduje reštart</string>
     <string name="pref_navbar_height_title">Výška navigačnej lišty</string>
-    <string name="pref_navbar_height_summary">Pre orientáciu na výšku</string>
+    <string name="pref_navbar_height_summary">Pre horizontálnu navigačnú lištu a orientáciu na výšku</string>
+    <string name="pref_navbar_height_landscape_summary">Pre horizontálnu navigačnú lištu a orientáciu na šírku</string>
     <string name="pref_navbar_width_title">Šírka navigačnej lišty</string>
-    <string name="pref_navbar_width_summary">Pre orientáciu na šírku</string>
+    <string name="pref_navbar_width_summary">Pre vertikálnu navigačnú lištu</string>
     <string name="pref_navbar_menukey_title">Vždy zobraziť menu tlačidlo</string>
 
     <!-- Screenshot in power menu -->
@@ -525,7 +527,8 @@
     <string name="pref_lockscreen_targets_enable_title">Povoliť skratky</string>
     <string name="pref_lockscreen_targets_enable_summary">Hlavný vypínač pre skratky obrazovky uzamknutia</string>
     <string name="pref_lockscreen_targets_app_title">Aplikácia pre skratku %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Spodný okraj prstenca</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Vertikálny ofset prstenca</string>
+    <string name="pref_lockscreen_targets_right_offset_title">Horizontálny ofset prstenca</string> 
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Povoliť ovládanie jasu</string>
@@ -553,13 +556,31 @@
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
     <string name="pref_network_mode_tile_mode_title">Režim dlaždice typu mobilnej siete</string>
-    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
-    <string name="nm_tile_mode2">2G/2G+3G</string>
 
     <!-- Disable GPS notifications -->
     <string name="pref_gps_notif_disable_title">Skryť GPS notifikácie</string>
 
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Povoliť všetky rotácie</string>
+
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">Zmeniť štandardné správanie dlaždíc</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Zmení akcie na dotyk/dlhý dotyk pre zvolené dlaždice (vyžaduje reštart)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">SIM slot pre typ mobilnej siete</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Definuje SIM slot, na ktorý sa vzťahuje dlaždica zmeny režimu mobilnej siete (%s)</string>
+    <string name="sim_slot1">SIM slot 1</string>
+    <string name="sim_slot2">SIM slot 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">Nikdy</string>
+    <string name="pie_controls_enabled_always">Vždy aktívne</string>
+    <string name="pie_controls_enabled_expanded">Len počas rozšírenej plochy</string>
+    <string name="pie_controls_enabled_expanded_navbar">V prípade ak režim rozšírenej plochy skryje navigačnú lištu</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Nevyfarbovať stock ikonu batérie</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Použiť v prípade, ak bola stock ikona batérie nahradená inou (napr. použitím externého modu batérie)</string>
 
 </resources>

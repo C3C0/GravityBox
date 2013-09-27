@@ -179,14 +179,17 @@ public class ModLockscreen {
                     final Resources res = context.getResources();
                     final View gpView = (View) XposedHelpers.getObjectField(param.thisObject, "mGlowPadView");
 
-                    // apply custom bottom margin to shift unlock ring upwards
+                    // apply custom bottom/right margin to shift unlock ring upwards/left
                     try {
                         final FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) gpView.getLayoutParams();
                         final int bottomMarginOffsetPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
                                 prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET, 0),
                                 res.getDisplayMetrics());
-                        lp.setMargins(lp.leftMargin, lp.topMargin, lp.rightMargin, 
-                                lp.bottomMargin + bottomMarginOffsetPx);
+                        final int rightMarginOffsetPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
+                                prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET, 0),
+                                res.getDisplayMetrics());
+                        lp.setMargins(lp.leftMargin, lp.topMargin, lp.rightMargin - rightMarginOffsetPx, 
+                                lp.bottomMargin - bottomMarginOffsetPx);
                         gpView.setLayoutParams(lp);
                     } catch (Throwable t) {
                         log("Lockscreen targets: error while trying to modify GlowPadView layout" + t.getMessage());

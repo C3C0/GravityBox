@@ -9,9 +9,10 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class ModSettings {
-    private static final String TAG = "ModSettings";
+    private static final String TAG = "GB:ModSettings";
     public static final String PACKAGE_NAME = "com.android.settings";
     private static final String CLASS_PU_SUMMARY = "com.android.settings.fuelgauge.PowerUsageSummary";
+    private static final boolean DEBUG = false;
 
     private static void log (String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -36,7 +37,7 @@ public class ModSettings {
                         // TODO: make this more bullet-proof
                         Preference pref = appListGroup.getPreference(i);
                         if (pref != null && pref instanceof CheckBoxPreference) {
-                            log("CheckBoxPreference found: " + pref.getTitle() + " - removing");
+                            if (DEBUG) log("CheckBoxPreference found: " + pref.getTitle() + " - removing");
                             appListGroup.removePreference(pref);
                             break;
                         }

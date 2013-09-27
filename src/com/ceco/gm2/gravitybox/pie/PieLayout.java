@@ -51,7 +51,7 @@ import java.util.List;
  * (It handles the events for the snap points, too.)
  */
 public class PieLayout extends FrameLayout implements View.OnTouchListener {
-    public static final String TAG = "PieLayout";
+    public static final String TAG = "GB:PieLayout";
     public static final boolean DEBUG = false;
     public static final boolean DEBUG_INPUT = false;
 

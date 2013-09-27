@@ -9,7 +9,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -23,7 +22,7 @@ import android.widget.ImageView.ScaleType;
 
 class NotificationWallpaper extends FrameLayout {
 
-    private static final String TAG = "NotificationWallpaper";
+    private static final String TAG = "GB:NotificationWallpaper";
 
     private ImageView mNotificationWallpaperImage;
     private String mNotifBgImagePathPortrait;

@@ -28,7 +28,7 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XCallback;
 
 public class ModStatusbarColor {
-    private static final String TAG = "ModStatusbarColor";
+    private static final String TAG = "GB:ModStatusbarColor";
     public static final String PACKAGE_NAME = "com.android.systemui";
     private static final String CLASS_PHONE_WINDOW_MANAGER = "com.android.internal.policy.impl.PhoneWindowManager";
     private static final String CLASS_PHONE_STATUSBAR_VIEW = "com.android.systemui.statusbar.phone.PhoneStatusBarView";
@@ -38,6 +38,7 @@ public class ModStatusbarColor {
             "com.android.systemui.statusbar.SignalClusterView";
     private static final String CLASS_BATTERY_CONTROLLER = "com.android.systemui.statusbar.policy.BatteryController";
     private static final String CLASS_NOTIF_PANEL_VIEW = "com.android.systemui.statusbar.phone.NotificationPanelView";
+    private static final boolean DEBUG = false;
 
     public static final String ACTION_PHONE_STATUSBAR_VIEW_MADE = "gravitybox.intent.action.PHONE_STATUSBAR_VIEW_MADE";
 
@@ -45,6 +46,7 @@ public class ModStatusbarColor {
     private static StatusBarIconManager mIconManager;
     private static Object mSignalClusterView;
     private static boolean mIconColorEnabled;
+    private static boolean mSkipBatteryIcon;
     private static TextView mClock;
     private static CmCircleBattery mCircleBattery;
     private static TextView mPercentage;
@@ -60,6 +62,7 @@ public class ModStatusbarColor {
     static {
         mIconManager = new StatusBarIconManager(XModuleResources.createInstance(GravityBox.MODULE_PATH, null));
         mIconColorEnabled = false;
+        mSkipBatteryIcon = false;
         mBatteryLevel = 0;
         mBatteryPlugged = false;
         mRoamingIndicatorsDisabled = false;
@@ -89,7 +92,7 @@ public class ModStatusbarColor {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            log("received broadcast: " + intent.toString());
+            if (DEBUG) log("received broadcast: " + intent.toString());
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_STATUSBAR_COLOR_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_BG_COLOR)) {
                     int bgColor = intent.getIntExtra(GravityBoxSettings.EXTRA_SB_BG_COLOR, Color.BLACK);
@@ -108,7 +111,7 @@ public class ModStatusbarColor {
                 } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR_ENABLE)) {
                     mIconColorEnabled = intent.getBooleanExtra(
                             GravityBoxSettings.EXTRA_SB_ICON_COLOR_ENABLE, false);
-                    log("Icon colors master switch set to: " + mIconColorEnabled);
+                    if (DEBUG) log("Icon colors master switch set to: " + mIconColorEnabled);
                     if (!mIconColorEnabled) mIconManager.clearCache();
                     applyIconColors();
                 } else if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_SB_LAUNCHER)) {
@@ -130,6 +133,10 @@ public class ModStatusbarColor {
                 } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_COLOR_FOLLOW)) {
                     boolean follow = intent.getBooleanExtra(GravityBoxSettings.EXTRA_SB_COLOR_FOLLOW, false);
                     mIconManager.setFollowStockBatteryColor(follow);
+                    applyIconColors();
+                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_COLOR_SKIP_BATTERY)) {
+                    mSkipBatteryIcon = intent.getBooleanExtra(
+                            GravityBoxSettings.EXTRA_SB_COLOR_SKIP_BATTERY, false);
                     applyIconColors();
                 }
             }
@@ -166,7 +173,7 @@ public class ModStatusbarColor {
         try {
             final Class<?> phoneWindowManagerClass = XposedHelpers.findClass(CLASS_PHONE_WINDOW_MANAGER, null);
 
-            log("replacing getSystemDecorRectLw method");
+            if (DEBUG) log("replacing getSystemDecorRectLw method");
             XposedHelpers.findAndHookMethod(phoneWindowManagerClass,
                     "getSystemDecorRectLw", Rect.class, new XC_MethodReplacement() {
 
@@ -195,6 +202,7 @@ public class ModStatusbarColor {
                     XposedHelpers.findClass(CLASS_NOTIF_PANEL_VIEW, classLoader) : null;
 
             mIconColorEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE, false);
+            mSkipBatteryIcon = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_COLOR_SKIP_BATTERY, false);
             mIconManager.setIconColor(
                     prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR,
                             mIconManager.getDefaultIconColor()));
@@ -227,7 +235,7 @@ public class ModStatusbarColor {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     mSignalClusterView = param.thisObject;
-                    log("SignalClusterView constructed - mSignalClusterView set");
+                    if (DEBUG) log("SignalClusterView constructed - mSignalClusterView set");
                 }
             });
 
@@ -292,7 +300,7 @@ public class ModStatusbarColor {
                     if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
                         mBatteryLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
                         mBatteryPlugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) != 0;
-                        if (mIconColorEnabled && mBattery != null) {
+                        if (mIconColorEnabled && !mSkipBatteryIcon && mBattery != null) {
                             Drawable d = mIconManager.getBatteryIcon(mBatteryLevel, mBatteryPlugged);
                             if (d != null) mBattery.setImageDrawable(d);
                         }
@@ -518,7 +526,7 @@ public class ModStatusbarColor {
         ColorDrawable colorDrawable = new ColorDrawable();
         colorDrawable.setColor(color);
         mPanelBar.setBackground(colorDrawable);
-        log("statusbar background color set to: " + color);
+        if (DEBUG) log("statusbar background color set to: " + color);
     }
 
     private static void applyIconColors() {

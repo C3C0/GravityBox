@@ -10,7 +10,7 @@ import de.robv.android.xposed.XposedHelpers;
 
 public class FixCallerIdMms {
     public static final String PACKAGE_NAME = "com.android.mms";
-    public static final String TAG = "FixCallerIdMms";
+    public static final String TAG = "GB:FixCallerIdMms";
     public static final String CLASS_CONTACTS_CACHE = "com.android.mms.data.Contact$ContactsCache";
     private static final int STATIC_KEY_BUFFER_MAXIMUM_LENGTH = 5;
     private static final boolean DEBUG = false;

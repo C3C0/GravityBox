@@ -7,17 +7,17 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class FixCallerIdPhone {
-    public static final String TAG = "FixCallerIdPhone";
+    public static final String TAG = "GB:FixCallerIdPhone";
     public static final String CLASS_PHONE_NUMBER_UTILS = "android.telephony.PhoneNumberUtils";
     private static final boolean DEBUG = false;
 
     public static void initZygote(final XSharedPreferences prefs) {
-        XposedBridge.log(TAG + ": initZygote");
+        if (DEBUG) XposedBridge.log(TAG + ": initZygote");
 
         try {
             final Class<?> numUtilsClass = XposedHelpers.findClass(CLASS_PHONE_NUMBER_UTILS, null);
 
-            XposedBridge.log(TAG + ": replacing compareLoosely method");
+            if (DEBUG) XposedBridge.log(TAG + ": replacing compareLoosely method");
             XposedHelpers.findAndHookMethod(numUtilsClass, "compareLoosely", String.class, String.class, 
                     new XC_MethodReplacement() {
                 @Override
@@ -31,7 +31,7 @@ public class FixCallerIdPhone {
                 }
             });
 
-            XposedBridge.log(TAG + ": hooking internalGetStrippedReversed method");
+            if (DEBUG) XposedBridge.log(TAG + ": hooking internalGetStrippedReversed method");
             XposedHelpers.findAndHookMethod(numUtilsClass, "internalGetStrippedReversed", String.class, int.class,
                     new XC_MethodHook() {
                 @Override

@@ -9,7 +9,7 @@ import de.robv.android.xposed.XposedHelpers;
 
 public class ModCellConnService {
     public static final String PACKAGE_NAME = "com.mediatek.CellConnService";
-    private static final String TAG = "ModCellConnService";
+    private static final String TAG = "GB:ModCellConnService";
     private static final String CLASS_CONFIRM_DLG = "com.mediatek.CellConnService.ConfirmDlgActivity";
     private static final boolean DEBUG = false;
 

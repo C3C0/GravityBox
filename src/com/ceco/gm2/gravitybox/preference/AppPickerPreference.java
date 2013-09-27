@@ -16,13 +16,18 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.preference.DialogPreference;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.LruCache;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -40,18 +45,30 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
     private ProgressBar mProgressBar;
     private AsyncTask<Void,Void,Void> mAsyncTask;
     private String mDefaultSummaryText;
+    private int mAppIconSizePx;
+    private PackageManager mPackageManager;
+    private Resources mResources;
 
-    private enum AppIconLoadingState {
-        NOT_LOADED,
-        LOADING,
-        LOADED
+    private static LruCache<String, BitmapDrawable> sAppIconCache;
+    static {
+        final int cacheSize = Math.min((int)Runtime.getRuntime().maxMemory() / 6, 4194304);
+        sAppIconCache = new LruCache<String, BitmapDrawable>(cacheSize) {
+            @Override
+            protected int sizeOf(String key, BitmapDrawable d) {
+                return d.getBitmap().getByteCount();
+            }
+        };
     }
 
     public AppPickerPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         mContext = context;
+        mResources = mContext.getResources();
         mDefaultSummaryText = (String) getSummary();
+        mAppIconSizePx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, 
+                mResources.getDisplayMetrics());
+        mPackageManager = mContext.getPackageManager();
 
         setDialogLayoutResource(R.layout.app_picker_preference);
         setPositiveButtonText(null);
@@ -129,26 +146,25 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
 
             @Override
             protected Void doInBackground(Void... arg0) {
-                PackageManager pm = mContext.getPackageManager();
                 List<ResolveInfo> appList = new ArrayList<ResolveInfo>();
 
-                List<PackageInfo> packages = pm.getInstalledPackages(0);
+                List<PackageInfo> packages = mPackageManager.getInstalledPackages(0);
                 Intent mainIntent = new Intent(Intent.ACTION_MAIN);
                 mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
                 for(PackageInfo pi : packages) {
                     if (this.isCancelled()) break;
                     mainIntent.setPackage(pi.packageName);
-                    List<ResolveInfo> activityList = pm.queryIntentActivities(mainIntent, 0);
+                    List<ResolveInfo> activityList = mPackageManager.queryIntentActivities(mainIntent, 0);
                     for(ResolveInfo ri : activityList) {
                         appList.add(ri);
                     }
                 }
 
-                Collections.sort(appList, new ResolveInfo.DisplayNameComparator(pm));
+                Collections.sort(appList, new ResolveInfo.DisplayNameComparator(mPackageManager));
                 mListData.add(new AppItem(mContext.getString(R.string.app_picker_none), null));
                 for (ResolveInfo ri : appList) {
                     if (this.isCancelled()) break;
-                    String appName = ri.loadLabel(pm).toString();
+                    String appName = ri.loadLabel(mPackageManager).toString();
                     AppItem ai = new AppItem(appName, ri);
                     mListData.add(ai);
                 }
@@ -183,24 +199,22 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
         if (value == null) return null;
 
         try {
-            PackageManager pm = mContext.getPackageManager();
             String[] splitValue = value.split(SEPARATOR);
             ComponentName cn = new ComponentName(splitValue[0], splitValue[1]);
-            ActivityInfo ai = pm.getActivityInfo(cn, 0);
-            return (ai.loadLabel(pm).toString());
+            ActivityInfo ai = mPackageManager.getActivityInfo(cn, 0);
+            return (ai.loadLabel(mPackageManager).toString());
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    class AppItem implements IIconListAdapterItem, AppIconLoader.AppIconLoaderListener {
+    class AppItem implements IIconListAdapterItem {
         private String mPackageName;
         private String mClassName;
         private String mAppName;
-        private Drawable mAppIcon;
+        private BitmapDrawable mAppIcon;
         private ResolveInfo mResolveInfo;
-        private AppIconLoadingState mIconLoadingState;
 
         public AppItem(String appName, ResolveInfo ri) {
             mAppName = appName;
@@ -209,7 +223,6 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
                 mPackageName = mResolveInfo.activityInfo.packageName;
                 mClassName = mResolveInfo.activityInfo.name;
             }
-            mIconLoadingState = AppIconLoadingState.NOT_LOADED;
         }
 
         public String getPackageName() {
@@ -242,39 +255,24 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
 
         @Override
         public Drawable getIconLeft() {
-            if (mIconLoadingState == AppIconLoadingState.LOADED) return mAppIcon;
-            if (mIconLoadingState == AppIconLoadingState.LOADING
-                    || mResolveInfo == null) return null;
+            if (mResolveInfo == null) return null;
 
-            mAppIcon = AppIconLoader.getCachedIcon(getCachedIconKey());
-            if (mAppIcon != null) {
-                mIconLoadingState = AppIconLoadingState.LOADED;
-                return mAppIcon;
-            } else {
-                mIconLoadingState = AppIconLoadingState.LOADING;
-                AppIconLoader iconLoader = new AppIconLoader(mContext, 40, this);
-                iconLoader.execute(mResolveInfo);
-                return null;
+            if (mAppIcon == null) {
+                final String key = getValue();
+                mAppIcon = sAppIconCache.get(key);
+                if (mAppIcon == null) {
+                    Bitmap bitmap = ((BitmapDrawable)mResolveInfo.loadIcon(mPackageManager)).getBitmap();
+                    bitmap = Bitmap.createScaledBitmap(bitmap, mAppIconSizePx, mAppIconSizePx, false);
+                    mAppIcon = new BitmapDrawable(mResources, bitmap);
+                    sAppIconCache.put(key, mAppIcon);
+                }
             }
+            return mAppIcon;
         }
 
         @Override
         public Drawable getIconRight() {
             return null;
-        }
-
-        @Override
-        public void onAppIconLoaded(Drawable icon) {
-            mIconLoadingState = AppIconLoadingState.LOADED;
-            mAppIcon = icon;
-            if (mListView.getAdapter() != null) {
-                ((IconListAdapter)mListView.getAdapter()).notifyDataSetChanged();
-            }
-        }
-
-        @Override
-        public String getCachedIconKey() {
-            return getValue();
         }
     }
 }

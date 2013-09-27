@@ -16,7 +16,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class ModPhone {
-    private static final String TAG = "ModPhone";
+    private static final String TAG = "GB:ModPhone";
     public static final String PACKAGE_NAME = "com.android.phone";
     private static final String CLASS_IN_CALL_SCREEN = "com.android.phone.InCallScreen";
     private static final String ENUM_PHONE_STATE = Build.VERSION.SDK_INT > 16 ?
@@ -44,23 +44,23 @@ public class ModPhone {
 
                 @Override
                 public void onFaceUp() {
-                    log("PhoneSensorEventListener.onFaceUp");
+                    if (DEBUG) log("PhoneSensorEventListener.onFaceUp");
                     // do nothing
                 }
 
                 @Override
                 public void onFaceDown() {
-                    log("PhoneSensorEventListener.onFaceDown");
+                    if (DEBUG) log("PhoneSensorEventListener.onFaceDown");
                     if (mInCallScreen == null) return;
 
                     try {
                         switch (mFlipAction) {
                             case GravityBoxSettings.PHONE_FLIP_ACTION_MUTE:
-                                log("Muting call");
+                                if (DEBUG) log("Muting call");
                                 XposedHelpers.callMethod(mInCallScreen, "internalSilenceRinger");
                                 break;
                             case GravityBoxSettings.PHONE_FLIP_ACTION_DISMISS:
-                                log("Dismissing call");
+                                if (DEBUG) log("Dismissing call");
                                 XposedHelpers.callMethod(mInCallScreen, "internalHangup");
                                 break;
                             case GravityBoxSettings.PHONE_FLIP_ACTION_NONE:
@@ -84,7 +84,7 @@ public class ModPhone {
                 SensorManager.SENSOR_DELAY_NORMAL);
         mSensorListenerAttached = true;
 
-        log("Sensor listener attached");
+        if (DEBUG) log("Sensor listener attached");
     }
 
     private static void detachSensorListener() {
@@ -93,7 +93,7 @@ public class ModPhone {
         mSensorManager.unregisterListener(mPhoneSensorEventListener);
         mSensorListenerAttached = false;
 
-        log("Sensor listener detached");
+        if (DEBUG) log("Sensor listener detached");
     }
 
     public static void initZygote(final XSharedPreferences prefs) {
@@ -231,7 +231,7 @@ public class ModPhone {
 
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                            log("Vibrator: vibrate called from CallNotifier - ignoring");
+                            if (DEBUG) log("Vibrator: vibrate called from CallNotifier - ignoring");
                             param.setResult(null);
                         }
                     });

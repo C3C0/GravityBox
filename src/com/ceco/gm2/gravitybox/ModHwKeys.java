@@ -32,7 +32,7 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XCallback;
 
 public class ModHwKeys {
-    private static final String TAG = "ModHwKeys";
+    private static final String TAG = "GB:ModHwKeys";
     private static final String CLASS_PHONE_WINDOW_MANAGER = "com.android.internal.policy.impl.PhoneWindowManager";
     private static final String CLASS_ACTIVITY_MANAGER_NATIVE = "android.app.ActivityManagerNative";
     private static final String CLASS_WINDOW_STATE = "android.view.WindowManagerPolicy$WindowState";
@@ -91,7 +91,7 @@ public class ModHwKeys {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            log("Broadcast received: " + intent.toString());
+            if (DEBUG) log("Broadcast received: " + intent.toString());
 
             String action = intent.getAction();
             int value = GravityBoxSettings.HWKEY_ACTION_DEFAULT;
@@ -101,26 +101,26 @@ public class ModHwKeys {
 
             if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_LONGPRESS_CHANGED)) {
                 mMenuLongpressAction = value;
-                log("Menu long-press action set to: " + value);
+                if (DEBUG) log("Menu long-press action set to: " + value);
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_DOUBLETAP_CHANGED)) {
                 mMenuDoubletapAction = value;
-                log("Menu double-tap action set to: " + value);
+                if (DEBUG) log("Menu double-tap action set to: " + value);
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_HOME_LONGPRESS_CHANGED)) {
                 mHomeLongpressAction = value;
-                log("Home long-press action set to: " + value);
+                if (DEBUG) log("Home long-press action set to: " + value);
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_BACK_LONGPRESS_CHANGED)) {
                 mBackLongpressAction = value;
-                log("Back long-press action set to: " + value);
+                if (DEBUG) log("Back long-press action set to: " + value);
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_DOUBLETAP_SPEED_CHANGED)) {
                 mDoubletapSpeed = value;
-                log("Doubletap speed set to: " + value);
+                if (DEBUG) log("Doubletap speed set to: " + value);
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_KILL_DELAY_CHANGED)) {
                 mKillDelay = value;
-                log("Kill delay set to: " + value);
+                if (DEBUG) log("Kill delay set to: " + value);
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_VOLUME_ROCKER_WAKE_CHANGED)) {
                 mVolumeRockerWakeDisabled = intent.getBooleanExtra(
                         GravityBoxSettings.EXTRA_VOLUME_ROCKER_WAKE_DISABLE, false);
-                log("mVolumeRockerWakeDisabled set to: " + mVolumeRockerWakeDisabled);
+                if (DEBUG) log("mVolumeRockerWakeDisabled set to: " + mVolumeRockerWakeDisabled);
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_PIE_CHANGED) && 
                     intent.hasExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE)) {
                 mHwKeysEnabled = !intent.getBooleanExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE, false);
@@ -346,7 +346,7 @@ public class ModHwKeys {
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED);
             mContext.registerReceiver(mBroadcastReceiver, intentFilter);
 
-            log("Phone window manager initialized");
+            if (DEBUG) log("Phone window manager initialized");
         }
     };
 
@@ -493,7 +493,7 @@ public class ModHwKeys {
                                     !appInfo.processName.equals("com.android.systemui") &&
                                     !appInfo.processName.equals("com.mediatek.bluetooth") &&
                                     !appInfo.processName.equals(defaultHomePackage)) {  
-                                log("Killing process ID " + appInfo.pid + ": " + appInfo.processName);
+                                if (DEBUG) log("Killing process ID " + appInfo.pid + ": " + appInfo.processName);
                                 Process.killProcess(appInfo.pid);
                                 targetKilled = true;
                                 break;

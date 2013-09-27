@@ -98,7 +98,7 @@ public class ModStatusBar {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            log("Broadcast received: " + intent.toString());
+            if (DEBUG) log("Broadcast received: " + intent.toString());
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_CLOCK_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_CENTER_CLOCK)) {
                     setClockPosition(intent.getBooleanExtra(GravityBoxSettings.EXTRA_CENTER_CLOCK, false));
@@ -237,7 +237,7 @@ public class ModStatusBar {
                     mLayoutClock.setGravity(Gravity.CENTER);
                     mLayoutClock.setVisibility(View.GONE);
                     mRootView.addView(mLayoutClock);
-                    log("mLayoutClock injected");
+                    if (DEBUG) log("mLayoutClock injected");
 
                     XposedHelpers.findAndHookMethod(mClock.getClass(), "getSmallTime", new XC_MethodHook() {
                         @Override
@@ -526,7 +526,7 @@ public class ModStatusBar {
             mIconArea.removeView(mClock);
             mLayoutClock.addView(mClock);
             mLayoutClock.setVisibility(View.VISIBLE);
-            log("Clock set to center position");
+            if (DEBUG) log("Clock set to center position");
         } else {
             mClock.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
             mClock.setLayoutParams(new LinearLayout.LayoutParams(
@@ -535,7 +535,7 @@ public class ModStatusBar {
             mLayoutClock.removeView(mClock);
             mIconArea.addView(mClock);
             mLayoutClock.setVisibility(View.GONE);
-            log("Clock set to normal position");
+            if (DEBUG) log("Clock set to normal position");
         }
 
         mClockCentered = center;

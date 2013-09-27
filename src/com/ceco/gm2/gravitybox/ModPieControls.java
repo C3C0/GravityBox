@@ -28,7 +28,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class ModPieControls {
-    private static final String TAG = "ModPieController";
+    private static final String TAG = "GB:ModPieController";
     public static final String PACKAGE_NAME = "com.android.systemui";
     private static final boolean DEBUG = false;
     private static final boolean DEBUG_INPUT = false;
@@ -72,7 +72,7 @@ public class ModPieControls {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            log("Broadcast received: " + intent.toString());
+            if (DEBUG) log("Broadcast received: " + intent.toString());
             ContentResolver cr = mContext.getContentResolver();
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_PIE_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_ENABLE)) {
@@ -207,7 +207,7 @@ public class ModPieControls {
 
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    log("BaseStatusBar starting...");
+                    if (DEBUG) log("BaseStatusBar starting...");
                     mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                     mGbContext = mContext.createPackageContext(GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
                     mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
@@ -300,7 +300,7 @@ public class ModPieControls {
 
         @Override
         public void onChange(boolean selfChange) {
-            log("PieSettingsObserver onChange()");
+            if (DEBUG) log("PieSettingsObserver onChange()");
             mPieTriggerSlots = Settings.System.getInt(mContext.getContentResolver(),
                     SETTING_PIE_GRAVITY, Position.BOTTOM.FLAG);
 

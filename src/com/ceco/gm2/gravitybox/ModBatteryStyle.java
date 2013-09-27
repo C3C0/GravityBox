@@ -24,13 +24,19 @@ import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 import de.robv.android.xposed.callbacks.XCallback;
 
 public class ModBatteryStyle {
+    private static final String TAG = "GB:ModBatteryStyle";
     public static final String PACKAGE_NAME = "com.android.systemui";
     public static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     public static final String CLASS_BATTERY_CONTROLLER = "com.android.systemui.statusbar.policy.BatteryController";
+    private static final boolean DEBUG = false;
 
     private static int mBatteryStyle;
     private static boolean mBatteryPercentText;
     private static Object mBatteryController;
+
+    private static void log(String message) {
+        XposedBridge.log(TAG + ": " + message);
+    }
 
     private static BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
 
@@ -39,11 +45,11 @@ public class ModBatteryStyle {
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_BATTERY_STYLE_CHANGED)) {
                 if (intent.hasExtra("batteryStyle")) {
                     mBatteryStyle = intent.getIntExtra("batteryStyle", 1);
-                    XposedBridge.log("ModBatteryStyle: mBatteryStyle changed to: " + mBatteryStyle);
+                    if (DEBUG) log("mBatteryStyle changed to: " + mBatteryStyle);
                 }
                 if (intent.hasExtra("batteryPercent")) {
                     mBatteryPercentText = intent.getBooleanExtra("batteryPercent", false);
-                    XposedBridge.log("ModBatteryStyle: mBatteryPercentText changed to: " + mBatteryPercentText);
+                    if (DEBUG) log("mBatteryPercentText changed to: " + mBatteryPercentText);
                 }
                 updateBatteryStyle();
             }
@@ -76,7 +82,7 @@ public class ModBatteryStyle {
                                 android.R.color.holo_blue_dark));
                         percText.setVisibility(View.GONE);
                         vg.addView(percText);
-                        XposedBridge.log("ModBatteryStyle: Battery percent text injected");
+                        if (DEBUG) log("Battery percent text injected");
                     } else {
                         percText.setTag("percentage");
                     }
@@ -86,7 +92,7 @@ public class ModBatteryStyle {
                     ImageView exView = (ImageView) vg.findViewById(liparam.res.getIdentifier(
                             "circle_battery", "id", PACKAGE_NAME));
                     if (exView != null) {
-                        XposedBridge.log("ModBatteryStyle: circle_battery view found - removing");
+                        if (DEBUG) log("circle_battery view found - removing");
                         vg.removeView(exView);
                     }
 
@@ -100,7 +106,7 @@ public class ModBatteryStyle {
                     circleBattery.setVisibility(View.GONE);
                     ModStatusbarColor.setCircleBattery(circleBattery);
                     vg.addView(circleBattery);
-                    XposedBridge.log("ModBatteryStyle: CmCircleBattery injected");
+                    if (DEBUG) log("CmCircleBattery injected");
 
                     // find battery
                     ImageView battery = (ImageView) vg.findViewById(
@@ -119,8 +125,8 @@ public class ModBatteryStyle {
 
     public static void init(final XSharedPreferences prefs, ClassLoader classLoader) {
 
-        XposedBridge.log("ModBatteryStyle: init");
-        
+        if (DEBUG) log("init");
+
         try {
 
             Class<?> phoneStatusBarClass = findClass(CLASS_PHONE_STATUSBAR, classLoader);
@@ -137,7 +143,7 @@ public class ModBatteryStyle {
                     ImageView circleBattery = (ImageView) mStatusBarView.findViewWithTag("circle_battery");
                     if (circleBattery != null) {
                         XposedHelpers.callMethod(mBatteryController, "addIconView", circleBattery);
-                        XposedBridge.log("ModBatteryStyle: BatteryController.addIconView(circleBattery)");
+                        if (DEBUG) log("BatteryController.addIconView(circleBattery)");
                     }
 
                     TextView percText = (TextView) mStatusBarView.findViewWithTag("percentage");
@@ -155,7 +161,7 @@ public class ModBatteryStyle {
                         }
                         if (!percentTextExists) {
                             XposedHelpers.callMethod(mBatteryController, "addLabelView", percText);
-                            XposedBridge.log("ModBatteryStyle: BatteryController.addLabelView(percText)");
+                            if (DEBUG) log("BatteryController.addLabelView(percText)");
                         }
                     }
                 }
@@ -180,7 +186,7 @@ public class ModBatteryStyle {
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_BATTERY_STYLE_CHANGED);
                     context.registerReceiver(mBroadcastReceiver, intentFilter);
 
-                    XposedBridge.log("ModBatteryStyle: BatteryController constructed");
+                    if (DEBUG) log("BatteryController constructed");
                 }
             });
 

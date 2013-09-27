@@ -520,9 +520,10 @@
     <string name="pref_navbar_enable_title">Enable navigation bar</string>
     <string name="pref_navbar_enable_summary">Requires reboot</string>
     <string name="pref_navbar_height_title">Navigation bar height</string>
-    <string name="pref_navbar_height_summary">Applies to portrait orientation</string>
+    <string name="pref_navbar_height_summary">Applies to horizontal navigation bar and portrait orientation</string>
+    <string name="pref_navbar_height_landscape_summary">Applies to horizontal navigation bar and landscape orientation</string>
     <string name="pref_navbar_width_title">Navigation bar width</string>
-    <string name="pref_navbar_width_summary">Applies to landscape orientation</string>
+    <string name="pref_navbar_width_summary">Applies to vertical navigation bar</string>
     <string name="pref_navbar_menukey_title">Always show menu key</string>
 
     <!-- Screenshot in power menu -->
@@ -533,7 +534,8 @@
     <string name="pref_lockscreen_targets_enable_title">Enable lockscreen targets</string>
     <string name="pref_lockscreen_targets_enable_summary">Master switch for lockscreen targets</string>
     <string name="pref_lockscreen_targets_app_title">Target application %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Unlock ring bottom offset</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Unlock ring vertical offset</string>
+    <string name="pref_lockscreen_targets_right_offset_title">Unlock ring horizontal offset</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Enable brightness control</string>
@@ -586,5 +588,9 @@
     <string name="pie_controls_enabled_always">Always</string>
     <string name="pie_controls_enabled_expanded">When expanded desktop on</string>
     <string name="pie_controls_enabled_expanded_navbar">When expanded desktop hides navigation bar</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Leave stock battery icon intact</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Use in case stock battery icon was replaced with 3rd party battery mod</string>
 
 </resources>

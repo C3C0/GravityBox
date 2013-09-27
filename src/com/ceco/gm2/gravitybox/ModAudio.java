@@ -12,13 +12,14 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class ModAudio {
-    private static final String TAG = "ModAudio";
+    private static final String TAG = "GB:ModAudio";
     private static final String CLASS_REMOTE_PLAYBACK_STATE = "android.media.AudioService$RemotePlaybackState";
     private static final String CLASS_VOLUME_STREAM_STATE = "android.media.AudioService$VolumeStreamState";
     private static final String CLASS_AUDIO_SYSTEM = "android.media.AudioSystem";
     private static final String CLASS_AUDIO_SERVICE = "android.media.AudioService";
     private static final int STREAM_MUSIC = 3;
-    private static final int VOLUME_STEPS = 30; 
+    private static final int VOLUME_STEPS = 30;
+    private static final boolean DEBUG = false;
 
     private static boolean mSafeMediaVolumeEnabled;
 
@@ -30,11 +31,11 @@ public class ModAudio {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            log("Broadcast received: " + intent.toString());
+            if (DEBUG) log("Broadcast received: " + intent.toString());
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED)) {
                 mSafeMediaVolumeEnabled = intent.getBooleanExtra(
                         GravityBoxSettings.EXTRA_SAFE_MEDIA_VOLUME_ENABLED, false);
-                log("Safe headset media volume set to: " + mSafeMediaVolumeEnabled);
+                if (DEBUG) log("Safe headset media volume set to: " + mSafeMediaVolumeEnabled);
             }
         }
     };
@@ -58,14 +59,14 @@ public class ModAudio {
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED);
                     context.registerReceiver(mBroadcastReceiver, intentFilter);
-                    log("AudioService constructed. Broadcast receiver registered");
+                    if (DEBUG) log("AudioService constructed. Broadcast receiver registered");
                 }
             });
 
             if (Build.VERSION.SDK_INT > 16) {
                 XResources.setSystemWideReplacement("android", "bool", "config_safe_media_volume_enabled", true);
                 mSafeMediaVolumeEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_SAFE_MEDIA_VOLUME, false);
-                log("Safe headset media volume set to: " + mSafeMediaVolumeEnabled);
+                if (DEBUG) log("Safe headset media volume set to: " + mSafeMediaVolumeEnabled);
                 XposedHelpers.findAndHookMethod(classAudioService, "enforceSafeMediaVolume", new XC_MethodHook() {
 
                     @Override
@@ -108,7 +109,7 @@ public class ModAudio {
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     param.args[1] = VOLUME_STEPS;
                     param.args[2] = VOLUME_STEPS;
-                    log("RemotePlaybackState constructed. Music stream volume steps set to " + VOLUME_STEPS);
+                    if (DEBUG) log("RemotePlaybackState constructed. Music stream volume steps set to " + VOLUME_STEPS);
                 }
             });
 
@@ -121,7 +122,7 @@ public class ModAudio {
                         XposedHelpers.callStaticMethod(
                                 classAudioSystem, "initStreamVolume", STREAM_MUSIC, 0, VOLUME_STEPS);
                         XposedHelpers.callMethod(param.thisObject, "readSettings");
-                        log("Volume for music stream initialized with steps set to " + VOLUME_STEPS);
+                        if (DEBUG) log("Volume for music stream initialized with steps set to " + VOLUME_STEPS);
                     }
                 }
             });

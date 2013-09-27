@@ -17,6 +17,7 @@ public class GpsTile extends AQuickSettingsTile {
     private static final String TAG = "GB:GpsTile";
     private static final boolean DEBUG = false;
 
+    public static final String GPS_ENABLED_CHANGE_ACTION = "android.location.GPS_ENABLED_CHANGE";
     public static final String GPS_FIX_CHANGE_ACTION = "android.location.GPS_FIX_CHANGE";
     public static final String EXTRA_GPS_ENABLED = "enabled";
 
@@ -32,16 +33,20 @@ public class GpsTile extends AQuickSettingsTile {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            if (DEBUG) log("Broadcast received: " + intent.toString());
             final String action = intent.getAction();
+
             if (action.equals(LocationManager.PROVIDERS_CHANGED_ACTION)) {
                 mGpsEnabled = Settings.Secure.isLocationProviderEnabled(
                         mContext.getContentResolver(), LocationManager.GPS_PROVIDER);
-                mGpsFixed &= mGpsEnabled;
+                mGpsFixed = false;
             } else if (action.equals(GPS_FIX_CHANGE_ACTION)) {
                 mGpsFixed = intent.getBooleanExtra(EXTRA_GPS_ENABLED, false);
+            } else if (action.equals(GPS_ENABLED_CHANGE_ACTION)) {
+                mGpsFixed = false;
             }
-            if (DEBUG) log("Broadcast received: mGpsEnabled = " + mGpsEnabled +
-                    "; mGpsFixed = " + mGpsFixed);
+
+            if (DEBUG) log("mGpsEnabled = " + mGpsEnabled + "; mGpsFixed = " + mGpsFixed);
             updateResources();
         }
     };
@@ -83,6 +88,7 @@ public class GpsTile extends AQuickSettingsTile {
     protected void onTilePostCreate() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION);
+        intentFilter.addAction(GPS_ENABLED_CHANGE_ACTION);
         intentFilter.addAction(GPS_FIX_CHANGE_ACTION);
         mContext.registerReceiver(mLocationManagerReceiver, intentFilter);
 

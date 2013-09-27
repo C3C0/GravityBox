@@ -42,9 +42,19 @@
                 android:summary="@string/app_picker_none" />
 
             <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-                android:key="pref_lockscreen_targets_bottom_offset"
+                android:key="pref_lockscreen_targets_bottom_offset2"
                 android:title="@string/pref_lockscreen_targets_bottom_offset_title"
-                minimum="0"
+                minimum="-50"
+                maximum="50"
+                interval="1"
+                monitorBoxEnabled="true"
+                monitorBoxUnit="px" 
+                android:defaultValue="0" />
+
+            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+                android:key="pref_lockscreen_targets_right_offset2"
+                android:title="@string/pref_lockscreen_targets_right_offset_title"
+                minimum="-30"
                 maximum="30"
                 interval="1"
                 monitorBoxEnabled="true"
@@ -230,6 +240,12 @@
                 android:summary="@string/pref_statusbar_data_activity_color_summary"
                 android:defaultValue="@integer/COLOR_WHITE" />
 
+            <CheckBoxPreference 
+                android:key="pref_statusbar_color_skip_battery"
+                android:title="@string/pref_statusbar_color_skip_battery_title"
+                android:summary="@string/pref_statusbar_color_skip_battery_summary"
+                android:defaultValue="false" />
+
         </PreferenceScreen>
 
         <PreferenceScreen 
@@ -241,7 +257,7 @@
                 android:title="@string/pref_tm_statusbar_launcher_title"
                 minimum="0"
                 maximum="100"
-                interval="5"
+                interval="1"
                 monitorBoxEnabled="true"
                 monitorBoxUnit="%" />
 
@@ -250,7 +266,7 @@
                 android:title="@string/pref_tm_statusbar_lockscreen_title"
                 minimum="0"
                 maximum="100"
-                interval="5"
+                interval="1"
                 monitorBoxEnabled="true"
                 monitorBoxUnit="%" />
 
@@ -438,6 +454,30 @@
         android:title="@string/pref_cat_navigation_bar_title"
         android:summary="@string/pref_cat_navigation_bar_summary">
 
+        <PreferenceScreen 
+            android:key="pref_cat_transparency_manager"
+            android:title="@string/pref_cat_transparency_manager_title">
+
+            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+                android:key="pref_tm_navbar_launcher"
+                android:title="@string/pref_tm_navbar_launcher_title"
+                minimum="0"
+                maximum="100"
+                interval="1"
+                monitorBoxEnabled="true"
+                monitorBoxUnit="%" />
+
+            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+                android:key="pref_tm_navbar_lockscreen"
+                android:title="@string/pref_tm_navbar_lockscreen_title"
+                minimum="0"
+                maximum="100"
+                interval="1"
+                monitorBoxEnabled="true"
+                monitorBoxUnit="%" />
+
+        </PreferenceScreen>
+
         <CheckBoxPreference 
             android:key="pref_navbar_override"
             android:title="@string/pref_navbar_override_title"
@@ -453,7 +493,18 @@
             android:key="pref_navbar_height"
             android:title="@string/pref_navbar_height_title"
             android:summary="@string/pref_navbar_height_summary"
-            minimum="50"
+            minimum="0"
+            maximum="150"
+            interval="1"
+            monitorBoxEnabled="true"
+            monitorBoxUnit="%"
+            android:defaultValue="100" />
+
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+            android:key="pref_navbar_height_landscape"
+            android:title="@string/pref_navbar_height_title"
+            android:summary="@string/pref_navbar_height_landscape_summary"
+            minimum="0"
             maximum="150"
             interval="1"
             monitorBoxEnabled="true"
@@ -464,7 +515,7 @@
             android:key="pref_navbar_width"
             android:title="@string/pref_navbar_width_title"
             android:summary="@string/pref_navbar_width_summary"
-            minimum="50"
+            minimum="0"
             maximum="150"
             interval="1"
             monitorBoxEnabled="true"
@@ -475,24 +526,6 @@
             android:key="pref_navbar_menukey"
             android:title="@string/pref_navbar_menukey_title"
             android:defaultValue="false" />
-
-        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-            android:key="pref_tm_navbar_launcher"
-            android:title="@string/pref_tm_navbar_launcher_title"
-            minimum="0"
-            maximum="100"
-            interval="5"
-            monitorBoxEnabled="true"
-            monitorBoxUnit="%" />
-
-        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-            android:key="pref_tm_navbar_lockscreen"
-            android:title="@string/pref_tm_navbar_lockscreen_title"
-            minimum="0"
-            maximum="100"
-            interval="5"
-            monitorBoxEnabled="true"
-            monitorBoxUnit="%" />
 
     </PreferenceScreen>
 

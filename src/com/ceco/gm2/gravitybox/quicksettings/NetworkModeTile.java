@@ -17,7 +17,8 @@ import android.view.View;
 import android.widget.TextView;
 
 public class NetworkModeTile extends AQuickSettingsTile {
-    private static final String TAG = "NetworkModeTile";
+    private static final String TAG = "GB:NetworkModeTile";
+    private static final boolean DEBUG = false;
 
     public static final String SETTING_NETWORK_MODE_TILE_MODE = "gb_network_mode_tile_mode";
 
@@ -54,7 +55,7 @@ public class NetworkModeTile extends AQuickSettingsTile {
                     PhoneWrapper.PREFERRED_NETWORK_MODE, PhoneWrapper.NT_WCDMA_PREFERRED);
             updateFlags(Settings.System.getInt(cr, SETTING_NETWORK_MODE_TILE_MODE, 0));
 
-            log("SettingsObserver onChange; mNetworkType = " + mNetworkType +
+            if (DEBUG) log("SettingsObserver onChange; mNetworkType = " + mNetworkType +
                     "; mAllow3gOnly = " + mAllow3gOnly);
 
             updateResources();

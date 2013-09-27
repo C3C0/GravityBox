@@ -105,6 +105,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE = "pref_statusbar_icon_color_enable";
     public static final String PREF_KEY_STATUSBAR_ICON_COLOR = "pref_statusbar_icon_color";
     public static final String PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR = "pref_statusbar_data_activity_color";
+    public static final String PREF_KEY_STATUSBAR_COLOR_SKIP_BATTERY = "pref_statusbar_color_skip_battery";
     public static final String PREF_KEY_STATUSBAR_CENTER_CLOCK = "pref_statusbar_center_clock";
     public static final String PREF_KEY_STATUSBAR_CLOCK_DOW = "pref_statusbar_clock_dow";
     public static final String PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE = "pref_clock_ampm_hide";
@@ -278,6 +279,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_SB_ICON_COLOR_ENABLE = "iconColorEnable";
     public static final String EXTRA_SB_ICON_COLOR = "iconColor";
     public static final String EXTRA_SB_DATA_ACTIVITY_COLOR = "dataActivityColor";
+    public static final String EXTRA_SB_COLOR_SKIP_BATTERY = "skipBattery";
     public static final String EXTRA_TM_SB_LAUNCHER = "tmSbLauncher";
     public static final String EXTRA_TM_SB_LOCKSCREEN = "tmSbLockscreen";
     public static final String EXTRA_TM_NB_LAUNCHER = "tmNbLauncher";
@@ -303,10 +305,12 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_NAVBAR_OVERRIDE = "pref_navbar_override";
     public static final String PREF_KEY_NAVBAR_ENABLE = "pref_navbar_enable";
     public static final String PREF_KEY_NAVBAR_HEIGHT = "pref_navbar_height";
+    public static final String PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE = "pref_navbar_height_landscape";
     public static final String PREF_KEY_NAVBAR_WIDTH = "pref_navbar_width";
     public static final String PREF_KEY_NAVBAR_MENUKEY = "pref_navbar_menukey";
     public static final String ACTION_PREF_NAVBAR_CHANGED = "gravitybox.intent.action.ACTION_NAVBAR_CHANGED";
     public static final String EXTRA_NAVBAR_HEIGHT = "navbarHeight";
+    public static final String EXTRA_NAVBAR_HEIGHT_LANDSCAPE = "navbarHeightLandscape";
     public static final String EXTRA_NAVBAR_WIDTH = "navbarWidth";
     public static final String EXTRA_NAVBAR_MENUKEY = "navbarMenukey";
 
@@ -315,7 +319,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         "pref_lockscreen_targets_app0", "pref_lockscreen_targets_app1", "pref_lockscreen_targets_app2",
         "pref_lockscreen_targets_app3", "pref_lockscreen_targets_app4"
     };
-    public static final String PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET = "pref_lockscreen_targets_bottom_offset";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET = "pref_lockscreen_targets_bottom_offset2";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET = "pref_lockscreen_targets_right_offset2";
 
     public static final String PREF_KEY_STATUSBAR_BRIGHTNESS = "pref_statusbar_brightness";
     public static final String ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED = "gravitybox.intent.action.STATUSBAR_BRIGHTNESS_CHANGED";
@@ -549,17 +554,20 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private ListPreference mPrefExpandedDesktop;
         private CheckBoxPreference mPrefNavbarEnable;
         private SeekBarPreference mPrefNavbarHeight;
+        private SeekBarPreference mPrefNavbarHeightLandscape;
         private SeekBarPreference mPrefNavbarWidth;
         private CheckBoxPreference mPrefNavbarMenukey;
         private CheckBoxPreference mPrefMusicVolumeSteps;
         private AppPickerPreference[] mPrefLockscreenTargetsApp;
         private SeekBarPreference mPrefLockscreenTargetsBottomOffset;
+        private SeekBarPreference mPrefLockscreenTargetsRightOffset;
         private CheckBoxPreference mPrefMobileDataSlow2gDisable;
         private PreferenceCategory mPrefCatPhoneTelephony;
         private PreferenceCategory mPrefCatPhoneMobileData;
         private ListPreference mPrefNetworkModeTileMode;
         private MultiSelectListPreference mPrefQsTileBehaviourOverride;
         private ListPreference mPrefQsNetworkModeSimSlot;
+        private CheckBoxPreference mPrefSbColorSkipBattery;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -629,6 +637,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefSbIconColorEnable = (CheckBoxPreference) findPreference(PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE);
             mPrefSbIconColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_ICON_COLOR);
             mPrefSbDaColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR);
+            mPrefSbColorSkipBattery = (CheckBoxPreference) findPreference(PREF_KEY_STATUSBAR_COLOR_SKIP_BATTERY);
 
             mPrefCatFixes = (PreferenceScreen) findPreference(PREF_CAT_KEY_FIXES);
             mPrefFixDateTimeCrash = (CheckBoxPreference) findPreference(PREF_KEY_FIX_DATETIME_CRASH);
@@ -682,6 +691,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             mPrefNavbarEnable = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_ENABLE);
             mPrefNavbarHeight = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_HEIGHT);
+            mPrefNavbarHeightLandscape = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE);
             mPrefNavbarWidth = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_WIDTH);
             mPrefNavbarMenukey = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_MENUKEY);
 
@@ -696,6 +706,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             }
             mPrefLockscreenTargetsBottomOffset = (SeekBarPreference) findPreference(
                     PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET);
+            mPrefLockscreenTargetsRightOffset = (SeekBarPreference) findPreference(
+                    PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET);
 
             mPrefCatPhoneTelephony = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_TELEPHONY);
             mPrefCatPhoneMobileData = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MOBILE_DATA);
@@ -873,6 +885,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             if (key == null || key.equals(PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE)) {
                 mPrefSbIconColor.setEnabled(mPrefSbIconColorEnable.isChecked());
                 mPrefSbDaColor.setEnabled(mPrefSbIconColorEnable.isChecked());
+                mPrefSbColorSkipBattery.setEnabled(mPrefSbIconColorEnable.isChecked());
             }
 
             if (key == null || key.equals(PREF_KEY_NOTIF_BACKGROUND)) {
@@ -937,6 +950,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 final boolean override = mPrefs.getBoolean(PREF_KEY_NAVBAR_OVERRIDE, false);
                 mPrefNavbarEnable.setEnabled(override);
                 mPrefNavbarHeight.setEnabled(override && mPrefNavbarEnable.isChecked());
+                mPrefNavbarHeightLandscape.setEnabled(override && mPrefNavbarEnable.isChecked());
                 mPrefNavbarWidth.setEnabled(override && mPrefNavbarEnable.isChecked());
                 mPrefNavbarMenukey.setEnabled(override && mPrefNavbarEnable.isChecked());
             }
@@ -947,6 +961,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                     p.setEnabled(enabled);
                 }
                 mPrefLockscreenTargetsBottomOffset.setEnabled(enabled);
+                mPrefLockscreenTargetsRightOffset.setEnabled(enabled);
             }
 
             if (key == null || key.equals(PREF_KEY_NETWORK_MODE_TILE_MODE)) {
@@ -1011,6 +1026,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 intent.setAction(ACTION_PREF_STATUSBAR_COLOR_CHANGED);
                 intent.putExtra(EXTRA_SB_DATA_ACTIVITY_COLOR,
                         prefs.getInt(PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR, Color.WHITE));
+            } else if (key.equals(PREF_KEY_STATUSBAR_COLOR_SKIP_BATTERY)) {
+                intent.setAction(ACTION_PREF_STATUSBAR_COLOR_CHANGED);
+                intent.putExtra(EXTRA_SB_COLOR_SKIP_BATTERY,
+                        prefs.getBoolean(PREF_KEY_STATUSBAR_COLOR_SKIP_BATTERY, false));
             } else if (key.equals(PREF_KEY_TM_STATUSBAR_LAUNCHER)) {
                 intent.setAction(ACTION_PREF_STATUSBAR_COLOR_CHANGED);
                 intent.putExtra(EXTRA_TM_SB_LAUNCHER, prefs.getInt(PREF_KEY_TM_STATUSBAR_LAUNCHER, 0));
@@ -1160,6 +1179,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_NAVBAR_HEIGHT)) {
                 intent.setAction(ACTION_PREF_NAVBAR_CHANGED);
                 intent.putExtra(EXTRA_NAVBAR_HEIGHT, prefs.getInt(PREF_KEY_NAVBAR_HEIGHT, 100));
+            } else if (key.equals(PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE)) {
+                intent.setAction(ACTION_PREF_NAVBAR_CHANGED);
+                intent.putExtra(EXTRA_NAVBAR_HEIGHT_LANDSCAPE, 
+                        prefs.getInt(PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE, 100));
             } else if (key.equals(PREF_KEY_NAVBAR_WIDTH)) {
                 intent.setAction(ACTION_PREF_NAVBAR_CHANGED);
                 intent.putExtra(EXTRA_NAVBAR_WIDTH, prefs.getInt(PREF_KEY_NAVBAR_WIDTH, 100));
