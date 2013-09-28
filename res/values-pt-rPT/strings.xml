@@ -563,9 +563,9 @@
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
     <string name="pref_network_mode_tile_mode_title">Modo do painel Modo de Rede</string>
-    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
-    <string name="nm_tile_mode2">2G/2G+3G</string>
-    <string name="nm_tile_mode3">2G/3G/4G</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G/(4G)</string>
+    <string name="nm_tile_mode2">2G/2G+3G/(4G)</string>
+    <string name="nm_tile_mode3">2G/3G/(4G)</string>
 
     <!-- Disable GPS notifications -->
     <string name="pref_gps_notif_disable_title">Desativar notificações GPS</string>
