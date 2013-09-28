@@ -34,7 +34,7 @@ public class ModMms {
             XposedHelpers.findAndHookMethod(composeMsgActivityClass, 
                     "onCreate", Bundle.class, activityOnCreateHook);
 
-            if (Utils.hasGeminiSupport()) {
+            if (Utils.isMtkDevice()) {
                 XposedHelpers.findAndHookMethod(workingMessageClass, "send",
                         String.class, int.class, workingMessageSendHook);
                 try {
