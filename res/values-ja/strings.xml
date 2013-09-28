@@ -366,7 +366,7 @@
     <string name="pie_control_trigger_positions_title">起動位置</string>
     <string name="pie_control_trigger_left">画面左端</string>
     <string name="pie_control_trigger_bottom">画面下端</string>
-    <string name="pie_control_trigger_right"画面右端</string>
+    <string name="pie_control_trigger_right">画面右端</string>
     <string name="pie_control_trigger_top">画面上端</string>
 
     <!-- Button backlight options -->
