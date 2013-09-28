@@ -515,12 +515,12 @@
  <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Abilita Fotografa schermo nel menu apegnimento</string>
 
-    <!-- Lockscreen targets -->
-    <string name="pref_cat_lockscreen_targets_title">Applicazioni in Lockscreen</string>
-    <string name="pref_lockscreen_targets_enable_title">Abilita app in lockscreen</string>
-    <string name="pref_lockscreen_targets_enable_summary">Attivazione Applicazioni in Lockscreen</string>
-    <string name="pref_lockscreen_targets_app_title">Applicazione %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Scostamento dell\'anello di sblocco, margine inferiore</string>
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">Applicazioni in Lockscreen</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Abilita app in lockscreen</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">Attivazione Applicazioni in Lockscreen</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Applicazione %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Scostamento dell\'anello di sblocco, margine inferiore</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Abilita controllo luminosità</string>

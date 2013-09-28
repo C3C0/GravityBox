@@ -528,12 +528,12 @@
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Captura de pantalla en el menú de apagado</string>
 
-    <!-- Lockscreen targets -->
-    <string name="pref_cat_lockscreen_targets_title">Objetivos en pantalla de bloqueo</string>
-    <string name="pref_lockscreen_targets_enable_title">Habilitar objetivos en pantalla de bloqueo</string>
-    <string name="pref_lockscreen_targets_enable_summary">Switch principal para objetivos en pantalla de bloqueo</string>
-    <string name="pref_lockscreen_targets_app_title">Aplicación del objetivo %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Offset del anillo de desbloqueo</string>
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">Objetivos en pantalla de bloqueo</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Habilitar objetivos en pantalla de bloqueo</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">Switch principal para objetivos en pantalla de bloqueo</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Aplicación del objetivo %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Offset del anillo de desbloqueo</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Habilitar control de brillo</string>

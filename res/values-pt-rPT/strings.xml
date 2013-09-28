@@ -529,13 +529,13 @@
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Captura de ecrã no Menu Desligar</string>
 
-    <!-- Lockscreen targets -->
-    <string name="pref_cat_lockscreen_targets_title">Alvos do anel de desbloqueio</string>
-    <string name="pref_lockscreen_targets_enable_title">Ativar alvos do anel de desbloqueio</string>
-    <string name="pref_lockscreen_targets_enable_summary">Permite definir até cinco aplicações como alvo no anel de desbloqueio</string>
-    <string name="pref_lockscreen_targets_app_title">Aplicação %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Desvio vertical do anel de desbloqueio</string>
-    <string name="pref_lockscreen_targets_right_offset_title">Desvio horizontal do anel de desbloqueio</string>
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">Definições do anel de desbloqueio</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Ativar alvos do anel de desbloqueio</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">Permite definir até cinco aplicações como alvo no anel de desbloqueio</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Aplicação %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Desvio vertical do anel de desbloqueio</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">Desvio horizontal do anel de desbloqueio</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Ativar controlo de brilho</string>
