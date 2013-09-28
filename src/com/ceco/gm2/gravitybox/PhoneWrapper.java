@@ -76,7 +76,7 @@ public class PhoneWrapper {
             }
             if (DEBUG) log("mSimSlot = " + mSimSlot);
 
-            String methodName = Utils.hasGeminiSupport() ? "makeDefaultPhones" : "makeDefaultPhone";
+            String methodName = Utils.isMtkDevice() ? "makeDefaultPhones" : "makeDefaultPhone";
             XposedHelpers.findAndHookMethod(mClsPhoneFactory, methodName, 
                     Context.class, new XC_MethodHook() {
                 @Override
