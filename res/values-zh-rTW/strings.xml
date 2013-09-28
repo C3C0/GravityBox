@@ -23,8 +23,8 @@
 
     <string name="signal_icon_autohide_title">自動隱藏訊號圖示</string>
     <string name="signal_icon_autohide_summary">自動隱藏訊號圖示時選定的SIM卡插槽，SIM卡未插入, 停用 \"SIM 卡未插入\" 通知</string>
-    <string name="sim_slot_1">Auto-hide SIM 卡槽 1</string>
-    <string name="sim_slot_2">Auto-hide SIM 卡槽 2</string>
+    <string name="sim_slot_1">自動隱藏 SIM 卡槽 1</string>
+    <string name="sim_slot_2">自動隱藏 SIM 卡槽 2</string>
     <string name="sim_disable_notifications">停用通知</string>
     <string name="sim_disable_notifications_summary">\"SIM 卡未插入\" 通知已停用</string>
 
@@ -331,7 +331,7 @@
     <string name="pref_notif_background_title">通知欄背景</string>
     <string name="notif_background_default">預設背景</string>
     <string name="notif_background_color_fill">純色</string>
-    <string name="notif_background_custom_image">自訂圖案</string>
+    <string name="notif_background_custom_image">自訂圖片</string>
     <string name="pref_notif_color_title">設定背景顏色</string>
     <string name="pref_notif_image_portrait_title">設定直向圖片</string>
     <string name="pref_notif_image_landscape_title">設定橫向圖片</string>
@@ -375,7 +375,7 @@
 
     <!-- Hide navigation bar for pie -->
     <string name="pref_navbar_disable_title">隱藏海苔條</string>
-    <string name="pref_navbar_disable_summary">當 Pie Controls 啟用時隱藏海苔條（需要重新啟動）</string>
+    <string name="pref_navbar_disable_summary">當 Pie 控制 啟用時隱藏海苔條（需要重新啟動）</string>
 
     <!--  Dithered Holo background -->
     <string name="pref_holo_bg_dither_title">優化 Holo 背景</string>
@@ -383,7 +383,7 @@
 
     <!-- Disable hardware keys for pie -->
     <string name="pref_hwkeys_disable_title">關閉實體按鍵</string>
-    <string name="pref_hwkeys_disable_summary">當 Pie Controls 啟用時將會關閉選單鍵、返回鍵與 HOME 鍵功能，但是實體按鍵功能仍可使用（如果您的裝置有實體按鍵）</string>
+    <string name="pref_hwkeys_disable_summary">當 Pie 控制 啟用時將會關閉選單鍵、返回鍵與 HOME 鍵功能，但是實體按鍵功能仍可使用（如果您的裝置有實體按鍵）</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">使用 Holo 黑色背景主題</string>
@@ -524,12 +524,12 @@
     <string name="pref_powermenu_screenshot_title">電源選單顯示螢幕截圖</string>
 
 
-    <!-- Unlock ring settings -->
-    <string name="pref_cat_lockscreen_ring_settings_title">螢幕鎖定目標</string>
-    <string name="pref_lockscreen_ring_targets_enable_title">啟用螢幕鎖定目標</string>
-    <string name="pref_lockscreen_ring_targets_enable_summary">鎖定螢幕滑動主滑動</string>
-    <string name="pref_lockscreen_ring_targets_app_title">目標應用程式 %s</string>
-    <string name="pref_lockscreen_ring_vertical_offset_title">解鎖環底部偏移</string>
+    <!-- Lockscreen targets -->
+    <string name="pref_cat_lockscreen_targets_title">螢幕鎖定目標</string>
+    <string name="pref_lockscreen_targets_enable_title">啟用螢幕鎖定目標</string>
+    <string name="pref_lockscreen_targets_enable_summary">鎖定螢幕滑動主滑動</string>
+    <string name="pref_lockscreen_targets_app_title">目標應用程式 %s</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">解鎖環底部偏移</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">啟用亮度控制</string>
@@ -541,7 +541,7 @@
     <string name="pref_cat_phone_mobile_data_title">行動資料</string>
 
     <!-- Messaging: Strip unicode -->
-    <string name="pref_mms_unicode_stripping_title">去除 unicode</string>
+    <string name="pref_mms_unicode_stripping_title">去除 unicode 字符</string>
     <string name="pref_mms_unicode_stripping_summary">正常字符轉換成 unicode 字符。降低整體郵件大小.</string>
     <string name="unicode_stripping_leave_intact">保留字符不變</string>
     <string name="unicode_stripping_non_encodable">去除非可編碼字符</string>
@@ -565,5 +565,25 @@
 
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">允許所有旋轉</string>
+
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">覆蓋預設瓷貼操作</string>
+    <string name="pref_qs_tile_behaviour_override_summary">覆蓋輕觸/長按以選擇瓷貼的預設操作 (需要重新啟動)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">網路模式瓷貼 SIM 卡 卡槽</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">設定當"網路模式"瓷貼已被選用時的 SIM 卡 卡槽 (%s)</string>
+    <string name="sim_slot1">SIM 卡 卡槽 1</string>
+    <string name="sim_slot2">SIM 卡 卡槽 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">從不</string>
+    <string name="pie_controls_enabled_always">總是</string>
+    <string name="pie_controls_enabled_expanded">當全螢幕模式開啟時</string>
+    <string name="pie_controls_enabled_expanded_navbar">當全螢幕模式隱藏導航欄時</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">完整保持預設電池圖示</string>
+    <string name="pref_statusbar_color_skip_battery_summary">當預設電池圖是被換成第三方電池圖示時使用</string>
 
 </resources>
