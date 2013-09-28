@@ -31,7 +31,7 @@ public class ModAudioSettings {
             try {
                 classVolumizer = XposedHelpers.findClass(CLASS_VOLUMIZER, classLoader);
             } catch (Throwable t) {
-                XposedBridge.log("ModAudioSettings: classVolumizer doesn't exist, exiting...");
+                if (DEBUG) log("classVolumizer doesn't exist, exiting...");
                 return;
             }
 
