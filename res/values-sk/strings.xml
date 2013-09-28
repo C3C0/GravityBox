@@ -523,7 +523,7 @@
     <string name="pref_powermenu_screenshot_title">Screenshot v menu napájania</string>
 
     <!-- Unlock ring settings -->
-    <string name="pref_cat_lockscreen_ring_settings_title">Skratky obrazovky uzamknutia</string>
+    <string name="pref_cat_lockscreen_ring_settings_title">Nastavenia odomykacieho prstenca</string>
     <string name="pref_lockscreen_ring_targets_enable_title">Povoliť skratky</string>
     <string name="pref_lockscreen_ring_targets_enable_summary">Hlavný vypínač pre skratky obrazovky uzamknutia</string>
     <string name="pref_lockscreen_ring_targets_app_title">Aplikácia pre skratku %s</string>
