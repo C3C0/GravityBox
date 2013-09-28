@@ -1,3 +1,43 @@
+Changelog 2.5.5 - 28/09/2013
+--------------------------------------
+- QuickSettings tweaks
+--- Option for overriding default touch/long-touch behaviour of tiles (non-MTK)
+--- GPS and Ringer Mode tile previously made for non-MTK now available also for MTK
+------ can be used as alternatives for standard MTK GPS Tile and Audio Profiles Tile
+--- Network mode tile mode
+------ added 2G/3G mode option
+------ added (LTE) to mode descriptions for better understanding how modes are switched
+------ option to choose SIM Slot to which tile applies (for MTK Dual Sims)
+--------- tile can now be used also for SIM Slot 2
+--- Fixed improper indication of position fix in alternative GPS tile
+--- Wifi tile now active also while airplane mode is on (MTK)
+- Intelligent Pie Controls
+--- linked to Expanded Desktop - 4 modes available
+--- disabled: Pie completely disabled
+--- always on: Pie always on independently of Expanded Desktop
+--- when expanded desktop on: activates when expanded desktop is on
+--- when expanded desktop hides navbar: Expanded Desktop mode is set to mode that hides navbar
+- Navigation bar tweaks
+--- Moved navbar transparency settings under Navbar tweaks section
+--- Option for navbar height for landscape orientation
+- Statusbar icon coloring: option to leave stock battery icon intact
+--- When enabled, icon coloring won't be applied to stock battery icon. 
+    Useful in case stock battery icon was replaced with 3rd party battery mod
+- Lockscreen targets
+--- category renamed to "Unlock ring settings" (thanks to bgcngm)
+--- options to set unlock ring horizontal/vertical offset (thanks to bgcngm)
+--- these changes required reset of your current Lockscreen targets settings
+- Option for stripping unicode in messaging now supports quick message dialog (MTK)
+- Transparency sliders now accept 1% steps
+- Quiet down a lot of logging: only device info at startup + runtime errors are logged
+- Updated Indonesian translations (thanks to awaaas)
+- Updated German translations (thanks to peterhugelberg)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Italian translations (thanks to pitone02)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated French translation (thanks to ch-vox)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+
 Changelog 2.5.1 - 24/09/2013
 --------------------------------------
 - Lockscreen Targets: 
