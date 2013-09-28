@@ -44,6 +44,7 @@ public class ModHwKeys {
     private static final int FLAG_WAKE = 0x00000001;
     private static final int FLAG_WAKE_DROPPED = 0x00000002;
     public static final String ACTION_SCREENSHOT = "gravitybox.intent.action.SCREENSHOT";
+    public static final String ACTION_SHOW_POWER_MENU = "gravitybox.intent.action.SHOW_POWER_MENU";
 
     private static final String SEPARATOR = "#C3C0#";
 
@@ -133,6 +134,8 @@ public class ModHwKeys {
                     XposedHelpers.setIntField(mPhoneWindowManager, "mAllowAllRotations",
                             allowAllRotations ? 1 : 0);
                 }
+            } else if (action.equals(ACTION_SHOW_POWER_MENU) && mPhoneWindowManager != null) {
+                XposedHelpers.callMethod(mPhoneWindowManager, "showGlobalActionsDialog");
             }
         }
     };
@@ -343,6 +346,7 @@ public class ModHwKeys {
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_VOLUME_ROCKER_WAKE_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_PIE_CHANGED);
             intentFilter.addAction(ACTION_SCREENSHOT);
+            intentFilter.addAction(ACTION_SHOW_POWER_MENU);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED);
             mContext.registerReceiver(mBroadcastReceiver, intentFilter);
 

@@ -1,9 +1,11 @@
 package com.ceco.gm2.gravitybox.quicksettings;
 
+import com.ceco.gm2.gravitybox.ModHwKeys;
 import com.ceco.gm2.gravitybox.R;
 
 import de.robv.android.xposed.XposedBridge;
 import android.content.Context;
+import android.content.Intent;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -25,6 +27,17 @@ public class SleepTile extends AQuickSettingsTile {
                 } catch(Exception e) {
                     XposedBridge.log(e);
                 }
+            }
+        };
+
+        mOnLongClick = new View.OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(ModHwKeys.ACTION_SHOW_POWER_MENU);
+                mContext.sendBroadcast(intent);
+                collapsePanels();
+                return true;
             }
         };
     }
