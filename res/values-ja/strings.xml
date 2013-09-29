@@ -529,14 +529,14 @@
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">電源メニューにスクリーンショットを追加</string>
 
-    <!-- Lockscreen targets -->
-    <string name="pref_cat_lockscreen_targets_title">ロック画面ターゲット</string>
-    <string name="pref_lockscreen_targets_enable_title">ロック画面ターゲットを有効化</string>
-    <string name="pref_lockscreen_targets_enable_summary">ロック画面設定を有効化します。</string>
-    <string name="pref_lockscreen_targets_app_title">ターゲットアプリ %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">ロック解除リングの縦のオフセット</string>
-    <string name="pref_lockscreen_targets_right_offset_title">ロック解除リングの横のオフセット</string>
-
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">ロック画面ターゲット</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">ロック画面ターゲットを有効化</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">ロック画面設定を有効化します。</string>
+    <string name="pref_lockscreen_ring_targets_app_title">ターゲットアプリ %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">ロック解除リングの縦のオフセット</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">ロック解除リングの横のオフセット</string>
+    
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">明るさ操作を有効化</string>
     <string name="pref_statusbar_brightness_summary">ステータスバー上でスライドして明るさ調整する</string>
