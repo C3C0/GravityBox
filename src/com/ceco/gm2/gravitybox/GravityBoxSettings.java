@@ -138,6 +138,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_ABOUT_DONATE = "pref_about_donate";
     public static final String PREF_KEY_CRT_OFF_EFFECT = "pref_crt_off_effect";
     public static final String PREF_KEY_ENGINEERING_MODE = "pref_engineering_mode";
+    public static final String APP_MESSAGING = "com.android.mms";
     public static final String APP_ENGINEERING_MODE = "com.mediatek.engineermode";
     public static final String APP_ENGINEERING_MODE_CLASS = "com.mediatek.engineermode.EngineerMode";
     public static final String PREF_KEY_DUAL_SIM_RINGER = "pref_dual_sim_ringer";
@@ -347,6 +348,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String UNISTR_ALL = "all";
 
     public static final String PREF_CAT_KEY_PHONE_TELEPHONY = "pref_cat_phone_telephony";
+    public static final String PREF_CAT_KEY_PHONE_MESSAGING = "pref_cat_phone_messaging";
     public static final String PREF_CAT_KEY_PHONE_MOBILE_DATA = "pref_cat_phone_mobile_data";
     public static final String PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE = "pref_mobile_data_slow2g_disable";
 
@@ -578,6 +580,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private SeekBarPreference mPrefLockscreenTargetsHorizontalOffset;
         private CheckBoxPreference mPrefMobileDataSlow2gDisable;
         private PreferenceCategory mPrefCatPhoneTelephony;
+        private PreferenceCategory mPrefCatPhoneMessaging;
         private PreferenceCategory mPrefCatPhoneMobileData;
         private ListPreference mPrefNetworkModeTileMode;
         private MultiSelectListPreference mPrefQsTileBehaviourOverride;
@@ -725,6 +728,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                     PREF_KEY_LOCKSCREEN_TARGETS_HORIZONTAL_OFFSET);
 
             mPrefCatPhoneTelephony = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_TELEPHONY);
+            mPrefCatPhoneMessaging = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MESSAGING);
             mPrefCatPhoneMobileData = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MOBILE_DATA);
             mPrefMobileDataSlow2gDisable = (CheckBoxPreference) findPreference(PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE);
 
@@ -735,9 +739,16 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
-                getPreferenceScreen().removePreference(mPrefCatPhone);
                 mPrefCatStatusbarQs.removePreference(mPrefAutoSwitchQs);
                 mPrefCatStatusbarQs.removePreference(mPrefQuickPulldown);
+            }
+
+            // Update Phone category according to feature availability 
+            if (!Utils.hasTelephonySupport(getActivity())) {
+                mPrefCatPhone.removePreference(mPrefCatPhoneTelephony);
+            }
+            if (!isAppInstalled(APP_MESSAGING)) {
+                mPrefCatPhone.removePreference(mPrefCatPhoneMessaging);
             }
 
             // Remove MTK specific preferences for non-MTK devices
