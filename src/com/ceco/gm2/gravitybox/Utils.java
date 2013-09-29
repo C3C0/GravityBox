@@ -18,6 +18,7 @@ package com.ceco.gm2.gravitybox;
 import de.robv.android.xposed.XposedBridge;
 import android.content.Context;
 import android.os.Build;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import java.util.*;
@@ -37,6 +38,7 @@ public class Utils {
     private static int mDeviceType = -1;
     private static Boolean mIsMtkDevice = null;
     private static Boolean mHasGeminiSupport = null;
+    private static Boolean mHasTelephonySupport = null;
     private static String mDeviceCharacteristics = null;
 
     // Supported MTK devices
@@ -105,6 +107,15 @@ public class Utils {
 
         mHasGeminiSupport = SystemProp.getBoolean("ro.mediatek.gemini_support", false);
         return mHasGeminiSupport;
+    }
+
+    public static boolean hasTelephonySupport(Context con) {
+        // returns false if device has no phone radio (no telephony support)
+        if (mHasTelephonySupport != null) return mHasTelephonySupport;
+
+        TelephonyManager manager = (TelephonyManager) con.getSystemService(Context.TELEPHONY_SERVICE);
+        mHasTelephonySupport = (manager.getPhoneType() != TelephonyManager.PHONE_TYPE_NONE);
+        return mHasTelephonySupport;
     }
 
     public static String getDeviceCharacteristics() {
