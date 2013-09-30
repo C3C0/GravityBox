@@ -556,6 +556,27 @@
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Abilita tutte le rotazioni</string>
 
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">Sovrascrivi funzionamento standard icone</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Sovrascrivi funzionamento pressione/pressione-lunga per icone selezionate (richiede riavvio)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">Impostazioni Network mode tile SIM slot</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Definisce a quale slot SIM applicare le impostazioni (%s)</string>
+    <string name="sim_slot1">SIM slot 1</string>
+    <string name="sim_slot2">SIM slot 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">Mai</string>
+    <string name="pie_controls_enabled_always">Sempre</string>
+    <string name="pie_controls_enabled_expanded">Se expanded desktop attivo</string>
+    <string name="pie_controls_enabled_expanded_navbar">Se expanded desktop nasconde la barra di navigazione</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Lascia icona batteria stock inalterata</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Usa nel caso in cui l\'icona batteria stock sia stata sostituita da app alternative</string>
+
+
 
 
 </resources>
