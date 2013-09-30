@@ -83,7 +83,7 @@ public class GpsTile extends AQuickSettingsTile {
             @Override
             public boolean onLongClick(View v) {
                 startActivity(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                return false;
+                return true;
             }
         };
 
