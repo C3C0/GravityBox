@@ -85,15 +85,27 @@ public class ModMms {
                     XposedHelpers.findAndHookMethod(textEditorWatcher.getClass(), "onTextChanged", 
                             CharSequence.class, int.class, int.class, int.class, new XC_MethodHook() {
                         @Override
-                        protected void afterHookedMethod(MethodHookParam param2) throws Throwable {
+                        protected void beforeHookedMethod(MethodHookParam param2) throws Throwable {
                             if (param2.thisObject != textEditorWatcher) return;
 
                             CharSequence s = (CharSequence) param2.args[0];
+                            XposedHelpers.setAdditionalInstanceField(param.thisObject, "mGbOriginalText", s);
                             if (DEBUG) log ("TextEditorWatcher.onTextChanged: original ='" + s + "'");
                             s = mUnicodeFilter.filter(s);
                             if (DEBUG) log ("TextEditorWatcher.onTextChanged: stripped ='" + s + "'");
-                            XposedHelpers.callMethod(param.thisObject, "updateCounter",
-                                    s, param2.args[1], param2.args[2], param2.args[3]); 
+                            param2.args[0] = s;
+                        }
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param2) throws Throwable {
+                            if (param2.thisObject != textEditorWatcher) return;
+
+                            Object workingMessage = XposedHelpers.getObjectField(param.thisObject, "mWorkingMessage");
+                            if (workingMessage != null) {
+                                final CharSequence s = (CharSequence) XposedHelpers.getAdditionalInstanceField(
+                                        param.thisObject, "mGbOriginalText");
+                                if (DEBUG) log("Pushing original text to working message: '" + s + "'");
+                                XposedHelpers.callMethod(workingMessage, "setText", s);
+                            }
                         }
                     });
                 }
