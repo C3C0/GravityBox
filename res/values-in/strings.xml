@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
@@ -88,6 +103,7 @@
     <string name="qs_tile_wifi">Wi-Fi</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_gps_alt">GPS (CM style)</string>
     <string name="qs_tile_mobile_data">Data Paket</string>
     <string name="qs_tile_network_mode">Mode jaringan</string>
     <string name="qs_tile_data_usage">Penggunaan Data</string>
@@ -519,7 +535,8 @@
     <string name="pref_navbar_enable_title">Hidupkan navigation bar</string>
     <string name="pref_navbar_enable_summary">Membutuhkan reboot</string>
     <string name="pref_navbar_height_title">Tinggi navigation bar</string>
-    <string name="pref_navbar_height_summary">Berlaku untuk orientasi potret/berdiri</string>
+    <string name="pref_navbar_height_summary">Berlaku untuk orientasi potret/berdiri dan navigation bar horizontal</string>
+    <string name="pref_navbar_height_landscape_summary">Berlaku untuk navigation bar horizontal dan orientasi lanskap/tidur</string>
     <string name="pref_navbar_width_title">Lebar navigation bar</string>
     <string name="pref_navbar_width_summary">Berlaku untuk orientasi lanskap/tidur</string>
     <string name="pref_navbar_menukey_title">Selalu tampilkan tombol menu</string>
@@ -527,12 +544,13 @@
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Screenshot di menu power</string>
 
-    <!-- Unlock ring settings -->
-    <string name="pref_cat_lockscreen_ring_settings_title">Target Lockscreen</string>
-    <string name="pref_lockscreen_ring_targets_enable_title">Hidupkan target lockscreen</string>
-    <string name="pref_lockscreen_ring_targets_enable_summary">Hidupkan pengaturan target lockscreen</string>
-    <string name="pref_lockscreen_ring_targets_app_title">Aplikasi target %s</string>
-    <string name="pref_lockscreen_ring_vertical_offset_title">Jarak bawah cincin unlock</string>
+    <!-- Lockscreen targets -->
+    <string name="pref_cat_lockscreen_targets_title">Target Lockscreen</string>
+    <string name="pref_lockscreen_targets_enable_title">Hidupkan target lockscreen</string>
+    <string name="pref_lockscreen_targets_enable_summary">Hidupkan pengaturan target lockscreen</string>
+    <string name="pref_lockscreen_targets_app_title">Aplikasi target %s</string>
+    <string name="pref_lockscreen_targets_bottom_offset_title">Jarak bawah cincin unlock</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">Jarak samping cincin unlock</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Hidupkan kontrol kecerahan</string>
@@ -560,13 +578,34 @@
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
     <string name="pref_network_mode_tile_mode_title">Mode kotak mode jaringan</string>
-    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
-    <string name="nm_tile_mode2">2G/2G+3G</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
+    <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
+    <string name="nm_tile_mode3">2G/3G/(LTE)</string>
 
     <!-- Disable GPS notifications -->
     <string name="pref_gps_notif_disable_title">Matikan notifikasi GPS</string>
 
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Bolehkan semua rotasi</string>
+
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">Paksakan kelakuan bawaan kotak</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Memaksakan kelakuan kotak saat disentuh/ditahan untuk kotak terpilih (membutuhkan restart)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">Kotak slot SIM paket data</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Menentukan slot SIM mana yang menggunakan paket data (%s)</string>
+    <string name="sim_slot1">SIM slot 1</string>
+    <string name="sim_slot2">SIM slot 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">Tidak pernah</string>
+    <string name="pie_controls_enabled_always">Selalu</string>
+    <string name="pie_controls_enabled_expanded">Ketika mode perluasan desktop hidup</string>
+    <string name="pie_controls_enabled_expanded_navbar">Ketika mode perluasan desktop hidup, sembunyikan navbar</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Biarkan ikon baterai bawaan tetap utuh</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Gunakan jika ikon baterai bawaan telah diganti dengan ikon baterai pihak ketiga</string>
 
 </resources>
