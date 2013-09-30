@@ -641,6 +641,11 @@
             android:summary="@string/crt_off_effect_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_unplug_turns_on_screen"
+            android:title="@string/pref_unplug_turns_on_screen_title"
+            android:summary="@string/pref_unplug_turns_on_screen_summary" />
+
         <CheckBoxPreference
             android:key="pref_holo_bg_dither"
             android:title="@string/pref_holo_bg_dither_title"

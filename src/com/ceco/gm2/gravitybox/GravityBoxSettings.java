@@ -137,6 +137,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_ABOUT_XPOSED = "pref_about_xposed";
     public static final String PREF_KEY_ABOUT_DONATE = "pref_about_donate";
     public static final String PREF_KEY_CRT_OFF_EFFECT = "pref_crt_off_effect";
+    public static final String PREF_KEY_UNPLUG_TURNS_ON_SCREEN = "pref_unplug_turns_on_screen";
     public static final String PREF_KEY_ENGINEERING_MODE = "pref_engineering_mode";
     public static final String APP_MESSAGING = "com.android.mms";
     public static final String APP_ENGINEERING_MODE = "com.mediatek.engineermode";
@@ -386,13 +387,15 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             PREF_KEY_BRIGHTNESS_MASTER_SWITCH,
             PREF_KEY_NAVBAR_OVERRIDE,
             PREF_KEY_NAVBAR_ENABLE,
-            PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE
+            PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE,
+            PREF_KEY_UNPLUG_TURNS_ON_SCREEN
     ));
 
     private static final class SystemProperties {
         public boolean hasGeminiSupport;
         public boolean isTablet;
         public boolean hasNavigationBar;
+        public boolean unplugTurnsOnScreen;
 
         public SystemProperties(Bundle data) {
             if (data.containsKey("hasGeminiSupport")) {
@@ -403,6 +406,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             }
             if (data.containsKey("hasNavigationBar")) {
                 hasNavigationBar = data.getBoolean("hasNavigationBar");
+            }
+            if (data.containsKey("unplugTurnsOnScreen")) {
+                unplugTurnsOnScreen = data.getBoolean("unplugTurnsOnScreen");
             }
         }
     }
@@ -586,6 +592,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private MultiSelectListPreference mPrefQsTileBehaviourOverride;
         private ListPreference mPrefQsNetworkModeSimSlot;
         private CheckBoxPreference mPrefSbColorSkipBattery;
+        private CheckBoxPreference mPrefUnplugTurnsOnScreen;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -701,6 +708,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCatDisplay = (PreferenceScreen) findPreference(PREF_CAT_KEY_DISPLAY);
             mPrefCatBrightness = (PreferenceScreen) findPreference(PREF_CAT_KEY_BRIGHTNESS);
             mPrefCrtOff = (CheckBoxPreference) findPreference(PREF_KEY_CRT_OFF_EFFECT);
+            mPrefUnplugTurnsOnScreen = (CheckBoxPreference) findPreference(PREF_KEY_UNPLUG_TURNS_ON_SCREEN);
             mPrefCatMedia = (PreferenceScreen) findPreference(PREF_CAT_KEY_MEDIA);
             mPrefSafeMediaVolume = (CheckBoxPreference) findPreference(PREF_KEY_SAFE_MEDIA_VOLUME);
             mPrefMusicVolumeSteps = (CheckBoxPreference) findPreference(PREF_KEY_MUSIC_VOLUME_STEPS);
@@ -831,9 +839,13 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mQuickSettings.setValues(defVal);
             }
 
-            final boolean value = mPrefs.getBoolean(PREF_KEY_NAVBAR_ENABLE, sSystemProperties.hasNavigationBar);
+            boolean value = mPrefs.getBoolean(PREF_KEY_NAVBAR_ENABLE, sSystemProperties.hasNavigationBar);
             mPrefs.edit().putBoolean(PREF_KEY_NAVBAR_ENABLE, value).commit();
             mPrefNavbarEnable.setChecked(value);
+
+            value = mPrefs.getBoolean(PREF_KEY_UNPLUG_TURNS_ON_SCREEN, sSystemProperties.unplugTurnsOnScreen);
+            mPrefs.edit().putBoolean(PREF_KEY_UNPLUG_TURNS_ON_SCREEN, value).commit();
+            mPrefUnplugTurnsOnScreen.setChecked(value);
         }
 
         private void updatePreferences(String key) {

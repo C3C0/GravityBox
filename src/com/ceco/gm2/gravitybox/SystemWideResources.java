@@ -49,10 +49,15 @@ public class SystemWideResources {
 
             if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_OVERRIDE, false)) {
                 XResources.setSystemWideReplacement("android", "bool", "config_showNavigationBar",
-                        prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_ENABLE, 
-                                systemRes.getBoolean(systemRes.getIdentifier(
-                                        "config_showNavigationBar", "bool", "android"))));
+                        prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_ENABLE,
+                                SystemPropertyProvider.getSystemConfigBool(systemRes,
+                                        "config_showNavigationBar")));
             }
+
+            XResources.setSystemWideReplacement("android", "bool", "config_unplugTurnsOnScreen",
+                    prefs.getBoolean(GravityBoxSettings.PREF_KEY_UNPLUG_TURNS_ON_SCREEN,
+                            SystemPropertyProvider.getSystemConfigBool(systemRes,
+                                    "config_unplugTurnsOnScreen")));
         } catch (Throwable t) {
             XposedBridge.log(t);
         }

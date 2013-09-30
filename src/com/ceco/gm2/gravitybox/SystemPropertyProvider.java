@@ -39,6 +39,11 @@ public class SystemPropertyProvider {
         XposedBridge.log(TAG + ": " + message);
     }
 
+    public static boolean getSystemConfigBool(Resources res, String name) {
+        final int resId = res.getIdentifier(name, "bool", "android");
+        return (resId == 0 ? false : res.getBoolean(resId));
+    }
+
     public static void init(final ClassLoader classLoader) {
         try {
             final Class<?> classSystemUIService = XposedHelpers.findClass(
@@ -62,9 +67,10 @@ public class SystemPropertyProvider {
                                     Bundle data = new Bundle();
                                     data.putBoolean("hasGeminiSupport", Utils.hasGeminiSupport());
                                     data.putBoolean("isTablet", Utils.isTablet());
-                                    data.putBoolean("hasNavigationBar", res.getBoolean(
-                                            res.getIdentifier("config_showNavigationBar", 
-                                                    "bool", "android")));
+                                    data.putBoolean("hasNavigationBar",
+                                            getSystemConfigBool(res, "config_showNavigationBar"));
+                                    data.putBoolean("unplugTurnsOnScreen", 
+                                            getSystemConfigBool(res, "config_unplugTurnsOnScreen"));
                                     receiver.send(RESULT_SYSTEM_PROPERTIES, data);
                                 }
                             }
