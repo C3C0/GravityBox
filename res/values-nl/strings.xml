@@ -157,37 +157,37 @@
     <string name="about_donate_summary">Donate to me if you think this app is worth it! Also consider donating to rovo89 for his excellent Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Your %s will reboot.</string>
-    <string name="reboot_confirm_recovery">Your %s will reboot into recovery.</string>
-    <string name="reboot_confirm_bootloader">Your %s will reboot into bootloader.</string>
+    <string name="reboot_confirm">Uw %s wilt herstarten.</string>
+    <string name="reboot_confirm_recovery">Uw %s wilt herstarten in recovery.</string>
+    <string name="reboot_confirm_bootloader">Uw %s wilt herstarten in bootloader.</string>
 
     <!-- CRT effect screen off animation -->
-    <string name="crt_off_effect_title">CRT screen off effect</string>
-    <string name="crt_off_effect_summary">Enables animation that simulates old CRT off effect when turning off the screen</string>
+    <string name="crt_off_effect_title">CRT scherm uit effect</string>
+    <string name="crt_off_effect_summary">Stelt animatie die oude CRT simuleert off effect bij het uitzetten van het scherm</string>
 
     <!-- Engineering mode shortcut -->
-    <string name="engineering_mode_title">Engineering mode</string>
-    <string name="engineering_mode_summary">Launches Engineering mode application</string>
+    <string name="engineering_mode_title">Ingenieurs modus</string>
+    <string name="engineering_mode_summary">Lanceert ingenieurs modus applicatie</string>
 
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Dual SIM Ringer</string>
     <string name="dual_sim_ringer_summary">Launches application that allows to set ringtone and notification sounds separately for each SIM</string>
 
     <!--  Lockscreen tweaks -->
-    <string name="pref_cat_lockscreen_title">Lockscreen tweaks</string>
-    <string name="pref_cat_lockscreen_summary">Contains various lockscreen tweaks</string>
-    <string name="pref_cat_lockscreen_background_title">Lockscreen background</string>
-    <string name="pref_lockscreen_background_title">Background style</string>
-    <string name="lockscreen_bg_default">Default wallpaper</string>
-    <string name="lockscreen_bg_color">Color fill</string>
-    <string name="lockscreen_bg_image">Custom image</string>
+    <string name="pref_cat_lockscreen_title">Vergendelscherm tweaks</string>
+    <string name="pref_cat_lockscreen_summary">Bevat verschillende vergendelscherm tweaks</string>
+    <string name="pref_cat_lockscreen_background_title">Vergrendelscherm achtergrond</string>
+    <string name="pref_lockscreen_background_title">Achtergrond stijl</string>
+    <string name="lockscreen_bg_default">Standaard achtergrond</string>
+    <string name="lockscreen_bg_color">Kleur vullen</string>
+    <string name="lockscreen_bg_image">Eigen foto</string>
     <string name="pref_lockscreen_bg_color_title">Set custom color</string>
     <string name="pref_lockscreen_bg_color_summary">Allows to set custom background color for lockscreen</string>
     <string name="pref_lockscreen_bg_image_title">Set custom image</string>
     <string name="pref_lockscreen_bg_image_summary">Allows to set custom background image for lockscreen</string>
-    <string name="lockscreen_background_result_successful">Background changed</string>
-    <string name="lockscreen_background_result_not_successful">Background not changed</string>
-    <string name="pref_cat_lockscreen_other_title">Other</string>
+    <string name="lockscreen_background_result_successful">Achtergrond veranderd</string>
+    <string name="lockscreen_background_result_not_successful">Achtergrond niet veranderd</string>
+    <string name="pref_cat_lockscreen_other_title">Andere</string>
     <string name="pref_lockscreen_maximize_widgets_title">Maximize widgets</string>
     <string name="pref_lockscreen_maximize_widgets_summary">When enabled, lockscreen widgets will be maximized by default</string>
 
