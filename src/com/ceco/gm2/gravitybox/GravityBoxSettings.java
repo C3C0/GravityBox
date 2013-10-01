@@ -599,6 +599,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private ListPreference mPrefQsNetworkModeSimSlot;
         private CheckBoxPreference mPrefSbColorSkipBattery;
         private CheckBoxPreference mPrefUnplugTurnsOnScreen;
+        private MultiSelectListPreference mPrefCallVibrations;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -745,6 +746,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCatPhoneMessaging = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MESSAGING);
             mPrefCatPhoneMobileData = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MOBILE_DATA);
             mPrefMobileDataSlow2gDisable = (CheckBoxPreference) findPreference(PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE);
+            mPrefCallVibrations = (MultiSelectListPreference) findPreference(PREF_KEY_CALL_VIBRATIONS);
 
             mPrefNetworkModeTileMode = (ListPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_MODE);
             mPrefQsTileBehaviourOverride = 
@@ -758,6 +760,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             }
 
             // Update Phone category according to feature availability 
+            if (!Utils.hasVibrator(getActivity())) {
+                mPrefCatPhoneTelephony.removePreference(mPrefCallVibrations);
+            }
             if (!Utils.hasTelephonySupport(getActivity())) {
                 mPrefCatPhone.removePreference(mPrefCatPhoneTelephony);
             }
