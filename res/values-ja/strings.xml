@@ -600,4 +600,12 @@
     <!-- Mute volume adjust sound -->
     <string name="pref_volume_adjust_mute_title">音量変更時の効果音を無音化</string>
     <string name="pref_volume_adjust_mute_summary">音量キーで音量を変更したときの効果音を再生しないようにします。</string>
+    
+    <!-- Call vibrations -->
+    <string name="pref_call_vibrations_title">通話でのバイブ</string>
+    <string name="call_vibration_connected">着信時</string>
+    <string name="call_vibration_disconnected">着信終了時</string>
+    <string name="call_vibration_waiting">着信待機時</string>
+    <string name="call_vibration_periodic">発信時45秒毎</string>
+    
 </resources>
