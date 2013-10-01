@@ -271,10 +271,6 @@
     <string name="phone_flip_action_mute">Ztlumit vyzvánění</string>
     <string name="phone_flip_action_dismiss">Zrušit hovor</string>
 
-    <!-- Disable vibrate on call connect -->
-    <string name="pref_phone_call_connect_vibrate_disable_title">Zakázat vibrování při navázání hovoru</string>
-    <string name="pref_phone_call_connect_vibrate_disable_summary">Zakáže vibraci, která je provedena při navázání hovoru</string>
-
     <!--  Solid black Holo background -->
     <string name="pref_holo_bg_solid_black_title">Plné černé pozadí</string>
     <string name="pref_holo_bg_solid_black_summary">Nahradí standardní černo-šedé pozadí (gradient) plnou černou barvou (vyžaduje restart)</string>
@@ -588,5 +584,20 @@
     <!-- Icon coloring: preserve stock battery icon -->
     <string name="pref_statusbar_color_skip_battery_title">Nevybarvovat stock ikonu baterie</string>
     <string name="pref_statusbar_color_skip_battery_summary">Použít v případě, pokud byla stock ikona baterie nahrazena jinou (např. použitím externího modu baterie)</string>
+
+    <!-- Unplug turns on screen -->
+    <string name="pref_unplug_turns_on_screen_title">Odpojení napájení zapne obrazovku</string>
+    <string name="pref_unplug_turns_on_screen_summary">Pokud aktivní, obrazovka se zapne automaticky po připojení / odpojení usb kabelu (vyžaduje restart)</string>
+
+    <!-- Mute volume adjust sound -->
+    <string name="pref_volume_adjust_mute_title">Vypnout zvuky nastavení hlasitocti</string>
+    <string name="pref_volume_adjust_mute_summary">Vypne zvuky, které se přehrávají během změny hlasitosti tlačítky pro nastavení hlasitosti</string>
+
+    <!-- Call vibrations -->
+    <string name="pref_call_vibrations_title">Vibrace volání</string>
+    <string name="call_vibration_connected">Při navázání hovoru</string>
+    <string name="call_vibration_disconnected">Při ukončení hovoru</string>
+    <string name="call_vibration_waiting">Při čekajícím hovoru</string>
+    <string name="call_vibration_periodic">Každou 45. sekundu v minutě při odchozím hovoru</string>
 
 </resources>
