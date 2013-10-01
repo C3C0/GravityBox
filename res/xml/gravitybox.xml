@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceScreen
@@ -7,43 +22,43 @@
         android:summary="@string/pref_cat_lockscreen_summary">
 
         <PreferenceScreen 
-            android:key="pref_cat_lockscreen_targets"
-            android:title="@string/pref_cat_lockscreen_targets_title">
+            android:key="pref_cat_lockscreen_ring_settings"
+            android:title="@string/pref_cat_lockscreen_ring_settings_title">
 
             <CheckBoxPreference 
-                android:key="pref_lockscreen_targets_enable"
-                android:title="@string/pref_lockscreen_targets_enable_title"
-                android:summary="@string/pref_lockscreen_targets_enable_summary"
+                android:key="pref_lockscreen_ring_targets_enable"
+                android:title="@string/pref_lockscreen_ring_targets_enable_title"
+                android:summary="@string/pref_lockscreen_ring_targets_enable_summary"
                 android:defaultValue="false" />
 
             <com.ceco.gm2.gravitybox.preference.AppPickerPreference
-                android:key="pref_lockscreen_targets_app0"
-                android:title="@string/pref_lockscreen_targets_app_title"
+                android:key="pref_lockscreen_ring_targets_app0"
+                android:title="@string/pref_lockscreen_ring_targets_app_title"
                 android:summary="@string/app_picker_none" />
 
             <com.ceco.gm2.gravitybox.preference.AppPickerPreference
-                android:key="pref_lockscreen_targets_app1"
-                android:title="@string/pref_lockscreen_targets_app_title"
+                android:key="pref_lockscreen_ring_targets_app1"
+                android:title="@string/pref_lockscreen_ring_targets_app_title"
                 android:summary="@string/app_picker_none" />
 
             <com.ceco.gm2.gravitybox.preference.AppPickerPreference
-                android:key="pref_lockscreen_targets_app2"
-                android:title="@string/pref_lockscreen_targets_app_title"
+                android:key="pref_lockscreen_ring_targets_app2"
+                android:title="@string/pref_lockscreen_ring_targets_app_title"
                 android:summary="@string/app_picker_none" />
 
             <com.ceco.gm2.gravitybox.preference.AppPickerPreference
-                android:key="pref_lockscreen_targets_app3"
-                android:title="@string/pref_lockscreen_targets_app_title"
+                android:key="pref_lockscreen_ring_targets_app3"
+                android:title="@string/pref_lockscreen_ring_targets_app_title"
                 android:summary="@string/app_picker_none" />
 
             <com.ceco.gm2.gravitybox.preference.AppPickerPreference
-                android:key="pref_lockscreen_targets_app4"
-                android:title="@string/pref_lockscreen_targets_app_title"
+                android:key="pref_lockscreen_ring_targets_app4"
+                android:title="@string/pref_lockscreen_ring_targets_app_title"
                 android:summary="@string/app_picker_none" />
 
             <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-                android:key="pref_lockscreen_targets_bottom_offset2"
-                android:title="@string/pref_lockscreen_targets_bottom_offset_title"
+                android:key="pref_lockscreen_ring_targets_vertical_offset"
+                android:title="@string/pref_lockscreen_ring_vertical_offset_title"
                 minimum="-50"
                 maximum="50"
                 interval="1"
@@ -52,8 +67,8 @@
                 android:defaultValue="0" />
 
             <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-                android:key="pref_lockscreen_targets_right_offset2"
-                android:title="@string/pref_lockscreen_targets_right_offset_title"
+                android:key="pref_lockscreen_ring_targets_horizontal_offset"
+                android:title="@string/pref_lockscreen_ring_horizontal_offset_title"
                 minimum="-30"
                 maximum="30"
                 interval="1"
@@ -626,6 +641,11 @@
             android:summary="@string/crt_off_effect_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference 
+            android:key="pref_unplug_turns_on_screen"
+            android:title="@string/pref_unplug_turns_on_screen_title"
+            android:summary="@string/pref_unplug_turns_on_screen_summary" />
+
         <CheckBoxPreference
             android:key="pref_holo_bg_dither"
             android:title="@string/pref_holo_bg_dither_title"
@@ -670,11 +690,12 @@
                 android:entryValues="@array/phone_flip_action_values"
                 android:defaultValue="0" />
 
-            <CheckBoxPreference 
-                android:key="pref_phone_call_connect_vibrate_disable"
-                android:title="@string/pref_phone_call_connect_vibrate_disable_title"
-                android:summary="@string/pref_phone_call_connect_vibrate_disable_summary"
-                android:defaultValue="false" />
+            <MultiSelectListPreference 
+                android:key="pref_call_vibrations"
+                android:title="@string/pref_call_vibrations_title"
+                android:entries="@array/call_vibration_entries"
+                android:entryValues="@array/call_vibration_values"
+                android:defaultValue="@array/empty_array" />
 
             <CheckBoxPreference 
                 android:key="pref_caller_fullscreen_photo"
@@ -758,6 +779,12 @@
             android:title="@string/pref_link_volumes_title"
             android:summary="@string/pref_link_volumes_summary"
             android:defaultValue="true" />
+
+        <CheckBoxPreference 
+            android:key="pref_volume_adjust_mute"
+            android:title="@string/pref_volume_adjust_mute_title"
+            android:summary="@string/pref_volume_adjust_mute_summary"
+            android:defaultValue="false" />
 
     </PreferenceScreen>
 

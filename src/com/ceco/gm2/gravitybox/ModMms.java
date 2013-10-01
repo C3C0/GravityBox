@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.ceco.gm2.gravitybox;
 
 import android.os.Bundle;
@@ -34,7 +49,7 @@ public class ModMms {
             XposedHelpers.findAndHookMethod(composeMsgActivityClass, 
                     "onCreate", Bundle.class, activityOnCreateHook);
 
-            if (Utils.hasGeminiSupport()) {
+            if (Utils.isMtkDevice()) {
                 XposedHelpers.findAndHookMethod(workingMessageClass, "send",
                         String.class, int.class, workingMessageSendHook);
                 try {
@@ -70,15 +85,27 @@ public class ModMms {
                     XposedHelpers.findAndHookMethod(textEditorWatcher.getClass(), "onTextChanged", 
                             CharSequence.class, int.class, int.class, int.class, new XC_MethodHook() {
                         @Override
-                        protected void afterHookedMethod(MethodHookParam param2) throws Throwable {
+                        protected void beforeHookedMethod(MethodHookParam param2) throws Throwable {
                             if (param2.thisObject != textEditorWatcher) return;
 
                             CharSequence s = (CharSequence) param2.args[0];
+                            XposedHelpers.setAdditionalInstanceField(param.thisObject, "mGbOriginalText", s);
                             if (DEBUG) log ("TextEditorWatcher.onTextChanged: original ='" + s + "'");
                             s = mUnicodeFilter.filter(s);
                             if (DEBUG) log ("TextEditorWatcher.onTextChanged: stripped ='" + s + "'");
-                            XposedHelpers.callMethod(param.thisObject, "updateCounter",
-                                    s, param2.args[1], param2.args[2], param2.args[3]); 
+                            param2.args[0] = s;
+                        }
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param2) throws Throwable {
+                            if (param2.thisObject != textEditorWatcher) return;
+
+                            Object workingMessage = XposedHelpers.getObjectField(param.thisObject, "mWorkingMessage");
+                            if (workingMessage != null) {
+                                final CharSequence s = (CharSequence) XposedHelpers.getAdditionalInstanceField(
+                                        param.thisObject, "mGbOriginalText");
+                                if (DEBUG) log("Pushing original text to working message: '" + s + "'");
+                                XposedHelpers.callMethod(workingMessage, "setText", s);
+                            }
                         }
                     });
                 }

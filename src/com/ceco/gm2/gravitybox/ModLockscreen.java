@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.ceco.gm2.gravitybox;
 
 import java.lang.reflect.Constructor;
@@ -172,8 +187,6 @@ public class ModLockscreen {
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     if (DEBUG) log("KeyGuardSelectorView onFinishInflate()");
                     prefs.reload();
-                    if (!prefs.getBoolean(
-                            GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_ENABLE, false)) return;
 
                     final Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                     final Resources res = context.getResources();
@@ -183,10 +196,10 @@ public class ModLockscreen {
                     try {
                         final FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) gpView.getLayoutParams();
                         final int bottomMarginOffsetPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
-                                prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET, 0),
+                                prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_VERTICAL_OFFSET, 0),
                                 res.getDisplayMetrics());
                         final int rightMarginOffsetPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
-                                prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET, 0),
+                                prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_HORIZONTAL_OFFSET, 0),
                                 res.getDisplayMetrics());
                         lp.setMargins(lp.leftMargin, lp.topMargin, lp.rightMargin - rightMarginOffsetPx, 
                                 lp.bottomMargin - bottomMarginOffsetPx);
@@ -194,6 +207,9 @@ public class ModLockscreen {
                     } catch (Throwable t) {
                         log("Lockscreen targets: error while trying to modify GlowPadView layout" + t.getMessage());
                     }
+
+                    if (!prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_ENABLE, false)) return;
 
                     @SuppressWarnings("unchecked")
                     final ArrayList<Object> targets = (ArrayList<Object>) XposedHelpers.getObjectField(

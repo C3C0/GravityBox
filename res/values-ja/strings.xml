@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">バッテリーアイコンのスタイル</string>	
+    <string name="battery_style_stock">標準バッテリーアイコン</string>
+    <string name="battery_style_circle">サークルアイコン</string>
+    <string name="battery_style_circle_percent">サークル＋パーセントアイコン</string>
+    <string name="battery_style_percent">バッテリーパーセントテキスト</string>
+    <string name="battery_style_none">なし</string>
+
+    <string name="vol_music_controls_title">音量キーで曲操作</string>
+    <string name="vol_music_controls_summary">画面オフ時に音量キー長押しで曲送り/曲戻しします。</string>
+
+    <string name="low_battery_warning_policy_title">バッテリー残量低下警告</string>
+    <string name="low_battery_warning_full">ポップアップ＋警告音</string>
+    <string name="low_battery_warning_popup">ポップアップのみ</string>
+    <string name="low_battery_warning_sound">警告音のみ</string>
+    <string name="low_battery_warning_off">なし</string>
+
+    <string name="reboot_required">変更は再起動後に適用されます。</string>
+
+    <string name="signal_icon_autohide_title">電波アイコンを自動非表示</string>
+    <string name="signal_icon_autohide_summary">選択したSIMスロットにSIMが入っていないときに電波アイコンを非表示にして「SIMが挿入されていません」の通知を無効化します。</string>
+    <string name="sim_slot_1">SIMスロット1を自動非表示</string>
+    <string name="sim_slot_2">SIMスロット2を自動非表示</string>
+    <string name="sim_disable_notifications">通知を無効化</string>
+    <string name="sim_disable_notifications_summary">「SIMが挿入されていません」の通知を無効化しました。</string>
+
+    <string name="poweroff_advanced_title">再起動オプション</string>
+    <string name="poweroff_advanced_summary">電源メニューに再起動オプションを追加します。</string>
+    <string name="poweroff_recovery">リカバリ</string>
+    <string name="poweroff_bootloader">Bootloader</string>
+
+    <string name="vol_key_cursor_control_title">音量キーカーソル操作</string>
+    <string name="vol_key_cursor_control_summary">文字入力欄で音量キーでカーソルを移動できるようにします。</string>
+    <string name="vol_key_cursor_control_off">無効</string>
+    <string name="vol_key_cursor_control_on">音量キー上/下で左/右に移動</string>
+    <string name="vol_key_cursor_control_on_reverse">音量キー上/下で右/左に移動</string>
+
+    <string name="recents_clear_all_title">全てのアプリを終了</string>
+
+    <string name="fix_datetime_crash_title">日付と時刻でのクラッシュを修正</string>
+    <string name="fix_datetime_crash_summary">設定で日付と時刻を開いたときにクラッシュする場合に有効にしてください。(要再起動)</string>
+
+    <string name="fix_caller_id_phone_title">発信者IDを修正</string>
+    <string name="fix_caller_id_phone_summary">電話が着信したときに連絡先と一致しない場合に有効にしてください。(要再起動)</string>
+    <string name="fix_caller_id_phone_alert">再起動後は連絡先を消去して追加し直してください! Use Settings / Applications / All - to clear data of Contacts provider.</string>
+
+    <string name="fix_caller_id_mms_title">メッセージ送信者IDを修正</string>
+    <string name="fix_caller_id_mms_summary">同じ連絡先の人なのにメッセージが分けて保存される場合に有効にしてください。(要再起動)</string>
+    <string name="fix_caller_id_mms_alert">再起動後は分けられたメッセージを全て消去してください!</string>
+
+    <string name="fix_calendar_title">カレンダーアプリを修正</string>
+    <string name="fix_calendar_summary">画面のオンオフが勝手にされる場合に有効にしてください。(要再起動)</string>
+
+    <string name="important">重要</string>
+
+    <string name="caller_fullscreen_photo_title">発信者の写真を全画面表示</string>
+    <string name="caller_fullscreen_photo_summary">着信時に発信者の写真を全画面表示します。</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">同期オン</string>
+    <string name="quick_settings_sync_off">同期オフ</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi APオン</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi APオフ</string>
+    <string name="quick_settings_torch_on">トーチオン</string>
+    <string name="quick_settings_torch_off">トーチオフ</string>
+    <string name="quick_settings_torch_off_notif">タッチでオフにする</string>
+    <string name="quick_settings_qr_playing">再生中&#8230;</string>
+    <string name="quick_settings_qr_recording">録音中&#8230;</string>
+    <string name="quick_settings_qr_recorded">録音しました</string>
+    <string name="quick_settings_qr_record">長押しで録音</string>
+    <string name="quick_settings_qr_recording_notif">タッチで録音停止</string>
+    <string name="quick_settings_expanded_desktop_disabled">無効</string>
+    <string name="quick_settings_expanded_desktop_normal">通常</string>
+    <string name="quick_settings_expanded_desktop_expanded">展開中</string>
+    <string name="quick_settings_stay_awake_on">常時点灯オン</string>
+    <string name="quick_settings_stay_awake_off">常時点灯オフ</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">ステータスバークイック設定タイル</string>
+    <string name="quick_settings_summary">ステータスバーにクイック設定タイルを表示するかどうか選択します。</string>
+    <string name="qs_tile_user_profile">プロフィール</string>
+    <string name="qs_tile_airplane_mode">機内モード</string>
+    <string name="qs_tile_battery">バッテリー状態</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_gps_alt">GPS (CMスタイル)</string>
+    <string name="qs_tile_mobile_data">モバイルデータ</string>
+    <string name="qs_tile_network_mode">ネットワークモード</string>
+    <string name="qs_tile_data_usage">データ使用</string>
+    <string name="qs_tile_audio">オーディオプロファイル</string>
+    <string name="qs_tile_brightness">画面の明るさ</string>
+    <string name="qs_tile_screen_timeout">消灯までの時間</string>
+    <string name="qs_tile_autorotation">画面の自動回転</string>
+    <string name="qs_tile_sync">自動同期</string>
+    <string name="qs_tile_wifi_ap">Wi-Fiアクセスポイント</string>
+    <string name="qs_tile_torch">トーチ</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">スリープ</string>
+    <string name="qs_tile_quickrecord">クイック録音</string>
+    <string name="qs_tile_settings">設定</string>
+    <string name="qs_tile_volume">音量</string>
+    <string name="qs_tile_expanded_desktop">拡張デスクトップ</string>
+    <string name="qs_tile_stay_awake">画面常時点灯</string>
+    <string name="qs_tile_screenshot">スクリーンショット</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">カラーピッカー</string>
+    <string name="press_color_to_apply">色を押すと適用します。</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">ステータスバー背景色</string>
+    <string name="statusbar_bgcolor_summary">ステータスバーの背景色と透過度を設定します。</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">スピーチ設定の表示</string>
+    <string name="fix_tts_settings_summary">設定の言語と入力で音声検索とTTSの項目を表示します。(要再起動)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">開発者オプションの表示</string>
+    <string name="fix_dev_opts_summary">開発者オプションを表示します。(要再起動)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">ステータスバー設定</string>
+    <string name="pref_cat_statusbar_summary">ステータスバーに関連した設定を変更します。。</string>
+    <string name="pref_cat_misc_title">その他の設定</string>
+    <string name="pref_cat_misc_summary">特定のカテゴリに振り分けられない設定を変更します。</string>
+    <string name="pref_cat_fixes_title">全体的な修正</string>
+    <string name="pref_cat_fixes_summary">MTK6589向けの修正を適用します。必要な場合のみ適用してください。</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">このアプリについて</string>
+    <string name="about_gb_summary">開発者: C3C076@XDA タッチで公式スレに移動します。</string>
+    <string name="about_xposed_title">Xposedフレームワーク</string>
+    <string name="about_xposed_summary">開発者: rovo89@XDA タッチで公式スレに移動します。</string>
+    <string name="about_donate_title">寄付</string>
+    <string name="about_donate_summary">このアプリが役に立ったなら寄付をお願いします! Xposedフレームワークを作ったrovo89さんへの感謝も忘れないでください。</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">%s を再起動します。</string>
+    <string name="reboot_confirm_recovery">%s をリカバリへ再起動します。</string>
+    <string name="reboot_confirm_bootloader">%s をbootloaderへ再起動します。</string>
+
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">CRT画面オフ効果</string>
+    <string name="crt_off_effect_summary">画目オフ時にブラウン管テレビをオフにしたときのようなアニメーションを再生します。</string>
+
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">開発者モード</string>
+    <string name="engineering_mode_summary">開発者モードアプリを起動します。</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">デュアルSIM着信音</string>
+    <string name="dual_sim_ringer_summary">SIM毎に着信音と通地温を設定できるアプリを起動します。</string>
+
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">ロック画面設定</string>
+    <string name="pref_cat_lockscreen_summary">ロック画面に関連した設定を変更します。</string>
+    <string name="pref_cat_lockscreen_background_title">ロック画面の背景</string>
+    <string name="pref_lockscreen_background_title">背景のスタイル</string>
+    <string name="lockscreen_bg_default">標準壁紙</string>
+    <string name="lockscreen_bg_color">塗りつぶし</string>
+    <string name="lockscreen_bg_image">カスタム画像</string>
+    <string name="pref_lockscreen_bg_color_title">色をセット</string>
+    <string name="pref_lockscreen_bg_color_summary">ロック画面の背景に使う色をセットします。</string>
+    <string name="pref_lockscreen_bg_image_title">画像をセット</string>
+    <string name="pref_lockscreen_bg_image_summary">ロック画面の背景に使う背景画像をセットします。</string>
+    <string name="lockscreen_background_result_successful">背景を変更しました。</string>
+    <string name="lockscreen_background_result_not_successful">背景は変更されませんでした。</string>
+    <string name="pref_cat_lockscreen_other_title">その他</string>
+    <string name="pref_lockscreen_maximize_widgets_title">ウィジェットの最大化</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">有効にするとウィジェットのサイズが最大化されます。</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">電源設定</string>
+    <string name="pref_cat_power_summary">電源に関連した設定を変更します。</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">LED点滅を無効化</string>
+    <string name="pref_flashing_led_disable_summary">バッテリー残量が少なく、電源に接続していないときにLEDを点滅させないようにします。</string>
+
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">画面設定</string>
+    <string name="pref_cat_display_summary">画面に関連した設定を変更します。</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">明るさの最小値</string>
+    <string name="pref_brightness_min_summary">明るさの最小値を設定します。手動設定にのみ反映されます。(要再起動)</string>
+    <string name="pref_brightness_dlg_msg">設定可能な値: 10 &#8211; 80</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">自動調整値</string>
+    <string name="pref_ab_summary">明るさの自動調整で使用する値を設定します</string>
+    <string name="level">値</string>
+    <string name="pref_ab_lux_max_label">最大ルクス</string>
+    <string name="pref_ab_brighness_label">明るさ (10 &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">指定した値は不正です。</string>
+    <string name="pref_ab_brightness_too_low">10未満に設定するのはおすすめできません。</string>
+    <string name="pref_ab_brightness_too_high">255より上には設定できません。</string>
+    <string name="pref_ab_number_error_negative">値は低かったり同じにはできません。</string>
+    <string name="pref_ab_number_not_ascending">最低値が最大値を上回ることはできません。</string>
+    <string name="pref_ab_number_not_descending">最大値が最低値を下回ることはできません。</string>
+    <string name="pref_ab_values_set">%s の値を設定しました。</string>
+    <string name="pref_ab_config_saved">明るさ設定を保存しました。</string>
+    <string name="pref_ab_config_cancelled">明るさ設定は保存されませんでした。</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">ロック画面での回転を有効化</string>
+    <string name="pref_lockscreen_rotation_summary">警告: AOSPロック画面がキャリアにより改変されている場合ロックをスキップできてしまう可能性があります。</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">メニューキーを有効化</string>
+    <string name="pref_lockscreen_menu_key_summary">ロック画面でメニューキーを押すとロックを解除するようにします。(要再起動)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">メッセージの画面点灯を修正</string>
+    <string name="pref_mms_fix_wakelock_summary">メッセージは届いたときに画面がオンになるのを防ぎます。(要再起動)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">時計の中央化</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">メディア設定</string>
+    <string name="pref_cat_media_summary">メディアやオーディオに関連した設定を変更します。</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">音量の段階数を増やす</string>
+    <string name="pref_music_volume_steps_summary">音量の段階数を増やします。(要再起動)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">安全な音量</string>
+    <string name="pref_safe_media_volume_summary">ヘッドフォンでの音量制限を有効/無効化します。</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">充電中LEDを無効化</string>
+    <string name="pref_charging_led_disable_summary">充電中のLED点灯を無効化します。</string>
+
+    <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">ハードキーアクション</string>
+    <string name="pref_cat_hwkey_actions_summary">ハードキーのアクションを変更します。</string>
+    <string name="pref_hwkey_menu_longpress_title">メニューキー長押し</string>
+    <string name="pref_hwkey_menu_doubletap_title">メニューキーダブルタップ</string>
+    <string name="pref_hwkey_back_longpress_title">戻るキー長押し</string>
+    <string name="hwkey_action_default">標準</string>
+    <string name="hwkey_action_search">検索</string>
+    <string name="hwkey_action_voice_search">音声検索</string>
+    <string name="hwkey_action_prev_app">前のアプリに切り替え</string>
+    <string name="hwkey_action_kill">前面アプリを終了</string>
+    <string name="hwkey_action_sleep">スリープ</string>
+    <string name="pref_hwkey_kill_delay_title">アプリ終了の長押し時間</string>
+    <string name="pref_hwkey_kill_delay_summary">前面アプリの終了をするまでにどれぐらいキーを押しっぱなしにするか設定します。</string>
+    <string name="pref_hwkey_doubletap_speed_title">ダブルタップ速度</string>
+    <string name="pref_hwkey_doubletap_speed_summary">メニューキーダブルタップでどれぐらいの速度のタップを認識するか設定します。</string>
+    <string name="app_killed">アプリを終了しました。</string>
+    <string name="nothing_to_kill">終了するアプリがありません。</string>
+    <string name="no_previous_app_found">前のアプリはありません。</string>
+
+    <!--  Phone tweaks category -->
+    <string name="pref_cat_phone_title">電話設定</string>
+    <string name="pref_cat_phone_summary">電話に関連した設定を変更します。</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">着信時の裏返しアクション</string>
+    <string name="pref_phone_flip_summary">着信中に端末を裏返したときのアクションを設定します。</string>
+    <string name="phone_flip_action_none">何もしない</string>
+    <string name="phone_flip_action_mute">着信音を無音化</string>
+    <string name="phone_flip_action_dismiss">拒否</string>
+
+    <!-- Disable vibrate on call connect -->
+    <string name="pref_phone_call_connect_vibrate_disable_title">着信時のバイブを無効化</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">着信したときのバイブを無効化します。</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">ソフトリブート</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">黒一色のHolo背景</string>
+    <string name="pref_holo_bg_solid_black_summary">Holoシステムテーマの背景を黒一色にします。(要再起動)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">行毎のタイル数</string>
+    <string name="pref_qs_tiles_per_row_summary">行毎に表示するタイル数を設定します。タイルはタイル数に合わせてリサイズされ、縦画面にのみ適用されます。</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">曜日を表示</string>
+
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">音量パネルを展開可能にする</string>
+    <string name="pref_volume_panel_expandable_summary">様々な音量を調整できる音量パネルを展開できるようにします。</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">着信音と通知音の音量をリンクする</string>
+    <string name="pref_link_volumes_summary">無効にすると着信音と通知音の音量を別々に設定できます。</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">クイック設定を自動切り替え</string>
+    <string name="pref_auto_switch_qs_summary">通知がないときにステータスバーを開くとクイック設定を自動表示するようにします。</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">クイックプルダウン</string>
+    <string name="pref_quick_pulldown_summary">ステータスバーのどの角をプルダウンしてクイック設定を表示するか設定します。</string>
+    <string name="quick_pulldown_off">オフ</string>
+    <string name="quick_pulldown_right">右</string>
+    <string name="quick_pulldown_left">左</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">音量キーでの画面オンを無効化</string>
+    <string name="pref_volume_rocker_wake_disable_summary">音量キーでの画面オンを無効化します。</string>
+
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">ステータスバーの色</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">アイコンの色を変更</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">ステータスバーアイコンの色</string>
+    <string name="pref_statusbar_icon_color_summary">ステータスバーアイコンと時計の色を設定します。</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">通信アイコンの色</string>
+    <string name="pref_statusbar_data_activity_color_summary">通信アイコンの色を設定します。</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">クイック設定管理</string>
+
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">通知領域のスタイル</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">通知領域の背景</string>
+    <string name="notif_background_default">標準の背景</string>
+    <string name="notif_background_color_fill">塗りつぶし</string>
+    <string name="notif_background_custom_image">カスタム画像</string>
+    <string name="pref_notif_color_title">色のセット</string>
+    <string name="pref_notif_image_portrait_title">縦画面の画像をセット</string>
+    <string name="pref_notif_image_landscape_title">横画面の画像をセット</string>
+    <string name="pref_notif_background_alpha_title">背景の透過度</string>
+    <string name="pref_notif_color_mode_title">背景モード</string>
+    <string name="color_fill_overlay">オーバーレイ</string>
+    <string name="color_fill_underlay">アンダーレイ</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">ローミングアイコンの無効化</string>
+    <string name="pref_disable_roaming_indicators_summary">無効にするとローミング中にRアイコンを非表示にします。</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">充電中(<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">充電完了</string>
+    <string name="pie_battery_status_discharging">残り<xliff:g id="percent">%d</xliff:g>%%</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">サービスなし</string>
+    <string name="pie_phone_status_airplane_mode">機内モードオン</string>
+    <string name="pie_phone_status_emergency_only">緊急通報のみ</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">パイ操作</string>
+    <string name="pie_control_enable_title">パイ操作を有効化</string>
+    <string name="pie_control_search_title">検索キーを表示</string>
+    <string name="pie_control_size_title">ナビキーのサイズ</string>
+    <string name="pie_control_trigger_positions_title">起動位置</string>
+    <string name="pie_control_trigger_left">画面左端</string>
+    <string name="pie_control_trigger_bottom">画面下端</string>
+    <string name="pie_control_trigger_right">画面右端</string>
+    <string name="pie_control_trigger_top">画面上端</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">ボタンバックライト</string>
+    <string name="button_backlight_mode_default">標準</string>
+    <string name="button_backlight_mode_disable">無効化</string>
+    <string name="button_backlight_mode_always_on">画面オン中は常時点灯</string>
+    <string name="pref_button_backlight_notifications_title">ボタンバックライトで通知</string>
+    <string name="pref_button_backlight_notifications_summary">実験的です! 通知があるときにボタンのバックライトを点滅させます。通知LEDがない端末でご使用ください。バッテリーを消費します。</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">ナビバーを非表示</string>
+    <string name="pref_navbar_disable_summary">パイ操作が有効なときナビバーを非表示にします。(ナビバーがある端末向け、要再起動)</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">ディザHolo背景</string>
+    <string name="pref_holo_bg_dither_summary">ディザ処理した背景に変更します。(要再起動)</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">ハードキーを無効化</string>
+    <string name="pref_hwkeys_disable_summary">パイ操作が有効なときハードキーを無効化します。ハードキーアクションは動作します。(ハードキーのある端末向け)</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">Holoダークテーマを使用</string>
+    <string name="pref_gb_theme_dark_summary">GravityBoxのUIをHoloダークテーマに変更します。</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">オフ</string>
+    <string name="recent_clear_top_left">左上</string>
+    <string name="recent_clear_top_right">右上</string>
+    <string name="recent_clear_bottom_left">左下</string>
+    <string name="recent_clear_bottom_right">右下</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">上の余白を調整</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">ローミング警告の無効化</string>
+    <string name="pref_roaming_warning_disable_summary">ローミング中にメッセージを送信したり電話を発信したりするときの警告を無効化します。</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">検索</string>
+    <string name="app_picker_none">(なし)</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">クイックアプリ</string>
+    <string name="pref_cat_quickapp_tile_title">クイックアプリタイル設定</string>
+    <string name="pref_quickapp_default_title">メインアプリ</string>
+    <string name="pref_quickapp_slot1_title">長押しアプリスロット1</string>
+    <string name="pref_quickapp_slot2_title">長押しアプリスロット2</string>
+    <string name="pref_quickapp_slot3_title">長押しアプリスロット3</string>
+    <string name="pref_quickapp_slot4_title">長押しアプリスロット4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPSオン</string>
+    <string name="qs_tile_gps_disabled">GPSオフ</string>
+    <string name="qs_tile_gps_locked">GPSロック中</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">メニューキーを常時表示</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">着信音モード</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">時計設定</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">AM/PMを非表示</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">時計を非表示</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">起動領域のサイズ</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">透過度管理</string>
+    <string name="pref_tm_statusbar_launcher_title">ホームアプリでのステータスバーの透過度</string>
+    <string name="pref_tm_statusbar_lockscreen_title">ロック画面でのステータスバーの透過度</string>
+    <string name="pref_tm_navbar_launcher_title">ホームアプリでのナビバーの透過度</string>
+    <string name="pref_tm_navbar_lockscreen_title">ロック画面でのナビバーの透過度</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">アラームアイコンを非表示</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">暗くする度合い</string>
+    <string name="pref_screen_dim_level_summary">画面がもうすぐオフになるときにどれぐらい画面を暗くするか設定します。(要再起動)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">電話</string>
+    <string name="device_tablet">タブレット</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">明るさ設定</string>
+    <string name="pref_brightness_master_switch_title">明るさ設定を有効化</string>
+    <string name="pref_brightness_master_switch_summary">Android標準の輝度調整機能に対応している場合のみ有効にしてください。明るさ関連の問題が起きた場合は無効にしてください。(要再起動)</string>
+
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">最近のアプリを表示</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">ホームキー長押しアクション</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">カスタムアプリ1を起動</string>
+    <string name="pref_hwkey_custom_app_title">カスタムアプリ1をセット</string>
+    <string name="hwkey_action_custom_app2">カスタムアプリ2を起動</string>
+    <string name="pref_hwkey_custom_app_title2">カスタムアプリ2をセット</string>
+    <string name="hwkey_action_custom_app_none">セットされていません!</string>
+    <string name="hwkey_action_custom_app_missing">アプリが見つかりません!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">通知領域の時計でアプリ起動</string>
+    <string name="pref_clock_link_summary">通知領域の時計をタップした時に日付と時刻ではなく別のアプリを起動するようにします。</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">GravityBoxフレームワークの応答を待っています&#8230;</string>
+    <string name="gb_startup_error">GravityBox(Xposed)フレームワークが応答していません。終了します。</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">国際データローミング</string>
+    <string name="pref_national_roaming_summary">国際ローミング中にデータサービスに接続します。</string>
+
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">拡張デスクトップモード</string>
+    <string name="expanded_desktop_disabled">無効</string>
+    <string name="expanded_desktop_statusbar">ステータスバー非表示</string>
+    <string name="expanded_desktop_navbar">ナビバーを非表示</string>
+    <string name="expanded_desktop_both">両方非表示</string>
+    <string name="action_expanded_desktop_title">拡張デスクトップ</string>
+    <string name="action_expanded_desktop_on">拡張デスクトップはオンです</string>
+    <string name="action_expanded_desktop_off">拡張デスクトップはオフです</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">スクリーンショット</string>
+
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">メニューを表示</string>
+
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">拡張デスクトップを切り替え</string>
+    <string name="hwkey_action_expanded_desktop_disabled">拡張デスクトップモードは無効です!</string>
+
+    <!-- Navigation bar tweaks category -->
+    <string name="pref_cat_navigation_bar_title">ナビバー設定</string>
+    <string name="pref_cat_navigation_bar_summary">ナビバーに関連した設定を変更します。</string>
+    <string name="pref_navbar_override_title">システムの初期値を上書き</string>
+    <string name="pref_navbar_override_summary">ナビバーの設定を有効化します。(要再起動)</string>
+    <string name="pref_navbar_enable_title">ナビバーの有効化</string>
+    <string name="pref_navbar_enable_summary">再起動が必要です。</string>
+    <string name="pref_navbar_height_title">ナビバーの高さ</string>
+    <string name="pref_navbar_height_summary">縦画面での横向きのナビバーの高さを変更します。</string>
+    <string name="pref_navbar_height_landscape_summary">横画面での横向きのナビバーの高さを変更します。</string>
+    <string name="pref_navbar_width_title">ナビバーの幅</string>
+    <string name="pref_navbar_width_summary">縦向きのナビバーの幅を変更します。</string>
+    <string name="pref_navbar_menukey_title">メニューキーを常時表示</string>
+
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">電源メニューにスクリーンショットを追加</string>
+
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">ロック画面ターゲット</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">ロック画面ターゲットを有効化</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">ロック画面設定を有効化します。</string>
+    <string name="pref_lockscreen_ring_targets_app_title">ターゲットアプリ %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">ロック解除リングの縦のオフセット</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">ロック解除リングの横のオフセット</string>
+    
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">明るさ操作を有効化</string>
+    <string name="pref_statusbar_brightness_summary">ステータスバー上でスライドして明るさ調整する</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">電話</string>
+    <string name="pref_cat_phone_messaging_title">メッセージ</string>
+    <string name="pref_cat_phone_mobile_data_title">モバイルデータ</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Unicode変換</string>
+    <string name="pref_mms_unicode_stripping_summary">Unicode文字を通常の文字に変換します。メッセージサイズを削減します。</string>
+    <string name="unicode_stripping_leave_intact">そのままにする</string>
+    <string name="unicode_stripping_non_encodable">エンコードできない文字を変換</string>
+    <string name="unicode_stripping_all">全てのUnicode文字を変換</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">2Gでの速度低下警告を無効化</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">2G対応SIMでクイック設定からモバイルデータをオンにしたときの通信速度低下の警告を無効化します。</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">標準バッテリー色に合わせる</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">ステータスバーの時計、パーセント表示やサークルバッテリーアイコンの色を標準バッテリーアイコンの色にします。アイコンの色を変更していないときに適用されます。</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">ネットワークモードのタイル</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
+    <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
+    <string name="nm_tile_mode3">2G/3G/(LTE)</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">GPS通知の無効化</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">画面の向きの自由化</string>
+
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">標準タイルアクションを上書き</string>
+    <string name="pref_qs_tile_behaviour_override_summary">選択したタイルのタッチ/長押しアクションを変更します。(要再起動)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">ネットワークモードタイルのSIMスロット</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">ネットワークモードタイルでどのSIMスロットに対して適用するか設定します。(%s)</string>
+    <string name="sim_slot1">SIMスロット1</string>
+    <string name="sim_slot2">SIMスロット2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">無効</string>
+    <string name="pie_controls_enabled_always">常時</string>
+    <string name="pie_controls_enabled_expanded">拡張デスクトップオン時</string>
+    <string name="pie_controls_enabled_expanded_navbar">拡張デスクトップでナビバー非表示時</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">標準バッテリーアイコンのままにする</string>
+    <string name="pref_statusbar_color_skip_battery_summary">他のバッテリーアイコン変更アプリで標準アイコンが変更されたときに使用します。</string>
+
+    <!-- Unplug turns on screen -->
+    <string name="pref_unplug_turns_on_screen_title">接続解除で画面をオンにする</string>
+    <string name="pref_unplug_turns_on_screen_summary">有効にすると電源に接続/接続解除したときに自動的に画面をオンにするようにします。(要再起動)</string>
+
+    <!-- Mute volume adjust sound -->
+    <string name="pref_volume_adjust_mute_title">音量変更時の効果音を無音化</string>
+    <string name="pref_volume_adjust_mute_summary">音量キーで音量を変更したときの効果音を再生しないようにします。</string>
+</resources>

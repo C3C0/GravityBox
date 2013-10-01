@@ -11,7 +11,7 @@
     <string name="battery_style_none">Nenhum</string>
 
     <string name="vol_music_controls_title">Mudar de faixa utilizando teclas de volume</string>
-    <string name="vol_music_controls_summary">As teclas de volume mudam de faixa após manter a respectiva tecla pressionada com o ecrã desligado</string>
+    <string name="vol_music_controls_summary">As teclas de volume mudam de faixa após manter a respectiva tecla pressionada com o ecrã apagado</string>
 
     <string name="low_battery_warning_policy_title">Aviso de bateria fraca</string>
     <string name="low_battery_warning_full">Aviso visual e sonoro</string>
@@ -529,13 +529,13 @@
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Captura de ecrã no Menu Desligar</string>
 
-    <!-- Lockscreen targets -->
-    <string name="pref_cat_lockscreen_targets_title">Alvos do anel de desbloqueio</string>
-    <string name="pref_lockscreen_targets_enable_title">Ativar alvos do anel de desbloqueio</string>
-    <string name="pref_lockscreen_targets_enable_summary">Permite definir até cinco aplicações como alvo no anel de desbloqueio</string>
-    <string name="pref_lockscreen_targets_app_title">Aplicação %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Desvio vertical do anel de desbloqueio</string>
-    <string name="pref_lockscreen_targets_right_offset_title">Desvio horizontal do anel de desbloqueio</string>
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">Definições do anel de desbloqueio</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Ativar alvos do anel de desbloqueio</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">Permite definir até cinco aplicações como alvo no anel de desbloqueio</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Aplicação %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Desvio vertical do anel de desbloqueio</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">Desvio horizontal do anel de desbloqueio</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Ativar controlo de brilho</string>
@@ -563,9 +563,9 @@
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
     <string name="pref_network_mode_tile_mode_title">Modo do painel Modo de Rede</string>
-    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
-    <string name="nm_tile_mode2">2G/2G+3G</string>
-    <string name="nm_tile_mode3">2G/3G/4G</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G/(4G)</string>
+    <string name="nm_tile_mode2">2G/2G+3G/(4G)</string>
+    <string name="nm_tile_mode3">2G/3G/(4G)</string>
 
     <!-- Disable GPS notifications -->
     <string name="pref_gps_notif_disable_title">Desativar notificações GPS</string>
@@ -592,5 +592,13 @@
     <!-- Icon coloring: preserve stock battery icon -->
     <string name="pref_statusbar_color_skip_battery_title">Não alterar o indicador de bateria</string>
     <string name="pref_statusbar_color_skip_battery_summary">Utilizar caso o indicador de bateria padrão já tenha sido modificado por outro método</string>
+
+    <!-- Unplug turns on screen -->
+    <string name="pref_unplug_turns_on_screen_title">Ligação USB acende ecrã</string>
+    <string name="pref_unplug_turns_on_screen_summary">Quando selecionado, o ecrã acende ao ligar/desligar o dispositivo do carregador ou computador (necessário reiniciar)</string>
+
+    <!-- Mute volume adjust sound -->
+    <string name="pref_volume_adjust_mute_title">Desativar som de ajuste de volume</string>
+    <string name="pref_volume_adjust_mute_summary">Permite desativar os sons emitidos quando se ajusta o volume utilizando as teclas de volume</string>
 
 </resources>

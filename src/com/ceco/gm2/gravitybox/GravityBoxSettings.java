@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.ceco.gm2.gravitybox;
 
 import java.io.File;
@@ -122,7 +137,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_ABOUT_XPOSED = "pref_about_xposed";
     public static final String PREF_KEY_ABOUT_DONATE = "pref_about_donate";
     public static final String PREF_KEY_CRT_OFF_EFFECT = "pref_crt_off_effect";
+    public static final String PREF_KEY_UNPLUG_TURNS_ON_SCREEN = "pref_unplug_turns_on_screen";
     public static final String PREF_KEY_ENGINEERING_MODE = "pref_engineering_mode";
+    public static final String APP_MESSAGING = "com.android.mms";
     public static final String APP_ENGINEERING_MODE = "com.mediatek.engineermode";
     public static final String APP_ENGINEERING_MODE_CLASS = "com.mediatek.engineermode.EngineerMode";
     public static final String PREF_KEY_DUAL_SIM_RINGER = "pref_dual_sim_ringer";
@@ -166,8 +183,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_MUSIC_VOLUME_STEPS = "pref_music_volume_steps";
     public static final String PREF_KEY_SAFE_MEDIA_VOLUME = "pref_safe_media_volume";
     public static final String PREF_KEY_VOLUME_PANEL_EXPANDABLE = "pref_volume_panel_expandable";
+    public static final String PREF_KEY_VOLUME_ADJUST_MUTE = "pref_volume_adjust_mute";
     public static final String ACTION_PREF_VOLUME_PANEL_MODE_CHANGED = "gravitybox.intent.action.VOLUME_PANEL_MODE_CHANGED";
     public static final String EXTRA_EXPANDABLE = "expandable";
+    public static final String EXTRA_MUTED = "muted";
     public static final String PREF_KEY_LINK_VOLUMES = "pref_link_volumes";
     public static final String ACTION_PREF_LINK_VOLUMES_CHANGED = "gravitybox.intent.action.LINK_VOLUMES_CHANGED";
     public static final String EXTRA_LINKED = "linked";
@@ -208,7 +227,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final int PHONE_FLIP_ACTION_NONE = 0;
     public static final int PHONE_FLIP_ACTION_MUTE = 1;
     public static final int PHONE_FLIP_ACTION_DISMISS = 2;
-    public static final String PREF_KEY_PHONE_CALL_CONNECT_VIBRATE_DISABLE = "pref_phone_call_connect_vibrate_disable";
+    public static final String PREF_KEY_CALL_VIBRATIONS = "pref_call_vibrations";
+    public static final String CV_CONNECTED = "connected";
+    public static final String CV_DISCONNECTED = "disconnected";
+    public static final String CV_WAITING = "waiting";
+    public static final String CV_PERIODIC = "periodic";
 
     public static final String PREF_CAT_KEY_NOTIF_DRAWER_STYLE = "pref_cat_notification_drawer_style";
     public static final String PREF_KEY_NOTIF_BACKGROUND = "pref_notif_background";
@@ -314,13 +337,13 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_NAVBAR_WIDTH = "navbarWidth";
     public static final String EXTRA_NAVBAR_MENUKEY = "navbarMenukey";
 
-    public static final String PREF_KEY_LOCKSCREEN_TARGETS_ENABLE = "pref_lockscreen_targets_enable";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_ENABLE = "pref_lockscreen_ring_targets_enable";
     public static final String PREF_KEY_LOCKSCREEN_TARGETS_APP[] = new String[] {
-        "pref_lockscreen_targets_app0", "pref_lockscreen_targets_app1", "pref_lockscreen_targets_app2",
-        "pref_lockscreen_targets_app3", "pref_lockscreen_targets_app4"
+        "pref_lockscreen_ring_targets_app0", "pref_lockscreen_ring_targets_app1", "pref_lockscreen_ring_targets_app2",
+        "pref_lockscreen_ring_targets_app3", "pref_lockscreen_ring_targets_app4"
     };
-    public static final String PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET = "pref_lockscreen_targets_bottom_offset2";
-    public static final String PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET = "pref_lockscreen_targets_right_offset2";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_VERTICAL_OFFSET = "pref_lockscreen_ring_targets_vertical_offset";
+    public static final String PREF_KEY_LOCKSCREEN_TARGETS_HORIZONTAL_OFFSET = "pref_lockscreen_ring_targets_horizontal_offset";
 
     public static final String PREF_KEY_STATUSBAR_BRIGHTNESS = "pref_statusbar_brightness";
     public static final String ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED = "gravitybox.intent.action.STATUSBAR_BRIGHTNESS_CHANGED";
@@ -332,6 +355,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String UNISTR_ALL = "all";
 
     public static final String PREF_CAT_KEY_PHONE_TELEPHONY = "pref_cat_phone_telephony";
+    public static final String PREF_CAT_KEY_PHONE_MESSAGING = "pref_cat_phone_messaging";
     public static final String PREF_CAT_KEY_PHONE_MOBILE_DATA = "pref_cat_phone_mobile_data";
     public static final String PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE = "pref_mobile_data_slow2g_disable";
 
@@ -369,13 +393,15 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             PREF_KEY_BRIGHTNESS_MASTER_SWITCH,
             PREF_KEY_NAVBAR_OVERRIDE,
             PREF_KEY_NAVBAR_ENABLE,
-            PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE
+            PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE,
+            PREF_KEY_UNPLUG_TURNS_ON_SCREEN
     ));
 
     private static final class SystemProperties {
         public boolean hasGeminiSupport;
         public boolean isTablet;
         public boolean hasNavigationBar;
+        public boolean unplugTurnsOnScreen;
 
         public SystemProperties(Bundle data) {
             if (data.containsKey("hasGeminiSupport")) {
@@ -386,6 +412,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             }
             if (data.containsKey("hasNavigationBar")) {
                 hasNavigationBar = data.getBoolean("hasNavigationBar");
+            }
+            if (data.containsKey("unplugTurnsOnScreen")) {
+                unplugTurnsOnScreen = data.getBoolean("unplugTurnsOnScreen");
             }
         }
     }
@@ -559,15 +588,17 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefNavbarMenukey;
         private CheckBoxPreference mPrefMusicVolumeSteps;
         private AppPickerPreference[] mPrefLockscreenTargetsApp;
-        private SeekBarPreference mPrefLockscreenTargetsBottomOffset;
-        private SeekBarPreference mPrefLockscreenTargetsRightOffset;
+        private SeekBarPreference mPrefLockscreenTargetsVerticalOffset;
+        private SeekBarPreference mPrefLockscreenTargetsHorizontalOffset;
         private CheckBoxPreference mPrefMobileDataSlow2gDisable;
         private PreferenceCategory mPrefCatPhoneTelephony;
+        private PreferenceCategory mPrefCatPhoneMessaging;
         private PreferenceCategory mPrefCatPhoneMobileData;
         private ListPreference mPrefNetworkModeTileMode;
         private MultiSelectListPreference mPrefQsTileBehaviourOverride;
         private ListPreference mPrefQsNetworkModeSimSlot;
         private CheckBoxPreference mPrefSbColorSkipBattery;
+        private CheckBoxPreference mPrefUnplugTurnsOnScreen;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -683,6 +714,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCatDisplay = (PreferenceScreen) findPreference(PREF_CAT_KEY_DISPLAY);
             mPrefCatBrightness = (PreferenceScreen) findPreference(PREF_CAT_KEY_BRIGHTNESS);
             mPrefCrtOff = (CheckBoxPreference) findPreference(PREF_KEY_CRT_OFF_EFFECT);
+            mPrefUnplugTurnsOnScreen = (CheckBoxPreference) findPreference(PREF_KEY_UNPLUG_TURNS_ON_SCREEN);
             mPrefCatMedia = (PreferenceScreen) findPreference(PREF_CAT_KEY_MEDIA);
             mPrefSafeMediaVolume = (CheckBoxPreference) findPreference(PREF_KEY_SAFE_MEDIA_VOLUME);
             mPrefMusicVolumeSteps = (CheckBoxPreference) findPreference(PREF_KEY_MUSIC_VOLUME_STEPS);
@@ -700,16 +732,17 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefLockscreenTargetsApp[i] = (AppPickerPreference) findPreference(
                         PREF_KEY_LOCKSCREEN_TARGETS_APP[i]);
                 String title = String.format(
-                        getString(R.string.pref_lockscreen_targets_app_title), (i+1));
+                        getString(R.string.pref_lockscreen_ring_targets_app_title), (i+1));
                 mPrefLockscreenTargetsApp[i].setTitle(title);
                 mPrefLockscreenTargetsApp[i].setDialogTitle(title);
             }
-            mPrefLockscreenTargetsBottomOffset = (SeekBarPreference) findPreference(
-                    PREF_KEY_LOCKSCREEN_TARGETS_BOTTOM_OFFSET);
-            mPrefLockscreenTargetsRightOffset = (SeekBarPreference) findPreference(
-                    PREF_KEY_LOCKSCREEN_TARGETS_RIGHT_OFFSET);
+            mPrefLockscreenTargetsVerticalOffset = (SeekBarPreference) findPreference(
+                    PREF_KEY_LOCKSCREEN_TARGETS_VERTICAL_OFFSET);
+            mPrefLockscreenTargetsHorizontalOffset = (SeekBarPreference) findPreference(
+                    PREF_KEY_LOCKSCREEN_TARGETS_HORIZONTAL_OFFSET);
 
             mPrefCatPhoneTelephony = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_TELEPHONY);
+            mPrefCatPhoneMessaging = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MESSAGING);
             mPrefCatPhoneMobileData = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MOBILE_DATA);
             mPrefMobileDataSlow2gDisable = (CheckBoxPreference) findPreference(PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE);
 
@@ -720,9 +753,16 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
-                getPreferenceScreen().removePreference(mPrefCatPhone);
                 mPrefCatStatusbarQs.removePreference(mPrefAutoSwitchQs);
                 mPrefCatStatusbarQs.removePreference(mPrefQuickPulldown);
+            }
+
+            // Update Phone category according to feature availability 
+            if (!Utils.hasTelephonySupport(getActivity())) {
+                mPrefCatPhone.removePreference(mPrefCatPhoneTelephony);
+            }
+            if (!isAppInstalled(APP_MESSAGING)) {
+                mPrefCatPhone.removePreference(mPrefCatPhoneMessaging);
             }
 
             // Remove MTK specific preferences for non-MTK devices
@@ -805,9 +845,13 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mQuickSettings.setValues(defVal);
             }
 
-            final boolean value = mPrefs.getBoolean(PREF_KEY_NAVBAR_ENABLE, sSystemProperties.hasNavigationBar);
+            boolean value = mPrefs.getBoolean(PREF_KEY_NAVBAR_ENABLE, sSystemProperties.hasNavigationBar);
             mPrefs.edit().putBoolean(PREF_KEY_NAVBAR_ENABLE, value).commit();
             mPrefNavbarEnable.setChecked(value);
+
+            value = mPrefs.getBoolean(PREF_KEY_UNPLUG_TURNS_ON_SCREEN, sSystemProperties.unplugTurnsOnScreen);
+            mPrefs.edit().putBoolean(PREF_KEY_UNPLUG_TURNS_ON_SCREEN, value).commit();
+            mPrefUnplugTurnsOnScreen.setChecked(value);
         }
 
         private void updatePreferences(String key) {
@@ -960,9 +1004,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 for(Preference p : mPrefLockscreenTargetsApp) {
                     p.setEnabled(enabled);
                 }
-                mPrefLockscreenTargetsBottomOffset.setEnabled(enabled);
-                mPrefLockscreenTargetsRightOffset.setEnabled(enabled);
             }
+            mPrefLockscreenTargetsVerticalOffset.setEnabled(true);
+            mPrefLockscreenTargetsHorizontalOffset.setEnabled(true);
 
             if (key == null || key.equals(PREF_KEY_NETWORK_MODE_TILE_MODE)) {
                 mPrefNetworkModeTileMode.setSummary(mPrefNetworkModeTileMode.getEntry());
@@ -1099,6 +1143,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 intent.setAction(ACTION_PREF_VOLUME_PANEL_MODE_CHANGED);
                 intent.putExtra(EXTRA_EXPANDABLE,
                         prefs.getBoolean(PREF_KEY_VOLUME_PANEL_EXPANDABLE, true));
+            } else if (key.equals(PREF_KEY_VOLUME_ADJUST_MUTE)) {
+                intent.setAction(ACTION_PREF_VOLUME_PANEL_MODE_CHANGED);
+                intent.putExtra(EXTRA_MUTED, prefs.getBoolean(PREF_KEY_VOLUME_ADJUST_MUTE, false));
             } else if (key.equals(PREF_KEY_LINK_VOLUMES)) {
                 intent.setAction(ACTION_PREF_LINK_VOLUMES_CHANGED);
                 intent.putExtra(EXTRA_LINKED,

@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
  	<string name="app_name">GravityBox</string>
@@ -529,13 +544,13 @@
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Capture d\'écran dans le menu d\'extinction</string>
 
-    <!-- Lockscreen targets -->
-    <string name="pref_cat_lockscreen_targets_title">Cibles de l\'écran de déverrouillage</string>
-    <string name="pref_lockscreen_targets_enable_title">Activer les cibles de l\'écran de déverrouillage</string>
-    <string name="pref_lockscreen_targets_enable_summary">Interrupteur général pour les cibles de l\'écran de déverrouillage</string>
-    <string name="pref_lockscreen_targets_app_title">Application cible %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Marge verticale anneau de déverrouillage</string>
-    <string name="pref_lockscreen_targets_right_offset_title">Marge horizontale anneau de déverrouillage</string>
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">Cibles de l\'écran de déverrouillage</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Activer les cibles de l\'écran de déverrouillage</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">Interrupteur général pour les cibles de l\'écran de déverrouillage</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Application cible %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Marge verticale anneau de déverrouillage</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">Marge horizontale anneau de déverrouillage</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Activer le contrôle de la luminosité</string>
@@ -592,5 +607,13 @@
     <!-- Icon coloring: preserve stock battery icon -->
     <string name="pref_statusbar_color_skip_battery_title">Laisser l\'icône d\'origine de la batterie intacte</string>
     <string name="pref_statusbar_color_skip_battery_summary">À utiliser dans la cas où l\'icône originelle de la batterie serait remplacée par une batterie modifiée de tierce partie</string>
+
+    <!-- Unplug turns on screen -->
+    <string name="pref_unplug_turns_on_screen_title">Activer l\'écran au débranchement</string>
+    <string name="pref_unplug_turns_on_screen_summary">Si activé, l\'écran va s\'activer lors du branchement/débranchement d\'un câble usb/alimentation/autre (nécessite un redémarrage)</string>
+
+    <!-- Mute volume adjust sound -->
+    <string name="pref_volume_adjust_mute_title">Mise en sourdine du son du volume</string>
+    <string name="pref_volume_adjust_mute_summary">Désactive le son entendu lorsque l\'on ajuste le volume en utilisant les touches de volume</string>
 
 </resources>

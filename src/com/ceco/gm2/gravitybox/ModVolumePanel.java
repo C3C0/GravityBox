@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.ceco.gm2.gravitybox;
 
 import java.lang.reflect.Field;
@@ -33,6 +48,7 @@ public class ModVolumePanel {
     private static Object mAudioService;
     private static boolean mVolumesLinked;
     private static Unhook mViewGroupAddViewHook;
+    private static boolean mVolumeAdjustMuted;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -43,8 +59,14 @@ public class ModVolumePanel {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_VOLUME_PANEL_MODE_CHANGED)) {
-                boolean expandable = intent.getBooleanExtra(GravityBoxSettings.EXTRA_EXPANDABLE, false);
-                updateVolumePanelMode(expandable);
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_EXPANDABLE)) {
+                    final boolean expandable = intent.getBooleanExtra(
+                            GravityBoxSettings.EXTRA_EXPANDABLE, false);
+                    updateVolumePanelMode(expandable);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_MUTED)) {
+                    mVolumeAdjustMuted = intent.getBooleanExtra(GravityBoxSettings.EXTRA_MUTED, false);
+                }
             } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_LINK_VOLUMES_CHANGED)) {
                 mVolumesLinked = intent.getBooleanExtra(GravityBoxSettings.EXTRA_LINKED, true);
                 if (DEBUG) log("mVolumesLinked set to: " + mVolumesLinked);
@@ -60,6 +82,8 @@ public class ModVolumePanel {
             final Class<?> classStreamControl = XposedHelpers.findClass(CLASS_STREAM_CONTROL, classLoader);
             final Class<?> classAudioService = XposedHelpers.findClass(CLASS_AUDIO_SERVICE, classLoader);
             final Class<?> classViewGroup = XposedHelpers.findClass(CLASS_VIEW_GROUP, classLoader);
+
+            mVolumeAdjustMuted = prefs.getBoolean(GravityBoxSettings.PREF_KEY_VOLUME_ADJUST_MUTE, false);
 
             XposedBridge.hookAllConstructors(classVolumePanel, new XC_MethodHook() {
 
@@ -157,6 +181,16 @@ public class ModVolumePanel {
                         if (DEBUG) log("addOtherVolumes: unhooking ViewGroup.addViewInner");
                         mViewGroupAddViewHook.unhook();
                         mViewGroupAddViewHook = null;
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(classVolumePanel, "onPlaySound",
+                    int.class, int.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (mVolumeAdjustMuted) {
+                        param.setResult(null);
                     }
                 }
             });

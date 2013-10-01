@@ -515,16 +515,16 @@
  <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Abilita Fotografa schermo nel menu apegnimento</string>
 
-    <!-- Lockscreen targets -->
-    <string name="pref_cat_lockscreen_targets_title">Applicazioni in Lockscreen</string>
-    <string name="pref_lockscreen_targets_enable_title">Abilita app in lockscreen</string>
-    <string name="pref_lockscreen_targets_enable_summary">Attivazione Applicazioni in Lockscreen</string>
-    <string name="pref_lockscreen_targets_app_title">Applicazione %s</string>
-    <string name="pref_lockscreen_targets_bottom_offset_title">Scostamento dell\'anello di sblocco, margine inferiore</string>
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">Applicazioni in Sblocco schermo</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Abilita app in sblocco schermo</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">Attivazione Applicazioni in sblocco schermo</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Applicazione %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Scostamento dell\'anello di sblocco, margine inferiore</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Abilita controllo luminosità</string>
-    <string name="pref_statusbar_brightness_summary">Adjusts brightness by sliding over statusbar</string>
+    <string name="pref_statusbar_brightness_summary">Modifica luminosità scorrendo sopra la barra di stato</string>
 
     <!-- Phone tweaks categories -->
     <string name="pref_cat_phone_telephony_title">Telefonate</string>
@@ -546,7 +546,7 @@
     <string name="pref_sbcolor_follow_stock_battery_summary">Imposta colore dell\'orologio nella barra di stato, percentuale, e icona batteria come quello dell\'icona stock. Attivabile se impostazioni colore icone è spento.</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Modalità attivazione reti nel relativo tile dei quicksetting</string>
+    <string name="pref_network_mode_tile_mode_title">Modalità attivazione reti nella relativa icona dei quicksetting</string>
     <string name="nm_tile_mode1">2G/2G+3G/3G</string>
     <string name="nm_tile_mode2">2G/2G+3G</string>
 
@@ -555,6 +555,27 @@
 
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Abilita tutte le rotazioni</string>
+
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">Sovrascrivi funzionamento standard icone</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Sovrascrivi funzionamento pressione/pressione-lunga per icone selezionate (richiede riavvio)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">Impostazioni Network mode tile SIM slot</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Definisce a quale slot SIM applicare le impostazioni (%s)</string>
+    <string name="sim_slot1">SIM slot 1</string>
+    <string name="sim_slot2">SIM slot 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">Mai</string>
+    <string name="pie_controls_enabled_always">Sempre</string>
+    <string name="pie_controls_enabled_expanded">Se expanded desktop attivo</string>
+    <string name="pie_controls_enabled_expanded_navbar">Se expanded desktop nasconde la barra di navigazione</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Lascia icona batteria stock inalterata</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Usa nel caso in cui l\'icona batteria stock sia stata sostituita da app alternative</string>
+
 
 
 

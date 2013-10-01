@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2013 The CyanogenMod Project
  * This code is loosely based on portions of the ParanoidAndroid Project source, Copyright (C) 2012.
- * Copyright (C) 2013 GravityBox project (C3C076@xda)
+ * Copyright (C) 2013 Peter Gregus for GravityBox project (C3C076@xda)
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of

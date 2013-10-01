@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * 2013 Robin Barry NL translate GravityBox Project (Spacecaker@xda)
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,43 +19,43 @@
 
     <string name="app_name">GravityBox</string>
 
-    <string name="battery_style_title">Battery indicator style</string>	
-    <string name="battery_style_stock">Stock battery indicator</string>
-    <string name="battery_style_circle">Circle battery</string>
-    <string name="battery_style_circle_percent">Circle battery with percentage</string>
-    <string name="battery_style_percent">Battery percent text</string>
-    <string name="battery_style_none">None</string>
+    <string name="battery_style_title">Batterij indicator stijl</string>	
+    <string name="battery_style_stock">Standaard batterij indicator</string>
+    <string name="battery_style_circle">Cirkel battery</string>
+    <string name="battery_style_circle_percent">Cirkel batterij met percentage</string>
+    <string name="battery_style_percent">Batterij percentage tekst</string>
+    <string name="battery_style_none">Geen</string>
 
-    <string name="vol_music_controls_title">Volume keys skip track</string>
-    <string name="vol_music_controls_summary">Skip tracks on volume keys long-press while screen is off</string>
+    <string name="vol_music_controls_title">Volume knoppen slaan liedje over</string>
+    <string name="vol_music_controls_summary">Liedjes overslaan op lang indrukken van volumetoetsen terwijl het scherm uitgeschakeld is</string>
 
-    <string name="low_battery_warning_policy_title">Low battery warning</string>
-    <string name="low_battery_warning_full">Pop-up and sound</string>
-    <string name="low_battery_warning_popup">Pop-up only</string>
-    <string name="low_battery_warning_sound">Sound only</string>
-    <string name="low_battery_warning_off">Off</string>
+    <string name="low_battery_warning_policy_title">Lage batterij waarschuwing</string>
+    <string name="low_battery_warning_full">Pop-up en geluid</string>
+    <string name="low_battery_warning_popup">Alleen Pop-up</string>
+    <string name="low_battery_warning_sound">Alleen geluid</string>
+    <string name="low_battery_warning_off">Uit</string>
 
-    <string name="reboot_required">Change will be applied after reboot</string>
+    <string name="reboot_required">Verandering zal na een herstart worden toegepast</string>
 
-    <string name="signal_icon_autohide_title">Auto-hide signal icons</string>
-    <string name="signal_icon_autohide_summary">Auto-hides signal icons for selected SIM slots when SIM card is not inserted, disables \"SIM not inserted\" notifications</string>
-    <string name="sim_slot_1">Auto-hide SIM Slot 1</string>
-    <string name="sim_slot_2">Auto-hide SIM Slot 2</string>
-    <string name="sim_disable_notifications">Disable notifications</string>
-    <string name="sim_disable_notifications_summary">\"SIM not inserted\" notifications disabled</string>
+    <string name="signal_icon_autohide_title">Automatisch signaal iconen verbergen</string>
+    <string name="signal_icon_autohide_summary">Automatisch verbergen van signaal iconen voor geselecteerde SIM-slots als SIM-kaart niet is geplaatst, schakelt \ "SIM niet geplaatst \" meldingen</string>
+    <string name="sim_slot_1">Automatisch verbergen SIM Slot 1</string>
+    <string name="sim_slot_2">Automatisch verbergen SIM Slot 2</string>
+    <string name="sim_disable_notifications">Meldingen uitschakelen</string>
+    <string name="sim_disable_notifications_summary">\"SIM niet geplaatst\" meldingen uitgeschakeld</string>
 
-    <string name="poweroff_advanced_title">Advanced reboot menu</string>
-    <string name="poweroff_advanced_summary">Enables advanced reboot menu with options to reboot to recovery</string>
+    <string name="poweroff_advanced_title">Geavanceerde herstart menu</string>
+    <string name="poweroff_advanced_summary">Maakt geavanceerde herstart menu met opties om te herstarten naar recovery</string>
     <string name="poweroff_recovery">Recovery</string>
     <string name="poweroff_bootloader">Bootloader</string>
 
-    <string name="vol_key_cursor_control_title">Volume key cursor control</string>
-    <string name="vol_key_cursor_control_summary">Controls cursor using volume keys in text fields</string>
-    <string name="vol_key_cursor_control_off">Disabled</string>
-    <string name="vol_key_cursor_control_on">Volume up/down moves cursor left/right</string>
-    <string name="vol_key_cursor_control_on_reverse">Volume up/down moves cursor right/left</string>
+    <string name="vol_key_cursor_control_title">Volume knop wijzer controle</string>
+    <string name="vol_key_cursor_control_summary">Bestuurt wijzer door gebruik van volumetoetsen in tekstvelden</string>
+    <string name="vol_key_cursor_control_off">Uitgeschakeld</string>
+    <string name="vol_key_cursor_control_on">Volume omhoog/omlaag beweegt wijzer links/rechts</string>
+    <string name="vol_key_cursor_control_on_reverse">Volume uomhoog/omlaag beweegt wijzer rechts/links</string>
 
-    <string name="recents_clear_all_title">Clear all recent tasks</string>
+    <string name="recents_clear_all_title">Verwijder alle recente taken</string>
 
     <string name="fix_datetime_crash_title">Fix Date&amp;Time settings crash</string>
     <string name="fix_datetime_crash_summary">Enable in case you experience crash while accessing Date&amp;Time settings (requires reboot)</string>
@@ -70,82 +71,82 @@
     <string name="fix_calendar_title">Fix calendar app</string>
     <string name="fix_calendar_summary">Enable in case you experience periodic self-turning on of the screen (requires reboot)</string>
 
-    <string name="important">Important</string>
+    <string name="important">Belangrijk</string>
 
-    <string name="caller_fullscreen_photo_title">Fullscreen caller photo</string>
-    <string name="caller_fullscreen_photo_summary">Displays fullscreen caller photo on incoming call screen</string>
+    <string name="caller_fullscreen_photo_title">Volledig scherm beller foto</string>
+    <string name="caller_fullscreen_photo_summary">Geeft volledigscherm beller foto op inkomende oproepen</string>
 
     <!-- QuickSettings strings -->
-    <string name="quick_settings_sync_on">Sync on</string>
-    <string name="quick_settings_sync_off">Sync off</string>
-    <string name="quick_settings_wifi_ap_on">Wi-Fi AP on</string>
-    <string name="quick_settings_wifi_ap_off">Wi-Fi AP off</string>
-    <string name="quick_settings_torch_on">Torch on</string>
-    <string name="quick_settings_torch_off">Torch off</string>
-    <string name="quick_settings_torch_off_notif">Touch to turn off</string>
-    <string name="quick_settings_qr_playing">Playing&#8230;</string>
-    <string name="quick_settings_qr_recording">Recording&#8230;</string>
-    <string name="quick_settings_qr_recorded">Recorded</string>
-    <string name="quick_settings_qr_record">Long Press To Record</string>
-    <string name="quick_settings_qr_recording_notif">Touch to stop recording</string>
-    <string name="quick_settings_expanded_desktop_disabled">Disabled</string>
-    <string name="quick_settings_expanded_desktop_normal">Normal</string>
-    <string name="quick_settings_expanded_desktop_expanded">Expanded</string>
-    <string name="quick_settings_stay_awake_on">Stay awake on</string>
-    <string name="quick_settings_stay_awake_off">Stay awake off</string>
+    <string name="quick_settings_sync_on">Synchr. aan</string>
+    <string name="quick_settings_sync_off">Synchr. uit</string>
+    <string name="quick_settings_wifi_ap_on">Hotspot aa</string>
+    <string name="quick_settings_wifi_ap_off">Hotspot uit</string>
+    <string name="quick_settings_torch_on">Zaklamp aan</string>
+    <string name="quick_settings_torch_off">Zaklamp uit</string>
+    <string name="quick_settings_torch_off_notif">Raak aan om uit te zetten</string>
+    <string name="quick_settings_qr_playing">Spelen&#8230;</string>
+    <string name="quick_settings_qr_recording">Opnemen&#8230;</string>
+    <string name="quick_settings_qr_recorded">Opgenomen</string>
+    <string name="quick_settings_qr_record">Lang ingedrukt om op te nemen</string>
+    <string name="quick_settings_qr_recording_notif">Raak aan om te stoppen met opnemen</string>
+    <string name="quick_settings_expanded_desktop_disabled">Uitgeschakeld</string>
+    <string name="quick_settings_expanded_desktop_normal">Normaal</string>
+    <string name="quick_settings_expanded_desktop_expanded">Uitgebreid</string>
+    <string name="quick_settings_stay_awake_on">Wakker Blijven aan</string>
+    <string name="quick_settings_stay_awake_off">Wakker Blijven uit</string>
 
     <!--  QuickSettings settings -->
-    <string name="quick_settings_title">Statusbar QuickSettings tiles</string>
-    <string name="quick_settings_summary">Allows to show or hide QuickSettings tiles in statusbar</string>
-    <string name="qs_tile_user_profile">User profile</string>
-    <string name="qs_tile_airplane_mode">Airplane mode</string>
-    <string name="qs_tile_battery">Battery status</string>
+    <string name="quick_settings_title">Statusbar QuickSettings tegels</string>
+    <string name="quick_settings_summary">Maakt het mogelijk om QuickSettings tegels weergeven of verbergen in statusbar</string>
+    <string name="qs_tile_user_profile">Gebruikers profiel</string>
+    <string name="qs_tile_airplane_mode">Vliegtuig modus</string>
+    <string name="qs_tile_battery">Batterij status</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
-    <string name="qs_tile_gps_alt">GPS (CM style)</string>
-    <string name="qs_tile_mobile_data">Mobile data</string>
-    <string name="qs_tile_network_mode">Network mode</string>
-    <string name="qs_tile_data_usage">Data usage</string>
-    <string name="qs_tile_audio">Audio profiles</string>
-    <string name="qs_tile_brightness">Brightness</string>
-    <string name="qs_tile_screen_timeout">Screen timeout</string>
-    <string name="qs_tile_autorotation">Auto rotation</string>
-    <string name="qs_tile_sync">Synchronization</string>
+    <string name="qs_tile_gps_alt">GPS (CM stijl)</string>
+    <string name="qs_tile_mobile_data">Mobiele data</string>
+    <string name="qs_tile_network_mode">Netwerk modus</string>
+    <string name="qs_tile_data_usage">Data gebruik</string>
+    <string name="qs_tile_audio">Geluid profielen</string>
+    <string name="qs_tile_brightness">Helderheid</string>
+    <string name="qs_tile_screen_timeout">Scherm time-out</string>
+    <string name="qs_tile_autorotation">Auto rotatie</string>
+    <string name="qs_tile_sync">Synchronizatie</string>
     <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
-    <string name="qs_tile_torch">Torch</string>
+    <string name="qs_tile_torch">Zaklamp</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
-    <string name="qs_tile_sleep">Sleep</string>
-    <string name="qs_tile_quickrecord">Quick Record</string>
-    <string name="qs_tile_settings">Settings</string>
+    <string name="qs_tile_sleep">Slaap</string>
+    <string name="qs_tile_quickrecord">Snel Opnemen</string>
+    <string name="qs_tile_settings">Instellingen</string>
     <string name="qs_tile_volume">Volume</string>
-    <string name="qs_tile_expanded_desktop">Expanded desktop</string>
-    <string name="qs_tile_stay_awake">Stay awake</string>
-    <string name="qs_tile_screenshot">Screenshot</string>
+    <string name="qs_tile_expanded_desktop">Uitgebrijd desktop</string>
+    <string name="qs_tile_stay_awake">Blijf Wakker</string>
+    <string name="qs_tile_screenshot">Scherm Opname</string>
 
     <!-- Color Picker -->
-    <string name="dialog_color_picker">Color Picker</string>
-    <string name="press_color_to_apply">Press on Color to apply</string>
+    <string name="dialog_color_picker">Kleuren kiezer</string>
+    <string name="press_color_to_apply">Druk op een kleur om toe te passen</string>
 
     <!--  Statusbar background color -->
-    <string name="statusbar_bgcolor_title">Statusbar background color</string>
-    <string name="statusbar_bgcolor_summary">Allows to set statusbar background color and transparency</string>
+    <string name="statusbar_bgcolor_title">Statusbar achtergrond kleur</string>
+    <string name="statusbar_bgcolor_summary">Maakt het mogelijk om statusbar achtergrond kleur en transparantie instellen</string>
 
     <!--  Fix speech settings -->
-    <string name="fix_tts_settings_title">Fix speech settings</string>
-    <string name="fix_tts_settings_summary">Unlocks voice search and text-to-speech settings in Language&amp;Input (requires reboot)</string>
+    <string name="fix_tts_settings_title">Fix spraak instellingen</string>
+    <string name="fix_tts_settings_summary">Ontsluit voice search en text-to-speech instellingen in Taal&amp;Invoer (vereist herstart)</string>
 
     <!--  Advanced developer options -->
-    <string name="fix_dev_opts_title">Advanced developer options</string>
-    <string name="fix_dev_opts_summary">Unlocks advanced developer options (requires reboot)</string>
+    <string name="fix_dev_opts_title">Geavanceerde ontwikkelaars opties</string>
+    <string name="fix_dev_opts_summary">Ontgrendelt geavanceerde developer opties (vereist herstart)</string>
 
     <!-- Main preference categories -->
-    <string name="pref_cat_statusbar_title">Statusbar tweaks</string>
-    <string name="pref_cat_statusbar_summary">Contains various statusbar tweaks</string>
-    <string name="pref_cat_misc_title">Miscellaneous tweaks</string>
-    <string name="pref_cat_misc_summary">Contains all other tweaks not falling into specific category</string>
-    <string name="pref_cat_fixes_title">General fixes</string>
-    <string name="pref_cat_fixes_summary">Contains general MTK6589 specific fixes. Use only if needed.</string>
+    <string name="pref_cat_statusbar_title">Statusbalk tweaks</string>
+    <string name="pref_cat_statusbar_summary">Bevat verschillende statusbalk tweaks</string>
+    <string name="pref_cat_misc_title">Diverse tweaks</string>
+    <string name="pref_cat_misc_summary">Bevat alle andere tweaks die niet in bepaalde categorie horen</string>
+    <string name="pref_cat_fixes_title">Generale fixes</string>
+    <string name="pref_cat_fixes_summary">Bevat algemene MTK6589 specifieke fixes. Gebruik alleen als nodig is.</string>
 
     <!-- About -->
     <string name="pref_cat_about_title">About</string>
@@ -156,37 +157,37 @@
     <string name="about_donate_summary">Donate to me if you think this app is worth it! Also consider donating to rovo89 for his excellent Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Your %s will reboot.</string>
-    <string name="reboot_confirm_recovery">Your %s will reboot into recovery.</string>
-    <string name="reboot_confirm_bootloader">Your %s will reboot into bootloader.</string>
+    <string name="reboot_confirm">Uw %s wilt herstarten.</string>
+    <string name="reboot_confirm_recovery">Uw %s wilt herstarten in recovery.</string>
+    <string name="reboot_confirm_bootloader">Uw %s wilt herstarten in bootloader.</string>
 
     <!-- CRT effect screen off animation -->
-    <string name="crt_off_effect_title">CRT screen off effect</string>
-    <string name="crt_off_effect_summary">Enables animation that simulates old CRT off effect when turning off the screen</string>
+    <string name="crt_off_effect_title">CRT scherm uit effect</string>
+    <string name="crt_off_effect_summary">Stelt animatie die oude CRT simuleert off effect bij het uitzetten van het scherm</string>
 
     <!-- Engineering mode shortcut -->
-    <string name="engineering_mode_title">Engineering mode</string>
-    <string name="engineering_mode_summary">Launches Engineering mode application</string>
+    <string name="engineering_mode_title">Ingenieurs modus</string>
+    <string name="engineering_mode_summary">Lanceert ingenieurs modus applicatie</string>
 
     <!-- Dual SIM ringer -->
     <string name="dual_sim_ringer_title">Dual SIM Ringer</string>
     <string name="dual_sim_ringer_summary">Launches application that allows to set ringtone and notification sounds separately for each SIM</string>
 
     <!--  Lockscreen tweaks -->
-    <string name="pref_cat_lockscreen_title">Lockscreen tweaks</string>
-    <string name="pref_cat_lockscreen_summary">Contains various lockscreen tweaks</string>
-    <string name="pref_cat_lockscreen_background_title">Lockscreen background</string>
-    <string name="pref_lockscreen_background_title">Background style</string>
-    <string name="lockscreen_bg_default">Default wallpaper</string>
-    <string name="lockscreen_bg_color">Color fill</string>
-    <string name="lockscreen_bg_image">Custom image</string>
+    <string name="pref_cat_lockscreen_title">Vergendelscherm tweaks</string>
+    <string name="pref_cat_lockscreen_summary">Bevat verschillende vergendelscherm tweaks</string>
+    <string name="pref_cat_lockscreen_background_title">Vergrendelscherm achtergrond</string>
+    <string name="pref_lockscreen_background_title">Achtergrond stijl</string>
+    <string name="lockscreen_bg_default">Standaard achtergrond</string>
+    <string name="lockscreen_bg_color">Kleur vullen</string>
+    <string name="lockscreen_bg_image">Eigen foto</string>
     <string name="pref_lockscreen_bg_color_title">Set custom color</string>
     <string name="pref_lockscreen_bg_color_summary">Allows to set custom background color for lockscreen</string>
     <string name="pref_lockscreen_bg_image_title">Set custom image</string>
     <string name="pref_lockscreen_bg_image_summary">Allows to set custom background image for lockscreen</string>
-    <string name="lockscreen_background_result_successful">Background changed</string>
-    <string name="lockscreen_background_result_not_successful">Background not changed</string>
-    <string name="pref_cat_lockscreen_other_title">Other</string>
+    <string name="lockscreen_background_result_successful">Achtergrond veranderd</string>
+    <string name="lockscreen_background_result_not_successful">Achtergrond niet veranderd</string>
+    <string name="pref_cat_lockscreen_other_title">Andere</string>
     <string name="pref_lockscreen_maximize_widgets_title">Maximize widgets</string>
     <string name="pref_lockscreen_maximize_widgets_summary">When enabled, lockscreen widgets will be maximized by default</string>
 
@@ -284,6 +285,10 @@
     <string name="phone_flip_action_none">Do nothing</string>
     <string name="phone_flip_action_mute">Mute ringer</string>
     <string name="phone_flip_action_dismiss">Dismiss call</string>
+
+    <!-- Disable vibrate on call connect -->
+    <string name="pref_phone_call_connect_vibrate_disable_title">Disable vibrate on call connect</string>
+    <string name="pref_phone_call_connect_vibrate_disable_summary">Disables vibration that is triggered when call is connected</string>
 
     <!-- Soft reboot -->
     <string name="reboot_soft">Soft reboot</string>
@@ -611,12 +616,5 @@
     <!-- Mute volume adjust sound -->
     <string name="pref_volume_adjust_mute_title">Mute volume adjust sound</string>
     <string name="pref_volume_adjust_mute_summary">Disables sound played when adjusting volume using volume keys</string>
-
-    <!-- Call vibrations -->
-    <string name="pref_call_vibrations_title">Call vibrations</string>
-    <string name="call_vibration_connected">On call connected</string>
-    <string name="call_vibration_disconnected">On call disconnected</string>
-    <string name="call_vibration_waiting">On call waiting</string>
-    <string name="call_vibration_periodic">Every 45th second during outgoing call</string>
 
 </resources>
