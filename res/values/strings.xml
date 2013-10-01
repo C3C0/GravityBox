@@ -285,10 +285,6 @@
     <string name="phone_flip_action_mute">Mute ringer</string>
     <string name="phone_flip_action_dismiss">Dismiss call</string>
 
-    <!-- Disable vibrate on call connect -->
-    <string name="pref_phone_call_connect_vibrate_disable_title">Disable vibrate on call connect</string>
-    <string name="pref_phone_call_connect_vibrate_disable_summary">Disables vibration that is triggered when call is connected</string>
-
     <!-- Soft reboot -->
     <string name="reboot_soft">Soft reboot</string>
 
@@ -615,5 +611,12 @@
     <!-- Mute volume adjust sound -->
     <string name="pref_volume_adjust_mute_title">Mute volume adjust sound</string>
     <string name="pref_volume_adjust_mute_summary">Disables sound played when adjusting volume using volume keys</string>
+
+    <!-- Call vibrations -->
+    <string name="pref_call_vibrations_title">Call vibrations</string>
+    <string name="call_vibration_connected">On call connected</string>
+    <string name="call_vibration_disconnected">On call disconnected</string>
+    <string name="call_vibration_waiting">On call waiting</string>
+    <string name="call_vibration_periodic">Every 45th second during outgoing call</string>
 
 </resources>

@@ -227,7 +227,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final int PHONE_FLIP_ACTION_NONE = 0;
     public static final int PHONE_FLIP_ACTION_MUTE = 1;
     public static final int PHONE_FLIP_ACTION_DISMISS = 2;
-    public static final String PREF_KEY_PHONE_CALL_CONNECT_VIBRATE_DISABLE = "pref_phone_call_connect_vibrate_disable";
+    public static final String PREF_KEY_CALL_VIBRATIONS = "pref_call_vibrations";
+    public static final String CV_CONNECTED = "connected";
+    public static final String CV_DISCONNECTED = "disconnected";
+    public static final String CV_WAITING = "waiting";
+    public static final String CV_PERIODIC = "periodic";
 
     public static final String PREF_CAT_KEY_NOTIF_DRAWER_STYLE = "pref_cat_notification_drawer_style";
     public static final String PREF_KEY_NOTIF_BACKGROUND = "pref_notif_background";

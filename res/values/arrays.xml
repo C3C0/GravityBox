@@ -500,4 +500,18 @@
         <item>3</item>
     </string-array>
 
+    <string-array name="call_vibration_entries" translatable="false">
+        <item>@string/call_vibration_connected</item>
+        <item>@string/call_vibration_disconnected</item>
+        <item>@string/call_vibration_waiting</item>
+        <item>@string/call_vibration_periodic</item>
+    </string-array>
+
+    <string-array name="call_vibration_values" translatable="false">
+        <item>connected</item>
+        <item>disconnected</item>
+        <item>waiting</item>
+        <item>periodic</item>
+    </string-array>
+
 </resources>

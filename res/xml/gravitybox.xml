@@ -690,11 +690,12 @@
                 android:entryValues="@array/phone_flip_action_values"
                 android:defaultValue="0" />
 
-            <CheckBoxPreference 
-                android:key="pref_phone_call_connect_vibrate_disable"
-                android:title="@string/pref_phone_call_connect_vibrate_disable_title"
-                android:summary="@string/pref_phone_call_connect_vibrate_disable_summary"
-                android:defaultValue="false" />
+            <MultiSelectListPreference 
+                android:key="pref_call_vibrations"
+                android:title="@string/pref_call_vibrations_title"
+                android:entries="@array/call_vibration_entries"
+                android:entryValues="@array/call_vibration_values"
+                android:defaultValue="@array/empty_array" />
 
             <CheckBoxPreference 
                 android:key="pref_caller_fullscreen_photo"
