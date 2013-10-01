@@ -587,8 +587,8 @@
     <string name="pie_controls_enabled_expanded_navbar">Когда расширенный дисплей без панели навигации</string>
     
     <!-- Icon coloring: preserve stock battery icon -->
-    <string name="pref_statusbar_color_skip_battery_title">Leave stock battery icon intact</string>
-    <string name="pref_statusbar_color_skip_battery_summary">Use in case stock battery icon was replaced with 3rd party battery mod</string>
+    <string name="pref_statusbar_color_skip_battery_title">Не трогать значок батареи</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Использовать в случа замены стокового значка батареи сторонним модом</string>
 
     <!-- Unplug turns on screen -->
     <string name="pref_unplug_turns_on_screen_title">Вкл. экран при подключении</string>
