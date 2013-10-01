@@ -285,10 +285,6 @@
     <string name="phone_flip_action_mute">Arrêter la sonnerie</string>
     <string name="phone_flip_action_dismiss">Rejeter l\'appel</string>
 
-    <!-- Disable vibrate on call connect -->
-    <string name="pref_phone_call_connect_vibrate_disable_title">Désactiver la vibration au décrochage</string>
-    <string name="pref_phone_call_connect_vibrate_disable_summary">Désactive la vibration lorsque l\'interlocuteur décroche pour répondre à l\'appel</string>
-
     <!-- Soft reboot -->
     <string name="reboot_soft">Redémarrage logiciel</string>
 
@@ -615,5 +611,12 @@
     <!-- Mute volume adjust sound -->
     <string name="pref_volume_adjust_mute_title">Mise en sourdine du son du volume</string>
     <string name="pref_volume_adjust_mute_summary">Désactive le son entendu lorsque l\'on ajuste le volume en utilisant les touches de volume</string>
+
+    <!-- Call vibrations -->
+    <string name="pref_call_vibrations_title">Vibrations lors d\'un appel</string>
+    <string name="call_vibration_connected">À la mise en relation</string>
+    <string name="call_vibration_disconnected">À la fin de l\'appel</string>
+    <string name="call_vibration_waiting">À la mise en attente</string>
+    <string name="call_vibration_periodic">Toutes les 45e secondes lors d\'un appel sortant</string>
 
 </resources>
