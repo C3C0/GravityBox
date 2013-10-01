@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
@@ -76,16 +91,19 @@
     <string name="quick_settings_expanded_desktop_disabled">Letiltva</string>
     <string name="quick_settings_expanded_desktop_normal">Normál</string>
     <string name="quick_settings_expanded_desktop_expanded">Kiterjesztett</string>
+	<string name="quick_settings_stay_awake_on">Ébrentartás bekapcsolva</string>
+    <string name="quick_settings_stay_awake_off">Ébrentartás kikapcsolva</string>
 	
     <!--  QuickSettings settings -->
-    <string name="quick_settings_title">Statusbar Gyorsbeállítások csempéi</string>
-    <string name="quick_settings_summary">Mutatja vagy elrejti a Gyorsbeállítások csempéket a statusbar-on</string>
+    <string name="quick_settings_title">Állapotsáv Gyorsbeállítások csempéi</string>
+    <string name="quick_settings_summary">Mutatja vagy elrejti a Gyorsbeállítások csempéket az állapotsávon</string>
     <string name="qs_tile_user_profile">Felhasználói profil</string>
     <string name="qs_tile_airplane_mode">Repülő üzemmód</string>
     <string name="qs_tile_battery">Akkumlátor státusz</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
+	<string name="qs_tile_gps_alt">GPS (CM stílus)</string>
     <string name="qs_tile_mobile_data">Mobil adat</string>
     <string name="qs_tile_network_mode">Hálózati üzemmód</string>
     <string name="qs_tile_data_usage">Adat használat</string>
@@ -102,14 +120,16 @@
     <string name="qs_tile_settings">Beállítások</string>
 	<string name="qs_tile_volume">Hangerő</string>
     <string name="qs_tile_expanded_desktop">Kiterjesztett asztal</string>
+	<string name="qs_tile_stay_awake">Ébrentartás</string>
+    <string name="qs_tile_screenshot">Képernyőkép</string>
 	
     <!-- Color Picker -->
     <string name="dialog_color_picker">Szín választó</string>
     <string name="press_color_to_apply">Nyomjon a színre a beállításhoz</string>
 
     <!--  Statusbar background color -->
-    <string name="statusbar_bgcolor_title">Statusbar háttérszín</string>
-    <string name="statusbar_bgcolor_summary">Lehetővé teszi, hogy beállíthassa a Statusbar háttérszínét és átlátszóságát</string>
+    <string name="statusbar_bgcolor_title">Állapotsáv háttérszín</string>
+    <string name="statusbar_bgcolor_summary">Lehetővé teszi, hogy beállíthassa az Állapotsáv háttérszínét és átlátszóságát</string>
 
     <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">Javítja a beszéd beállításokat</string>
@@ -120,8 +140,8 @@
     <string name="fix_dev_opts_summary">Elérhetővé teszi a fejlett fejlesztői lehetőségeket (újraindítás szükséges)</string>
 
     <!-- Main preference categories -->
-    <string name="pref_cat_statusbar_title">Statusbar módosítások</string>
-    <string name="pref_cat_statusbar_summary">Különféle Statusbar módosításokat tartalmaz</string>
+    <string name="pref_cat_statusbar_title">Állapotsáv módosítások</string>
+    <string name="pref_cat_statusbar_summary">Különféle Állapotsáv módosításokat tartalmaz</string>
     <string name="pref_cat_misc_title">Különféle módosítások</string>
     <string name="pref_cat_misc_summary">Tartalmaz minden egyéb módosítást, ami nem tartozik a többi konkrét kategóriába</string>
     <string name="pref_cat_fixes_title">Általános javítások</string>
@@ -136,9 +156,9 @@
     <string name="about_donate_summary">Adományozzon a részemre, ha úgy gondolja, hogy ez a program megéri az árát! Valamint fontolja meg, hogy adományozzon rovo89-nek is a kitűnő Xposed framework-ért.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">A %s újra fog indulni.</string>
-    <string name="reboot_confirm_recovery">A %s Recovery módba fog újraindulni.</string>
-    <string name="reboot_confirm_bootloader">A %s Bootloader módba fog újraindulni.</string>
+    <string name="reboot_confirm">A telefon újra fog indulni.</string>
+    <string name="reboot_confirm_recovery">A telefon Recovery módba fog újraindulni.</string>
+    <string name="reboot_confirm_bootloader">A telefon Bootloader módba fog újraindulni.</string>
 	
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT kikapcsolási effekt</string>
@@ -293,11 +313,11 @@
 
     <!-- Auto-switch QuickSettings -->
     <string name="pref_auto_switch_qs_title">Automatikus váltás a Gyorsbeállítások panelre</string>
-    <string name="pref_auto_switch_qs_summary">A Gyorsbeállítások panel fog megjelenni automatikusan a Statusbar megnyitásakor, amennyiben nincs értesítés</string>
+    <string name="pref_auto_switch_qs_summary">A Gyorsbeállítások panel fog megjelenni automatikusan az Állapotsáv megnyitásakor, amennyiben nincs értesítés</string>
 
     <!-- Quick pulldown -->
     <string name="pref_quick_pulldown_title">Gyors lehúzás</string>
-    <string name="pref_quick_pulldown_summary">A Statusbar szélének lehúzása megnyitja a Gyorsbeállításokat</string>
+    <string name="pref_quick_pulldown_summary">Az Állapotsáv szélének lehúzása megnyitja a Gyorsbeállításokat</string>
     <string name="quick_pulldown_off">Kikapcsolva</string>
     <string name="quick_pulldown_right">Jobb</string>
     <string name="quick_pulldown_left">Bal</string>
@@ -307,14 +327,14 @@
     <string name="pref_volume_rocker_wake_disable_summary">Azon eszközök részére -mint a Jiayu G3S,G4- amelyek hangerő gombja bekapcsolja a kijelzőt</string>
 
     <!-- Statusbar colors category -->
-    <string name="pref_cat_statusbar_colors_title">Statusbar színek</string>
+    <string name="pref_cat_statusbar_colors_title">Állapotsáv színek</string>
 
     <!-- Enable icon colors -->
     <string name="pref_statusbar_icon_color_enable_title">Ikon színek engedélyezve</string>
 
     <!-- Statusbar icon color -->
-    <string name="pref_statusbar_icon_color_title">Statusbar ikon színe</string>
-    <string name="pref_statusbar_icon_color_summary">Beállítja a statusbar ikonok és az óra színét</string>
+    <string name="pref_statusbar_icon_color_title">Állapotsáv ikon színe</string>
+    <string name="pref_statusbar_icon_color_summary">Beállítja az állapotsáv ikonok és az óra színét</string>
 
     <!-- Statusbar data activity color -->
     <string name="pref_statusbar_data_activity_color_title">Adattevékenység színe</string>
@@ -418,6 +438,7 @@
     <!-- GPS Tile (for non-MTK) -->
     <string name="qs_tile_gps_enabled">GPS bekapcsolva</string>
     <string name="qs_tile_gps_disabled">GPS kikapcsolva</string>
+	<string name="qs_tile_gps_locked">GPS csatlakozva</string>
 
     <!-- Pie control: always show menu button -->
     <string name="pie_control_menu_title">Mindig mutassa a menü gombot</string>
@@ -439,10 +460,10 @@
 
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Átlátszóság menedzsment</string>
-    <string name="pref_tm_statusbar_launcher_title">Statusbar átlátszóság launcher-nél</string>
-    <string name="pref_tm_statusbar_lockscreen_title">Statusbar átlátszóság lockscreen-nél</string>
-    <string name="pref_tm_navbar_launcher_title">Navbar átlátszóság launcher-nél</string>
-    <string name="pref_tm_navbar_lockscreen_title">Navbar átlátszóság lockscreen-nél </string>
+    <string name="pref_tm_statusbar_launcher_title">Állapotsáv átlátszóság launcher-nél</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Állapotsáv átlátszóság lockscreen-nél</string>
+    <string name="pref_tm_navbar_launcher_title">Nav.sáv átlátszóság launcher-nél</string>
+    <string name="pref_tm_navbar_lockscreen_title">Nav.sáv átlátszóság lockscreen-nél </string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Ébresztő ikon elrejtése</string>
@@ -489,7 +510,7 @@
 	 <!-- Expanded Desktop -->
     <string name="pref_expanded_desktop_title">Kiterjesztett asztal üzemmód</string>
     <string name="expanded_desktop_disabled">Letiltva</string>
-    <string name="expanded_desktop_statusbar">Statusbar elrejtése</string>
+    <string name="expanded_desktop_statusbar">Állapotsáv elrejtése</string>
     <string name="expanded_desktop_navbar">Navigációs sáv elrejtése</string>
     <string name="expanded_desktop_both">Mindkettő elrejtése</string>
     <string name="action_expanded_desktop_title">Kiterjesztett asztal</string>
@@ -514,9 +535,85 @@
     <string name="pref_navbar_enable_title">Navigációs sáv engedélyezése</string>
     <string name="pref_navbar_enable_summary">Újraindítás szükséges</string>
     <string name="pref_navbar_height_title">Navigációs sáv magassága</string>
-    <string name="pref_navbar_height_summary">Álló tájolás módra vonatkozik</string>
+    <string name="pref_navbar_height_summary">Vízszintes navigációs sáv és Álló tájolás módra vonatkozik</string>
+	<string name="pref_navbar_height_landscape_summary">Vízszintes navigációs sáv és Fekvő tájolás módra vonatkozik</string>
     <string name="pref_navbar_width_title">Navigációs sáv szélessége</string>
-    <string name="pref_navbar_width_summary">Fekvő tájolás módra vonatkozik</string>
+    <string name="pref_navbar_width_summary">Függőleges navigációs sávra vonatkozik</string>
     <string name="pref_navbar_menukey_title">Menü gomb állandó megjelenítése</string>
+
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Képernyőkép a kikapcsoló menüben</string>	
+	
+	<!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">Feloldó kör beállítások</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Feloldó kör célpontok engedélyezése</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">Feloldó kör célpontok főkapcsoló</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Célpont alkalmazás %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Feloldó kör függőleges eltolása</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">Feloldó kör vízszintes eltolása</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">Fényerő szabályozás engedélyezése</string>
+    <string name="pref_statusbar_brightness_summary">Fényerő beállítása az értesítési sávon történő jobbra-balra csúsztatással</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Telephony</string>
+    <string name="pref_cat_phone_messaging_title">Messaging</string>
+    <string name="pref_cat_phone_mobile_data_title">Mobile data</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Unicode figyelmen kívül hagyása</string>
+    <string name="pref_mms_unicode_stripping_summary">Átkonvertálja az unicode karaktereket normál karakterekké. Csökkenti a teljes üzenet méretét.</string>
+    <string name="unicode_stripping_leave_intact">Karakterek érintetlenül hagyása</string>
+    <string name="unicode_stripping_non_encodable">Nem kódolható karakterek figyelmen kívül hagyása</string>
+    <string name="unicode_stripping_all">Az összes unicode karakter figyelmen kívül hagyása</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Lassú 2G adat figyelmeztetés letiltása</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Kikapcsolja a lassú adatátviteli sebességgel kapcsolatos figyelmeztetést, amikor bekapcsolásra kerül a Gyorsbeállítások alatt a mobil adat SIM 2G módban.</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">Gyári akkumlátor szín követése</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">A gyári akkumlátor ikon színét fogja használni az értesítési sávon az óra  illetve a százalékos és kör akkumlátor használat ikonjaihoz. Kikapcsolt ikonszínezés esetén használandó.</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">Hálózati mód csempe típusa</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
+    <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
+    <string name="nm_tile_mode3">2G/3G/(LTE)</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">GPS értesítések letiltása</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">Összes forgatás engedélyezése</string>
+
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">Alapértelmezett csempe viselkedés felülírása</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Felülírja a kiválasztott csempék érintés/hosszú érintés viselkedését (újraindítás szükséges)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">Hálózat mód csempe SIM kártya hely</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Meghatározza a SIM kártya helyet, amire a hálózat mód csempe vonatkozik (%s)</string>
+    <string name="sim_slot1">SIM kártya hely 1</string>
+    <string name="sim_slot2">SIM kártya hely 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">Soha</string>
+    <string name="pie_controls_enabled_always">Mindig</string>
+    <string name="pie_controls_enabled_expanded">Ha a kiterjesztett asztal be van kapcsolva</string>
+    <string name="pie_controls_enabled_expanded_navbar">Ha a kiterjesztett asztal elrejti a navigációs sávot</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Gyári akkumlátor ikon érintetlenül hagyása</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Abban az esetben használd, ha a gyári akkumlátor ikon egy másik modifikáció által lecserélésre került.</string>
+
+    <!-- Unplug turns on screen -->
+    <string name="pref_unplug_turns_on_screen_title">Lecsatlakozás bekapcsolja a kijelzőt</string>
+    <string name="pref_unplug_turns_on_screen_summary">Ha engedélyezve van, a képernyő felébred usb/táp/egyéb kábel (le)csatlakoztatásakor (újraindítás szükséges)</string>
+
+    <!-- Mute volume adjust sound -->
+    <string name="pref_volume_adjust_mute_title">Lenémítja a hangerő beállítás értesítő hangot</string>
+    <string name="pref_volume_adjust_mute_summary">Letiltja a hangerő gombokkal történő hangerőszabályozáskor hallható hangot</string>
 
 </resources>
