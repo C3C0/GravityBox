@@ -624,8 +624,9 @@ public class ModStatusBar {
                     classSm, "getService", Context.POWER_SERVICE);
             Object power = XposedHelpers.callStaticMethod(classIpm, "asInterface", b);
             if (power != null) {
-                XposedHelpers.callMethod(power, "setTemporaryScreenBrightnessSettingOverride", 
-                        newBrightness);
+                final String bcMethod = Build.VERSION.SDK_INT > 16 ?
+                        "setTemporaryScreenBrightnessSettingOverride" : "setBacklightBrightness";
+                XposedHelpers.callMethod(power, bcMethod, newBrightness);
                 Settings.System.putInt(mContext.getContentResolver(),
                         Settings.System.SCREEN_BRIGHTNESS, newBrightness);
             }
@@ -640,8 +641,9 @@ public class ModStatusBar {
             final int x = (int) event.getRawX();
             final int y = (int) event.getRawY();
             Handler handler = (Handler) XposedHelpers.getObjectField(mPhoneStatusBar, "mHandler");
-            int notificationHeaderHeight = 
-                    XposedHelpers.getIntField(mPhoneStatusBar, "mNotificationHeaderHeight");
+            int notificationHeaderHeight = Build.VERSION.SDK_INT > 16 ?
+                    XposedHelpers.getIntField(mPhoneStatusBar, "mNotificationHeaderHeight") :
+                        XposedHelpers.getIntField(mPhoneStatusBar, "mNotificationPanelMinHeight");
     
             if (action == MotionEvent.ACTION_DOWN) {
                 mLinger = 0;
