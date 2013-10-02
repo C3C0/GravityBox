@@ -145,6 +145,15 @@ public class Utils {
                     !isMtkDevice());
     }
 
+    public static String join(String[] stringArray, String separator) {
+        String buf = "";
+        for (String s : stringArray) {
+            if (!buf.isEmpty()) buf += separator;
+            buf += s;
+        }
+        return buf;
+    }
+
     static class SystemProp extends Utils {
         
         private SystemProp() {

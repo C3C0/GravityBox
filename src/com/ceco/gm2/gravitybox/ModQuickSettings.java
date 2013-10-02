@@ -37,6 +37,7 @@ import com.ceco.gm2.gravitybox.quicksettings.RingerModeTile;
 import com.ceco.gm2.gravitybox.quicksettings.ScreenshotTile;
 import com.ceco.gm2.gravitybox.quicksettings.SleepTile;
 import com.ceco.gm2.gravitybox.quicksettings.StayAwakeTile;
+import com.ceco.gm2.gravitybox.quicksettings.TileOrderActivity;
 import com.ceco.gm2.gravitybox.quicksettings.TorchTile;
 import com.ceco.gm2.gravitybox.quicksettings.GravityBoxTile;
 import com.ceco.gm2.gravitybox.quicksettings.SyncTile;
@@ -92,7 +93,7 @@ public class ModQuickSettings {
     private static ViewGroup mContainerView;
     private static Object mPanelBar;
     private static Object mStatusBar;
-    private static Set<String> mActiveTileKeys;
+    private static List<String> mActiveTileKeys;
     private static Class<?> mQuickSettingsTileViewClass;
     private static Object mSimSwitchPanelView;
     private static int mNumColumns = 3;
@@ -108,6 +109,7 @@ public class ModQuickSettings {
     private static Set<String> mOverrideTileKeys;
 
     private static ArrayList<AQuickSettingsTile> mTiles;
+    private static Map<String, View> mAllTileViews;
 
     static {
         mCustomSystemTileKeys = new ArrayList<String>(Arrays.asList(
@@ -154,6 +156,8 @@ public class ModQuickSettings {
         tmpMap.put("airplane_mode_textview", 8);
         tmpMap.put("bluetooth_textview", 9);
         mAospTileTags = Collections.unmodifiableMap(tmpMap);
+
+        mAllTileViews = new HashMap<String, View>();
     }
 
     private static void log(String message) {
@@ -167,9 +171,9 @@ public class ModQuickSettings {
             if (DEBUG) log("received broadcast: " + intent.toString());
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKSETTINGS_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_QS_PREFS)) {
-                    String[] qsPrefs = intent.getStringArrayExtra(GravityBoxSettings.EXTRA_QS_PREFS);
-                    mActiveTileKeys = new HashSet<String>(Arrays.asList(qsPrefs));
-                    updateTileVisibility();
+                    mActiveTileKeys = new ArrayList<String>(Arrays.asList(
+                            intent.getStringExtra(GravityBoxSettings.EXTRA_QS_PREFS).split(",")));
+                    updateTileOrderAndVisibility();
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_QS_COLS)) {
                     mNumColumns = intent.getIntExtra(GravityBoxSettings.EXTRA_QS_COLS, 3);
@@ -243,22 +247,41 @@ public class ModQuickSettings {
         return null;
     }
 
-    private static void updateTileVisibility() {
-
+    private static void updateTileOrderAndVisibility() {
         if (mActiveTileKeys == null) {
-            if (DEBUG) log("updateTileVisibility: mActiveTileKeys is null - skipping");
+            if (DEBUG) log("updateTileOrderAndVisibility: mActiveTileKeys is null - skipping");
             return;
         }
 
-        // hide/unhide tiles according to preferences
-        int tileCount = mContainerView.getChildCount();
-        for(int i = 0; i < tileCount; i++) {
+        final List<View> dynamicTiles = new ArrayList<View>();
+
+        final int tileCount = mContainerView.getChildCount();
+        for(int i = tileCount - 1; i >= 0; i--) {
             View view = mContainerView.getChildAt(i);
             final String key = getTileKey(view);
             if (key != null) {
-                view.setVisibility(mActiveTileKeys.contains(key) ?
-                        View.VISIBLE : View.GONE);
+                if (!mAllTileViews.containsKey(key)) {
+                    mAllTileViews.put(key, view);
+                }
+                mContainerView.removeView(view);
+            } else if (view != null) {
+                // found tile that's not in our custom list
+                // might be dynamic tile (e.g. alarm) or some ROM specific tile?
+                // remove it and store it so it could be added in the end
+                dynamicTiles.add(view);
+                mContainerView.removeView(view);
             }
+        }
+
+        for (String key : mActiveTileKeys) {
+            if (mAllTileViews.containsKey(key)) {
+                mContainerView.addView(mAllTileViews.get(key));
+            }
+        }
+
+        // add tiles from dynamic list as last (e.g. alarm tile we previously removed)
+        for (View v : dynamicTiles) {
+            mContainerView.addView(v);
         }
     }
 
@@ -325,7 +348,11 @@ public class ModQuickSettings {
             removeNotificationState.set(MethodState.UNKNOWN);
 
             prefs.reload();
-            mActiveTileKeys = prefs.getStringSet(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS, null);
+            String tileKeys = prefs.getString(TileOrderActivity.PREF_KEY_TILE_ORDER, null);
+            if (tileKeys != null) {
+                mActiveTileKeys = new ArrayList<String>(Arrays.asList(prefs.getString(
+                        TileOrderActivity.PREF_KEY_TILE_ORDER, "").split(",")));
+            }
             if (DEBUG) log("got tile prefs: mActiveTileKeys = " + 
                     (mActiveTileKeys == null ? "null" : mActiveTileKeys.toString()));
             mOverrideTileKeys = prefs.getStringSet(
@@ -522,7 +549,7 @@ public class ModQuickSettings {
                 gbTile.setupQuickSettingsTile(mContainerView, inflater);
                 mTiles.add(gbTile);
 
-                updateTileVisibility();
+                updateTileOrderAndVisibility();
             } catch (Throwable t) {
                 XposedBridge.log(t);
             }

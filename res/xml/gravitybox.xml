@@ -141,9 +141,15 @@
             android:title="@string/pref_cat_statusbar_qs_title">
 
             <MultiSelectListPreference 
-                android:key="pref_quick_settings"
+                android:key="pref_quick_settings2"
                 android:title="@string/quick_settings_title"
                 android:summary="@string/quick_settings_summary" />
+
+            <Preference
+                android:key="pref_qs_tile_order"
+                android:title="@string/pref_qs_tile_order_title"
+                android:summary="@string/pref_qs_tile_order_summary"
+                android:persistent="false" />
 
             <ListPreference
                 android:key="pref_qs_tiles_per_row" 

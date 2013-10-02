@@ -45,6 +45,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.ceco.gm2.gravitybox.quicksettings.TileOrderActivity"
+            android:label="@string/pref_qs_tile_order_title" >
+        </activity>
+
         <service android:name=".GravityBoxService">
             <intent-filter>
                 <action android:name="gravitybox.intent.action.TOGGLE_SYNC" />
