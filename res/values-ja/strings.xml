@@ -39,7 +39,7 @@
     <string name="vol_key_cursor_control_on">音量キー上/下で左/右に移動</string>
     <string name="vol_key_cursor_control_on_reverse">音量キー上/下で右/左に移動</string>
 
-    <string name="recents_clear_all_title">全てのアプリを終了</string>
+    <string name="recents_clear_all_title">「全てのアプリを終了」ボタン</string>
 
     <string name="fix_datetime_crash_title">日付と時刻でのクラッシュを修正</string>
     <string name="fix_datetime_crash_summary">設定で日付と時刻を開いたときにクラッシュする場合に有効にしてください。(要再起動)</string>
@@ -126,7 +126,7 @@
 
     <!-- Main preference categories -->
     <string name="pref_cat_statusbar_title">ステータスバー設定</string>
-    <string name="pref_cat_statusbar_summary">ステータスバーに関連した設定を変更します。。</string>
+    <string name="pref_cat_statusbar_summary">ステータスバーに関連した設定を変更します。</string>
     <string name="pref_cat_misc_title">その他の設定</string>
     <string name="pref_cat_misc_summary">特定のカテゴリに振り分けられない設定を変更します。</string>
     <string name="pref_cat_fixes_title">全体的な修正</string>
@@ -401,7 +401,7 @@
     <string name="recent_clear_bottom_right">右下</string>
 
     <!-- Clear all recents top margin -->
-    <string name="pref_recent_clear_margin_top_title">上の余白を調整</string>
+    <string name="pref_recent_clear_margin_top_title">ボタン上の余白の調整</string>
 
     <!-- Disable roaming warnings -->
     <string name="pref_roaming_warning_disable_title">ローミング警告の無効化</string>
@@ -607,5 +607,9 @@
     <string name="call_vibration_disconnected">着信終了時</string>
     <string name="call_vibration_waiting">着信待機時</string>
     <string name="call_vibration_periodic">発信時45秒毎</string>
+
+    <!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">タイルの並び替え</string>
+    <string name="pref_qs_tile_order_summary">クイック設定タイルの並び替えをします。</string>
     
 </resources>
