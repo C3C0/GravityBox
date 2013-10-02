@@ -270,10 +270,6 @@
     <string name="phone_flip_action_mute">Desativar som de toque</string>
     <string name="phone_flip_action_dismiss">Rejeitar chamada</string>
 
-    <!-- Disable vibrate on call connect -->
-    <string name="pref_phone_call_connect_vibrate_disable_title">Desativar vibração ao estabelecer chamada</string>
-    <string name="pref_phone_call_connect_vibrate_disable_summary">Desativa a curta vibração que ocorre quando uma chamada de voz é estabelecida</string>
-
     <!-- Soft reboot -->
     <string name="reboot_soft">Reiniciar rápido</string>
 
@@ -600,5 +596,12 @@
     <!-- Mute volume adjust sound -->
     <string name="pref_volume_adjust_mute_title">Desativar som de ajuste de volume</string>
     <string name="pref_volume_adjust_mute_summary">Permite desativar os sons emitidos quando se ajusta o volume utilizando as teclas de volume</string>
+
+    <!-- Call vibrations -->
+    <string name="pref_call_vibrations_title">Vibração em chamadas</string>
+    <string name="call_vibration_connected">Ao estabelecer chamada</string>
+    <string name="call_vibration_disconnected">Ao desligar chamada</string>
+    <string name="call_vibration_waiting">Durante chamada em espera</string>
+    <string name="call_vibration_periodic">Aos 45 segundos de cada minuto durante chamada efetuada</string>
 
 </resources>

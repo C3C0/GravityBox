@@ -16,8 +16,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ceco.gm2.gravitybox"
-    android:versionCode="33"
-    android:versionName="2.5.5" >
+    android:versionCode="34"
+    android:versionName="2.5.6" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -43,6 +43,11 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.ceco.gm2.gravitybox.quicksettings.TileOrderActivity"
+            android:label="@string/pref_qs_tile_order_title" >
         </activity>
 
         <service android:name=".GravityBoxService">

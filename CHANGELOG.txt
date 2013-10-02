@@ -1,3 +1,30 @@
+Changelog 2.5.6 - 01/10/2013
+--------------------------------------
+- Fixed compatibility issues in Network mode tile and Messaging tweaks for single SIM MTKs (thanks to bgcngm)
+- GB preferences adjusted to follow device capabilities/features (thanks to bgcngm)
+- Fixed GPS Tile long-touch misbehavior
+- Fixed infinite MMS/SMS switching loop when unicode stripping is on and SMS is about to become MMS due to its length
+- Fixed status bar brightness control for Android 4.1
+- Added options for Call vibrations
+--- on call connected
+--- on call disconnected
+--- on call waiting
+--- every 45th second during outgoing call
+- Sleep Tile: show power menu on long-touch
+- Option for controlling screen on during plug/unplug of power/usb
+- Option for muting volume adjust sound
+- Added MT6572 to the list of MTK devices
+- Added Japanese translations (thanks to WedyDQ10)
+- Added Dutch (NL) translations (thanks to spacecaker)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Polish translations (thanks to xtrem007)
+- Updated French translation (thanks to ch-vox)
+- Updated Indonesian translations (thanks to awaaas)
+- Updated Italian translations (thanks to pitone02)
+- Updated Hungarian translations (thanks to benjoe1)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+
 Changelog 2.5.5 - 28/09/2013
 --------------------------------------
 - QuickSettings tweaks

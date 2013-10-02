@@ -25,4 +25,8 @@
     <color name="pie_background_color">#dd0099cc</color>
     <color name="pie_selected_color">@android:color/holo_blue_light</color>
     <color name="pie_outline_color">#dd0099cc</color>
+
+    <!-- TouchInterceptor -->
+    <color name="dragndrop_background">@android:color/holo_blue_light</color>
+
 </resources>

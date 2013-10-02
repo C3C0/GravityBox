@@ -18,6 +18,7 @@ package com.ceco.gm2.gravitybox;
 import de.robv.android.xposed.XposedBridge;
 import android.content.Context;
 import android.os.Build;
+import android.os.Vibrator;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
@@ -40,6 +41,7 @@ public class Utils {
     private static Boolean mHasGeminiSupport = null;
     private static Boolean mHasTelephonySupport = null;
     private static String mDeviceCharacteristics = null;
+    private static Boolean mHasVibrator = null;
 
     // Supported MTK devices
     private static final Set<String> MTK_DEVICES = new HashSet<String>(Arrays.asList(
@@ -118,6 +120,19 @@ public class Utils {
         return mHasTelephonySupport;
     }
 
+    public static boolean hasVibrator(Context con) {
+        if (mHasVibrator != null) return mHasVibrator;
+
+        try {
+            Vibrator v = (Vibrator) con.getSystemService(Context.VIBRATOR_SERVICE);
+            mHasVibrator = v.hasVibrator();
+            return mHasVibrator;
+        } catch (Throwable t) {
+            mHasVibrator = null;
+            return false;
+        }
+    }
+
     public static String getDeviceCharacteristics() {
         if (mDeviceCharacteristics != null) return mDeviceCharacteristics;
 
@@ -128,6 +143,15 @@ public class Utils {
     public static boolean shouldAllowMoreVolumeSteps() {
         return !("GT-I9505G".equals(Build.MODEL) &&
                     !isMtkDevice());
+    }
+
+    public static String join(String[] stringArray, String separator) {
+        String buf = "";
+        for (String s : stringArray) {
+            if (!buf.isEmpty()) buf += separator;
+            buf += s;
+        }
+        return buf;
     }
 
     static class SystemProp extends Utils {

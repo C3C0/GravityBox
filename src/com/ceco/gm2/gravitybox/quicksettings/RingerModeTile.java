@@ -16,6 +16,7 @@
 package com.ceco.gm2.gravitybox.quicksettings;
 
 import com.ceco.gm2.gravitybox.R;
+import com.ceco.gm2.gravitybox.Utils;
 
 import de.robv.android.xposed.XposedBridge;
 
@@ -92,15 +93,7 @@ public class RingerModeTile extends AQuickSettingsTile {
             }
         };
 
-        try {
-            Vibrator v = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
-            mHasVibrator = v.hasVibrator();
-            if (DEBUG) log("Device has vibrator: " + mHasVibrator);
-        } catch (Throwable t) {
-            log("Error checking if device has vibrator. Assuming it doesn't");
-            mHasVibrator = false;
-        }
-
+        mHasVibrator = Utils.hasVibrator(mContext);
         if (mHasVibrator) {
             mRingers = new Ringer[] { 
                     mSilentRinger, mVibrateRinger, mSoundRinger, mSoundVibrateRinger };

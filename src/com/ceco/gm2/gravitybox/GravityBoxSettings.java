@@ -26,6 +26,7 @@ import java.util.Set;
 import com.ceco.gm2.gravitybox.preference.AppPickerPreference;
 import com.ceco.gm2.gravitybox.preference.AutoBrightnessDialogPreference;
 import com.ceco.gm2.gravitybox.preference.SeekBarPreference;
+import com.ceco.gm2.gravitybox.quicksettings.TileOrderActivity;
 
 import android.net.Uri;
 import android.os.Build;
@@ -64,7 +65,8 @@ import android.graphics.Rect;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class GravityBoxSettings extends Activity implements GravityBoxResultReceiver.Receiver {
-    public static final String PREF_KEY_QUICK_SETTINGS = "pref_quick_settings";
+    public static final String PREF_KEY_QUICK_SETTINGS = "pref_quick_settings2";
+    public static final String PREF_KEY_QUICK_SETTINGS_TILE_ORDER = "pref_qs_tile_order";
     public static final String PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW = "pref_qs_tiles_per_row";
     public static final String PREF_KEY_QUICK_SETTINGS_AUTOSWITCH = "pref_auto_switch_qs";
     public static final String PREF_KEY_QUICK_PULLDOWN = "pref_quick_pulldown";
@@ -599,6 +601,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private ListPreference mPrefQsNetworkModeSimSlot;
         private CheckBoxPreference mPrefSbColorSkipBattery;
         private CheckBoxPreference mPrefUnplugTurnsOnScreen;
+        private MultiSelectListPreference mPrefCallVibrations;
+        private Preference mPrefQsTileOrder;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -745,11 +749,13 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCatPhoneMessaging = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MESSAGING);
             mPrefCatPhoneMobileData = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MOBILE_DATA);
             mPrefMobileDataSlow2gDisable = (CheckBoxPreference) findPreference(PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE);
+            mPrefCallVibrations = (MultiSelectListPreference) findPreference(PREF_KEY_CALL_VIBRATIONS);
 
             mPrefNetworkModeTileMode = (ListPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_MODE);
             mPrefQsTileBehaviourOverride = 
                     (MultiSelectListPreference) findPreference(PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE);
             mPrefQsNetworkModeSimSlot = (ListPreference) findPreference(PREF_KEY_QS_NETWORK_MODE_SIM_SLOT);
+            mPrefQsTileOrder = (Preference) findPreference(PREF_KEY_QUICK_SETTINGS_TILE_ORDER);
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
@@ -758,6 +764,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             }
 
             // Update Phone category according to feature availability 
+            if (!Utils.hasVibrator(getActivity())) {
+                mPrefCatPhoneTelephony.removePreference(mPrefCallVibrations);
+            }
             if (!Utils.hasTelephonySupport(getActivity())) {
                 mPrefCatPhone.removePreference(mPrefCatPhoneTelephony);
             }
@@ -837,10 +846,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private void setDefaultValues() {
             if (mPrefs.getStringSet(PREF_KEY_QUICK_SETTINGS, null) == null) {
                 Editor e = mPrefs.edit();
-                Set<String> defVal = new HashSet<String>(
-                        Arrays.asList(getResources().getStringArray(
-                                Utils.isMtkDevice() ? R.array.qs_tile_values : R.array.qs_tile_aosp_values))); 
+                String[] values = getResources().getStringArray(
+                        Utils.isMtkDevice() ? R.array.qs_tile_values : R.array.qs_tile_aosp_values);
+                Set<String> defVal = new HashSet<String>(Arrays.asList(values));
                 e.putStringSet(PREF_KEY_QUICK_SETTINGS, defVal);
+                e.putString(TileOrderActivity.PREF_KEY_TILE_ORDER, Utils.join(values, ","));
                 e.commit();
                 mQuickSettings.setValues(defVal);
             }
@@ -1037,8 +1047,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 intent.putExtra("autohidePrefs", autohidePrefs);
             } else if (key.equals(PREF_KEY_QUICK_SETTINGS)) {
                 intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
-                String[] qsPrefs = mQuickSettings.getValues().toArray(new String[0]);
-                intent.putExtra(EXTRA_QS_PREFS, qsPrefs);
+                intent.putExtra(EXTRA_QS_PREFS, TileOrderActivity.updateTileList(prefs));
             } else if (key.equals(PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW)) {
                 intent.setAction(ACTION_PREF_QUICKSETTINGS_CHANGED);
                 intent.putExtra(EXTRA_QS_COLS, Integer.valueOf(
@@ -1320,6 +1329,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                     }
                 }
                 getActivity().recreate();
+            } else if (pref == mPrefQsTileOrder) {
+                intent = new Intent(getActivity(), TileOrderActivity.class);
             }
             
             if (intent != null) {

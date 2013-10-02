@@ -21,6 +21,7 @@ import com.ceco.gm2.gravitybox.R;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -31,7 +32,6 @@ public class GravityBoxTile extends AQuickSettingsTile {
         super(context, gbContext, statusBar, panelBar);
 
         mOnClick = new View.OnClickListener() {
-            
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
@@ -39,6 +39,18 @@ public class GravityBoxTile extends AQuickSettingsTile {
                 startActivity(i);
             }
         };
+
+        if (Build.VERSION.SDK_INT > 16) {
+            mOnLongClick = new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Intent i = new Intent();
+                    i.setClassName(GravityBox.PACKAGE_NAME, TileOrderActivity.class.getName());
+                    startActivity(i);
+                    return true;
+                }
+            };
+        }
     }
 
     @Override

@@ -270,8 +270,9 @@ public class ModPhone {
                         mVibrateHook = null;
                     }
 
-                    if (!mCallVibrations.contains(GravityBoxSettings.CV_CONNECTED)
-                            && !mCallVibrations.contains(GravityBoxSettings.CV_PERIODIC)) {
+                    if (mVibrator == null || 
+                            (!mCallVibrations.contains(GravityBoxSettings.CV_CONNECTED)
+                             && !mCallVibrations.contains(GravityBoxSettings.CV_PERIODIC))) {
                         return;
                     }
 
@@ -337,6 +338,8 @@ public class ModPhone {
     private static XC_MethodHook onDisconnectHook = new XC_MethodHook() {
         @Override
         protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+            if (mVibrator == null) return;
+
             try {
                 refreshPhonePrefs();
                 Object conn = XposedHelpers.getObjectField(param.args[0], "result");
@@ -359,6 +362,8 @@ public class ModPhone {
     private static XC_MethodHook onNewRingingConnectionHook = new XC_MethodHook() {
         @Override
         protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+            if (mVibrator == null) return;
+
             try {
                 refreshPhonePrefs();
                 if (!mCallVibrations.contains(GravityBoxSettings.CV_WAITING)) {
