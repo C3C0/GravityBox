@@ -285,10 +285,6 @@
     <string name="phone_flip_action_mute">Csengés elnémítása</string>
     <string name="phone_flip_action_dismiss">Hívás elutasítása</string>
 
-    <!-- Disable vibrate on call connect -->
-    <string name="pref_phone_call_connect_vibrate_disable_title">Rezgés letiltása hívás kapcsolódáskor</string>
-    <string name="pref_phone_call_connect_vibrate_disable_summary">Letiltja a rezgést, amit a hívás kapcsolódás vált ki.</string>
-
     <!-- Soft reboot -->
     <string name="reboot_soft">Intelligens újraindítás</string>
 
@@ -317,7 +313,7 @@
 
     <!-- Quick pulldown -->
     <string name="pref_quick_pulldown_title">Gyors lehúzás</string>
-    <string name="pref_quick_pulldown_summary">Az Állapotsáv szélének lehúzása megnyitja a Gyorsbeállításokat</string>
+    <string name="pref_quick_pulldown_summary">Az Állapotsáv szélének lehúzása megnyitja a Gyorsbeállítások panelt</string>
     <string name="quick_pulldown_off">Kikapcsolva</string>
     <string name="quick_pulldown_right">Jobb</string>
     <string name="quick_pulldown_left">Bal</string>
@@ -478,8 +474,8 @@
 
     <!-- Brightness preference category -->
     <string name="pref_cat_brightness_title">Fényerő beállítások</string>
-    <string name="pref_brightness_master_switch_title">Fényerő beállítások módosításának engedélyezése</string>
-    <string name="pref_brightness_master_switch_summary">Csak abban az esetben használd, ha az eszközöd támogotja a szabvány Android fényerő funkciókat. Fényerővel kapcsolatos hibák megjelenése esetén tiltsd le ez a funkciót. (újraindítás szükséges)</string>
+    <string name="pref_brightness_master_switch_title">Fényerő beállítások módosításanak engedélyezése</string>
+    <string name="pref_brightness_master_switch_summary">Csak abban az esetben használd, ha az eszközöd támogotja a szabvány Android fényerő funkciókat. Fényerővel kapcsolatos hibák megjelenése esetén tiltsd le ezt a funkciót. (újraindítás szükséges)</string>
 
 	<!-- HW Key Action: Recent apps -->
     <string name="hwkey_action_recent_apps">Legutóbb használt alkalmazások megjelenítése</string>
@@ -577,7 +573,7 @@
     <string name="pref_sbcolor_follow_stock_battery_summary">A gyári akkumlátor ikon színét fogja használni az értesítési sávon az óra  illetve a százalékos és kör akkumlátor használat ikonjaihoz. Kikapcsolt ikonszínezés esetén használandó.</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Hálózati mód csempe típusa</string>
+    <string name="pref_network_mode_tile_mode_title">Hálózati üzemmód csempe típusa</string>
     <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
     <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
     <string name="nm_tile_mode3">2G/3G/(LTE)</string>
@@ -593,8 +589,8 @@
     <string name="pref_qs_tile_behaviour_override_summary">Felülírja a kiválasztott csempék érintés/hosszú érintés viselkedését (újraindítás szükséges)</string>
 
     <!-- QuickSettings: SIM Slot for network mode tile -->
-    <string name="pref_qs_network_mode_sim_slot_title">Hálózat mód csempe SIM kártya hely</string>
-    <string name="pref_qs_network_mode_sim_slot_summary">Meghatározza a SIM kártya helyet, amire a hálózat mód csempe vonatkozik (%s)</string>
+    <string name="pref_qs_network_mode_sim_slot_title">Hálózati üzemmód csempe SIM kártya hely</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Meghatározza a SIM kártya helyet, amire a hálózati üzemmód csempe vonatkozik (%s)</string>
     <string name="sim_slot1">SIM kártya hely 1</string>
     <string name="sim_slot2">SIM kártya hely 2</string>
 
@@ -616,4 +612,11 @@
     <string name="pref_volume_adjust_mute_title">Lenémítja a hangerő beállítás értesítő hangot</string>
     <string name="pref_volume_adjust_mute_summary">Letiltja a hangerő gombokkal történő hangerőszabályozáskor hallható hangot</string>
 
+	<!-- Call vibrations -->
+    <string name="pref_call_vibrations_title">Híváskori rezgések</string>
+    <string name="call_vibration_connected">Hívás kapcsolódásakor</string>
+    <string name="call_vibration_disconnected">Hívás megszakítasakor</string>
+    <string name="call_vibration_waiting">Hívás várakozás során</string>
+    <string name="call_vibration_periodic">Minden 45. másodpercben kimenő hívások közben</string>
+	
 </resources>
