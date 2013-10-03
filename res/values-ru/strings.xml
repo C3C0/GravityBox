@@ -604,5 +604,9 @@
     <string name="call_vibration_disconnected">В конце звонка</string>
     <string name="call_vibration_waiting">При ожидании звонка</string>
     <string name="call_vibration_periodic">Каждые 45 секунд при исходящем</string>
+    
+    <!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">Сортирвока тайлов</string>
+    <string name="pref_qs_tile_order_summary">Позволяет сортировать тайлы</string>
         
 </resources>
