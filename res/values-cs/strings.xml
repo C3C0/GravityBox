@@ -600,4 +600,8 @@
     <string name="call_vibration_waiting">Při čekajícím hovoru</string>
     <string name="call_vibration_periodic">Každou 45. sekundu v minutě při odchozím hovoru</string>
 
+    <!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">Uspořádání dlaždic</string>
+    <string name="pref_qs_tile_order_summary">Umožňuje uspořádat dlaždice podle potřeby</string>
+
 </resources>
