@@ -24,6 +24,7 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.Context;
 import android.content.IntentFilter;
+import android.provider.Settings;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -45,8 +46,13 @@ public class ModBatteryStyle {
     public static final String CLASS_BATTERY_CONTROLLER = "com.android.systemui.statusbar.policy.BatteryController";
     private static final boolean DEBUG = false;
 
+    private static final String ACTION_MTK_BATTERY_PERCENTAGE_SWITCH = "mediatek.intent.action.BATTERY_PERCENTAGE_SWITCH";
+    public static final String EXTRA_MTK_BATTERY_PERCENTAGE_STATE = "state";
+    public static final String SETTING_MTK_BATTERY_PERCENTAGE = "battery_percentage";
+
     private static int mBatteryStyle;
     private static boolean mBatteryPercentText;
+    private static boolean mMtkPercentText;
     private static Object mBatteryController;
 
     private static void log(String message) {
@@ -66,6 +72,10 @@ public class ModBatteryStyle {
                     mBatteryPercentText = intent.getBooleanExtra("batteryPercent", false);
                     if (DEBUG) log("mBatteryPercentText changed to: " + mBatteryPercentText);
                 }
+                updateBatteryStyle();
+            } else if (intent.getAction().equals(ACTION_MTK_BATTERY_PERCENTAGE_SWITCH)) {
+                mMtkPercentText = intent.getIntExtra(EXTRA_MTK_BATTERY_PERCENTAGE_STATE, 0) == 1;
+                if (DEBUG) log("mMtkPercentText changed to: " + mMtkPercentText);
                 updateBatteryStyle();
             }
         }
@@ -197,8 +207,15 @@ public class ModBatteryStyle {
                     }
 
                     Context context = (Context) XposedHelpers.getObjectField(mBatteryController, "mContext");
+                    mMtkPercentText = Utils.isMtkDevice() ?
+                            Settings.Secure.getInt(context.getContentResolver(), 
+                                    SETTING_MTK_BATTERY_PERCENTAGE, 0) == 1 : false;
+
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_BATTERY_STYLE_CHANGED);
+                    if (Utils.isMtkDevice()) {
+                        intentFilter.addAction(ACTION_MTK_BATTERY_PERCENTAGE_SWITCH);
+                    }
                     context.registerReceiver(mBroadcastReceiver, intentFilter);
 
                     if (DEBUG) log("BatteryController constructed");
@@ -245,7 +262,7 @@ public class ModBatteryStyle {
             for (TextView tv : mLabelViews) {
                 if ("percentage".equals(tv.getTag())) {
                     tv.setVisibility(
-                            (mBatteryPercentText ? View.VISIBLE : View.GONE));
+                            ((mBatteryPercentText || mMtkPercentText) ? View.VISIBLE : View.GONE));
                 }
             }
         } catch (Throwable t) {

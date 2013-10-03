@@ -40,6 +40,7 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Display;
 import android.view.Window;
@@ -517,6 +518,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
     public static class PrefsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
         private ListPreference mBatteryStyle;
+        private CheckBoxPreference mPrefBatteryPercent;
         private ListPreference mLowBatteryWarning;
         private MultiSelectListPreference mSignalIconAutohide;
         private SharedPreferences mPrefs;
@@ -617,6 +619,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefs = getPreferenceScreen().getSharedPreferences();
 
             mBatteryStyle = (ListPreference) findPreference(PREF_KEY_BATTERY_STYLE);
+            mPrefBatteryPercent = (CheckBoxPreference) findPreference(PREF_KEY_BATTERY_PERCENT_TEXT);
             mLowBatteryWarning = (ListPreference) findPreference(PREF_KEY_LOW_BATTERY_WARNING_POLICY);
             mSignalIconAutohide = (MultiSelectListPreference) findPreference(PREF_KEY_SIGNAL_ICON_AUTOHIDE);
             mQuickSettings = (MultiSelectListPreference) findPreference(PREF_KEY_QUICK_SETTINGS);
@@ -1026,6 +1029,20 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefQsNetworkModeSimSlot.setSummary(
                         String.format(getString(R.string.pref_qs_network_mode_sim_slot_summary),
                                 mPrefQsNetworkModeSimSlot.getEntry()));
+            }
+
+            if (Utils.isMtkDevice()) {
+                final boolean mtkBatteryPercent = Settings.Secure.getInt(getActivity().getContentResolver(), 
+                        ModBatteryStyle.SETTING_MTK_BATTERY_PERCENTAGE, 0) == 1;
+                if (mtkBatteryPercent) {
+                    mPrefs.edit().putBoolean(PREF_KEY_BATTERY_PERCENT_TEXT, false).commit();
+                    mPrefBatteryPercent.setChecked(false);
+                    Intent intent = new Intent();
+                    intent.setAction(ACTION_PREF_BATTERY_STYLE_CHANGED);
+                    intent.putExtra("batteryPercent", false);
+                    getActivity().sendBroadcast(intent);
+                }
+                mPrefBatteryPercent.setEnabled(!mtkBatteryPercent);
             }
         }
 
