@@ -604,4 +604,8 @@
     <string name="call_vibration_waiting">Durante chamada em espera</string>
     <string name="call_vibration_periodic">Aos 45 segundos de cada minuto durante chamada efetuada</string>
 
+    <!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">Reordenamento dos painéis</string>
+    <string name="pref_qs_tile_order_summary">Permite reordenar os painéis das definições rápidas</string>
+
 </resources>
