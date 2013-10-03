@@ -1,3 +1,18 @@
+Changelog 2.5.7 - 03/10/2013
+--------------------------------------
+- QuickSettings Tile Reordering
+- GravityBox Tile: long-touch serves as a quick shortcut to Tile Reordering interface
+- Fixed Battery Stats crashing on some devices (MTK Specific)
+--- stock Battery Percent Checkbox (the one in Battery Stats) is back
+--- has priority over GB percent text option (when enabled in Battery Stats, the one in GB will be disabled)
+- Updated German translations (thanks to samsonbear)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Hungarian translations (thanks to benjoe1)
+- Updated French translation (thanks to ch-vox)
+- Updated Italian translations (thanks to pitone02)
+- Updated Japanese translations (thanks to WedyDQ10)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+
 Changelog 2.5.6 - 01/10/2013
 --------------------------------------
 - Fixed compatibility issues in Network mode tile and Messaging tweaks for single SIM MTKs (thanks to bgcngm)
