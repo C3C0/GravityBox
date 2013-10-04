@@ -3,8 +3,8 @@
 
     <string name="app_name">GravityBox</string>
 
-    <string name="battery_style_title">电量指示图桉样式</string>	
-    <string name="battery_style_stock">原厂电量指示图桉</string>
+    <string name="battery_style_title">电量指示图案风格</string>	
+    <string name="battery_style_stock">原厂电量指示图案</string>
     <string name="battery_style_circle">圆形电量图示（不包含百分比）</string>
     <string name="battery_style_circle_percent">圆形电量图示（包含百分比）</string>
     <string name="battery_style_percent">电量百分比文字</string>
@@ -28,8 +28,8 @@
     <string name="sim_disable_notifications">关闭提醒</string>
     <string name="sim_disable_notifications_summary">「SIM 卡未插入」提醒已停用</string>
 
-    <string name="poweroff_advanced_title">进阶重新启动选单</string>
-    <string name="poweroff_advanced_summary">启用有重新启动至 Recovery 选项的进阶重新启动选单</string>
+    <string name="poweroff_advanced_title">高级重新启动菜单</string>
+    <string name="poweroff_advanced_summary">启用重新启动至 Recovery 选项的高级重新启动菜单</string>
     <string name="poweroff_recovery">Recovery</string>
     <string name="poweroff_bootloader">Bootloader</string>
 
@@ -52,7 +52,7 @@
     <string name="fix_caller_id_mms_summary">如果来自同一个人的简讯被分成不同的会话串，启用这个选项（需要重新启动）</string>
     <string name="fix_caller_id_mms_alert">为了让更动生效，您应该在重新启动后，于「讯息」应用程式内删除全部被拆散的会话串！</string>
 
-    <string name="fix_calendar_title">修正「行事曆」应用程式</string>
+    <string name="fix_calendar_title">修正「日历」应用程式</string>
     <string name="fix_calendar_summary">若您週期性地遇到萤幕自动开启时，启用这个选项（需要重新启动）</string>
 
     <string name="important">重要</string>
@@ -68,7 +68,7 @@
     <string name="quick_settings_torch_on">手电筒开启</string>
     <string name="quick_settings_torch_off">手电筒关闭</string>
     <string name="quick_settings_torch_off_notif">按下以关闭</string>
-	  <string name="quick_settings_qr_playing">播放中&#8230;</string>
+    <string name="quick_settings_qr_playing">播放中&#8230;</string>
     <string name="quick_settings_qr_recording">录音中&#8230;</string>
     <string name="quick_settings_qr_recorded">已录音</string>
     <string name="quick_settings_qr_record">长按以录音</string>
@@ -518,5 +518,91 @@
     <string name="pref_navbar_width_title">海苔条宽度</string>
     <string name="pref_navbar_width_summary">应用于当萤幕呈现横放方向</string>
     <string name="pref_navbar_menukey_title">永远显示选单键</string>
+    
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">电源菜单截图</string>
+
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">Unlock ring settings</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Enable unlock ring targets</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">Master switch for unlock ring targets</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Target application %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Unlock ring vertical offset</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">Unlock ring horizontal offset</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">Enable brightness control</string>
+    <string name="pref_statusbar_brightness_summary">Adjusts brightness by sliding over statusbar</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Telephony</string>
+    <string name="pref_cat_phone_messaging_title">Messaging</string>
+    <string name="pref_cat_phone_mobile_data_title">Mobile data</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Strip unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">Converts unicode characters to normal characters. Decreases overall message size.</string>
+    <string name="unicode_stripping_leave_intact">Leave characters intact</string>
+    <string name="unicode_stripping_non_encodable">Strip non-encodable characters</string>
+    <string name="unicode_stripping_all">Strip all unicode characters</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Disable slow 2G data warning</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Disables warning about slow data speed when turning on mobile data in QuickSettings for SIM in 2G mode</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">Follow stock battery color</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Makes statusbar clock, percentage and circle battery use the color of stock battery icon. Applies when icon coloring is off.</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">Network mode tile mode</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
+    <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
+    <string name="nm_tile_mode3">2G/3G/(LTE)</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">停用GPS通知</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">Allow all rotations</string>
+
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">Override default tile behaviour</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Overrides touch/long-touch behaviour for selected tiles (requires reboot)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">Network mode tile SIM slot</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Defines SIM slot to which network mode tile applies (%s)</string>
+    <string name="sim_slot1">SIM slot 1</string>
+    <string name="sim_slot2">SIM slot 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">从不</string>
+    <string name="pie_controls_enabled_always">总是</string>
+    <string name="pie_controls_enabled_expanded">When expanded desktop on</string>
+    <string name="pie_controls_enabled_expanded_navbar">When expanded desktop hides navigation bar</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Leave stock battery icon intact</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Use in case stock battery icon was replaced with 3rd party battery mod</string>
+
+    <!-- Unplug turns on screen -->
+    <string name="pref_unplug_turns_on_screen_title">Unplug turns on screen</string>
+    <string name="pref_unplug_turns_on_screen_summary">If enabled, the screen will come on when you plug/unplug usb/power/whatever (requires reboot)</string>
+
+    <!-- Mute volume adjust sound -->
+    <string name="pref_volume_adjust_mute_title">音量键调节</string>
+    <string name="pref_volume_adjust_mute_summary">音量键调节音量时停用音效</string>
+
+    <!-- Call vibrations -->
+    <string name="pref_call_vibrations_title">通话振动</string>
+    <string name="call_vibration_connected">启用电话接通振动</string>
+    <string name="call_vibration_disconnected">启用通话结束振动</string>
+    <string name="call_vibration_waiting">启用通话等待震动</string>
+    <string name="call_vibration_periodic">通话期间每45秒振动一次</string>
+
+    <!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">Tile reordering</string>
+    <string name="pref_qs_tile_order_summary">Allows reordering of QuickSettings tiles</string>
 
 </resources>
