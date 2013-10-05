@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">Kiểu hiển thị pin</string>	
+    <string name="battery_style_stock">Kiểu pin gốc</string>
+    <string name="battery_style_circle">Pin vòng tròn</string>
+    <string name="battery_style_circle_percent">Pin vòng tròn với phần trăm</string>
+    <string name="battery_style_percent">Chữ phần trăm pin</string>
+    <string name="battery_style_none">Không</string>
+
+    <string name="vol_music_controls_title">Phím âm lượng chuyển bài hát</string>
+    <string name="vol_music_controls_summary">Giữ phím âm lượng để chuyển bài hát khi đang khóa màn hình</string>
+
+    <string name="low_battery_warning_policy_title">Cảnh báo pin yếu</string>
+    <string name="low_battery_warning_full">Cảnh báo và âm báo</string>
+    <string name="low_battery_warning_popup">Chỉ cảnh báo</string>
+    <string name="low_battery_warning_sound">Chỉ âm báo</string>
+    <string name="low_battery_warning_off">Tắt</string>
+
+    <string name="reboot_required">Thay đổi cần trang bị khởi động lại</string>
+
+    <string name="signal_icon_autohide_title">Tự động ẩn biểu tượng sóng</string>
+    <string name="signal_icon_autohide_summary">Tự động ẩn biểu tượng sóng vị trí SIM khi không có SIM, tắt thông báo không có SIM trên thanh trạng thái</string>
+    <string name="sim_slot_1">Tự động ẩn cho SIM 1</string>
+    <string name="sim_slot_2">Tự động ẩn cho SIM 2</string>
+    <string name="sim_disable_notifications">Tắt thông báo</string>
+    <string name="sim_disable_notifications_summary">\"SIM chưa được lắp\" Thông báo đã được tắt</string>
+
+    <string name="poweroff_advanced_title">Tùy chọn Reboot nâng cao</string>
+    <string name="poweroff_advanced_summary">Cho phép thêm tùy chọn Reboot và reboot tới recovery</string>
+    <string name="poweroff_recovery">Reboot tới Recovery</string>
+    <string name="poweroff_bootloader">Reboot</string>
+
+    <string name="vol_key_cursor_control_title">Phím âm lượng điểu khiển con trỏ</string>
+    <string name="vol_key_cursor_control_summary">Sử dụng phím âm lượng để tiến hoặc lùi con trỏ khi gõ văn bản</string>
+    <string name="vol_key_cursor_control_off">Tắt</string>
+    <string name="vol_key_cursor_control_on">Phím tăng/giảm âm lượng cho con trỏ di chuyển trái/phải</string>
+    <string name="vol_key_cursor_control_on_reverse">Phím tăng/giảm âm lượng cho con trỏ di chuyển phải/trái</string>
+
+    <string name="recents_clear_all_title">Nút làm sạch tất cả ứng dụng gần đây</string>
+
+    <string name="fix_datetime_crash_title">Sửa lỗi cài đặt ngày giờ</string>
+    <string name="fix_datetime_crash_summary">Cho phép sửa lỗi khi cài đặt ngày giờ (cần trang bị khởi động lại để thay đổi)</string>
+
+    <string name="fix_caller_id_phone_title">Sửa lỗi mã vùng hiển thị cuộc gọi</string>
+    <string name="fix_caller_id_phone_summary">Cho phép sửa lỗi danh bạ không hiển thị tên người dùng khi nhận cuộc gọi (cần trang bị khởi động lại để thay đổi)</string>
+    <string name="fix_caller_id_phone_alert">Sau khi khởi động lại, bạn cần làm sạch và thêm danh bạ của bạn lại để thay đổi có hiệu lực, Đi đến cài đặt/ứng dụng/Tất cả - để xóa dữ liệu Contacts provider.</string>
+
+    <string name="fix_caller_id_mms_title">Sửa lỗi hiển thị danh bạ tin nhắn</string>
+    <string name="fix_caller_id_mms_summary">Sửa lỗi hiển thị khi các số có mã vùng nhắn tin tới trên tin nhắn không hiển thị được tên người gửi trong danh bạ (Cần trang bị khởi động lại để thay đổi)</string>
+    <string name="fix_caller_id_mms_alert">Sau khi khởi động lại, bạn cần xóa sạch hết các tin nhắn để thay đổi có hiệu lực</string>
+
+    <string name="fix_calendar_title">Sửa lỗi Lịch</string>
+    <string name="fix_calendar_summary">Cho phép sửa khi bạn gặp vấn đề tự xoay đang tải trên màn hình (cần trang bị khởi động lại để thay đổi)</string>
+
+    <string name="important">Quan trọng</string>
+
+    <string name="caller_fullscreen_photo_title">Ảnh người gọi toàn màn hình</string>
+    <string name="caller_fullscreen_photo_summary">Hiển thị ảnh người gọi đến toàn màn hình</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">Đ.bộ bật</string>
+    <string name="quick_settings_sync_off">Đ.bộ tắt</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP bật</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP tắt</string>
+    <string name="quick_settings_torch_on">Đèn pin bật</string>
+    <string name="quick_settings_torch_off">Đèn pin tắt</string>
+    <string name="quick_settings_torch_off_notif">Bấm để tắt</string>
+    <string name="quick_settings_qr_playing">Đang phát&#8230;</string>
+    <string name="quick_settings_qr_recording">Đang ghi âm&#8230;</string>
+    <string name="quick_settings_qr_recorded">Đã ghi âm</string>
+    <string name="quick_settings_qr_record">Ấn giữ để ghi</string>
+    <string name="quick_settings_qr_recording_notif">Bấm để dừng ghi</string>
+    <string name="quick_settings_expanded_desktop_disabled">Đã tắt</string>
+    <string name="quick_settings_expanded_desktop_normal">Bình thường</string>
+    <string name="quick_settings_expanded_desktop_expanded">Mở rộng</string>
+    <string name="quick_settings_stay_awake_on">Stay awake bật</string>
+    <string name="quick_settings_stay_awake_off">Stay awake tắt</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">Quicksetting trên thanh trạng thái</string>
+    <string name="quick_settings_summary">Cho phép ẩn/hiện biểu tượng quicksetting trên thanh trạng thái</string>
+    <string name="qs_tile_user_profile">T.tin người sử dụng</string>
+    <string name="qs_tile_airplane_mode">Chế độ máy bay</string>
+    <string name="qs_tile_battery">Trạng thái Pin</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_bluetooth">Bluetooth</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_gps_alt">GPS (kiểu CM)</string>
+    <string name="qs_tile_mobile_data">Kết nối dữ liệu</string>
+    <string name="qs_tile_network_mode">Chế độ mạng</string>
+    <string name="qs_tile_data_usage">Sử dụng dữ liệu</string>
+    <string name="qs_tile_audio">Cấu hình âm thanh</string>
+    <string name="qs_tile_brightness">Độ sáng</string>
+    <string name="qs_tile_screen_timeout">C.độ chờ</string>
+    <string name="qs_tile_autorotation">Auto rotation</string>
+    <string name="qs_tile_sync">Đồng bộ</string>
+    <string name="qs_tile_wifi_ap">Điểm phát wifi</string>
+    <string name="qs_tile_torch">Đèn pin</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">Ngủ</string>
+    <string name="qs_tile_quickrecord">Ghi âm nhanh</string>
+    <string name="qs_tile_settings">Cài đặt</string>
+    <string name="qs_tile_volume">Âm lượng</string>
+    <string name="qs_tile_expanded_desktop">Màn hình mở rộng</string>
+    <string name="qs_tile_stay_awake">Stay awake</string>
+    <string name="qs_tile_screenshot">Chụp màn hình</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Chọn màu</string>
+    <string name="press_color_to_apply">Ấn trên màu để chọn</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">Màu nền thanh trạng thái</string>
+    <string name="statusbar_bgcolor_summary">Cho phép đặt màu nền thanh trạng thái và trong suốt</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Sửa cài đặt giọng nói</string>
+    <string name="fix_tts_settings_summary">Mở chức năng tìm kiếm giọng nói và văn bản thành giọng nói trong ngôn ngữ và phương thức nhập (Trang bị khởi động lại để thay đổi)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">Tùy chọn nhà phát triển nâng cao</string>
+    <string name="fix_dev_opts_summary">Mở toàn bộ các cài đặt đầy đủ trong tùy chọn nhà phát triển (Trang bị khởi động lại để cập nhật)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">Tùy chỉnh thanh trạng thái</string>
+    <string name="pref_cat_statusbar_summary">Tùy chỉnh các trạng thái khác nhau</string>
+    <string name="pref_cat_misc_title">Tùy chỉnh khác</string>
+    <string name="pref_cat_misc_summary">Gồm tất cả các tinh chỉnh khác không thuộc thể loại cụ thể</string>
+    <string name="pref_cat_fixes_title">Sửa lỗi chung</string>
+    <string name="pref_cat_fixes_summary">Gồm các lỗi chung MTK6589. Chỉ sử dụng nếu cần thiết.</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">Giới thiệu</string>
+    <string name="about_gb_summary">viết bởi C3C076@XDA. bấm để thăm chủ đề này.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Viết bởi rovo89@XDA. bấm để thăm chủ đề này.</string>
+    <string name="about_donate_title">Đóng góp</string>
+    <string name="about_donate_summary">Vui lòng đóng góp cho chúng tôi nếu bạn thấy nó giá trị! Cũng xem xét tài trợ cho rovo89 về sự tuyệt vời của Xposed framework.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">%s của bạn sẽ khởi động lại.</string>
+    <string name="reboot_confirm_recovery">%s của bạn sẽ khởi động lại vào recovery.</string>
+    <string name="reboot_confirm_bootloader">%s của bạn sẽ khởi động lại vào bootloader.</string>
+
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">Tắt hiệu ứng TV cũ</string>
+    <string name="crt_off_effect_summary">Cho phép sử dụng hiệu ứng tắt TV cũ khi khóa màn hình</string>
+
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Engineering mode</string>
+    <string name="engineering_mode_summary">Chuyển tới ứng dụng Engineering mode</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">Chuông trên hai SIM</string>
+    <string name="dual_sim_ringer_summary">Chuyển tới ứng dụng này cho chọn nhạc chuông, thông báo trên 2 sim riêng rẽ</string>
+
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">Tùy chỉnh màn hình khóa</string>
+    <string name="pref_cat_lockscreen_summary">Gồm các tùy chỉnh về màn hình khóa</string>
+    <string name="pref_cat_lockscreen_background_title">Nền màn hình khóa</string>
+    <string name="pref_lockscreen_background_title">Kiểu nền</string>
+    <string name="lockscreen_bg_default">Hình nền mặc định</string>
+    <string name="lockscreen_bg_color">Nền màu</string>
+    <string name="lockscreen_bg_image">Tùy chọn ảnh</string>
+    <string name="pref_lockscreen_bg_color_title">Cài đặt màu</string>
+    <string name="pref_lockscreen_bg_color_summary">Cho phép đặt màu nền cho màn hình khóa</string>
+    <string name="pref_lockscreen_bg_image_title">Cài đặt ảnh nền</string>
+    <string name="pref_lockscreen_bg_image_summary">Cho phép tùy chỉnh ảnh nền cho màn hình khóa</string>
+    <string name="lockscreen_background_result_successful">Nền đã được thay đổi</string>
+    <string name="lockscreen_background_result_not_successful">Nền chưa được thay đổi</string>
+    <string name="pref_cat_lockscreen_other_title">Khác</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Tiện ích tối đa</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Khi được bật, số tiện ích màn hình khóa sẽ được mở mặc định là tối đa</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">Cài đặt nguồn thiết bị</string>
+    <string name="pref_cat_power_summary">Các tùy chỉnh liên quan tới nguồn thiết bị</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">Tắt đèn LED sáng</string>
+    <string name="pref_flashing_led_disable_summary">Tắt báo đèn LED báo khi pin yếu và không sạc</string>
+
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">Cài đặt hiển thị</string>
+    <string name="pref_cat_display_summary">Các tùy chỉnh về hiển thị</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">Mức sáng tối thiểu</string>
+    <string name="pref_brightness_min_summary">Cho phép thiết lập mức sáng tối thiểu. Áp dụng với chế độ chỉnh sáng thủ công. (Cần khởi động lại cho thay đổi)</string>
+    <string name="pref_brightness_dlg_msg">Giá trị trong khoảng: 10 &#8211; 80</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">Mức tự động sáng</string>
+    <string name="pref_ab_summary">Cho phép thiết lập mức độ ánh sáng môi trường xung quanh và các giá trị tương ứng với đèn nền LCD</string>
+    <string name="level">Mức độ</string>
+    <string name="pref_ab_lux_max_label">Lớn nhất</string>
+    <string name="pref_ab_brighness_label">Độ sáng (10 &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">Số quy định không hợp lệ</string>
+    <string name="pref_ab_brightness_too_low">Không được khuyến cáo khi đặt mức sáng dưới 10</string>
+    <string name="pref_ab_brightness_too_high">Mức sáng không thể lớn hơn 255</string>
+    <string name="pref_ab_number_error_negative">Giá trị không thể nào thấp hơn hoặc bằng 0</string>
+    <string name="pref_ab_number_not_ascending">Giá trị mức thấp nhất không thể lớn hơn giá trị mức cao nhất</string>
+    <string name="pref_ab_number_not_descending">Giá trị mức cao nhất không thể bé hơn mức nhỏ nhất</string>
+    <string name="pref_ab_values_set">Đặt giá trị %s</string>
+    <string name="pref_ab_config_saved">Cấu hình tự động sáng mới đã được lưu</string>
+    <string name="pref_ab_config_cancelled">Cấu hình tự động sáng là không được lưu</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">Cho phép xoay trong màn hình khóa</string>
+    <string name="pref_lockscreen_rotation_summary">cảnh báo: Có thể lệch màn hình khóa, có thể lệch cho cách kéo mở đối tượng trong màn hình khóa</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">Cho phép Phím menu</string>
+    <string name="pref_lockscreen_menu_key_summary">Cho phép mở khóa bằng phím menu khi màn hình khóa đã hiện (Trang bị khởi động để thay đổi)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">Sửa tin nhắn sáng màn hình</string>
+    <string name="pref_mms_fix_wakelock_summary">màn hình sẽ sáng lên khi có tin nhắn mới (Trang bị khởi động lại để cập nhật thay đổi)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">Trung tâm đồng hồ</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">Cài đặt đa phương tiện</string>
+    <string name="pref_cat_media_summary">Các tùy chỉnh về âm thanh, hình ảnh,... của hệ thống</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">Tăng bước điều chỉnh âm lượng</string>
+    <string name="pref_music_volume_steps_summary">Thêm nhiều mức điều chỉnh âm lượng hơn (rang bị khởi động lại để cập nhật thay đổi)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">Âm chế độ tai nghe</string>
+    <string name="pref_safe_media_volume_summary">Kích hoạt hoặc vô hiệu hóa tính năng tai nghe âm lượng phương tiện truyền thông an toàn</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">Tắt đèn LED khi sạc</string>
+    <string name="pref_charging_led_disable_summary">Cho phép Tắt đèn LED khi sạc</string>
+
+    <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">Hành động phím cứng</string>
+    <string name="pref_cat_hwkey_actions_summary">Cho phép thay đổi hành động khi bấm phím cứng</string>
+    <string name="pref_hwkey_menu_longpress_title">Giữ phím Menu</string>
+    <string name="pref_hwkey_menu_doubletap_title">Bâm đúp phím menu</string>
+    <string name="pref_hwkey_back_longpress_title">Giữ phím back</string>
+    <string name="hwkey_action_default">Mặc định</string>
+    <string name="hwkey_action_search">Tìm kiếm</string>
+    <string name="hwkey_action_voice_search">Tìm kiếm giọng nói</string>
+    <string name="hwkey_action_prev_app">Chuyển tới ứng dụng mở trước đó</string>
+    <string name="hwkey_action_kill">Diệt các ứng ụng chạy nền</string>
+    <string name="hwkey_action_sleep">Đi tới chế độ ngủ</string>
+    <string name="pref_hwkey_kill_delay_title">Khoảng thời gian bấm giữ diệt ứng dụng nền</string>
+    <string name="pref_hwkey_kill_delay_summary">Định nghĩ thời gian giữ pím bao lâu cho diệt ứng dụng nền</string>
+    <string name="pref_hwkey_doubletap_speed_title">Tốc độ bấm đúp</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Chấp nhận phím menu cho hoạt động bấm đúp. Định nghĩa tốc độ nhanh hay chậm cho tốc độ bấm đúp</string>
+    <string name="app_killed">Ứng dụng đã được diệt</string>
+    <string name="nothing_to_kill">Không có ứng dụng nào để diệt</string>
+    <string name="no_previous_app_found">Không tìm thấy ứng dụng trước đó</string>
+
+    <!--  Phone tweaks category -->
+    <string name="pref_cat_phone_title">Cài đặt điện thoại</string>
+    <string name="pref_cat_phone_summary">Gồm các tùy chỉnh về cuộc gọi</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">Hoạt động lật</string>
+    <string name="pref_phone_flip_summary">Định nghĩ hoạt động khi lật khi có cuộc gọi</string>
+    <string name="phone_flip_action_none">Không làm gì</string>
+    <string name="phone_flip_action_mute">Im lặng</string>
+    <string name="phone_flip_action_dismiss">Từ chối cuộc gọi</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">Khởi đông nhanh</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">Hình nền đặc đen</string>
+    <string name="pref_holo_bg_solid_black_summary">Sử dụng hình nền đặc đen mặc định của hệ thống (Trang bị thay đổi khi khởi động lại)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">Số biểu tượng trên dòng</string>
+    <string name="pref_qs_tiles_per_row_summary">Định nghĩ có bao nhiêu cột biểu tượng trên dòng quicksettings.</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">Hiện ngày của tuần</string>
+
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">Cho phép bảng điều chỉnh âm lượng mở rộng</string>
+    <string name="pref_volume_panel_expandable_summary">Bảng điều khiển âm lượng thêm các điều chỉnh âm lượng khác nhau</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">Liên kết giữa âm nhạc chuông và thông báo</string>
+    <string name="pref_link_volumes_summary">Khi được tắt, Âm lượng nhạc chuông và thông báo sẽ độc lập</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">Tự động chuyển Quicksetings</string>
+    <string name="pref_auto_switch_qs_summary">Quicksetting sẽ hiện mặc định khi kéo statusbar</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">Kéo xuống nhanh</string>
+    <string name="pref_quick_pulldown_summary">Mũi của thanh trạng thái khi kéo xuống nhanh</string>
+    <string name="quick_pulldown_off">Tắt</string>
+    <string name="quick_pulldown_right">Phải</string>
+    <string name="quick_pulldown_left">Trái</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">Tắt phím âm lượng mở khóa màn hình</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Cho thiết bị như là Jiayu G3s,G4 cái mà có thể dùng phím âm lượng mở khóa màn hình</string>
+
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">Màu thanh trạng thái</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">Bật màu bieur tượng</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">Màu biểu tượng thanh trạng thái</string>
+    <string name="pref_statusbar_icon_color_summary">Đặt màu cho biểu tượng và đồng hồ thanh trạng thái</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">Màu kết nối dữ liệu</string>
+    <string name="pref_statusbar_data_activity_color_summary">Đặc màu khi kết nối dữ liệu</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">Quản lý QuickSettings</string>
+
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">Giao diện bảng thông báo</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">Nền bảng thông báo</string>
+    <string name="notif_background_default">Nền mặc định</string>
+    <string name="notif_background_color_fill">Màu nền</string>
+    <string name="notif_background_custom_image">Tùy chỉnh ảnh</string>
+    <string name="pref_notif_color_title">Đặt màu nền</string>
+    <string name="pref_notif_image_portrait_title">Cài đặt ảnh đứng</string>
+    <string name="pref_notif_image_landscape_title">Cài đặt ảnh ngang</string>
+    <string name="pref_notif_background_alpha_title">Nền trong suốt</string>
+    <string name="pref_notif_color_mode_title">Chế độ nền</string>
+    <string name="color_fill_overlay">Che</string>
+    <string name="color_fill_underlay">Cơ bản</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">Tắt chỉ thị chuyển vùng</string>
+    <string name="pref_disable_roaming_indicators_summary">Khi được tắt, R biểu tượng sẽ không phù hợp khi chuyển vùng.</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Đang sạc (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Đã sạc</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% còn lại</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Không dịch vụ</string>
+    <string name="pie_phone_status_airplane_mode">Chế độ máy bay</string>
+    <string name="pie_phone_status_emergency_only">Chỉ cuộc gọi khẩn cấp</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">Điều khiển Pie</string>
+    <string name="pie_control_enable_title">Cho phép</string>
+    <string name="pie_control_search_title">Hiện nút bấm tìm kiếm</string>
+    <string name="pie_control_size_title">Kích thước khóa chuyển hướng</string>
+    <string name="pie_control_trigger_positions_title">Vị trí kích hoạt</string>
+    <string name="pie_control_trigger_left">Viền màn hình trái</string>
+    <string name="pie_control_trigger_bottom">Viền dưới màn hình</string>
+    <string name="pie_control_trigger_right">Viền phải màn hình</string>
+    <string name="pie_control_trigger_top">Viền trên màn hình</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">Nút cảm biến sáng back</string>
+    <string name="button_backlight_mode_default">Mặc định</string>
+    <string name="button_backlight_mode_disable">Tắt nút cảm biến sáng Back</string>
+    <string name="button_backlight_mode_always_on">Luôn sáng kh màn hình bật</string>
+    <string name="pref_button_backlight_notifications_title">Nút back sáng thông báo</string>
+    <string name="pref_button_backlight_notifications_summary">Nhấp nháy đèn nền nút khi có thông báo, sử dụng khi thiết bị của bạn ko có đèn led thông báo cân thay thế và lưu ý có thể hao pin.</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">Ẩn thanh điều hướng</string>
+    <string name="pref_navbar_disable_summary">Ẩn thanh điều hướng khi bật bảng điều khiển Pie (cho các thiết bị có thanh điều hướng, yêu cầu khởi động lại)</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">Hòa sắc nền Holo</string>
+    <string name="pref_holo_bg_dither_summary">Thay thế hóa sắc chuẩn Holo với màu được lựa chọn trong chế độ hòa sắc (yêu cầu khởi động lại)</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">Tắt phím cứng</string>
+    <string name="pref_hwkeys_disable_summary">Tắt phím MENU, BACK, HOME khi bảng Pie được bật. Phím cứng vẫn làm việc. (Cho thiết bị có phím cứng)</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">Sử dụng Holo Dark theme</string>
+    <string name="pref_gb_theme_dark_summary">Chuyển GB UI tới sử dụng Holo Dark theme thay vì of Holo Light</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">Tắt</string>
+    <string name="recent_clear_top_left">Bên trên trái</string>
+    <string name="recent_clear_top_right">Bên trên phải</string>
+    <string name="recent_clear_bottom_left">Bên dưới trái</string>
+    <string name="recent_clear_bottom_right">Bên dưới phải</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">Cách trên</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">Tắt cảnh báo chuyển vùng</string>
+    <string name="pref_roaming_warning_disable_summary">Tắt hóa cảnh báo chuyển vùng khi gửi tin nhắn hoặc thực hiện cuộc gọi điện thoại trong khi chuyển vùng</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">Tìm kiếm</string>
+    <string name="app_picker_none">Không</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">Ứng dụng nhanh</string>
+    <string name="pref_cat_quickapp_tile_title">Cài đặt ứng dụng nhanh</string>
+    <string name="pref_quickapp_default_title">Ứng dụng chính</string>
+    <string name="pref_quickapp_slot1_title">Giữ ứng dụng vị trí 1</string>
+    <string name="pref_quickapp_slot2_title">Giữ ứng dụng vị trí 2</string>
+    <string name="pref_quickapp_slot3_title">Giữ ứng dụng vị trí 3</string>
+    <string name="pref_quickapp_slot4_title">Giữ ứng dụng vị trí 4</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS bật</string>
+    <string name="qs_tile_gps_disabled">GPS tắt</string>
+    <string name="qs_tile_gps_locked">GPS Bị khóa</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">Luôn hiện nút bấm menu</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">Chế độ chuông</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">Cài đặt đồng hồ</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">Ẩn SA/CH</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">Ẩn đồng hồ</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">Kích cỡ</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">Quản lý trong suốt</string>
+    <string name="pref_tm_statusbar_launcher_title">Thanh trạng thái trong suốt trong launcher</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Thanh trạng thái trong suốt trong màn hình khóa</string>
+    <string name="pref_tm_navbar_launcher_title">Trong suốt bảng điều hướng trong launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Trong suốt bảng điều hướng trong lockscreen</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">Ẩn biểu tượng báo thức</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">Mức sáng lim dim</string>
+    <string name="pref_screen_dim_level_summary">Lượng độ sáng lim dim khi màn hình sắp được tắt (Trang bị khởi động lại)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">Điện thoại</string>
+    <string name="device_tablet">Máy tính bảng</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">Cài đặt độ sáng</string>
+    <string name="pref_brightness_master_switch_title">Cài đặt độ sáng</string>
+    <string name="pref_brightness_master_switch_summary">Chỉ sử dụng trong trường hợp thiết bị của bạn hỗ trợ tính năng độ sáng tiêu chuẩn Android. Tiếp tục vô hiệu hóa nếu bạn gặp các vấn đề liên quan đến độ sáng. (cần khởi động lại cho thay đổi)</string>
+
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">Hiện các ứng dụng gần đây</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">Hoạt động giữ phím HOME</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">Chuyển tới ứng dụng tùy chỉnh 1</string>
+    <string name="pref_hwkey_custom_app_title">Cài đặt ứng dụng tùy chỉnh 1</string>
+    <string name="hwkey_action_custom_app2">Chuyển tới ứng dụng tùy chỉnh 2</string>
+    <string name="pref_hwkey_custom_app_title2">Cài đặt ứng dụng tùy chỉnh 2</string>
+    <string name="hwkey_action_custom_app_none">Không có ứng dụng tùy chỉnh được thiết lập!</string>
+    <string name="hwkey_action_custom_app_missing">Ứng dụng tùy chỉnh không tìm thấy!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Ứng dụng đồng hồ bảng thông báo</string>
+    <string name="pref_clock_link_summary">Link tới ứng dụng cụ thể của đồng hồ bảng thông báo thay vì  tới Cài đặt ngày giờ</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">Chờ phản hồi từ hệ thống GravityBox framework&#8230;</string>
+    <string name="gb_startup_error">GravityBox framework không phản hồi. Đang thoát.</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">Chuyển vùng quốc tế</string>
+    <string name="pref_national_roaming_summary">Kết nối với các dịch vụ dữ liệu khi chuyển vùng trên toàn quốc</string>
+
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">Chế độ Desktop mở rộng</string>
+    <string name="expanded_desktop_disabled">Đã tắt</string>
+    <string name="expanded_desktop_statusbar">Ẩn thanh trạng thái</string>
+    <string name="expanded_desktop_navbar">Ẩn thanh điều hướng</string>
+    <string name="expanded_desktop_both">Ẩn cả hai</string>
+    <string name="action_expanded_desktop_title">Mở rộng desktop</string>
+    <string name="action_expanded_desktop_on">Mở rộng desktop là bật</string>
+    <string name="action_expanded_desktop_off">Mở rộng desktop là tắt</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">Chụp màn hình</string>
+
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">Hiện menu</string>
+
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">Chuyển đổi mở rộng desktop</string>
+    <string name="hwkey_action_expanded_desktop_disabled">Chuyển đổi mở rộng desktop là tắt!</string>
+
+    <!-- Navigation bar tweaks category -->
+    <string name="pref_cat_navigation_bar_title">Cài đặt thanh diều hướng</string>
+    <string name="pref_cat_navigation_bar_summary">Các cài đặt liên quan tới thanh điều hướng</string>
+    <string name="pref_navbar_override_title">Ghi đè lên mặc định hệ thống</string>
+    <string name="pref_navbar_override_summary">Chuyển đổi chính cho cài đặt thanh điều hướng (cần khởi động lại máy để thay đổi)</string>
+    <string name="pref_navbar_enable_title">Bật thanh điều hướng</string>
+    <string name="pref_navbar_enable_summary">Trang bị khởi động lại</string>
+    <string name="pref_navbar_height_title">Độ cao thanh điều hướng</string>
+    <string name="pref_navbar_height_summary">Áp dụng với thanh điều hướng dọc và ngang</string>
+    <string name="pref_navbar_height_landscape_summary">Áp dụng với thanh điều hướng ngang và dọc</string>
+    <string name="pref_navbar_width_title">Chiều rộng thanh điều hướng</string>
+    <string name="pref_navbar_width_summary">Áp dụng với thanh điều hướng dọc</string>
+    <string name="pref_navbar_menukey_title">Luôn hiện phím menu</string>
+
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">Chụp màn hình tại nút nguồn menu</string>
+
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">Thiết lập vòng tròn mở khóa</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Cho phép mở khóa với mở các đối tượng</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">Chuyển tới các đối tượng mở khóa chính</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Cài đặt Ứng dụng chuyển tới %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Vòng mở khóa dọc</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">Vòng mở khóa ngang</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">Bật thanh điểu chỉnh sáng</string>
+    <string name="pref_statusbar_brightness_summary">Hiện thanh điều chỉnh sáng trên thanh trạng thái</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">Điện thoại</string>
+    <string name="pref_cat_phone_messaging_title">Tin nhắn</string>
+    <string name="pref_cat_phone_mobile_data_title">Dữ liệu</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Chuyển ký tự unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">Chuyển đổi ký tự unicode sang ký tự thường. Giảm dung lượng tin nhắn.</string>
+    <string name="unicode_stripping_leave_intact">Để ký tự nguyên vẹn</string>
+    <string name="unicode_stripping_non_encodable">Dải ký tự ko nguyên vẹn</string>
+    <string name="unicode_stripping_all">Chuyển đổi toàn bộ unicode</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">Tắt cảnh báo sử dụng dữ liệu 2G chậm</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Tắt cảnh báo sử dụng dữ liệu châm cho sim khi ở chế độ 2G</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">Màu phần trăm pin gốc</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Thay đổi màu đồng hồ, phầm trăm và vòng tròn pin theo màu biểu tượng pin gốc, Áp dụng khi màu của biểu tượng tắt.</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">Chế độ mạng</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
+    <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
+    <string name="nm_tile_mode3">2G/3G/(LTE)</string>
+
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">Tắt thông báo GPS</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">Cho phép tất cả tự xoay</string>
+
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">Thay đổi hoạt động mặc định</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Thay đổi bấm/giữ cho lựa chọn tiêu đề (Trang bị khởi động lại cho cập nhật thay đổi)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">Chế độ mạng cho vị trí SIM</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Định nghĩa vị trí SIM để chuyển chế độ mạng (%s)</string>
+    <string name="sim_slot1">Vị trí SIM 1</string>
+    <string name="sim_slot2">Vị trí SIM 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">Không</string>
+    <string name="pie_controls_enabled_always">Luôn luôn</string>
+    <string name="pie_controls_enabled_expanded">Khi trong thanh trạng thái kéo xuống</string>
+    <string name="pie_controls_enabled_expanded_navbar">Khi kéo thanh trạng thái và ẩn thanh phím mềm phía dưới</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">Phụ hồi kiểu pin gốc</string>
+    <string name="pref_statusbar_color_skip_battery_summary">Sử dụng khi biểu tin đã được thay đổi bởi mod hoặc phần mềm khác</string>
+
+    <!-- Unplug turns on screen -->
+    <string name="pref_unplug_turns_on_screen_title">Sáng màn hình khi kết nối usb</string>
+    <string name="pref_unplug_turns_on_screen_summary">Cho,phép màn hình sáng lên khi kết nối hoặc ngắt kêt nối usb(Cần trang bị khởi động lại để thay đổi)</string>
+
+    <!-- Mute volume adjust sound -->
+    <string name="pref_volume_adjust_mute_title">Im lặng khi thay đổi âm lượng</string>
+    <string name="pref_volume_adjust_mute_summary">Tắt âm thanh khi bấm phím âm lượng</string>
+
+    <!-- Call vibrations -->
+    <string name="pref_call_vibrations_title">Rung khi gọi</string>
+    <string name="call_vibration_connected">Khi cuộc gọi đã kết nối</string>
+    <string name="call_vibration_disconnected">Khi điện thoại đã ngắt kết nối</string>
+    <string name="call_vibration_waiting">Khi chờ cuộc gọi</string>
+    <string name="call_vibration_periodic">Sau mỗi 45 giây khi gọi</string>
+
+    <!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">Tiêu đề ghi</string>
+    <string name="pref_qs_tile_order_summary">Cho phép gán tiêu đề ghi âm trong quicksetting</string>
+
+</resources>
