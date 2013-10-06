@@ -430,7 +430,11 @@
                 android:defaultValue="false" />
 
         </PreferenceScreen>
-            
+
+        <com.ceco.gm2.gravitybox.preference.OngoingNotifPreference
+            android:key="pref_ongoing_notifications"
+            android:title="@string/pref_ongoing_notifications_title"
+            android:summary="@string/pref_ongoing_notifications_summary" />
 
         <ListPreference
             android:key="pref_battery_style" 

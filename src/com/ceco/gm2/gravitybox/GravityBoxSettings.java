@@ -379,6 +379,12 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             "gravitybox.intent.action.QS_NETWORK_MODE_SIM_SLOT_CHANGED";
     public static final String EXTRA_SIM_SLOT = "simSlot";
 
+    public static final String PREF_KEY_ONGOING_NOTIFICATIONS = "pref_ongoing_notifications";
+    public static final String ACTION_PREF_ONGOING_NOTIFICATIONS_CHANGED = 
+            "gravitybox.intent.action.ONGOING_NOTIFICATIONS_CHANGED";
+    public static final String EXTRA_ONGOING_NOTIF = "ongoingNotif";
+    public static final String EXTRA_ONGOING_NOTIF_RESET = "ongoingNotifReset";
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR,

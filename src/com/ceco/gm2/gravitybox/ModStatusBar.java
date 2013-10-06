@@ -29,6 +29,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
+import android.app.Notification;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -66,12 +67,14 @@ public class ModStatusBar {
     private static final String CLASS_PHONE_STATUSBAR_POLICY = "com.android.systemui.statusbar.phone.PhoneStatusBarPolicy";
     private static final String CLASS_POWER_MANAGER = "android.os.PowerManager";
     private static final String CLASS_LOCATION_CONTROLLER = "com.android.systemui.statusbar.policy.LocationController";
+    private static final String CLASS_STATUSBAR_NOTIF = "com.android.internal.statusbar.StatusBarNotification";
     private static final boolean DEBUG = false;
 
     private static final float BRIGHTNESS_CONTROL_PADDING = 0.15f;
     private static final int BRIGHTNESS_CONTROL_LONG_PRESS_TIMEOUT = 750; // ms
     private static final int BRIGHTNESS_CONTROL_LINGER_THRESHOLD = 20;
     private static final int STATUS_BAR_DISABLE_EXPAND = 0x00010000;
+    public static final String SETTING_ONGOING_NOTIFICATIONS = "gb_ongoing_notifications";
 
     private static ViewGroup mIconArea;
     private static ViewGroup mRootView;
@@ -93,6 +96,7 @@ public class ModStatusBar {
     private static boolean mAlarmHide = false;
     private static Object mPhoneStatusBarPolicy;
     private static SettingsObserver mSettingsObserver;
+    private static String mOngoingNotif;
 
     // Brightness control
     private static boolean mBrightnessControlEnabled;
@@ -158,6 +162,17 @@ public class ModStatusBar {
                         GravityBoxSettings.EXTRA_SB_BRIGHTNESS, false);
                 if (mSettingsObserver != null) {
                     mSettingsObserver.update();
+                }
+            } else if (intent.getAction().equals(
+                    GravityBoxSettings.ACTION_PREF_ONGOING_NOTIFICATIONS_CHANGED)) {
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_ONGOING_NOTIF)) {
+                    mOngoingNotif = intent.getStringExtra(GravityBoxSettings.EXTRA_ONGOING_NOTIF);
+                    if (DEBUG) log("mOngoingNotif = " + mOngoingNotif);
+                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_ONGOING_NOTIF_RESET)) {
+                    mOngoingNotif = "";
+                    Settings.Secure.putString(mContext.getContentResolver(),
+                            SETTING_ONGOING_NOTIFICATIONS, "");
+                    if (DEBUG) log("Ongoing notifications list reset");
                 }
             }
         }
@@ -330,6 +345,7 @@ public class ModStatusBar {
 
             mBrightnessControlEnabled = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_STATUSBAR_BRIGHTNESS, false);
+            mOngoingNotif = prefs.getString(GravityBoxSettings.PREF_KEY_ONGOING_NOTIFICATIONS, "");
 
             XposedBridge.hookAllConstructors(phoneStatusBarPolicyClass, new XC_MethodHook() {
                 @Override
@@ -371,6 +387,7 @@ public class ModStatusBar {
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_CLOCK_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_ONGOING_NOTIFICATIONS_CHANGED);
                     mContext.registerReceiver(mBroadcastReceiver, intentFilter);
 
                     mSettingsObserver = new SettingsObserver(
@@ -518,6 +535,43 @@ public class ModStatusBar {
                         XposedBridge.log(t);
                         XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
                         return null;
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(phoneStatusBarClass, "addNotification", 
+                    IBinder.class, CLASS_STATUSBAR_NOTIF, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    final Object notif = param.args[1];
+                    final String pkg = (String) XposedHelpers.getObjectField(notif, "pkg");
+                    final boolean ongoing = (Boolean) XposedHelpers.callMethod(notif, "isOngoing");
+                    final int id = (Integer) XposedHelpers.getIntField(notif, "id");
+                    final Notification n = (Notification) XposedHelpers.getObjectField(notif, "notification");
+                    if (DEBUG) log ("addNotificationViews: pkg=" + pkg + "; id=" + id + 
+                                    "; iconId=" + n.icon + "; ongoing=" + ongoing);
+
+                    if (!ongoing) return;
+
+                    // store if new
+                    final String notifData = pkg + "," + id + "," + n.icon;
+                    final ContentResolver cr = mContext.getContentResolver();
+                    String storedNotifs = Settings.Secure.getString(cr,
+                            SETTING_ONGOING_NOTIFICATIONS);
+                    if (storedNotifs == null || !storedNotifs.contains(notifData)) {
+                        if (storedNotifs == null || storedNotifs.isEmpty()) {
+                            storedNotifs = notifData;
+                        } else {
+                            storedNotifs += "#C3C0#" + notifData;
+                        }
+                        if (DEBUG) log("New storedNotifs = " + storedNotifs);
+                        Settings.Secure.putString(cr, SETTING_ONGOING_NOTIFICATIONS, storedNotifs);
+                    }
+
+                    // block if requested
+                    if (mOngoingNotif.contains(notifData)) {
+                        param.setResult(null);
+                        if (DEBUG) log("Ongoing notification " + notifData + " blocked.");
                     }
                 }
             });

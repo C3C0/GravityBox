@@ -623,4 +623,13 @@
     <string name="pref_qs_tile_order_title">Tile reordering</string>
     <string name="pref_qs_tile_order_summary">Allows reordering of QuickSettings tiles</string>
 
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Ongoing notification blocker</string>
+    <string name="pref_ongoing_notifications_summary">Allows blocking of selected ongoing notifications</string>
+    <string name="ongoing_notif_info">The list will get populated automatically for every ongoing notification that occurs.
+        You can then decide whether to block ongoing notification next time it occurs. Use with caution.</string>
+    <string name="ongoing_notif_reset_list">Reset list</string>
+    <string name="ongoing_notif_reset_alert">Are you sure you want to reset list? 
+        This will clear current list and unblock all ongoing notifications previously blocked.</string>
+
 </resources>
