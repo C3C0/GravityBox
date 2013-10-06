@@ -30,7 +30,8 @@
 
     <string name="poweroff_advanced_title">Erweitertes Neustart-Menü</string>
     <string name="poweroff_advanced_summary">Aktiviert erweitertes Neustart-Menü mit der Option direkt die Recovery zu starten</string>
-    <string name="poweroff_recovery">Recovery</string>    
+    <string name="poweroff_recovery">Recovery</string>
+	<string name="poweroff_bootloader">Bootloader</string>
 
     <string name="vol_key_cursor_control_title">Cursor mittels Lautstärketasten bewegen</string>
     <string name="vol_key_cursor_control_summary">Den Cursor mit den Lautstärketasten in Textfeldern steuern</string>
@@ -87,6 +88,7 @@
     <string name="qs_tile_wifi">WLAN</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
+	<string name="qs_tile_gps_alt">GPS (CM-Stil)</string>
     <string name="qs_tile_mobile_data">Mobile Daten</string>
     <string name="qs_tile_network_mode">Netzmodus</string>
     <string name="qs_tile_data_usage">Mobiler Datenverkehr</string>
@@ -101,8 +103,10 @@
     <string name="qs_tile_sleep">Schlafmodus</string>
     <string name="qs_tile_quickrecord">Aufnahme</string>
     <string name="qs_tile_settings">Einstellungen</string>
+	<string name="qs_tile_volume">Lautstärke</string>
     <string name="qs_tile_expanded_desktop">Erweiterter Desktop</string>
     <string name="qs_tile_stay_awake">Wachhalten</string>
+	<string name="qs_tile_screenshot">Screenshot</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Farbwähler</string>
@@ -265,12 +269,8 @@
     <string name="phone_flip_action_none">Keine Aktion ausführen</string>
     <string name="phone_flip_action_mute">Auf Lautlos stellen</string>
     <string name="phone_flip_action_dismiss">Anruf ablehnen</string>
-
-    <!-- Disable vibrate on call connect -->
-    <string name="pref_phone_call_connect_vibrate_disable_title">Deaktiviere Vibration, wenn Anruf angenommen wird</string>
-    <string name="pref_phone_call_connect_vibrate_disable_summary">Deaktiviert Vibration, die beim Annehmen eines Anrufs ausgelöst wird</string>
-
-    <!-- Soft reboot -->
+	
+	<!-- Soft reboot -->
     <string name="reboot_soft">Sanfter Neustart</string>
 
     <!--  Solid black Holo background -->
@@ -405,7 +405,7 @@
 
     <!-- AppPickerPreference -->
     <string name="app_picker_search">Suche</string>
-    <string name="app_picker_none">(keine)</string>
+    <string name="app_picker_none">(Keine)</string>
 
     <!-- QuickApp tile settings -->
     <string name="qs_tile_quickapp">Schnelleinstellungen</string>
@@ -543,8 +543,8 @@
     <string name="pref_cat_phone_mobile_data_title">Mobile Daten</string>
 
     <!-- Messaging: Strip unicode -->
-    <string name="pref_mms_unicode_stripping_title">Strip unicode</string>
-    <string name="pref_mms_unicode_stripping_summary">Converts unicode characters to normal characters. Decreases overall message size.</string>
+    <string name="pref_mms_unicode_stripping_title">Strip Unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">Konvertiert Unicode-Zeichen in normale Zeichen. Reduziert die gesamte Nachrichtengröße.</string>
     <string name="unicode_stripping_leave_intact">Leave characters intact</string>
     <string name="unicode_stripping_non_encodable">Strip non-encodable characters</string>
     <string name="unicode_stripping_all">Strip all unicode characters</string>
@@ -567,7 +567,7 @@
     <string name="pref_gps_notif_disable_title">Deaktiviert GPS-Benachrichtigungen</string>
 
     <!-- Display: allow all rotations -->
-    <string name="pref_display_allow_all_rotations_title">Allow all rotations</string>
+    <string name="pref_display_allow_all_rotations_title">Alle Bildschirmausrichtungen erlauben</string>
 
     <!-- QuickSettings: override AOSP tile behaviour -->
     <string name="pref_qs_tile_behaviour_override_title">Override default tile behaviour</string>
@@ -605,7 +605,7 @@
     <string name="call_vibration_periodic">Alle 45 Sekunden bei ausgehendem Anruf</string>
 	
 	<!-- QuickSettings tile order -->
-    <string name="pref_qs_tile_order_title">Neuordnung der Kacheln</string>
-    <string name="pref_qs_tile_order_summary">Erlaubt die Neuordnung der Schnelleinstellungs-Kacheln</string>
+    <string name="pref_qs_tile_order_title">Kachelanordnung ändern</string>
+    <string name="pref_qs_tile_order_summary">Erlaubt die Neuanordnung der Schnelleinstellungs-Kacheln</string>
     
 </resources>
