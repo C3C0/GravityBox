@@ -595,6 +595,15 @@
     <string name="pref_qs_tile_order_title">Ordinamento Icone pulsanti</string>
     <string name="pref_qs_tile_order_summary">Consenti il riordino delle icone del Quicksettings</string>
 
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Blocca notifiche in corso</string>
+    <string name="pref_ongoing_notifications_summary">Consente di bloccare le notifiche selezionate</string>
+    <string name="ongoing_notif_info">L\'elenco sarà automaticamente riempito con ogni notifica che apparirà.
+        Puoi decidere se bloccare tali notifiche la prissima volta che appariranno. Funzione da usare con cautela.</string>
+    <string name="ongoing_notif_reset_list">Azzera elenco</string>
+    <string name="ongoing_notif_reset_alert">Sei sicuro di voler azzerare l\'elenco??
+        Verrà pulito l\'elenco attuale e sbloccate tutte le notifiche precedentemente bloccate.</string>
+
 
 
 </resources>
