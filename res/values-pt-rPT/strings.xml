@@ -571,7 +571,7 @@
 
     <!-- QuickSettings: override AOSP tile behaviour -->
     <string name="pref_qs_tile_behaviour_override_title">Substituir comportamento padrão dos painéis</string>
-    <string name="pref_qs_tile_behaviour_override_summary">Permite substituir o comportamento padrão dos painéis seleccionados ao tocar / manter pressionado (necessário reiniciar)</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Permite substituir o comportamento padrão dos painéis selecionados ao tocar / manter pressionado (necessário reiniciar)</string>
 
     <!-- QuickSettings: SIM Slot for network mode tile -->
     <string name="pref_qs_network_mode_sim_slot_title">Modo de Rede por cartão SIM</string>
@@ -607,5 +607,14 @@
     <!-- QuickSettings tile order -->
     <string name="pref_qs_tile_order_title">Reordenamento dos painéis</string>
     <string name="pref_qs_tile_order_summary">Permite reordenar os painéis das definições rápidas</string>
+
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Bloqueio das notificações</string>
+    <string name="pref_ongoing_notifications_summary">Permite bloquear as notificações selecionadas</string>
+    <string name="ongoing_notif_info">A lista será atualizada automaticamente por cada nova notificação.
+        Ao selecionar, irá bloquear a notificação da próxima vez que esta ocorra. Usar com cautela.</string>
+    <string name="ongoing_notif_reset_list">Limpar lista</string>
+    <string name="ongoing_notif_reset_alert">Tem a certeza que pretende limpar a lista? 
+        Esta ação irá limpar a lista atual e todas as notificações até agora bloqueadas serão desbloqueadas.</string>
 
 </resources>
