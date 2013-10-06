@@ -554,7 +554,7 @@ public class ModStatusBar {
                     if (!ongoing) return;
 
                     // store if new
-                    final String notifData = pkg + "," + id + "," + n.icon;
+                    final String notifData = pkg + "," + n.icon;
                     final ContentResolver cr = mContext.getContentResolver();
                     String storedNotifs = Settings.Secure.getString(cr,
                             SETTING_ONGOING_NOTIFICATIONS);

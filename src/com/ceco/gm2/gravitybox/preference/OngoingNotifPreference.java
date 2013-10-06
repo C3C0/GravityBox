@@ -117,13 +117,15 @@ public class OngoingNotifPreference extends DialogPreference
             mListData = new ArrayList<IIconCheckListAdapterItem>();
             for (String n : notifications) {
                 final String[] nd = n.split(",");
-                if (nd.length == 3) {
-                    OngoingNotif on = new OngoingNotif(nd[0], Integer.valueOf(nd[1]), Integer.valueOf(nd[2]));
+                if (nd.length == 2) {
+                    OngoingNotif on = new OngoingNotif(nd[0], Integer.valueOf(nd[1]));
                     on.setChecked(prefData != null && prefData.contains(on.getKey()));
                     mListData.add(on);
                 }
             }
-            mListView.setAdapter(new IconCheckListAdapter(mContext, mListData));
+            IconCheckListAdapter adapter = new IconCheckListAdapter(mContext, mListData);
+            adapter.setSubtextEnabled(false);
+            mListView.setAdapter(adapter);
             ((IconCheckListAdapter)mListView.getAdapter()).notifyDataSetChanged();
             mBtnResetList.setVisibility(View.VISIBLE);
         }
@@ -131,22 +133,20 @@ public class OngoingNotifPreference extends DialogPreference
 
     class OngoingNotif implements IIconCheckListAdapterItem {
         private String mPackage;
-        private int mId;
         private int mIconId;
         private boolean mChecked;
         private String mName;
         private Drawable mIcon;
 
-        public OngoingNotif(String pkg, int id, int iconId) {
+        public OngoingNotif(String pkg, int iconId) {
             mPackage = pkg;
-            mId = id;
             mIconId = iconId;
         }
 
         public String getKey() {
             if (mPackage == null) return null;
 
-            return mPackage + "," + mId + "," + mIconId;
+            return mPackage + "," + mIconId;
         }
 
         @Override
@@ -194,7 +194,7 @@ public class OngoingNotifPreference extends DialogPreference
 
         @Override
         public String getSubText() {
-            return "ID: " + mId;
+            return null;
         }
 
         @Override

@@ -31,17 +31,23 @@ import android.widget.TextView;
 public class IconCheckListAdapter extends ArrayAdapter<IIconCheckListAdapterItem> {
     private Context mContext;
     private List<IIconCheckListAdapterItem> mData = null;
+    private boolean mSubtextEnabled;
 
     public IconCheckListAdapter(Context context, List<IIconCheckListAdapterItem> objects) {
         super(context, R.layout.simple_list_item_2_multiple_choice, objects);
 
         mContext = context;
         mData = new ArrayList<IIconCheckListAdapterItem>(objects);
+        mSubtextEnabled = true;
     }
 
     static class ViewHolder {
         CheckedTextView text;
         TextView subText;
+    }
+
+    public void setSubtextEnabled(boolean enabled) {
+        mSubtextEnabled = enabled;
     }
 
     @Override
@@ -58,6 +64,9 @@ public class IconCheckListAdapter extends ArrayAdapter<IIconCheckListAdapterItem
             holder.text = (CheckedTextView) row.findViewById(R.id.text1);
             holder.text.setCompoundDrawablePadding(10);
             holder.subText = (TextView) row.findViewById(R.id.text2);
+            if (!mSubtextEnabled) {
+                holder.subText.setVisibility(View.GONE);
+            }
             row.setTag(holder);
         } else {
             holder = (ViewHolder) row.getTag();
