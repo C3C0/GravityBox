@@ -550,7 +550,7 @@
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Activer le contrôle de la luminosité</string>
-    <string name="pref_statusbar_brightness_summary">Ajuste la luminosité en glissant le doigt sur la barre d\'état</string>
+    <string name="pref_statusbar_brightness_summary">Ajuste la luminosité en glissant le doigt sur la barre d\'état. Penser à désactiver la luminosité automatique !</string>
 
     <!-- Phone tweaks categories -->
     <string name="pref_cat_phone_telephony_title">Téléphonie</string>
