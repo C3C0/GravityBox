@@ -623,4 +623,13 @@
     <string name="pref_qs_tile_order_title">Réordonnancement des touches</string>
     <string name="pref_qs_tile_order_summary">Permet le réordonnancement des touches de Paramètres rapides</string>
 
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Blocage des notifications en cours</string>
+    <string name="pref_ongoing_notifications_summary">Permet de bloquer les notifications en cours sélectionnées</string>
+    <string name="ongoing_notif_info">La liste sera incrémentée automatiquement par chaque notification en cours qui surviendra.
+        Vous pouvez décider ensuite de bloquer la notification en cours la prochaine fois qu\'elle aura lieu. À utiliser avec prudence</string>
+    <string name="ongoing_notif_reset_list">Réinitialiser la liste</string>
+    <string name="ongoing_notif_reset_alert">Est-vous certain de vouloir réinitialiser la liste ? 
+        Cela effacera la liste actuelle et débloquera toutes les notifications en cours préalablement bloquées</string>
+
 </resources>
