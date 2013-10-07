@@ -61,10 +61,10 @@
     <string name="caller_fullscreen_photo_summary">Mostra a imagem do contacto em ecrã completo quando recebe uma chamada</string>
 
     <!-- QuickSettings strings -->
-    <string name="quick_settings_sync_on">Sinc. ligada</string>
-    <string name="quick_settings_sync_off">Sinc. desligada</string>
-    <string name="quick_settings_wifi_ap_on">PA Wi-Fi ligado</string>
-    <string name="quick_settings_wifi_ap_off">PA Wi-Fi desligado</string>
+    <string name="quick_settings_sync_on">Sinc. ativada</string>
+    <string name="quick_settings_sync_off">Sinc. desativada</string>
+    <string name="quick_settings_wifi_ap_on">PA Wi-Fi ativado</string>
+    <string name="quick_settings_wifi_ap_off">PA Wi-Fi desativado</string>
     <string name="quick_settings_torch_on">Lanterna ligada</string>
     <string name="quick_settings_torch_off">Lanterna desligada</string>
     <string name="quick_settings_torch_off_notif">Tocar para desligar</string>
@@ -78,6 +78,9 @@
     <string name="quick_settings_expanded_desktop_expanded">Expandido</string>
     <string name="quick_settings_stay_awake_on">Manter ligado</string>
     <string name="quick_settings_stay_awake_off">Não manter ligado</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi desativado</string>
+    <string name="quick_settings_wifi_not_connected">Não ligado</string>
 
     <!-- QuickSettings settings -->
     <string name="quick_settings_title">Definições rápidas na Barra de Status</string>
@@ -86,6 +89,7 @@
     <string name="qs_tile_airplane_mode">Modo de avião</string>
     <string name="qs_tile_battery">Estado da bateria</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (estilo CM)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_gps_alt">GPS (estilo CM)</string>
@@ -535,7 +539,7 @@
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Ativar controlo de brilho</string>
-    <string name="pref_statusbar_brightness_summary">Permite ajustar o brilho ao deslizar sobre a Barra de Status</string>
+    <string name="pref_statusbar_brightness_summary">Permite ajustar o brilho ao deslizar sobre a Barra de Status (necessário desativar ajuste automático de brilho)</string>
 
     <!-- Phone tweaks categories -->
     <string name="pref_cat_phone_telephony_title">Telefone</string>
