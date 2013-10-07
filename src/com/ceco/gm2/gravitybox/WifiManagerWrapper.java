@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -100,6 +101,11 @@ public class WifiManagerWrapper {
 
     public int getWifiApState() {
         return (Integer) XposedHelpers.callMethod(mWifiManager, "getWifiApState");
+    }
+
+    public String getWifiSsid() {
+        WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
+        return (wifiInfo == null ? null : wifiInfo.getSSID());
     }
 
     public boolean isWifiEnabled() {

@@ -93,6 +93,9 @@
     <string name="quick_settings_expanded_desktop_expanded">Expanded</string>
     <string name="quick_settings_stay_awake_on">Stay awake on</string>
     <string name="quick_settings_stay_awake_off">Stay awake off</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi off</string>
+    <string name="quick_settings_wifi_not_connected">Not connected</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Statusbar QuickSettings tiles</string>
@@ -101,6 +104,7 @@
     <string name="qs_tile_airplane_mode">Airplane mode</string>
     <string name="qs_tile_battery">Battery status</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (CM style)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_gps_alt">GPS (CM style)</string>

@@ -75,6 +75,7 @@
         <item>@string/qs_tile_airplane_mode</item>
         <item>@string/qs_tile_battery</item>
         <item>@string/qs_tile_wifi</item>
+        <item>@string/qs_tile_wifi_alt</item>
         <item>@string/qs_tile_bluetooth</item>
         <item>@string/qs_tile_gps</item>
         <item>@string/qs_tile_gps_alt</item>
@@ -104,6 +105,7 @@
         <item>airplane_mode_textview</item>
         <item>battery_textview</item>
         <item>wifi_textview</item>
+        <item>wifi_tileview</item>
         <item>bluetooth_textview</item>
         <item>gps_textview</item>
         <item>gps_tileview</item>

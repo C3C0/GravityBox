@@ -43,6 +43,7 @@ import com.ceco.gm2.gravitybox.quicksettings.GravityBoxTile;
 import com.ceco.gm2.gravitybox.quicksettings.SyncTile;
 import com.ceco.gm2.gravitybox.quicksettings.VolumeTile;
 import com.ceco.gm2.gravitybox.quicksettings.WifiApTile;
+import com.ceco.gm2.gravitybox.quicksettings.WifiTile;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
@@ -144,6 +145,9 @@ public class ModQuickSettings {
             R.id.gps_tileview,
             R.id.ringer_mode_tileview
         ));
+        if (Utils.isMtkDevice()) {
+            mCustomGbTileKeys.add(R.id.wifi_tileview);
+        }
 
         Map<String, Integer> tmpMap = new HashMap<String, Integer>();
         tmpMap.put("user_textview", 1);
@@ -492,6 +496,12 @@ public class ModQuickSettings {
                 LayoutInflater inflater = (LayoutInflater) param.args[1];
 
                 mTiles = new ArrayList<AQuickSettingsTile>();
+
+                if (Utils.isMtkDevice()) {
+                    WifiTile wt = new WifiTile(mContext, mGbContext, mStatusBar, mPanelBar, mWifiManager);
+                    wt.setupQuickSettingsTile(mContainerView, inflater);
+                    mTiles.add(wt);
+                }
 
                 GpsTile gpsTile = new GpsTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 gpsTile.setupQuickSettingsTile(mContainerView, inflater);
