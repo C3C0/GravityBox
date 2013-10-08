@@ -25,6 +25,7 @@ import java.util.Map;
 import com.ceco.gm2.gravitybox.R;
 import com.ceco.gm2.gravitybox.Utils;
 import com.ceco.gm2.gravitybox.WifiManagerWrapper;
+import com.ceco.gm2.gravitybox.WifiManagerWrapper.WifiStateChangeListener;
 
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -35,7 +36,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class WifiTile extends AQuickSettingsTile {
+public class WifiTile extends AQuickSettingsTile implements WifiStateChangeListener {
     private static final String TAG = "GB:WifiTile";
     private static final String CLASS_NCG_SIGNAL_CLUSTER = Utils.hasGeminiSupport() ?
             "com.android.systemui.statusbar.policy.NetworkControllerGemini.SignalCluster" :
@@ -55,6 +56,8 @@ public class WifiTile extends AQuickSettingsTile {
         super(context, gbContext, statusBar, panelBar);
 
         mWifiManager = wifiManager;
+        mWifiManager.setWifiStateChangeListener(this);
+
         prepareDrawableMap();
 
         mOnClick = new View.OnClickListener() {
@@ -160,6 +163,15 @@ public class WifiTile extends AQuickSettingsTile {
                 updateResources((Boolean) args[0], (Integer) args[1]);
             }
             return null;
+        }
+    }
+
+    @Override
+    public void onWifiStateChanging(boolean enabling) {
+        if (enabling) {
+            mLabel = mGbContext.getString(R.string.quick_settings_wifi_turning_on);
+            mDrawableId = R.drawable.ic_qs_wifi_0;
+            updateResources();
         }
     }
 }

@@ -51,9 +51,14 @@ public class WifiManagerWrapper {
     private WifiManager mWifiManager;
     private WifiApStateChangeListener mApStateChangeListener;
     private BroadcastReceiver mApStateChangeReceiver;
+    private WifiStateChangeListener mWifiStateChangeListener;
 
     public interface WifiApStateChangeListener {
         void onWifiApStateChanged(int wifiApState);
+    }
+
+    public interface WifiStateChangeListener {
+        void onWifiStateChanging(boolean enabling);
     }
 
     public WifiManagerWrapper(Context context, WifiApStateChangeListener listener) {
@@ -71,6 +76,12 @@ public class WifiManagerWrapper {
 
         mApStateChangeListener = listener;
         registerApStateChangeReceiver();
+    }
+
+    public void setWifiStateChangeListener(WifiStateChangeListener listener) {
+        if (listener != null) {
+            mWifiStateChangeListener = listener;
+        }
     }
 
     private void registerApStateChangeReceiver() {
@@ -113,6 +124,9 @@ public class WifiManagerWrapper {
     }
 
     public void setWifiEnabled(boolean enable) {
+        if (mWifiStateChangeListener != null) {
+            mWifiStateChangeListener.onWifiStateChanging(enable);
+        }
         mWifiManager.setWifiEnabled(enable);
     }
 
@@ -127,8 +141,11 @@ public class WifiManagerWrapper {
                                || wifiApState == WifiManagerWrapper.WIFI_AP_STATE_ENABLED)) {
                     setWifiApEnabled(false);
                 }
-                setWifiEnabled(enable);
                 return null;
+            }
+            @Override
+            protected void onPostExecute(Void args) {
+                setWifiEnabled(enable);
             }
         }.execute();
     }
