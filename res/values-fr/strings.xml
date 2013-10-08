@@ -636,4 +636,8 @@
     <string name="ongoing_notif_reset_alert">Est-vous certain de vouloir réinitialiser la liste ? 
         Cela effacera la liste actuelle et débloquera toutes les notifications en cours préalablement bloquées</string>
 
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Déverrouillage rapide</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Pour un déverrouillage automatique lorsque le bon code PIN / mot de passe est saisi</string>
+
 </resources>
