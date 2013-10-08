@@ -93,6 +93,9 @@
     <string name="quick_settings_expanded_desktop_expanded">Étendu</string>
     <string name="quick_settings_stay_awake_on">Rester allumé on</string>
     <string name="quick_settings_stay_awake_off">Rester allumé off</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi off</string>
+    <string name="quick_settings_wifi_not_connected">Non connecté</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Touches des paramètres rapides</string>
@@ -101,6 +104,7 @@
     <string name="qs_tile_airplane_mode">Mode avion</string>
     <string name="qs_tile_battery">Niveau de batterie</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (style CM)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_gps_alt">GPS (style CM)</string>
@@ -550,7 +554,7 @@
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Activer le contrôle de la luminosité</string>
-    <string name="pref_statusbar_brightness_summary">Ajuste la luminosité en glissant le doigt sur la barre d\'état. Penser à désactiver la luminosité automatique !</string>
+    <string name="pref_statusbar_brightness_summary">Ajuste la luminosité en glissant le doigt sur la barre d\'état (la luminosité automatique doit être désactivée !)</string>
 
     <!-- Phone tweaks categories -->
     <string name="pref_cat_phone_telephony_title">Téléphonie</string>
