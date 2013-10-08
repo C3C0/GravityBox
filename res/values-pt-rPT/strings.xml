@@ -81,6 +81,7 @@
     <string name="quick_settings_wifi">Wi-Fi</string>
     <string name="quick_settings_wifi_off">Wi-Fi desativado</string>
     <string name="quick_settings_wifi_not_connected">Não ligado</string>
+    <string name="quick_settings_wifi_turning_on">A ligar...</string>
 
     <!-- QuickSettings settings -->
     <string name="quick_settings_title">Definições rápidas na Barra de Status</string>
@@ -620,5 +621,21 @@
     <string name="ongoing_notif_reset_list">Limpar lista</string>
     <string name="ongoing_notif_reset_alert">Tem a certeza que pretende limpar a lista? 
         Esta ação irá limpar a lista atual e todas as notificações até agora bloqueadas serão desbloqueadas.</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Desbloqueio rápido</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Desbloquear automaticamente após correta introdução de PIN/palavra-passe</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Desativado</string>
+    <string name="clock_dow_standard">Padrão</string>
+    <string name="clock_dow_lowercase">Maiúsculas</string>
+    <string name="clock_dow_uppercase">Minúsculas</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Política de bloqueio da Barra de Status</string>
+    <string name="sbl_policy_default">Padrão</string>
+    <string name="sbl_policy_unlocked">Desbloqueada quando método de bloqueio for inseguro</string>
+    <string name="sbl_policy_locked">Bloqueada</string>
 
 </resources>
