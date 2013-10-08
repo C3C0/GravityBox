@@ -46,6 +46,7 @@ public class WifiTile extends AQuickSettingsTile implements WifiStateChangeListe
     private WifiManagerWrapper mWifiManager;
     private TextView mTextView;
     private Map<String,Integer> mDrawableMap;
+    private boolean mTurningOn = false;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -63,7 +64,9 @@ public class WifiTile extends AQuickSettingsTile implements WifiStateChangeListe
         mOnClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mWifiManager.toggleWifiEnabled();
+                if (!mTurningOn) {
+                    mWifiManager.toggleWifiEnabled();
+                }
             }
         };
 
@@ -125,9 +128,12 @@ public class WifiTile extends AQuickSettingsTile implements WifiStateChangeListe
 
     private void updateResources(boolean connected, int iconId) {
         if (!connected && iconId == 0) {
-            mDrawableId = R.drawable.ic_qs_wifi_off;
-            mLabel = mGbResources.getString(R.string.quick_settings_wifi_off);
+            if (!mTurningOn) {
+                mDrawableId = R.drawable.ic_qs_wifi_off;
+                mLabel = mGbResources.getString(R.string.quick_settings_wifi_off);
+            }
         } else {
+            mTurningOn = false;
             try {
                 String resName = mResources.getResourceEntryName(iconId);
                 mDrawableId = mDrawableMap.containsKey(resName) ?
@@ -168,9 +174,10 @@ public class WifiTile extends AQuickSettingsTile implements WifiStateChangeListe
 
     @Override
     public void onWifiStateChanging(boolean enabling) {
+        mTurningOn = enabling;
         if (enabling) {
             mLabel = mGbContext.getString(R.string.quick_settings_wifi_turning_on);
-            mDrawableId = R.drawable.ic_qs_wifi_0;
+            mDrawableId = R.drawable.ic_qs_wifi_off;
             updateResources();
         }
     }
