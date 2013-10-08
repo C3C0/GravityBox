@@ -306,6 +306,20 @@ public class ModStatusbarColor {
                 }
             });
 
+            XposedHelpers.findAndHookMethod(phoneStatusbarClass, "setStatusBarLowProfile",
+                    boolean.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    final boolean lightsOut = (Boolean) param.args[0];
+                    if (mCircleBattery != null) {
+                        mCircleBattery.setLowProfile(lightsOut);
+                    }
+                    if (mPercentage != null) {
+                        mPercentage.setAlpha(lightsOut ? 0.5f : 1);
+                    }
+                }
+            });
+
             XposedHelpers.findAndHookMethod(batteryControllerClass, "onReceive",
                     Context.class, Intent.class, new XC_MethodHook(XCallback.PRIORITY_HIGHEST) {
 

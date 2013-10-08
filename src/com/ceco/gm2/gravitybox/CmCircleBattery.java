@@ -346,4 +346,13 @@ public class CmCircleBattery extends ImageView {
         mPaintFont.setColor(color);
         invalidate();
     }
+
+    public void setLowProfile(boolean lightsOut) {
+        final int alpha = lightsOut ? 127 : 255;
+        mPaintSystem.setAlpha(alpha);
+        mPaintGray.setAlpha(alpha);
+        mPaintFont.setAlpha(alpha);
+        mPaintRed.setAlpha(alpha);
+        invalidate();
+    }
 }
