@@ -36,6 +36,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -45,6 +47,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
@@ -60,6 +63,8 @@ public class ModLockscreen {
             "com.android.internal.policy.impl.keyguard.TargetDrawable" :
             "com.android.internal.widget.multiwaveview.TargetDrawable";
     private static final String CLASS_TRIGGER_LISTENER = "com.android.internal.policy.impl.keyguard.KeyguardSelectorView$1";
+    private static final String CLASS_KG_ABS_KEY_INPUT_VIEW =
+            "com.android.internal.policy.impl.keyguard.KeyguardAbsKeyInputView";
     private static final boolean DEBUG = false;
 
     private static XSharedPreferences mPrefs;
@@ -79,6 +84,7 @@ public class ModLockscreen {
             final Class<?> kgHostViewClass = XposedHelpers.findClass(CLASS_KG_HOSTVIEW, null);
             final Class<?> kgSelectorViewClass = XposedHelpers.findClass(CLASS_KG_SELECTOR_VIEW, null);
             final Class<?> triggerListenerClass = XposedHelpers.findClass(CLASS_TRIGGER_LISTENER, null);
+            final Class<?> kgAbsKeyInputViewClass = XposedHelpers.findClass(CLASS_KG_ABS_KEY_INPUT_VIEW, null);
 
             boolean enableMenuKey = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_LOCKSCREEN_MENU_KEY, false);
@@ -307,6 +313,45 @@ public class ModLockscreen {
                                 XposedHelpers.getSurroundingThis(param.thisObject), "mActivityLauncher");
                         XposedHelpers.callMethod(activityLauncher, "launchActivity", mLaunchActivityArgs,
                                 appInfo.intent, false, true, null, null);
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(kgAbsKeyInputViewClass, "onFinishInflate", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    final TextView passwordEntry = 
+                            (TextView) XposedHelpers.getObjectField(param.thisObject, "mPasswordEntry");
+                    if (passwordEntry != null) {
+                        passwordEntry.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                if (!mPrefs.getBoolean(
+                                        GravityBoxSettings.PREF_KEY_LOCKSCREEN_QUICK_UNLOCK, false)) return;
+
+                                final Object callback = 
+                                        XposedHelpers.getObjectField(param.thisObject, "mCallback");
+                                final Object lockPatternUtils = 
+                                        XposedHelpers.getObjectField(param.thisObject, "mLockPatternUtils");
+                                String entry = passwordEntry.getText().toString();
+
+                                if (callback != null && lockPatternUtils != null &&
+                                        entry.length() > 3 && 
+                                        (Boolean) XposedHelpers.callMethod(
+                                                lockPatternUtils, "checkPassword", entry)) {
+                                    XposedHelpers.callMethod(callback, "reportSuccessfulUnlockAttempt");
+                                    XposedHelpers.callMethod(callback, "dismiss", true);
+                                }
+                            }
+                            @Override
+                            public void beforeTextChanged(CharSequence arg0,
+                                    int arg1, int arg2, int arg3) {
+                            }
+                            @Override
+                            public void onTextChanged(CharSequence arg0,
+                                    int arg1, int arg2, int arg3) {
+                            }
+                        });
                     }
                 }
             });

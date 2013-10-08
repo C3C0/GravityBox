@@ -127,6 +127,12 @@
                 android:summary="@string/pref_lockscreen_menu_key_summary"
                 android:defaultValue="false" />
 
+            <CheckBoxPreference 
+                android:key="pref_lockscreen_quick_unlock"
+                android:title="@string/pref_lockscreen_quick_unlock_title"
+                android:summary="@string/pref_lockscreen_quick_unlock_summary"
+                android:defaultValue="false" />
+
         </PreferenceCategory>
 
     </PreferenceScreen>

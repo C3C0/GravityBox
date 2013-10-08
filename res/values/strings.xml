@@ -636,4 +636,8 @@
     <string name="ongoing_notif_reset_alert">Are you sure you want to reset list? 
         This will clear current list and unblock all ongoing notifications previously blocked.</string>
 
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Quick unlock</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Unlock automatically when the correct PIN/password is entered</string>
+
 </resources>
