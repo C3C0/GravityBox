@@ -167,6 +167,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_LOCKSCREEN_ROTATION = "pref_lockscreen_rotation";
     public static final String PREF_KEY_LOCKSCREEN_MENU_KEY = "pref_lockscreen_menu_key";
     public static final String PREF_KEY_LOCKSCREEN_QUICK_UNLOCK = "pref_lockscreen_quick_unlock";
+    public static final String PREF_KEY_STATUSBAR_LOCK_POLICY = "pref_statusbar_lock_policy";
+    public static final int SBL_POLICY_DEFAULT = 0;
+    public static final int SBL_POLICY_UNLOCKED = 1;
+    public static final int SBL_POLICY_LOCKED = 2;
+
     public static final String PREF_KEY_FLASHING_LED_DISABLE = "pref_flashing_led_disable";
     public static final String PREF_KEY_CHARGING_LED_DISABLE = "pref_charging_led_disable";
 
@@ -617,6 +622,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private MultiSelectListPreference mPrefCallVibrations;
         private Preference mPrefQsTileOrder;
         private ListPreference mPrefSbClockDow;
+        private ListPreference mPrefSbLockPolicy;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -773,6 +779,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefQsTileOrder = (Preference) findPreference(PREF_KEY_QUICK_SETTINGS_TILE_ORDER);
 
             mPrefSbClockDow = (ListPreference) findPreference(PREF_KEY_STATUSBAR_CLOCK_DOW);
+            mPrefSbLockPolicy = (ListPreference) findPreference(PREF_KEY_STATUSBAR_LOCK_POLICY);
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
@@ -1061,6 +1068,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             if (key == null || key.equals(PREF_KEY_STATUSBAR_CLOCK_DOW)) {
                 mPrefSbClockDow.setSummary(mPrefSbClockDow.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_STATUSBAR_LOCK_POLICY)) {
+                mPrefSbLockPolicy.setSummary(mPrefSbLockPolicy.getEntry());
             }
         }
 

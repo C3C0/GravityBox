@@ -16,11 +16,13 @@
 package com.ceco.gm2.gravitybox;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 import com.ceco.gm2.gravitybox.preference.AppPickerPreference;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -65,7 +67,13 @@ public class ModLockscreen {
     private static final String CLASS_TRIGGER_LISTENER = "com.android.internal.policy.impl.keyguard.KeyguardSelectorView$1";
     private static final String CLASS_KG_ABS_KEY_INPUT_VIEW =
             "com.android.internal.policy.impl.keyguard.KeyguardAbsKeyInputView";
+    private static final String CLASS_KGVIEW_MEDIATOR = "com.android.internal.policy.impl.keyguard.KeyguardViewMediator";
     private static final boolean DEBUG = false;
+
+    private static final int STATUSBAR_DISABLE_RECENT = 0x01000000;
+    private static final int STATUSBAR_DISABLE_NOTIFICATION_TICKER = 0x00080000;
+    private static final int STATUSBAR_DISABLE_EXPAND = 0x00010000;
+    private static final int STATUSBAR_DISABLE_SEARCH = 0x02000000;
 
     private static XSharedPreferences mPrefs;
     private static Hashtable<String, AppInfo> mAppInfoCache = new Hashtable<String, AppInfo>();
@@ -85,6 +93,7 @@ public class ModLockscreen {
             final Class<?> kgSelectorViewClass = XposedHelpers.findClass(CLASS_KG_SELECTOR_VIEW, null);
             final Class<?> triggerListenerClass = XposedHelpers.findClass(CLASS_TRIGGER_LISTENER, null);
             final Class<?> kgAbsKeyInputViewClass = XposedHelpers.findClass(CLASS_KG_ABS_KEY_INPUT_VIEW, null);
+            final Class<?> kgViewMediatorClass = XposedHelpers.findClass(CLASS_KGVIEW_MEDIATOR, null);
 
             boolean enableMenuKey = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_LOCKSCREEN_MENU_KEY, false);
@@ -352,6 +361,50 @@ public class ModLockscreen {
                                     int arg1, int arg2, int arg3) {
                             }
                         });
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(kgViewMediatorClass, "adjustStatusBarLocked", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    int policy = GravityBoxSettings.SBL_POLICY_DEFAULT;
+                    try {
+                        policy = Integer.valueOf(prefs.getString(
+                            GravityBoxSettings.PREF_KEY_STATUSBAR_LOCK_POLICY, "0"));
+                    } catch (NumberFormatException nfe) {
+                        //
+                    }
+                    if (DEBUG) log("Statusbar lock policy = " + policy);
+                    if (policy == GravityBoxSettings.SBL_POLICY_DEFAULT) return;
+
+                    final Object sbManager = 
+                            XposedHelpers.getObjectField(param.thisObject, "mStatusBarManager");
+                    final Context context = 
+                            (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                    final boolean showing = XposedHelpers.getBooleanField(param.thisObject, "mShowing");
+
+                    if (showing && sbManager != null && !(context instanceof Activity)) {
+                        int flags = STATUSBAR_DISABLE_RECENT;
+                        if ((Boolean) XposedHelpers.callMethod(param.thisObject, "isSecure")) {
+                            flags |= STATUSBAR_DISABLE_EXPAND;
+                            flags |= STATUSBAR_DISABLE_NOTIFICATION_TICKER;
+                        } else if (policy == GravityBoxSettings.SBL_POLICY_LOCKED) {
+                            flags |= STATUSBAR_DISABLE_EXPAND;
+                        }
+
+                        try {
+                            Method m = XposedHelpers.findMethodExact(
+                                    kgViewMediatorClass, "isAssistantAvailable");
+                            if (!(Boolean) m.invoke(param.thisObject)) {
+                                flags |= STATUSBAR_DISABLE_SEARCH;
+                            }
+                        } catch(NoSuchMethodError nme) {
+                            if (DEBUG) log("isAssistantAvailable method doesn't exist (Android < 4.2.2?)");
+                        }
+
+                        XposedHelpers.callMethod(sbManager, "disable", flags);
+                        if (DEBUG) log("adjustStatusBarLocked: new flags = " + flags);
                     }
                 }
             });
