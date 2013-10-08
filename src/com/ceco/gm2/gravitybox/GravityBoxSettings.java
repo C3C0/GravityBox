@@ -125,7 +125,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR = "pref_statusbar_data_activity_color";
     public static final String PREF_KEY_STATUSBAR_COLOR_SKIP_BATTERY = "pref_statusbar_color_skip_battery";
     public static final String PREF_KEY_STATUSBAR_CENTER_CLOCK = "pref_statusbar_center_clock";
-    public static final String PREF_KEY_STATUSBAR_CLOCK_DOW = "pref_statusbar_clock_dow";
+    public static final String PREF_KEY_STATUSBAR_CLOCK_DOW = "pref_statusbar_clock_dow2";
+    public static final int DOW_DISABLED = 0;
+    public static final int DOW_STANDARD = 1;
+    public static final int DOW_LOWERCASE = 2;
+    public static final int DOW_UPPERCASE = 3;
     public static final String PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE = "pref_clock_ampm_hide";
     public static final String PREF_KEY_STATUSBAR_CLOCK_HIDE = "pref_clock_hide";
     public static final String PREF_KEY_STATUSBAR_CLOCK_LINK = "pref_clock_link_app";
@@ -612,6 +616,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefUnplugTurnsOnScreen;
         private MultiSelectListPreference mPrefCallVibrations;
         private Preference mPrefQsTileOrder;
+        private ListPreference mPrefSbClockDow;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -766,6 +771,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                     (MultiSelectListPreference) findPreference(PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE);
             mPrefQsNetworkModeSimSlot = (ListPreference) findPreference(PREF_KEY_QS_NETWORK_MODE_SIM_SLOT);
             mPrefQsTileOrder = (Preference) findPreference(PREF_KEY_QUICK_SETTINGS_TILE_ORDER);
+
+            mPrefSbClockDow = (ListPreference) findPreference(PREF_KEY_STATUSBAR_CLOCK_DOW);
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
@@ -1051,6 +1058,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 }
                 mPrefBatteryPercent.setEnabled(!mtkBatteryPercent);
             }
+
+            if (key == null || key.equals(PREF_KEY_STATUSBAR_CLOCK_DOW)) {
+                mPrefSbClockDow.setSummary(mPrefSbClockDow.getEntry());
+            }
         }
 
         @Override
@@ -1125,8 +1136,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                         prefs.getBoolean(PREF_KEY_STATUSBAR_CENTER_CLOCK, false));
             } else if (key.equals(PREF_KEY_STATUSBAR_CLOCK_DOW)) {
                 intent.setAction(ACTION_PREF_CLOCK_CHANGED);
-                intent.putExtra(EXTRA_CLOCK_DOW,
-                        prefs.getBoolean(PREF_KEY_STATUSBAR_CLOCK_DOW, false));
+                intent.putExtra(EXTRA_CLOCK_DOW, Integer.valueOf(
+                        prefs.getString(PREF_KEY_STATUSBAR_CLOCK_DOW, "0")));
             } else if (key.equals(PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE)) {
                 intent.setAction(ACTION_PREF_CLOCK_CHANGED);
                 intent.putExtra(EXTRA_AMPM_HIDE, prefs.getBoolean(

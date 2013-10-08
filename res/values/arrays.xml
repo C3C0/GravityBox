@@ -516,4 +516,18 @@
         <item>periodic</item>
     </string-array>
 
+    <string-array name="clock_dow_entries" translatable="false">
+        <item>@string/clock_dow_disabled</item>
+        <item>@string/clock_dow_standard</item>
+        <item>@string/clock_dow_lowercase</item>
+        <item>@string/clock_dow_uppercase</item>
+    </string-array>
+
+    <string-array name="clock_dow_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
 </resources>

@@ -410,10 +410,12 @@
                 android:title="@string/pref_statusbar_center_clock_title"
                 android:defaultValue="false" />
 
-            <CheckBoxPreference 
-                android:key="pref_statusbar_clock_dow"
+            <ListPreference 
+                android:key="pref_statusbar_clock_dow2"
                 android:title="@string/pref_statusbar_clock_dow_title"
-                android:defaultValue="false" />
+                android:entries="@array/clock_dow_entries"
+                android:entryValues="@array/clock_dow_values"
+                android:defaultValue="0" />
 
             <CheckBoxPreference 
                 android:key="pref_clock_ampm_hide"

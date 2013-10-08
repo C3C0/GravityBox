@@ -89,7 +89,7 @@ public class ModStatusBar {
     private static int mAnimFadeIn;
     private static boolean mClockCentered = false;
     private static int mClockOriginalPaddingLeft;
-    private static boolean mClockShowDow = false;
+    private static int mClockShowDow = GravityBoxSettings.DOW_DISABLED;
     private static boolean mAmPmHide = false;
     private static boolean mClockHide = false;
     private static String mClockLink;
@@ -123,7 +123,8 @@ public class ModStatusBar {
                     setClockPosition(intent.getBooleanExtra(GravityBoxSettings.EXTRA_CENTER_CLOCK, false));
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_CLOCK_DOW)) {
-                    mClockShowDow = intent.getBooleanExtra(GravityBoxSettings.EXTRA_CLOCK_DOW, false);
+                    mClockShowDow = intent.getIntExtra(GravityBoxSettings.EXTRA_CLOCK_DOW,
+                            GravityBoxSettings.DOW_DISABLED);
                     if (mClock != null) {
                         XposedHelpers.callMethod(mClock, "updateClock");
                     }
@@ -212,7 +213,8 @@ public class ModStatusBar {
                 @Override
                 public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
                     prefs.reload();
-                    mClockShowDow = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_DOW, false);
+                    mClockShowDow = Integer.valueOf(
+                            prefs.getString(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_DOW, "0"));
                     mAmPmHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_AMPM_HIDE, false);
                     mClockHide = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_HIDE, false);
                     mClockLink = prefs.getString(GravityBoxSettings.PREF_KEY_STATUSBAR_CLOCK_LINK, null);
@@ -299,9 +301,9 @@ public class ModStatusBar {
                             }
                             CharSequence dow = "";
                             // apply day of week only to statusbar clock, not the notification panel clock
-                            if (mClockShowDow && sbClock != null) {
-                                dow = calendar.getDisplayName(
-                                        Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault()) + " ";
+                            if (mClockShowDow != GravityBoxSettings.DOW_DISABLED && sbClock != null) {
+                                dow = getFormattedDow(calendar.getDisplayName(
+                                        Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())) + " ";
                             }
                             clockText = dow + clockText;
                             SpannableStringBuilder sb = new SpannableStringBuilder(clockText);
@@ -325,6 +327,17 @@ public class ModStatusBar {
             });
         } catch (Throwable t) {
             XposedBridge.log(t);
+        }
+    }
+
+    private static String getFormattedDow(String inDow) {
+        switch (mClockShowDow) {
+            case GravityBoxSettings.DOW_LOWERCASE: 
+                return inDow.toLowerCase(Locale.getDefault());
+            case GravityBoxSettings.DOW_UPPERCASE:
+                return inDow.toUpperCase(Locale.getDefault());
+            case GravityBoxSettings.DOW_STANDARD:
+            default: return inDow;
         }
     }
 
