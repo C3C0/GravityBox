@@ -653,4 +653,16 @@
     <string name="sbl_policy_unlocked">Unlocked if keyguard insecured</string>
     <string name="sbl_policy_locked">Locked</string>
 
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Data traffic monitor</string>
+    <string name="pref_data_traffic_enable_title">Enable monitoring</string>
+    <string name="pref_data_traffic_enable_summary">Shows data traffic monitor automatically whenever data connection is active</string>
+    <string name="pref_data_traffic_position_title">Position</string>
+    <string name="dt_position_auto">Auto (center or right depending on clock position)</string>
+    <string name="dt_position_left">Left</string>
+    <string name="pref_data_traffic_size_title">Size</string>
+    <string name="dt_size_normal">Normal</string>
+    <string name="dt_size_smaller">Smaller</string>
+    <string name="dt_size_smallest">Smallest</string>
+
 </resources>
