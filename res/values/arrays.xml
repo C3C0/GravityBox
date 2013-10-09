@@ -542,4 +542,26 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="data_traffic_position_entries" translatable="false">
+        <item>@string/dt_position_auto</item>
+        <item>@string/dt_position_left</item>
+    </string-array>
+
+    <string-array name="data_traffic_position_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="data_traffic_size_entries" translatable="false">
+        <item>@string/dt_size_normal</item>
+        <item>@string/dt_size_smaller</item>
+        <item>@string/dt_size_smallest</item>
+    </string-array>
+
+    <string-array name="data_traffic_size_values" translatable="false">
+        <item>14</item>
+        <item>12</item>
+        <item>10</item>
+    </string-array>
+
 </resources>

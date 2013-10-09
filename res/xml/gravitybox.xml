@@ -446,6 +446,32 @@
 
         </PreferenceScreen>
 
+        <PreferenceScreen 
+            android:key="pref_cat_data_traffic"
+            android:title="@string/pref_cat_data_traffic_title">
+
+            <CheckBoxPreference 
+                android:key="pref_data_traffic_enable"
+                android:title="@string/pref_data_traffic_enable_title"
+                android:summary="@string/pref_data_traffic_enable_summary"
+                android:defaultValue="false" />
+
+            <ListPreference
+                android:key="pref_data_traffic_position"
+                android:title="@string/pref_data_traffic_position_title" 
+                android:entries="@array/data_traffic_position_entries"
+                android:entryValues="@array/data_traffic_position_values"
+                android:defaultValue="0" />
+
+            <ListPreference
+                android:key="pref_data_traffic_size"
+                android:title="@string/pref_data_traffic_size_title" 
+                android:entries="@array/data_traffic_size_entries"
+                android:entryValues="@array/data_traffic_size_values"
+                android:defaultValue="14" />
+
+        </PreferenceScreen>
+
         <com.ceco.gm2.gravitybox.preference.OngoingNotifPreference
             android:key="pref_ongoing_notifications"
             android:title="@string/pref_ongoing_notifications_title"

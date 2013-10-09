@@ -177,7 +177,7 @@ public class WifiTile extends AQuickSettingsTile implements WifiStateChangeListe
         mTurningOn = enabling;
         if (enabling) {
             mLabel = mGbContext.getString(R.string.quick_settings_wifi_turning_on);
-            mDrawableId = R.drawable.ic_qs_wifi_0;
+            mDrawableId = R.drawable.ic_qs_wifi_off;
             updateResources();
         }
     }
