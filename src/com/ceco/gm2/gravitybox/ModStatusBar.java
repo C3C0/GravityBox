@@ -123,7 +123,7 @@ public class ModStatusBar {
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_CLOCK_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_CENTER_CLOCK)) {
                     setClockPosition(intent.getBooleanExtra(GravityBoxSettings.EXTRA_CENTER_CLOCK, false));
-                    updateTrafficPosition();
+                    updateTrafficMeterPosition();
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_CLOCK_DOW)) {
                     mClockShowDow = intent.getIntExtra(GravityBoxSettings.EXTRA_CLOCK_DOW,
@@ -188,7 +188,7 @@ public class ModStatusBar {
                     mTrafficMeter.setTrafficMeterPosition(intent.getIntExtra(
                             GravityBoxSettings.EXTRA_DT_POSITION,
                             GravityBoxSettings.DT_POSITION_AUTO));
-                    updateTrafficPosition();
+                    updateTrafficMeterPosition();
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_DT_SIZE)) {
                     mTrafficMeter.setTextSize(1, intent.getIntExtra(GravityBoxSettings.EXTRA_DT_SIZE, 14));
@@ -350,7 +350,7 @@ public class ModStatusBar {
                     LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(
                             LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
                     mTrafficMeter.setLayoutParams(lParams);
-                    mTrafficMeter.setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+                    mTrafficMeter.setGravity(Gravity.CENTER_VERTICAL);
                     mTrafficMeter.setTextAppearance(liparam.view.getContext(), 
                             liparam.view.getContext().getResources().getIdentifier(
                             "TextAppearance.StatusBar.Clock", "style", PACKAGE_NAME));
@@ -371,7 +371,7 @@ public class ModStatusBar {
                     }
                     mTrafficMeter.setTextSize(1, size);
                     ModStatusbarColor.setTrafficMeter(mTrafficMeter);
-                    updateTrafficPosition();
+                    updateTrafficMeterPosition();
                     mTrafficMeter.setTrafficMeterEnabled(prefs.getBoolean(
                             GravityBoxSettings.PREF_KEY_DATA_TRAFFIC_ENABLE, false));
                 }
@@ -673,7 +673,7 @@ public class ModStatusBar {
         mClockCentered = center;
     }
 
-    private static void updateTrafficPosition() {
+    private static void updateTrafficMeterPosition() {
         if (mTrafficMeter == null || mSbContents == null ||
             mLayoutClock == null || mIconArea == null) return;
 
