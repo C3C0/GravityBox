@@ -495,7 +495,7 @@ public class ModStatusBar {
 
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    if (mLayoutClock == null || !mClockCentered) return;
+                    if (mLayoutClock == null) return;
 
                     mLayoutClock.setVisibility(View.GONE);
                     Animation anim = (Animation) XposedHelpers.callMethod(
@@ -508,7 +508,7 @@ public class ModStatusBar {
 
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    if (mLayoutClock == null || !mClockCentered) return;
+                    if (mLayoutClock == null) return;
 
                     mLayoutClock.setVisibility(View.VISIBLE);
                     Animation anim = (Animation) XposedHelpers.callMethod(
@@ -521,7 +521,7 @@ public class ModStatusBar {
 
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    if (mLayoutClock == null || !mClockCentered) return;
+                    if (mLayoutClock == null) return;
 
                     mLayoutClock.setVisibility(View.VISIBLE);
                     Animation anim = (Animation) XposedHelpers.callMethod(
