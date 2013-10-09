@@ -653,4 +653,16 @@
     <string name="sbl_policy_unlocked">Accessible en l\'absence de sécurisation (PIN/mdp)</string>
     <string name="sbl_policy_locked">Bloquée</string>
 
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Surveillance du flux de données</string>
+    <string name="pref_data_traffic_enable_title">Activer la surveillance</string>
+    <string name="pref_data_traffic_enable_summary">Affiche le contrôleur du flux de données à chaque fois que la connexion de données est active</string>
+    <string name="pref_data_traffic_position_title">Position</string>
+    <string name="dt_position_auto">Auto (centré ou à droite en fonction de la position de l\'horloge)</string>
+    <string name="dt_position_left">À gauche</string>
+    <string name="pref_data_traffic_size_title">Dimension</string>
+    <string name="dt_size_normal">Normal</string>
+    <string name="dt_size_smaller">Plus petit</string>
+    <string name="dt_size_smallest">Le plus petit possible</string>
+
 </resources>
