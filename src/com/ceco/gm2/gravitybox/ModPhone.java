@@ -26,6 +26,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.os.Vibrator;
 import android.telephony.TelephonyManager;
 import de.robv.android.xposed.XC_MethodHook;
@@ -63,6 +65,7 @@ public class ModPhone {
     private static Class<?> mPhoneUtilsClass;
     private static XSharedPreferences mPrefsPhone;
     private static Set<String> mCallVibrations;
+    private static WakeLock mWakeLock;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -237,7 +240,9 @@ public class ModPhone {
                     Object app = XposedHelpers.getObjectField(param.thisObject, "mApplication");
                     if (app != null) {
                         Method m = app.getClass().getMethod("getSystemService", String.class);
-                        mVibrator = (Vibrator) m.invoke(app, "vibrator");
+                        mVibrator = (Vibrator) m.invoke(app, Context.VIBRATOR_SERVICE);
+                        PowerManager pm = (PowerManager) m.invoke(app, Context.POWER_SERVICE);
+                        mWakeLock  = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "GbModPhone");
                     }
                 }
             });
@@ -313,6 +318,10 @@ public class ModPhone {
                     Message msg = (Message) param.args[0];
                     if (msg.what == VIBRATE_45_SEC) {
                         vibrate(70, 0, 0);
+                        if (mWakeLock.isHeld()) {
+                            mWakeLock.release();
+                        }
+                        mWakeLock.acquire(61000);
                         mCallNotifier.sendEmptyMessageDelayed(VIBRATE_45_SEC, 60000);
                         if (DEBUG) log("Executed vibrate on receiving VIBRATE_45_SEC message");
                     }
@@ -352,6 +361,9 @@ public class ModPhone {
                         if (DEBUG) log("Executed vibrate on call disconnected");
                     }
                     mCallNotifier.removeMessages(VIBRATE_45_SEC);
+                }
+                if (mWakeLock.isHeld()) {
+                    mWakeLock.release();
                 }
             } catch (Throwable t) {
                 XposedBridge.log(t);
@@ -435,6 +447,9 @@ public class ModPhone {
         if (mCallNotifier == null) return;
 
         try {
+            if (mWakeLock.isHeld()) {
+                mWakeLock.release();
+            }
             mCallNotifier.removeMessages(VIBRATE_45_SEC);
             long timer;
             if (callDurationMsec > 45000) {
@@ -444,6 +459,7 @@ public class ModPhone {
                 // Schedule the alarm at the first 45 second mark
                 timer = 45000 - callDurationMsec;
             }
+            mWakeLock.acquire(timer + 1000);
             mCallNotifier.sendEmptyMessageDelayed(VIBRATE_45_SEC, timer);
         } catch (Throwable t) {
             XposedBridge.log(t);
