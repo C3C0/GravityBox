@@ -96,6 +96,7 @@
     <string name="quick_settings_wifi">Wi-Fi</string>
     <string name="quick_settings_wifi_off">Wi-Fi off</string>
     <string name="quick_settings_wifi_not_connected">Non connecté</string>
+    <string name="quick_settings_wifi_turning_on">Mise en route...</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Touches des paramètres rapides</string>
@@ -639,5 +640,17 @@
     <!-- Quick unlock -->
     <string name="pref_lockscreen_quick_unlock_title">Déverrouillage rapide</string>
     <string name="pref_lockscreen_quick_unlock_summary">Pour un déverrouillage automatique lorsque le bon code PIN / mot de passe est saisi</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Désactivé</string>
+    <string name="clock_dow_standard">Standard</string>
+    <string name="clock_dow_lowercase">En minuscules</string>
+    <string name="clock_dow_uppercase">En majuscules</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Politique de verrouillage de la barre d\'état</string>
+    <string name="sbl_policy_default">Par défaut</string>
+    <string name="sbl_policy_unlocked">Accessible en l\'absence de sécurisation (PIN/mdp)</string>
+    <string name="sbl_policy_locked">Bloquée</string>
 
 </resources>
