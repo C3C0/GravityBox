@@ -42,6 +42,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class OngoingNotifPreference extends DialogPreference 
                 implements OnItemClickListener, OnClickListener {
@@ -52,6 +53,8 @@ public class OngoingNotifPreference extends DialogPreference
     private Button mBtnResetList;
     private ArrayList<IIconCheckListAdapterItem> mListData;
     private AlertDialog mAlertDialog;
+    private TextView mDescription;
+    private View mDivider;
 
     public OngoingNotifPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -68,6 +71,9 @@ public class OngoingNotifPreference extends DialogPreference
 
         mBtnResetList = (Button) view.findViewById(R.id.btnReset);
         mBtnResetList.setOnClickListener(this);
+
+        mDescription = (TextView) view.findViewById(R.id.description);
+        mDivider = (View) view.findViewById(R.id.divider);
 
         super.onBindView(view);
 
@@ -128,6 +134,14 @@ public class OngoingNotifPreference extends DialogPreference
             mListView.setAdapter(adapter);
             ((IconCheckListAdapter)mListView.getAdapter()).notifyDataSetChanged();
             mBtnResetList.setVisibility(View.VISIBLE);
+        }
+
+        if (notifData == null || notifData.isEmpty() || prefData == null) {
+            mDescription.setVisibility(View.VISIBLE);
+            mDivider.setVisibility(View.VISIBLE);
+        } else {
+            mDescription.setVisibility(View.GONE);
+            mDivider.setVisibility(View.GONE);
         }
     }
 
@@ -237,6 +251,8 @@ public class OngoingNotifPreference extends DialogPreference
                         ((IconCheckListAdapter) mListView.getAdapter()).notifyDataSetChanged();
                     }
                     mBtnResetList.setVisibility(View.GONE);
+                    mDescription.setVisibility(View.VISIBLE);
+                    mDivider.setVisibility(View.VISIBLE);
                 }
             });
             mAlertDialog = builder.create();

@@ -41,12 +41,14 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.View;
 import android.view.ViewManager;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
@@ -80,6 +82,7 @@ public class ModLockscreen {
     private static Class<?>[] mLaunchActivityArgs = new Class<?>[] 
             { Intent.class, boolean.class, boolean.class, Handler.class, Runnable.class };
     private static Constructor<?> mTargetDrawableConstructor;
+    private static Object mKeyguardHostView;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -182,9 +185,29 @@ public class ModLockscreen {
             XposedHelpers.findAndHookMethod(kgHostViewClass, "onFinishInflate", new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    mKeyguardHostView = param.thisObject; 
                     Object slidingChallenge = XposedHelpers.getObjectField(
                             param.thisObject, "mSlidingChallengeLayout");
                     minimizeChallengeIfDesired(slidingChallenge);
+
+                    if (slidingChallenge != null) {
+                        try {
+                            // find lock button and assign long click listener
+                            // we assume there's only 1 ImageButton in sliding challenge layout
+                            // we have to do it this way since there's no ID assigned in layout XML
+                            final ViewGroup vg = (ViewGroup) slidingChallenge;
+                            final int childCount = vg.getChildCount();
+                            for (int i = 0; i < childCount; i++) {
+                                View v = vg.getChildAt(i);
+                                if (v instanceof ImageButton) {
+                                    v.setOnLongClickListener(mLockButtonLongClickListener);
+                                    break;
+                                }
+                            }
+                        } catch (Throwable t) {
+                            XposedBridge.log(t);
+                        }
+                    }
                 }
             });
 
@@ -408,6 +431,16 @@ public class ModLockscreen {
                     }
                 }
             });
+
+            XposedHelpers.findAndHookMethod(kgHostViewClass, "numWidgets", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_LOCKSCREEN_WIDGET_LIMIT_DISABLE, false)) {
+                        param.setResult(0);
+                    }
+                }
+            });
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
@@ -422,6 +455,20 @@ public class ModLockscreen {
             XposedHelpers.callMethod(challenge, "showChallenge", false);
         }
     }
+
+    private static final OnLongClickListener mLockButtonLongClickListener = new OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View view) {
+            if (mKeyguardHostView == null) return false;
+            try {
+                XposedHelpers.callMethod(mKeyguardHostView, "showNextSecurityScreenOrFinish", false);
+                return true;
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+                return false;
+            }
+        }
+    };
 
     private static class AppInfo {
         public String key;

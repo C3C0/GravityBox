@@ -73,6 +73,7 @@ public class ModStatusbarColor {
     private static NotificationWallpaper mNotificationWallpaper;
     private static boolean mRoamingIndicatorsDisabled;
     private static TransparencyManager mTransparencyManager;
+    private static TrafficMeter mTrafficMeter;
 
     static {
         mIconManager = new StatusBarIconManager(XModuleResources.createInstance(GravityBox.MODULE_PATH, null));
@@ -101,6 +102,10 @@ public class ModStatusbarColor {
 
     public static void setBattery(ImageView battery) {
         mBattery = battery;
+    }
+
+    public static void setTrafficMeter(TrafficMeter trafficMeter) {
+        mTrafficMeter = trafficMeter;
     }
 
     private static BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
@@ -316,6 +321,9 @@ public class ModStatusbarColor {
                     }
                     if (mPercentage != null) {
                         mPercentage.setAlpha(lightsOut ? 0.5f : 1);
+                    }
+                    if (mTrafficMeter != null) {
+                        mTrafficMeter.setAlpha(lightsOut ? 0 : 1);
                     }
                 }
             });
@@ -573,6 +581,11 @@ public class ModStatusbarColor {
 
         if (mCircleBattery != null) {
             mCircleBattery.setColor(mIconColorEnabled ?
+                    mIconManager.getIconColor() : mIconManager.getDefaultIconColor());
+        }
+
+        if (mTrafficMeter != null) {
+            mTrafficMeter.setTextColor(mIconColorEnabled ?
                     mIconManager.getIconColor() : mIconManager.getDefaultIconColor());
         }
 

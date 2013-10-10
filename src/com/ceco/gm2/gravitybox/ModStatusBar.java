@@ -97,6 +97,8 @@ public class ModStatusBar {
     private static Object mPhoneStatusBarPolicy;
     private static SettingsObserver mSettingsObserver;
     private static String mOngoingNotif;
+    private static TrafficMeter mTrafficMeter;
+    private static ViewGroup mSbContents;
 
     // Brightness control
     private static boolean mBrightnessControlEnabled;
@@ -121,6 +123,7 @@ public class ModStatusBar {
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_CLOCK_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_CENTER_CLOCK)) {
                     setClockPosition(intent.getBooleanExtra(GravityBoxSettings.EXTRA_CENTER_CLOCK, false));
+                    updateTrafficMeterPosition();
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_CLOCK_DOW)) {
                     mClockShowDow = intent.getIntExtra(GravityBoxSettings.EXTRA_CLOCK_DOW,
@@ -174,6 +177,21 @@ public class ModStatusBar {
                     Settings.Secure.putString(mContext.getContentResolver(),
                             SETTING_ONGOING_NOTIFICATIONS, "");
                     if (DEBUG) log("Ongoing notifications list reset");
+                }
+            } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_DATA_TRAFFIC_CHANGED)
+                    && mTrafficMeter != null) {
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_DT_ENABLE)) {
+                    mTrafficMeter.setTrafficMeterEnabled(intent.getBooleanExtra(
+                            GravityBoxSettings.EXTRA_DT_ENABLE, false));
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_DT_POSITION)) {
+                    mTrafficMeter.setTrafficMeterPosition(intent.getIntExtra(
+                            GravityBoxSettings.EXTRA_DT_POSITION,
+                            GravityBoxSettings.DT_POSITION_AUTO));
+                    updateTrafficMeterPosition();
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_DT_SIZE)) {
+                    mTrafficMeter.setTextSize(1, intent.getIntExtra(GravityBoxSettings.EXTRA_DT_SIZE, 14));
                 }
             }
         }
@@ -231,16 +249,20 @@ public class ModStatusBar {
                             (ViewGroup) mIconArea.getParent();
                     if (mRootView == null) return;
 
+                    mSbContents = Build.VERSION.SDK_INT > 16 ?
+                            (ViewGroup) mIconArea.getParent() : mIconArea;
+
                     // find statusbar clock
                     mClock = (TextView) mIconArea.findViewById(
                             liparam.res.getIdentifier("clock", "id", PACKAGE_NAME));
-                    if (mClock == null) return;
-                    ModStatusbarColor.setClock(mClock);
-                    // use this additional field to identify the instance of Clock that resides in status bar
-                    XposedHelpers.setAdditionalInstanceField(mClock, "sbClock", true);
-                    mClockOriginalPaddingLeft = mClock.getPaddingLeft();
-                    if (mClockHide) {
-                        mClock.setVisibility(View.GONE);
+                    if (mClock != null) {
+                        ModStatusbarColor.setClock(mClock);
+                        // use this additional field to identify the instance of Clock that resides in status bar
+                        XposedHelpers.setAdditionalInstanceField(mClock, "sbClock", true);
+                        mClockOriginalPaddingLeft = mClock.getPaddingLeft();
+                        if (mClockHide) {
+                            mClock.setVisibility(View.GONE);
+                        }
                     }
 
                     // find notification panel clock
@@ -267,7 +289,6 @@ public class ModStatusBar {
                     mLayoutClock.setLayoutParams(new LinearLayout.LayoutParams(
                                     LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                     mLayoutClock.setGravity(Gravity.CENTER);
-                    mLayoutClock.setVisibility(View.GONE);
                     mRootView.addView(mLayoutClock);
                     if (DEBUG) log("mLayoutClock injected");
 
@@ -323,6 +344,36 @@ public class ModStatusBar {
 
                     setClockPosition(prefs.getBoolean(
                             GravityBoxSettings.PREF_KEY_STATUSBAR_CENTER_CLOCK, false));
+
+                    // insert Traffic meter
+                    mTrafficMeter = new TrafficMeter(liparam.view.getContext());
+                    LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(
+                            LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+                    mTrafficMeter.setLayoutParams(lParams);
+                    mTrafficMeter.setGravity(Gravity.CENTER_VERTICAL);
+                    mTrafficMeter.setTextAppearance(liparam.view.getContext(), 
+                            liparam.view.getContext().getResources().getIdentifier(
+                            "TextAppearance.StatusBar.Clock", "style", PACKAGE_NAME));
+                    int position = GravityBoxSettings.DT_POSITION_AUTO;
+                    try {
+                        position = Integer.valueOf(prefs.getString(
+                                GravityBoxSettings.PREF_KEY_DATA_TRAFFIC_POSITION, "0"));
+                    } catch (NumberFormatException nfe) {
+                        log("Invalid preference value for PREF_KEY_DATA_TRAFFIC_POSITION");
+                    }
+                    mTrafficMeter.setTrafficMeterPosition(position);
+                    int size = 14;
+                    try {
+                        size = Integer.valueOf(prefs.getString(
+                                GravityBoxSettings.PREF_KEY_DATA_TRAFFIC_SIZE, "14"));
+                    } catch (NumberFormatException nfe) {
+                        log("Invalid preference value for PREF_KEY_DATA_TRAFFIC_SIZE");
+                    }
+                    mTrafficMeter.setTextSize(1, size);
+                    ModStatusbarColor.setTrafficMeter(mTrafficMeter);
+                    updateTrafficMeterPosition();
+                    mTrafficMeter.setTrafficMeterEnabled(prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_DATA_TRAFFIC_ENABLE, false));
                 }
             });
         } catch (Throwable t) {
@@ -401,6 +452,7 @@ public class ModStatusBar {
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_CLOCK_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_ONGOING_NOTIFICATIONS_CHANGED);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_DATA_TRAFFIC_CHANGED);
                     mContext.registerReceiver(mBroadcastReceiver, intentFilter);
 
                     mSettingsObserver = new SettingsObserver(
@@ -443,7 +495,7 @@ public class ModStatusBar {
 
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    if (mLayoutClock == null || !mClockCentered) return;
+                    if (mLayoutClock == null) return;
 
                     mLayoutClock.setVisibility(View.GONE);
                     Animation anim = (Animation) XposedHelpers.callMethod(
@@ -456,7 +508,7 @@ public class ModStatusBar {
 
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    if (mLayoutClock == null || !mClockCentered) return;
+                    if (mLayoutClock == null) return;
 
                     mLayoutClock.setVisibility(View.VISIBLE);
                     Animation anim = (Animation) XposedHelpers.callMethod(
@@ -469,7 +521,7 @@ public class ModStatusBar {
 
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    if (mLayoutClock == null || !mClockCentered) return;
+                    if (mLayoutClock == null) return;
 
                     mLayoutClock.setVisibility(View.VISIBLE);
                     Animation anim = (Animation) XposedHelpers.callMethod(
@@ -607,7 +659,6 @@ public class ModStatusBar {
             mClock.setPadding(0, 0, 0, 0);
             mIconArea.removeView(mClock);
             mLayoutClock.addView(mClock);
-            mLayoutClock.setVisibility(View.VISIBLE);
             if (DEBUG) log("Clock set to center position");
         } else {
             mClock.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
@@ -616,11 +667,33 @@ public class ModStatusBar {
             mClock.setPadding(mClockOriginalPaddingLeft, 0, 0, 0);
             mLayoutClock.removeView(mClock);
             mIconArea.addView(mClock);
-            mLayoutClock.setVisibility(View.GONE);
             if (DEBUG) log("Clock set to normal position");
         }
 
         mClockCentered = center;
+    }
+
+    private static void updateTrafficMeterPosition() {
+        if (mTrafficMeter == null || mSbContents == null ||
+            mLayoutClock == null || mIconArea == null) return;
+
+        mSbContents.removeView(mTrafficMeter);
+        mLayoutClock.removeView(mTrafficMeter);
+        mIconArea.removeView(mTrafficMeter);
+
+        switch(mTrafficMeter.getTrafficMeterPosition()) {
+            case GravityBoxSettings.DT_POSITION_AUTO:
+                if (mClockCentered) {
+                    mIconArea.addView(mTrafficMeter, 
+                            Build.VERSION.SDK_INT > 16 ? 0 : 1);
+                } else {
+                    mLayoutClock.addView(mTrafficMeter);
+                }
+                break;
+            case GravityBoxSettings.DT_POSITION_LEFT:
+                mSbContents.addView(mTrafficMeter, 0);
+                break;
+        }
     }
 
     private static ComponentName getComponentNameFromClockLink() {

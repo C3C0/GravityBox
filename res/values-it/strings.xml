@@ -604,6 +604,35 @@
     <string name="ongoing_notif_reset_alert">Sei sicuro di voler azzerare l\'elenco??
         Verrà pulito l\'elenco attuale e sbloccate tutte le notifiche precedentemente bloccate.</string>
 
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Sblocco rapido</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Sblocco automatico dopo inserimento corretto di pin/password</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Disattivato</string>
+    <string name="clock_dow_standard">Standard</string>
+    <string name="clock_dow_lowercase">Minuscoli</string>
+    <string name="clock_dow_uppercase">Maiuscolo</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Regole di blocco barra di stato</string>
+    <string name="sbl_policy_default">Default</string>
+    <string name="sbl_policy_unlocked">Sbloccato se la tastiera è sbloccata</string>
+    <string name="sbl_policy_locked">Bloccato</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Controllo traffico dati</string>
+    <string name="pref_data_traffic_enable_title">Abilita controllo traffico</string>
+    <string name="pref_data_traffic_enable_summary">Mostra automaticamente il controllo traffico dati appena la connessione dati viene attivata</string>
+    <string name="pref_data_traffic_position_title">Posizione</string>
+    <string name="dt_position_auto">Auto (centrata o a destra, a seconda della posizione dell\'orologio)</string>
+    <string name="dt_position_left">Sinistra</string>
+    <string name="pref_data_traffic_size_title">Dimensione</string>
+    <string name="dt_size_normal">Normale</string>
+    <string name="dt_size_smaller">Più piccola</string>
+    <string name="dt_size_smallest">Ancora più piccola</string>
+
+
 
 
 </resources>

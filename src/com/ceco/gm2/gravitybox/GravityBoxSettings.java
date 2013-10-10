@@ -164,6 +164,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     private static final int LOCKSCREEN_BACKGROUND = 1024;
 
     public static final String PREF_KEY_LOCKSCREEN_MAXIMIZE_WIDGETS = "pref_lockscreen_maximize_widgets";
+    public static final String PREF_KEY_LOCKSCREEN_WIDGET_LIMIT_DISABLE = "pref_lockscreen_widget_limit_disable";
     public static final String PREF_KEY_LOCKSCREEN_ROTATION = "pref_lockscreen_rotation";
     public static final String PREF_KEY_LOCKSCREEN_MENU_KEY = "pref_lockscreen_menu_key";
     public static final String PREF_KEY_LOCKSCREEN_QUICK_UNLOCK = "pref_lockscreen_quick_unlock";
@@ -395,6 +396,19 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_ONGOING_NOTIF = "ongoingNotif";
     public static final String EXTRA_ONGOING_NOTIF_RESET = "ongoingNotifReset";
 
+    public static final String PREF_CAT_KEY_DATA_TRAFFIC = "pref_cat_data_traffic";
+    public static final String PREF_KEY_DATA_TRAFFIC_ENABLE = "pref_data_traffic_enable";
+    public static final String PREF_KEY_DATA_TRAFFIC_POSITION = "pref_data_traffic_position";
+    public static final int DT_POSITION_AUTO = 0;
+    public static final int DT_POSITION_LEFT = 1;
+    public static final String PREF_KEY_DATA_TRAFFIC_SIZE = "pref_data_traffic_size";
+    public static final String ACTION_PREF_DATA_TRAFFIC_CHANGED = 
+            "gravitybox.intent.action.DATA_TRAFFIC_CHANGED";
+    public static final String EXTRA_DT_ENABLE = "dtEnable";
+    public static final String EXTRA_DT_POSITION = "dtPosition";
+    public static final String EXTRA_DT_SIZE = "dtSize";
+     
+
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
             PREF_KEY_FIX_CALENDAR,
@@ -623,6 +637,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private Preference mPrefQsTileOrder;
         private ListPreference mPrefSbClockDow;
         private ListPreference mPrefSbLockPolicy;
+        private ListPreference mPrefDataTrafficPosition;
+        private ListPreference mPrefDataTrafficSize;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -780,6 +796,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             mPrefSbClockDow = (ListPreference) findPreference(PREF_KEY_STATUSBAR_CLOCK_DOW);
             mPrefSbLockPolicy = (ListPreference) findPreference(PREF_KEY_STATUSBAR_LOCK_POLICY);
+            mPrefDataTrafficPosition = (ListPreference) findPreference(PREF_KEY_DATA_TRAFFIC_POSITION);
+            mPrefDataTrafficSize = (ListPreference) findPreference(PREF_KEY_DATA_TRAFFIC_SIZE);
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
@@ -1073,6 +1091,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             if (key == null || key.equals(PREF_KEY_STATUSBAR_LOCK_POLICY)) {
                 mPrefSbLockPolicy.setSummary(mPrefSbLockPolicy.getEntry());
             }
+
+            if (key == null || key.equals(PREF_KEY_DATA_TRAFFIC_POSITION)) {
+                mPrefDataTrafficPosition.setSummary(mPrefDataTrafficPosition.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_DATA_TRAFFIC_SIZE)) {
+                mPrefDataTrafficSize.setSummary(mPrefDataTrafficSize.getEntry());
+            }
         }
 
         @Override
@@ -1306,6 +1332,17 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 intent.setAction(ACTION_PREF_QS_NETWORK_MODE_SIM_SLOT_CHANGED);
                 intent.putExtra(EXTRA_SIM_SLOT, Integer.valueOf(
                         prefs.getString(PREF_KEY_QS_NETWORK_MODE_SIM_SLOT, "0")));
+            } else if (key.equals(PREF_KEY_DATA_TRAFFIC_ENABLE)) {
+                intent.setAction(ACTION_PREF_DATA_TRAFFIC_CHANGED);
+                intent.putExtra(EXTRA_DT_ENABLE, prefs.getBoolean(PREF_KEY_DATA_TRAFFIC_ENABLE, false));
+            } else if (key.equals(PREF_KEY_DATA_TRAFFIC_POSITION)) {
+                intent.setAction(ACTION_PREF_DATA_TRAFFIC_CHANGED);
+                intent.putExtra(EXTRA_DT_POSITION, Integer.valueOf(
+                        prefs.getString(PREF_KEY_DATA_TRAFFIC_POSITION, "0")));
+            } else if (key.equals(PREF_KEY_DATA_TRAFFIC_SIZE)) {
+                intent.setAction(ACTION_PREF_DATA_TRAFFIC_CHANGED);
+                intent.putExtra(EXTRA_DT_SIZE, Integer.valueOf(
+                        prefs.getString(PREF_KEY_DATA_TRAFFIC_SIZE, "14")));
             }
             if (intent.getAction() != null) {
                 getActivity().sendBroadcast(intent);

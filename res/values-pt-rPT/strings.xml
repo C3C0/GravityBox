@@ -638,4 +638,16 @@
     <string name="sbl_policy_unlocked">Desbloqueada quando método de bloqueio for inseguro</string>
     <string name="sbl_policy_locked">Bloqueada</string>
 
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Monitorização de tráfego de dados</string>
+    <string name="pref_data_traffic_enable_title">Ativar monitorização</string>
+    <string name="pref_data_traffic_enable_summary">Permite monitorizar o tráfego de dados automaticamente sempre que exista uma ligação de dados estabelecida</string>
+    <string name="pref_data_traffic_position_title">Posicionamento</string>
+    <string name="dt_position_auto">Automático (centrado ou alinhado à direita, dependendo do posicionamento do relógio)</string>
+    <string name="dt_position_left">Alinhado à esquerda</string>
+    <string name="pref_data_traffic_size_title">Tamanho do tipo de letra</string>
+    <string name="dt_size_normal">Normal</string>
+    <string name="dt_size_smaller">Pequeno</string>
+    <string name="dt_size_smallest">Mínimo</string>
+
 </resources>

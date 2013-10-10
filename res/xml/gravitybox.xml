@@ -116,6 +116,12 @@
                 android:defaultValue="false" />
 
             <CheckBoxPreference 
+                android:key="pref_lockscreen_widget_limit_disable"
+                android:title="@string/pref_lockscreen_widget_limit_disable_title"
+                android:summary="@string/pref_lockscreen_widget_limit_disable_summary"
+                android:defaultValue="false" />
+
+            <CheckBoxPreference 
                 android:key="pref_lockscreen_rotation"
                 android:title="@string/pref_lockscreen_rotation_title"
                 android:summary="@string/pref_lockscreen_rotation_summary"
@@ -443,6 +449,32 @@
                 android:key="pref_alarm_icon_hide"
                 android:title="@string/pref_alarm_icon_hide_title"
                 android:defaultValue="false" />
+
+        </PreferenceScreen>
+
+        <PreferenceScreen 
+            android:key="pref_cat_data_traffic"
+            android:title="@string/pref_cat_data_traffic_title">
+
+            <CheckBoxPreference 
+                android:key="pref_data_traffic_enable"
+                android:title="@string/pref_data_traffic_enable_title"
+                android:summary="@string/pref_data_traffic_enable_summary"
+                android:defaultValue="false" />
+
+            <ListPreference
+                android:key="pref_data_traffic_position"
+                android:title="@string/pref_data_traffic_position_title" 
+                android:entries="@array/data_traffic_position_entries"
+                android:entryValues="@array/data_traffic_position_values"
+                android:defaultValue="0" />
+
+            <ListPreference
+                android:key="pref_data_traffic_size"
+                android:title="@string/pref_data_traffic_size_title" 
+                android:entries="@array/data_traffic_size_entries"
+                android:entryValues="@array/data_traffic_size_values"
+                android:defaultValue="14" />
 
         </PreferenceScreen>
 
