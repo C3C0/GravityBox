@@ -145,12 +145,12 @@
     <string name="fix_dev_opts_summary">解锁高级开发人员选项（需要重新启动）</string>
 
     <!-- Main preference categories -->
-    <string name="pref_cat_statusbar_title">状态栏微调</string>
-    <string name="pref_cat_statusbar_summary">包含各种状态栏的微调选项</string>
-    <string name="pref_cat_misc_title">杂项微调</string>
-    <string name="pref_cat_misc_summary">包含所有不属于特定类别的微调选项</string>
+    <string name="pref_cat_statusbar_title">状态栏调整</string>
+    <string name="pref_cat_statusbar_summary">包含各种状态栏的调整选项</string>
+    <string name="pref_cat_misc_title">杂项调整</string>
+    <string name="pref_cat_misc_summary">包含所有不属于特定类别的调整选项</string>
     <string name="pref_cat_fixes_title">通用修正</string>
-    <string name="pref_cat_fixes_summary">包含 MTK6589 通用的修正。请只在有需要时使用。</string>
+    <string name="pref_cat_fixes_summary">包含 MTK6589 的通用修正。请只在有需要时使用。</string>
 
     <!-- About -->
     <string name="pref_cat_about_title">关于</string>
@@ -158,16 +158,16 @@
     <string name="about_xposed_title">Xposed 框架</string>
     <string name="about_xposed_summary">由 rovo89@XDA 编写。点击此处以进入官方讨论链接。</string>
     <string name="about_donate_title">捐助</string>
-    <string name="about_donate_summary">若您觉得这个程序好用的话请捐助我！也请考虑捐助给编写出优秀的 Xposed 框架作者的 rovo89。</string>
+    <string name="about_donate_summary">若您觉得这个程序好用的话请捐助我！也请考虑捐助给rovo89编写出优秀的 Xposed 框架作者。</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">您的 %s 将重新启动</string>
-    <string name="reboot_confirm_recovery">您的 %s 将重新启动至 Recovery</string>
-    <string name="reboot_confirm_bootloader">您的 %s 将重新启动至 Bootloader</string>
+    <string name="reboot_confirm">您的%s将重新启动</string>
+    <string name="reboot_confirm_recovery">您的%s将重新启动至 Recovery</string>
+    <string name="reboot_confirm_bootloader">您的%s将重新启动至 Bootloader</string>
 
     <!-- CRT effect screen off animation -->
-    <string name="crt_off_effect_title">CRT 屏幕关闭特效</string>
-    <string name="crt_off_effect_summary">当屏幕关闭时，使用旧式 CRT 屏幕关闭时的特效</string>
+    <string name="crt_off_effect_title">CRT屏幕关闭特效</string>
+    <string name="crt_off_effect_summary">当屏幕关闭时，使用旧式CRT屏幕关闭时的特效</string>
 
     <!-- Engineering mode shortcut -->
     <string name="engineering_mode_title">工程模式</string>
@@ -196,16 +196,16 @@
     <string name="pref_lockscreen_maximize_widgets_summary">若启用这个选项，锁定画面的小工具默认都会被最大化</string>
 
     <!--  Power tweaks category -->
-    <string name="pref_cat_power_title">电源微调</string>
-    <string name="pref_cat_power_summary">包含各种电源相关的微调选项</string>
+    <string name="pref_cat_power_title">电源调整</string>
+    <string name="pref_cat_power_summary">包含各种电源相关的调整选项</string>
 
     <!--  Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">停用 LED 闪烁</string>
-    <string name="pref_flashing_led_disable_summary">停掉当低电量且未充电时会出现的扰人 LED 闪烁</string>
+    <string name="pref_flashing_led_disable_summary">停掉当低电量且未充电时会出现扰人的 LED 闪烁</string>
 
     <!-- Display tweaks category -->
-    <string name="pref_cat_display_title">显示微调</string>
-    <string name="pref_cat_display_summary">包含各种显示相关的微调选项</string>
+    <string name="pref_cat_display_title">显示调整</string>
+    <string name="pref_cat_display_summary">包含各种显示相关的调整选项</string>
 
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">最低亮度级别</string>
@@ -244,11 +244,11 @@
     <string name="pref_statusbar_center_clock_title">时间居中</string>
 
     <!-- Media tweaks category -->
-    <string name="pref_cat_media_title">媒体微调</string>
-    <string name="pref_cat_media_summary">包含各种媒体与声音系统的微调选项</string>
+    <string name="pref_cat_media_title">媒体调整</string>
+    <string name="pref_cat_media_summary">包含各种媒体与声音系统的调整选项</string>
 
     <!-- More music volume steps -->
-    <string name="pref_music_volume_steps_title">更多音乐音量的调整段数</string>
+    <string name="pref_music_volume_steps_title">更多音乐音量调整段数</string>
     <string name="pref_music_volume_steps_summary">为音乐流添加更多的音量调整段数（需要重新启动）</string>
 
     <!-- Safe headset media volume -->
@@ -280,8 +280,8 @@
     <string name="no_previous_app_found">找不到上一个应用程序</string>
 
     <!--  Phone tweaks category -->
-    <string name="pref_cat_phone_title">电话微调</string>
-    <string name="pref_cat_phone_summary">包含各种通话的微调选项</string>
+    <string name="pref_cat_phone_title">电话调整</string>
+    <string name="pref_cat_phone_summary">包含各种通话的调整选项</string>
 
     <!-- Flip action while ringing -->
     <string name="pref_phone_flip_title">响铃时的手机翻转动作</string>
@@ -309,7 +309,7 @@
     <string name="pref_volume_panel_expandable_summary">启用此选项使您可以调整不同流的音量</string>
 
     <!-- Link ringtone & notifications volumes -->
-    <string name="pref_link_volumes_title">连接铃声音量与通知音量</string>
+    <string name="pref_link_volumes_title">合并铃声音量与通知音量</string>
     <string name="pref_link_volumes_summary">禁用时铃声音量与通知音量将可以分别调整</string>
 
     <!-- Auto-switch QuickSettings -->
@@ -376,9 +376,9 @@
 
     <!-- Pie Controls settings -->
     <string name="pie_control_title">虚拟键控制</string>
-    <string name="pie_control_enable_title">启用虚拟键控制</string>
+    <string name="pie_control_enable_title">启用Pie Controls虚拟键控制</string>
     <string name="pie_control_search_title">显示搜索键</string>
-    <string name="pie_control_size_title">导航键大小</string>
+    <string name="pie_control_size_title">虚拟键大小</string>
     <string name="pie_control_trigger_positions_title">触发位置</string>
     <string name="pie_control_trigger_left">屏幕左边缘</string>
     <string name="pie_control_trigger_bottom">屏幕下边缘</string>
@@ -394,8 +394,8 @@
     <string name="pref_button_backlight_notifications_summary">这个设置是实验性的！当收到通知时背光灯会闪烁提醒。建议当您的装置没有 LED 通知灯时才开启，此功能可能会消耗部分电量</string>
 
     <!-- Hide navigation bar for pie -->
-    <string name="pref_navbar_disable_title">隐藏导航栏</string>
-    <string name="pref_navbar_disable_summary">当虚拟键启用时隐藏导航栏（对于有虚拟键的设备，需要重新启动）</string>
+    <string name="pref_navbar_disable_title">隐藏虚拟键</string>
+    <string name="pref_navbar_disable_summary">当Pie Controls虚拟键启用时隐藏系统虚拟键（对于有虚拟键的设备，需要重新启动）</string>
 
     <!--  Dithered Holo background -->
     <string name="pref_holo_bg_dither_title">优化 Holo 背景</string>
@@ -463,8 +463,8 @@
     <string name="pref_cat_transparency_manager_title">透明度调整</string>
     <string name="pref_tm_statusbar_launcher_title">启动器下的状态栏透明度</string>
     <string name="pref_tm_statusbar_lockscreen_title">锁屏画面时的状态栏透明度</string>
-    <string name="pref_tm_navbar_launcher_title">启动器下的导航栏透明度</string>
-    <string name="pref_tm_navbar_lockscreen_title">锁屏画面时的导航栏透明度</string>
+    <string name="pref_tm_navbar_launcher_title">启动器下的虚拟键透明度</string>
+    <string name="pref_tm_navbar_lockscreen_title">锁屏画面时的虚拟键透明度</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">隐藏闹钟图标</string>
@@ -502,7 +502,7 @@
 
     <!-- GravityBox settings startup handling -->
     <string name="gb_startup_progress">等待 GravityBox 系统框架的响应&#8230;</string>
-    <string name="gb_startup_error">GravityBoy 系统框架未响应。退出中。</string>
+    <string name="gb_startup_error">GravityBoy 系统框架未响应，退出中。。。</string>
 
     <!-- National data roaming -->
     <string name="pref_national_roaming_title">国内数据漫游</string>
@@ -512,8 +512,8 @@
     <string name="pref_expanded_desktop_title">扩展桌面模式</string>
     <string name="expanded_desktop_disabled">禁用</string>
     <string name="expanded_desktop_statusbar">隐藏状态栏</string>
-    <string name="expanded_desktop_navbar">隐藏导航栏</string>
-    <string name="expanded_desktop_both">隐藏状态栏与导航栏</string>
+    <string name="expanded_desktop_navbar">隐藏虚拟键</string>
+    <string name="expanded_desktop_both">隐藏状态栏与虚拟键</string>
     <string name="action_expanded_desktop_title">扩展桌面功能</string>
     <string name="action_expanded_desktop_on">扩展桌面已开启</string>
     <string name="action_expanded_desktop_off">扩展桌面已关闭</string>
@@ -529,21 +529,21 @@
     <string name="hwkey_action_expanded_desktop_disabled">扩展桌面模式已禁用！</string>
 
     <!-- Navigation bar tweaks category -->
-    <string name="pref_cat_navigation_bar_title">导航栏调整</string>
-    <string name="pref_cat_navigation_bar_summary">包含各种关于导航栏的微调</string>
+    <string name="pref_cat_navigation_bar_title">虚拟键调整</string>
+    <string name="pref_cat_navigation_bar_summary">包含各种关于虚拟键的调整</string>
     <string name="pref_navbar_override_title">覆盖系统默认值</string>
-    <string name="pref_navbar_override_summary">导航栏调整的总开关（需要重新启动）</string>
-    <string name="pref_navbar_enable_title">启用导航栏</string>
+    <string name="pref_navbar_override_summary">虚拟键调整的总开关（需要重新启动）</string>
+    <string name="pref_navbar_enable_title">启用虚拟键</string>
     <string name="pref_navbar_enable_summary">需要重新启动</string>
-    <string name="pref_navbar_height_title">导航栏高度</string>
-    <string name="pref_navbar_height_summary">应用于竖屏横向导航栏</string>
-    <string name="pref_navbar_height_landscape_summary">应用于横屏纵向导航栏</string>
-    <string name="pref_navbar_width_title">导航栏宽度</string>
-    <string name="pref_navbar_width_summary">应用于纵向导航栏</string>
+    <string name="pref_navbar_height_title">虚拟键高度</string>
+    <string name="pref_navbar_height_summary">应用于竖屏横向虚拟键</string>
+    <string name="pref_navbar_height_landscape_summary">应用于横屏纵向虚拟键</string>
+    <string name="pref_navbar_width_title">虚拟键宽度</string>
+    <string name="pref_navbar_width_summary">应用于纵向虚拟键</string>
     <string name="pref_navbar_menukey_title">总是显示菜单键</string>
     
     <!-- Screenshot in power menu -->
-    <string name="pref_powermenu_screenshot_title">电源菜单截图</string>
+    <string name="pref_powermenu_screenshot_title">电源键菜单屏幕截图</string>
 
     <!-- Unlock ring settings -->
     <string name="pref_cat_lockscreen_ring_settings_title">解锁环设置</string>
@@ -570,7 +570,7 @@
     <string name="unicode_stripping_all">转换所有 Unicode 字符</string>
 
     <!-- Disable slow 2G data warning -->
-    <string name="pref_mobile_data_slow2g_disable_title">禁用低速 2G 网络数据警告</string>
+    <string name="pref_mobile_data_slow2g_disable_title">禁用低速2G网络数据警告</string>
     <string name="pref_mobile_data_slow2g_disable_summary">当在快速设置中为 SIM 卡启用 2G 移动数据时，禁用低速数据警告</string>
 
     <!-- Follow stock battery color -->
@@ -594,7 +594,7 @@
     <string name="pref_qs_tile_behaviour_override_summary">覆盖触摸/长按选定方块的行为（需要重新启动）</string>
 
     <!-- QuickSettings: SIM Slot for network mode tile -->
-    <string name="pref_qs_network_mode_sim_slot_title">网络模式方块 SIM 卡插槽</string>
+    <string name="pref_qs_network_mode_sim_slot_title">网络模式方块SIM卡插槽</string>
     <string name="pref_qs_network_mode_sim_slot_summary">定义的网络模式方块应用的SIM卡插槽（%s）</string>
     <string name="sim_slot1">SIM 卡1</string>
     <string name="sim_slot2">SIM 卡2</string>
@@ -603,7 +603,7 @@
     <string name="pie_controls_disabled">从不</string>
     <string name="pie_controls_enabled_always">总是</string>
     <string name="pie_controls_enabled_expanded">当扩展桌面开启时</string>
-    <string name="pie_controls_enabled_expanded_navbar">当扩展桌面隐藏导航栏时</string>
+    <string name="pie_controls_enabled_expanded_navbar">当扩展桌面隐藏虚拟键时</string>
 
     <!-- Icon coloring: preserve stock battery icon -->
     <string name="pref_statusbar_color_skip_battery_title">保留原生电池图标</string>
@@ -615,7 +615,7 @@
 
     <!-- Mute volume adjust sound -->
     <string name="pref_volume_adjust_mute_title">静音音量调节音效</string>
-    <string name="pref_volume_adjust_mute_summary">禁用调节音量时播放的音效</string>
+    <string name="pref_volume_adjust_mute_summary">禁用调节音量时播放音效</string>
 
     <!-- Call vibrations -->
     <string name="pref_call_vibrations_title">通话振动</string>
