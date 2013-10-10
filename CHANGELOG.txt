@@ -1,3 +1,31 @@
+Changelog 2.6.0 - 10/10/2013
+--------------------------------------
+- Statusbar tweaks:
+--- Ongoing notification blocker - dynamically collects info on ongoing notifications and allows to block them
+--- Alternate WiFi Tile for MTK devices (CM Style) with signal and SSID indication
+--- AOSP Signal Tile: added indicator for mobile data off state when tile behaviour overriden (non-MTK, needs testing)
+--- Clock Day of Week revamped to support normal/lowercase/uppercase styles
+--- Data traffic monitor - monitors data traffic and displays info in statusbar
+--- Added Low Profile support for Circle battery, percent text and data traffic monitor
+- Lockscreen tweaks
+--- Quick unlock: unlocks immediately after correct PIN/password is entered without pressing ENTER
+--- Statusbar lock policy: allows making statusbar expandable on lockscreen
+--- Option for disabling limit for number of widgets
+--- Long-press on lock icon unlocks device when widgets maximized
+- Fixed 45 sec. vibrations not being executed on some devices (partial wakelock required during call)
+- Added Vietnamese translations (thanks to hdbk1986)
+- Added Turkish translations (thanks to AndroidMeda)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Chinese (Simplified) translations (thanks to liveasx, EraserKing)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+- Updated German translations (thanks to samsonbear)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Italian translations (thanks to pitone02)
+- Updated French translation (thanks to ch-vox)
+- Updated Japanese translations (thanks to WedyDQ10)
+- Updated Hungarian translations (thanks to benjoe1)
+
 Changelog 2.5.7 - 03/10/2013
 --------------------------------------
 - QuickSettings Tile Reordering
