@@ -620,4 +620,37 @@
     <string name="ongoing_notif_reset_list">リストの初期化</string>
     <string name="ongoing_notif_reset_alert">リストを初期化しますか?
         ブロックした通知を全てブロックしないようにします。</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">クイックロック解除</string>
+    <string name="pref_lockscreen_quick_unlock_summary">正しいPIN/パスワードを入力したときに自動的にロックを解除します。</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">無効</string>
+    <string name="clock_dow_standard">標準</string>
+    <string name="clock_dow_lowercase">小文字</string>
+    <string name="clock_dow_uppercase">大文字</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">ステータスバーのロック</string>
+    <string name="sbl_policy_default">デフォルト</string>
+    <string name="sbl_policy_unlocked">キーガードオフ時にロック解除</string>
+    <string name="sbl_policy_locked">ロックする</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">データ通信量モニター</string>
+    <string name="pref_data_traffic_enable_title">監視を有効にする</string>
+    <string name="pref_data_traffic_enable_summary">データ通信をしているときにデータ通信量モニターを表示します。</string>
+    <string name="pref_data_traffic_position_title">位置</string>
+    <string name="dt_position_auto">自動(時計の位置に従う)</string>
+    <string name="dt_position_left">左</string>
+    <string name="pref_data_traffic_size_title">サイズ</string>
+    <string name="dt_size_normal">中</string>
+    <string name="dt_size_smaller">小</string>
+    <string name="dt_size_smallest">極小</string>
+
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">ウィジェット制限の無効化</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">ロック画面にいくつでもウィジェットをおけるようにします。</string>
+
 </resources>
