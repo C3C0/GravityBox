@@ -81,6 +81,10 @@
     <string name="quick_settings_expanded_desktop_expanded">Rozšířená plocha</string>
     <string name="quick_settings_stay_awake_on">Bdění zap</string>
     <string name="quick_settings_stay_awake_off">Bdění vyp</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi vyp</string>
+    <string name="quick_settings_wifi_not_connected">Nepřipojené</string>
+    <string name="quick_settings_wifi_turning_on">Zapíná se&#8230;</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Dlaždice QuickSettings panelu</string>
@@ -89,6 +93,7 @@
     <string name="qs_tile_airplane_mode">Režim v letadle</string>
     <string name="qs_tile_battery">Stav baterie</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (CM styl)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_gps_alt">GPS (CM styl)</string>
@@ -603,5 +608,46 @@
     <!-- QuickSettings tile order -->
     <string name="pref_qs_tile_order_title">Uspořádání dlaždic</string>
     <string name="pref_qs_tile_order_summary">Umožňuje uspořádat dlaždice podle potřeby</string>
+
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Blokátor probíhajících notifikací</string>
+    <string name="pref_ongoing_notifications_summary">Umožňuje blokování vybraných probíhajících notifikací</string>
+    <string name="ongoing_notif_info">Seznam se aktualizuje automaticky při vzniku každé nové probíhající notifikace. 
+        Následně se můžete rozhodnout, které notifikace blokovat při jejich dalším vzniku.</string>
+    <string name="ongoing_notif_reset_list">Resetovat seznam</string>
+    <string name="ongoing_notif_reset_alert">Skutečně resetovat seznam? 
+        Všechny záznamy budou vymazány a zároveň budou všechny blokované notifikace odblokovány.</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Rychlé odemknutí</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Odemknout automaticky po zadání správného PIN/hesla, bez potřeby stisku ENTER</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Vypnuto</string>
+    <string name="clock_dow_standard">Standardní zobrazení</string>
+    <string name="clock_dow_lowercase">Malými písmeny</string>
+    <string name="clock_dow_uppercase">Velkými písmeny</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Povolit stažení stavové lišty</string>
+    <string name="sbl_policy_default">Výchozí nastavení</string>
+    <string name="sbl_policy_unlocked">Pokud je obrazovka uzamčení nezabezpečená</string>
+    <string name="sbl_policy_locked">Nikdy</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Monitor datového toku</string>
+    <string name="pref_data_traffic_enable_title">Zapnout sledování</string>
+    <string name="pref_data_traffic_enable_summary">Zobrazí monitor datového toku automaticky, pokud je aktivní datové spojení</string>
+    <string name="pref_data_traffic_position_title">Pozice</string>
+    <string name="dt_position_auto">Auto (uprostřed nebo vpravo, na základě aktuální pozice hodin)</string>
+    <string name="dt_position_left">Vlevo</string>
+    <string name="pref_data_traffic_size_title">Velikost</string>
+    <string name="dt_size_normal">Normální</string>
+    <string name="dt_size_smaller">Menší</string>
+    <string name="dt_size_smallest">Nejmenší</string>
+
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">Vypnout limit widgetů</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">Umožní neomezený počet widgetů obrazovky uzamčení</string>
 
 </resources>
