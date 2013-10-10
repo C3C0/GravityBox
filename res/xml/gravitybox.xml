@@ -116,6 +116,12 @@
                 android:defaultValue="false" />
 
             <CheckBoxPreference 
+                android:key="pref_lockscreen_widget_limit_disable"
+                android:title="@string/pref_lockscreen_widget_limit_disable_title"
+                android:summary="@string/pref_lockscreen_widget_limit_disable_summary"
+                android:defaultValue="false" />
+
+            <CheckBoxPreference 
                 android:key="pref_lockscreen_rotation"
                 android:title="@string/pref_lockscreen_rotation_title"
                 android:summary="@string/pref_lockscreen_rotation_summary"

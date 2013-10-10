@@ -665,4 +665,8 @@
     <string name="dt_size_smaller">Smaller</string>
     <string name="dt_size_smallest">Smallest</string>
 
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">Disable widget limit</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">Allows unlimited number of lockscreen widgets</string>
+
 </resources>
