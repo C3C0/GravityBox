@@ -91,7 +91,7 @@
     <string name="quick_settings_expanded_desktop_disabled">禁用</string>
     <string name="quick_settings_expanded_desktop_normal">正常</string>
     <string name="quick_settings_expanded_desktop_expanded">扩展</string>
-	<string name="quick_settings_stay_awake_on">保持唤醒</string>
+    <string name="quick_settings_stay_awake_on">保持唤醒</string>
     <string name="quick_settings_stay_awake_off">唤醒关闭</string>
     <string name="quick_settings_wifi">Wi-Fi</string>
     <string name="quick_settings_wifi_off">Wi-Fi 关闭</string>
@@ -108,11 +108,11 @@
     <string name="qs_tile_wifi_alt">Wi-Fi（CM 风格）</string>
     <string name="qs_tile_bluetooth">蓝牙</string>
     <string name="qs_tile_gps">GPS</string>
-	<string name="qs_tile_gps_alt">GPS（CM 风格）</string>
+    <string name="qs_tile_gps_alt">GPS（CM 风格）</string>
     <string name="qs_tile_mobile_data">移动数据</string>
     <string name="qs_tile_network_mode">网络模式</string>
     <string name="qs_tile_data_usage">数据使用</string>
-	<string name="qs_tile_audio">音频配置文件</string>
+    <string name="qs_tile_audio">音频配置文件</string>
     <string name="qs_tile_brightness">亮度</string>
     <string name="qs_tile_screen_timeout">屏幕超时</string>
     <string name="qs_tile_autorotation">自动旋转</string>
@@ -125,7 +125,7 @@
     <string name="qs_tile_settings">设置</string>
     <string name="qs_tile_volume">音量</string>
     <string name="qs_tile_expanded_desktop">扩展桌面</string>
-	<string name="qs_tile_stay_awake">保持唤醒</string>
+    <string name="qs_tile_stay_awake">保持唤醒</string>
     <string name="qs_tile_screenshot">屏幕截图</string>
 
     <!-- Color Picker -->
@@ -270,7 +270,7 @@
     <string name="hwkey_action_voice_search">语音搜索</string>
     <string name="hwkey_action_prev_app">切换到上一个应用程序</string>
     <string name="hwkey_action_kill">结束前台应用程序</string>
-	<string name="hwkey_action_sleep">使装置休眠</string>
+    <string name="hwkey_action_sleep">使装置休眠</string>
     <string name="pref_hwkey_kill_delay_title">结束应用程序的长按延迟</string>
     <string name="pref_hwkey_kill_delay_summary">适用于“结束正在使用的应用程序”动作。定义按键需要按下持续多久才会触发动作</string>
     <string name="pref_hwkey_doubletap_speed_title">双击速度</string>
@@ -292,16 +292,16 @@
 
     <!-- Soft reboot -->
     <string name="reboot_soft">软重启</string>
-
-	<!--  Solid black Holo background -->
+    
+    <!--  Solid black Holo background -->
     <string name="pref_holo_bg_solid_black_title">纯黑色背景</string>
     <string name="pref_holo_bg_solid_black_summary">在默认的 Holo 系统主题内使用纯黑色的背景，而不是黑-灰色的渐变（需要重新启动）</string>
-
-	<!-- QuickSettings tiles per row -->
+    
+    <!-- QuickSettings tiles per row -->
     <string name="pref_qs_tiles_per_row_title">每行方块数</string>
     <string name="pref_qs_tiles_per_row_summary">定义快速设置内每行有几个方块。开关会根据您的设置自动缩放。适用于竖屏。</string>
- 
-	<!--  Status bar clock - show day of week -->
+    
+    <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">显示星期</string>
     
     <!-- Expandable volume panel -->
@@ -439,7 +439,7 @@
     <!-- GPS Tile (for non-MTK) -->
     <string name="qs_tile_gps_enabled">开启 GPS</string>
     <string name="qs_tile_gps_disabled">关闭 GPS</string>
-	<string name="qs_tile_gps_locked">GPS 已定位</string>
+    <string name="qs_tile_gps_locked">GPS 已定位</string>
 
     <!-- Pie control: always show menu button -->
     <string name="pie_control_menu_title">总是显示菜单键</string>
@@ -537,7 +537,7 @@
     <string name="pref_navbar_enable_summary">需要重新启动</string>
     <string name="pref_navbar_height_title">导航栏高度</string>
     <string name="pref_navbar_height_summary">应用于竖屏横向导航栏</string>
-	<string name="pref_navbar_height_landscape_summary">应用于横屏纵向导航栏</string>
+    <string name="pref_navbar_height_landscape_summary">应用于横屏纵向导航栏</string>
     <string name="pref_navbar_width_title">导航栏宽度</string>
     <string name="pref_navbar_width_summary">应用于纵向导航栏</string>
     <string name="pref_navbar_menukey_title">总是显示菜单键</string>
@@ -652,5 +652,21 @@
     <string name="sbl_policy_default">默认</string>
     <string name="sbl_policy_unlocked">非保密锁定时可以解锁</string>
     <string name="sbl_policy_locked">锁定</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">数据流量监控</string>
+    <string name="pref_data_traffic_enable_title">开启监控</string>
+    <string name="pref_data_traffic_enable_summary">显示数据流量，连接处于活动状态时自动监测数据</string>
+    <string name="pref_data_traffic_position_title">位置</string>
+    <string name="dt_position_auto">自动（中心或右 取决于时钟的位置）</string>
+    <string name="dt_position_left">左</string>
+    <string name="pref_data_traffic_size_title">大小</string>
+    <string name="dt_size_normal">标准</string>
+    <string name="dt_size_smaller">较小</string>
+    <string name="dt_size_smallest">最小</string>
+
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">禁用小部件限制</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">允许无限数量的锁屏小部件</string>
 
 </resources>
