@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -50,9 +51,14 @@ public class WifiManagerWrapper {
     private WifiManager mWifiManager;
     private WifiApStateChangeListener mApStateChangeListener;
     private BroadcastReceiver mApStateChangeReceiver;
+    private WifiStateChangeListener mWifiStateChangeListener;
 
     public interface WifiApStateChangeListener {
         void onWifiApStateChanged(int wifiApState);
+    }
+
+    public interface WifiStateChangeListener {
+        void onWifiStateChanging(boolean enabling);
     }
 
     public WifiManagerWrapper(Context context, WifiApStateChangeListener listener) {
@@ -70,6 +76,12 @@ public class WifiManagerWrapper {
 
         mApStateChangeListener = listener;
         registerApStateChangeReceiver();
+    }
+
+    public void setWifiStateChangeListener(WifiStateChangeListener listener) {
+        if (listener != null) {
+            mWifiStateChangeListener = listener;
+        }
     }
 
     private void registerApStateChangeReceiver() {
@@ -102,11 +114,19 @@ public class WifiManagerWrapper {
         return (Integer) XposedHelpers.callMethod(mWifiManager, "getWifiApState");
     }
 
+    public String getWifiSsid() {
+        WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
+        return (wifiInfo == null ? null : wifiInfo.getSSID());
+    }
+
     public boolean isWifiEnabled() {
         return mWifiManager.isWifiEnabled();
     }
 
     public void setWifiEnabled(boolean enable) {
+        if (mWifiStateChangeListener != null) {
+            mWifiStateChangeListener.onWifiStateChanging(enable);
+        }
         mWifiManager.setWifiEnabled(enable);
     }
 
@@ -121,8 +141,11 @@ public class WifiManagerWrapper {
                                || wifiApState == WifiManagerWrapper.WIFI_AP_STATE_ENABLED)) {
                     setWifiApEnabled(false);
                 }
-                setWifiEnabled(enable);
                 return null;
+            }
+            @Override
+            protected void onPostExecute(Void args) {
+                setWifiEnabled(enable);
             }
         }.execute();
     }

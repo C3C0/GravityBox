@@ -93,6 +93,10 @@
     <string name="quick_settings_expanded_desktop_expanded">Kiterjesztett</string>
 	<string name="quick_settings_stay_awake_on">Ébrentartás bekapcsolva</string>
     <string name="quick_settings_stay_awake_off">Ébrentartás kikapcsolva</string>
+	<string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi kikapcsolva</string>
+    <string name="quick_settings_wifi_not_connected">Nincs csatlakozva</string>
+	<string name="quick_settings_wifi_turning_on">Bekapcsolás...</string>
 	
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Állapotsáv Gyorsbeállítások csempéi</string>
@@ -101,6 +105,7 @@
     <string name="qs_tile_airplane_mode">Repülő üzemmód</string>
     <string name="qs_tile_battery">Akkumlátor státusz</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+	<string name="qs_tile_wifi_alt">Wi-Fi (CM stílus)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
 	<string name="qs_tile_gps_alt">GPS (CM stílus)</string>
@@ -618,5 +623,46 @@
     <string name="call_vibration_disconnected">Hívás megszakítasakor</string>
     <string name="call_vibration_waiting">Hívás várakozás során</string>
     <string name="call_vibration_periodic">Minden 45. másodpercben kimenő hívások közben</string>
+	
+	<!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">Csempék átrendezése</string>
+    <string name="pref_qs_tile_order_summary">Lehetővé teszi a Gyorsbeállítások csempék átrendezését</string>
+	
+	<!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Folyamatban lévő értesítések blokkoló</string>
+    <string name="pref_ongoing_notifications_summary">Lehetővé teszi kiválasztott folyamatban lévő értesítések blokkolását</string>
+    <string name="ongoing_notif_info">A lista automatikusan bővítve lesz minden folyamatban lévő értesítéssel, ami felbukkan.
+        Ezután eldöntheti, hogy blokkolja-e a folyamatban lévő értesítést a következő felbukkanásakor. Óvatosan használd.</string>
+    <string name="ongoing_notif_reset_list">Lista visszaállítása</string>
+    <string name="ongoing_notif_reset_alert">Biztosan vissza szeretné állítani a listát?
+        Ez törölni fogja az aktuális listát és engedélyezni fogja az összes korábban blokkolt folyamatban lévő értesítést.</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Gyors feloldás</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Automatikuson feloldás, amikor a helyes PIN/jelszó megadásra kerül</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Letiltva</string>
+    <string name="clock_dow_standard">Alaphelyzet</string>
+    <string name="clock_dow_lowercase">Kisbetű</string>
+    <string name="clock_dow_uppercase">Nagybetű</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Állapotsáv zárolása házirend</string>
+    <string name="sbl_policy_default">Alapértelmezett</string>
+    <string name="sbl_policy_unlocked">Feloldva, ha a billentyűzár nincs engedélyezve</string>
+    <string name="sbl_policy_locked">Zárolva</string>
+	
+	<!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Adatforgalom figyelő</string>
+    <string name="pref_data_traffic_enable_title">Monitorozás engedélyezése</string>
+    <string name="pref_data_traffic_enable_summary">Adatforgalom figyelő automatikus mutatása aktív adatkapcsolat esetén</string>
+    <string name="pref_data_traffic_position_title">Pozíció</string>
+    <string name="dt_position_auto">Automatikus (középen vagy jobbra az óra pozíciójától függően)</string>
+    <string name="dt_position_left">Balra</string>
+    <string name="pref_data_traffic_size_title">Méret</string>
+    <string name="dt_size_normal">Normál</string>
+    <string name="dt_size_smaller">Kisebb</string>
+    <string name="dt_size_smallest">Legkisebb</string>
 	
 </resources>

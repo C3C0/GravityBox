@@ -94,7 +94,7 @@ public class TorchService extends Service {
             mCamera.startPreview();
 
             mTorchStatus = TORCH_STATUS_ON;
-            startForeground(1, mTorchNotif);
+            startForeground(2, mTorchNotif);
         } catch (Exception e) {
             mTorchStatus = TORCH_STATUS_ERROR;
             e.printStackTrace();

@@ -118,7 +118,11 @@ public class ModCallCard {
                     View incomingCallWidget =
                             (View) XposedHelpers.getObjectField(param.thisObject, "mIncomingCallWidget");
                     if (incomingCallWidget != null) {
-                        incomingCallWidget.setBackgroundColor(showFullscreen ? Color.TRANSPARENT : Color.BLACK);
+                        if (showFullscreen) {
+                            incomingCallWidget.setBackgroundColor(Color.TRANSPARENT);
+                        } else if (Build.DISPLAY.toLowerCase().contains("gravitymod")) {
+                            incomingCallWidget.setBackgroundColor(Color.BLACK);
+                        }
                     }
                 }
             });

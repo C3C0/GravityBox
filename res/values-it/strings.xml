@@ -569,12 +569,68 @@
     <!-- Intelligent pie -->
     <string name="pie_controls_disabled">Mai</string>
     <string name="pie_controls_enabled_always">Sempre</string>
-    <string name="pie_controls_enabled_expanded">Se expanded desktop attivo</string>
-    <string name="pie_controls_enabled_expanded_navbar">Se expanded desktop nasconde la barra di navigazione</string>
+    <string name="pie_controls_enabled_expanded">Se desktop esteso attivo</string>
+    <string name="pie_controls_enabled_expanded_navbar">Se desktop esteso nasconde la barra di navigazione</string>
 
     <!-- Icon coloring: preserve stock battery icon -->
     <string name="pref_statusbar_color_skip_battery_title">Lascia icona batteria stock inalterata</string>
     <string name="pref_statusbar_color_skip_battery_summary">Usa nel caso in cui l\'icona batteria stock sia stata sostituita da app alternative</string>
+
+    <!-- Unplug turns on screen -->
+    <string name="pref_unplug_turns_on_screen_title">Scollega cavo fa accendere lo schermo</string>
+    <string name="pref_unplug_turns_on_screen_summary">Se abilitato, lo schermo si illuminerà ad ogni operazione di collega/discollega cavo usb (richiede riavvio)</string>
+
+    <!-- Mute volume adjust sound -->
+    <string name="pref_volume_adjust_mute_title">Azzera suoni in regolazione volume</string>
+    <string name="pref_volume_adjust_mute_summary">Disattiva suoni durante regolazione volume usando i tasti laterali volume</string>
+
+    <!-- Call vibrations -->
+    <string name="pref_call_vibrations_title">Vibrazione in chiamata</string>
+    <string name="call_vibration_connected">Alla risposta</string>
+    <string name="call_vibration_disconnected">A fine chiamata</string>
+    <string name="call_vibration_waiting">Su chiamata in attesa</string>
+    <string name="call_vibration_periodic">Ogni 45 secondi durante una chiamata effettuata</string>
+
+    <!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">Ordinamento Icone pulsanti</string>
+    <string name="pref_qs_tile_order_summary">Consenti il riordino delle icone del Quicksettings</string>
+
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Blocca notifiche in corso</string>
+    <string name="pref_ongoing_notifications_summary">Consente di bloccare le notifiche selezionate</string>
+    <string name="ongoing_notif_info">L\'elenco sarà automaticamente riempito con ogni notifica che apparirà.
+        Puoi decidere se bloccare tali notifiche la prissima volta che appariranno. Funzione da usare con cautela.</string>
+    <string name="ongoing_notif_reset_list">Azzera elenco</string>
+    <string name="ongoing_notif_reset_alert">Sei sicuro di voler azzerare l\'elenco??
+        Verrà pulito l\'elenco attuale e sbloccate tutte le notifiche precedentemente bloccate.</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Sblocco rapido</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Sblocco automatico dopo inserimento corretto di pin/password</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Disattivato</string>
+    <string name="clock_dow_standard">Standard</string>
+    <string name="clock_dow_lowercase">Minuscoli</string>
+    <string name="clock_dow_uppercase">Maiuscolo</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Regole di blocco barra di stato</string>
+    <string name="sbl_policy_default">Default</string>
+    <string name="sbl_policy_unlocked">Sbloccato se la tastiera è sbloccata</string>
+    <string name="sbl_policy_locked">Bloccato</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Controllo traffico dati</string>
+    <string name="pref_data_traffic_enable_title">Abilita controllo traffico</string>
+    <string name="pref_data_traffic_enable_summary">Mostra automaticamente il controllo traffico dati appena la connessione dati viene attivata</string>
+    <string name="pref_data_traffic_position_title">Posizione</string>
+    <string name="dt_position_auto">Auto (centrata o a destra, a seconda della posizione dell\'orologio)</string>
+    <string name="dt_position_left">Sinistra</string>
+    <string name="pref_data_traffic_size_title">Dimensione</string>
+    <string name="dt_size_normal">Normale</string>
+    <string name="dt_size_smaller">Più piccola</string>
+    <string name="dt_size_smallest">Ancora più piccola</string>
 
 
 

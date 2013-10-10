@@ -61,10 +61,10 @@
     <string name="caller_fullscreen_photo_summary">Mostra a imagem do contacto em ecrã completo quando recebe uma chamada</string>
 
     <!-- QuickSettings strings -->
-    <string name="quick_settings_sync_on">Sinc. ligada</string>
-    <string name="quick_settings_sync_off">Sinc. desligada</string>
-    <string name="quick_settings_wifi_ap_on">PA Wi-Fi ligado</string>
-    <string name="quick_settings_wifi_ap_off">PA Wi-Fi desligado</string>
+    <string name="quick_settings_sync_on">Sinc. ativada</string>
+    <string name="quick_settings_sync_off">Sinc. desativada</string>
+    <string name="quick_settings_wifi_ap_on">PA Wi-Fi ativado</string>
+    <string name="quick_settings_wifi_ap_off">PA Wi-Fi desativado</string>
     <string name="quick_settings_torch_on">Lanterna ligada</string>
     <string name="quick_settings_torch_off">Lanterna desligada</string>
     <string name="quick_settings_torch_off_notif">Tocar para desligar</string>
@@ -78,6 +78,10 @@
     <string name="quick_settings_expanded_desktop_expanded">Expandido</string>
     <string name="quick_settings_stay_awake_on">Manter ligado</string>
     <string name="quick_settings_stay_awake_off">Não manter ligado</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi desativado</string>
+    <string name="quick_settings_wifi_not_connected">Não ligado</string>
+    <string name="quick_settings_wifi_turning_on">A ligar...</string>
 
     <!-- QuickSettings settings -->
     <string name="quick_settings_title">Definições rápidas na Barra de Status</string>
@@ -86,6 +90,7 @@
     <string name="qs_tile_airplane_mode">Modo de avião</string>
     <string name="qs_tile_battery">Estado da bateria</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (estilo CM)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_gps_alt">GPS (estilo CM)</string>
@@ -535,7 +540,7 @@
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Ativar controlo de brilho</string>
-    <string name="pref_statusbar_brightness_summary">Permite ajustar o brilho ao deslizar sobre a Barra de Status</string>
+    <string name="pref_statusbar_brightness_summary">Permite ajustar o brilho ao deslizar sobre a Barra de Status (necessário desativar ajuste automático de brilho)</string>
 
     <!-- Phone tweaks categories -->
     <string name="pref_cat_phone_telephony_title">Telefone</string>
@@ -571,7 +576,7 @@
 
     <!-- QuickSettings: override AOSP tile behaviour -->
     <string name="pref_qs_tile_behaviour_override_title">Substituir comportamento padrão dos painéis</string>
-    <string name="pref_qs_tile_behaviour_override_summary">Permite substituir o comportamento padrão dos painéis seleccionados ao tocar / manter pressionado (necessário reiniciar)</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Permite substituir o comportamento padrão dos painéis selecionados ao tocar / manter pressionado (necessário reiniciar)</string>
 
     <!-- QuickSettings: SIM Slot for network mode tile -->
     <string name="pref_qs_network_mode_sim_slot_title">Modo de Rede por cartão SIM</string>
@@ -603,5 +608,46 @@
     <string name="call_vibration_disconnected">Ao desligar chamada</string>
     <string name="call_vibration_waiting">Durante chamada em espera</string>
     <string name="call_vibration_periodic">Aos 45 segundos de cada minuto durante chamada efetuada</string>
+
+    <!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">Reordenamento dos painéis</string>
+    <string name="pref_qs_tile_order_summary">Permite reordenar os painéis das definições rápidas</string>
+
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Bloqueio das notificações</string>
+    <string name="pref_ongoing_notifications_summary">Permite bloquear as notificações selecionadas</string>
+    <string name="ongoing_notif_info">A lista será atualizada automaticamente por cada nova notificação.
+        Ao selecionar, irá bloquear a notificação da próxima vez que esta ocorra. Usar com cautela.</string>
+    <string name="ongoing_notif_reset_list">Limpar lista</string>
+    <string name="ongoing_notif_reset_alert">Tem a certeza que pretende limpar a lista? 
+        Esta ação irá limpar a lista atual e todas as notificações até agora bloqueadas serão desbloqueadas.</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Desbloqueio rápido</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Desbloquear automaticamente após correta introdução de PIN/palavra-passe</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Desativado</string>
+    <string name="clock_dow_standard">Padrão</string>
+    <string name="clock_dow_lowercase">Maiúsculas</string>
+    <string name="clock_dow_uppercase">Minúsculas</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Política de bloqueio da Barra de Status</string>
+    <string name="sbl_policy_default">Padrão</string>
+    <string name="sbl_policy_unlocked">Desbloqueada quando método de bloqueio for inseguro</string>
+    <string name="sbl_policy_locked">Bloqueada</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Monitorização de tráfego de dados</string>
+    <string name="pref_data_traffic_enable_title">Ativar monitorização</string>
+    <string name="pref_data_traffic_enable_summary">Permite monitorizar o tráfego de dados automaticamente sempre que exista uma ligação de dados estabelecida</string>
+    <string name="pref_data_traffic_position_title">Posicionamento</string>
+    <string name="dt_position_auto">Automático (centrado ou alinhado à direita, dependendo do posicionamento do relógio)</string>
+    <string name="dt_position_left">Alinhado à esquerda</string>
+    <string name="pref_data_traffic_size_title">Tamanho do tipo de letra</string>
+    <string name="dt_size_normal">Normal</string>
+    <string name="dt_size_smaller">Pequeno</string>
+    <string name="dt_size_smallest">Mínimo</string>
 
 </resources>

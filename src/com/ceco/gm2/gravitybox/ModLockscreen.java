@@ -16,11 +16,13 @@
 package com.ceco.gm2.gravitybox;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 import com.ceco.gm2.gravitybox.preference.AppPickerPreference;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -36,15 +38,20 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.TypedValue;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.View;
 import android.view.ViewManager;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
@@ -60,13 +67,22 @@ public class ModLockscreen {
             "com.android.internal.policy.impl.keyguard.TargetDrawable" :
             "com.android.internal.widget.multiwaveview.TargetDrawable";
     private static final String CLASS_TRIGGER_LISTENER = "com.android.internal.policy.impl.keyguard.KeyguardSelectorView$1";
+    private static final String CLASS_KG_ABS_KEY_INPUT_VIEW =
+            "com.android.internal.policy.impl.keyguard.KeyguardAbsKeyInputView";
+    private static final String CLASS_KGVIEW_MEDIATOR = "com.android.internal.policy.impl.keyguard.KeyguardViewMediator";
     private static final boolean DEBUG = false;
+
+    private static final int STATUSBAR_DISABLE_RECENT = 0x01000000;
+    private static final int STATUSBAR_DISABLE_NOTIFICATION_TICKER = 0x00080000;
+    private static final int STATUSBAR_DISABLE_EXPAND = 0x00010000;
+    private static final int STATUSBAR_DISABLE_SEARCH = 0x02000000;
 
     private static XSharedPreferences mPrefs;
     private static Hashtable<String, AppInfo> mAppInfoCache = new Hashtable<String, AppInfo>();
     private static Class<?>[] mLaunchActivityArgs = new Class<?>[] 
             { Intent.class, boolean.class, boolean.class, Handler.class, Runnable.class };
     private static Constructor<?> mTargetDrawableConstructor;
+    private static Object mKeyguardHostView;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -79,6 +95,8 @@ public class ModLockscreen {
             final Class<?> kgHostViewClass = XposedHelpers.findClass(CLASS_KG_HOSTVIEW, null);
             final Class<?> kgSelectorViewClass = XposedHelpers.findClass(CLASS_KG_SELECTOR_VIEW, null);
             final Class<?> triggerListenerClass = XposedHelpers.findClass(CLASS_TRIGGER_LISTENER, null);
+            final Class<?> kgAbsKeyInputViewClass = XposedHelpers.findClass(CLASS_KG_ABS_KEY_INPUT_VIEW, null);
+            final Class<?> kgViewMediatorClass = XposedHelpers.findClass(CLASS_KGVIEW_MEDIATOR, null);
 
             boolean enableMenuKey = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_LOCKSCREEN_MENU_KEY, false);
@@ -167,9 +185,29 @@ public class ModLockscreen {
             XposedHelpers.findAndHookMethod(kgHostViewClass, "onFinishInflate", new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    mKeyguardHostView = param.thisObject; 
                     Object slidingChallenge = XposedHelpers.getObjectField(
                             param.thisObject, "mSlidingChallengeLayout");
                     minimizeChallengeIfDesired(slidingChallenge);
+
+                    if (slidingChallenge != null) {
+                        try {
+                            // find lock button and assign long click listener
+                            // we assume there's only 1 ImageButton in sliding challenge layout
+                            // we have to do it this way since there's no ID assigned in layout XML
+                            final ViewGroup vg = (ViewGroup) slidingChallenge;
+                            final int childCount = vg.getChildCount();
+                            for (int i = 0; i < childCount; i++) {
+                                View v = vg.getChildAt(i);
+                                if (v instanceof ImageButton) {
+                                    v.setOnLongClickListener(mLockButtonLongClickListener);
+                                    break;
+                                }
+                            }
+                        } catch (Throwable t) {
+                            XposedBridge.log(t);
+                        }
+                    }
                 }
             });
 
@@ -310,6 +348,99 @@ public class ModLockscreen {
                     }
                 }
             });
+
+            XposedHelpers.findAndHookMethod(kgAbsKeyInputViewClass, "onFinishInflate", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    final TextView passwordEntry = 
+                            (TextView) XposedHelpers.getObjectField(param.thisObject, "mPasswordEntry");
+                    if (passwordEntry != null) {
+                        passwordEntry.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                if (!mPrefs.getBoolean(
+                                        GravityBoxSettings.PREF_KEY_LOCKSCREEN_QUICK_UNLOCK, false)) return;
+
+                                final Object callback = 
+                                        XposedHelpers.getObjectField(param.thisObject, "mCallback");
+                                final Object lockPatternUtils = 
+                                        XposedHelpers.getObjectField(param.thisObject, "mLockPatternUtils");
+                                String entry = passwordEntry.getText().toString();
+
+                                if (callback != null && lockPatternUtils != null &&
+                                        entry.length() > 3 && 
+                                        (Boolean) XposedHelpers.callMethod(
+                                                lockPatternUtils, "checkPassword", entry)) {
+                                    XposedHelpers.callMethod(callback, "reportSuccessfulUnlockAttempt");
+                                    XposedHelpers.callMethod(callback, "dismiss", true);
+                                }
+                            }
+                            @Override
+                            public void beforeTextChanged(CharSequence arg0,
+                                    int arg1, int arg2, int arg3) {
+                            }
+                            @Override
+                            public void onTextChanged(CharSequence arg0,
+                                    int arg1, int arg2, int arg3) {
+                            }
+                        });
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(kgViewMediatorClass, "adjustStatusBarLocked", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    int policy = GravityBoxSettings.SBL_POLICY_DEFAULT;
+                    try {
+                        policy = Integer.valueOf(prefs.getString(
+                            GravityBoxSettings.PREF_KEY_STATUSBAR_LOCK_POLICY, "0"));
+                    } catch (NumberFormatException nfe) {
+                        //
+                    }
+                    if (DEBUG) log("Statusbar lock policy = " + policy);
+                    if (policy == GravityBoxSettings.SBL_POLICY_DEFAULT) return;
+
+                    final Object sbManager = 
+                            XposedHelpers.getObjectField(param.thisObject, "mStatusBarManager");
+                    final Context context = 
+                            (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                    final boolean showing = XposedHelpers.getBooleanField(param.thisObject, "mShowing");
+
+                    if (showing && sbManager != null && !(context instanceof Activity)) {
+                        int flags = STATUSBAR_DISABLE_RECENT;
+                        if ((Boolean) XposedHelpers.callMethod(param.thisObject, "isSecure")) {
+                            flags |= STATUSBAR_DISABLE_EXPAND;
+                            flags |= STATUSBAR_DISABLE_NOTIFICATION_TICKER;
+                        } else if (policy == GravityBoxSettings.SBL_POLICY_LOCKED) {
+                            flags |= STATUSBAR_DISABLE_EXPAND;
+                        }
+
+                        try {
+                            Method m = XposedHelpers.findMethodExact(
+                                    kgViewMediatorClass, "isAssistantAvailable");
+                            if (!(Boolean) m.invoke(param.thisObject)) {
+                                flags |= STATUSBAR_DISABLE_SEARCH;
+                            }
+                        } catch(NoSuchMethodError nme) {
+                            if (DEBUG) log("isAssistantAvailable method doesn't exist (Android < 4.2.2?)");
+                        }
+
+                        XposedHelpers.callMethod(sbManager, "disable", flags);
+                        if (DEBUG) log("adjustStatusBarLocked: new flags = " + flags);
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(kgHostViewClass, "numWidgets", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_LOCKSCREEN_WIDGET_LIMIT_DISABLE, false)) {
+                        param.setResult(0);
+                    }
+                }
+            });
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
@@ -324,6 +455,20 @@ public class ModLockscreen {
             XposedHelpers.callMethod(challenge, "showChallenge", false);
         }
     }
+
+    private static final OnLongClickListener mLockButtonLongClickListener = new OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View view) {
+            if (mKeyguardHostView == null) return false;
+            try {
+                XposedHelpers.callMethod(mKeyguardHostView, "showNextSecurityScreenOrFinish", false);
+                return true;
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+                return false;
+            }
+        }
+    };
 
     private static class AppInfo {
         public String key;

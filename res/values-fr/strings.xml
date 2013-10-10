@@ -93,14 +93,19 @@
     <string name="quick_settings_expanded_desktop_expanded">Étendu</string>
     <string name="quick_settings_stay_awake_on">Rester allumé on</string>
     <string name="quick_settings_stay_awake_off">Rester allumé off</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi off</string>
+    <string name="quick_settings_wifi_not_connected">Non connecté</string>
+    <string name="quick_settings_wifi_turning_on">Mise en route...</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Touches des paramètres rapides</string>
-    <string name="quick_settings_summary">Permet d\'afficher ou masquer les touches de paramètres rapides depuis la barre de statut</string>
+    <string name="quick_settings_summary">Permet d\'afficher ou masquer les touches de paramètres rapides depuis la barre d\'état</string>
     <string name="qs_tile_user_profile">Profile utilisateur</string>
     <string name="qs_tile_airplane_mode">Mode avion</string>
     <string name="qs_tile_battery">Niveau de batterie</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (style CM)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_gps_alt">GPS (style CM)</string>
@@ -128,8 +133,8 @@
     <string name="press_color_to_apply">Sélectionner votre couleur pour l\'appliquer</string>
 
     <!--  Statusbar background color -->
-    <string name="statusbar_bgcolor_title">Couleur barre de statut</string>
-    <string name="statusbar_bgcolor_summary">Permet de choisir la couleur de fond de la barre de statut et sa transparence</string>
+    <string name="statusbar_bgcolor_title">Couleur barre d\'état</string>
+    <string name="statusbar_bgcolor_summary">Permet de choisir la couleur de fond de la barre d\'état et sa transparence</string>
 
     <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">Paramètres liés à la parole</string>
@@ -140,8 +145,8 @@
     <string name="fix_dev_opts_summary">Donne accès aux options avancées pour les développeurs (redémarrage nécessaire)</string>
 
     <!-- Main preference categories -->
-    <string name="pref_cat_statusbar_title">Modifications barre de statut</string>
-    <string name="pref_cat_statusbar_summary">Regroupe diverses modifications de la barre de statut</string>
+    <string name="pref_cat_statusbar_title">Modifications barre d\'état</string>
+    <string name="pref_cat_statusbar_summary">Regroupe diverses modifications de la barre d\'état</string>
     <string name="pref_cat_misc_title">Autres modifications</string>
     <string name="pref_cat_misc_summary">Regroupe toutes les autres modifications ne correspondant pas aux autres catégories</string>
     <string name="pref_cat_fixes_title">Corrections générales de bugs</string>
@@ -309,11 +314,11 @@
 
     <!-- Auto-switch QuickSettings -->
     <string name="pref_auto_switch_qs_title">Auto-commutation paramètres rapides</string>
-    <string name="pref_auto_switch_qs_summary">Les paramètres rapides seront affichés automatiquement lorsque la barre de statut est tirée vers le bas s\'il n\'y a pas de notification</string>
+    <string name="pref_auto_switch_qs_summary">Les paramètres rapides seront affichés automatiquement lorsque la barre d\'état est tirée vers le bas s\'il n\'y a pas de notification</string>
 
     <!-- Quick pulldown -->
     <string name="pref_quick_pulldown_title">Accès rapide</string>
-    <string name="pref_quick_pulldown_summary">Les bords de la barre de statut font apparaître les paramètres rapides</string>
+    <string name="pref_quick_pulldown_summary">Les bords de la barre d\'état font apparaître les paramètres rapides</string>
     <string name="quick_pulldown_off">Désactivé</string>
     <string name="quick_pulldown_right">Droit</string>
     <string name="quick_pulldown_left">Gauche</string>
@@ -323,14 +328,14 @@
     <string name="pref_volume_rocker_wake_disable_summary">Pour les modèles tels que Jiayu G3s, G4, permet de désactiver la sortie de veille par les touches de volume</string>
 
     <!-- Statusbar colors category -->
-    <string name="pref_cat_statusbar_colors_title">Couleurs barre de statut</string>
+    <string name="pref_cat_statusbar_colors_title">Couleurs barre d\'état</string>
 
     <!-- Enable icon colors -->
     <string name="pref_statusbar_icon_color_enable_title">Activer couleur des icônes</string>
 
     <!-- Statusbar icon color -->
     <string name="pref_statusbar_icon_color_title">Couleur icônes</string>
-    <string name="pref_statusbar_icon_color_summary">Définit la couleur des icônes et de l\'horloge dans la barre de statut</string>
+    <string name="pref_statusbar_icon_color_summary">Définit la couleur des icônes et de l\'horloge dans la barre d\'état</string>
 
     <!-- Statusbar data activity color -->
     <string name="pref_statusbar_data_activity_color_title">Couleur transfert de données</string>
@@ -456,8 +461,8 @@
     
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Gestion de la transparence</string>
-    <string name="pref_tm_statusbar_launcher_title">Barre de statut : lanceur</string>
-    <string name="pref_tm_statusbar_lockscreen_title">Barre de statut : écran de déverrouillage</string>
+    <string name="pref_tm_statusbar_launcher_title">Barre d\'état : lanceur</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Barre d\'état : écran de déverrouillage</string>
     <string name="pref_tm_navbar_launcher_title">Barre de navigation : lanceur</string>
     <string name="pref_tm_navbar_lockscreen_title">Barre de navigation : écran de déverrouillage</string>
 
@@ -506,7 +511,7 @@
     <!-- Expanded Desktop -->
     <string name="pref_expanded_desktop_title">Mode bureau étendu</string>
     <string name="expanded_desktop_disabled">Désactivé</string>
-    <string name="expanded_desktop_statusbar">Masquer la barre de statut</string>
+    <string name="expanded_desktop_statusbar">Masquer la barre d\'état</string>
     <string name="expanded_desktop_navbar">Masquer la barre de navigation</string>
     <string name="expanded_desktop_both">Masquer les deux</string>
     <string name="action_expanded_desktop_title">Bureau étendu</string>
@@ -550,7 +555,7 @@
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Activer le contrôle de la luminosité</string>
-    <string name="pref_statusbar_brightness_summary">Ajuste la luminosité en glissant le doigt sur la barre de statut</string>
+    <string name="pref_statusbar_brightness_summary">Ajuste la luminosité en glissant le doigt sur la barre d\'état (la luminosité automatique doit être désactivée !)</string>
 
     <!-- Phone tweaks categories -->
     <string name="pref_cat_phone_telephony_title">Téléphonie</string>
@@ -570,7 +575,7 @@
 
     <!-- Follow stock battery color -->
     <string name="pref_sbcolor_follow_stock_battery_title">Adopter la couleur de batterie d\'origine</string>
-    <string name="pref_sbcolor_follow_stock_battery_summary">Permet d\'utiliser la couleur de l\'icône de la batterie d\'origine dans la barre de statut pour l\'horloge, la batterie circulaire et le pourcentage. Valable lorsque la coloration personnalisée des icônes est désactivée</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Permet d\'utiliser la couleur de l\'icône de la batterie d\'origine dans la barre d\'état pour l\'horloge, la batterie circulaire et le pourcentage. Valable lorsque la coloration personnalisée des icônes est désactivée</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
     <string name="pref_network_mode_tile_mode_title">Modalités touche mode réseau</string>
@@ -618,5 +623,46 @@
     <string name="call_vibration_disconnected">À la fin de l\'appel</string>
     <string name="call_vibration_waiting">À la mise en attente</string>
     <string name="call_vibration_periodic">Toutes les 45e secondes lors d\'un appel sortant</string>
+
+    <!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">Réordonnancement des touches</string>
+    <string name="pref_qs_tile_order_summary">Permet le réordonnancement des touches de Paramètres rapides</string>
+
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Blocage des notifications en cours</string>
+    <string name="pref_ongoing_notifications_summary">Permet de bloquer les notifications en cours sélectionnées</string>
+    <string name="ongoing_notif_info">La liste sera incrémentée automatiquement par chaque notification en cours qui surviendra.
+        Vous pouvez décider ensuite de bloquer la notification en cours la prochaine fois qu\'elle aura lieu. À utiliser avec prudence</string>
+    <string name="ongoing_notif_reset_list">Réinitialiser la liste</string>
+    <string name="ongoing_notif_reset_alert">Est-vous certain de vouloir réinitialiser la liste ? 
+        Cela effacera la liste actuelle et débloquera toutes les notifications en cours préalablement bloquées</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Déverrouillage rapide</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Pour un déverrouillage automatique lorsque le bon code PIN / mot de passe est saisi</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Désactivé</string>
+    <string name="clock_dow_standard">Standard</string>
+    <string name="clock_dow_lowercase">En minuscules</string>
+    <string name="clock_dow_uppercase">En majuscules</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Politique de verrouillage de la barre d\'état</string>
+    <string name="sbl_policy_default">Par défaut</string>
+    <string name="sbl_policy_unlocked">Accessible en l\'absence de sécurisation (PIN/mdp)</string>
+    <string name="sbl_policy_locked">Bloquée</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Surveillance du flux de données</string>
+    <string name="pref_data_traffic_enable_title">Activer la surveillance</string>
+    <string name="pref_data_traffic_enable_summary">Affiche le contrôleur du flux de données à chaque fois que la connexion de données est active</string>
+    <string name="pref_data_traffic_position_title">Position</string>
+    <string name="dt_position_auto">Auto (centré ou à droite en fonction de la position de l\'horloge)</string>
+    <string name="dt_position_left">À gauche</string>
+    <string name="pref_data_traffic_size_title">Dimension</string>
+    <string name="dt_size_normal">Normal</string>
+    <string name="dt_size_smaller">Plus petit</string>
+    <string name="dt_size_smallest">Le plus petit possible</string>
 
 </resources>

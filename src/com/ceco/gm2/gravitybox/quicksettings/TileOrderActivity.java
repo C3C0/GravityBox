@@ -34,7 +34,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +67,8 @@ public class TileOrderActivity extends ListActivity {
 
         mContext = getApplicationContext();
         mResources = mContext.getResources();
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        final String prefsName = mContext.getPackageName() + "_preferences";
+        mPrefs = mContext.getSharedPreferences(prefsName, Context.MODE_WORLD_READABLE);
 
         mTileList = getListView();
         ((TouchInterceptor) mTileList).setDropListener(mDropListener);

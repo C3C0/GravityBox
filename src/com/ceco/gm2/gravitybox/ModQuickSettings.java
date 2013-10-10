@@ -43,6 +43,7 @@ import com.ceco.gm2.gravitybox.quicksettings.GravityBoxTile;
 import com.ceco.gm2.gravitybox.quicksettings.SyncTile;
 import com.ceco.gm2.gravitybox.quicksettings.VolumeTile;
 import com.ceco.gm2.gravitybox.quicksettings.WifiApTile;
+import com.ceco.gm2.gravitybox.quicksettings.WifiTile;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
@@ -64,6 +65,7 @@ import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -83,6 +85,7 @@ public class ModQuickSettings {
     private static final String CLASS_QS_CONTAINER_VIEW = "com.android.systemui.statusbar.phone.QuickSettingsContainerView";
     private static final String CLASS_QS_MODEL = "com.android.systemui.statusbar.phone.QuickSettingsModel";
     private static final String CLASS_QS_MODEL_RCB = "com.android.systemui.statusbar.phone.QuickSettingsModel$RefreshCallback";
+    private static final String CLASS_QS_MODEL_STATE = "com.android.systemui.statusbar.phone.QuickSettingsModel.State";
     private static final boolean DEBUG = false;
 
     private static final float STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_RIGHT = 0.15f;
@@ -144,6 +147,9 @@ public class ModQuickSettings {
             R.id.gps_tileview,
             R.id.ringer_mode_tileview
         ));
+        if (Utils.isMtkDevice()) {
+            mCustomGbTileKeys.add(R.id.wifi_tileview);
+        }
 
         Map<String, Integer> tmpMap = new HashMap<String, Integer>();
         tmpMap.put("user_textview", 1);
@@ -492,6 +498,12 @@ public class ModQuickSettings {
                 LayoutInflater inflater = (LayoutInflater) param.args[1];
 
                 mTiles = new ArrayList<AQuickSettingsTile>();
+
+                if (Utils.isMtkDevice()) {
+                    WifiTile wt = new WifiTile(mContext, mGbContext, mStatusBar, mPanelBar, mWifiManager);
+                    wt.setupQuickSettingsTile(mContainerView, inflater);
+                    mTiles.add(wt);
+                }
 
                 GpsTile gpsTile = new GpsTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 gpsTile.setupQuickSettingsTile(mContainerView, inflater);
@@ -856,6 +868,24 @@ public class ModQuickSettings {
                                 XposedHelpers.callMethod(mQuickSettings, "startSettingsActivity", intent);
                                 tile.setPressed(false);
                                 return true;
+                            }
+                        });
+                        XposedHelpers.findAndHookMethod(param.args[1].getClass(), "refreshView",
+                                CLASS_QS_TILEVIEW, CLASS_QS_MODEL_STATE, new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(final MethodHookParam param2) throws Throwable {
+                                if (param2.args[0] != tile) return;
+                                final ConnectivityManager cm = 
+                                        (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+                                if (!(Boolean) XposedHelpers.callMethod(cm, "getMobileDataEnabled")) {
+                                    ImageView iov = (ImageView) tile.findViewById(
+                                            mContext.getResources().getIdentifier(
+                                                    "rssi_overlay_image", "id", PACKAGE_NAME));
+                                    if (iov != null) {
+                                        iov.setImageDrawable(mGbContext.getResources().getDrawable(
+                                                R.drawable.ic_qs_signal_data_off));
+                                    }
+                                }
                             }
                         });
                     }
