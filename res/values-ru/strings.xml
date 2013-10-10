@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
@@ -79,6 +93,10 @@
     <string name="quick_settings_expanded_desktop_expanded">Расширенный</string>
     <string name="quick_settings_stay_awake_on">Не засыпать вкл.</string>
     <string name="quick_settings_stay_awake_off">Не засыпать выкл.</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi выкл</string>
+    <string name="quick_settings_wifi_not_connected">Не подключено</string>
+    <string name="quick_settings_wifi_turning_on">Включение…</string>
     
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Иконки быстрых настроек в статусбаре</string>
@@ -87,8 +105,10 @@
     <string name="qs_tile_airplane_mode">Режим полета</string>
     <string name="qs_tile_battery">Заряд батареи</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (CM style)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_gps_alt">GPS (CM style)</string>
     <string name="qs_tile_mobile_data">Мобильный интернет</string>
     <string name="qs_tile_network_mode">Режим сети (2g/3g)</string>
     <string name="qs_tile_data_usage">Передача данных (статистика)</string>
@@ -269,10 +289,6 @@
     <string name="phone_flip_action_none">Ничего не делать</string>
     <string name="phone_flip_action_mute">Выключить звук</string>
     <string name="phone_flip_action_dismiss">Сбросить звонок</string>
-
-    <!-- Disable vibrate on call connect -->
-    <string name="pref_phone_call_connect_vibrate_disable_title">Отключить вибрацию при установлении соединения</string>
-    <string name="pref_phone_call_connect_vibrate_disable_summary">Отключает вибрацию, которая срабатывает при установлении соединения во ремя звонка</string>
 
     <!-- Soft reboot -->
     <string name="reboot_soft">Мягкая перезагрузка</string>
@@ -521,6 +537,7 @@
     <string name="pref_navbar_enable_summary">Необходима перезагрузка</string>
     <string name="pref_navbar_height_title">Высота панели навигации</string>
     <string name="pref_navbar_height_summary">Применимо к портретной ориентации</string>
+    <string name="pref_navbar_height_landscape_summary">Применять для горизонтальной и вертикальной ориентаций</string>
     <string name="pref_navbar_width_title">Ширина панели навигации</string>
     <string name="pref_navbar_width_summary">Применимо к ландшафтной ориентации</string>
     <string name="pref_navbar_menukey_title">Всегда показывать кнопку меню</string>
@@ -533,7 +550,8 @@
     <string name="pref_lockscreen_ring_targets_enable_title">Включить цели экрана блокировки</string>
     <string name="pref_lockscreen_ring_targets_enable_summary">Общий переключатель целей экрана блокировки</string>
     <string name="pref_lockscreen_ring_targets_app_title">Целевое приложение %s</string>
-    <string name="pref_lockscreen_ring_vertical_offset_title">Нижнее смещение кольца разблокировки</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">Вертикальное смещение кольца разблокировки</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">Горизонтальное смещение</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Включить контроль яркости</string>
@@ -561,8 +579,9 @@
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
     <string name="pref_network_mode_tile_mode_title">Режим тайла "Режим сети"</string>
-    <string name="nm_tile_mode1">2G/2G+3G/3G</string>
-    <string name="nm_tile_mode2">2G/2G+3G</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
+    <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
+    <string name="nm_tile_mode3">2G/3G/(LTE)</string>
 
     <!-- Disable GPS notifications -->
     <string name="pref_gps_notif_disable_title">Отключить GPS уведомления</string>
@@ -608,5 +627,46 @@
     <!-- QuickSettings tile order -->
     <string name="pref_qs_tile_order_title">Сортирвока тайлов</string>
     <string name="pref_qs_tile_order_summary">Позволяет сортировать тайлы</string>
-        
+    
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Блокировка уведомлений</string>
+    <string name="pref_ongoing_notifications_summary">Позволяет блокировать выбранные уведомления</string>
+    <string name="ongoing_notif_info">Список формируется автоматически при появлении уведомления.
+        Вы можете решить позже, какое уведомление блокировать. Используйте с осторожностью.</string>
+    <string name="ongoing_notif_reset_list">Сбросить список</string>
+    <string name="ongoing_notif_reset_alert">Вы уверены, что хотите сбросить список? 
+        Это очистит список и разблокирует все текущие уведомления.</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Быстрая разблокировка</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Разблокировать автоматически при вводе верного PIN/пароля.</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Отключено</string>
+    <string name="clock_dow_standard">По умолчанию</string>
+    <string name="clock_dow_lowercase">строчными</string>
+    <string name="clock_dow_uppercase">ЗАГЛАВНЫМИ</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Правила блокировки статусбара</string>
+    <string name="sbl_policy_default">По умолчанию</string>
+    <string name="sbl_policy_unlocked">Разблокирован if keyguard insecured</string>
+    <string name="sbl_policy_locked">Заблокирован</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Монитор трафика</string>
+    <string name="pref_data_traffic_enable_title">Включить мониторинг</string>
+    <string name="pref_data_traffic_enable_summary">Показывает трафик всегда, когда включена передача данных</string>
+    <string name="pref_data_traffic_position_title">Позиция</string>
+    <string name="dt_position_auto">Автоматически (в центре или справа в зависимости от позиции часов)</string>
+    <string name="dt_position_left">Слева</string>
+    <string name="pref_data_traffic_size_title">Размер</string>
+    <string name="dt_size_normal">Обычный</string>
+    <string name="dt_size_smaller">Маленький</string>
+    <string name="dt_size_smallest">Очень маленький</string>
+
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">Отключить ограничение виджетов</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">Позволяет получить неограниченное количество виджетов экрана блокировки</string>
+
 </resources>
