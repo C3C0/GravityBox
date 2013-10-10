@@ -555,7 +555,7 @@
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Enable brightness control</string>
-    <string name="pref_statusbar_brightness_summary">Adjusts brightness by sliding over statusbar</string>
+    <string name="pref_statusbar_brightness_summary">Adjusts brightness by sliding over statusbar (requires automatic brightness to be disabled)</string>
 
     <!-- Phone tweaks categories -->
     <string name="pref_cat_phone_telephony_title">Telephony</string>
