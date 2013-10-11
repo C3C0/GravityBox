@@ -67,7 +67,9 @@ public class ModStatusBar {
     private static final String CLASS_PHONE_STATUSBAR_POLICY = "com.android.systemui.statusbar.phone.PhoneStatusBarPolicy";
     private static final String CLASS_POWER_MANAGER = "android.os.PowerManager";
     private static final String CLASS_LOCATION_CONTROLLER = "com.android.systemui.statusbar.policy.LocationController";
-    private static final String CLASS_STATUSBAR_NOTIF = "com.android.internal.statusbar.StatusBarNotification";
+    private static final String CLASS_STATUSBAR_NOTIF = Build.VERSION.SDK_INT > 17 ?
+            "android.service.notification.StatusBarNotification" :
+            "com.android.internal.statusbar.StatusBarNotification";
     private static final boolean DEBUG = false;
 
     private static final float BRIGHTNESS_CONTROL_PADDING = 0.15f;
