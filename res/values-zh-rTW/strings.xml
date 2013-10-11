@@ -66,17 +66,23 @@
     <string name="quick_settings_sync_off">同步處理關閉</string>
     <string name="quick_settings_wifi_ap_on">Wi-Fi 行動熱點 開啟</string>
     <string name="quick_settings_wifi_ap_off">Wi-Fi 行動熱點 關閉</string>
-    <string name="quick_settings_torch_on">手電筒開啟</string>
-    <string name="quick_settings_torch_off">手電筒關閉</string>
-    <string name="quick_settings_torch_off_notif">按下以關閉</string>
-    <string name="quick_settings_qr_playing">播放中…</string>
+    <string name="quick_settings_torch_on">Torch 開啟</string>
+    <string name="quick_settings_torch_off">Torch 關閉</string>
+    <string name="quick_settings_torch_off_notif">輕觸以關閉</string>
+    <string name="quick_settings_qr_playing">播放中&#8230;</string>
     <string name="quick_settings_qr_recording">錄音中…</string>
     <string name="quick_settings_qr_recorded">已錄音</string>
     <string name="quick_settings_qr_record">長按以錄音</string>
     <string name="quick_settings_qr_recording_notif">按下以停止錄音</string>
-    <string name="quick_settings_expanded_desktop_disabled">關閉</string>
+    <string name="quick_settings_expanded_desktop_disabled">已停用</string>
     <string name="quick_settings_expanded_desktop_normal">正常</string>
-    <string name="quick_settings_expanded_desktop_expanded">開啟</string>
+    <string name="quick_settings_expanded_desktop_expanded">擴展</string>
+    <string name="quick_settings_stay_awake_on">開啟保持清醒</string>
+    <string name="quick_settings_stay_awake_off">關閉保持清醒</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi 關閉</string>
+    <string name="quick_settings_wifi_not_connected">沒有連線</string>
+    <string name="quick_settings_wifi_turning_on">開啟中&#8230;</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">狀態列快速設定磁貼</string>
@@ -85,24 +91,28 @@
     <string name="qs_tile_airplane_mode">飛航模式</string>
     <string name="qs_tile_battery">電池狀態</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (CM 風格)</string>
     <string name="qs_tile_bluetooth">藍牙</string>
     <string name="qs_tile_gps">GPS</string>
-    <string name="qs_tile_mobile_data">資料連結</string>
+    <string name="qs_tile_gps_alt">GPS (CM 風格)</string>
+    <string name="qs_tile_mobile_data">行動資料</string>
     <string name="qs_tile_network_mode">網路模式</string>
     <string name="qs_tile_data_usage">資料用量</string>
-    <string name="qs_tile_audio">情境模式</string>
+    <string name="qs_tile_audio">情景模式</string>
     <string name="qs_tile_brightness">亮度</string>
-    <string name="qs_tile_screen_timeout">休眠</string>
+    <string name="qs_tile_screen_timeout">螢幕休眠時間</string>
     <string name="qs_tile_autorotation">自動旋轉</string>
     <string name="qs_tile_sync">同步功能</string>
     <string name="qs_tile_wifi_ap">Wi-Fi 行動熱點</string>
-    <string name="qs_tile_torch">手電筒</string>
-    <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_torch">Torch</string>
+    <string name="qs_tile_gravitybox">GravityBox 設定</string>
     <string name="qs_tile_sleep">關閉螢幕</string>
     <string name="qs_tile_quickrecord">快速錄音</string>
     <string name="qs_tile_settings">設定</string>
     <string name="qs_tile_volume">音量</string>
     <string name="qs_tile_expanded_desktop">全螢幕功能</string>
+    <string name="qs_tile_stay_awake">保持清醒</string>
+    <string name="qs_tile_screenshot">螢幕截圖</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">顏色選擇器</string>
@@ -387,7 +397,7 @@
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">使用 Holo 黑色背景主題</string>
-    <string name="pref_gb_theme_dark_summary">將 GravityBox 的 Holo 白色背景主題換成 Holo 黑色背景主題</string>
+    <string name="pref_gb_theme_dark_summary">將 GravityBox 的預設 Holo 白色背景主題換成 Holo 黑色背景主題</string>
 
     <!-- Clear all recents positions -->
     <string name="recent_clear_off">關閉</string>
@@ -507,6 +517,7 @@
     <string name="hwkey_action_expanded_desktop">切換全螢幕功能</string>
     <string name="hwkey_action_expanded_desktop_disabled">全螢幕模式已關閉！</string>
 
+
     <!-- Navigation bar tweaks category -->
     <string name="pref_cat_navigation_bar_title">海苔條校正</string>
     <string name="pref_cat_navigation_bar_summary">包含各種關於海苔條的校正</string>
@@ -515,25 +526,28 @@
     <string name="pref_navbar_enable_title">啟用海苔條功能</string>
     <string name="pref_navbar_enable_summary">需要重新啟動</string>
     <string name="pref_navbar_height_title">海苔條高度</string>
-    <string name="pref_navbar_height_summary">套用於當螢幕呈現直立方向</string>
+    <string name="pref_navbar_height_summary">套用於水平的海苔條和縱向</string>
+    <string name="pref_navbar_height_landscape_summary">套用於水平的海苔條和橫向</string>
     <string name="pref_navbar_width_title">海苔條寬度</string>
-    <string name="pref_navbar_width_summary">套用於當螢幕呈現橫放方向</string>
+    <string name="pref_navbar_width_summary">套用於垂直海苔條</string>
     <string name="pref_navbar_menukey_title">永遠顯示選單鍵</string>
 
+
     <!-- Screenshot in power menu -->
-    <string name="pref_powermenu_screenshot_title">電源選單顯示螢幕截圖</string>
+    <string name="pref_powermenu_screenshot_title">電源選單顯示"螢幕截圖"選項</string>
 
 
     <!-- Unlock ring settings -->
-    <string name="pref_cat_lockscreen_ring_settings_title">螢幕鎖定目標</string>
+    <string name="pref_cat_lockscreen_ring_settings_title">解鎖環設定</string>
     <string name="pref_lockscreen_ring_targets_enable_title">啟用螢幕鎖定目標</string>
-    <string name="pref_lockscreen_ring_targets_enable_summary">鎖定螢幕滑動主滑動</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">主切換解鎖環目標</string>
     <string name="pref_lockscreen_ring_targets_app_title">目標應用程式 %s</string>
-    <string name="pref_lockscreen_ring_vertical_offset_title">解鎖環底部偏移</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">解鎖環垂直偏移量</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">解鎖環水平偏移量</string>
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">啟用亮度控制</string>
-    <string name="pref_statusbar_brightness_summary">調整滑動狀態列時的亮度</string>
+    <string name="pref_statusbar_brightness_summary">調整滑動狀態列時的亮度（需要停用自動亮度）</string>
 
     <!-- Phone tweaks categories -->
     <string name="pref_cat_phone_telephony_title">電話</string>
@@ -556,7 +570,7 @@
     <string name="pref_sbcolor_follow_stock_battery_summary">當圖示自訂顏色停用時讓狀態列上的時鐘，電量百分比與圓形電池顯示預設電池顏色.</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">網路模式瓷貼模式</string>
+    <string name="pref_network_mode_tile_mode_title">網路模式的瓷貼模式</string>
     <string name="nm_tile_mode1">2G/2G+3G/3G</string>
     <string name="nm_tile_mode2">2G/2G+3G</string>
 
@@ -588,7 +602,7 @@
 
 
     <!-- Unplug turns on screen -->
-    <string name="pref_unplug_turns_on_screen_title">取消傳輸時開啟螢幕</string>
+    <string name="pref_unplug_turns_on_screen_title">取消外接傳輸時開啟螢幕</string>
     <string name="pref_unplug_turns_on_screen_summary">啟用時，如果您插入/拔出 USB 傳輸線/電源/其他輸入輸出裝置，螢幕將會開啟 (需要重新啟動)</string>
 
     <!-- Mute volume adjust sound -->
@@ -605,5 +619,46 @@
     <!-- QuickSettings tile order -->
     <string name="pref_qs_tile_order_title">瓷貼排序</string>
     <string name="pref_qs_tile_order_summary">可讓的 QuickSettings 瓷貼重新排序</string>
+
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">運行中的程式通知封鎖器</string>
+    <string name="pref_ongoing_notifications_summary">允許封鎖已選擇的運行中的通知</string>
+    <string name="ongoing_notif_info">該清單將為每個正在運行中的通知自動植入封鎖程序.
+        然後，您可以決定是否封鎖運行中的通知下一次出現。請謹慎使用.</string>
+    <string name="ongoing_notif_reset_list">重設清單</string>
+    <string name="ongoing_notif_reset_alert">您確定要重設清單嗎? 
+        這將會清除當前清單中已被封鎖的通知，並且已被封鎖的通知將會在稍後重新出現.</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">快速解鎖</string>
+    <string name="pref_lockscreen_quick_unlock_summary">正確的PIN/密碼輸入時自動解除鎖定</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">停用</string>
+    <string name="clock_dow_standard">標準</string>
+    <string name="clock_dow_lowercase">小寫字符</string>
+    <string name="clock_dow_uppercase">大寫字符</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">狀態列鎖定政策</string>
+    <string name="sbl_policy_default">預設</string>
+    <string name="sbl_policy_unlocked">如果鍵盤保護不安全解除鎖定</string>
+    <string name="sbl_policy_locked">已鎖定</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">資料流量監控</string>
+    <string name="pref_data_traffic_enable_title">啟用監控</string>
+    <string name="pref_data_traffic_enable_summary">當裝置有資料連結時在狀態列顯示資料流量監控</string>
+    <string name="pref_data_traffic_position_title">顯示位置</string>
+    <string name="dt_position_auto">自動 (居中或右取決於時鐘的位置)</string>
+    <string name="dt_position_left">左</string>
+    <string name="pref_data_traffic_size_title">大小</string>
+    <string name="dt_size_normal">正常</string>
+    <string name="dt_size_smaller">較小</string>
+    <string name="dt_size_smallest">最小</string>
+
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">停用小工具限值</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">允許無限數量的螢幕鎖定小工具</string>
 
 </resources>
