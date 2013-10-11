@@ -72,7 +72,7 @@
     <string name="quick_settings_qr_playing">In riproduzione&#8230;</string>
     <string name="quick_settings_qr_recording">Registrazione&#8230;</string>
     <string name="quick_settings_qr_recorded">Registrato</string>
-    <string name="quick_settings_qr_record">Pressione lunga per registrare</string>
+    <string name="quick_settings_qr_record">Tieni premuto per registrare</string>
     <string name="quick_settings_qr_recording_notif">Tocca per fermare la registrazione</string>
 
     <!-- QuickSettings settings -->
@@ -632,7 +632,8 @@
     <string name="dt_size_smaller">Più piccola</string>
     <string name="dt_size_smallest">Ancora più piccola</string>
 
-
-
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">Disabilita limitazione widget</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">Consenti numero illimitato widget in lockscreen</string>
 
 </resources>
