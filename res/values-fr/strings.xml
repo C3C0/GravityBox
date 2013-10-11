@@ -664,6 +664,10 @@
     <string name="dt_size_normal">Normal</string>
     <string name="dt_size_smaller">Plus petit</string>
     <string name="dt_size_smallest">Le plus petit possible</string>
+    <string name="byte_abbr">o</string>
+    <string name="kilobyte_abbr">Ko</string>
+    <string name="megabyte_abbr">Mo</string>
+    <string name="second_abbr">s</string>
 
     <!-- Disable lockscreen widget limit -->
     <string name="pref_lockscreen_widget_limit_disable_title">Supprimer la limite de widgets</string>
