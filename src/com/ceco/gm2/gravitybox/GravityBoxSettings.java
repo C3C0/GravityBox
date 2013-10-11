@@ -639,6 +639,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private ListPreference mPrefSbLockPolicy;
         private ListPreference mPrefDataTrafficPosition;
         private ListPreference mPrefDataTrafficSize;
+        private CheckBoxPreference mPrefLinkVolumes;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -759,6 +760,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCatMedia = (PreferenceScreen) findPreference(PREF_CAT_KEY_MEDIA);
             mPrefSafeMediaVolume = (CheckBoxPreference) findPreference(PREF_KEY_SAFE_MEDIA_VOLUME);
             mPrefMusicVolumeSteps = (CheckBoxPreference) findPreference(PREF_KEY_MUSIC_VOLUME_STEPS);
+            mPrefLinkVolumes = (CheckBoxPreference) findPreference(PREF_KEY_LINK_VOLUMES);
 
             mPrefExpandedDesktop = (ListPreference) findPreference(PREF_KEY_EXPANDED_DESKTOP);
 
@@ -860,6 +862,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             if (!Utils.shouldAllowMoreVolumeSteps()) {
                 mPrefs.edit().putBoolean(PREF_KEY_MUSIC_VOLUME_STEPS, false).commit();
                 mPrefCatMedia.removePreference(mPrefMusicVolumeSteps);
+            }
+
+            // Remove link volumes preference if device has no telephony support
+            if (!Utils.hasTelephonySupport(getActivity())) {
+                mPrefCatMedia.removePreference(mPrefLinkVolumes);
             }
 
             setDefaultValues();
