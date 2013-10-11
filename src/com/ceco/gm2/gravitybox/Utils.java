@@ -17,6 +17,8 @@ package com.ceco.gm2.gravitybox;
 
 import de.robv.android.xposed.XposedBridge;
 import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.XResources;
 import android.os.Build;
 import android.os.Vibrator;
 import android.telephony.TelephonyManager;
@@ -111,6 +113,7 @@ public class Utils {
         return mHasGeminiSupport;
     }
 
+    // to be called from settings or other user activities
     public static boolean hasTelephonySupport(Context con) {
         // returns false if device has no phone radio (no telephony support)
         if (mHasTelephonySupport != null) return mHasTelephonySupport;
@@ -118,6 +121,17 @@ public class Utils {
         TelephonyManager manager = (TelephonyManager) con.getSystemService(Context.TELEPHONY_SERVICE);
         mHasTelephonySupport = (manager.getPhoneType() != TelephonyManager.PHONE_TYPE_NONE);
         return mHasTelephonySupport;
+    }
+
+    // to be called from system context only
+    public static boolean hasTelephonySupport() {
+        try {
+            Resources res = XResources.getSystem();
+            return res.getBoolean(res.getIdentifier("config_voice_capable", "bool", "android"));
+        } catch (Throwable t) {
+            log("hasTelephonySupport(): " + t.getMessage());
+            return false;
+        }
     }
 
     public static boolean hasVibrator(Context con) {
