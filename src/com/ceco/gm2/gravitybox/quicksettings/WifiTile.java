@@ -41,6 +41,7 @@ public class WifiTile extends AQuickSettingsTile implements WifiStateChangeListe
     private static final String CLASS_NCG_SIGNAL_CLUSTER = Utils.hasGeminiSupport() ?
             "com.android.systemui.statusbar.policy.NetworkControllerGemini.SignalCluster" :
             "com.android.systemui.statusbar.policy.NetworkController.SignalCluster";
+    private static final String CLASS_ICON_ID_WRAPPER = "com.mediatek.systemui.ext.IconIdWrapper";
     private static final boolean DEBUG = false;
 
     private WifiManagerWrapper mWifiManager;
@@ -136,11 +137,12 @@ public class WifiTile extends AQuickSettingsTile implements WifiStateChangeListe
             mTurningOn = false;
             try {
                 String resName = mResources.getResourceEntryName(iconId);
+                if (DEBUG) log("Icon resource name = " + resName);
                 mDrawableId = mDrawableMap.containsKey(resName) ?
                         mDrawableMap.get(resName) : R.drawable.ic_qs_wifi_0;
             } catch (NotFoundException e) {
                 mDrawableId = R.drawable.ic_qs_wifi_0;
-                XposedBridge.log(e);
+                log("updateResources: Resource not found: " + e.getMessage());
             }
             mLabel = connected ? getWifiSsid() : 
                 mGbResources.getString(R.string.quick_settings_wifi_not_connected);
@@ -160,13 +162,24 @@ public class WifiTile extends AQuickSettingsTile implements WifiStateChangeListe
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             if (method.getName().equals("setWifiIndicators")) {
-                if (DEBUG) {
-                    for (int i = 0; i < args.length; i++) {
-                        log("setWifiIndicators: arg[" + i + "] = " + 
-                                (args[i] == null ? "NULL" : args[i].toString())); 
+                try {
+                    if (DEBUG) {
+                        for (int i = 0; i < args.length; i++) {
+                            log("setWifiIndicators: arg[" + i + "] = " + 
+                                    (args[i] == null ? "NULL" : args[i].toString())); 
+                        }
                     }
+                    int iconId = 0;
+                    if (args[1] instanceof Integer) {
+                        iconId = (Integer) args[1];
+                    } else if (args[1].getClass().getName().equals(CLASS_ICON_ID_WRAPPER)) {
+                        iconId = (Integer) XposedHelpers.callMethod(args[1], "getIconId");
+                    }
+                    if (DEBUG) log("setWifiIndicators: iconId = " + iconId);
+                    updateResources((Boolean) args[0], iconId);
+                } catch (Throwable t) {
+                    log("setWifiIndicators: " + t.getMessage());
                 }
-                updateResources((Boolean) args[0], (Integer) args[1]);
             }
             return null;
         }
