@@ -17,6 +17,7 @@ package com.ceco.gm2.gravitybox;
 
 import de.robv.android.xposed.XposedBridge;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.XResources;
 import android.os.Build;
@@ -44,6 +45,7 @@ public class Utils {
     private static Boolean mHasTelephonySupport = null;
     private static String mDeviceCharacteristics = null;
     private static Boolean mHasVibrator = null;
+    private static Boolean mHasFlash = null;
 
     // Supported MTK devices
     private static final Set<String> MTK_DEVICES = new HashSet<String>(Arrays.asList(
@@ -143,6 +145,19 @@ public class Utils {
             return mHasVibrator;
         } catch (Throwable t) {
             mHasVibrator = null;
+            return false;
+        }
+    }
+
+    public static boolean hasFlash(Context con) {
+        if (mHasFlash != null) return mHasFlash;
+
+        try {
+            PackageManager pm = con.getPackageManager();
+            mHasFlash = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+            return mHasFlash;
+        } catch (Throwable t) {
+            mHasFlash = null;
             return false;
         }
     }
