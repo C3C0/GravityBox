@@ -550,9 +550,6 @@
     <string name="nm_tile_mode1">2G/2G+3G/3G</string>
     <string name="nm_tile_mode2">2G/2G+3G</string>
 
-    <!-- Disable GPS notifications -->
-    <string name="pref_gps_notif_disable_title">Disabilita notifiche GPS</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Abilita tutte le rotazioni</string>
 

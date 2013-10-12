@@ -372,7 +372,6 @@
     <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
     <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
     <string name="nm_tile_mode3">2G/3G/(LTE)</string>
-    <string name="pref_gps_notif_disable_title">Wyłącz powiadomienia GPS</string>
     <string name="pref_display_allow_all_rotations_title">Zezwalaj na pełen obrót</string>
     <string name="pref_qs_tile_behaviour_override_title">Zmień domyślne zachowanie kafelek</string>
     <string name="pref_qs_tile_behaviour_override_summary">Zastępuje zachowanie wybranych kafelek przy krótkim i długim naciśnięciu (wymagany restart)</string>

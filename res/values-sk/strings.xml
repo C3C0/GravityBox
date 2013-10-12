@@ -558,9 +558,6 @@
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
     <string name="pref_network_mode_tile_mode_title">Režim dlaždice typu mobilnej siete</string>
 
-    <!-- Disable GPS notifications -->
-    <string name="pref_gps_notif_disable_title">Skryť GPS notifikácie</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Povoliť všetky rotácie</string>
 

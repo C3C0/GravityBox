@@ -15,7 +15,6 @@
 
 package com.ceco.gm2.gravitybox;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -23,7 +22,6 @@ import java.util.TimeZone;
 import com.ceco.gm2.gravitybox.preference.AppPickerPreference;
 
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -66,7 +64,6 @@ public class ModStatusBar {
     private static final String CLASS_TICKER = "com.android.systemui.statusbar.phone.PhoneStatusBar$MyTicker";
     private static final String CLASS_PHONE_STATUSBAR_POLICY = "com.android.systemui.statusbar.phone.PhoneStatusBarPolicy";
     private static final String CLASS_POWER_MANAGER = "android.os.PowerManager";
-    private static final String CLASS_LOCATION_CONTROLLER = "com.android.systemui.statusbar.policy.LocationController";
     private static final String CLASS_STATUSBAR_NOTIF = Build.VERSION.SDK_INT > 17 ?
             "android.service.notification.StatusBarNotification" :
             "com.android.internal.statusbar.StatusBarNotification";
@@ -403,7 +400,6 @@ public class ModStatusBar {
             final Class<?> phoneStatusBarPolicyClass = 
                     XposedHelpers.findClass(CLASS_PHONE_STATUSBAR_POLICY, classLoader);
             final Class<?> powerManagerClass = XposedHelpers.findClass(CLASS_POWER_MANAGER, classLoader);
-            final Class<?> locationControllerClass = XposedHelpers.findClass(CLASS_LOCATION_CONTROLLER, classLoader);
 
             final Class<?>[] loadAnimParamArgs = new Class<?>[2];
             loadAnimParamArgs[0] = int.class;
@@ -542,66 +538,6 @@ public class ModStatusBar {
                     if ((XposedHelpers.getIntField(param.thisObject, "mDisabled")
                             & STATUS_BAR_DISABLE_EXPAND) != 0) {
                         param.setResult(true);
-                    }
-                }
-            });
-
-            XposedHelpers.findAndHookMethod(locationControllerClass, 
-                    "onReceive", Context.class, Intent.class, new XC_MethodReplacement() {
-                @SuppressWarnings("unchecked")
-                @Override
-                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                    prefs.reload();
-                    if (!prefs.getBoolean(GravityBoxSettings.PREF_KEY_GPS_NOTIF_DISABLE, false)) {
-                        XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
-                        return null;
-                    }
-
-                    if (DEBUG) log("LocationController: running onReceive replacement");
-
-                    ArrayList<Object> changeCallbacks = null;
-                    try {
-                        changeCallbacks = (ArrayList<Object>) XposedHelpers.getObjectField(
-                                param.thisObject, "mChangeCallbacks");
-                    } catch(NoSuchFieldError nfe) {
-                        if (DEBUG) log("LocationController: mChangeCallbacks field does not exist");
-                    }
-                    if (changeCallbacks == null) {
-                        // there are no callback objects attached to be notified of GPS status so we simply exit
-                        return null;
-                    }
-
-                    try {
-                        final Intent intent = (Intent) param.args[1];
-                        final String action = intent.getAction();
-                        final boolean enabled = intent.getBooleanExtra("enabled", false);
-                        final Resources res = mContext.getResources();
-                        boolean visible;
-                        int textResId;
-
-                        if (action.equals("android.location.GPS_FIX_CHANGE") && enabled) {
-                            textResId = res.getIdentifier("gps_notification_found_text", "string", PACKAGE_NAME);
-                            visible = true;
-                        } else if (action.equals("android.location.GPS_ENABLED_CHANGE") && !enabled) {
-                            textResId = 0;
-                            visible = false;
-                        } else {
-                            textResId = res.getIdentifier("gps_notification_searching_text", "string", PACKAGE_NAME);
-                            visible = true;
-                        }
-
-                        final Class<?>[] paramArgs = new Class[] { boolean.class, String.class };
-                        for (Object cb : changeCallbacks) {
-                            XposedHelpers.callMethod(cb, "onLocationGpsStateChanged", paramArgs,
-                                    visible, textResId == 0 ? null : res.getString(textResId));
-                        }
-
-                        return null;
-                    } catch(Throwable t) {
-                        // fall back to original method
-                        XposedBridge.log(t);
-                        XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
-                        return null;
                     }
                 }
             });

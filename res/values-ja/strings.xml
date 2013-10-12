@@ -567,9 +567,6 @@
     <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
     <string name="nm_tile_mode3">2G/3G/(LTE)</string>
 
-    <!-- Disable GPS notifications -->
-    <string name="pref_gps_notif_disable_title">GPS通知の無効化</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">画面の向きの自由化</string>
 
