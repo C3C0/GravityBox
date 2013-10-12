@@ -874,16 +874,28 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                     mQuickSettings.getEntries()));
             List<CharSequence> qsEntryValues = new ArrayList<CharSequence>(Arrays.asList(
                     mQuickSettings.getEntryValues()));
+            Set<String> qsPrefs = mPrefs.getStringSet(PREF_KEY_QUICK_SETTINGS, null);
             if (!Utils.hasFlash(getActivity())) {
                 qsEntries.remove(getString(R.string.qs_tile_torch));
                 qsEntryValues.remove("torch_tileview");
-                // remove from saved prefs in case it was previously checked in previous versions
-                Set<String> qsPrefs = mPrefs.getStringSet(PREF_KEY_QUICK_SETTINGS, null);
                 if (qsPrefs != null && qsPrefs.contains("torch_tileview")) {
                     qsPrefs.remove("torch_tileview");
-                    mPrefs.edit().putStringSet(PREF_KEY_QUICK_SETTINGS, qsPrefs).commit();
                 }
             }
+            if (!Utils.hasGPS(getActivity())) {
+                qsEntries.remove(getString(R.string.qs_tile_gps));
+                qsEntryValues.remove("gps_tileview");
+                if (Utils.isMtkDevice()) {
+                    qsEntries.remove(getString(R.string.qs_tile_gps_alt));
+                    qsEntryValues.remove("gps_textview");
+                }
+                if (qsPrefs != null) {
+                    if (qsPrefs.contains("gps_tileview")) qsPrefs.remove("gps_tileview");
+                    if (qsPrefs.contains("gps_textview")) qsPrefs.remove("gps_textview");
+                }
+            }
+            // and update saved prefs in case it was previously checked in previous versions
+            mPrefs.edit().putStringSet(PREF_KEY_QUICK_SETTINGS, qsPrefs).commit();
             mQuickSettings.setEntries(qsEntries.toArray(new CharSequence[qsEntries.size()]));
             mQuickSettings.setEntryValues(qsEntryValues.toArray(new CharSequence[qsEntryValues.size()]));
 

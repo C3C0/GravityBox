@@ -505,9 +505,11 @@ public class ModQuickSettings {
                     mTiles.add(wt);
                 }
 
-                GpsTile gpsTile = new GpsTile(mContext, mGbContext, mStatusBar, mPanelBar);
-                gpsTile.setupQuickSettingsTile(mContainerView, inflater);
-                mTiles.add(gpsTile);
+                if (Utils.hasGPS(mContext)) {
+                    GpsTile gpsTile = new GpsTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                    gpsTile.setupQuickSettingsTile(mContainerView, inflater);
+                    mTiles.add(gpsTile);
+                }
 
                 RingerModeTile rmTile = new RingerModeTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 rmTile.setupQuickSettingsTile(mContainerView, inflater);
