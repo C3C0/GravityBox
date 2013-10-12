@@ -1,3 +1,22 @@
+Changelog 2.6.1 - 12/10/2013
+--------------------------------------
+- Ongoing notifications blocker:
+--- fixed compatibility with Android 4.3
+--- show hint when list is empty
+- Expandable volume panel:
+--- show ringer volume only for devices having voice feature
+--- don't allow volume linking for devices that don't have voice feature
+--- added alarm slider
+- Fixed SystemUI crash caused by WiFi tile on some MT6589 devices with different signal cluster handling
+- Updated French translation (thanks to ch-vox)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Chinese (Simplified) translations (thanks to liveasx)
+- Updated Italian translations (thanks to pitone02)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)\
+- Updated German translations (thanks to samsonbear)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Japanese translations (thanks to WedyDQ10)
+
 Changelog 2.6.0 - 10/10/2013
 --------------------------------------
 - Statusbar tweaks:
