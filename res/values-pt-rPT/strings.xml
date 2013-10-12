@@ -618,6 +618,7 @@
     <string name="ongoing_notif_reset_list">Limpar lista</string>
     <string name="ongoing_notif_reset_alert">Tem a certeza que pretende limpar a lista? 
         Esta ação irá limpar a lista atual e todas as notificações até agora bloqueadas serão desbloqueadas.</string>
+    <string name="ongoing_notif_list_empty">(lista vazia)</string>
 
     <!-- Quick unlock -->
     <string name="pref_lockscreen_quick_unlock_title">Desbloqueio rápido</string>
