@@ -41,11 +41,14 @@ public class Utils {
     // Device type reference
     private static int mDeviceType = -1;
     private static Boolean mIsMtkDevice = null;
+    private static String mDeviceCharacteristics = null;
+    
+    // Device features
     private static Boolean mHasGeminiSupport = null;
     private static Boolean mHasTelephonySupport = null;
-    private static String mDeviceCharacteristics = null;
     private static Boolean mHasVibrator = null;
     private static Boolean mHasFlash = null;
+    private static Boolean mHasGPS = null;
 
     // Supported MTK devices
     private static final Set<String> MTK_DEVICES = new HashSet<String>(Arrays.asList(
@@ -158,6 +161,19 @@ public class Utils {
             return mHasFlash;
         } catch (Throwable t) {
             mHasFlash = null;
+            return false;
+        }
+    }
+
+    public static boolean hasGPS(Context con) {
+        if (mHasGPS != null) return mHasGPS;
+
+        try {
+            PackageManager pm = con.getPackageManager();
+            mHasGPS = pm.hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS);
+            return mHasGPS;
+        } catch (Throwable t) {
+            mHasGPS = null;
             return false;
         }
     }
