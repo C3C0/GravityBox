@@ -376,8 +376,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_NETWORK_MODE_TILE_MODE = "pref_network_mode_tile_mode";
     public static final String EXTRA_NMT_MODE = "networkModeTileMode";
 
-    public static final String PREF_KEY_GPS_NOTIF_DISABLE = "pref_gps_notif_disable";
-
     public static final String PREF_KEY_DISPLAY_ALLOW_ALL_ROTATIONS = "pref_display_allow_all_rotations";
     public static final String ACTION_PREF_DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED = 
             "gravitybox.intent.action.DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED";
