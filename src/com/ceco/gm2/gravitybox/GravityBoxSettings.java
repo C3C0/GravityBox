@@ -869,6 +869,24 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefCatMedia.removePreference(mPrefLinkVolumes);
             }
 
+            // Remove tiles based on device features
+            List<CharSequence> qsEntries = new ArrayList<CharSequence>(Arrays.asList(
+                    mQuickSettings.getEntries()));
+            List<CharSequence> qsEntryValues = new ArrayList<CharSequence>(Arrays.asList(
+                    mQuickSettings.getEntryValues()));
+            if (!Utils.hasFlash(getActivity())) {
+                qsEntries.remove(getString(R.string.qs_tile_torch));
+                qsEntryValues.remove("torch_tileview");
+                // remove from saved prefs in case it was previously checked in previous versions
+                Set<String> qsPrefs = mPrefs.getStringSet(PREF_KEY_QUICK_SETTINGS, null);
+                if (qsPrefs != null && qsPrefs.contains("torch_tileview")) {
+                    qsPrefs.remove("torch_tileview");
+                    mPrefs.edit().putStringSet(PREF_KEY_QUICK_SETTINGS, qsPrefs).commit();
+                }
+            }
+            mQuickSettings.setEntries(qsEntries.toArray(new CharSequence[qsEntries.size()]));
+            mQuickSettings.setEntryValues(qsEntryValues.toArray(new CharSequence[qsEntryValues.size()]));
+
             setDefaultValues();
         }
 
