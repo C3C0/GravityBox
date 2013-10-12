@@ -620,6 +620,7 @@
     <string name="ongoing_notif_reset_list">リストの初期化</string>
     <string name="ongoing_notif_reset_alert">リストを初期化しますか?
         ブロックした通知を全てブロックしないようにします。</string>
+    <string name="ongoing_notif_list_empty">(リストが空です)</string> 
 
     <!-- Quick unlock -->
     <string name="pref_lockscreen_quick_unlock_title">クイックロック解除</string>
@@ -648,6 +649,7 @@
     <string name="dt_size_normal">中</string>
     <string name="dt_size_smaller">小</string>
     <string name="dt_size_smallest">極小</string>
+    <string name="second_abbr">秒</string>
 
     <!-- Disable lockscreen widget limit -->
     <string name="pref_lockscreen_widget_limit_disable_title">ウィジェット制限の無効化</string>
