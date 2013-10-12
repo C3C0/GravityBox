@@ -529,9 +529,11 @@ public class ModQuickSettings {
                 wifiApTile.setupQuickSettingsTile(mContainerView, inflater);
                 mTiles.add(wifiApTile);
 
-                TorchTile torchTile = new TorchTile(mContext, mGbContext, mStatusBar, mPanelBar);
-                torchTile.setupQuickSettingsTile(mContainerView, inflater);
-                mTiles.add(torchTile);
+                if (Utils.hasFlash(mContext)) {
+                    TorchTile torchTile = new TorchTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                    torchTile.setupQuickSettingsTile(mContainerView, inflater);
+                    mTiles.add(torchTile);
+                }
 
                 SleepTile sleepTile = new SleepTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 sleepTile.setupQuickSettingsTile(mContainerView, inflater);
