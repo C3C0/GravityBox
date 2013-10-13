@@ -816,6 +816,16 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefCatPhone.removePreference(mPrefCatPhoneMessaging);
             }
 
+            // Remove preferences that don't apply to wifi-only devices
+            if (Utils.isWifiOnly(getActivity())) {
+                getPreferenceScreen().removePreference(mPrefCatPhone);
+                mPrefCatStatusbarQs.removePreference(mPrefNetworkModeTileMode);
+                mPrefCatStatusbar.removePreference(mSignalIconAutohide);
+                mPrefCatStatusbar.removePreference(mPrefDisableRoamingIndicators);
+                mPrefCatPhoneMobileData.removePreference(mPrefMobileDataSlow2gDisable);
+                mPrefCatStatusbarQs.removePreference(mPrefQsNetworkModeSimSlot);
+           	}
+
             // Remove MTK specific preferences for non-MTK devices
             if (!Utils.isMtkDevice()) {
                 getPreferenceScreen().removePreference(mPrefCatFixes);
@@ -890,6 +900,16 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 if (qsPrefs != null) {
                     if (qsPrefs.contains("gps_tileview")) qsPrefs.remove("gps_tileview");
                     if (qsPrefs.contains("gps_textview")) qsPrefs.remove("gps_textview");
+                }
+            }
+            if (Utils.isWifiOnly(getActivity())) {
+                qsEntries.remove(getString(R.string.qs_tile_mobile_data));
+                qsEntries.remove(getString(R.string.qs_tile_network_mode));
+                qsEntryValues.remove("data_conn_textview");
+                qsEntryValues.remove("network_mode_tileview");
+                if (qsPrefs != null) {
+                    if (qsPrefs.contains("data_conn_textview")) qsPrefs.remove("data_conn_textview");
+                    if (qsPrefs.contains("network_mode_tileview")) qsPrefs.remove("network_mode_tileview");
                 }
             }
             // and update saved prefs in case it was previously checked in previous versions

@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.XResources;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Vibrator;
 import android.telephony.TelephonyManager;
@@ -41,6 +42,7 @@ public class Utils {
     // Device type reference
     private static int mDeviceType = -1;
     private static Boolean mIsMtkDevice = null;
+    private static Boolean mIsWifiOnly = null;
     private static String mDeviceCharacteristics = null;
     
     // Device features
@@ -116,6 +118,21 @@ public class Utils {
 
         mHasGeminiSupport = SystemProp.getBoolean("ro.mediatek.gemini_support", false);
         return mHasGeminiSupport;
+    }
+
+    public static boolean isWifiOnly(Context con) {
+        // returns true if device doesn't support mobile data (is wifi only)
+        if (mIsWifiOnly != null) return mIsWifiOnly;
+
+        try {
+            ConnectivityManager cm = (ConnectivityManager) con.getSystemService(
+        	    Context.CONNECTIVITY_SERVICE);
+            mIsWifiOnly = (cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE) == null);
+            return mIsWifiOnly;
+        } catch (Throwable t) {
+            mIsWifiOnly = null;
+            return false;
+        }
     }
 
     // to be called from settings or other user activities
