@@ -260,7 +260,7 @@
     <string name="pref_charging_led_disable_summary">禁用当充电时的 LED 灯</string>
 
     <!-- Hardware key actions -->
-    <string name="pref_cat_hwkey_actions_title">实体按键动作</string>
+    <string name="pref_cat_hwkey_actions_title">实体按键调整</string>
     <string name="pref_cat_hwkey_actions_summary">可在此为实体按键设置自定的动作</string>
     <string name="pref_hwkey_menu_longpress_title">菜单键长按动作</string>
     <string name="pref_hwkey_menu_doubletap_title">菜单键双击动作</string>
