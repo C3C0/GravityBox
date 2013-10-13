@@ -1,3 +1,19 @@
+Changelog 2.6.2 - 13/10/2013
+--------------------------------------
+- Preferences adjusted to take device features into account (thanks to @bgcngm)
+--- Torch tile available only for devices having flash led
+--- GPS tile available only for devices having GPS
+--- Removed redundant "Disable GPS notifications" option (now available via notifications blocker)
+--- Removed preferences and tiles related to mobile data for WiFi only devices
+- Transparency manager: automatically disable transparency updates when all 4 transparency sliders set to 0
+--- fixes graphical anomaly appearing at the top of the windows when transparency off (all 4 sliders zero)
+- Prevent soft reboots on Touchwiz devices when accessing power menu (DOES NOT mean GB is now fully compatible with TW!!!)
+- Improved compatibility of status bar tweaks with devices having modified statusbar layout (Xperia,...)
+- Updated French translation (thanks to ch-vox)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Chinese (Simplified) translations (thanks to liveasx)
+- Updated Hungarian translations (thanks to benjoe1)
+
 Changelog 2.6.1 - 12/10/2013
 --------------------------------------
 - Ongoing notifications blocker:
