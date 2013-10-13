@@ -44,7 +44,7 @@
     <string name="sim_disable_notifications_summary">Message \"SIM non insérée\" désactivé</string>
 
     <string name="poweroff_advanced_title">Menu avancé de redémarrage</string>
-    <string name="poweroff_advanced_summary">Active le menu avancé de redémarrage avec les options de redémarrer en mode récupération</string>
+    <string name="poweroff_advanced_summary">Active le menu avancé de redémarrage avec la possibilité de redémarrer en mode récupération</string>
     <string name="poweroff_recovery">Récupération</string>
     <string name="poweroff_bootloader">Bootloader</string>
 
@@ -56,8 +56,8 @@
 
     <string name="recents_clear_all_title">Effacer les tâches récentes</string>
 
-    <string name="fix_datetime_crash_title">Paramètre Date et heure</string>
-    <string name="fix_datetime_crash_summary">Activer si vous constatez un plantage lorsque vous accédez au paramètre Date et heure (redémarrage nécessaire)</string>
+    <string name="fix_datetime_crash_title">Paramètre date et heure</string>
+    <string name="fix_datetime_crash_summary">Activer si vous constatez un plantage lorsque vous accédez au paramètre date et heure (redémarrage nécessaire)</string>
 
     <string name="fix_caller_id_phone_title">Identification de l\'appelant en téléphonie</string>
     <string name="fix_caller_id_phone_summary">Activer si vous constatez qu\'un contact enregistré n\'est pas identifié lors d\'un appel entrant (redémarrage nécessaire)</string>
@@ -101,7 +101,7 @@
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Touches des paramètres rapides</string>
     <string name="quick_settings_summary">Permet d\'afficher ou masquer les touches de paramètres rapides depuis la barre d\'état</string>
-    <string name="qs_tile_user_profile">Profile utilisateur</string>
+    <string name="qs_tile_user_profile">Profil utilisateur</string>
     <string name="qs_tile_airplane_mode">Mode avion</string>
     <string name="qs_tile_battery">Niveau de batterie</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
@@ -122,7 +122,7 @@
     <string name="qs_tile_gravitybox">GravityBox</string>
     <string name="qs_tile_sleep">Veille</string>
     <string name="qs_tile_quickrecord">Enregistrement rapide</string>
-    <string name="qs_tile_settings">Réglages</string>
+    <string name="qs_tile_settings">Paramètres</string>
     <string name="qs_tile_volume">Volume</string>
     <string name="qs_tile_expanded_desktop">Bureau étendu</string>
     <string name="qs_tile_stay_awake">Rester allumé</string>
@@ -138,7 +138,7 @@
 
     <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">Paramètres liés à la parole</string>
-    <string name="fix_tts_settings_summary">Donne accès à la recherche vocale et au paramètre de saisie vocale dans les paramètres Langage et saisie (redémarrage nécessaire)</string>
+    <string name="fix_tts_settings_summary">Donne accès à la recherche vocale et au paramètre de saisie vocale dans les paramètres langage et saisie (redémarrage nécessaire)</string>
 
     <!--  Advanced developer options -->
     <string name="fix_dev_opts_title">Options avancées (développeurs)</string>
@@ -148,7 +148,7 @@
     <string name="pref_cat_statusbar_title">Modifications barre d\'état</string>
     <string name="pref_cat_statusbar_summary">Regroupe diverses modifications de la barre d\'état</string>
     <string name="pref_cat_misc_title">Autres modifications</string>
-    <string name="pref_cat_misc_summary">Regroupe toutes les autres modifications ne correspondant pas aux autres catégories</string>
+    <string name="pref_cat_misc_summary">Regroupe toutes les modifications ne correspondant pas aux autres catégories</string>
     <string name="pref_cat_fixes_title">Corrections générales de bugs</string>
     <string name="pref_cat_fixes_summary">Regroupe les corrections générales de bugs spécifiques au MTK6589</string>
 
@@ -197,7 +197,7 @@
 
     <!--  Power tweaks category -->
     <string name="pref_cat_power_title">Modifications énergie</string>
-    <string name="pref_cat_power_summary">Regroupe diverses modifications liés à l\'énergie</string>
+    <string name="pref_cat_power_summary">Regroupe diverses modifications liées à la gestion de l\'énergie</string>
 
     <!--  Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Désactiver LED clignotante</string>
@@ -205,7 +205,7 @@
 
     <!-- Display tweaks category -->
     <string name="pref_cat_display_title">Modifications affichage</string>
-    <string name="pref_cat_display_summary">Regroupe diverses modifications liées à l\'affichage</string>
+    <string name="pref_cat_display_summary">Regroupe diverses modifications liées à la gestion de l\'affichage</string>
 
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Niveau minimum de luminosité</string>
@@ -213,7 +213,7 @@
     <string name="pref_brightness_dlg_msg">Valeur dans l\'intervalle : 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
-    <string name="pref_ab_title">Niveaux luminosité automatique</string>
+    <string name="pref_ab_title">Niveaux de luminosité automatique</string>
     <string name="pref_ab_summary">Permet de définir les niveaux de lumière ambiante ainsi que les valeurs correspondantes pour le rétroéclairage (LCD)</string>
     <string name="level">Niveau</string>
     <string name="pref_ab_lux_max_label">Lux maximum</string>
@@ -375,8 +375,8 @@
     <string name="pie_phone_status_emergency_only">Appel d\'urgence seulement</string>
 
     <!-- Pie Controls settings -->
-    <string name="pie_control_title">Contrôle Pie</string>
-    <string name="pie_control_enable_title">Activer contrôle Pie</string>
+    <string name="pie_control_title">Touches flottantes</string>
+    <string name="pie_control_enable_title">Activer les touches flottantes</string>
     <string name="pie_control_search_title">Afficher le bouton de recherche</string>
     <string name="pie_control_size_title">Taille des touches de navigation</string>
     <string name="pie_control_trigger_positions_title">Positions du déclencheur</string>
@@ -391,11 +391,11 @@
     <string name="button_backlight_mode_disable">Désactiver le rétroéclairage</string>
     <string name="button_backlight_mode_always_on">Toujours actif avec l\'écran</string>
     <string name="pref_button_backlight_notifications_title">Notification via bouton rétroéclairé</string>
-    <string name="pref_button_backlight_notifications_summary">EXPÉRIMENTAL! Fais clignoter le rétroéclairage du bouton lorsqu\'il y a une notification. À utiliser en l\'absence de LED de notification. Peut augmenter la consommation de batterie</string>
+    <string name="pref_button_backlight_notifications_summary">EXPÉRIMENTAL ! Fais clignoter le rétroéclairage du bouton lorsqu\'il y a une notification. À utiliser en l\'absence de LED de notification. Peut augmenter la consommation de batterie</string>
 
     <!-- Hide navigation bar for pie -->
     <string name="pref_navbar_disable_title">Masquer la barre de navigation</string>
-    <string name="pref_navbar_disable_summary">Masque la barre de navigation lorsque les Contrôles Pie sont activés (pour les appareils qui ont une barre de navigation, nécessite un redémarrage)</string>
+    <string name="pref_navbar_disable_summary">Masque la barre de navigation lorsque les touches flottantes sont activées (pour les appareils qui ont une barre de navigation, nécessite un redémarrage)</string>
 
     <!--  Dithered Holo background -->
     <string name="pref_holo_bg_dither_title">Arrière-plan Holo tramé</string>
@@ -403,7 +403,7 @@
 
     <!-- Disable hardware keys for pie -->
     <string name="pref_hwkeys_disable_title">Désactiver les touches matérielles</string>
-    <string name="pref_hwkeys_disable_summary">Désactive les touches MENU, RETOUR, et HOME si les Contrôles Pie sont activés. Les actions des touches matérielles fonctionneront toujours (pour les appareils ayant des touches matérielles)</string>
+    <string name="pref_hwkeys_disable_summary">Désactive les touches MENU, RETOUR, et HOME si les touches flottantes sont activées. Les actions des touches matérielles fonctionneront toujours (pour les appareils ayant des touches matérielles)</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Utiliser le thème Holo Dark</string>
@@ -498,7 +498,7 @@
 
     <!-- Link notification panel clock to Deskclock -->
     <string name="pref_clock_link_title">Appli horloge depuis panneau de notification</string>
-    <string name="pref_clock_link_summary">Crée un lien du panneau de notification vers une application spécifique au lieu des paramètres Date et Heure</string>
+    <string name="pref_clock_link_summary">Crée un lien du panneau de notification vers une application spécifique au lieu des paramètres date et heure</string>
 
     <!-- GravityBox settings startup handling -->
     <string name="gb_startup_progress">Attente d\'une réponse de la branche système de GravityBox&#8230;</string>
@@ -608,7 +608,7 @@
 
     <!-- Unplug turns on screen -->
     <string name="pref_unplug_turns_on_screen_title">Activer l\'écran au débranchement</string>
-    <string name="pref_unplug_turns_on_screen_summary">Si activé, l\'écran va s\'activer lors du branchement/débranchement d\'un câble usb/alimentation/autre (nécessite un redémarrage)</string>
+    <string name="pref_unplug_turns_on_screen_summary">Si activé, l\'écran va s\'allumer lors du branchement/débranchement d\'un câble usb/alimentation/autre (nécessite un redémarrage)</string>
 
     <!-- Mute volume adjust sound -->
     <string name="pref_volume_adjust_mute_title">Mise en sourdine du son du volume</string>
@@ -623,7 +623,7 @@
 
     <!-- QuickSettings tile order -->
     <string name="pref_qs_tile_order_title">Réordonnancement des touches</string>
-    <string name="pref_qs_tile_order_summary">Permet le réordonnancement des touches de Paramètres rapides</string>
+    <string name="pref_qs_tile_order_summary">Permet le réordonnancement des touches de paramètres rapides</string>
 
     <!-- Ongoing notifications -->
     <string name="pref_ongoing_notifications_title">Blocage des notifications en cours</string>
@@ -648,7 +648,7 @@
     <!-- Statusbar expand policy -->
     <string name="pref_statusbar_lock_policy_title">Politique de verrouillage de la barre d\'état</string>
     <string name="sbl_policy_default">Par défaut</string>
-    <string name="sbl_policy_unlocked">Accessible en l\'absence de sécurisation (PIN/mdp)</string>
+    <string name="sbl_policy_unlocked">Accessible en l\'absence de sécurisation (code/mdp)</string>
     <string name="sbl_policy_locked">Bloquée</string>
 
     <!-- Data traffic monitor -->
