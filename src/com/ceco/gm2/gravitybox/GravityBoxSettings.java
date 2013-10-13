@@ -805,25 +805,31 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefCatStatusbarQs.removePreference(mPrefQuickPulldown);
             }
 
-            // Update Phone category according to feature availability 
+            // Filter preferences according to feature availability 
             if (!Utils.hasVibrator(getActivity())) {
                 mPrefCatPhoneTelephony.removePreference(mPrefCallVibrations);
             }
             if (!Utils.hasTelephonySupport(getActivity())) {
                 mPrefCatPhone.removePreference(mPrefCatPhoneTelephony);
+                mPrefCatMedia.removePreference(mPrefLinkVolumes);
+                mPrefCatFixes.removePreference(mPrefFixCallerIDPhone);
             }
             if (!isAppInstalled(APP_MESSAGING)) {
                 mPrefCatPhone.removePreference(mPrefCatPhoneMessaging);
+                mPrefCatFixes.removePreference(mPrefFixCallerIDMms);
+                mPrefCatFixes.removePreference(mPrefFixMmsWakelock);
             }
-
-            // Remove preferences that don't apply to wifi-only devices
             if (Utils.isWifiOnly(getActivity())) {
+                // Remove preferences that don't apply to wifi-only devices
                 getPreferenceScreen().removePreference(mPrefCatPhone);
                 mPrefCatStatusbarQs.removePreference(mPrefNetworkModeTileMode);
                 mPrefCatStatusbar.removePreference(mSignalIconAutohide);
                 mPrefCatStatusbar.removePreference(mPrefDisableRoamingIndicators);
                 mPrefCatPhoneMobileData.removePreference(mPrefMobileDataSlow2gDisable);
                 mPrefCatStatusbarQs.removePreference(mPrefQsNetworkModeSimSlot);
+                mPrefCatFixes.removePreference(mPrefFixCallerIDPhone);
+                mPrefCatFixes.removePreference(mPrefFixCallerIDMms);
+                mPrefCatFixes.removePreference(mPrefFixMmsWakelock);
            	}
 
             // Remove MTK specific preferences for non-MTK devices
@@ -870,11 +876,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             if (!Utils.shouldAllowMoreVolumeSteps()) {
                 mPrefs.edit().putBoolean(PREF_KEY_MUSIC_VOLUME_STEPS, false).commit();
                 mPrefCatMedia.removePreference(mPrefMusicVolumeSteps);
-            }
-
-            // Remove link volumes preference if device has no telephony support
-            if (!Utils.hasTelephonySupport(getActivity())) {
-                mPrefCatMedia.removePreference(mPrefLinkVolumes);
             }
 
             // Remove tiles based on device features
