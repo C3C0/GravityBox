@@ -16,11 +16,13 @@
 package com.ceco.gm2.gravitybox;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.XModuleResources;
+import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
@@ -28,6 +30,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.os.Build;
+import android.os.Handler;
 import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
@@ -74,6 +77,9 @@ public class ModStatusbarColor {
     private static boolean mRoamingIndicatorsDisabled;
     private static TransparencyManager mTransparencyManager;
     private static TrafficMeter mTrafficMeter;
+    private static Context mContextPwm;
+    private static SettingsObserverPwm mSettingsObserverPwm;
+    private static int[] mTransparencyValuesPwm = new int[4];
 
     static {
         mIconManager = new StatusBarIconManager(XModuleResources.createInstance(GravityBox.MODULE_PATH, null));
@@ -107,6 +113,38 @@ public class ModStatusbarColor {
     public static void setTrafficMeter(TrafficMeter trafficMeter) {
         mTrafficMeter = trafficMeter;
     }
+
+    private static class SettingsObserverPwm extends ContentObserver {
+        public SettingsObserverPwm(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver cr = mContextPwm.getContentResolver();
+            cr.registerContentObserver(Settings.System.getUriFor(
+                    TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LAUNCHER), false, this);
+            cr.registerContentObserver(Settings.System.getUriFor(
+                    TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN), false, this);
+            cr.registerContentObserver(Settings.System.getUriFor(
+                    TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LAUNCHER), false, this);
+            cr.registerContentObserver(Settings.System.getUriFor(
+                    TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LOCKSCREEN), false, this);
+            onChange(true);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            ContentResolver cr = mContextPwm.getContentResolver();
+            mTransparencyValuesPwm[0] = Settings.System.getInt(cr,
+                    TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LAUNCHER, 0);
+            mTransparencyValuesPwm[1] = Settings.System.getInt(cr,
+                    TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN, 0);
+            mTransparencyValuesPwm[2] = Settings.System.getInt(cr,
+                    TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LAUNCHER, 0);
+            mTransparencyValuesPwm[3] = Settings.System.getInt(cr,
+                    TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LOCKSCREEN, 0);
+        }
+    };
 
     private static BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
 
@@ -197,15 +235,34 @@ public class ModStatusbarColor {
             XposedHelpers.findAndHookMethod(phoneWindowManagerClass,
                     "getSystemDecorRectLw", Rect.class, new XC_MethodReplacement() {
 
-                        @Override
-                        protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                            Rect rect = (Rect) param.args[0];
-                            rect.left = XposedHelpers.getIntField(param.thisObject, "mSystemLeft");
-                            rect.top = XposedHelpers.getIntField(param.thisObject, "mSystemTop");
-                            rect.right = XposedHelpers.getIntField(param.thisObject, "mSystemRight");
-                            rect.bottom = XposedHelpers.getIntField(param.thisObject, "mSystemBottom");
-                            return 0;
-                        }
+                @Override
+                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                    if (mContextPwm == null) {
+                        if (DEBUG) log("getSystemDecorRectLw: registering transparency settings observer");
+                        mContextPwm = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                        Handler h = (Handler) XposedHelpers.getObjectField(param.thisObject, "mHandler");
+                        mSettingsObserverPwm = new SettingsObserverPwm(h);
+                        mSettingsObserverPwm.observe();
+                    }
+
+                    boolean override = false;
+                    for (int i = 0; i < 4; i++) {
+                        override |= mTransparencyValuesPwm[i] != 0;
+                    }
+
+                    if (!override) {
+                        if (DEBUG) log("getSystemDecorRectLw: calling original method");
+                        return XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
+                    } else {
+                        if (DEBUG) log("getSystemDecorRectLw: overriding original method");
+                        Rect rect = (Rect) param.args[0];
+                        rect.left = XposedHelpers.getIntField(param.thisObject, "mSystemLeft");
+                        rect.top = XposedHelpers.getIntField(param.thisObject, "mSystemTop");
+                        rect.right = XposedHelpers.getIntField(param.thisObject, "mSystemRight");
+                        rect.bottom = XposedHelpers.getIntField(param.thisObject, "mSystemBottom");
+                        return 0;
+                    }
+                }
             });
         } catch (Throwable t) {
             XposedBridge.log(t);
