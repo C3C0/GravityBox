@@ -140,9 +140,15 @@ public class Utils {
         // returns false if device has no phone radio (no telephony support)
         if (mHasTelephonySupport != null) return mHasTelephonySupport;
 
-        TelephonyManager manager = (TelephonyManager) con.getSystemService(Context.TELEPHONY_SERVICE);
-        mHasTelephonySupport = (manager.getPhoneType() != TelephonyManager.PHONE_TYPE_NONE);
-        return mHasTelephonySupport;
+        try {
+            TelephonyManager tm = (TelephonyManager) con.getSystemService(
+                Context.TELEPHONY_SERVICE);
+            mHasTelephonySupport = (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_NONE);
+            return mHasTelephonySupport;
+        } catch (Throwable t) {
+            mHasTelephonySupport = null;
+            return false;
+        }
     }
 
     // to be called from system context only
