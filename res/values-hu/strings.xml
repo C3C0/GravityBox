@@ -178,22 +178,22 @@
     <string name="dual_sim_ringer_summary">Elindítja a programot, ami lehetővé teszi csengőhangok és figyelmeztető hangok beállítását külön, mindkét SIM-hez</string>
 
     <!--  Lockscreen tweaks -->
-    <string name="pref_cat_lockscreen_title">Lockscreen módosítások</string>
-    <string name="pref_cat_lockscreen_summary">Különböző Lockscreen módosításokat tartalmaz</string>
-    <string name="pref_cat_lockscreen_background_title">Lockscreen háttér</string>
+    <string name="pref_cat_lockscreen_title">Zárképernyő módosítások</string>
+    <string name="pref_cat_lockscreen_summary">Különböző Zárképernyő módosításokat tartalmaz</string>
+    <string name="pref_cat_lockscreen_background_title">Zárképernyő háttér</string>
     <string name="pref_lockscreen_background_title">Háttér sítlus</string>
     <string name="lockscreen_bg_default">Alapértelmezett háttérkép</string>
     <string name="lockscreen_bg_color">Szín kitöltés</string>
     <string name="lockscreen_bg_image">Egyéni kép</string>
     <string name="pref_lockscreen_bg_color_title">Egyéni szín beállítása</string>
-    <string name="pref_lockscreen_bg_color_summary">Lehetővé teszi egyéni háttérszín beállítását a Lockscreen-hez</string>
+    <string name="pref_lockscreen_bg_color_summary">Lehetővé teszi egyéni háttérszín beállítását a Zárképernyőhöz</string>
     <string name="pref_lockscreen_bg_image_title">Egyéni kép beállítása</string>
-    <string name="pref_lockscreen_bg_image_summary">Lehetővé teszi egyéni háttérkép beállítását a Lockscreen-hez</string>
+    <string name="pref_lockscreen_bg_image_summary">Lehetővé teszi egyéni háttérkép beállítását a Zárképernyőhöz</string>
     <string name="lockscreen_background_result_successful">A háttér megváltozott</string>
     <string name="lockscreen_background_result_not_successful">A háttér nem változott meg</string>
     <string name="pref_cat_lockscreen_other_title">Egyéb</string>
     <string name="pref_lockscreen_maximize_widgets_title">Widgetek maximalizálása</string>
-    <string name="pref_lockscreen_maximize_widgets_summary">Ha engedélyezve van, a Lockscreen widgetek alapértelmezetten maximalizálva lesznek</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Ha engedélyezve van, a Zárképernyő widget-ek alapértelmezetten maximalizálva lesznek</string>
 
     <!--  Power tweaks category -->
     <string name="pref_cat_power_title">Energia beállítások</string>
@@ -229,12 +229,12 @@
     <string name="pref_ab_config_cancelled">Automatikus fényerő konfiguráció NINCS elmentve</string>
 
     <!-- Lockscreen rotation -->
-    <string name="pref_lockscreen_rotation_title">Lockscreen elforgatás engedélyezése</string>
-    <string name="pref_lockscreen_rotation_summary">FIGYELEM: megfordíthatja a feloldó kör célirányát olyan eszközön, ahol AOSP lockscreen már a gyártó által módosítva van</string>
+    <string name="pref_lockscreen_rotation_title">Zárképernyő elforgatás engedélyezése</string>
+    <string name="pref_lockscreen_rotation_summary">FIGYELEM: megfordíthatja a feloldó kör célirányát olyan eszközön, ahol AOSP zárképernyő már a gyártó által módosítva van</string>
 
     <!-- Lockscreen menu key -->
     <string name="pref_lockscreen_menu_key_title">Menü gomb engedélyezése</string>
-    <string name="pref_lockscreen_menu_key_summary">Lehetővé teszi a menü gombbal történő gyors feloldást a Lockscreen-en (újraindítás szükséges)</string>
+    <string name="pref_lockscreen_menu_key_summary">Lehetővé teszi a menü gombbal történő gyors feloldást a Zárképernyőn (újraindítás szükséges)</string>
 
     <!-- Fix messaging wakelock -->
     <string name="pref_mms_fix_wakelock_title">Javítja az üzenetek fogadásakori ébrentartást</string>
@@ -462,9 +462,9 @@
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Átlátszóság menedzsment</string>
     <string name="pref_tm_statusbar_launcher_title">Állapotsáv átlátszóság launcher-nél</string>
-    <string name="pref_tm_statusbar_lockscreen_title">Állapotsáv átlátszóság lockscreen-nél</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Állapotsáv átlátszóság zárképernyőnél</string>
     <string name="pref_tm_navbar_launcher_title">Nav.sáv átlátszóság launcher-nél</string>
-    <string name="pref_tm_navbar_lockscreen_title">Nav.sáv átlátszóság lockscreen-nél </string>
+    <string name="pref_tm_navbar_lockscreen_title">Nav.sáv átlátszóság zárképernyőnél </string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Ébresztő ikon elrejtése</string>
@@ -633,6 +633,7 @@
     <string name="ongoing_notif_reset_list">Lista visszaállítása</string>
     <string name="ongoing_notif_reset_alert">Biztosan vissza szeretné állítani a listát?
         Ez törölni fogja az aktuális listát és engedélyezni fogja az összes korábban blokkolt folyamatban lévő értesítést.</string>
+	<string name="ongoing_notif_list_empty">(a lista üres)</string>
 
     <!-- Quick unlock -->
     <string name="pref_lockscreen_quick_unlock_title">Gyors feloldás</string>
@@ -661,5 +662,13 @@
     <string name="dt_size_normal">Normál</string>
     <string name="dt_size_smaller">Kisebb</string>
     <string name="dt_size_smallest">Legkisebb</string>
+	<string name="byte_abbr">B</string>
+    <string name="kilobyte_abbr">KB</string>
+    <string name="megabyte_abbr">MB</string>
+    <string name="second_abbr">mp</string>
+	
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">Widget limitáció letiltása</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">Lehetővé teszi korlátlan számú widget alkalmazását a Zárképernyőn</string>
 	
 </resources>
