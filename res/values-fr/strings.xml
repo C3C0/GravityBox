@@ -227,6 +227,7 @@
     <string name="pref_ab_values_set">Valeur de %s appliquée</string>
     <string name="pref_ab_config_saved">Nouvelle configuration de luminosité automatique enregistrée</string>
     <string name="pref_ab_config_cancelled">La configuration de luminosité automatique N\'a PAS été enregistrée</string>
+    <string name="pref_ab_button_set">Appliquer</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Rotation écran de déverrouillage</string>
