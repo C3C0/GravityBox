@@ -109,13 +109,13 @@
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
 	<string name="qs_tile_gps_alt">GPS (CM stílus)</string>
-    <string name="qs_tile_mobile_data">Mobil adat</string>
+    <string name="qs_tile_mobile_data">Mobil adatátvitel</string>
     <string name="qs_tile_network_mode">Hálózati üzemmód</string>
     <string name="qs_tile_data_usage">Adat használat</string>
     <string name="qs_tile_audio">Audió profilok</string>
     <string name="qs_tile_brightness">Fényerő</string>
     <string name="qs_tile_screen_timeout">Képernyő időtúllépés</string>
-    <string name="qs_tile_autorotation">Automatikus forgatás</string>
+    <string name="qs_tile_autorotation">Automatikus elforgatás</string>
     <string name="qs_tile_sync">Szinkronizálás</string>
     <string name="qs_tile_wifi_ap">Wi-Fi hozzáférési pont</string>
     <string name="qs_tile_torch">Zseblámpa</string>
@@ -249,7 +249,7 @@
 
     <!-- More music volume steps -->
     <string name="pref_music_volume_steps_title">Több zene hangerő léptetés</string>
-    <string name="pref_music_volume_steps_summary">Több hangerő léptetést eredményez zene folyam esetén (újraindítás szükséges)</string>
+    <string name="pref_music_volume_steps_summary">Több hangerő léptetést eredményez zene hangfolyam esetén (újraindítás szükséges)</string>
 
     <!-- Safe headset media volume -->
     <string name="pref_safe_media_volume_title">Biztonságos fejhallgató média hangerő</string>
@@ -558,9 +558,9 @@
     <string name="pref_statusbar_brightness_summary">Fényerő beállítása az értesítési sávon történő jobbra-balra csúsztatással</string>
 
     <!-- Phone tweaks categories -->
-    <string name="pref_cat_phone_telephony_title">Telephony</string>
-    <string name="pref_cat_phone_messaging_title">Messaging</string>
-    <string name="pref_cat_phone_mobile_data_title">Mobile data</string>
+    <string name="pref_cat_phone_telephony_title">Telefonálás</string>
+    <string name="pref_cat_phone_messaging_title">Üzenetküldés</string>
+    <string name="pref_cat_phone_mobile_data_title">Mobil adatátvitel</string>
 
     <!-- Messaging: Strip unicode -->
     <string name="pref_mms_unicode_stripping_title">Unicode figyelmen kívül hagyása</string>
@@ -570,8 +570,8 @@
     <string name="unicode_stripping_all">Az összes unicode karakter figyelmen kívül hagyása</string>
 
     <!-- Disable slow 2G data warning -->
-    <string name="pref_mobile_data_slow2g_disable_title">Lassú 2G adat figyelmeztetés letiltása</string>
-    <string name="pref_mobile_data_slow2g_disable_summary">Kikapcsolja a lassú adatátviteli sebességgel kapcsolatos figyelmeztetést, amikor bekapcsolásra kerül a Gyorsbeállítások alatt a mobil adat SIM 2G módban.</string>
+    <string name="pref_mobile_data_slow2g_disable_title">Lassú 2G adatátviteli figyelmeztetés letiltása</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Kikapcsolja a lassú adatátviteli sebességgel kapcsolatos figyelmeztetést, amikor bekapcsolásra kerül a Gyorsbeállítások alatt a mobil adatátvitel SIM 2G módban.</string>
 
     <!-- Follow stock battery color -->
     <string name="pref_sbcolor_follow_stock_battery_title">Gyári akkumlátor szín követése</string>
@@ -584,7 +584,7 @@
     <string name="nm_tile_mode3">2G/3G/(LTE)</string>
 
     <!-- Display: allow all rotations -->
-    <string name="pref_display_allow_all_rotations_title">Összes forgatás engedélyezése</string>
+    <string name="pref_display_allow_all_rotations_title">Összes elforgatás engedélyezése</string>
 
     <!-- QuickSettings: override AOSP tile behaviour -->
     <string name="pref_qs_tile_behaviour_override_title">Alapértelmezett csempe viselkedés felülírása</string>
