@@ -401,6 +401,7 @@
     <string name="ongoing_notif_info">Lista będzie automatycznie uzupełniana dla każdego bieżącego powiadomienia które wystąpi. Możesz zdecydować czy blokować bieżące powiadomienie gdy wystąpi następnym razem. Stosować ostrożnie.</string>
     <string name="ongoing_notif_reset_list">Wyczyść listę</string>
     <string name="ongoing_notif_reset_alert">Czy na pewno chcesz wyczyścić listę? Spowoduje to wyczyszczenie bieżącej listy i odblokowanie wszystkich poprzednio zablokowanych bieżących powiadomień.</string>
+    <string name="ongoing_notif_list_empty">(lista jest pusta)</string>
     <string name="pref_lockscreen_quick_unlock_title">Szybkie odblokowanie</string>
     <string name="pref_lockscreen_quick_unlock_summary">Odblokuj automatycznie, gdy PIN/hasło zostanie poprawnie wprowadzone</string>
     <string name="clock_dow_disabled">Wyłączone</string>
@@ -421,6 +422,10 @@
     <string name="dt_size_normal">Normalny</string>
     <string name="dt_size_smaller">Mniejszy</string>
     <string name="dt_size_smallest">Najmniejszy</string>
+    <string name="byte_abbr">B</string>
+    <string name="kilobyte_abbr">KB</string>
+    <string name="megabyte_abbr">MB</string>
+    <string name="second_abbr">s</string>
     <string name="pref_lockscreen_widget_limit_disable_title">Wyłączenie limitu widżetów</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">Umożliwia nieograniczoną liczbę widżetów Ekranu Blokady</string>
 </resources>
