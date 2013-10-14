@@ -212,6 +212,7 @@
     <string name="pref_ab_values_set">Valores de %s definidos</string>
     <string name="pref_ab_config_saved">Nova configuração de níveis de brilho automático gravada</string>
     <string name="pref_ab_config_cancelled">Configuração de níveis de brilho automático não gravada</string>
+    <string name="pref_ab_button_set">Definir</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Ativar rotação no ecrã de bloqueio</string>
@@ -647,6 +648,10 @@
     <string name="dt_size_normal">Normal</string>
     <string name="dt_size_smaller">Pequeno</string>
     <string name="dt_size_smallest">Mínimo</string>
+    <string name="byte_abbr">B</string>
+    <string name="kilobyte_abbr">KB</string>
+    <string name="megabyte_abbr">MB</string>
+    <string name="second_abbr">s</string>
 
     <!-- Disable lockscreen widget limit -->
     <string name="pref_lockscreen_widget_limit_disable_title">Desativar limitação de widgets</string>
