@@ -299,11 +299,11 @@
 
     <!-- Auto-switch QuickSettings -->
     <string name="pref_auto_switch_qs_title">Automatisch zu Schnelleinstellungen wechseln</string>
-    <string name="pref_auto_switch_qs_summary">Schnelleinstellungen werden automatisch angezeigt, wenn die Benachrichtigungsleiste heruntergezogen wird und keine Benachrichtigungen vorliegen</string>
+    <string name="pref_auto_switch_qs_summary">Schnelleinstellungen werden automatisch angezeigt, wenn die Benachrichtigungsleiste herunter gezogen wird und keine Benachrichtigungen vorliegen</string>
 
     <!-- Quick pulldown -->
     <string name="pref_quick_pulldown_title">Schnelleinstellungen herunterziehen</string>
-    <string name="pref_quick_pulldown_summary">Wenn die Statusbar an der Ecke heruntergezogen wird, werden automatisch die Schnelleinstellungen angezeigt</string>
+    <string name="pref_quick_pulldown_summary">Wird die Statusbar an der Ecke heruntergezogen, werden die Schnelleinstellungen automatisch angezeigt</string>
     <string name="quick_pulldown_off">Aus</string>
     <string name="quick_pulldown_right">Rechts</string>
     <string name="quick_pulldown_left">Links</string>
@@ -465,7 +465,7 @@
 	<!-- Brightness preference category -->
     <string name="pref_cat_brightness_title">Helligkeitseinstellungen</string>
     <string name="pref_brightness_master_switch_title">Aktiviere Helligkeitseinstellungen</string>
-    <string name="pref_brightness_master_switch_summary">Use only in case your device supports standard Android brightness features. Keep disabled if you experience brightness related issues. (Neustart erforderlich)</string>
+    <string name="pref_brightness_master_switch_summary">Nur anwenden, falls Ihr Gerät standardmäßig Helligkeitsfunktionalitäten unterstützt. Bei auftretenden Problemen bitte wieder deaktivieren. (Neustart erforderlich)</string>
 
     <!-- HW Key Action: Recent apps -->
     <string name="hwkey_action_recent_apps">Zuletzt verwendete Apps anzeigen</string>
@@ -491,7 +491,7 @@
 
     <!-- National data roaming -->
     <string name="pref_national_roaming_title">Nationales Daten-Roaming</string>
-    <string name="pref_national_roaming_summary">Connect to data services when nationally roaming</string>
+    <string name="pref_national_roaming_summary">Beim nationalen Roaming mit Datendiensten verbinden</string>
     
     <!-- Expanded Desktop -->
     <string name="pref_expanded_desktop_title">Erweiterter Desktop-Modus</string>
@@ -510,14 +510,14 @@
     <string name="hwkey_action_menu">Menü anzeigen</string>
 
     <!-- HW Key Action: Expanded desktop -->
-    <string name="hwkey_action_expanded_desktop">Toggle expanded desktop</string>
+    <string name="hwkey_action_expanded_desktop">Auf erweiterten Desktop umschalten</string>
     <string name="hwkey_action_expanded_desktop_disabled">Erweiterter Desktop-Modus ist deaktiviert!</string>
 
     <!-- Navigation bar tweaks category -->
     <string name="pref_cat_navigation_bar_title">Navigationsleiste optimieren</string>
     <string name="pref_cat_navigation_bar_summary">Beinhaltet Optionen, um die Navigationsleiste anzupassen</string>
-    <string name="pref_navbar_override_title">Override system defaults</string>
-    <string name="pref_navbar_override_summary">Master switch for navigation bar tweaks (Neustart erforderlich)</string>
+    <string name="pref_navbar_override_title">Überschreibt System-Standardeinstellungen</string>
+    <string name="pref_navbar_override_summary">Hauptschalter für Optimierungen der Navigationsleiste (Neustart erforderlich)</string>
     <string name="pref_navbar_enable_title">Navigationsleiste aktivieren</string>
     <string name="pref_navbar_enable_summary">Neustart erforderlich</string>
     <string name="pref_navbar_height_title">Höhe der Navigationsleiste</string>
@@ -531,7 +531,7 @@
     <string name="pref_powermenu_screenshot_title">Screenshot im Ausschaltmenü</string>
 
     <!-- Unlock ring settings -->
-    <string name="pref_cat_lockscreen_ring_settings_title">Unlock ring settings</string>
+    <string name="pref_cat_lockscreen_ring_settings_title">Entsperr-Ring Einstellungen</string>
     <string name="pref_lockscreen_ring_targets_enable_title">Enable unlock ring targets</string>
     <string name="pref_lockscreen_ring_targets_enable_summary">Master switch for unlock ring targets</string>
     <string name="pref_lockscreen_ring_targets_app_title">Target application %s</string>
@@ -555,15 +555,15 @@
     <string name="unicode_stripping_all">Strip all unicode characters</string>
 
     <!-- Disable slow 2G data warning -->
-    <string name="pref_mobile_data_slow2g_disable_title">Disable slow 2G data warning</string>
-    <string name="pref_mobile_data_slow2g_disable_summary">Disables warning about slow data speed when turning on mobile data in QuickSettings for SIM in 2G mode</string>
+    <string name="pref_mobile_data_slow2g_disable_title">Deaktiviere 2G Daten-Warnung</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Warnung bei langsamer Datengeschwindigkeit im 2G-Modus deaktivieren</string>
 
     <!-- Follow stock battery color -->
     <string name="pref_sbcolor_follow_stock_battery_title">Follow stock battery color</string>
     <string name="pref_sbcolor_follow_stock_battery_summary">Makes statusbar clock, percentage and circle battery use the color of stock battery icon. Applies when icon coloring is off.</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Network mode tile mode</string>
+    <string name="pref_network_mode_tile_mode_title">Netzmodus-Kachel anpassen</string>
     <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
     <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
     <string name="nm_tile_mode3">2G/3G/(LTE)</string>
