@@ -227,6 +227,7 @@
     <string name="pref_ab_values_set">Values for %s set</string>
     <string name="pref_ab_config_saved">New autobrightness configuration saved</string>
     <string name="pref_ab_config_cancelled">Autobrightness configuration was NOT saved</string>
+    <string name="pref_ab_button_set">Set</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Enable lockscreen rotation</string>
