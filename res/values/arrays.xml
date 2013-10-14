@@ -564,4 +564,16 @@
         <item>10</item>
     </string-array>
 
+    <string-array name="rambar_entries" translatable="false">
+        <item>@string/rambar_off</item>
+        <item>@string/rambar_top</item>
+        <item>@string/rambar_bottom</item>
+    </string-array>
+
+    <string-array name="rambar_values" translatable="false">
+        <item>0</item>
+        <item>48</item>
+        <item>80</item>
+    </string-array>
+
 </resources>

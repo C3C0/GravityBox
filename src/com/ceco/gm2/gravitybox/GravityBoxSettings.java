@@ -99,6 +99,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final int VOL_KEY_CURSOR_CONTROL_ON_REVERSE = 2;
 
     public static final String PREF_KEY_RECENTS_CLEAR_ALL = "pref_recents_clear_all2";
+    public static final String PREF_KEY_RAMBAR = "pref_rambar";
     public static final String PREF_KEY_RECENTS_CLEAR_MARGIN_TOP = "pref_recent_clear_margin_top";
     public static final int RECENT_CLEAR_OFF = 0;
     public static final int RECENT_CLEAR_TOP_LEFT = 51;
@@ -600,6 +601,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefPieHwKeysDisabled;
         private CheckBoxPreference mPrefGbThemeDark;
         private ListPreference mPrefRecentClear;
+        private ListPreference mPrefRambar;
         private PreferenceScreen mPrefCatPhone;
         private CheckBoxPreference mPrefRoamingWarningDisable;
         private CheckBoxPreference mPrefBrightnessMasterSwitch;
@@ -741,6 +743,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefGbThemeDark.setChecked(file.exists());
 
             mPrefRecentClear = (ListPreference) findPreference(PREF_KEY_RECENTS_CLEAR_ALL);
+            mPrefRambar = (ListPreference) findPreference(PREF_KEY_RAMBAR);
 
             mPrefCatPhone = (PreferenceScreen) findPreference(PREF_CAT_KEY_PHONE);
             mPrefRoamingWarningDisable = (CheckBoxPreference) findPreference(PREF_KEY_ROAMING_WARNING_DISABLE);
@@ -1084,6 +1087,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             if (key == null || key.equals(PREF_KEY_RECENTS_CLEAR_ALL)) {
                 mPrefRecentClear.setSummary(mPrefRecentClear.getEntry());
+            }
+
+            if (key == null || key.equals(PREF_KEY_RAMBAR)) {
+                mPrefRambar.setSummary(mPrefRambar.getEntry());
             }
 
             if (key == null || key.equals(PREF_KEY_BRIGHTNESS_MASTER_SWITCH)) {

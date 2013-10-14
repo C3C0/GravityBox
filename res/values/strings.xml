@@ -672,4 +672,14 @@
     <string name="pref_lockscreen_widget_limit_disable_title">Disable widget limit</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">Allows unlimited number of lockscreen widgets</string>
 
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> free</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> used</string>
+    <string name="pref_rambar_title">Recent tasks RAM bar</string>
+    <string name="rambar_off">Off</string>
+    <string name="rambar_top">Top</string>
+    <string name="rambar_bottom">Bottom</string>
+
 </resources>
