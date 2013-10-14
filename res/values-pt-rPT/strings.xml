@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
 
@@ -351,9 +351,9 @@
     <string name="pref_disable_roaming_indicators_summary">Quando selecionado, o indicador R não será visível em roaming (usar com cautela)</string>
 
     <!-- Battery status in pie controls -->
-    <string name="pie_battery_status_charging">A carregar (%d%%)</string>
+    <string name="pie_battery_status_charging">A carregar (<xliff:g id="percent">%d</xliff:g>%%)</string>
     <string name="pie_battery_status_full">Carregado</string>
-    <string name="pie_battery_status_discharging">%d%% restante</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% restante</string>
 
     <!-- Phone status in pie controls -->
     <string name="pie_phone_status_no_service">Fora de serviço</string>
@@ -656,5 +656,15 @@
     <!-- Disable lockscreen widget limit -->
     <string name="pref_lockscreen_widget_limit_disable_title">Desativar limitação de widgets</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">Permite colocar um número ilimitado de widgets no ecrã de bloqueio</string>
+
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> livres</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> utiliz.</string>
+    <string name="pref_rambar_title">Indicação RAM nas tarefas recentes</string>
+    <string name="rambar_off">Desativada</string>
+    <string name="rambar_top">Topo superior</string>
+    <string name="rambar_bottom">Topo inferior</string>
 
 </resources>
