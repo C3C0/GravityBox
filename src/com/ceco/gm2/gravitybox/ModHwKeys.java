@@ -259,7 +259,9 @@ public class ModHwKeys {
                                     mHandler.postDelayed(mMenuDoubleTapReset, mDoubletapSpeed);
                                 }
                             } else {
-                                param.setResult(-1);
+                                if (mMenuLongpressAction != 0) {
+                                    param.setResult(-1);
+                                }
                                 return;
                             }
                         }
