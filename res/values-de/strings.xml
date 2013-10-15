@@ -204,14 +204,15 @@
     <string name="pref_ab_lux_max_label">Lux max</string>
     <string name="pref_ab_brighness_label">Helligkeit (10 &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Eingegebener Wert ist ungültig</string>
-    <string name="pref_ab_brightness_too_low">Es ist nicht empfohlen, die Helligkeitsstufe unter 10 zu setzen</string>
-    <string name="pref_ab_brightness_too_high">Die Helligkeitsstufe kann nicht höher als 255 gesetzt werden</string>
-    <string name="pref_ab_number_error_negative">Werte können nicht weniger als 0 oder 0 betragen</string>
+    <string name="pref_ab_brightness_too_low">Es wird nicht empfohlen, die Helligkeitsstufe unter 10 einzustellen</string>
+    <string name="pref_ab_brightness_too_high">Die Helligkeitsstufe kann nicht höher als 255 eingestellt werden</string>
+    <string name="pref_ab_number_error_negative">Werte können nicht 0 oder kleiner sein</string>
     <string name="pref_ab_number_not_ascending">Werte in niedrigeren Helligkeitsstufen können nicht größer sein, als Werte in höheren Helligkeitsstufen</string>
     <string name="pref_ab_number_not_descending">Werte in höheren Helligkeitsstufen können nicht niedriger sein, als Werte in niedrigeren Helligkeitsstufen</string>
     <string name="pref_ab_values_set">Werte für %s gesetzt</string>
-    <string name="pref_ab_config_saved">Neue Automatische Helligkeitsregelung gespeichert</string>
-    <string name="pref_ab_config_cancelled">Neue Automatische Helligkeitsregelung nicht gespeichert</string>
+    <string name="pref_ab_config_saved">Neue automatische Helligkeitsregelung gespeichert</string>
+    <string name="pref_ab_config_cancelled">Neue automatische Helligkeitsregelung nicht gespeichert</string>
+	<string name="pref_ab_button_set">Übernehmen</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Aktiviere Sperrbildschirm-Rotation</string>

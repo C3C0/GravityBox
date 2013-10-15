@@ -227,6 +227,7 @@
     <string name="pref_ab_values_set">已设置 %s 的值</string>
     <string name="pref_ab_config_saved">自动亮度配置已保存</string>
     <string name="pref_ab_config_cancelled">自动亮度配置未保存</string>
+    <string name="pref_ab_button_set">设置</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">启用锁屏画面旋转</string>
@@ -633,6 +634,7 @@
     <string name="ongoing_notif_reset_list">重置列表</string>
     <string name="ongoing_notif_reset_alert">是否确实要重置列表？
         这将清空当前列表，并且解除所有之前被阻拦的进行中通知。</string>
+    <string name="ongoing_notif_list_empty">(列表为空)</string>
 
     <!-- Quick unlock -->
     <string name="pref_lockscreen_quick_unlock_title">快速解锁</string>
@@ -661,9 +663,23 @@
     <string name="dt_size_normal">标准</string>
     <string name="dt_size_smaller">较小</string>
     <string name="dt_size_smallest">最小</string>
+    <string name="byte_abbr">B</string>
+    <string name="kilobyte_abbr">KB</string>
+    <string name="megabyte_abbr">MB</string>
+    <string name="second_abbr">s</string>
 
     <!-- Disable lockscreen widget limit -->
     <string name="pref_lockscreen_widget_limit_disable_title">禁用小部件限制</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">允许无限数量的锁屏小部件</string>
+    
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> 空闲</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> 使用</string>
+    <string name="pref_rambar_title">最近任务内存栏</string>
+    <string name="rambar_off">关闭</string>
+    <string name="rambar_top">置顶</string>
+    <string name="rambar_bottom">底部</string>
 
 </resources>
