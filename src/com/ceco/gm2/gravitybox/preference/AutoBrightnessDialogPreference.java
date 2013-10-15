@@ -25,6 +25,7 @@ import com.ceco.gm2.gravitybox.R;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.DialogPreference;
@@ -37,6 +38,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AutoBrightnessDialogPreference extends DialogPreference 
@@ -50,11 +52,14 @@ public class AutoBrightnessDialogPreference extends DialogPreference
     private EditText mTxtLux;
     private EditText mTxtBrightness;
     private Button mBtnSet;
+    private int mBrightnessMin;
 
     public AutoBrightnessDialogPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         setDialogLayoutResource(R.layout.dlgpref_autobrightness);
+
+        mBrightnessMin = context.getResources().getInteger(R.integer.screen_brightness_min);
 
         mReceiver = new GravityBoxResultReceiver(new Handler());
         mReceiver.setReceiver(this);
@@ -67,6 +72,13 @@ public class AutoBrightnessDialogPreference extends DialogPreference
 
         mTxtLux = (EditText) view.findViewById(R.id.txtLux);
         mTxtBrightness = (EditText) view.findViewById(R.id.txtBrightness);
+
+        TextView label = (TextView) view.findViewById(R.id.label2);
+        if (label != null) {
+            label.setText(String.format(
+                    getContext().getString(R.string.pref_ab_brighness_label),
+                    mBrightnessMin));
+        }
 
         mBtnSet = (Button) view.findViewById(R.id.btnSet);
         mBtnSet.setOnClickListener(this);
@@ -195,8 +207,9 @@ public class AutoBrightnessDialogPreference extends DialogPreference
             if (lux <= 0) {
                 Toast.makeText(getContext(), R.string.pref_ab_number_error_negative, Toast.LENGTH_LONG).show();
                 return;
-            } else if (brightness < 10) {
-                Toast.makeText(getContext(), R.string.pref_ab_brightness_too_low, Toast.LENGTH_LONG).show();
+            } else if (brightness < mBrightnessMin) {
+                String msg = String.format(getContext().getString(R.string.pref_ab_brightness_too_low), mBrightnessMin);
+                Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
                 return;
             } else if (brightness > 255) {
                 Toast.makeText(getContext(), R.string.pref_ab_brightness_too_high, Toast.LENGTH_LONG).show();

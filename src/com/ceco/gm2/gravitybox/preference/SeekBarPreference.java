@@ -92,6 +92,10 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
         }
     }
 
+    public void setMinimum(int minimum) {
+        mMinimum = minimum >= mMaximum ? mMaximum - 1 : minimum;
+    }
+
     private void setValue(int progress){
         mValue = progress;
         persistInt(mValue);

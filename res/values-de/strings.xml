@@ -195,16 +195,15 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Minimale Helligkeitsstufe</string>
     <string name="pref_brightness_min_summary">Erlaubt es, die minimale Helligkeitsstufe zu ändern. Wirkt sich auf die manuelle Helligkeitseinstellung aus. (Neustart erforderlich)</string>
-    <string name="pref_brightness_dlg_msg">Wert zwischen: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Automatische Helligkeitsstufen</string>
     <string name="pref_ab_summary">Erlaubt es, für eine bestimmte Umgebungshelligkeit die Bildschirmhelligkeit zu bestimmen</string>
     <string name="level">Helligkeitsstufe</string>
     <string name="pref_ab_lux_max_label">Lux max</string>
-    <string name="pref_ab_brighness_label">Helligkeit (10 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Helligkeit (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Eingegebener Wert ist ungültig</string>
-    <string name="pref_ab_brightness_too_low">Es wird nicht empfohlen, die Helligkeitsstufe unter 10 einzustellen</string>
+    <string name="pref_ab_brightness_too_low">Es wird nicht empfohlen, die Helligkeitsstufe unter %d einzustellen</string>
     <string name="pref_ab_brightness_too_high">Die Helligkeitsstufe kann nicht höher als 255 eingestellt werden</string>
     <string name="pref_ab_number_error_negative">Werte können nicht 0 oder kleiner sein</string>
     <string name="pref_ab_number_not_ascending">Werte in niedrigeren Helligkeitsstufen können nicht größer sein, als Werte in höheren Helligkeitsstufen</string>

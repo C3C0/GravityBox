@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView 
+        <TextView
+            android:id="@+id/label1"
             android:text="@string/pref_ab_lux_max_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +39,8 @@
             android:layout_height="wrap_content"
             android:inputType="number" />
 
-        <TextView 
+        <TextView
+            android:id="@+id/label2"
             android:text="@string/pref_ab_brighness_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

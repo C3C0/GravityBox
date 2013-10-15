@@ -205,16 +205,15 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Nilai kecerahan minimal</string>
     <string name="pref_brightness_min_summary">Membolehkan anda untuk men-set nilai minimal kecerahan layar. Berjalan hanya untuk setting kecerahan manual. (membutuhkan reboot)</string>
-    <string name="pref_brightness_dlg_msg">Nilai dari jarak antara: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Level Autobrightness</string>
     <string name="pref_ab_summary">Membolehkan anda untuk men-set nilai level cahaya ambien dan cahaya latar LCD yang terkai</string>
     <string name="level">Level</string>
     <string name="pref_ab_lux_max_label">Lux max</string>
-    <string name="pref_ab_brighness_label">Kecerahan (10 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Kecerahan (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Nomor yang dimasukkan tidak valid</string>
-    <string name="pref_ab_brightness_too_low">Tidak direkomendasikan untuk men-set nilai kecerahan di bawah 10</string>
+    <string name="pref_ab_brightness_too_low">Tidak direkomendasikan untuk men-set nilai kecerahan di bawah %d</string>
     <string name="pref_ab_brightness_too_high">Kecerahan tidak dapat berada diatas 255</string>
     <string name="pref_ab_number_error_negative">Nilai tidak boleh sama dengan nol</string>
     <string name="pref_ab_number_not_ascending">Nilai yang berada di level bawah tidak boleh lebih tinggi dari level di atasnya</string>

@@ -146,14 +146,13 @@
     <string name="pref_cat_display_summary">Zawiera dodatkowe poprawki związane z wyświetlaniem obrazu</string>
     <string name="pref_brightness_min_title">Minimalny poziom jasności</string>
     <string name="pref_brightness_min_summary">Pozwala ustawić minimalny poziom jasności. Dotyczy ręcznego ustawienia jasności. (wymagany restart)</string>
-    <string name="pref_brightness_dlg_msg">Wartość z zakresu: 10 – 80</string>
     <string name="pref_ab_title">Automatyczny poziom jasności</string>
     <string name="pref_ab_summary">Umożliwia ustawienie poziomu oświetlenia otoczenia oraz odpowiadających im wartości podświetlenia ekranu LCD</string>
     <string name="level">Poziom</string>
     <string name="pref_ab_lux_max_label">Lux max</string>
-    <string name="pref_ab_brighness_label">Jasność (10 – 255)</string>
+    <string name="pref_ab_brighness_label">Jasność (%d – 255)</string>
     <string name="pref_ab_number_error_general">Wybrana wartość jest niepoprawna</string>
-    <string name="pref_ab_brightness_too_low">Nie jest zalecane, aby ustawić jasność poniżej 10</string>
+    <string name="pref_ab_brightness_too_low">Nie jest zalecane, aby ustawić jasność poniżej %d</string>
     <string name="pref_ab_brightness_too_high">Jasność nie może być większa niż 255</string>
     <string name="pref_ab_number_error_negative">Wartości nie mogą być mniejsze lub równe zeru</string>
     <string name="pref_ab_number_not_ascending">Wartości minimalnych ustawień nie mogą być większe niż wartości maksymalnych ustawień</string>
