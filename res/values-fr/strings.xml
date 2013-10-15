@@ -671,4 +671,14 @@
     <string name="pref_lockscreen_widget_limit_disable_title">Supprimer la limite de widgets</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">Autorise un nombre illimité de widgets sur l\'écran de déverrouillage</string>
 
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> libre</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> utilisé</string>
+    <string name="pref_rambar_title">Barre des tâches récentes en RAM</string>
+    <string name="rambar_off">Désactivée</string>
+    <string name="rambar_top">En haut</string>
+    <string name="rambar_bottom">En bas</string>
+
 </resources>
