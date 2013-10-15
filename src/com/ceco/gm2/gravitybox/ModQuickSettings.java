@@ -289,6 +289,9 @@ public class ModQuickSettings {
         for (View v : dynamicTiles) {
             mContainerView.addView(v);
         }
+
+        // trigger layout refresh
+        XposedHelpers.callMethod(mContainerView, "updateResources");
     }
 
     private static void updateTileLayout(FrameLayout container, int orientation) {
