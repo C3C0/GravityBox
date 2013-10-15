@@ -66,9 +66,9 @@
     <string name="quick_settings_sync_off">同步處理關閉</string>
     <string name="quick_settings_wifi_ap_on">Wi-Fi 行動熱點 開啟</string>
     <string name="quick_settings_wifi_ap_off">Wi-Fi 行動熱點 關閉</string>
-    <string name="quick_settings_torch_on">Torch 開啟</string>
-    <string name="quick_settings_torch_off">Torch 關閉</string>
-    <string name="quick_settings_torch_off_notif">輕觸以關閉</string>
+    <string name="quick_settings_torch_on">手電筒開啟</string>
+    <string name="quick_settings_torch_off">手電筒關閉</string>
+    <string name="quick_settings_torch_off_notif">輕觸以關閉手電筒</string>
     <string name="quick_settings_qr_playing">播放中&#8230;</string>
     <string name="quick_settings_qr_recording">錄音中…</string>
     <string name="quick_settings_qr_recorded">已錄音</string>
@@ -104,7 +104,7 @@
     <string name="qs_tile_autorotation">自動旋轉</string>
     <string name="qs_tile_sync">同步功能</string>
     <string name="qs_tile_wifi_ap">Wi-Fi 行動熱點</string>
-    <string name="qs_tile_torch">Torch</string>
+    <string name="qs_tile_torch">手電筒</string>
     <string name="qs_tile_gravitybox">GravityBox 設定</string>
     <string name="qs_tile_sleep">關閉螢幕</string>
     <string name="qs_tile_quickrecord">快速錄音</string>
@@ -211,7 +211,8 @@
     <string name="pref_ab_number_not_descending">較高層級的值無法小於較低層級的值</string>
     <string name="pref_ab_values_set">已設定%s 的數值</string>
     <string name="pref_ab_config_saved">已儲存新的自動亮度組態</string>
-    <string name="pref_ab_config_cancelled">「沒有」儲存新的自動亮度組態</string>
+    <string name="pref_ab_config_cancelled">"尚未"儲存新的自動亮度組態</string>
+    <string name="pref_ab_button_set">設定</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">啟用鎖定畫面旋轉</string>
@@ -573,6 +574,9 @@
     <string name="nm_tile_mode1">2G/2G+3G/3G</string>
     <string name="nm_tile_mode2">2G/2G+3G</string>
 
+    <!-- Disable GPS notifications -->
+    <string name="pref_gps_notif_disable_title">停用 GPS 通知</string>
+
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">允許所有旋轉</string>
 
@@ -624,6 +628,7 @@
     <string name="ongoing_notif_reset_list">重設清單</string>
     <string name="ongoing_notif_reset_alert">您確定要重設清單嗎? 
         這將會清除當前清單中已被封鎖的通知，並且已被封鎖的通知將會在稍後重新出現.</string>
+    <string name="ongoing_notif_list_empty">(清單是空的)</string>
 
     <!-- Quick unlock -->
     <string name="pref_lockscreen_quick_unlock_title">快速解鎖</string>
@@ -652,9 +657,23 @@
     <string name="dt_size_normal">正常</string>
     <string name="dt_size_smaller">較小</string>
     <string name="dt_size_smallest">最小</string>
+    <string name="byte_abbr">B</string>
+    <string name="kilobyte_abbr">KB</string>
+    <string name="megabyte_abbr">MB</string>
+    <string name="second_abbr">s</string>
 
     <!-- Disable lockscreen widget limit -->
     <string name="pref_lockscreen_widget_limit_disable_title">停用小工具限值</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">允許無限數量的螢幕鎖定小工具</string>
+
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> 空閒</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> 已使用</string>
+    <string name="pref_rambar_title">最近執行的任務 RAM 欄</string>
+    <string name="rambar_off">關閉</string>
+    <string name="rambar_top">頂部</string>
+    <string name="rambar_bottom">按鍵</string>
 
 </resources>
