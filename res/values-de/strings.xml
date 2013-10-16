@@ -78,6 +78,10 @@
     <string name="quick_settings_expanded_desktop_expanded">Erweitert</string>
     <string name="quick_settings_stay_awake_on">Wachhalten an</string>
     <string name="quick_settings_stay_awake_off">Wachhalten aus</string>
+	<string name="quick_settings_wifi">WLAN</string>
+    <string name="quick_settings_wifi_off">WLAN aus</string>
+    <string name="quick_settings_wifi_not_connected">Getrennt</string>
+    <string name="quick_settings_wifi_turning_on">Aktiviere...</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Schnelleinstellungs-Verknüpfungen in der Statusleiste</string>
@@ -86,6 +90,7 @@
     <string name="qs_tile_airplane_mode">Flugmodus</string>
     <string name="qs_tile_battery">Akku</string>
     <string name="qs_tile_wifi">WLAN</string>
+	<string name="qs_tile_wifi_alt">WLAN (CM-Stil)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
 	<string name="qs_tile_gps_alt">GPS (CM-Stil)</string>
@@ -126,11 +131,11 @@
 
     <!-- Main preference categories -->
     <string name="pref_cat_statusbar_title">Statusleiste optimieren</string>
-    <string name="pref_cat_statusbar_summary">Beinhaltet einige Optionen, um die Statusleiste anzupassen</string>
+    <string name="pref_cat_statusbar_summary">Beinhaltet Optionen, um die Statusleiste anzupassen</string>
     <string name="pref_cat_misc_title">Diverses optimieren</string>
-    <string name="pref_cat_misc_summary">Beinhaltet alle Optimierungen, die in keine spezielle Kategorie passen</string>
+    <string name="pref_cat_misc_summary">Beinhaltet alle Optionen, die in keine spezielle Kategorie passen</string>
     <string name="pref_cat_fixes_title">Allgemeine Einstellungen</string>
-    <string name="pref_cat_fixes_summary">Beinhaltet allgemeine Einstellungen, die Fehler beim MTK6589 beheben. Nur benutzen, falls notwendig!</string>
+    <string name="pref_cat_fixes_summary">Beinhaltet allgemeine Einstellungen, die Fehler auf der MTK6589-Plattform beheben. Nur benutzen, falls notwendig!</string>
 
     <!-- About -->
     <string name="pref_cat_about_title">Über</string>
@@ -147,7 +152,7 @@
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">Röhrenmonitor-Effekt beim Ausschalten des Bildschirms</string>
-    <string name="crt_off_effect_summary">Aktiviert eine Animation, die das Ausschalten eines Röhrenmonitors simuliert, wenn der Bildschirm ausgeschaltet wird</string>
+    <string name="crt_off_effect_summary">Aktiviert eine Animation, die das Ausschalten eines Röhrenmonitors simuliert, sobald der Bildschirm ausgeschaltet wird</string>
 
     <!-- Engineering mode shortcut -->
     <string name="engineering_mode_title">Engineering-Modus</string>
@@ -159,10 +164,10 @@
 
     <!--  Lockscreen tweaks -->
     <string name="pref_cat_lockscreen_title">Sperrbildschirm optimieren</string>
-    <string name="pref_cat_lockscreen_summary">Beinhaltet einige Anpassungen für den Sperrbildschirm</string>
-    <string name="pref_cat_lockscreen_background_title">Lockscreen-Hintergrund</string>
+    <string name="pref_cat_lockscreen_summary">Beinhaltet Optionen, um den Sperrbildschirm anzupassen</string>
+    <string name="pref_cat_lockscreen_background_title">Sperrbildschirm-Hintergrund</string>
     <string name="pref_lockscreen_background_title">Hintergrund-Stil</string>
-    <string name="lockscreen_bg_default">Standard Hintergrundbild</string>
+    <string name="lockscreen_bg_default">Standard-Hintergrundbild</string>
     <string name="lockscreen_bg_color">Benutzerdefinierte Farbe</string>
     <string name="lockscreen_bg_image">Eigenes Bild</string>
     <string name="pref_lockscreen_bg_color_title">Benutzerdefinierte Farbe wählen</string>
@@ -171,13 +176,13 @@
     <string name="pref_lockscreen_bg_image_summary">Erlaubt es, ein benutzerdefiniertes Hintergrundbild für den Sperrbildschirm zu wählen</string>
     <string name="lockscreen_background_result_successful">Hintergrund geändert</string>
     <string name="lockscreen_background_result_not_successful">Hintergrund nicht geändert</string>
-    <string name="pref_cat_lockscreen_other_title">Anderer</string>
+    <string name="pref_cat_lockscreen_other_title">Sonstiges</string>
     <string name="pref_lockscreen_maximize_widgets_title">Widgets maximieren</string>
     <string name="pref_lockscreen_maximize_widgets_summary">Wenn aktiviert, werden Widgets auf dem Sperrbildschirm maximiert</string>
 
     <!--  Power tweaks category -->
     <string name="pref_cat_power_title">Ausschaltmenü optimieren</string>
-    <string name="pref_cat_power_summary">Beinhaltet einige energiebezogene Optimierungen</string>
+    <string name="pref_cat_power_summary">Beinhaltet energiebezogene Optionen, um das Ausschaltmenü anzupassen</string>
 
     <!--  Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Deaktiviere blinkende LED</string>
@@ -185,28 +190,28 @@
 
     <!-- Display tweaks category -->
     <string name="pref_cat_display_title">Bildschirm optimieren</string>
-    <string name="pref_cat_display_summary">Beinhaltet einige Optionen, um den Bildschirm anzupassen</string>
+    <string name="pref_cat_display_summary">Beinhaltet Optionen, um den Bildschirm anzupassen</string>
 
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Minimale Helligkeitsstufe</string>
     <string name="pref_brightness_min_summary">Erlaubt es, die minimale Helligkeitsstufe zu ändern. Wirkt sich auf die manuelle Helligkeitseinstellung aus. (Neustart erforderlich)</string>
-    <string name="pref_brightness_dlg_msg">Wert zwischen: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Automatische Helligkeitsstufen</string>
     <string name="pref_ab_summary">Erlaubt es, für eine bestimmte Umgebungshelligkeit die Bildschirmhelligkeit zu bestimmen</string>
     <string name="level">Helligkeitsstufe</string>
     <string name="pref_ab_lux_max_label">Lux max</string>
-    <string name="pref_ab_brighness_label">Helligkeit (10 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Helligkeit (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Eingegebener Wert ist ungültig</string>
-    <string name="pref_ab_brightness_too_low">Es ist nicht empfohlen, die Helligkeitsstufe unter 10 zu setzen</string>
-    <string name="pref_ab_brightness_too_high">Die Helligkeitsstufe kann nicht höher als 255 gesetzt werden</string>
-    <string name="pref_ab_number_error_negative">Werte können nicht weniger als 0 oder 0 betragen</string>
+    <string name="pref_ab_brightness_too_low">Es wird nicht empfohlen, die Helligkeitsstufe unter %d einzustellen</string>
+    <string name="pref_ab_brightness_too_high">Die Helligkeitsstufe kann nicht höher als 255 eingestellt werden</string>
+    <string name="pref_ab_number_error_negative">Werte können nicht 0 oder kleiner sein</string>
     <string name="pref_ab_number_not_ascending">Werte in niedrigeren Helligkeitsstufen können nicht größer sein, als Werte in höheren Helligkeitsstufen</string>
     <string name="pref_ab_number_not_descending">Werte in höheren Helligkeitsstufen können nicht niedriger sein, als Werte in niedrigeren Helligkeitsstufen</string>
     <string name="pref_ab_values_set">Werte für %s gesetzt</string>
-    <string name="pref_ab_config_saved">Neue Automatische Helligkeitsregelung gespeichert</string>
-    <string name="pref_ab_config_cancelled">Neue Automatische Helligkeitsregelung nicht gespeichert</string>
+    <string name="pref_ab_config_saved">Neue automatische Helligkeitsregelung gespeichert</string>
+    <string name="pref_ab_config_cancelled">Neue automatische Helligkeitsregelung nicht gespeichert</string>
+	<string name="pref_ab_button_set">Übernehmen</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Aktiviere Sperrbildschirm-Rotation</string>
@@ -225,7 +230,7 @@
 
     <!-- Media tweaks category -->
     <string name="pref_cat_media_title">Medien optimieren</string>
-    <string name="pref_cat_media_summary">Beinhaltet einige Optimierungen für Medien- und Audio-Einstellungen</string>
+    <string name="pref_cat_media_summary">Beinhaltet Optionen, um Medien- und Audio-Einstellungen anzupassen</string>
 
     <!-- More music volume steps -->
     <string name="pref_music_volume_steps_title">Mehr Lautstärkestufen für Musiklautstärke</string>
@@ -255,13 +260,13 @@
     <string name="pref_hwkey_kill_delay_summary">Stellt ein, wie lange eine Taste gedrückt werden muss, bis die geöffnete App geschlossen wird</string>
     <string name="pref_hwkey_doubletap_speed_title">Doppelklick Geschwindigkeit</string>
     <string name="pref_hwkey_doubletap_speed_summary">Legt fest, wie schnell eine Taste hintereinander gedrückt werden muss, damit es als zweifaches Drücken gewertet wird.</string>
-    <string name="app_killed">Anwendung beendet</string>
+    <string name="app_killed">%s beendet</string>
     <string name="nothing_to_kill">Nichts zu beenden</string>
     <string name="no_previous_app_found">Keine vorherige App gefunden</string>
 
     <!--  Phone tweaks category -->
     <string name="pref_cat_phone_title">Anrufe optimieren</string>
-    <string name="pref_cat_phone_summary">Beinhaltet diverse Anruf-bezogene Optimierungen</string>
+    <string name="pref_cat_phone_summary">Beinhaltet Anruf-bezogene Optionen</string>
 
     <!-- Flip action while ringing -->
     <string name="pref_phone_flip_title">Umdreh-Aktion während des Klingelns</string>
@@ -294,11 +299,11 @@
 
     <!-- Auto-switch QuickSettings -->
     <string name="pref_auto_switch_qs_title">Automatisch zu Schnelleinstellungen wechseln</string>
-    <string name="pref_auto_switch_qs_summary">Schnelleinstellungen werden automatisch angezeigt, wenn die Benachrichtigungsleiste heruntergezogen wird und keine Benachrichtigungen vorliegen</string>
+    <string name="pref_auto_switch_qs_summary">Schnelleinstellungen werden automatisch angezeigt, wenn die Benachrichtigungsleiste herunter gezogen wird und keine Benachrichtigungen vorliegen</string>
 
     <!-- Quick pulldown -->
     <string name="pref_quick_pulldown_title">Schnelleinstellungen herunterziehen</string>
-    <string name="pref_quick_pulldown_summary">Wenn die Statusbar an der Ecke heruntergezogen wird, werden automatisch die Schnelleinstellungen angezeigt</string>
+    <string name="pref_quick_pulldown_summary">Wird die Statusbar an der Ecke heruntergezogen, werden die Schnelleinstellungen automatisch angezeigt</string>
     <string name="quick_pulldown_off">Aus</string>
     <string name="quick_pulldown_right">Rechts</string>
     <string name="quick_pulldown_left">Links</string>
@@ -428,7 +433,7 @@
     <string name="qs_tile_ringer_mode">Klingelmodus</string>
 
     <!-- Clock settings category -->
-    <string name="pref_cat_clock_settings_title">Uhr Einstellungen</string>
+    <string name="pref_cat_clock_settings_title">Uhr einstellen</string>
 
     <!-- Clock: hide am/pm -->
     <string name="pref_clock_ampm_hide_title">Verstecke AM/PM</string>
@@ -460,7 +465,7 @@
 	<!-- Brightness preference category -->
     <string name="pref_cat_brightness_title">Helligkeitseinstellungen</string>
     <string name="pref_brightness_master_switch_title">Aktiviere Helligkeitseinstellungen</string>
-    <string name="pref_brightness_master_switch_summary">Use only in case your device supports standard Android brightness features. Keep disabled if you experience brightness related issues. (Neustart erforderlich)</string>
+    <string name="pref_brightness_master_switch_summary">Nur anwenden, falls Ihr Gerät standardmäßig Helligkeitsfunktionalitäten unterstützt. Bei auftretenden Problemen bitte wieder deaktivieren. (Neustart erforderlich)</string>
 
     <!-- HW Key Action: Recent apps -->
     <string name="hwkey_action_recent_apps">Zuletzt verwendete Apps anzeigen</string>
@@ -486,7 +491,7 @@
 
     <!-- National data roaming -->
     <string name="pref_national_roaming_title">Nationales Daten-Roaming</string>
-    <string name="pref_national_roaming_summary">Connect to data services when nationally roaming</string>
+    <string name="pref_national_roaming_summary">Beim nationalen Roaming mit Datendiensten verbinden</string>
     
     <!-- Expanded Desktop -->
     <string name="pref_expanded_desktop_title">Erweiterter Desktop-Modus</string>
@@ -505,14 +510,14 @@
     <string name="hwkey_action_menu">Menü anzeigen</string>
 
     <!-- HW Key Action: Expanded desktop -->
-    <string name="hwkey_action_expanded_desktop">Toggle expanded desktop</string>
+    <string name="hwkey_action_expanded_desktop">Auf erweiterten Desktop umschalten</string>
     <string name="hwkey_action_expanded_desktop_disabled">Erweiterter Desktop-Modus ist deaktiviert!</string>
 
     <!-- Navigation bar tweaks category -->
     <string name="pref_cat_navigation_bar_title">Navigationsleiste optimieren</string>
-    <string name="pref_cat_navigation_bar_summary">Beinhaltet diverse Optimierungen der Navigationsleiste</string>
-    <string name="pref_navbar_override_title">Override system defaults</string>
-    <string name="pref_navbar_override_summary">Master switch for navigation bar tweaks (Neustart erforderlich)</string>
+    <string name="pref_cat_navigation_bar_summary">Beinhaltet Optionen, um die Navigationsleiste anzupassen</string>
+    <string name="pref_navbar_override_title">Überschreibt System-Standardeinstellungen</string>
+    <string name="pref_navbar_override_summary">Hauptschalter für Optimierungen der Navigationsleiste (Neustart erforderlich)</string>
     <string name="pref_navbar_enable_title">Navigationsleiste aktivieren</string>
     <string name="pref_navbar_enable_summary">Neustart erforderlich</string>
     <string name="pref_navbar_height_title">Höhe der Navigationsleiste</string>
@@ -526,7 +531,7 @@
     <string name="pref_powermenu_screenshot_title">Screenshot im Ausschaltmenü</string>
 
     <!-- Unlock ring settings -->
-    <string name="pref_cat_lockscreen_ring_settings_title">Unlock ring settings</string>
+    <string name="pref_cat_lockscreen_ring_settings_title">Entsperr-Ring Einstellungen</string>
     <string name="pref_lockscreen_ring_targets_enable_title">Enable unlock ring targets</string>
     <string name="pref_lockscreen_ring_targets_enable_summary">Master switch for unlock ring targets</string>
     <string name="pref_lockscreen_ring_targets_app_title">Target application %s</string>
@@ -550,28 +555,25 @@
     <string name="unicode_stripping_all">Strip all unicode characters</string>
 
     <!-- Disable slow 2G data warning -->
-    <string name="pref_mobile_data_slow2g_disable_title">Disable slow 2G data warning</string>
-    <string name="pref_mobile_data_slow2g_disable_summary">Disables warning about slow data speed when turning on mobile data in QuickSettings for SIM in 2G mode</string>
+    <string name="pref_mobile_data_slow2g_disable_title">Deaktiviere 2G Daten-Warnung</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Warnung bei langsamer Datengeschwindigkeit im 2G-Modus deaktivieren</string>
 
     <!-- Follow stock battery color -->
     <string name="pref_sbcolor_follow_stock_battery_title">Follow stock battery color</string>
     <string name="pref_sbcolor_follow_stock_battery_summary">Makes statusbar clock, percentage and circle battery use the color of stock battery icon. Applies when icon coloring is off.</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
-    <string name="pref_network_mode_tile_mode_title">Network mode tile mode</string>
+    <string name="pref_network_mode_tile_mode_title">Netzmodus-Kachel anpassen</string>
     <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
     <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
     <string name="nm_tile_mode3">2G/3G/(LTE)</string>
-
-    <!-- Disable GPS notifications -->
-    <string name="pref_gps_notif_disable_title">Deaktiviert GPS-Benachrichtigungen</string>
 
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Alle Bildschirmausrichtungen erlauben</string>
 
     <!-- QuickSettings: override AOSP tile behaviour -->
-    <string name="pref_qs_tile_behaviour_override_title">Override default tile behaviour</string>
-    <string name="pref_qs_tile_behaviour_override_summary">Overrides touch/long-touch behaviour for selected tiles (Neustart erforderlich)</string>
+    <string name="pref_qs_tile_behaviour_override_title">Überschreibt Standard-Kachelverhalten</string>
+    <string name="pref_qs_tile_behaviour_override_summary">Überschreibt das Verhalten ausgewählter Kacheln beim Drücken/langen Drücken (Neustart erforderlich)</string>
 
     <!-- QuickSettings: SIM Slot for network mode tile -->
     <string name="pref_qs_network_mode_sim_slot_title">Network mode tile SIM slot</string>
@@ -607,5 +609,49 @@
 	<!-- QuickSettings tile order -->
     <string name="pref_qs_tile_order_title">Kachelanordnung ändern</string>
     <string name="pref_qs_tile_order_summary">Erlaubt die Neuanordnung der Schnelleinstellungs-Kacheln</string>
-    
+	
+	<!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Fortlaufende Benachrichtigungen blocken</string>
+    <string name="pref_ongoing_notifications_summary">Erlaubt es, fortlaufende Benachrichtigungen selektiv zu blockieren</string>
+    <string name="ongoing_notif_info">Jede fortlaufende Benachrichtigung wird automatisch in die Liste eingetragen. Du kannst dann entscheiden, ob du die fortlaufende Benachrichtigung beim nächsten Erscheinen blockierst. Mit Vorsicht verwenden.</string>
+    <string name="ongoing_notif_reset_list">Liste zurücksetzen</string>
+    <string name="ongoing_notif_reset_alert">Wollen Sie die Liste wirklich zurücksetzen? Löscht die aktuelle Liste und gibt alle Benachrichtigungen frei, die zuvor blockiert wurden.</string>
+	<string name="ongoing_notif_list_empty">(Liste ist leer)</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Schnelle Entsperrung</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Automatische Entsperrung, sobald die korrekte PIN/Passwort eingegeben wurde</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Deaktiviert</string>
+    <string name="clock_dow_standard">Standard</string>
+    <string name="clock_dow_lowercase">Kleine Schrift</string>
+    <string name="clock_dow_uppercase">Große Schrift</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Regeln für Statusleistensperre</string>
+    <string name="sbl_policy_default">Standard</string>
+    <string name="sbl_policy_unlocked">Freigegeben bei ungesicherter Display-Sperre</string>
+    <string name="sbl_policy_locked">Gesperrt</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Datenverbrauchsanzeige</string>
+    <string name="pref_data_traffic_enable_title">Überwachung aktivieren</string>
+    <string name="pref_data_traffic_enable_summary">Blendet automatisch die Datenverbrauchsanzeige ein, sobald die Datenverbindung aktiv ist</string>
+    <string name="pref_data_traffic_position_title">Position</string>
+    <string name="dt_position_auto">Auto (Zentriert oder rechts, abhängig von der Uhrposition)</string>
+    <string name="dt_position_left">Links</string>
+    <string name="pref_data_traffic_size_title">Größe</string>
+    <string name="dt_size_normal">Normal</string>
+    <string name="dt_size_smaller">Kleiner</string>
+    <string name="dt_size_smallest">Sehr klein</string>
+	<string name="byte_abbr">B</string>
+    <string name="kilobyte_abbr">KB</string>
+    <string name="megabyte_abbr">MB</string>
+    <string name="second_abbr">s</string>
+
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">Widget-Beschränkung aufheben</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">Erlaubt es, eine unbeschränkte Anzahl an Sperrbildschirm-Widgets einzurichten</string>
+
 </resources>

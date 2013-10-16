@@ -47,6 +47,10 @@ public class TrafficMeter extends TextView {
     long mTrafficBurstStartBytes;
     long mKeepOnUntil = Long.MIN_VALUE;
     int mPosition = GravityBoxSettings.DT_POSITION_AUTO;
+    String mB = "B";
+    String mKB = "KB";
+    String mMB = "MB";
+    String mS = "s";
 
     NumberFormat mDecimalFormat = new DecimalFormat("##0.0");
     NumberFormat mIntegerFormat = NumberFormat.getIntegerInstance();
@@ -66,6 +70,18 @@ public class TrafficMeter extends TextView {
     public TrafficMeter(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mContext = context;
+
+        try {
+            Context gbContext = mContext.createPackageContext(
+                    GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
+            mB = gbContext.getString(R.string.byte_abbr);
+            mKB = gbContext.getString(R.string.kilobyte_abbr);
+            mMB = gbContext.getString(R.string.megabyte_abbr);
+            mS = gbContext.getString(R.string.second_abbr);
+        } catch (Exception e) {
+            log(e.getMessage());
+        }
+
         updateState();
     }
 
@@ -137,23 +153,23 @@ public class TrafficMeter extends TextView {
         if (bytes > 10485760) { // 1024 * 1024 * 10
             return (speed ? "" : "(")
                     + mIntegerFormat.format(bytes / 1048576)
-                    + (speed ? "MB/s" : "MB)");
+                    + (speed ? mMB + "/" + mS : mMB + ")");
         } else if (bytes > 1048576) { // 1024 * 1024
             return (speed ? "" : "(")
                     + mDecimalFormat.format(((float) bytes) / 1048576f)
-                    + (speed ? "MB/s" : "MB)");
+                    + (speed ? mMB + "/" + mS : mMB + ")");
         } else if (bytes > 10240) { // 1024 * 10
             return (speed ? "" : "(")
                     + mIntegerFormat.format(bytes / 1024)
-                    + (speed ? "KB/s" : "KB)");
+                    + (speed ? mKB + "/" + mS : mKB + ")");
         } else if (bytes > 1024) { // 1024
             return (speed ? "" : "(")
                     + mDecimalFormat.format(((float) bytes) / 1024f)
-                    + (speed ? "KB/s" : "KB)");
+                    + (speed ? mKB + "/" + mS : mKB + ")");
         } else {
             return (speed ? "" : "(")
                     + mIntegerFormat.format(bytes)
-                    + (speed ? "B/s" : "B)");
+                    + (speed ? mB + "/" + mS : mB + ")");
         }
     }
 

@@ -54,7 +54,7 @@
     <string name="vol_key_cursor_control_on">Hangerő fel/le a kurzort balra/jobbra mozgatja</string>
     <string name="vol_key_cursor_control_on_reverse">Hangerő fel/le a kurzort jobbra/balra mozgatja</string>
 
-    <string name="recents_clear_all_title">Legutóbbi feladatok törlése gomb</string>
+    <string name="recents_clear_all_title">Nemrég használt alkalmazások törlése gomb</string>
 
     <string name="fix_datetime_crash_title">Javítja a Dátum és Idő beállítás hibáját</string>
     <string name="fix_datetime_crash_summary">Engedélyezze abban az esetben, ha összeomlást tapasztal a Dátum és Idő beállítás elérésekor (újraindítás szükséges)</string>
@@ -109,13 +109,13 @@
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
 	<string name="qs_tile_gps_alt">GPS (CM stílus)</string>
-    <string name="qs_tile_mobile_data">Mobil adat</string>
+    <string name="qs_tile_mobile_data">Mobil adatátvitel</string>
     <string name="qs_tile_network_mode">Hálózati üzemmód</string>
     <string name="qs_tile_data_usage">Adat használat</string>
     <string name="qs_tile_audio">Audió profilok</string>
     <string name="qs_tile_brightness">Fényerő</string>
     <string name="qs_tile_screen_timeout">Képernyő időtúllépés</string>
-    <string name="qs_tile_autorotation">Automatikus forgatás</string>
+    <string name="qs_tile_autorotation">Automatikus elforgatás</string>
     <string name="qs_tile_sync">Szinkronizálás</string>
     <string name="qs_tile_wifi_ap">Wi-Fi hozzáférési pont</string>
     <string name="qs_tile_torch">Zseblámpa</string>
@@ -178,22 +178,22 @@
     <string name="dual_sim_ringer_summary">Elindítja a programot, ami lehetővé teszi csengőhangok és figyelmeztető hangok beállítását külön, mindkét SIM-hez</string>
 
     <!--  Lockscreen tweaks -->
-    <string name="pref_cat_lockscreen_title">Lockscreen módosítások</string>
-    <string name="pref_cat_lockscreen_summary">Különböző Lockscreen módosításokat tartalmaz</string>
-    <string name="pref_cat_lockscreen_background_title">Lockscreen háttér</string>
+    <string name="pref_cat_lockscreen_title">Zárképernyő módosítások</string>
+    <string name="pref_cat_lockscreen_summary">Különböző Zárképernyő módosításokat tartalmaz</string>
+    <string name="pref_cat_lockscreen_background_title">Zárképernyő háttér</string>
     <string name="pref_lockscreen_background_title">Háttér sítlus</string>
     <string name="lockscreen_bg_default">Alapértelmezett háttérkép</string>
     <string name="lockscreen_bg_color">Szín kitöltés</string>
     <string name="lockscreen_bg_image">Egyéni kép</string>
     <string name="pref_lockscreen_bg_color_title">Egyéni szín beállítása</string>
-    <string name="pref_lockscreen_bg_color_summary">Lehetővé teszi egyéni háttérszín beállítását a Lockscreen-hez</string>
+    <string name="pref_lockscreen_bg_color_summary">Lehetővé teszi egyéni háttérszín beállítását a Zárképernyőhöz</string>
     <string name="pref_lockscreen_bg_image_title">Egyéni kép beállítása</string>
-    <string name="pref_lockscreen_bg_image_summary">Lehetővé teszi egyéni háttérkép beállítását a Lockscreen-hez</string>
+    <string name="pref_lockscreen_bg_image_summary">Lehetővé teszi egyéni háttérkép beállítását a Zárképernyőhöz</string>
     <string name="lockscreen_background_result_successful">A háttér megváltozott</string>
     <string name="lockscreen_background_result_not_successful">A háttér nem változott meg</string>
     <string name="pref_cat_lockscreen_other_title">Egyéb</string>
-    <string name="pref_lockscreen_maximize_widgets_title">Widgetek maximalizálása</string>
-    <string name="pref_lockscreen_maximize_widgets_summary">Ha engedélyezve van, a Lockscreen widgetek alapértelmezetten maximalizálva lesznek</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Widget-ek maximalizálása</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">Ha engedélyezve van, a Zárképernyő widget-ek alapértelmezetten maximalizálva lesznek</string>
 
     <!--  Power tweaks category -->
     <string name="pref_cat_power_title">Energia beállítások</string>
@@ -210,16 +210,15 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Minimum fényerő szint</string>
     <string name="pref_brightness_min_summary">Lehetővé teszi a minimum fényerő szint beállítását. A kézi fényerőbeállításra vonatkozik. (újraindítás szükséges)</string>
-    <string name="pref_brightness_dlg_msg">Érték intervallum: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Automatikus fényerő szintek</string>
     <string name="pref_ab_summary">Lehetővé teszi a környezeti fény szintek és a kapcsolódó LCD háttérvilágítás értékek beállítását</string>
     <string name="level">Szint</string>
     <string name="pref_ab_lux_max_label">Lux max</string>
-    <string name="pref_ab_brighness_label">Háttérfény (10 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Háttérfény (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">A meghatározott érték nem lehetséges</string>
-    <string name="pref_ab_brightness_too_low">10 alatti fényerő érték beállítása nem ajánlott</string>
+    <string name="pref_ab_brightness_too_low">Nem ajánlott %d alatti fényerő érték beállítása</string>
     <string name="pref_ab_brightness_too_high">Fényerő nem lehet nagyobb, mint 255</string>
     <string name="pref_ab_number_error_negative">Az értékek nem lehetnek kisebbek vagy egyenlőek 0-val</string>
     <string name="pref_ab_number_not_ascending">A kisebb szintek értékei nem lehetnek nagyobbak mint a nagyobb szintek értékei.</string>
@@ -227,14 +226,15 @@
     <string name="pref_ab_values_set">Értékek %-os megadása</string>
     <string name="pref_ab_config_saved">Új automatikus fényerő konfiguráció elmentve</string>
     <string name="pref_ab_config_cancelled">Automatikus fényerő konfiguráció NINCS elmentve</string>
+	<string name="pref_ab_button_set">Beállít</string>
 
     <!-- Lockscreen rotation -->
-    <string name="pref_lockscreen_rotation_title">Lockscreen elforgatás engedélyezése</string>
-    <string name="pref_lockscreen_rotation_summary">FIGYELEM: megfordíthatja a feloldó kör célirányát olyan eszközön, ahol AOSP lockscreen már a gyártó által módosítva van</string>
+    <string name="pref_lockscreen_rotation_title">Zárképernyő elforgatás engedélyezése</string>
+    <string name="pref_lockscreen_rotation_summary">FIGYELEM: megfordíthatja a feloldó kör célirányát olyan eszközön, ahol AOSP zárképernyő már a gyártó által módosítva van</string>
 
     <!-- Lockscreen menu key -->
     <string name="pref_lockscreen_menu_key_title">Menü gomb engedélyezése</string>
-    <string name="pref_lockscreen_menu_key_summary">Lehetővé teszi a menü gombbal történő gyors feloldást a Lockscreen-en (újraindítás szükséges)</string>
+    <string name="pref_lockscreen_menu_key_summary">Lehetővé teszi a menü gombbal történő gyors feloldást a Zárképernyőn (újraindítás szükséges)</string>
 
     <!-- Fix messaging wakelock -->
     <string name="pref_mms_fix_wakelock_title">Javítja az üzenetek fogadásakori ébrentartást</string>
@@ -249,7 +249,7 @@
 
     <!-- More music volume steps -->
     <string name="pref_music_volume_steps_title">Több zene hangerő léptetés</string>
-    <string name="pref_music_volume_steps_summary">Több hangerő léptetést eredményez zene folyam esetén (újraindítás szükséges)</string>
+    <string name="pref_music_volume_steps_summary">Több hangerő léptetést eredményez zene hangfolyam esetén (újraindítás szükséges)</string>
 
     <!-- Safe headset media volume -->
     <string name="pref_safe_media_volume_title">Biztonságos fejhallgató média hangerő</string>
@@ -275,7 +275,7 @@
     <string name="pref_hwkey_kill_delay_summary">Az előtérben futó program bezárására vonatkozik. Meghatározza, hogy mennyi ideig kell nyomva tartani a gombot a bezáráshoz.</string>
     <string name="pref_hwkey_doubletap_speed_title">Dupla érintés sebessége</string>
     <string name="pref_hwkey_doubletap_speed_summary">A Menü gomb dupla érintés műveletére vonatkozik. Meghatározza, hogy milyen gyorsan kell érinteni a dupla érintés előidézéséhez.</string>
-    <string name="app_killed">Alkalmazás bezárva</string>
+    <string name="app_killed">%s bezárva</string>
     <string name="nothing_to_kill">Nincs bezárandó alkalmazás</string>
     <string name="no_previous_app_found">Nem található korábbi alkalmazás</string>
 
@@ -462,9 +462,9 @@
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Átlátszóság menedzsment</string>
     <string name="pref_tm_statusbar_launcher_title">Állapotsáv átlátszóság launcher-nél</string>
-    <string name="pref_tm_statusbar_lockscreen_title">Állapotsáv átlátszóság lockscreen-nél</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Állapotsáv átlátszóság zárképernyőnél</string>
     <string name="pref_tm_navbar_launcher_title">Nav.sáv átlátszóság launcher-nél</string>
-    <string name="pref_tm_navbar_lockscreen_title">Nav.sáv átlátszóság lockscreen-nél </string>
+    <string name="pref_tm_navbar_lockscreen_title">Nav.sáv átlátszóság zárképernyőnél </string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Ébresztő ikon elrejtése</string>
@@ -483,7 +483,7 @@
     <string name="pref_brightness_master_switch_summary">Csak abban az esetben használd, ha az eszközöd támogotja a szabvány Android fényerő funkciókat. Fényerővel kapcsolatos hibák megjelenése esetén tiltsd le ezt a funkciót. (újraindítás szükséges)</string>
 
 	<!-- HW Key Action: Recent apps -->
-    <string name="hwkey_action_recent_apps">Legutóbb használt alkalmazások megjelenítése</string>
+    <string name="hwkey_action_recent_apps">Nemrég használt alkalmazások megjelenítése</string>
 
     <!-- HW Key Action: Home long-press -->
     <string name="pref_hwkey_home_longpress_title">Home gomb hosszú érintés művelete</string>
@@ -558,9 +558,9 @@
     <string name="pref_statusbar_brightness_summary">Fényerő beállítása az értesítési sávon történő jobbra-balra csúsztatással</string>
 
     <!-- Phone tweaks categories -->
-    <string name="pref_cat_phone_telephony_title">Telephony</string>
-    <string name="pref_cat_phone_messaging_title">Messaging</string>
-    <string name="pref_cat_phone_mobile_data_title">Mobile data</string>
+    <string name="pref_cat_phone_telephony_title">Telefonálás</string>
+    <string name="pref_cat_phone_messaging_title">Üzenetküldés</string>
+    <string name="pref_cat_phone_mobile_data_title">Mobil adatátvitel</string>
 
     <!-- Messaging: Strip unicode -->
     <string name="pref_mms_unicode_stripping_title">Unicode figyelmen kívül hagyása</string>
@@ -570,8 +570,8 @@
     <string name="unicode_stripping_all">Az összes unicode karakter figyelmen kívül hagyása</string>
 
     <!-- Disable slow 2G data warning -->
-    <string name="pref_mobile_data_slow2g_disable_title">Lassú 2G adat figyelmeztetés letiltása</string>
-    <string name="pref_mobile_data_slow2g_disable_summary">Kikapcsolja a lassú adatátviteli sebességgel kapcsolatos figyelmeztetést, amikor bekapcsolásra kerül a Gyorsbeállítások alatt a mobil adat SIM 2G módban.</string>
+    <string name="pref_mobile_data_slow2g_disable_title">Lassú 2G adatátviteli figyelmeztetés letiltása</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">Kikapcsolja a lassú adatátviteli sebességgel kapcsolatos figyelmeztetést, amikor bekapcsolásra kerül a Gyorsbeállítások alatt a mobil adatátvitel SIM 2G módban.</string>
 
     <!-- Follow stock battery color -->
     <string name="pref_sbcolor_follow_stock_battery_title">Gyári akkumlátor szín követése</string>
@@ -583,11 +583,8 @@
     <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
     <string name="nm_tile_mode3">2G/3G/(LTE)</string>
 
-    <!-- Disable GPS notifications -->
-    <string name="pref_gps_notif_disable_title">GPS értesítések letiltása</string>
-
     <!-- Display: allow all rotations -->
-    <string name="pref_display_allow_all_rotations_title">Összes forgatás engedélyezése</string>
+    <string name="pref_display_allow_all_rotations_title">Összes elforgatás engedélyezése</string>
 
     <!-- QuickSettings: override AOSP tile behaviour -->
     <string name="pref_qs_tile_behaviour_override_title">Alapértelmezett csempe viselkedés felülírása</string>
@@ -636,6 +633,7 @@
     <string name="ongoing_notif_reset_list">Lista visszaállítása</string>
     <string name="ongoing_notif_reset_alert">Biztosan vissza szeretné állítani a listát?
         Ez törölni fogja az aktuális listát és engedélyezni fogja az összes korábban blokkolt folyamatban lévő értesítést.</string>
+	<string name="ongoing_notif_list_empty">(a lista üres)</string>
 
     <!-- Quick unlock -->
     <string name="pref_lockscreen_quick_unlock_title">Gyors feloldás</string>
@@ -664,5 +662,23 @@
     <string name="dt_size_normal">Normál</string>
     <string name="dt_size_smaller">Kisebb</string>
     <string name="dt_size_smallest">Legkisebb</string>
+	<string name="byte_abbr">B</string>
+    <string name="kilobyte_abbr">KB</string>
+    <string name="megabyte_abbr">MB</string>
+    <string name="second_abbr">mp</string>
+	
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">Widget limitáció letiltása</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">Lehetővé teszi korlátlan számú widget alkalmazását a Zárképernyőn</string>
+
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> szabad</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> foglalt</string>
+    <string name="pref_rambar_title">Nemrég használt alkalmazások Memória sáv</string>
+    <string name="rambar_off">Kikapcsolva</string>
+    <string name="rambar_top">Fent</string>
+    <string name="rambar_bottom">Lent</string>
 	
 </resources>

@@ -55,7 +55,7 @@ public class GravityBoxTile extends AQuickSettingsTile {
 
     @Override
     protected void onTileCreate() {
-        mDrawableId = R.drawable.ic_launcher;
+        mDrawableId = R.drawable.ic_qs_gravitybox;
         mLabel = "GravityBox";
 
         LayoutInflater inflater = LayoutInflater.from(mGbContext);

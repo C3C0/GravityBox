@@ -1,3 +1,66 @@
+Changelog 2.6.2 - 13/10/2013
+--------------------------------------
+- Preferences adjusted to take device features into account (thanks to @bgcngm)
+--- Torch tile available only for devices having flash led
+--- GPS tile available only for devices having GPS
+--- Removed redundant "Disable GPS notifications" option (now available via notifications blocker)
+--- Removed preferences and tiles related to mobile data for WiFi only devices
+- Transparency manager: automatically disable transparency updates when all 4 transparency sliders set to 0
+--- fixes graphical anomaly appearing at the top of the windows when transparency off (all 4 sliders zero)
+- Prevent soft reboots on Touchwiz devices when accessing power menu (DOES NOT mean GB is now fully compatible with TW!!!)
+- Improved compatibility of status bar tweaks with devices having modified statusbar layout (Xperia,...)
+- Updated French translation (thanks to ch-vox)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Chinese (Simplified) translations (thanks to liveasx)
+- Updated Hungarian translations (thanks to benjoe1)
+
+Changelog 2.6.1 - 12/10/2013
+--------------------------------------
+- Ongoing notifications blocker:
+--- fixed compatibility with Android 4.3
+--- show hint when list is empty
+- Expandable volume panel:
+--- show ringer volume only for devices having voice feature
+--- don't allow volume linking for devices that don't have voice feature
+--- added alarm slider
+- Fixed SystemUI crash caused by WiFi tile on some MT6589 devices with different signal cluster handling
+- Updated French translation (thanks to ch-vox)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Chinese (Simplified) translations (thanks to liveasx)
+- Updated Italian translations (thanks to pitone02)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)\
+- Updated German translations (thanks to samsonbear)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Japanese translations (thanks to WedyDQ10)
+
+Changelog 2.6.0 - 10/10/2013
+--------------------------------------
+- Statusbar tweaks:
+--- Ongoing notification blocker - dynamically collects info on ongoing notifications and allows to block them
+--- Alternate WiFi Tile for MTK devices (CM Style) with signal and SSID indication
+--- AOSP Signal Tile: added indicator for mobile data off state when tile behaviour overriden (non-MTK, needs testing)
+--- Clock Day of Week revamped to support normal/lowercase/uppercase styles
+--- Data traffic monitor - monitors data traffic and displays info in statusbar
+--- Added Low Profile support for Circle battery, percent text and data traffic monitor
+- Lockscreen tweaks
+--- Quick unlock: unlocks immediately after correct PIN/password is entered without pressing ENTER
+--- Statusbar lock policy: allows making statusbar expandable on lockscreen
+--- Option for disabling limit for number of widgets
+--- Long-press on lock icon unlocks device when widgets maximized
+- Fixed 45 sec. vibrations not being executed on some devices (partial wakelock required during call)
+- Added Vietnamese translations (thanks to hdbk1986)
+- Added Turkish translations (thanks to AndroidMeda)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Chinese (Simplified) translations (thanks to liveasx, EraserKing)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+- Updated German translations (thanks to samsonbear)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Italian translations (thanks to pitone02)
+- Updated French translation (thanks to ch-vox)
+- Updated Japanese translations (thanks to WedyDQ10)
+- Updated Hungarian translations (thanks to benjoe1)
+
 Changelog 2.5.7 - 03/10/2013
 --------------------------------------
 - QuickSettings Tile Reordering

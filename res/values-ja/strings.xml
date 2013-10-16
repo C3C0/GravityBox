@@ -190,16 +190,15 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">明るさの最小値</string>
     <string name="pref_brightness_min_summary">明るさの最小値を設定します。手動設定にのみ反映されます。(要再起動)</string>
-    <string name="pref_brightness_dlg_msg">設定可能な値: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">自動調整値</string>
     <string name="pref_ab_summary">明るさの自動調整で使用する値を設定します</string>
     <string name="level">値</string>
     <string name="pref_ab_lux_max_label">最大ルクス</string>
-    <string name="pref_ab_brighness_label">明るさ (10 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">明るさ (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">指定した値は不正です。</string>
-    <string name="pref_ab_brightness_too_low">10未満に設定するのはおすすめできません。</string>
+    <string name="pref_ab_brightness_too_low">%d未満に設定するのはおすすめできません。</string>
     <string name="pref_ab_brightness_too_high">255より上には設定できません。</string>
     <string name="pref_ab_number_error_negative">値は低かったり同じにはできません。</string>
     <string name="pref_ab_number_not_ascending">最低値が最大値を上回ることはできません。</string>
@@ -207,6 +206,7 @@
     <string name="pref_ab_values_set">%s の値を設定しました。</string>
     <string name="pref_ab_config_saved">明るさ設定を保存しました。</string>
     <string name="pref_ab_config_cancelled">明るさ設定は保存されませんでした。</string>
+    <string name="pref_ab_button_set">セット</string> 
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">ロック画面での回転を有効化</string>
@@ -255,7 +255,7 @@
     <string name="pref_hwkey_kill_delay_summary">前面アプリの終了をするまでにどれぐらいキーを押しっぱなしにするか設定します。</string>
     <string name="pref_hwkey_doubletap_speed_title">ダブルタップ速度</string>
     <string name="pref_hwkey_doubletap_speed_summary">メニューキーダブルタップでどれぐらいの速度のタップを認識するか設定します。</string>
-    <string name="app_killed">アプリを終了しました。</string>
+    <string name="app_killed">%s アプリを終了しました。</string>
     <string name="nothing_to_kill">終了するアプリがありません。</string>
     <string name="no_previous_app_found">前のアプリはありません。</string>
 
@@ -567,9 +567,6 @@
     <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
     <string name="nm_tile_mode3">2G/3G/(LTE)</string>
 
-    <!-- Disable GPS notifications -->
-    <string name="pref_gps_notif_disable_title">GPS通知の無効化</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">画面の向きの自由化</string>
 
@@ -620,4 +617,48 @@
     <string name="ongoing_notif_reset_list">リストの初期化</string>
     <string name="ongoing_notif_reset_alert">リストを初期化しますか?
         ブロックした通知を全てブロックしないようにします。</string>
+    <string name="ongoing_notif_list_empty">(リストが空です)</string> 
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">クイックロック解除</string>
+    <string name="pref_lockscreen_quick_unlock_summary">正しいPIN/パスワードを入力したときに自動的にロックを解除します。</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">無効</string>
+    <string name="clock_dow_standard">標準</string>
+    <string name="clock_dow_lowercase">小文字</string>
+    <string name="clock_dow_uppercase">大文字</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">ステータスバーのロック</string>
+    <string name="sbl_policy_default">デフォルト</string>
+    <string name="sbl_policy_unlocked">キーガードオフ時にロック解除</string>
+    <string name="sbl_policy_locked">ロックする</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">データ通信量モニター</string>
+    <string name="pref_data_traffic_enable_title">監視を有効にする</string>
+    <string name="pref_data_traffic_enable_summary">データ通信をしているときにデータ通信量モニターを表示します。</string>
+    <string name="pref_data_traffic_position_title">位置</string>
+    <string name="dt_position_auto">自動(時計の位置に従う)</string>
+    <string name="dt_position_left">左</string>
+    <string name="pref_data_traffic_size_title">サイズ</string>
+    <string name="dt_size_normal">中</string>
+    <string name="dt_size_smaller">小</string>
+    <string name="dt_size_smallest">極小</string>
+    <string name="second_abbr">秒</string>
+
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">ウィジェット制限の無効化</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">ロック画面にいくつでもウィジェットをおけるようにします。</string>
+
+    <!-- RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g>空き</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g>使用中</string>
+    <string name="pref_rambar_title">最近のアプリでのRAMバー</string>
+    <string name="rambar_off">無効</string>
+    <string name="rambar_top">上に表示</string>
+    <string name="rambar_bottom">下に表示</string>
 </resources>

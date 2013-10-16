@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
 
@@ -195,16 +195,15 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Nível de brilho mínimo</string>
     <string name="pref_brightness_min_summary">Permite definir o nível de brilho mínimo, aplicável apenas ao modo manual (necessário reiniciar)</string>
-    <string name="pref_brightness_dlg_msg">Intervalo de valores: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Níveis de brilho automático</string>
     <string name="pref_ab_summary">Permite ajustar os níveis de luz ambiente e os correspondentes valores para o brilho do ecrã</string>
     <string name="level">Nível</string>
     <string name="pref_ab_lux_max_label">Lux máx.</string>
-    <string name="pref_ab_brighness_label">Brilho (10 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Brilho (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Valor especificado inválido</string>
-    <string name="pref_ab_brightness_too_low">Não é aconselhável um valor inferior a 10</string>
+    <string name="pref_ab_brightness_too_low">Não é aconselhável um valor inferior a %d</string>
     <string name="pref_ab_brightness_too_high">O valor não pode ser superior a 255</string>
     <string name="pref_ab_number_error_negative">O valor não pode ser negativo</string>
     <string name="pref_ab_number_not_ascending">O valor do patamar inferior não pode ser maior que o do patamar superior</string>
@@ -212,6 +211,7 @@
     <string name="pref_ab_values_set">Valores de %s definidos</string>
     <string name="pref_ab_config_saved">Nova configuração de níveis de brilho automático gravada</string>
     <string name="pref_ab_config_cancelled">Configuração de níveis de brilho automático não gravada</string>
+    <string name="pref_ab_button_set">Definir</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Ativar rotação no ecrã de bloqueio</string>
@@ -260,7 +260,7 @@
     <string name="pref_hwkey_kill_delay_summary">Aplicável à ação \"Fechar aplicação em curso\". Permite temporizar o fecho da aplicação após a tecla ter sido pressionada</string>
     <string name="pref_hwkey_doubletap_speed_title">Velocidade do duplo toque</string>
     <string name="pref_hwkey_doubletap_speed_summary">Aplicável à ação após duplo toque na tecla Menu. Permite definir o tempo máximo admissível entre toques</string>
-    <string name="app_killed">Aplicação fechada</string>
+    <string name="app_killed">Aplicação %s fechada</string>
     <string name="nothing_to_kill">Nenhuma aplicação por fechar</string>
     <string name="no_previous_app_found">Nenhuma aplicação anterior encontrada</string>
 
@@ -350,9 +350,9 @@
     <string name="pref_disable_roaming_indicators_summary">Quando selecionado, o indicador R não será visível em roaming (usar com cautela)</string>
 
     <!-- Battery status in pie controls -->
-    <string name="pie_battery_status_charging">A carregar (%d%%)</string>
+    <string name="pie_battery_status_charging">A carregar (<xliff:g id="percent">%d</xliff:g>%%)</string>
     <string name="pie_battery_status_full">Carregado</string>
-    <string name="pie_battery_status_discharging">%d%% restante</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% restante</string>
 
     <!-- Phone status in pie controls -->
     <string name="pie_phone_status_no_service">Fora de serviço</string>
@@ -568,9 +568,6 @@
     <string name="nm_tile_mode2">2G/2G+3G/(4G)</string>
     <string name="nm_tile_mode3">2G/3G/(4G)</string>
 
-    <!-- Disable GPS notifications -->
-    <string name="pref_gps_notif_disable_title">Desativar notificações GPS</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Permitir todas as orientações</string>
 
@@ -621,6 +618,7 @@
     <string name="ongoing_notif_reset_list">Limpar lista</string>
     <string name="ongoing_notif_reset_alert">Tem a certeza que pretende limpar a lista? 
         Esta ação irá limpar a lista atual e todas as notificações até agora bloqueadas serão desbloqueadas.</string>
+    <string name="ongoing_notif_list_empty">(lista vazia)</string>
 
     <!-- Quick unlock -->
     <string name="pref_lockscreen_quick_unlock_title">Desbloqueio rápido</string>
@@ -649,5 +647,23 @@
     <string name="dt_size_normal">Normal</string>
     <string name="dt_size_smaller">Pequeno</string>
     <string name="dt_size_smallest">Mínimo</string>
+    <string name="byte_abbr">B</string>
+    <string name="kilobyte_abbr">KB</string>
+    <string name="megabyte_abbr">MB</string>
+    <string name="second_abbr">s</string>
+
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">Desativar limitação de widgets</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">Permite colocar um número ilimitado de widgets no ecrã de bloqueio</string>
+
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> livres</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> utiliz.</string>
+    <string name="pref_rambar_title">Indicação RAM nas tarefas recentes</string>
+    <string name="rambar_off">Desativada</string>
+    <string name="rambar_top">Topo superior</string>
+    <string name="rambar_bottom">Topo inferior</string>
 
 </resources>

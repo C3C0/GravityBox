@@ -68,6 +68,7 @@ public class OngoingNotifPreference extends DialogPreference
     protected void onBindDialogView(View view) {
         mListView = (ListView) view.findViewById(R.id.icon_list);
         mListView.setOnItemClickListener(this);
+        mListView.setEmptyView(view.findViewById(R.id.info_list_empty));
 
         mBtnResetList = (Button) view.findViewById(R.id.btnReset);
         mBtnResetList.setOnClickListener(this);

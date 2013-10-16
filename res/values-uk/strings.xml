@@ -177,16 +177,15 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Мінімальний рівень яскравості</string>
     <string name="pref_brightness_min_summary">Дозволяє призначити мінімальний рівень яскравості. Застосовується для ручного налаштування яскравості (потрібне перезавантаження)</string>
-    <string name="pref_brightness_dlg_msg">Значення з інтервалу: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Автоматична яскравість</string>
     <string name="pref_ab_summary">Дозволяє призначати значення рівня зовнішнього освітлення та відповідні значення рівнів підсвітки екрану</string>
     <string name="level">Рівень</string>
     <string name="pref_ab_lux_max_label">Люкс макс.</string>
-    <string name="pref_ab_brighness_label">Яскравість (10 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Яскравість (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Невірне значення</string>
-    <string name="pref_ab_brightness_too_low">Не рекомендовано призначати яскравість нижче 10</string>
+    <string name="pref_ab_brightness_too_low">Не рекомендовано призначати яскравість нижче %d</string>
     <string name="pref_ab_brightness_too_high">Яскравість не може бути більшою за 255</string>
     <string name="pref_ab_number_error_negative">Значення не можуть бути меншими нуля</string>
     <string name="pref_ab_number_not_ascending">Значення для нижчих рівнів не можуть бути більшими значень для вищих</string>
@@ -242,7 +241,7 @@
     <string name="pref_hwkey_kill_delay_summary">Застосовується до дії завершення усіх поточних завдань. Визначає тривалість натискання для спрацьовування</string>
     <string name="pref_hwkey_doubletap_speed_title">Швидкість подвійного дотику</string>
     <string name="pref_hwkey_doubletap_speed_summary">Застосовується до дії подвійного дотику меню. Визначає швидкість подвійного дотику для спрацьовування</string>
-    <string name="app_killed">Завдання завершене</string>
+    <string name="app_killed">Завдання %s завершене</string>
     <string name="nothing_to_kill">Нічого завершувати</string>
     <string name="no_previous_app_found">Немає попереднього додатку</string>
 

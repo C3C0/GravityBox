@@ -72,7 +72,7 @@
     <string name="quick_settings_qr_playing">In riproduzione&#8230;</string>
     <string name="quick_settings_qr_recording">Registrazione&#8230;</string>
     <string name="quick_settings_qr_recorded">Registrato</string>
-    <string name="quick_settings_qr_record">Pressione lunga per registrare</string>
+    <string name="quick_settings_qr_record">Tieni premuto per registrare</string>
     <string name="quick_settings_qr_recording_notif">Tocca per fermare la registrazione</string>
 
     <!-- QuickSettings settings -->
@@ -180,16 +180,15 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Livello luminosità minimo</string>
     <string name="pref_brightness_min_summary">Permette di impostare il livello di luminosità minimo. Si applica all\'impostazione manuale (richiede riavvio)</string>
-    <string name="pref_brightness_dlg_msg">Intervallo di valori: 10 &#8211; 80</string>
 
     <!-- Autobrightness levels -->
     <string name="pref_ab_title">Livelli Autobrightness</string>
     <string name="pref_ab_summary">Permette di impostare la luminosità dello schermo in base alla luce ambientale (lux)</string>
     <string name="level">Livello</string>
     <string name="pref_ab_lux_max_label">Lux massima</string>
-    <string name="pref_ab_brighness_label">Luminosità (10 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Luminosità (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Il numero specificato è invalido</string>
-    <string name="pref_ab_brightness_too_low">Non è consigliato impostare una luminosità inferiore a 10</string>
+    <string name="pref_ab_brightness_too_low">Non è consigliato impostare una luminosità inferiore a %d</string>
     <string name="pref_ab_brightness_too_high">La luminosità non pul superare 255</string>
     <string name="pref_ab_number_error_negative">I valori non possono essere inferiori a 0</string>
     <string name="pref_ab_number_not_ascending">I valori dei livelli bassi non possono superare quelli dei livelli più alti</string>
@@ -245,7 +244,7 @@
     <string name="pref_hwkey_kill_delay_summary">Si applica per il Kill della app corrente. Definisce quanto a lungo deve rimanere premuto il tasto per fare la kill</string>
     <string name="pref_hwkey_doubletap_speed_title">Velocità doppio-tap</string>
     <string name="pref_hwkey_doubletap_speed_summary">Si applica per il doppio-tap del tasto MENU. Definisce quanto velocemente deve avvenire il secondo tap</string>
-    <string name="app_killed">Applicazione terminata</string>
+    <string name="app_killed">%s terminata</string>
     <string name="nothing_to_kill">Non c\'è niente da terminare</string>
     <string name="no_previous_app_found">Nessuna app precedente trovata</string>
 
@@ -550,9 +549,6 @@
     <string name="nm_tile_mode1">2G/2G+3G/3G</string>
     <string name="nm_tile_mode2">2G/2G+3G</string>
 
-    <!-- Disable GPS notifications -->
-    <string name="pref_gps_notif_disable_title">Disabilita notifiche GPS</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Abilita tutte le rotazioni</string>
 
@@ -632,7 +628,8 @@
     <string name="dt_size_smaller">Più piccola</string>
     <string name="dt_size_smallest">Ancora più piccola</string>
 
-
-
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">Disabilita limitazione widget</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">Consenti numero illimitato widget in lockscreen</string>
 
 </resources>

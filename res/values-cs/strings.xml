@@ -81,6 +81,10 @@
     <string name="quick_settings_expanded_desktop_expanded">Rozšířená plocha</string>
     <string name="quick_settings_stay_awake_on">Bdění zap</string>
     <string name="quick_settings_stay_awake_off">Bdění vyp</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi vyp</string>
+    <string name="quick_settings_wifi_not_connected">Nepřipojené</string>
+    <string name="quick_settings_wifi_turning_on">Zapíná se&#8230;</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Dlaždice QuickSettings panelu</string>
@@ -89,6 +93,7 @@
     <string name="qs_tile_airplane_mode">Režim v letadle</string>
     <string name="qs_tile_battery">Stav baterie</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (CM styl)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_gps_alt">GPS (CM styl)</string>
@@ -191,16 +196,15 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Minimální úroveň jasu</string>
     <string name="pref_brightness_min_summary">Umožňuje nastavit minimální úroveň jasu pro manuální nastavení jasu (vyžaduje restart)</string>
-    <string name="pref_brightness_dlg_msg">Hodnota z intervalu: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Úrovně automatického jasu</string>
     <string name="pref_ab_summary">Umožňuje nastavit úrovně světla prostředí a odpovídající úrovně podsvícení obrazovky</string>
     <string name="level">Úroveň</string>
     <string name="pref_ab_lux_max_label">Lux max</string>
-    <string name="pref_ab_brighness_label">Jas (10 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Jas (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Zadané číslo není platné</string>
-    <string name="pref_ab_brightness_too_low">Nedoporučuje se nastavit úroveň jasu menší než 10</string>
+    <string name="pref_ab_brightness_too_low">Nedoporučuje se nastavit úroveň jasu menší než %d</string>
     <string name="pref_ab_brightness_too_high">Úroveň jasu nesmí být větší než 255</string>
     <string name="pref_ab_number_error_negative">Hodnoty nesmí být menší nebo rovné nule</string>
     <string name="pref_ab_number_not_ascending">Hodnoty na nižších úrovních nesmí být větší než hodnoty na vyšších úrovních</string>
@@ -256,7 +260,7 @@
     <string name="pref_hwkey_kill_delay_summary">Vztahuje se na akci zabití aplikace v popředí dlouhým podržením tlačítka. Definuje, jak dlouho musí být tlačítko přidrženo aby došlo k provedení akce.</string>
     <string name="pref_hwkey_doubletap_speed_title">Rychlost dvojitého klepnutí</string>
     <string name="pref_hwkey_doubletap_speed_summary">Vztahuje se na dvojité klepnutí na Menu. Definuje, jak rychle musí být provedeno dvojité klepnutí aby došlo k provedení akce.</string>
-    <string name="app_killed">Aplikace zabita</string>
+    <string name="app_killed">Aplikace %s zabita</string>
     <string name="nothing_to_kill">Není co zabít</string>
     <string name="no_previous_app_found">Žádná předcházející aplikace</string>
 
@@ -559,9 +563,6 @@
     <string name="nm_tile_mode1">2G/2G+3G/3G</string>
     <string name="nm_tile_mode2">2G/2G+3G</string>
 
-    <!-- Disable GPS notifications -->
-    <string name="pref_gps_notif_disable_title">Skrýt GPS notifikace</string>
-
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Povolit všechny rotace</string>
 
@@ -603,5 +604,46 @@
     <!-- QuickSettings tile order -->
     <string name="pref_qs_tile_order_title">Uspořádání dlaždic</string>
     <string name="pref_qs_tile_order_summary">Umožňuje uspořádat dlaždice podle potřeby</string>
+
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Blokátor probíhajících notifikací</string>
+    <string name="pref_ongoing_notifications_summary">Umožňuje blokování vybraných probíhajících notifikací</string>
+    <string name="ongoing_notif_info">Seznam se aktualizuje automaticky při vzniku každé nové probíhající notifikace. 
+        Následně se můžete rozhodnout, které notifikace blokovat při jejich dalším vzniku.</string>
+    <string name="ongoing_notif_reset_list">Resetovat seznam</string>
+    <string name="ongoing_notif_reset_alert">Skutečně resetovat seznam? 
+        Všechny záznamy budou vymazány a zároveň budou všechny blokované notifikace odblokovány.</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Rychlé odemknutí</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Odemknout automaticky po zadání správného PIN/hesla, bez potřeby stisku ENTER</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Vypnuto</string>
+    <string name="clock_dow_standard">Standardní zobrazení</string>
+    <string name="clock_dow_lowercase">Malými písmeny</string>
+    <string name="clock_dow_uppercase">Velkými písmeny</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Povolit stažení stavové lišty</string>
+    <string name="sbl_policy_default">Výchozí nastavení</string>
+    <string name="sbl_policy_unlocked">Pokud je obrazovka uzamčení nezabezpečená</string>
+    <string name="sbl_policy_locked">Nikdy</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Monitor datového toku</string>
+    <string name="pref_data_traffic_enable_title">Zapnout sledování</string>
+    <string name="pref_data_traffic_enable_summary">Zobrazí monitor datového toku automaticky, pokud je aktivní datové spojení</string>
+    <string name="pref_data_traffic_position_title">Pozice</string>
+    <string name="dt_position_auto">Auto (uprostřed nebo vpravo, na základě aktuální pozice hodin)</string>
+    <string name="dt_position_left">Vlevo</string>
+    <string name="pref_data_traffic_size_title">Velikost</string>
+    <string name="dt_size_normal">Normální</string>
+    <string name="dt_size_smaller">Menší</string>
+    <string name="dt_size_smallest">Nejmenší</string>
+
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">Vypnout limit widgetů</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">Umožní neomezený počet widgetů obrazovky uzamčení</string>
 
 </resources>

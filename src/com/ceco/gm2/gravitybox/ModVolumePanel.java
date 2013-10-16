@@ -49,6 +49,7 @@ public class ModVolumePanel {
     private static boolean mVolumesLinked;
     private static Unhook mViewGroupAddViewHook;
     private static boolean mVolumeAdjustMuted;
+    private static boolean mVoiceCapable;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -90,6 +91,7 @@ public class ModVolumePanel {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     mVolumePanel = param.thisObject;
+                    mVoiceCapable = XposedHelpers.getBooleanField(param.thisObject, "mVoiceCapable");
                     Context context = (Context) XposedHelpers.getObjectField(mVolumePanel, "mContext");
                     if (DEBUG) log("VolumePanel constructed; mVolumePanel set");
 
@@ -100,7 +102,9 @@ public class ModVolumePanel {
                     mVolumesLinked = prefs.getBoolean(GravityBoxSettings.PREF_KEY_LINK_VOLUMES, true);
 
                     Object[] streams = (Object[]) XposedHelpers.getStaticObjectField(classVolumePanel, "STREAMS");
-                    XposedHelpers.setBooleanField(streams[1], "show", true);
+                    XposedHelpers.setBooleanField(streams[1], "show", 
+                            (Boolean) XposedHelpers.getBooleanField(param.thisObject, "mVoiceCapable"));
+                    XposedHelpers.setBooleanField(streams[5], "show", true);
 
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_VOLUME_PANEL_MODE_CHANGED);
@@ -227,8 +231,12 @@ public class ModVolumePanel {
         if (DEBUG) log("VolumePanel mode changed to: " + ((expandable) ? "EXPANDABLE" : "SIMPLE"));
     }
 
+    private static boolean shouldLinkVolumes() {
+        return mVolumesLinked && mVoiceCapable;
+    }
+
     private static void hideNotificationSliderIfLinked() {
-        if (mVolumePanel == null || !mVolumesLinked) return;
+        if (mVolumePanel == null || !shouldLinkVolumes()) return;
 
         @SuppressWarnings("unchecked")
         Map<Integer, Object> streamControls = 
@@ -251,7 +259,7 @@ public class ModVolumePanel {
         if (mAudioService == null) return;
 
         int[] streamVolumeAlias = (int[]) XposedHelpers.getObjectField(mAudioService, "mStreamVolumeAlias");
-        streamVolumeAlias[STREAM_NOTIFICATION] = mVolumesLinked ? STREAM_RING : STREAM_NOTIFICATION;
+        streamVolumeAlias[STREAM_NOTIFICATION] = shouldLinkVolumes() ? STREAM_RING : STREAM_NOTIFICATION;
         XposedHelpers.setObjectField(mAudioService, "mStreamVolumeAlias", streamVolumeAlias);
         if (DEBUG) log("AudioService mStreamVolumeAlias updated, STREAM_NOTIFICATION set to: " + 
                 streamVolumeAlias[STREAM_NOTIFICATION]);

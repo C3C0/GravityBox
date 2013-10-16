@@ -289,6 +289,9 @@ public class ModQuickSettings {
         for (View v : dynamicTiles) {
             mContainerView.addView(v);
         }
+
+        // trigger layout refresh
+        XposedHelpers.callMethod(mContainerView, "updateResources");
     }
 
     private static void updateTileLayout(FrameLayout container, int orientation) {
@@ -505,9 +508,11 @@ public class ModQuickSettings {
                     mTiles.add(wt);
                 }
 
-                GpsTile gpsTile = new GpsTile(mContext, mGbContext, mStatusBar, mPanelBar);
-                gpsTile.setupQuickSettingsTile(mContainerView, inflater);
-                mTiles.add(gpsTile);
+                if (Utils.hasGPS(mContext)) {
+                    GpsTile gpsTile = new GpsTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                    gpsTile.setupQuickSettingsTile(mContainerView, inflater);
+                    mTiles.add(gpsTile);
+                }
 
                 RingerModeTile rmTile = new RingerModeTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 rmTile.setupQuickSettingsTile(mContainerView, inflater);
@@ -517,9 +522,11 @@ public class ModQuickSettings {
                 volTile.setupQuickSettingsTile(mContainerView, inflater);
                 mTiles.add(volTile);
 
-                NetworkModeTile nmTile = new NetworkModeTile(mContext, mGbContext, mStatusBar, mPanelBar);
-                nmTile.setupQuickSettingsTile(mContainerView, inflater);
-                mTiles.add(nmTile);
+                if (!Utils.isWifiOnly(mContext)) {
+                    NetworkModeTile nmTile = new NetworkModeTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                    nmTile.setupQuickSettingsTile(mContainerView, inflater);
+                    mTiles.add(nmTile);
+                }
 
                 SyncTile syncTile = new SyncTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 syncTile.setupQuickSettingsTile(mContainerView, inflater);
@@ -529,9 +536,11 @@ public class ModQuickSettings {
                 wifiApTile.setupQuickSettingsTile(mContainerView, inflater);
                 mTiles.add(wifiApTile);
 
-                TorchTile torchTile = new TorchTile(mContext, mGbContext, mStatusBar, mPanelBar);
-                torchTile.setupQuickSettingsTile(mContainerView, inflater);
-                mTiles.add(torchTile);
+                if (Utils.hasFlash(mContext)) {
+                    TorchTile torchTile = new TorchTile(mContext, mGbContext, mStatusBar, mPanelBar);
+                    torchTile.setupQuickSettingsTile(mContainerView, inflater);
+                    mTiles.add(torchTile);
+                }
 
                 SleepTile sleepTile = new SleepTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 sleepTile.setupQuickSettingsTile(mContainerView, inflater);

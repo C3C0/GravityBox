@@ -45,7 +45,8 @@ public class TransparencyManager {
     public static final String SETTING_STATUS_BAR_ALPHA_CONFIG_LOCKSCREEN = "status_bar_alpha_config_lockscreen";
     public static final String SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LAUNCHER = "navigation_bar_alpha_config_launcher";
     public static final String SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN = "navigation_bar_alpha_config_lockscreen";
-    
+    private static final boolean DEBUG = false;
+
     public static final float KEYGUARD_ALPHA = 0.44f;
 
     private static final String TAG = "GB:TransparencyManager";
@@ -105,9 +106,20 @@ public class TransparencyManager {
         settingsObserver.observe();
     }
 
-    public void update() {
+    private void update(boolean force) {
         mHandler.removeCallbacks(updateTransparencyRunnable);
-        mHandler.postDelayed(updateTransparencyRunnable, 100);
+        if (force || 
+                mStatusbarInfo.homeAlpha != 1 || 
+                mStatusbarInfo.keyguardAlpha != 1 ||
+                mNavbarInfo.homeAlpha != 1 ||
+                mNavbarInfo.keyguardAlpha != 1) {
+            if (DEBUG) log("Updating transparency");
+            mHandler.postDelayed(updateTransparencyRunnable, 100);
+        }
+    }
+
+    public void update() {
+        update(false);
     }
 
     public void setNavbar(Object n) {
@@ -286,7 +298,7 @@ public class TransparencyManager {
         value = Settings.System.getInt(resolver, SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN, 0);
         mNavbarInfo.keyguardAlpha = 1 - (value / 100f);
 
-        update();
+        update(true);
     }
 }
 

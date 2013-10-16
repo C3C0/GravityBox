@@ -205,16 +205,15 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Mức sáng tối thiểu</string>
     <string name="pref_brightness_min_summary">Cho phép thiết lập mức sáng tối thiểu. Áp dụng với chế độ chỉnh sáng thủ công. (Cần khởi động lại cho thay đổi)</string>
-    <string name="pref_brightness_dlg_msg">Giá trị trong khoảng: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Mức tự động sáng</string>
     <string name="pref_ab_summary">Cho phép thiết lập mức độ ánh sáng môi trường xung quanh và các giá trị tương ứng với đèn nền LCD</string>
     <string name="level">Mức độ</string>
     <string name="pref_ab_lux_max_label">Lớn nhất</string>
-    <string name="pref_ab_brighness_label">Độ sáng (10 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Độ sáng (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Số quy định không hợp lệ</string>
-    <string name="pref_ab_brightness_too_low">Không được khuyến cáo khi đặt mức sáng dưới 10</string>
+    <string name="pref_ab_brightness_too_low">Không được khuyến cáo khi đặt mức sáng dưới %d</string>
     <string name="pref_ab_brightness_too_high">Mức sáng không thể lớn hơn 255</string>
     <string name="pref_ab_number_error_negative">Giá trị không thể nào thấp hơn hoặc bằng 0</string>
     <string name="pref_ab_number_not_ascending">Giá trị mức thấp nhất không thể lớn hơn giá trị mức cao nhất</string>
@@ -270,7 +269,7 @@
     <string name="pref_hwkey_kill_delay_summary">Định nghĩ thời gian giữ pím bao lâu cho diệt ứng dụng nền</string>
     <string name="pref_hwkey_doubletap_speed_title">Tốc độ bấm đúp</string>
     <string name="pref_hwkey_doubletap_speed_summary">Chấp nhận phím menu cho hoạt động bấm đúp. Định nghĩa tốc độ nhanh hay chậm cho tốc độ bấm đúp</string>
-    <string name="app_killed">Ứng dụng đã được diệt</string>
+    <string name="app_killed">Ứng dụng đã được diệt: %s</string>
     <string name="nothing_to_kill">Không có ứng dụng nào để diệt</string>
     <string name="no_previous_app_found">Không tìm thấy ứng dụng trước đó</string>
 
@@ -577,9 +576,6 @@
     <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
     <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
     <string name="nm_tile_mode3">2G/3G/(LTE)</string>
-
-    <!-- Disable GPS notifications -->
-    <string name="pref_gps_notif_disable_title">Tắt thông báo GPS</string>
 
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Cho phép tất cả tự xoay</string>

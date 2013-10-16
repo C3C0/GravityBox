@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -37,6 +38,9 @@ public class ModNavigationBar {
 
     private static boolean mAlwaysShowMenukey;
     private static Object mNavigationBarView;
+    private static Object mRecentsKeys[];
+    private static int mRecentsSingletapAction = 0;
+    private static int mRecentsLongpressAction = 0;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -62,6 +66,14 @@ public class ModNavigationBar {
                         }
                     }
                 }
+            } else if (intent.getAction().equals(
+                    GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_SINGLETAP_CHANGED)) {
+                mRecentsSingletapAction = intent.getIntExtra(GravityBoxSettings.EXTRA_HWKEY_VALUE, 0);
+                updateRecentsKeyCode();
+            } else if (intent.getAction().equals(
+                    GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_LONGPRESS_CHANGED)) {
+                mRecentsLongpressAction = intent.getIntExtra(GravityBoxSettings.EXTRA_HWKEY_VALUE, 0);
+                updateRecentsKeyCode();
             }
         }
     };
@@ -72,6 +84,15 @@ public class ModNavigationBar {
 
             mAlwaysShowMenukey = prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_MENUKEY, false);
 
+            try {
+                mRecentsSingletapAction = Integer.valueOf(
+                        prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_RECENTS_SINGLETAP, "0"));
+                mRecentsLongpressAction = Integer.valueOf(
+                        prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_RECENTS_LONGPRESS, "0"));
+            } catch (NumberFormatException nfe) {
+                XposedBridge.log(nfe);
+            }
+
             XposedBridge.hookAllConstructors(navbarViewClass, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
@@ -81,6 +102,8 @@ public class ModNavigationBar {
                     mNavigationBarView = param.thisObject;
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_NAVBAR_CHANGED);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_SINGLETAP_CHANGED);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_LONGPRESS_CHANGED);
                     context.registerReceiver(mBroadcastReceiver, intentFilter);
                     if (DEBUG) log("NavigationBarView constructed; Broadcast receiver registered");
                 }
@@ -99,21 +122,50 @@ public class ModNavigationBar {
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     final Resources res = ((View) param.thisObject).getContext().getResources();
                     final int backButtonResId = res.getIdentifier("back", "id", PACKAGE_NAME);
+                    final int recentAppsResId = res.getIdentifier("recent_apps", "id", PACKAGE_NAME);
                     final View[] rotatedViews = 
                             (View[]) XposedHelpers.getObjectField(param.thisObject, "mRotatedViews");
 
-                    if (backButtonResId != 0 && rotatedViews != null) {
+                    if (rotatedViews != null) {
+                        mRecentsKeys = new Object[rotatedViews.length];
+                        int index = 0;
                         for(View v : rotatedViews) {
-                            ImageView backButton = (ImageView) v.findViewById(backButtonResId);
-                            if (backButton != null) {
-                                backButton.setScaleType(ScaleType.FIT_CENTER);
+                            if (backButtonResId != 0) { 
+                                ImageView backButton = (ImageView) v.findViewById(backButtonResId);
+                                if (backButton != null) {
+                                    backButton.setScaleType(ScaleType.FIT_CENTER);
+                                }
+                            }
+                            if (recentAppsResId != 0) {
+                                ImageView recentAppsButton = (ImageView) v.findViewById(recentAppsResId);
+                                mRecentsKeys[index++] = recentAppsButton;
                             }
                         }
                     }
+                    updateRecentsKeyCode();
                 }
             });
         } catch(Throwable t) {
             XposedBridge.log(t);
         }
+    }
+
+    private static void updateRecentsKeyCode() {
+        if (mRecentsKeys == null) return;
+
+        try {
+            final boolean hasAction = recentsKeyHasAction();
+            for (Object o : mRecentsKeys) {
+                if (o != null) {
+                    XposedHelpers.setIntField(o, "mCode", hasAction ? KeyEvent.KEYCODE_APP_SWITCH : 0);
+                }
+            }
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
+    }
+
+    private static boolean recentsKeyHasAction() {
+        return (mRecentsSingletapAction != 0 || mRecentsLongpressAction != 0);
     }
 }

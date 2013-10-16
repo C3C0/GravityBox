@@ -17,6 +17,10 @@ package com.ceco.gm2.gravitybox;
 
 import de.robv.android.xposed.XposedBridge;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.content.res.XResources;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Vibrator;
 import android.telephony.TelephonyManager;
@@ -38,10 +42,15 @@ public class Utils {
     // Device type reference
     private static int mDeviceType = -1;
     private static Boolean mIsMtkDevice = null;
+    private static Boolean mIsWifiOnly = null;
+    private static String mDeviceCharacteristics = null;
+    
+    // Device features
     private static Boolean mHasGeminiSupport = null;
     private static Boolean mHasTelephonySupport = null;
-    private static String mDeviceCharacteristics = null;
     private static Boolean mHasVibrator = null;
+    private static Boolean mHasFlash = null;
+    private static Boolean mHasGPS = null;
 
     // Supported MTK devices
     private static final Set<String> MTK_DEVICES = new HashSet<String>(Arrays.asList(
@@ -111,13 +120,46 @@ public class Utils {
         return mHasGeminiSupport;
     }
 
+    public static boolean isWifiOnly(Context con) {
+        // returns true if device doesn't support mobile data (is wifi only)
+        if (mIsWifiOnly != null) return mIsWifiOnly;
+
+        try {
+            ConnectivityManager cm = (ConnectivityManager) con.getSystemService(
+        	    Context.CONNECTIVITY_SERVICE);
+            mIsWifiOnly = (cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE) == null);
+            return mIsWifiOnly;
+        } catch (Throwable t) {
+            mIsWifiOnly = null;
+            return false;
+        }
+    }
+
+    // to be called from settings or other user activities
     public static boolean hasTelephonySupport(Context con) {
         // returns false if device has no phone radio (no telephony support)
         if (mHasTelephonySupport != null) return mHasTelephonySupport;
 
-        TelephonyManager manager = (TelephonyManager) con.getSystemService(Context.TELEPHONY_SERVICE);
-        mHasTelephonySupport = (manager.getPhoneType() != TelephonyManager.PHONE_TYPE_NONE);
-        return mHasTelephonySupport;
+        try {
+            TelephonyManager tm = (TelephonyManager) con.getSystemService(
+                Context.TELEPHONY_SERVICE);
+            mHasTelephonySupport = (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_NONE);
+            return mHasTelephonySupport;
+        } catch (Throwable t) {
+            mHasTelephonySupport = null;
+            return false;
+        }
+    }
+
+    // to be called from system context only
+    public static boolean hasTelephonySupport() {
+        try {
+            Resources res = XResources.getSystem();
+            return res.getBoolean(res.getIdentifier("config_voice_capable", "bool", "android"));
+        } catch (Throwable t) {
+            log("hasTelephonySupport(): " + t.getMessage());
+            return false;
+        }
     }
 
     public static boolean hasVibrator(Context con) {
@@ -129,6 +171,32 @@ public class Utils {
             return mHasVibrator;
         } catch (Throwable t) {
             mHasVibrator = null;
+            return false;
+        }
+    }
+
+    public static boolean hasFlash(Context con) {
+        if (mHasFlash != null) return mHasFlash;
+
+        try {
+            PackageManager pm = con.getPackageManager();
+            mHasFlash = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+            return mHasFlash;
+        } catch (Throwable t) {
+            mHasFlash = null;
+            return false;
+        }
+    }
+
+    public static boolean hasGPS(Context con) {
+        if (mHasGPS != null) return mHasGPS;
+
+        try {
+            PackageManager pm = con.getPackageManager();
+            mHasGPS = pm.hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS);
+            return mHasGPS;
+        } catch (Throwable t) {
+            mHasGPS = null;
             return false;
         }
     }

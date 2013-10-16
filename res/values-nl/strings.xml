@@ -206,16 +206,15 @@
     <!-- Minimum brightness level -->
     <string name="pref_brightness_min_title">Minimum brightness level</string>
     <string name="pref_brightness_min_summary">Allows to set minimum brightness level. Applies to manual brightness setting. (requires reboot)</string>
-    <string name="pref_brightness_dlg_msg">Value from interval: 10 &#8211; 80</string>
 
     <!--  Autobrightness levels -->
     <string name="pref_ab_title">Autobrightness levels</string>
     <string name="pref_ab_summary">Allows to set ambient light levels and corresponding LCD backlight values</string>
     <string name="level">Level</string>
     <string name="pref_ab_lux_max_label">Lux max</string>
-    <string name="pref_ab_brighness_label">Brightness (10 &#8211; 255)</string>
+    <string name="pref_ab_brighness_label">Brightness (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">Specified number is not valid</string>
-    <string name="pref_ab_brightness_too_low">It is not recommended to set brightness below 10</string>
+    <string name="pref_ab_brightness_too_low">It is not recommended to set brightness below %d</string>
     <string name="pref_ab_brightness_too_high">Brightness cannot be greater than 255</string>
     <string name="pref_ab_number_error_negative">Values cannot be lower or equal to zero</string>
     <string name="pref_ab_number_not_ascending">Values on lower levels cannot be greater than values on higher levels</string>
@@ -271,7 +270,7 @@
     <string name="pref_hwkey_kill_delay_summary">Applies to Kill foreground app action. Defines for how long key must be pressed to trigger kill</string>
     <string name="pref_hwkey_doubletap_speed_title">Double-tap speed</string>
     <string name="pref_hwkey_doubletap_speed_summary">Applies to Menu key double-tap action. Defines how fast key must be tapped to trigger double-tap</string>
-    <string name="app_killed">Application killed</string>
+    <string name="app_killed">%s killed</string>
     <string name="nothing_to_kill">There\'s nothing to kill</string>
     <string name="no_previous_app_found">No previous app found</string>
 
@@ -582,9 +581,6 @@
     <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
     <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
     <string name="nm_tile_mode3">2G/3G/(LTE)</string>
-
-    <!-- Disable GPS notifications -->
-    <string name="pref_gps_notif_disable_title">Disable GPS notifications</string>
 
     <!-- Display: allow all rotations -->
     <string name="pref_display_allow_all_rotations_title">Allow all rotations</string>

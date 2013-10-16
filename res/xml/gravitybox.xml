@@ -514,11 +514,6 @@
             android:summary="@string/pref_disable_roaming_indicators_summary"
             android:defaultValue="false" />
 
-        <CheckBoxPreference 
-            android:key="pref_gps_notif_disable"
-            android:title="@string/pref_gps_notif_disable_title"
-            android:defaultValue="false" />
-
     </PreferenceScreen>
 
     <PreferenceScreen
@@ -878,6 +873,20 @@
             android:entryValues="@array/hwkey_action_values"
             android:defaultValue="0" />
 
+        <ListPreference
+            android:key="pref_hwkey_recents_singletap"
+            android:title="@string/pref_hwkey_recents_singletap_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
+        <ListPreference
+            android:key="pref_hwkey_recents_longpress"
+            android:title="@string/pref_hwkey_recents_longpress_title"
+            android:entries="@array/hwkey_action_entries"
+            android:entryValues="@array/hwkey_action_values"
+            android:defaultValue="0" />
+
         <com.ceco.gm2.gravitybox.preference.AppPickerPreference
             android:key="pref_hwkey_custom_app"
             android:title="@string/pref_hwkey_custom_app_title"
@@ -931,6 +940,13 @@
             android:entries="@array/recents_clear_entries"
             android:entryValues="@array/recents_clear_values"
             android:defaultValue="53" />
+
+        <ListPreference 
+            android:key="pref_rambar"
+            android:title="@string/pref_rambar_title"
+            android:entries="@array/rambar_entries"
+            android:entryValues="@array/rambar_values"
+            android:defaultValue="0" />
 
         <com.ceco.gm2.gravitybox.preference.SeekBarPreference
                 android:key="pref_recent_clear_margin_top"

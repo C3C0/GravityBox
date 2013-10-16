@@ -42,6 +42,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         XposedBridge.log("GB:Device model: " + Build.MODEL);
         XposedBridge.log("GB:Device type: " + (Utils.isTablet() ? "tablet" : "phone"));
         XposedBridge.log("GB:Is MTK device: " + Utils.isMtkDevice());
+        XposedBridge.log("GB:Has telephony support: " + Utils.hasTelephonySupport());
         XposedBridge.log("GB:Has Gemini support: " + Utils.hasGeminiSupport());
         XposedBridge.log("GB:Android SDK: " + Build.VERSION.SDK_INT);
         XposedBridge.log("GB:Android Release: " + Build.VERSION.RELEASE);
@@ -198,7 +199,8 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
             ModStatusBar.init(prefs, lpparam.classLoader);
         }
 
-        if (lpparam.packageName.equals(ModPhone.PACKAGE_NAME)) {
+        if (lpparam.packageName.equals(ModPhone.PACKAGE_NAME) &&
+                Utils.hasTelephonySupport()) {
             ModPhone.init(prefs, lpparam.classLoader);
         }
 

@@ -15,7 +15,6 @@
 
 package com.ceco.gm2.gravitybox;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -23,7 +22,6 @@ import java.util.TimeZone;
 import com.ceco.gm2.gravitybox.preference.AppPickerPreference;
 
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -66,8 +64,9 @@ public class ModStatusBar {
     private static final String CLASS_TICKER = "com.android.systemui.statusbar.phone.PhoneStatusBar$MyTicker";
     private static final String CLASS_PHONE_STATUSBAR_POLICY = "com.android.systemui.statusbar.phone.PhoneStatusBarPolicy";
     private static final String CLASS_POWER_MANAGER = "android.os.PowerManager";
-    private static final String CLASS_LOCATION_CONTROLLER = "com.android.systemui.statusbar.policy.LocationController";
-    private static final String CLASS_STATUSBAR_NOTIF = "com.android.internal.statusbar.StatusBarNotification";
+    private static final String CLASS_STATUSBAR_NOTIF = Build.VERSION.SDK_INT > 17 ?
+            "android.service.notification.StatusBarNotification" :
+            "com.android.internal.statusbar.StatusBarNotification";
     private static final boolean DEBUG = false;
 
     private static final float BRIGHTNESS_CONTROL_PADDING = 0.15f;
@@ -99,6 +98,7 @@ public class ModStatusBar {
     private static String mOngoingNotif;
     private static TrafficMeter mTrafficMeter;
     private static ViewGroup mSbContents;
+    private static boolean mClockInSbContents = false;
 
     // Brightness control
     private static boolean mBrightnessControlEnabled;
@@ -244,17 +244,23 @@ public class ModStatusBar {
                             liparam.res.getIdentifier(iconAreaId, "id", PACKAGE_NAME));
                     if (mIconArea == null) return;
 
-                    mRootView = Build.VERSION.SDK_INT > 16 ?
-                            (ViewGroup) mIconArea.getParent().getParent() :
-                            (ViewGroup) mIconArea.getParent();
+                    mRootView = (ViewGroup) liparam.view.findViewById(
+                            liparam.res.getIdentifier("status_bar", "id", PACKAGE_NAME));
                     if (mRootView == null) return;
 
                     mSbContents = Build.VERSION.SDK_INT > 16 ?
-                            (ViewGroup) mIconArea.getParent() : mIconArea;
+                            (ViewGroup) liparam.view.findViewById(liparam.res.getIdentifier(
+                                    "status_bar_contents", "id", PACKAGE_NAME)) : mIconArea;
 
                     // find statusbar clock
                     mClock = (TextView) mIconArea.findViewById(
                             liparam.res.getIdentifier("clock", "id", PACKAGE_NAME));
+                    // the second attempt
+                    if (mClock == null) {
+                        mClock = (TextView) mSbContents.findViewById(
+                                liparam.res.getIdentifier("clock", "id", PACKAGE_NAME));
+                        mClockInSbContents = mClock != null;
+                    }
                     if (mClock != null) {
                         ModStatusbarColor.setClock(mClock);
                         // use this additional field to identify the instance of Clock that resides in status bar
@@ -292,58 +298,60 @@ public class ModStatusBar {
                     mRootView.addView(mLayoutClock);
                     if (DEBUG) log("mLayoutClock injected");
 
-                    XposedHelpers.findAndHookMethod(mClock.getClass(), "getSmallTime", new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            // is this a status bar Clock instance?
-                            // yes, if it contains our additional sbClock field
-                            if (DEBUG) log("getSmallTime() called. mAmPmHide=" + mAmPmHide);
-                            Object sbClock = XposedHelpers.getAdditionalInstanceField(param.thisObject, "sbClock");
-                            if (DEBUG) log("Is statusbar clock: " + (sbClock == null ? "false" : "true"));
-                            Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-                            String clockText = param.getResult().toString();
-                            if (DEBUG) log("Original clockText: '" + clockText + "'");
-                            String amPm = calendar.getDisplayName(
-                                    Calendar.AM_PM, Calendar.SHORT, Locale.getDefault());
-                            if (DEBUG) log("Locale specific AM/PM string: '" + amPm + "'");
-                            int amPmIndex = clockText.indexOf(amPm);
-                            if (DEBUG) log("Original AM/PM index: " + amPmIndex);
-                            if (mAmPmHide && amPmIndex != -1) {
-                                clockText = clockText.replace(amPm, "").trim();
-                                if (DEBUG) log("AM/PM removed. New clockText: '" + clockText + "'");
-                                amPmIndex = -1;
-                            } else if (!mAmPmHide 
-                                        && !DateFormat.is24HourFormat(mClock.getContext()) 
-                                        && amPmIndex == -1) {
-                                // insert AM/PM if missing
-                                clockText += " " + amPm;
-                                amPmIndex = clockText.indexOf(amPm);
-                                if (DEBUG) log("AM/PM added. New clockText: '" + clockText + "'; New AM/PM index: " + amPmIndex);
-                            }
-                            CharSequence dow = "";
-                            // apply day of week only to statusbar clock, not the notification panel clock
-                            if (mClockShowDow != GravityBoxSettings.DOW_DISABLED && sbClock != null) {
-                                dow = getFormattedDow(calendar.getDisplayName(
-                                        Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())) + " ";
-                            }
-                            clockText = dow + clockText;
-                            SpannableStringBuilder sb = new SpannableStringBuilder(clockText);
-                            sb.setSpan(new RelativeSizeSpan(0.7f), 0, dow.length(), 
-                                    Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-                            if (amPmIndex > -1) {
-                                int offset = Character.isWhitespace(clockText.charAt(dow.length() + amPmIndex - 1)) ?
-                                        1 : 0;
-                                sb.setSpan(new RelativeSizeSpan(0.7f), dow.length() + amPmIndex - offset, 
-                                        dow.length() + amPmIndex + amPm.length(), 
+                    if (mClock != null) {
+                        XposedHelpers.findAndHookMethod(mClock.getClass(), "getSmallTime", new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                // is this a status bar Clock instance?
+                                // yes, if it contains our additional sbClock field
+                                if (DEBUG) log("getSmallTime() called. mAmPmHide=" + mAmPmHide);
+                                Object sbClock = XposedHelpers.getAdditionalInstanceField(param.thisObject, "sbClock");
+                                if (DEBUG) log("Is statusbar clock: " + (sbClock == null ? "false" : "true"));
+                                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                                String clockText = param.getResult().toString();
+                                if (DEBUG) log("Original clockText: '" + clockText + "'");
+                                String amPm = calendar.getDisplayName(
+                                        Calendar.AM_PM, Calendar.SHORT, Locale.getDefault());
+                                if (DEBUG) log("Locale specific AM/PM string: '" + amPm + "'");
+                                int amPmIndex = clockText.indexOf(amPm);
+                                if (DEBUG) log("Original AM/PM index: " + amPmIndex);
+                                if (mAmPmHide && amPmIndex != -1) {
+                                    clockText = clockText.replace(amPm, "").trim();
+                                    if (DEBUG) log("AM/PM removed. New clockText: '" + clockText + "'");
+                                    amPmIndex = -1;
+                                } else if (!mAmPmHide 
+                                            && !DateFormat.is24HourFormat(mClock.getContext()) 
+                                            && amPmIndex == -1) {
+                                    // insert AM/PM if missing
+                                    clockText += " " + amPm;
+                                    amPmIndex = clockText.indexOf(amPm);
+                                    if (DEBUG) log("AM/PM added. New clockText: '" + clockText + "'; New AM/PM index: " + amPmIndex);
+                                }
+                                CharSequence dow = "";
+                                // apply day of week only to statusbar clock, not the notification panel clock
+                                if (mClockShowDow != GravityBoxSettings.DOW_DISABLED && sbClock != null) {
+                                    dow = getFormattedDow(calendar.getDisplayName(
+                                            Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())) + " ";
+                                }
+                                clockText = dow + clockText;
+                                SpannableStringBuilder sb = new SpannableStringBuilder(clockText);
+                                sb.setSpan(new RelativeSizeSpan(0.7f), 0, dow.length(), 
                                         Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                                if (amPmIndex > -1) {
+                                    int offset = Character.isWhitespace(clockText.charAt(dow.length() + amPmIndex - 1)) ?
+                                            1 : 0;
+                                    sb.setSpan(new RelativeSizeSpan(0.7f), dow.length() + amPmIndex - offset, 
+                                            dow.length() + amPmIndex + amPm.length(), 
+                                            Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                                }
+                                if (DEBUG) log("Final clockText: '" + sb + "'");
+                                param.setResult(sb);
                             }
-                            if (DEBUG) log("Final clockText: '" + sb + "'");
-                            param.setResult(sb);
-                        }
-                    });
-
-                    setClockPosition(prefs.getBoolean(
-                            GravityBoxSettings.PREF_KEY_STATUSBAR_CENTER_CLOCK, false));
+                        });
+    
+                        setClockPosition(prefs.getBoolean(
+                                GravityBoxSettings.PREF_KEY_STATUSBAR_CENTER_CLOCK, false));
+                    }
 
                     // insert Traffic meter
                     mTrafficMeter = new TrafficMeter(liparam.view.getContext());
@@ -401,7 +409,6 @@ public class ModStatusBar {
             final Class<?> phoneStatusBarPolicyClass = 
                     XposedHelpers.findClass(CLASS_PHONE_STATUSBAR_POLICY, classLoader);
             final Class<?> powerManagerClass = XposedHelpers.findClass(CLASS_POWER_MANAGER, classLoader);
-            final Class<?> locationControllerClass = XposedHelpers.findClass(CLASS_LOCATION_CONTROLLER, classLoader);
 
             final Class<?>[] loadAnimParamArgs = new Class<?>[2];
             loadAnimParamArgs[0] = int.class;
@@ -544,66 +551,6 @@ public class ModStatusBar {
                 }
             });
 
-            XposedHelpers.findAndHookMethod(locationControllerClass, 
-                    "onReceive", Context.class, Intent.class, new XC_MethodReplacement() {
-                @SuppressWarnings("unchecked")
-                @Override
-                protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                    prefs.reload();
-                    if (!prefs.getBoolean(GravityBoxSettings.PREF_KEY_GPS_NOTIF_DISABLE, false)) {
-                        XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
-                        return null;
-                    }
-
-                    if (DEBUG) log("LocationController: running onReceive replacement");
-
-                    ArrayList<Object> changeCallbacks = null;
-                    try {
-                        changeCallbacks = (ArrayList<Object>) XposedHelpers.getObjectField(
-                                param.thisObject, "mChangeCallbacks");
-                    } catch(NoSuchFieldError nfe) {
-                        if (DEBUG) log("LocationController: mChangeCallbacks field does not exist");
-                    }
-                    if (changeCallbacks == null) {
-                        // there are no callback objects attached to be notified of GPS status so we simply exit
-                        return null;
-                    }
-
-                    try {
-                        final Intent intent = (Intent) param.args[1];
-                        final String action = intent.getAction();
-                        final boolean enabled = intent.getBooleanExtra("enabled", false);
-                        final Resources res = mContext.getResources();
-                        boolean visible;
-                        int textResId;
-
-                        if (action.equals("android.location.GPS_FIX_CHANGE") && enabled) {
-                            textResId = res.getIdentifier("gps_notification_found_text", "string", PACKAGE_NAME);
-                            visible = true;
-                        } else if (action.equals("android.location.GPS_ENABLED_CHANGE") && !enabled) {
-                            textResId = 0;
-                            visible = false;
-                        } else {
-                            textResId = res.getIdentifier("gps_notification_searching_text", "string", PACKAGE_NAME);
-                            visible = true;
-                        }
-
-                        final Class<?>[] paramArgs = new Class[] { boolean.class, String.class };
-                        for (Object cb : changeCallbacks) {
-                            XposedHelpers.callMethod(cb, "onLocationGpsStateChanged", paramArgs,
-                                    visible, textResId == 0 ? null : res.getString(textResId));
-                        }
-
-                        return null;
-                    } catch(Throwable t) {
-                        // fall back to original method
-                        XposedBridge.log(t);
-                        XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
-                        return null;
-                    }
-                }
-            });
-
             XposedHelpers.findAndHookMethod(phoneStatusBarClass, "addNotification", 
                     IBinder.class, CLASS_STATUSBAR_NOTIF, new XC_MethodHook() {
                 @Override
@@ -657,7 +604,11 @@ public class ModStatusBar {
             mClock.setLayoutParams(new LinearLayout.LayoutParams(
                     LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
             mClock.setPadding(0, 0, 0, 0);
-            mIconArea.removeView(mClock);
+            if (mClockInSbContents) {
+                mSbContents.removeView(mClock);
+            } else {
+                mIconArea.removeView(mClock);
+            }
             mLayoutClock.addView(mClock);
             if (DEBUG) log("Clock set to center position");
         } else {
@@ -666,7 +617,11 @@ public class ModStatusBar {
                     LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
             mClock.setPadding(mClockOriginalPaddingLeft, 0, 0, 0);
             mLayoutClock.removeView(mClock);
-            mIconArea.addView(mClock);
+            if (mClockInSbContents) {
+                mSbContents.addView(mClock);
+            } else {
+                mIconArea.addView(mClock);
+            }
             if (DEBUG) log("Clock set to normal position");
         }
 
@@ -684,8 +639,12 @@ public class ModStatusBar {
         switch(mTrafficMeter.getTrafficMeterPosition()) {
             case GravityBoxSettings.DT_POSITION_AUTO:
                 if (mClockCentered) {
-                    mIconArea.addView(mTrafficMeter, 
-                            Build.VERSION.SDK_INT > 16 ? 0 : 1);
+                    if (mClockInSbContents) {
+                        mSbContents.addView(mTrafficMeter);
+                    } else {
+                        mIconArea.addView(mTrafficMeter, 
+                                Build.VERSION.SDK_INT > 16 ? 0 : 1);
+                    }
                 } else {
                     mLayoutClock.addView(mTrafficMeter);
                 }
