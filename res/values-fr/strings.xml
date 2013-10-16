@@ -681,4 +681,8 @@
     <string name="rambar_top">En haut</string>
     <string name="rambar_bottom">En bas</string>
 
+    <!-- HW Key actions for recents button -->
+    <string name="pref_hwkey_recents_singletap_title">Action appui simple sur touche appli récentes</string>
+    <string name="pref_hwkey_recents_longpress_title">Action appui long sur touche appli récentes</string>
+
 </resources>
