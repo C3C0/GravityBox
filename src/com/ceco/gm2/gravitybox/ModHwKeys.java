@@ -76,10 +76,13 @@ public class ModHwKeys {
     private static boolean mIsMenuLongPressed = false;
     private static boolean mIsMenuDoubleTap = false;
     private static boolean mIsBackLongPressed = false;
+    private static boolean mIsRecentsLongPressed = false;
     private static int mMenuLongpressAction = 0;
     private static int mMenuDoubletapAction = 0;
     private static int mHomeLongpressAction = 0;
     private static int mBackLongpressAction = 0;
+    private static int mRecentsSingletapAction = 0;
+    private static int mRecentsLongpressAction = 0;
     private static int mDoubletapSpeed = GravityBoxSettings.HWKEY_DOUBLETAP_SPEED_DEFAULT;
     private static int mKillDelay = GravityBoxSettings.HWKEY_KILL_DELAY_DEFAULT;
     private static boolean mVolumeRockerWakeDisabled = false;
@@ -93,14 +96,17 @@ public class ModHwKeys {
     private static enum HwKey {
         MENU,
         HOME,
-        BACK
+        BACK,
+        RECENTS
     }
 
     private static enum HwKeyTrigger {
         MENU_LONGPRESS,
         MENU_DOUBLETAP,
         HOME_LONGPRESS,
-        BACK_LONGPRESS
+        BACK_LONGPRESS,
+        RECENTS_SINGLETAP,
+        RECENTS_LONGPRESS
     }
 
     private static BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
@@ -127,6 +133,12 @@ public class ModHwKeys {
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_BACK_LONGPRESS_CHANGED)) {
                 mBackLongpressAction = value;
                 if (DEBUG) log("Back long-press action set to: " + value);
+            } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_SINGLETAP_CHANGED)) {
+                mRecentsSingletapAction = value;
+                if (DEBUG) log("Recents single-tap action set to: " + value);
+            } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_LONGPRESS_CHANGED)) {
+                mRecentsLongpressAction = value;
+                if (DEBUG) log("Recents long-press action set to: " + value);
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_DOUBLETAP_SPEED_CHANGED)) {
                 mDoubletapSpeed = value;
                 if (DEBUG) log("Doubletap speed set to: " + value);
@@ -167,6 +179,10 @@ public class ModHwKeys {
                         prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_HOME_LONGPRESS, "0"));
                 mBackLongpressAction = Integer.valueOf(
                         prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_BACK_LONGPRESS, "0"));
+                mRecentsSingletapAction = Integer.valueOf(
+                        prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_RECENTS_SINGLETAP, "0"));
+                mRecentsLongpressAction = Integer.valueOf(
+                        prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_RECENTS_LONGPRESS, "0"));
                 mDoubletapSpeed = Integer.valueOf(
                         prefs.getString(GravityBoxSettings.PREF_KEY_HWKEY_DOUBLETAP_SPEED, "400"));
                 mKillDelay = Integer.valueOf(
@@ -229,6 +245,7 @@ public class ModHwKeys {
                     int keyCode = event.getKeyCode();
                     boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
                     Handler mHandler = (Handler) XposedHelpers.getObjectField(param.thisObject, "mHandler");
+                    if (DEBUG) log("keyCode=" + keyCode);
 
                     if (keyCode == KeyEvent.KEYCODE_MENU) {
                         if (!hasAction(HwKey.MENU) && mHwKeysEnabled) return;
@@ -259,7 +276,7 @@ public class ModHwKeys {
                                     mHandler.postDelayed(mMenuDoubleTapReset, mDoubletapSpeed);
                                 }
                             } else {
-                                if (mMenuLongpressAction != 0) {
+                                if (mMenuLongpressAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
                                     param.setResult(-1);
                                 }
                                 return;
@@ -292,6 +309,29 @@ public class ModHwKeys {
                                 return;
                             }
                         }
+                    }
+
+                    if (keyCode == KeyEvent.KEYCODE_APP_SWITCH) {
+                        if (!hasAction(HwKey.RECENTS)) return;
+
+                        if (!down) {
+                            mHandler.removeCallbacks(mRecentsLongPress);
+                            if (!mIsRecentsLongPressed) {
+                                if (mRecentsSingletapAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
+                                    performAction(HwKeyTrigger.RECENTS_SINGLETAP);
+                                } else {
+                                    toggleRecentApps();
+                                }
+                            }
+                        } else {
+                            if (event.getRepeatCount() == 0 &&
+                                    mRecentsLongpressAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
+                                mIsRecentsLongPressed = false;
+                                mHandler.postDelayed(mRecentsLongPress, getLongpressTimeoutForAction(mRecentsLongpressAction));
+                            }
+                        }
+                        param.setResult(-1);
+                        return;
                     }
                 }
             });
@@ -358,6 +398,8 @@ public class ModHwKeys {
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_DOUBLETAP_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_HOME_LONGPRESS_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_BACK_LONGPRESS_CHANGED);
+            intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_SINGLETAP_CHANGED);
+            intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_LONGPRESS_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_DOUBLETAP_SPEED_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_KILL_DELAY_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_VOLUME_ROCKER_WAKE_CHANGED);
@@ -400,18 +442,32 @@ public class ModHwKeys {
         }
     };
 
+    private static Runnable mRecentsLongPress = new Runnable() {
+
+        @Override
+        public void run() {
+            if (DEBUG) log("mRecentsLongPress runnable launched");
+            mIsRecentsLongPressed = true;
+            performAction(HwKeyTrigger.RECENTS_LONGPRESS);
+        }
+    };
+
     private static int getActionForHwKeyTrigger(HwKeyTrigger keyTrigger) {
         int action = GravityBoxSettings.HWKEY_ACTION_DEFAULT;
 
-            if (keyTrigger == HwKeyTrigger.MENU_LONGPRESS) {
-                action = mMenuLongpressAction;
-            } else if (keyTrigger == HwKeyTrigger.MENU_DOUBLETAP) {
-                action = mMenuDoubletapAction;
-            } else if (keyTrigger == HwKeyTrigger.HOME_LONGPRESS) {
-                action = mHomeLongpressAction;
-            } else if (keyTrigger == HwKeyTrigger.BACK_LONGPRESS) {
-                action = mBackLongpressAction;
-            }
+        if (keyTrigger == HwKeyTrigger.MENU_LONGPRESS) {
+            action = mMenuLongpressAction;
+        } else if (keyTrigger == HwKeyTrigger.MENU_DOUBLETAP) {
+            action = mMenuDoubletapAction;
+        } else if (keyTrigger == HwKeyTrigger.HOME_LONGPRESS) {
+            action = mHomeLongpressAction;
+        } else if (keyTrigger == HwKeyTrigger.BACK_LONGPRESS) {
+            action = mBackLongpressAction;
+        } else if (keyTrigger == HwKeyTrigger.RECENTS_SINGLETAP) {
+            action = mRecentsSingletapAction;
+        } else if (keyTrigger == HwKeyTrigger.RECENTS_LONGPRESS) {
+            action = mRecentsLongpressAction;
+        }
 
         if (DEBUG) log("Action for HWKEY trigger " + keyTrigger + " = " + action);
         return action;
@@ -426,6 +482,9 @@ public class ModHwKeys {
             retVal |= getActionForHwKeyTrigger(HwKeyTrigger.HOME_LONGPRESS) != GravityBoxSettings.HWKEY_ACTION_DEFAULT;
         } else if (key == HwKey.BACK) {
             retVal |= getActionForHwKeyTrigger(HwKeyTrigger.BACK_LONGPRESS) != GravityBoxSettings.HWKEY_ACTION_DEFAULT;
+        } else if (key == HwKey.RECENTS) {
+            retVal |= getActionForHwKeyTrigger(HwKeyTrigger.RECENTS_SINGLETAP) != GravityBoxSettings.HWKEY_ACTION_DEFAULT;
+            retVal |= getActionForHwKeyTrigger(HwKeyTrigger.RECENTS_LONGPRESS) != GravityBoxSettings.HWKEY_ACTION_DEFAULT;
         }
 
         if (DEBUG) log("HWKEY " + key + " has action = " + retVal);
