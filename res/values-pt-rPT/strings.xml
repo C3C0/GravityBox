@@ -181,8 +181,8 @@
     <string name="pref_lockscreen_maximize_widgets_summary">Quando selecionado, os widgets do ecrã de bloqueio serão aumentados</string>
 
     <!-- Power tweaks category -->
-    <string name="pref_cat_power_title">Ajustes de bateria</string>
-    <string name="pref_cat_power_summary">Contém vários ajustes relacionados com a bateria</string>
+    <string name="pref_cat_power_title">Ajustes de energia</string>
+    <string name="pref_cat_power_summary">Contém vários ajustes relacionados com a energia</string>
 
     <!-- Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Desativar luz intermitente</string>
@@ -248,7 +248,7 @@
     <string name="pref_cat_hwkey_actions_title">Ações para teclas físicas</string>
     <string name="pref_cat_hwkey_actions_summary">Permite personalizar ações para as teclas físicas</string>
     <string name="pref_hwkey_menu_longpress_title">Ação ao manter pressionada tecla Menu</string>
-    <string name="pref_hwkey_menu_doubletap_title">Ação após duplo toque na tecla Menu</string>
+    <string name="pref_hwkey_menu_doubletap_title">Ação após dupla pressão da tecla Menu</string>
     <string name="pref_hwkey_back_longpress_title">Ação ao manter pressionada tecla Atrás</string>
     <string name="hwkey_action_default">Por defeito</string>
     <string name="hwkey_action_search">Pesquisa</string>
@@ -665,5 +665,9 @@
     <string name="rambar_off">Desativada</string>
     <string name="rambar_top">Topo superior</string>
     <string name="rambar_bottom">Topo inferior</string>
+
+    <!-- HW Key actions for recents button -->
+    <string name="pref_hwkey_recents_singletap_title">Ação após pressão da tecla Aplic. recentes</string>
+    <string name="pref_hwkey_recents_longpress_title">Ação ao manter pressionada tecla Aplic. recentes</string>
 
 </resources>
