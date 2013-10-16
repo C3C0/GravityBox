@@ -54,7 +54,7 @@
     <string name="vol_key_cursor_control_on">Hangerő fel/le a kurzort balra/jobbra mozgatja</string>
     <string name="vol_key_cursor_control_on_reverse">Hangerő fel/le a kurzort jobbra/balra mozgatja</string>
 
-    <string name="recents_clear_all_title">Legutóbbi feladatok törlése gomb</string>
+    <string name="recents_clear_all_title">Nemrég használt alkalmazások törlése gomb</string>
 
     <string name="fix_datetime_crash_title">Javítja a Dátum és Idő beállítás hibáját</string>
     <string name="fix_datetime_crash_summary">Engedélyezze abban az esetben, ha összeomlást tapasztal a Dátum és Idő beállítás elérésekor (újraindítás szükséges)</string>
@@ -192,7 +192,7 @@
     <string name="lockscreen_background_result_successful">A háttér megváltozott</string>
     <string name="lockscreen_background_result_not_successful">A háttér nem változott meg</string>
     <string name="pref_cat_lockscreen_other_title">Egyéb</string>
-    <string name="pref_lockscreen_maximize_widgets_title">Widgetek maximalizálása</string>
+    <string name="pref_lockscreen_maximize_widgets_title">Widget-ek maximalizálása</string>
     <string name="pref_lockscreen_maximize_widgets_summary">Ha engedélyezve van, a Zárképernyő widget-ek alapértelmezetten maximalizálva lesznek</string>
 
     <!--  Power tweaks category -->
@@ -218,7 +218,7 @@
     <string name="pref_ab_lux_max_label">Lux max</string>
     <string name="pref_ab_brighness_label">Háttérfény (%d &#8211; 255)</string>
     <string name="pref_ab_number_error_general">A meghatározott érték nem lehetséges</string>
-    <string name="pref_ab_brightness_too_low">%d alatti fényerő érték beállítása nem ajánlott</string>
+    <string name="pref_ab_brightness_too_low">Nem ajánlott %d alatti fényerő érték beállítása</string>
     <string name="pref_ab_brightness_too_high">Fényerő nem lehet nagyobb, mint 255</string>
     <string name="pref_ab_number_error_negative">Az értékek nem lehetnek kisebbek vagy egyenlőek 0-val</string>
     <string name="pref_ab_number_not_ascending">A kisebb szintek értékei nem lehetnek nagyobbak mint a nagyobb szintek értékei.</string>
@@ -226,6 +226,7 @@
     <string name="pref_ab_values_set">Értékek %-os megadása</string>
     <string name="pref_ab_config_saved">Új automatikus fényerő konfiguráció elmentve</string>
     <string name="pref_ab_config_cancelled">Automatikus fényerő konfiguráció NINCS elmentve</string>
+	<string name="pref_ab_button_set">Beállít</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Zárképernyő elforgatás engedélyezése</string>
@@ -482,7 +483,7 @@
     <string name="pref_brightness_master_switch_summary">Csak abban az esetben használd, ha az eszközöd támogotja a szabvány Android fényerő funkciókat. Fényerővel kapcsolatos hibák megjelenése esetén tiltsd le ezt a funkciót. (újraindítás szükséges)</string>
 
 	<!-- HW Key Action: Recent apps -->
-    <string name="hwkey_action_recent_apps">Legutóbb használt alkalmazások megjelenítése</string>
+    <string name="hwkey_action_recent_apps">Nemrég használt alkalmazások megjelenítése</string>
 
     <!-- HW Key Action: Home long-press -->
     <string name="pref_hwkey_home_longpress_title">Home gomb hosszú érintés művelete</string>
@@ -669,5 +670,15 @@
     <!-- Disable lockscreen widget limit -->
     <string name="pref_lockscreen_widget_limit_disable_title">Widget limitáció letiltása</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">Lehetővé teszi korlátlan számú widget alkalmazását a Zárképernyőn</string>
+
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> szabad</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> foglalt</string>
+    <string name="pref_rambar_title">Nemrég használt alkalmazások Memória sáv</string>
+    <string name="rambar_off">Kikapcsolva</string>
+    <string name="rambar_top">Fent</string>
+    <string name="rambar_bottom">Lent</string>
 	
 </resources>
