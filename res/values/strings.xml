@@ -682,7 +682,7 @@
     <string name="rambar_bottom">Bottom</string>
 
     <!-- HW Key actions for recents button -->
-    <string name="pref_hwkey_recents_singletap_title">Recents single-tap action</string>
-    <string name="pref_hwkey_recents_longpress_title">Recents long-press action</string>
+    <string name="pref_hwkey_recents_singletap_title">Recents key single-tap action</string>
+    <string name="pref_hwkey_recents_longpress_title">Recents key long-press action</string>
 
 </resources>
