@@ -274,7 +274,7 @@
     <string name="pref_hwkey_kill_delay_summary">Uygulama sonladırma eylemine uygulanır. Tuşa ne kadar süre ile basılacak?</string>
     <string name="pref_hwkey_doubletap_speed_title">Çift-tıklama hızı</string>
     <string name="pref_hwkey_doubletap_speed_summary">Menü tuşu çift-tıklama eylemine uygulanır. Çift-tıklamanın oluşması için tuşa ne kadar hızlı basılacak?</string>
-    <string name="app_killed">Uygulama sonlandırıldı</string>
+    <string name="app_killed">Uygulama %s sonlandırıldı</string>
     <string name="nothing_to_kill">Sonlanacak uygulama yok</string>
     <string name="no_previous_app_found">Önceki uygulama yok</string>
 

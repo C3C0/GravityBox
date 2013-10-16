@@ -261,7 +261,7 @@
     <string name="pref_hwkey_kill_delay_summary">適用於「結束正在使用的應用程式」動作。定義按鍵需要按下持續多久才會觸發動作</string>
     <string name="pref_hwkey_doubletap_speed_title">雙擊速度</string>
     <string name="pref_hwkey_doubletap_speed_summary">適用於選單鍵的雙擊動作。定義按鍵需要在多少時間內連續按兩下才會觸發動作</string>
-    <string name="app_killed">應用程式已結束</string>
+    <string name="app_killed">%s 應用程式已結束</string>
     <string name="nothing_to_kill">無應用程式可結束</string>
     <string name="no_previous_app_found">找不到上一個應用程式</string>
 

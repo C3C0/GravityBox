@@ -254,7 +254,7 @@
     <string name="pref_hwkey_kill_delay_summary">Aplica para matar la acción aplicación en primer plano. Definido por cuánto retraso para matar la app</string>
     <string name="pref_hwkey_doubletap_speed_title">Velocidad de doble pulsación</string>
     <string name="pref_hwkey_doubletap_speed_summary">Se aplica a Menú tecla de acción doble toque. Define cómo debe ser aprovechado teclas de acceso rápido para activar la doble pulsación</string>
-    <string name="app_killed">Aplicación matada</string>
+    <string name="app_killed">%s matada</string>
     <string name="nothing_to_kill">"No hay nada para matar"</string>
     <string name="no_previous_app_found">Aplicación previa no encontrada</string>
 	

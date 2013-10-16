@@ -275,7 +275,7 @@
     <string name="pref_hwkey_kill_delay_summary">Valable pour mettre fin à l\'application de premier plan. Définit combien de temps la touche doit être pressée pour mettre fin à la tâche</string>
     <string name="pref_hwkey_doubletap_speed_title">Vitesse double appui</string>
     <string name="pref_hwkey_doubletap_speed_summary">Valable pour le double appui sur la touche menu. Définit à quelle vitesse on doit appuyer sur la touche menu pour obtenir l\'action voulue</string>
-    <string name="app_killed">Fin de l\'application</string>
+    <string name="app_killed">Fin de l\'application %s</string>
     <string name="nothing_to_kill">Il n\'y a aucune application en cours</string>
     <string name="no_previous_app_found">Aucune application précédente trouvée</string>
 

@@ -190,7 +190,7 @@
     <string name="pref_hwkey_kill_delay_summary">Dotyczy zakańczania działających procesów. Określa jak długo musi być naciśnięty przycisk aby wywołać akcję.</string>
     <string name="pref_hwkey_doubletap_speed_title">Szybkość podwójnego przyciśnięcia</string>
     <string name="pref_hwkey_doubletap_speed_summary">Dotyczy podwójnego przyciśnięcia Menu. Określa jak szybko należy dwukrotnie przycisnąć przycisk.</string>
-    <string name="app_killed">Aplikacja zakończona</string>
+    <string name="app_killed">Aplikacja %s zakończona</string>
     <string name="nothing_to_kill">Nie ma nic do zakończenia</string>
     <string name="no_previous_app_found">Brak poprzedniej aplikacji</string>
     <string name="pref_cat_phone_title">Poprawki dotyczące Telefonu</string>

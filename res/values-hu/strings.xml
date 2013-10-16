@@ -275,7 +275,7 @@
     <string name="pref_hwkey_kill_delay_summary">Az előtérben futó program bezárására vonatkozik. Meghatározza, hogy mennyi ideig kell nyomva tartani a gombot a bezáráshoz.</string>
     <string name="pref_hwkey_doubletap_speed_title">Dupla érintés sebessége</string>
     <string name="pref_hwkey_doubletap_speed_summary">A Menü gomb dupla érintés műveletére vonatkozik. Meghatározza, hogy milyen gyorsan kell érinteni a dupla érintés előidézéséhez.</string>
-    <string name="app_killed">Alkalmazás bezárva</string>
+    <string name="app_killed">%s bezárva</string>
     <string name="nothing_to_kill">Nincs bezárandó alkalmazás</string>
     <string name="no_previous_app_found">Nem található korábbi alkalmazás</string>
 

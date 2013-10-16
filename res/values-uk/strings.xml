@@ -241,7 +241,7 @@
     <string name="pref_hwkey_kill_delay_summary">Застосовується до дії завершення усіх поточних завдань. Визначає тривалість натискання для спрацьовування</string>
     <string name="pref_hwkey_doubletap_speed_title">Швидкість подвійного дотику</string>
     <string name="pref_hwkey_doubletap_speed_summary">Застосовується до дії подвійного дотику меню. Визначає швидкість подвійного дотику для спрацьовування</string>
-    <string name="app_killed">Завдання завершене</string>
+    <string name="app_killed">Завдання %s завершене</string>
     <string name="nothing_to_kill">Нічого завершувати</string>
     <string name="no_previous_app_found">Немає попереднього додатку</string>
 

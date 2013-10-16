@@ -270,7 +270,7 @@
     <string name="pref_hwkey_kill_delay_summary">Applies to Kill foreground app action. Defines for how long key must be pressed to trigger kill</string>
     <string name="pref_hwkey_doubletap_speed_title">Double-tap speed</string>
     <string name="pref_hwkey_doubletap_speed_summary">Applies to Menu key double-tap action. Defines how fast key must be tapped to trigger double-tap</string>
-    <string name="app_killed">Application killed</string>
+    <string name="app_killed">%s killed</string>
     <string name="nothing_to_kill">There\'s nothing to kill</string>
     <string name="no_previous_app_found">No previous app found</string>
 

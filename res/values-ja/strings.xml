@@ -255,7 +255,7 @@
     <string name="pref_hwkey_kill_delay_summary">前面アプリの終了をするまでにどれぐらいキーを押しっぱなしにするか設定します。</string>
     <string name="pref_hwkey_doubletap_speed_title">ダブルタップ速度</string>
     <string name="pref_hwkey_doubletap_speed_summary">メニューキーダブルタップでどれぐらいの速度のタップを認識するか設定します。</string>
-    <string name="app_killed">アプリを終了しました。</string>
+    <string name="app_killed">%s アプリを終了しました。</string>
     <string name="nothing_to_kill">終了するアプリがありません。</string>
     <string name="no_previous_app_found">前のアプリはありません。</string>
 

@@ -269,7 +269,7 @@
     <string name="pref_hwkey_kill_delay_summary">Định nghĩ thời gian giữ pím bao lâu cho diệt ứng dụng nền</string>
     <string name="pref_hwkey_doubletap_speed_title">Tốc độ bấm đúp</string>
     <string name="pref_hwkey_doubletap_speed_summary">Chấp nhận phím menu cho hoạt động bấm đúp. Định nghĩa tốc độ nhanh hay chậm cho tốc độ bấm đúp</string>
-    <string name="app_killed">Ứng dụng đã được diệt</string>
+    <string name="app_killed">Ứng dụng đã được diệt: %s</string>
     <string name="nothing_to_kill">Không có ứng dụng nào để diệt</string>
     <string name="no_previous_app_found">Không tìm thấy ứng dụng trước đó</string>
 

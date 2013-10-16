@@ -269,11 +269,19 @@ public class ModHwKeys {
                                     performAction(HwKeyTrigger.MENU_DOUBLETAP);
                                     mHandler.removeCallbacks(mMenuDoubleTapReset);
                                     mIsMenuDoubleTap = false;
+                                    param.setResult(-1);
+                                    return;
                                 } else {
                                     mIsMenuLongPressed = false;
-                                    mIsMenuDoubleTap = true;
-                                    mHandler.postDelayed(mMenuLongPress, getLongpressTimeoutForAction(mMenuLongpressAction));
-                                    mHandler.postDelayed(mMenuDoubleTapReset, mDoubletapSpeed);
+                                    mIsMenuDoubleTap = false;
+                                    if (mMenuDoubletapAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
+                                        mIsMenuDoubleTap = true;
+                                        mHandler.postDelayed(mMenuDoubleTapReset, mDoubletapSpeed);
+                                    }
+                                    if (mMenuLongpressAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
+                                        mHandler.postDelayed(mMenuLongPress, 
+                                                getLongpressTimeoutForAction(mMenuLongpressAction));
+                                    }
                                 }
                             } else {
                                 if (mMenuLongpressAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
@@ -303,7 +311,10 @@ public class ModHwKeys {
                         } else {
                             if (event.getRepeatCount() == 0) {
                                 mIsBackLongPressed = false;
-                                mHandler.postDelayed(mBackLongPress, getLongpressTimeoutForAction(mBackLongpressAction));
+                                if (mBackLongpressAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
+                                    mHandler.postDelayed(mBackLongPress, 
+                                            getLongpressTimeoutForAction(mBackLongpressAction));
+                                }
                             } else {
                                 param.setResult(-1);
                                 return;
@@ -324,10 +335,12 @@ public class ModHwKeys {
                                 }
                             }
                         } else {
-                            if (event.getRepeatCount() == 0 &&
-                                    mRecentsLongpressAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
+                            if (event.getRepeatCount() == 0) {
                                 mIsRecentsLongPressed = false;
-                                mHandler.postDelayed(mRecentsLongPress, getLongpressTimeoutForAction(mRecentsLongpressAction));
+                                if (mRecentsLongpressAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
+                                    mHandler.postDelayed(mRecentsLongPress, 
+                                            getLongpressTimeoutForAction(mRecentsLongpressAction));
+                                }
                             }
                         }
                         param.setResult(-1);
@@ -563,7 +576,7 @@ public class ModHwKeys {
                         List<RunningAppProcessInfo> apps = (List<RunningAppProcessInfo>) 
                                 XposedHelpers.callMethod(mgr, "getRunningAppProcesses");
         
-                        boolean targetKilled = false;
+                        String targetKilled = null;
                         for (RunningAppProcessInfo appInfo : apps) {  
                             int uid = appInfo.uid;  
                             // Make sure it's a foreground user application (not system,  
@@ -572,22 +585,24 @@ public class ModHwKeys {
                                     && appInfo.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND &&
                                     !appInfo.processName.equals("com.android.systemui") &&
                                     !appInfo.processName.equals("com.mediatek.bluetooth") &&
+                                    !appInfo.processName.equals("android.process.acore") &&
                                     !appInfo.processName.equals(defaultHomePackage)) {  
                                 if (DEBUG) log("Killing process ID " + appInfo.pid + ": " + appInfo.processName);
                                 Process.killProcess(appInfo.pid);
-                                targetKilled = true;
+                                targetKilled = appInfo.processName;
                                 break;
                             }  
                         }
         
-                        if (targetKilled) {
+                        if (targetKilled != null) {
                             Class<?>[] paramArgs = new Class<?>[3];
                             paramArgs[0] = XposedHelpers.findClass(CLASS_WINDOW_STATE, null);
                             paramArgs[1] = int.class;
                             paramArgs[2] = boolean.class;
                             XposedHelpers.callMethod(mPhoneWindowManager, "performHapticFeedbackLw",
                                     paramArgs, null, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING, true);
-                            Toast.makeText(mContext, mStrAppKilled, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, 
+                                    String.format(mStrAppKilled, targetKilled), Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(mContext, mStrNothingToKill, Toast.LENGTH_SHORT).show();
                         }

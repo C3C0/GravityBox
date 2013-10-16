@@ -260,7 +260,7 @@
     <string name="pref_hwkey_kill_delay_summary">Aplicável à ação \"Fechar aplicação em curso\". Permite temporizar o fecho da aplicação após a tecla ter sido pressionada</string>
     <string name="pref_hwkey_doubletap_speed_title">Velocidade do duplo toque</string>
     <string name="pref_hwkey_doubletap_speed_summary">Aplicável à ação após duplo toque na tecla Menu. Permite definir o tempo máximo admissível entre toques</string>
-    <string name="app_killed">Aplicação fechada</string>
+    <string name="app_killed">Aplicação %s fechada</string>
     <string name="nothing_to_kill">Nenhuma aplicação por fechar</string>
     <string name="no_previous_app_found">Nenhuma aplicação anterior encontrada</string>
 

@@ -269,7 +269,7 @@
     <string name="pref_hwkey_kill_delay_summary">Berfungsi untuk menghentikan program yang sedang ditampilkan. Tentukan seberapa lama tombol perlu ditahan sebelum aplikasi dihentikan</string>
     <string name="pref_hwkey_doubletap_speed_title">Kecepatan Double-tap</string>
     <string name="pref_hwkey_doubletap_speed_summary">Berfungsi untuk aksi ketika tombol menu ditekan dua kali. Tentukan seberapa cepat tombol harus ditekan sebelum aksi dijalankan</string>
-    <string name="app_killed">Aplikasi dihentikan</string>
+    <string name="app_killed">%s dihentikan</string>
     <string name="nothing_to_kill">Tidak ada aplikasi yang dihentikan</string>
     <string name="no_previous_app_found">Aplikasi sebelumnya tidak ditemukan</string>
 

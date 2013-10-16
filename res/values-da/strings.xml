@@ -235,7 +235,7 @@
     <string name="pref_hwkey_kill_delay_summary">Påvirker afslut forgrunds-app funktionen. Definerer hvor længe tasten skat holdes for at udløse afslutning</string>
     <string name="pref_hwkey_doubletap_speed_title">Dobbelt-tap hastighed</string>
     <string name="pref_hwkey_doubletap_speed_summary">Påvirker dobbelt-tap af menutasten. Definer hvor hurtigt tasten skal tappes for at udløse dobbelt-tap</string>
-    <string name="app_killed">App afsluttet</string>
+    <string name="app_killed">%s afsluttet</string>
     <string name="nothing_to_kill">Intet at afslutte</string>
     <string name="no_previous_app_found">Ingen forrige app fundet</string>
 

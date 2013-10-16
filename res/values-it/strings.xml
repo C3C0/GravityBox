@@ -244,7 +244,7 @@
     <string name="pref_hwkey_kill_delay_summary">Si applica per il Kill della app corrente. Definisce quanto a lungo deve rimanere premuto il tasto per fare la kill</string>
     <string name="pref_hwkey_doubletap_speed_title">Velocità doppio-tap</string>
     <string name="pref_hwkey_doubletap_speed_summary">Si applica per il doppio-tap del tasto MENU. Definisce quanto velocemente deve avvenire il secondo tap</string>
-    <string name="app_killed">Applicazione terminata</string>
+    <string name="app_killed">%s terminata</string>
     <string name="nothing_to_kill">Non c\'è niente da terminare</string>
     <string name="no_previous_app_found">Nessuna app precedente trovata</string>
 

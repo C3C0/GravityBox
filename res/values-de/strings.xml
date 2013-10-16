@@ -260,7 +260,7 @@
     <string name="pref_hwkey_kill_delay_summary">Stellt ein, wie lange eine Taste gedrückt werden muss, bis die geöffnete App geschlossen wird</string>
     <string name="pref_hwkey_doubletap_speed_title">Doppelklick Geschwindigkeit</string>
     <string name="pref_hwkey_doubletap_speed_summary">Legt fest, wie schnell eine Taste hintereinander gedrückt werden muss, damit es als zweifaches Drücken gewertet wird.</string>
-    <string name="app_killed">Anwendung beendet</string>
+    <string name="app_killed">%s beendet</string>
     <string name="nothing_to_kill">Nichts zu beenden</string>
     <string name="no_previous_app_found">Keine vorherige App gefunden</string>
 

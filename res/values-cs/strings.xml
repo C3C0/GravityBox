@@ -260,7 +260,7 @@
     <string name="pref_hwkey_kill_delay_summary">Vztahuje se na akci zabití aplikace v popředí dlouhým podržením tlačítka. Definuje, jak dlouho musí být tlačítko přidrženo aby došlo k provedení akce.</string>
     <string name="pref_hwkey_doubletap_speed_title">Rychlost dvojitého klepnutí</string>
     <string name="pref_hwkey_doubletap_speed_summary">Vztahuje se na dvojité klepnutí na Menu. Definuje, jak rychle musí být provedeno dvojité klepnutí aby došlo k provedení akce.</string>
-    <string name="app_killed">Aplikace zabita</string>
+    <string name="app_killed">Aplikace %s zabita</string>
     <string name="nothing_to_kill">Není co zabít</string>
     <string name="no_previous_app_found">Žádná předcházející aplikace</string>
 
