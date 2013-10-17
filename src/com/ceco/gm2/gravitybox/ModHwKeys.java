@@ -15,6 +15,8 @@
 
 package com.ceco.gm2.gravitybox;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import android.app.ActivityManager;
@@ -26,6 +28,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.hardware.input.InputManager;
@@ -88,6 +91,13 @@ public class ModHwKeys {
     private static boolean mVolumeRockerWakeDisabled = false;
     private static boolean mHwKeysEnabled = true;
     private static XSharedPreferences mPrefs;
+
+    private static List<String> mKillIgnoreList = new ArrayList<String>(Arrays.asList(
+            "com.android.systemui",
+            "com.mediatek.bluetooth",
+            "android.process.acore",
+            "com.google.process.gapps"
+    ));
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -563,9 +573,11 @@ public class ModHwKeys {
                 public void run() {
                     try {
                         final Intent intent = new Intent(Intent.ACTION_MAIN);
+                        final PackageManager pm = mContext.getPackageManager();
                         String defaultHomePackage = "com.android.launcher";
                         intent.addCategory(Intent.CATEGORY_HOME);
-                        final ResolveInfo res = mContext.getPackageManager().resolveActivity(intent, 0);
+                        
+                        final ResolveInfo res = pm.resolveActivity(intent, 0);
                         if (res.activityInfo != null && !res.activityInfo.packageName.equals("android")) {
                             defaultHomePackage = res.activityInfo.packageName;
                         }
@@ -583,13 +595,17 @@ public class ModHwKeys {
                             // root, phone, etc.)  
                             if (uid >= Process.FIRST_APPLICATION_UID && uid <= Process.LAST_APPLICATION_UID  
                                     && appInfo.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND &&
-                                    !appInfo.processName.equals("com.android.systemui") &&
-                                    !appInfo.processName.equals("com.mediatek.bluetooth") &&
-                                    !appInfo.processName.equals("android.process.acore") &&
+                                    !mKillIgnoreList.contains(appInfo.processName) &&
                                     !appInfo.processName.equals(defaultHomePackage)) {  
                                 if (DEBUG) log("Killing process ID " + appInfo.pid + ": " + appInfo.processName);
                                 Process.killProcess(appInfo.pid);
                                 targetKilled = appInfo.processName;
+                                try {
+                                    targetKilled = (String) pm.getApplicationLabel(
+                                            pm.getApplicationInfo(targetKilled, 0));
+                                } catch (PackageManager.NameNotFoundException nfe) {
+                                    //
+                                }
                                 break;
                             }  
                         }
