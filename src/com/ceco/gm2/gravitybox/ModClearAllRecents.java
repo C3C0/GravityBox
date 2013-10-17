@@ -341,7 +341,7 @@ public class ModClearAllRecents {
 
             ActivityManager.MemoryInfo memInfo = new ActivityManager.MemoryInfo();
             mAm.getMemoryInfo(memInfo);
-            long secServerMem = XposedHelpers.getLongField(memInfo, "secondaryServerThreshold");
+            long secServerMem = 0;//XposedHelpers.getLongField(memInfo, "secondaryServerThreshold");
             mMemInfoReader.readMemInfo();
             long availMem = mMemInfoReader.getFreeSize() + mMemInfoReader.getCachedSize() -
                     secServerMem;
