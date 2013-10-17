@@ -212,6 +212,7 @@
     <string name="pref_ab_values_set">Hodnoty pro %s nastaveny</string>
     <string name="pref_ab_config_saved">Nová konfigurace automatického jasu byla uložena</string>
     <string name="pref_ab_config_cancelled">Nová konfigurace automatického jasu NEBYLA uložena</string>
+    <string name="pref_ab_button_set">Nastavit</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Rotace obrazovky uzamčení</string>
@@ -645,5 +646,19 @@
     <!-- Disable lockscreen widget limit -->
     <string name="pref_lockscreen_widget_limit_disable_title">Vypnout limit widgetů</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">Umožní neomezený počet widgetů obrazovky uzamčení</string>
+
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> volných</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> využitých</string>
+    <string name="pref_rambar_title">RAM lišta v seznamu spuštěných aplikací</string>
+    <string name="rambar_off">Vypnuta</string>
+    <string name="rambar_top">Zobrazit nahoru</string>
+    <string name="rambar_bottom">Zobrazit dole</string>
+
+    <!-- HW Key actions for recents button -->
+    <string name="pref_hwkey_recents_singletap_title">Ťuknutí na tlačítko seznamu aplikací</string>
+    <string name="pref_hwkey_recents_longpress_title">Dlouhé podržení tlačítka seznamu aplikací</string>
 
 </resources>
