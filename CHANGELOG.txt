@@ -1,3 +1,24 @@
+Changelog 2.6.3 - 17/10/2013
+--------------------------------------
+- Recent tasks RAM bar
+--- the latest implementation ported from AOKP project
+--- allows position at top or at bottom
+--- scales automatically according to "Clear all recents" button position/visibility
+- Hardware Key Actions:
+--- option for overriding single-tap action of Recent Tasks key (hardware and virtual)
+--- option for overriding long-press action of Recent Tasks key (hardware and virtual)
+- Minimum brightness limit lowered to 5
+- New app icon (designed by C3C076 A.K.A. Tha Graphics Lama)
+- Colors of GB tile icon and Screenshot tile icon adjusted to match other tiles
+- Other minor bug fixes and optimizations
+- Updated Polish translations (thanks to xtrem007)
+- Updated Hungarian translations (thanks to benjoe1)
+- Updated German translations (thanks to samsonbear)
+- Updated French translation (thanks to ch-vox)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Chinese (Simplified) translations (thanks to liveasx)
+- Updated Japanese translations (thanks to WedyDQ10)
+
 Changelog 2.6.2 - 13/10/2013
 --------------------------------------
 - Preferences adjusted to take device features into account (thanks to @bgcngm)
