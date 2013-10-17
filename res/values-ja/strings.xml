@@ -661,4 +661,9 @@
     <string name="rambar_off">無効</string>
     <string name="rambar_top">上に表示</string>
     <string name="rambar_bottom">下に表示</string>
+    
+    <!-- HW Key actions for recents button -->
+    <string name="pref_hwkey_recents_singletap_title">最近のアプリキータップアクション</string>
+    <string name="pref_hwkey_recents_longpress_title">最近のアプリキー長押しアクション</string>
+    
 </resources>
