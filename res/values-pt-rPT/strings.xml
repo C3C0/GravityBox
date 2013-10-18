@@ -670,4 +670,8 @@
     <string name="pref_hwkey_recents_singletap_title">Ação após pressão da tecla Aplic. recentes</string>
     <string name="pref_hwkey_recents_longpress_title">Ação ao manter pressionada tecla Aplic. recentes</string>
 
+    <!-- Lockscreen battery arc -->
+    <string name="pref_lockscreen_battery_arc_title">Mostrar arco de bateria</string>
+    <string name="pref_lockscreen_battery_arc_summary">Permite mostrar o estado da bateria em forma de arco desenhado à volta do anel de desbloqueio</string>
+
 </resources>
