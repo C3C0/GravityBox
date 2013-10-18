@@ -109,6 +109,12 @@
             android:key="pref_cat_lockscreen_other"
             android:title="@string/pref_cat_lockscreen_other_title">
 
+            <CheckBoxPreference
+                android:key="pref_lockscreen_battery_arc"
+                android:title="@string/pref_lockscreen_battery_arc_title"
+                android:summary="@string/pref_lockscreen_battery_arc_summary"
+                android:defaultValue="false" />
+
             <CheckBoxPreference 
                 android:key="pref_lockscreen_maximize_widgets"
                 android:title="@string/pref_lockscreen_maximize_widgets_title"

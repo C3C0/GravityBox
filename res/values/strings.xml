@@ -685,4 +685,8 @@
     <string name="pref_hwkey_recents_singletap_title">Recents key single-tap action</string>
     <string name="pref_hwkey_recents_longpress_title">Recents key long-press action</string>
 
+    <!-- Lockscreen battery arc -->
+    <string name="pref_lockscreen_battery_arc_title">Show battery arc</string>
+    <string name="pref_lockscreen_battery_arc_summary">Shows battery status arc drawn around unlock ring handle</string>
+
 </resources>

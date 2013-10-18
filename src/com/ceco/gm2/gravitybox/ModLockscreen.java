@@ -33,7 +33,10 @@ import android.content.res.Resources;
 import android.content.res.XResources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -70,7 +73,13 @@ public class ModLockscreen {
     private static final String CLASS_KG_ABS_KEY_INPUT_VIEW =
             "com.android.internal.policy.impl.keyguard.KeyguardAbsKeyInputView";
     private static final String CLASS_KGVIEW_MEDIATOR = "com.android.internal.policy.impl.keyguard.KeyguardViewMediator";
+    private static final String CLASS_KG_UPDATE_MONITOR = "com.android.internal.policy.impl.keyguard.KeyguardUpdateMonitor";
+    private static final String CLASS_KG_UPDATE_MONITOR_CB = 
+            "com.android.internal.policy.impl.keyguard.KeyguardUpdateMonitorCallback";
+    private static final String CLASS_KG_UPDATE_MONITOR_BATTERY_STATUS =
+            "com.android.internal.policy.impl.keyguard.KeyguardUpdateMonitor.BatteryStatus";
     private static final boolean DEBUG = false;
+    private static final boolean DEBUG_ARC = false;
 
     private static final int STATUSBAR_DISABLE_RECENT = 0x01000000;
     private static final int STATUSBAR_DISABLE_NOTIFICATION_TICKER = 0x00080000;
@@ -83,6 +92,17 @@ public class ModLockscreen {
             { Intent.class, boolean.class, boolean.class, Handler.class, Runnable.class };
     private static Constructor<?> mTargetDrawableConstructor;
     private static Object mKeyguardHostView;
+
+    // Battery Arc
+    private static HandleDrawable mHandleDrawable;
+    private static Paint mArcPaint;
+    private static RectF mArcRect;
+    private static float mArcAngle = 0f;
+    private static Object mInfoCallback;
+    private static float mBatteryLevel;
+    private static boolean mArcVisible;
+    private static boolean mArcEnabled;
+    private static View mGlowPadView;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -97,6 +117,8 @@ public class ModLockscreen {
             final Class<?> triggerListenerClass = XposedHelpers.findClass(CLASS_TRIGGER_LISTENER, null);
             final Class<?> kgAbsKeyInputViewClass = XposedHelpers.findClass(CLASS_KG_ABS_KEY_INPUT_VIEW, null);
             final Class<?> kgViewMediatorClass = XposedHelpers.findClass(CLASS_KGVIEW_MEDIATOR, null);
+            final Class<?> kgUpdateMonitorClass = XposedHelpers.findClass(CLASS_KG_UPDATE_MONITOR, null);
+            final Class<?> kgUpdateMonitorCbClass = XposedHelpers.findClass(CLASS_KG_UPDATE_MONITOR_CB, null);
 
             boolean enableMenuKey = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_LOCKSCREEN_MENU_KEY, false);
@@ -228,11 +250,11 @@ public class ModLockscreen {
 
                     final Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                     final Resources res = context.getResources();
-                    final View gpView = (View) XposedHelpers.getObjectField(param.thisObject, "mGlowPadView");
+                    mGlowPadView = (View) XposedHelpers.getObjectField(param.thisObject, "mGlowPadView");
 
                     // apply custom bottom/right margin to shift unlock ring upwards/left
                     try {
-                        final FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) gpView.getLayoutParams();
+                        final FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mGlowPadView.getLayoutParams();
                         final int bottomMarginOffsetPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
                                 prefs.getInt(GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_VERTICAL_OFFSET, 0),
                                 res.getDisplayMetrics());
@@ -241,17 +263,47 @@ public class ModLockscreen {
                                 res.getDisplayMetrics());
                         lp.setMargins(lp.leftMargin, lp.topMargin, lp.rightMargin - rightMarginOffsetPx, 
                                 lp.bottomMargin - bottomMarginOffsetPx);
-                        gpView.setLayoutParams(lp);
+                        mGlowPadView.setLayoutParams(lp);
                     } catch (Throwable t) {
                         log("Lockscreen targets: error while trying to modify GlowPadView layout" + t.getMessage());
                     }
 
+                    mArcEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_LOCKSCREEN_BATTERY_ARC, false);
+                    // prepare Battery Arc
+                    if (mArcEnabled) {
+                        mArcVisible = true;
+                        if (mHandleDrawable == null) {
+                            mHandleDrawable = new HandleDrawable(
+                                    XposedHelpers.getObjectField(mGlowPadView, "mHandleDrawable"));
+                            mInfoCallback = XposedHelpers.newInstance(kgUpdateMonitorCbClass);
+        
+                            mArcPaint = new Paint();
+                            mArcPaint.setStrokeWidth(10.0f);
+                            mArcPaint.setStyle(Paint.Style.STROKE); 
+                            mArcRect = new RectF(mHandleDrawable.getPositionX() - mHandleDrawable.getWidth()/2, 
+                                    mHandleDrawable.getPositionY() - mHandleDrawable.getHeight()/2,
+                                    mHandleDrawable.getPositionX() + mHandleDrawable.getWidth()/2, 
+                                    mHandleDrawable.getPositionY() + mHandleDrawable.getHeight()/2);
+
+                            XposedHelpers.findAndHookMethod(
+                                    mGlowPadView.getClass(), "onDraw", Canvas.class, glowPadViewOnDrawHook);
+                            XposedHelpers.findAndHookMethod(mGlowPadView.getClass(), "showTargets",
+                                    boolean.class, glowPadViewShowTargetsHook);
+                            XposedHelpers.findAndHookMethod(mGlowPadView.getClass(), "hideTargets",
+                                    boolean.class, boolean.class, glowPadViewHideTargetsHook);
+
+                            if (DEBUG_ARC) log("Battery Arc initialized");
+                        }
+                        if (DEBUG_ARC) log("Battery Arc ready");
+                    }
+
+                    // finish if lockscreen targets disabled
                     if (!prefs.getBoolean(
                             GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_ENABLE, false)) return;
 
                     @SuppressWarnings("unchecked")
                     final ArrayList<Object> targets = (ArrayList<Object>) XposedHelpers.getObjectField(
-                            gpView, "mTargetDrawables");
+                            mGlowPadView, "mTargetDrawables");
                     final ArrayList<Object> newTargets = new ArrayList<Object>();
                     final ArrayList<String> newDescriptions = new ArrayList<String>();
                     final ArrayList<String> newDirections = new ArrayList<String>();
@@ -315,9 +367,9 @@ public class ModLockscreen {
                             }
                             break;
                     }
-                    XposedHelpers.setObjectField(gpView, "mTargetDrawables", newTargets);
-                    XposedHelpers.setObjectField(gpView, "mTargetDescriptions", newDescriptions);
-                    XposedHelpers.setObjectField(gpView, "mDirectionDescriptions", newDirections);
+                    XposedHelpers.setObjectField(mGlowPadView, "mTargetDrawables", newTargets);
+                    XposedHelpers.setObjectField(mGlowPadView, "mTargetDescriptions", newDescriptions);
+                    XposedHelpers.setObjectField(mGlowPadView, "mDirectionDescriptions", newDirections);
                     XposedHelpers.callMethod(param.thisObject, "updateTargets");
                 }
             });
@@ -332,11 +384,9 @@ public class ModLockscreen {
                             GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_ENABLE, false)) return;
 
                     final int index = (Integer) param.args[1];
-                    final View gpView = (View) XposedHelpers.getObjectField(
-                            XposedHelpers.getSurroundingThis(param.thisObject), "mGlowPadView");
                     @SuppressWarnings("unchecked")
                     final ArrayList<Object> targets = (ArrayList<Object>) XposedHelpers.getObjectField(
-                            gpView, "mTargetDrawables");
+                            mGlowPadView, "mTargetDrawables");
                     final Object td = targets.get(index);
 
                     AppInfo appInfo = (AppInfo) XposedHelpers.getAdditionalInstanceField(td, "mGbAppInfo");
@@ -441,10 +491,89 @@ public class ModLockscreen {
                     }
                 }
             });
+
+            XposedHelpers.findAndHookMethod(kgUpdateMonitorCbClass, "onRefreshBatteryInfo",
+                    CLASS_KG_UPDATE_MONITOR_BATTERY_STATUS, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (mArcEnabled && mInfoCallback == param.thisObject) {
+                        updateLockscreenBattery(param.args[0]);
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(kgSelectorViewClass, "onPause", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (mArcEnabled && mInfoCallback != null) {
+                        final View view = (View) param.thisObject;
+                        final Object kgUpdateMonitor = XposedHelpers.callStaticMethod(
+                                kgUpdateMonitorClass, "getInstance", view.getContext());
+                        XposedHelpers.callMethod(kgUpdateMonitor, "removeCallback", mInfoCallback);
+                        if (DEBUG_ARC) log("onPause: mInfoCallback removed");
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(kgSelectorViewClass, "onResume", int.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (mArcEnabled && mInfoCallback != null) {
+                        final View view = (View) param.thisObject;
+                        final Object kgUpdateMonitor = XposedHelpers.callStaticMethod(
+                                kgUpdateMonitorClass, "getInstance", view.getContext());
+                        XposedHelpers.callMethod(kgUpdateMonitor, "registerCallback", mInfoCallback);
+                        if (DEBUG_ARC) log("onResume: mInfoCallback registered");
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(kgSelectorViewClass, "updateTargets", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (mArcEnabled) {
+                        updateLockscreenBattery(null);
+                    }
+                }
+            });
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
     }
+
+    private static boolean shouldDrawBatteryArc() {
+        return (mArcEnabled && mHandleDrawable != null && 
+                mArcVisible && (mArcAngle > 0));
+    }
+
+    private static XC_MethodHook glowPadViewOnDrawHook = new XC_MethodHook() {
+        @Override
+        protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+            Canvas canvas = (Canvas) param.args[0];
+            if (canvas != null && shouldDrawBatteryArc()) {
+                mArcRect.set(mHandleDrawable.getPositionX() - mHandleDrawable.getWidth()/3,
+                        mHandleDrawable.getPositionY() - mHandleDrawable.getHeight()/3,
+                        mHandleDrawable.getPositionX() + mHandleDrawable.getWidth()/3,
+                        mHandleDrawable.getPositionY() + mHandleDrawable.getHeight()/3);
+                canvas.drawArc(mArcRect, -90, mArcAngle, false, mArcPaint);
+                if (DEBUG_ARC) log("Battery arc onDraw");
+            }
+        }
+    };
+
+    private static XC_MethodHook glowPadViewShowTargetsHook = new XC_MethodHook() {
+        @Override
+        protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+            mArcVisible = false;
+        }
+    };
+
+    private static XC_MethodHook glowPadViewHideTargetsHook = new XC_MethodHook() {
+        @Override
+        protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+            mArcVisible = true;
+        }
+    };
 
     private static void minimizeChallengeIfDesired(Object challenge) {
         if (challenge == null) return;
@@ -528,5 +657,56 @@ public class ModLockscreen {
         }
 
         return td;
+    }
+
+    static class HandleDrawable {
+        Object mHd;
+
+        public HandleDrawable(Object handleDrawable) {
+            mHd = handleDrawable;
+        }
+
+        public float getAlpha() {
+            return (Float) XposedHelpers.callMethod(mHd, "getAlpha");
+        }
+
+        public float getPositionX() {
+            return (Float) XposedHelpers.callMethod(mHd, "getPositionX");
+        }
+
+        public float getPositionY() {
+            return (Float) XposedHelpers.callMethod(mHd, "getPositionY");
+        }
+
+        public int getWidth() {
+            return (Integer) XposedHelpers.callMethod(mHd, "getWidth");
+        }
+
+        public int getHeight() {
+            return (Integer) XposedHelpers.callMethod(mHd, "getHeight");
+        }
+    }
+
+    private static void updateLockscreenBattery(Object status) {
+        if (status != null) { 
+            mBatteryLevel = XposedHelpers.getFloatField(status, "level");
+        }
+
+        float cappedBattery = mBatteryLevel;
+        if (mBatteryLevel < 15) {
+            cappedBattery = 15;
+        } else if (mBatteryLevel > 90) {
+            cappedBattery = 90;
+        }
+
+        final float hue = (cappedBattery - 15) * 1.6f;
+        mArcAngle = mBatteryLevel * 3.6f;
+        if (mArcPaint != null) {
+            mArcPaint.setColor(Color.HSVToColor(0x80, new float[]{ hue, 1.f, 1.f }));
+        }
+        if (mGlowPadView != null) {
+            mGlowPadView.invalidate();
+        }
+        if (DEBUG_ARC) log("Lockscreen battery arc updated");
     }
 }
