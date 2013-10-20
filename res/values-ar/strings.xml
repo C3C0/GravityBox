@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2013 Peter Gregus for GravityBox Project (C3C076@xda)
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">GravityBox</string>
+
+    <string name="battery_style_title">نمط البطارية</string>	
+    <string name="battery_style_stock">افتراضي</string>
+    <string name="battery_style_circle">دائري</string>
+    <string name="battery_style_circle_percent">دائري مع نسبة مئوية</string>
+    <string name="battery_style_percent">نسبة مئوية</string>
+    <string name="battery_style_none">لا شيء</string>
+
+    <string name="vol_music_controls_title">تنقل بمفاتيح الصوت</string>
+    <string name="vol_music_controls_summary">الانتقال بين الصوتيات أثناء اطفاء الشاشة بضغطة زر مطولة</string>
+
+    <string name="low_battery_warning_policy_title">تنبيه عند انخفاض البطارية</string>
+    <string name="low_battery_warning_full">نافذة منبثقة مع نغمة</string>
+    <string name="low_battery_warning_popup">نافذة منبثقة فقط</string>
+    <string name="low_battery_warning_sound">نغمة فقط</string>
+    <string name="low_battery_warning_off">عدم التنبيه</string>
+
+    <string name="reboot_required">سيتم تطبيق المتغيرات بعد اعادة التشغيل</string>
+
+    <string name="signal_icon_autohide_title">اخفاء تلقائي لأيقونة الشبكة</string>
+    <string name="signal_icon_autohide_summary">Auto-hides signal icons for selected SIM slots when SIM card is not inserted, disables \"SIM not inserted\" notifications</string>
+    <string name="sim_slot_1">Auto-hide SIM Slot 1</string>
+    <string name="sim_slot_2">Auto-hide SIM Slot 2</string>
+    <string name="sim_disable_notifications">تعطيل الاشعارات</string>
+    <string name="sim_disable_notifications_summary">\"SIM not inserted\" notifications disabled</string>
+
+    <string name="poweroff_advanced_title">قائمة اعادة التشغيل المتقدمة</string>
+    <string name="poweroff_advanced_summary">Enables advanced reboot menu with options to reboot to recovery</string>
+    <string name="poweroff_recovery">Recovery</string>
+    <string name="poweroff_bootloader">Bootloader</string>
+
+    <string name="vol_key_cursor_control_title">التحكم بمؤشر الكتابة</string>
+    <string name="vol_key_cursor_control_summary">التحكم بمؤشر الكتابة بواسطة مفاتيح الصوت</string>
+    <string name="vol_key_cursor_control_off">تعطيل</string>
+    <string name="vol_key_cursor_control_on">تحرك المؤشر لليسار عند رفع الصوت والعكس</string>
+    <string name="vol_key_cursor_control_on_reverse">تحرك المؤشر لليمين عند رفع الصوت والعكس</string>
+
+    <string name="recents_clear_all_title">مسح كافة المهام الأخيرة</string>
+
+    <string name="fix_datetime_crash_title">Fix Date&amp;Time settings crash</string>
+    <string name="fix_datetime_crash_summary">Enable in case you experience crash while accessing Date&amp;Time settings (requires reboot)</string>
+
+    <string name="fix_caller_id_phone_title">Fix caller ID for phone</string>
+    <string name="fix_caller_id_phone_summary">Enable in case your contact is not matched when receiving call (requires reboot)</string>
+    <string name="fix_caller_id_phone_alert">After reboot, you should clear and re-add your contacts for change to take effect! Use Settings / Applications / All - to clear data of Contacts provider.</string>
+
+    <string name="fix_caller_id_mms_title">Fix caller ID for messages</string>
+    <string name="fix_caller_id_mms_summary">Enable in case you experience splitted conversation threads for the same contact (requires reboot)</string>
+    <string name="fix_caller_id_mms_alert">After reboot, you should delete all splitted threads in messaging app for change to take effect!</string>
+
+    <string name="fix_calendar_title">Fix calendar app</string>
+    <string name="fix_calendar_summary">Enable in case you experience periodic self-turning on of the screen (requires reboot)</string>
+
+    <string name="important">Important</string>
+
+    <string name="caller_fullscreen_photo_title">صورة المتصل بكامل الشاشة</string>
+    <string name="caller_fullscreen_photo_summary">عرض صورة المتصل بكامل الشاشة للمكالمات الواردة</string>
+
+    <!-- QuickSettings strings -->
+    <string name="quick_settings_sync_on">تشغيل المزامنة</string>
+    <string name="quick_settings_sync_off">اطفاء المزامنة</string>
+    <string name="quick_settings_wifi_ap_on">Wi-Fi AP on</string>
+    <string name="quick_settings_wifi_ap_off">Wi-Fi AP off</string>
+    <string name="quick_settings_torch_on">تشغيل الكشاف</string>
+    <string name="quick_settings_torch_off">اطفاء الكشاف</string>
+    <string name="quick_settings_torch_off_notif">المس للاطفاء</string>
+    <string name="quick_settings_qr_playing">Playing&#8230;</string>
+    <string name="quick_settings_qr_recording">Recording&#8230;</string>
+    <string name="quick_settings_qr_recorded">تم التسجيل</string>
+    <string name="quick_settings_qr_record">ضغطة مطولة لبدء التسجيل</string>
+    <string name="quick_settings_qr_recording_notif">ضغطة لاطفاء التسجيل</string>
+    <string name="quick_settings_expanded_desktop_disabled">تعطيل</string>
+    <string name="quick_settings_expanded_desktop_normal">افتراضي</string>
+    <string name="quick_settings_expanded_desktop_expanded">موسع</string>
+    <string name="quick_settings_stay_awake_on">ابقاء الشاشة تعمل</string>
+    <string name="quick_settings_stay_awake_off">اطفاء</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi off</string>
+    <string name="quick_settings_wifi_not_connected">غير متصل</string>
+    <string name="quick_settings_wifi_turning_on">جاري الاتصال ...</string>
+
+    <!--  QuickSettings settings -->
+    <string name="quick_settings_title">أيقونات الاعدادات السريعة</string>
+    <string name="quick_settings_summary">امكانية عرض أو اخفاء أيقونات الاعدادات السريعة على شريط الحالة</string>
+    <string name="qs_tile_user_profile">المستخدم</string>
+    <string name="qs_tile_airplane_mode">وضع الطيران</string>
+    <string name="qs_tile_battery">البطارية</string>
+    <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (CM style)</string>
+    <string name="qs_tile_bluetooth">البلوتوث</string>
+    <string name="qs_tile_gps">GPS</string>
+    <string name="qs_tile_gps_alt">GPS (CM style)</string>
+    <string name="qs_tile_mobile_data">بيانات الجوال</string>
+    <string name="qs_tile_network_mode">وضع الشبكة</string>
+    <string name="qs_tile_data_usage">استخدام البيانات</string>
+    <string name="qs_tile_audio">Audio profiles</string>
+    <string name="qs_tile_brightness">الاضاءة</string>
+    <string name="qs_tile_screen_timeout">مهلة الشاشة</string>
+    <string name="qs_tile_autorotation">دوران تلقائي</string>
+    <string name="qs_tile_sync">تزامن</string>
+    <string name="qs_tile_wifi_ap">Wi-Fi Access Point</string>
+    <string name="qs_tile_torch">الكشاف</string>
+    <string name="qs_tile_gravitybox">GravityBox</string>
+    <string name="qs_tile_sleep">سبات</string>
+    <string name="qs_tile_quickrecord">تسجيل سريع</string>
+    <string name="qs_tile_settings">الاعدادات</string>
+    <string name="qs_tile_volume">الصوت</string>
+    <string name="qs_tile_expanded_desktop">سطح المكتب الموسع</string>
+    <string name="qs_tile_stay_awake">ابقى متيقض</string>
+    <string name="qs_tile_screenshot">تصوير الشاشة</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">اختيار اللون</string>
+    <string name="press_color_to_apply">اضغط على اللون لتطبيقه</string>
+
+    <!--  Statusbar background color -->
+    <string name="statusbar_bgcolor_title">لون خلفية شريط الحالة</string>
+    <string name="statusbar_bgcolor_summary">Allows to set statusbar background color and transparency</string>
+
+    <!--  Fix speech settings -->
+    <string name="fix_tts_settings_title">Fix speech settings</string>
+    <string name="fix_tts_settings_summary">Unlocks voice search and text-to-speech settings in Language&amp;Input (requires reboot)</string>
+
+    <!--  Advanced developer options -->
+    <string name="fix_dev_opts_title">خيارات المطور المتقدمة</string>
+    <string name="fix_dev_opts_summary">إلغاء تأمين خيارات المطور المتقدمة(يتطلب اعادة تشغيل)</string>
+
+    <!-- Main preference categories -->
+    <string name="pref_cat_statusbar_title">شريط الحالة</string>
+    <string name="pref_cat_statusbar_summary">يحتوي عدة خيارات للتعديل على شريط الحالة</string>
+    <string name="pref_cat_misc_title">متنوع</string>
+    <string name="pref_cat_misc_summary">يحتوي عدة خيارات غير مدرجة ضمن الفئات الأخرى</string>
+    <string name="pref_cat_fixes_title">إصلاحات عامة</string>
+    <string name="pref_cat_fixes_summary">Contains general MTK6589 specific fixes. Use only if needed.</string>
+
+    <!-- About -->
+    <string name="pref_cat_about_title">حول</string>
+    <string name="about_gb_summary">Coded by C3C076@XDA. Touch to visit official thread.</string>
+    <string name="about_xposed_title">Xposed framework</string>
+    <string name="about_xposed_summary">Coded by rovo89@XDA. Touch to visit official thread.</string>
+    <string name="about_donate_title">تبرع</string>
+    <string name="about_donate_summary">Donate to me if you think this app is worth it! Also consider donating to rovo89 for his excellent Xposed framework.</string>
+
+    <!-- Reboot confirmation -->
+    <string name="reboot_confirm">Your %s will reboot.</string>
+    <string name="reboot_confirm_recovery">Your %s will reboot into recovery.</string>
+    <string name="reboot_confirm_bootloader">Your %s will reboot into bootloader.</string>
+
+    <!-- CRT effect screen off animation -->
+    <string name="crt_off_effect_title">تأثير اطفاء الشاشة</string>
+    <string name="crt_off_effect_summary">تمكين الحركة التي تحاكي اطفاء شاشة التلفزيون القديم</string>
+
+    <!-- Engineering mode shortcut -->
+    <string name="engineering_mode_title">Engineering mode</string>
+    <string name="engineering_mode_summary">Launches Engineering mode application</string>
+
+    <!-- Dual SIM ringer -->
+    <string name="dual_sim_ringer_title">نغمات شرائح الاتصال</string>
+    <string name="dual_sim_ringer_summary">تشغيل تطبيق يسمح بتعيين نغمات الرنين والاشعارات بشكل منفصل لكل شريحة اتصال</string>
+
+    <!--  Lockscreen tweaks -->
+    <string name="pref_cat_lockscreen_title">شاشة القفل</string>
+    <string name="pref_cat_lockscreen_summary">يحتوي عدة خيارات للتعديل على شاشة القفل</string>
+    <string name="pref_cat_lockscreen_background_title">خلفية شاشة القفل</string>
+    <string name="pref_lockscreen_background_title">نمط الخلفية</string>
+    <string name="lockscreen_bg_default">الخلفية الافتراضية</string>
+    <string name="lockscreen_bg_color">لون مخصص</string>
+    <string name="lockscreen_bg_image">صورة مخصصة</string>
+    <string name="pref_lockscreen_bg_color_title">تعيين لون مخصص</string>
+    <string name="pref_lockscreen_bg_color_summary">امكانية تعيين لون مخصص لخلفية شاشة القفل</string>
+    <string name="pref_lockscreen_bg_image_title">تعيين صورة مخصصة</string>
+    <string name="pref_lockscreen_bg_image_summary">امكانية تعيين صورة مخصصة لخلفية شاشة القفل</string>
+    <string name="lockscreen_background_result_successful">تم تغيير الخلفية</string>
+    <string name="lockscreen_background_result_not_successful">لم يتم تغيير الخلفية</string>
+    <string name="pref_cat_lockscreen_other_title">أخرى</string>
+    <string name="pref_lockscreen_maximize_widgets_title">توسيع الويدجت</string>
+    <string name="pref_lockscreen_maximize_widgets_summary">عند التفعيل يتم عرض الويدجت بكامل الشاشة</string>
+
+    <!--  Power tweaks category -->
+    <string name="pref_cat_power_title">الطاقة</string>
+    <string name="pref_cat_power_summary">يحتوي عدة خيارات ذات صلة بطاقة الهاتف</string>
+
+    <!--  Low battery LED flashing -->
+    <string name="pref_flashing_led_disable_title">تعطيل اضاءة الاشعارات</string>
+    <string name="pref_flashing_led_disable_summary">تعطيل اضاءة وميض الاشعارات عند انخفاض طاقة البطارية</string>
+
+    <!-- Display tweaks category -->
+    <string name="pref_cat_display_title">شاشة العرض</string>
+    <string name="pref_cat_display_summary">يحتوي عدة خيارات للعتديل على شاشة العرض</string>
+
+    <!-- Minimum brightness level -->
+    <string name="pref_brightness_min_title">الحد الأدنى لمستوى السطوع</string>
+    <string name="pref_brightness_min_summary">يسمح بتعيين الحد الأدنى لمستوى السطوع. ينطبق على إعداد السطوع اليدوي. (يتطلب إعادة التشغيل)</string>
+
+    <!--  Autobrightness levels -->
+    <string name="pref_ab_title">مستويات السطوع التلقائي</string>
+    <string name="pref_ab_summary">يسمح بتعيين مستويات الإضاءة المحيطة والمقابلة لقيم الإضاءة الخلفية لشاشة LCD</string>
+    <string name="level">المستوى</string>
+    <string name="pref_ab_lux_max_label">الحد الأعلى</string>
+    <string name="pref_ab_brighness_label">Brightness (%d &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">العدد المحدد غير صالح</string>
+    <string name="pref_ab_brightness_too_low">لا ينصح بتعيين السطوع أقل من %d</string>
+    <string name="pref_ab_brightness_too_high">لا يمكن تعيين السطوع أكبر من 255</string>
+    <string name="pref_ab_number_error_negative">لا يمكن أن تكون القيم أصغر أو تساوي الصفر</string>
+    <string name="pref_ab_number_not_ascending">Values on lower levels cannot be greater than values on higher levels</string>
+    <string name="pref_ab_number_not_descending">Values on higher levels cannot be smaller than values on lower levels</string>
+    <string name="pref_ab_values_set">Values for %s set</string>
+    <string name="pref_ab_config_saved">تم حفظ التكوين الجديد للسطوع التلقائي</string>
+    <string name="pref_ab_config_cancelled">لم يتم حفظ التكوين الجديد للسطوع التلقائي</string>
+    <string name="pref_ab_button_set">juddk</string>
+
+    <!-- Lockscreen rotation -->
+    <string name="pref_lockscreen_rotation_title">تفعيل دوران شاشة القفل</string>
+    <string name="pref_lockscreen_rotation_summary">تحذير: يسبب مشاكل لبعض الأجهزة</string>
+
+    <!-- Lockscreen menu key -->
+    <string name="pref_lockscreen_menu_key_title">تمكين مفتاح القائمة</string>
+    <string name="pref_lockscreen_menu_key_summary">امكانية استخدام مفتاح القائمة لفتح شاشة القفل (يتطلب اعادة التشغيل)</string>
+
+    <!-- Fix messaging wakelock -->
+    <string name="pref_mms_fix_wakelock_title">اصلاح الرسائل عند القفل</string>
+    <string name="pref_mms_fix_wakelock_summary">يمنع عرض الرسائل الواردة عند تأمين شاشة القفل (يتطلب اعادة التشغيل)</string>
+
+    <!-- Statusbar center clock -->
+    <string name="pref_statusbar_center_clock_title">توسيط الساعة</string>
+
+    <!-- Media tweaks category -->
+    <string name="pref_cat_media_title">الوسائط</string>
+    <string name="pref_cat_media_summary">يحتوي عدة خيارات للتعديل على الصوتيات</string>
+
+    <!-- More music volume steps -->
+    <string name="pref_music_volume_steps_title">التحكم بالصوت</string>
+    <string name="pref_music_volume_steps_summary">ازدياد عدد درجات التحكم بالصوت من 7 إلى 30 ببرنامج الموسيقى (يتطلب اعادة التشغيل)</string>
+
+    <!-- Safe headset media volume -->
+    <string name="pref_safe_media_volume_title">صوت السماعة</string>
+    <string name="pref_safe_media_volume_summary">المحافظة على حجم الصوت داخل سماعة الرأس</string>
+
+    <!-- Disable charging LED -->
+    <string name="pref_charging_led_disable_title">الشحن</string>
+    <string name="pref_charging_led_disable_summary">تعطيل اضاءة الاشعارات أثناء الشحن</string>
+
+    <!-- Hardware key actions -->
+    <string name="pref_cat_hwkey_actions_title">مفاتيح الجهاز</string>
+    <string name="pref_cat_hwkey_actions_summary">يسمح بتعيين اجراءات مخصصة لأزرار الجهاز</string>
+    <string name="pref_hwkey_menu_longpress_title">ضغطة مطولة على زر القائمة</string>
+    <string name="pref_hwkey_menu_doubletap_title">ضغطة مزدوجة على زر القائمة</string>
+    <string name="pref_hwkey_back_longpress_title">ضغطة مطولة على زر العودة</string>
+    <string name="hwkey_action_default">افتراضي</string>
+    <string name="hwkey_action_search">بحث</string>
+    <string name="hwkey_action_voice_search">بحث صوتي</string>
+    <string name="hwkey_action_prev_app">التبديل إلى التطبيق السابق</string>
+    <string name="hwkey_action_kill">انهاء التطبيق الحالي</string>
+    <string name="hwkey_action_sleep">سبات</string>
+    <string name="pref_hwkey_kill_delay_title">مهلة الضغطة المطولة</string>
+    <string name="pref_hwkey_kill_delay_summary">تحديد مهلة تأخير الضغطة قبل انهاء التطبيق</string>
+    <string name="pref_hwkey_doubletap_speed_title">سرعة الضغطة المزدوجة</string>
+    <string name="pref_hwkey_doubletap_speed_summary">تحديد سرعة الضغطة المزدوجة على زر القائمة</string>
+    <string name="app_killed">تم انهاء التطبيق</string>
+    <string name="nothing_to_kill">لا يوجد تطبيقات</string>
+    <string name="no_previous_app_found">لا يوجد تطبيق سابق</string>
+
+    <!--  Phone tweaks category -->
+    <string name="pref_cat_phone_title">الاتصال</string>
+    <string name="pref_cat_phone_summary">يحتوي عدة خيارات للتحكم بالمكالمات والرسائل والشبكات</string>
+
+    <!-- Flip action while ringing -->
+    <string name="pref_phone_flip_title">قلب الهاتف أثناء الرنين</string>
+    <string name="pref_phone_flip_summary">تحديد الإجراء عند قلب الهاتف أثناء الرنين</string>
+    <string name="phone_flip_action_none">لا شيء</string>
+    <string name="phone_flip_action_mute">كتم الصوت</string>
+    <string name="phone_flip_action_dismiss">رفض المكالمة</string>
+
+    <!-- Soft reboot -->
+    <string name="reboot_soft">اعادة تشغيل النظام</string>
+
+    <!--  Solid black Holo background -->
+    <string name="pref_holo_bg_solid_black_title">خلفية سوداء</string>
+    <string name="pref_holo_bg_solid_black_summary">استخدام خلفية سوداء لثيم النظام (يتطلب اعادة التشغيل)</string>
+
+    <!-- QuickSettings tiles per row -->
+    <string name="pref_qs_tiles_per_row_title">عدد الأعمدة</string>
+    <string name="pref_qs_tiles_per_row_summary">تحديد عدد الأعمدة للأيقونات المعروضة بدرج الاعدادات السريعة</string>
+
+    <!--  Status bar clock - show day of week -->
+    <string name="pref_statusbar_clock_dow_title">عرض اليوم</string>
+
+    <!-- Expandable volume panel -->
+    <string name="pref_volume_panel_expandable_title">توسيع لوحة الصوت</string>
+    <string name="pref_volume_panel_expandable_summary">امكانية ضبط حجم الصوت لنغمة الرنين والموسيقى والمنبه والاشعارات</string>
+
+    <!-- Link ringtone & notifications volumes -->
+    <string name="pref_link_volumes_title">ربط الاشعارات بنغمة الرنين</string>
+    <string name="pref_link_volumes_summary">عند التعطيل بإمكانك ضبط حجم الصوت لكل منهما على حدة</string>
+
+    <!-- Auto-switch QuickSettings -->
+    <string name="pref_auto_switch_qs_title">تبديل تلقائي إلى الاعدادات السريعة</string>
+    <string name="pref_auto_switch_qs_summary">سيتم عرض الاعدادات السريعة عند سحب شريط الحالة للأسفل في حال لم يكن هناك اشعار</string>
+
+    <!-- Quick pulldown -->
+    <string name="pref_quick_pulldown_title">سحب سريع</string>
+    <string name="pref_quick_pulldown_summary">اسحب شريط الحالة من الطرف المناسب لاظهار الاعدادات السريعة</string>
+    <string name="quick_pulldown_off">تعطيل</string>
+    <string name="quick_pulldown_right">الطرف الأيمن</string>
+    <string name="quick_pulldown_left">الطرف الأيسر</string>
+
+    <!-- Disable volume rocker wake -->
+    <string name="pref_volume_rocker_wake_disable_title">تعطيل تشغيل الشاشة بزر الصوت</string>
+    <string name="pref_volume_rocker_wake_disable_summary">لبعض الأجهزة كالجالكسي3</string>
+
+    <!-- Statusbar colors category -->
+    <string name="pref_cat_statusbar_colors_title">ألوان شريط الحالة</string>
+
+    <!-- Enable icon colors -->
+    <string name="pref_statusbar_icon_color_enable_title">تفعيل ألوان الأيقونات</string>
+
+    <!-- Statusbar icon color -->
+    <string name="pref_statusbar_icon_color_title">لون أيقونات شريط الحالة</string>
+    <string name="pref_statusbar_icon_color_summary">تعيين لون مخصص لأيقونة الساعة والبطارية الموجودة على شريط الحالة</string>
+
+    <!-- Statusbar data activity color -->
+    <string name="pref_statusbar_data_activity_color_title">لون مؤشر البيانات</string>
+    <string name="pref_statusbar_data_activity_color_summary">تعيين لون مخصص عند استخدام بيانات الجوال</string>
+
+    <!-- QuickSettings management category -->
+    <string name="pref_cat_statusbar_qs_title">ادارة الاعدادات السريعة</string>
+
+    <!-- Notification drawer style -->
+    <string name="pref_cat_notification_drawer_style_title">نمط درج الاشعارات</string>
+
+    <!-- Notification drawer background -->
+    <string name="pref_notif_background_title">خلفية درج الاشعارات</string>
+    <string name="notif_background_default">الخلفية الافتراضية</string>
+    <string name="notif_background_color_fill">لون مخصص</string>
+    <string name="notif_background_custom_image">صورة مخصصة</string>
+    <string name="pref_notif_color_title">تعيين لون للخلفية</string>
+    <string name="pref_notif_image_portrait_title">تعيين صورة طولية</string>
+    <string name="pref_notif_image_landscape_title">تعيين صورة عرضية</string>
+    <string name="pref_notif_background_alpha_title">شفافية الخلفية</string>
+    <string name="pref_notif_color_mode_title">وضع الخلفية</string>
+    <string name="color_fill_overlay">أمامي</string>
+    <string name="color_fill_underlay">خلفي</string>
+
+    <!-- Disable roaming indicators -->
+    <string name="pref_disable_roaming_indicators_title">تعطيل مؤشرات التجوال</string>
+    <string name="pref_disable_roaming_indicators_summary">سيتم اخفاء مؤشر التجوال أثناء الاستخدام</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">جاري الشحن (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">تم الشحن</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% متبقي</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">الخدمة غير متوفرة</string>
+    <string name="pie_phone_status_airplane_mode">وضع الطيران مفعل</string>
+    <string name="pie_phone_status_emergency_only">مكالمات الطوارئ فقط</string>
+
+    <!-- Pie Controls settings -->
+    <string name="pie_control_title">اعدادات Pie</string>
+    <string name="pie_control_enable_title">تفعيل اعدادات Pie</string>
+    <string name="pie_control_search_title">اضهار زر البحث</string>
+    <string name="pie_control_size_title">حجم أزرار التنقل</string>
+    <string name="pie_control_trigger_positions_title">مواقع التشغيل</string>
+    <string name="pie_control_trigger_left">يسار الشاشة</string>
+    <string name="pie_control_trigger_bottom">أسفل الشاشة</string>
+    <string name="pie_control_trigger_right">يمين الشاشة</string>
+    <string name="pie_control_trigger_top">أعلى الشاشة</string>
+
+    <!-- Button backlight options -->
+    <string name="pref_button_backlight_mode_title">الاضاءة الخلفية للأزرار</string>
+    <string name="button_backlight_mode_default">افتراضي</string>
+    <string name="button_backlight_mode_disable">تعطيل الاضاءة</string>
+    <string name="button_backlight_mode_always_on">تفعيل الاضاءة أثناء تشغيل الشاشة</string>
+    <string name="pref_button_backlight_notifications_title">اضاءة الاشعارات</string>
+    <string name="pref_button_backlight_notifications_summary">تفعيل الاضاءة عند وصول اشعار والشاشة مطفأة</string>
+
+    <!-- Hide navigation bar for pie -->
+    <string name="pref_navbar_disable_title">اخفاء شريط التنقل</string>
+    <string name="pref_navbar_disable_summary">اخفاء شريط التنقل أثناء تفعيل اعدادات Pie (يتطلب اعادة التشغيل)</string>
+
+    <!--  Dithered Holo background -->
+    <string name="pref_holo_bg_dither_title">خلفية متدرجة</string>
+    <string name="pref_holo_bg_dither_summary">استخدام خلفية متدرجة لثيم النظام (يتطلب اعادة التشغيل)</string>
+
+    <!-- Disable hardware keys for pie -->
+    <string name="pref_hwkeys_disable_title">تعطيل أزرار الجهاز</string>
+    <string name="pref_hwkeys_disable_summary">تعطيل الأزرار الافتراضية كالقائمة والعودة والمنزل أثناء تفعيل اعدادات Pie ، سوف تعمل الأزرار الحقيقية للأجهزة كالجالكسي 3</string>
+
+    <!-- Option for GB dark theme -->
+    <string name="pref_gb_theme_dark_title">استخدام الثيم الغامق</string>
+    <string name="pref_gb_theme_dark_summary">التبديل من الثيم الفاتح إلى الغامق</string>
+
+    <!-- Clear all recents positions -->
+    <string name="recent_clear_off">اغلاق</string>
+    <string name="recent_clear_top_left">اعلى اليسار</string>
+    <string name="recent_clear_top_right">اعلى اليمين</string>
+    <string name="recent_clear_bottom_left">اسفل اليسار</string>
+    <string name="recent_clear_bottom_right">اسفل اليمين</string>
+
+    <!-- Clear all recents top margin -->
+    <string name="pref_recent_clear_margin_top_title">ضبط الهامش العلوي</string>
+
+    <!-- Disable roaming warnings -->
+    <string name="pref_roaming_warning_disable_title">تعطيل تحذيرات التجوال</string>
+    <string name="pref_roaming_warning_disable_summary">تعطيل تحذيرات التجوال عند التراسل أو اجراء مكالمة فديو</string>
+
+    <!-- AppPickerPreference -->
+    <string name="app_picker_search">بحث</string>
+    <string name="app_picker_none">لا شيء</string>
+
+    <!-- QuickApp tile settings -->
+    <string name="qs_tile_quickapp">تطبيق سريع</string>
+    <string name="pref_cat_quickapp_tile_title">اعدادات أيقونة التطبيق السريع</string>
+    <string name="pref_quickapp_default_title">التطبيق الرئيسي</string>
+    <string name="pref_quickapp_slot1_title">ضغطة مطولة لاظهار التطبيق الأول</string>
+    <string name="pref_quickapp_slot2_title">ضغطة مطولة لاظهار التطبيق الثاني</string>
+    <string name="pref_quickapp_slot3_title">ضغطة مطولة لاظهار التطبيق الثالث</string>
+    <string name="pref_quickapp_slot4_title">ضغطة مطولة لاظهار التطبيق الرابع</string>
+
+    <!-- GPS Tile (for non-MTK) -->
+    <string name="qs_tile_gps_enabled">GPS on</string>
+    <string name="qs_tile_gps_disabled">GPS off</string>
+    <string name="qs_tile_gps_locked">GPS locked</string>
+
+    <!-- Pie control: always show menu button -->
+    <string name="pie_control_menu_title">اضهار زر القائمة دائماً</string>
+
+    <!-- Ringer mode tile (for non-MTK) -->
+    <string name="qs_tile_ringer_mode">وضع الرنين</string>
+
+    <!-- Clock settings category -->
+    <string name="pref_cat_clock_settings_title">اعدادات الساعة</string>
+
+    <!-- Clock: hide am/pm -->
+    <string name="pref_clock_ampm_hide_title">اخفاء ص/م</string>
+
+    <!-- Clock: hide clock -->
+    <string name="pref_clock_hide_title">اخفاء الساعة</string>
+
+    <!-- Pie trigger size -->
+    <string name="pie_control_trigger_size_title">حجم المشغل</string>
+
+    <!-- Transparency management -->
+    <string name="pref_cat_transparency_manager_title">إدارة الشفافية</string>
+    <string name="pref_tm_statusbar_launcher_title">شفافية شريط الحالة في الشاشة الرئيسية</string>
+    <string name="pref_tm_statusbar_lockscreen_title">شفافية شريط الحالة في شاشة القفل</string>
+    <string name="pref_tm_navbar_launcher_title">شفافية شريط التنقل في الشاشة الرئيسية</string>
+    <string name="pref_tm_navbar_lockscreen_title">شفافية شريط التنقل في شاشة القفل</string>
+
+    <!-- Hide alarm icon -->
+    <string name="pref_alarm_icon_hide_title">اخفاء أيقونة المنبه</string>
+
+    <!-- Screen dim level -->
+    <string name="pref_screen_dim_level_title">مستوى تعتيم الشاشة</string>
+    <string name="pref_screen_dim_level_summary">مقدار السطوع عندما تكون الشاشة على وشك الاغلاق (يتطلب اعادة التشغيل)</string>
+
+    <!-- Device type -->
+    <string name="device_phone">هاتف</string>
+    <string name="device_tablet">لوحي</string>
+
+    <!-- Brightness preference category -->
+    <string name="pref_cat_brightness_title">اعدادات السطوع</string>
+    <string name="pref_brightness_master_switch_title">تفعيل اعدادات السطوع</string>
+    <string name="pref_brightness_master_switch_summary">Use only in case your device supports standard Android brightness features. Keep disabled if you experience brightness related issues. (requires reboot)</string>
+
+    <!-- HW Key Action: Recent apps -->
+    <string name="hwkey_action_recent_apps">عرض التطبيقات الأخيرة</string>
+
+    <!-- HW Key Action: Home long-press -->
+    <string name="pref_hwkey_home_longpress_title">ضغطة مطولة على زر المنزل</string>
+
+    <!-- HW Key Action: Launch cutom app -->
+    <string name="hwkey_action_custom_app">تشغيل تطبيق مخصص 1</string>
+    <string name="pref_hwkey_custom_app_title">تعيين تطبيق مخصص 1</string>
+    <string name="hwkey_action_custom_app2">تشغيل تطبيق مخصص 2</string>
+    <string name="pref_hwkey_custom_app_title2">تعيين تطبيق مخصص 2</string>
+    <string name="hwkey_action_custom_app_none">لم يتم تعيين تطبيق!</string>
+    <string name="hwkey_action_custom_app_missing">لم يتم العثور على التطبيق!</string>
+
+    <!-- Link notification panel clock to Deskclock -->
+    <string name="pref_clock_link_title">Notification panel clock app</string>
+    <string name="pref_clock_link_summary">Links notification panel clock to a specified app instead of Date&amp;Time settings</string>
+
+    <!-- GravityBox settings startup handling -->
+    <string name="gb_startup_progress">Waiting for response from GravityBox system framework&#8230;</string>
+    <string name="gb_startup_error">GravityBox system framework not responding. Exiting.</string>
+
+    <!-- National data roaming -->
+    <string name="pref_national_roaming_title">National data roaming</string>
+    <string name="pref_national_roaming_summary">Connect to data services when nationally roaming</string>
+
+    <!-- Expanded Desktop -->
+    <string name="pref_expanded_desktop_title">وضع سطح المكتب الموسع</string>
+    <string name="expanded_desktop_disabled">معطل</string>
+    <string name="expanded_desktop_statusbar">احفاء شريط الحالة</string>
+    <string name="expanded_desktop_navbar">اخفاء شريط التنقل</string>
+    <string name="expanded_desktop_both">اخفاء الكل</string>
+    <string name="action_expanded_desktop_title">سطح المكتب الموسع</string>
+    <string name="action_expanded_desktop_on">سطح المكتب الموسع مفعل</string>
+    <string name="action_expanded_desktop_off">سطح المكتب الموسع معطل</string>
+
+    <!-- Power menu screenshot -->
+    <string name="screenshot">تصوير الشاشة</string>
+
+    <!-- HW Key Action: Show menu -->
+    <string name="hwkey_action_menu">عرض القائمة</string>
+
+    <!-- HW Key Action: Expanded desktop -->
+    <string name="hwkey_action_expanded_desktop">تبديل سطح المكتب الموسع</string>
+    <string name="hwkey_action_expanded_desktop_disabled">سطح المكتب الموسع معطل!</string>
+
+    <!-- Navigation bar tweaks category -->
+    <string name="pref_cat_navigation_bar_title">شريط التنقل</string>
+    <string name="pref_cat_navigation_bar_summary">يحتوي عدة خيارات للتعديل على شريط التنقل</string>
+    <string name="pref_navbar_override_title">تجاوز افتراضيات النظام</string>
+    <string name="pref_navbar_override_summary">Master switch for navigation bar tweaks (requires reboot)</string>
+    <string name="pref_navbar_enable_title">تفعيل شريط التنقل</string>
+    <string name="pref_navbar_enable_summary">يتطلب اعادة التشغيل</string>
+    <string name="pref_navbar_height_title">ارتفاع شريط التنقل</string>
+    <string name="pref_navbar_height_summary">يتم التطبيق على الشريط في الوضع العمودي</string>
+    <string name="pref_navbar_height_landscape_summary">يتم التطبيق على الشريط في الوضع الأفقي</string>
+    <string name="pref_navbar_width_title">عرض شريط التنقل</string>
+    <string name="pref_navbar_width_summary">يتم التطبيق على الشريط في الوضع العمودي</string>
+    <string name="pref_navbar_menukey_title">اظهار زر القائمة دائماً</string>
+
+    <!-- Screenshot in power menu -->
+    <string name="pref_powermenu_screenshot_title">تصوير الشاشة بقائمة الطاقة</string>
+
+    <!-- Unlock ring settings -->
+    <string name="pref_cat_lockscreen_ring_settings_title">اعدادات فتح القفل</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">تعيين تطبيقات لفتح القفل</string>
+    <string name="pref_lockscreen_ring_targets_enable_summary">امكانية تعيين تطبيقات حول حلقة القفل</string>
+    <string name="pref_lockscreen_ring_targets_app_title">Target application %s</string>
+    <string name="pref_lockscreen_ring_vertical_offset_title">إزاحة حلقة القفل عمودياً</string>
+    <string name="pref_lockscreen_ring_horizontal_offset_title">إزاحة حلقة القفل أفقياً</string>
+
+    <!-- Statusbar brightness control -->
+    <string name="pref_statusbar_brightness_title">تفعيل التحكم بالسطوع</string>
+    <string name="pref_statusbar_brightness_summary">ضبط السطوع عبر الانزلاق خلال شريط الحالة يميناً ويساراً (يتطلب سطوع تلقائي ليتم تعطيله)</string>
+
+    <!-- Phone tweaks categories -->
+    <string name="pref_cat_phone_telephony_title">المكالمات</string>
+    <string name="pref_cat_phone_messaging_title">الرسائل</string>
+    <string name="pref_cat_phone_mobile_data_title">بيانات الجوال</string>
+
+    <!-- Messaging: Strip unicode -->
+    <string name="pref_mms_unicode_stripping_title">Strip unicode</string>
+    <string name="pref_mms_unicode_stripping_summary">Converts unicode characters to normal characters. Decreases overall message size.</string>
+    <string name="unicode_stripping_leave_intact">Leave characters intact</string>
+    <string name="unicode_stripping_non_encodable">Strip non-encodable characters</string>
+    <string name="unicode_stripping_all">Strip all unicode characters</string>
+
+    <!-- Disable slow 2G data warning -->
+    <string name="pref_mobile_data_slow2g_disable_title">تعطيل التحذير عند استخدام الشبكة</string>
+    <string name="pref_mobile_data_slow2g_disable_summary">تعطيل التحذير حول بطء سرعة نقل البيانات في وضع 2G</string>
+
+    <!-- Follow stock battery color -->
+    <string name="pref_sbcolor_follow_stock_battery_title">نفس لون البطارية</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">يجل لون الساعة والنسبة المئوية بنفس لون بطارية النظام . (يتم التفعيل عندما يكون الخيار التالي معطل)</string>
+
+    <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
+    <string name="pref_network_mode_tile_mode_title">وضع الشبكة</string>
+    <string name="nm_tile_mode1">2G/2G+3G/3G/(LTE)</string>
+    <string name="nm_tile_mode2">2G/2G+3G/(LTE)</string>
+    <string name="nm_tile_mode3">2G/3G/(LTE)</string>
+
+    <!-- Display: allow all rotations -->
+    <string name="pref_display_allow_all_rotations_title">تفعيل الدوران في كل الاتجاهات</string>
+
+    <!-- QuickSettings: override AOSP tile behaviour -->
+    <string name="pref_qs_tile_behaviour_override_title">تجاوز السلوك الافتراضي</string>
+    <string name="pref_qs_tile_behaviour_override_summary">عكس عملية الضغطة الخفيفة والمطولة لأيقونات الاعدادات السريعة (يتطلب اعادة التشغيل)</string>
+
+    <!-- QuickSettings: SIM Slot for network mode tile -->
+    <string name="pref_qs_network_mode_sim_slot_title">وضع الشبكة لكل شريحة</string>
+    <string name="pref_qs_network_mode_sim_slot_summary">Defines SIM slot to which network mode tile applies (%s)</string>
+    <string name="sim_slot1">SIM slot 1</string>
+    <string name="sim_slot2">SIM slot 2</string>
+
+    <!-- Intelligent pie -->
+    <string name="pie_controls_disabled">أبداً</string>
+    <string name="pie_controls_enabled_always">دائماً</string>
+    <string name="pie_controls_enabled_expanded">عند تفعيل سطح المكتب الموسع</string>
+    <string name="pie_controls_enabled_expanded_navbar">عند تفعيل سطح المكتب الموسع مع اخفاء شريط التنقل</string>
+
+    <!-- Icon coloring: preserve stock battery icon -->
+    <string name="pref_statusbar_color_skip_battery_title">استخدام لون بطارية النظام</string>
+    <string name="pref_statusbar_color_skip_battery_summary">استخدام لون البطارية الاصلي للنظام</string>
+
+    <!-- Unplug turns on screen -->
+    <string name="pref_unplug_turns_on_screen_title">تشغيل الشاشة</string>
+    <string name="pref_unplug_turns_on_screen_summary">عند التفعيل ستعمل الشاشة عند توصيل أو فصل سلك الشاحن (يتطلب اعادة التشغيل)</string>
+
+    <!-- Mute volume adjust sound -->
+    <string name="pref_volume_adjust_mute_title">كتم صوت المشغل</string>
+    <string name="pref_volume_adjust_mute_summary">كتم الصوت بمشغل الموسيقى عند ضبط مستوى الصوت باستخدام مفاتيح الصوت</string>
+
+    <!-- Call vibrations -->
+    <string name="pref_call_vibrations_title">اهتزاز عند الاتصال</string>
+    <string name="call_vibration_connected">عند الرد على المكالمة</string>
+    <string name="call_vibration_disconnected">عند قطع المكالمة</string>
+    <string name="call_vibration_waiting">عند انتظار المكالمة</string>
+    <string name="call_vibration_periodic">كل 45 ثانية أثناء المكالمات الصادرة</string>
+
+    <!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">اعادة ترتيب الأيقونات</string>
+    <string name="pref_qs_tile_order_summary">يسمح باعادة ترتيب أيقونات الاعدادات السريعة</string>
+
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">حجب الاشعارات</string>
+    <string name="pref_ongoing_notifications_summary">يسمح بحجب الإشعارات الواردة</string>
+    <string name="ongoing_notif_info">The list will get populated automatically for every ongoing notification that occurs.
+        You can then decide whether to block ongoing notification next time it occurs. Use with caution.</string>
+    <string name="ongoing_notif_reset_list">اعادة تعيين القائمة</string>
+    <string name="ongoing_notif_reset_alert">هل أنت متأكد من أنك تريد إعادة تعيين القائمة؟ 
+        سيؤدي هذا إلى مسح القائمة الحالية والافراج عن جميع الإشعارات الواردة التي منعت سابقاً .</string>
+    <string name="ongoing_notif_list_empty">(القائمة فارغة)</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">فتح سريع</string>
+    <string name="pref_lockscreen_quick_unlock_summary">فتح القفل تلقائياً عندما يتم ادخال كلمة المرور الصحيحة</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">تعطيل</string>
+    <string name="clock_dow_standard">قياسي</string>
+    <string name="clock_dow_lowercase">أحرف صغيرة</string>
+    <string name="clock_dow_uppercase">أحرف كبيرة</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">تأمين شريط الحالة</string>
+    <string name="sbl_policy_default">افتراضي</string>
+    <string name="sbl_policy_unlocked">إلغاء التأمين عند عدم وجود تأمين للجهاز</string>
+    <string name="sbl_policy_locked">تأمين</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">مراقبة حركة البيانات</string>
+    <string name="pref_data_traffic_enable_title">تفعيل المراقبة</string>
+    <string name="pref_data_traffic_enable_summary">اظهار المراقبة تلقائياً عندما تكون بيانات الجوال مفعلة</string>
+    <string name="pref_data_traffic_position_title">الموقع</string>
+    <string name="dt_position_auto">تلقائي</string>
+    <string name="dt_position_left">في اليسار</string>
+    <string name="pref_data_traffic_size_title">الحجم</string>
+    <string name="dt_size_normal">عادي</string>
+    <string name="dt_size_smaller">صغير</string>
+    <string name="dt_size_smallest">صغير جداً</string>
+    <string name="byte_abbr">B</string>
+    <string name="kilobyte_abbr">KB</string>
+    <string name="megabyte_abbr">MB</string>
+    <string name="second_abbr">s</string>
+
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">تعطيل محدودية الويدجت</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">السماح بإضافة عدد لا محدود من الويدجت على شاشة القفل</string>
+
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> المتبقي</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> المستخدم</string>
+    <string name="pref_rambar_title">شريط الذاكرة العشوائية</string>
+    <string name="rambar_off">تعطيل</string>
+    <string name="rambar_top">في الأعلى</string>
+    <string name="rambar_bottom">في الأسفل</string>
+
+</resources>
