@@ -93,6 +93,10 @@
     <string name="quick_settings_expanded_desktop_expanded">Diperluas</string>
     <string name="quick_settings_stay_awake_on">Tetap menyala hidup</string>
     <string name="quick_settings_stay_awake_off">Tetap menyala mati</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fi mati</string>
+    <string name="quick_settings_wifi_not_connected">Tidak terkoneksi</string>
+    <string name="quick_settings_wifi_turning_on">Menghidupkan&#8230;</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Kotak-kotak QuickSettings Statusbar</string>
@@ -221,6 +225,7 @@
     <string name="pref_ab_values_set">Nilai untuk %s telah di-set</string>
     <string name="pref_ab_config_saved">Konfigurasi Autobrightness baru telah disimpan</string>
     <string name="pref_ab_config_cancelled">Konfigurasi Autobrightness TIDAK disimpan</string>
+    <string name="pref_ab_button_set">Set</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Hidupkan rotasi lockscreen</string>
@@ -283,10 +288,6 @@
     <string name="phone_flip_action_none">Jangan lakukan apapun</string>
     <string name="phone_flip_action_mute">Matikan dering</string>
     <string name="phone_flip_action_dismiss">Matikan panggilan</string>
-
-    <!-- Disable vibrate on call connect -->
-    <string name="pref_phone_call_connect_vibrate_disable_title">Matikan getar ketika panggilan tersambung</string>
-    <string name="pref_phone_call_connect_vibrate_disable_summary">Mematikan getaran yang muncul ketika panggilan tersambung</string>
 
     <!-- Soft reboot -->
     <string name="reboot_soft">reboot cepat</string>
@@ -553,7 +554,7 @@
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">Hidupkan kontrol kecerahan</string>
-    <string name="pref_statusbar_brightness_summary">Atur kecerahan layar dengan menggeser staturbar</string>
+    <string name="pref_statusbar_brightness_summary">Atur kecerahan layar dengan menggeser staturbar (Membutuhkan kecerahan otomatis untuk dimatikan)</string>
 
     <!-- Phone tweaks categories -->
     <string name="pref_cat_phone_telephony_title">Telepon</string>
@@ -603,5 +604,84 @@
     <!-- Icon coloring: preserve stock battery icon -->
     <string name="pref_statusbar_color_skip_battery_title">Biarkan ikon baterai bawaan tetap utuh</string>
     <string name="pref_statusbar_color_skip_battery_summary">Gunakan jika ikon baterai bawaan telah diganti dengan ikon baterai pihak ketiga</string>
+
+    <!-- Unplug turns on screen -->
+    <string name="pref_unplug_turns_on_screen_title">Hidupkan layar ketika dicabut</string>
+    <string name="pref_unplug_turns_on_screen_summary">Jika dihidupkan, layar akan hidup ketika anda memasang/mencabut kabel usb/power/apalah (Membutuhkan restart)</string>
+
+    <!-- Mute volume adjust sound -->
+    <string name="pref_volume_adjust_mute_title">Matikan suara pengaturan volume</string>
+    <string name="pref_volume_adjust_mute_summary">Mematikan suara yang muncul ketika anda mengatur volume menggunakan tombol volume</string>
+
+    <!-- Call vibrations -->
+    <string name="pref_call_vibrations_title">Getaran panggilan</string>
+    <string name="call_vibration_connected">Ketika panggilan tersambung</string>
+    <string name="call_vibration_disconnected">Ketika panggilan terputus</string>
+    <string name="call_vibration_waiting">Ketika panggilan menunggu</string>
+    <string name="call_vibration_periodic">Setiap 45 detik dalam panggilan keluar</string>
+
+    <!-- QuickSettings tile order -->
+    <string name="pref_qs_tile_order_title">Atur ulang kotak-kotak</string>
+    <string name="pref_qs_tile_order_summary">Membolehkan anda untuk mengatur ulang urutan kotak-kotak QuickSettings</string>
+
+    <!-- Ongoing notifications -->
+    <string name="pref_ongoing_notifications_title">Blokir notifikasi yang sedang berjalan</string>
+    <string name="pref_ongoing_notifications_summary">Membolehkan anda untuk memblokir notifikasi yang dipilih</string>
+    <string name="ongoing_notif_info">Daftarnya akan terisi secara otomatis untuk setiap notifikasi yang sedang berjalan.
+        Anda lalu anda bisa menentukan apakah akan memblokir notifikasi tersebut atau tidak untuk waktu mendatang. Gunakan dengan hati-hati.</string>
+    <string name="ongoing_notif_reset_list">Reset daftar</string>
+    <string name="ongoing_notif_reset_alert">Apakah anda yakin untuk mereset daftar? 
+        Hal ini akan membersihkan daftar yang ada dan membuka kunci blokir terhadap semua notifikasi yang terblokir sebelumnya.</string>
+    <string name="ongoing_notif_list_empty">(Daftarnya kosong)</string>
+
+    <!-- Quick unlock -->
+    <string name="pref_lockscreen_quick_unlock_title">Buka cepat</string>
+    <string name="pref_lockscreen_quick_unlock_summary">Otomatis membuka ketika PIN/Password yang benar dimasukkan</string>
+
+    <!-- Clock Day Of Week style -->
+    <string name="clock_dow_disabled">Matikan</string>
+    <string name="clock_dow_standard">Standar</string>
+    <string name="clock_dow_lowercase">Huruf kecil</string>
+    <string name="clock_dow_uppercase">Huruf besar</string>
+
+    <!-- Statusbar expand policy -->
+    <string name="pref_statusbar_lock_policy_title">Aturan kunci statusbar</string>
+    <string name="sbl_policy_default">Bawaan</string>
+    <string name="sbl_policy_unlocked">Terbuka jika kuncian tidak aman</string>
+    <string name="sbl_policy_locked">Terkunci</string>
+
+    <!-- Data traffic monitor -->
+    <string name="pref_cat_data_traffic_title">Monitor lalu-lintas paket data</string>
+    <string name="pref_data_traffic_enable_title">Hidupkan monitor</string>
+    <string name="pref_data_traffic_enable_summary">Menunjukkan monitor lalu-lintas paket data kapanpun paket data sedang aktif</string>
+    <string name="pref_data_traffic_position_title">Posisi</string>
+    <string name="dt_position_auto">Otomatis (tengah atau kanan, bergantung posisi jam)</string>
+    <string name="dt_position_left">Kiri</string>
+    <string name="pref_data_traffic_size_title">Ukuran</string>
+    <string name="dt_size_normal">Normal</string>
+    <string name="dt_size_smaller">Lebih kecil</string>
+    <string name="dt_size_smallest">Paling kecil</string>
+    <string name="byte_abbr">B</string>
+    <string name="kilobyte_abbr">KB</string>
+    <string name="megabyte_abbr">MB</string>
+    <string name="second_abbr">s</string>
+
+    <!-- Disable lockscreen widget limit -->
+    <string name="pref_lockscreen_widget_limit_disable_title">Matikan batasan widget</string>
+    <string name="pref_lockscreen_widget_limit_disable_summary">Membolehkan jumlah tak terbatas untuk widget lockscreen</string>
+
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> bebas</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> terpakai</string>
+    <string name="pref_rambar_title">Recent tasks RAM bar</string>
+    <string name="rambar_off">Mati</string>
+    <string name="rambar_top">Atas</string>
+    <string name="rambar_bottom">Bawah</string>
+
+    <!-- HW Key actions for recents button -->
+    <string name="pref_hwkey_recents_singletap_title">Aksi ketika tombol Recents ditekan</string>
+    <string name="pref_hwkey_recents_longpress_title">Aksi ketika tombol Recents ditahan</string>
 
 </resources>
