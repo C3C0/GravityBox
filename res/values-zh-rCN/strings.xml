@@ -680,5 +680,13 @@
     <string name="rambar_off">关闭</string>
     <string name="rambar_top">置顶</string>
     <string name="rambar_bottom">底部</string>
+    
+    <!-- HW Key actions for recents button -->
+    <string name="pref_hwkey_recents_singletap_title">单按最近键行为</string>
+    <string name="pref_hwkey_recents_longpress_title">长按最近键行为</string>
+
+    <!-- Lockscreen battery arc -->
+    <string name="pref_lockscreen_battery_arc_title">显示电池弧光</string>
+    <string name="pref_lockscreen_battery_arc_summary">解锁环周围绘制显示电池状态弧光</string>
 
 </resources>
