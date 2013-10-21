@@ -18,6 +18,7 @@ package com.ceco.gm2.gravitybox;
 import java.lang.reflect.Field;
 import java.util.Map;
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -50,6 +51,8 @@ public class ModVolumePanel {
     private static Unhook mViewGroupAddViewHook;
     private static boolean mVolumeAdjustMuted;
     private static boolean mVoiceCapable;
+    private static boolean mExpandable;
+    private static boolean mAutoExpand;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -61,9 +64,12 @@ public class ModVolumePanel {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_VOLUME_PANEL_MODE_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_EXPANDABLE)) {
-                    final boolean expandable = intent.getBooleanExtra(
+                    mExpandable = intent.getBooleanExtra(
                             GravityBoxSettings.EXTRA_EXPANDABLE, false);
-                    updateVolumePanelMode(expandable);
+                    updateVolumePanelMode();
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_AUTOEXPAND)) {
+                    mAutoExpand = intent.getBooleanExtra(GravityBoxSettings.EXTRA_AUTOEXPAND, false);
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_MUTED)) {
                     mVolumeAdjustMuted = intent.getBooleanExtra(GravityBoxSettings.EXTRA_MUTED, false);
@@ -95,10 +101,11 @@ public class ModVolumePanel {
                     Context context = (Context) XposedHelpers.getObjectField(mVolumePanel, "mContext");
                     if (DEBUG) log("VolumePanel constructed; mVolumePanel set");
 
-                    boolean expandable = prefs.getBoolean(
-                            GravityBoxSettings.PREF_KEY_VOLUME_PANEL_EXPANDABLE, true);
-                    updateVolumePanelMode(expandable);
+                    mExpandable = prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_VOLUME_PANEL_EXPANDABLE, false);
+                    updateVolumePanelMode();
 
+                    mAutoExpand = prefs.getBoolean(GravityBoxSettings.PREF_KEY_VOLUME_PANEL_AUTOEXPAND, false);
                     mVolumesLinked = prefs.getBoolean(GravityBoxSettings.PREF_KEY_LINK_VOLUMES, true);
 
                     Object[] streams = (Object[]) XposedHelpers.getStaticObjectField(classVolumePanel, "STREAMS");
@@ -209,26 +216,40 @@ public class ModVolumePanel {
                     updateStreamVolumeAlias();
                 }
             });
+
+            XposedHelpers.findAndHookMethod(classVolumePanel, "onShowVolumeChanged", 
+                    int.class, int.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (mExpandable && mAutoExpand) {
+                        final Dialog dialog = (Dialog) XposedHelpers.getObjectField(param.thisObject, "mDialog");
+                        if (dialog != null && dialog.isShowing() &&
+                                !(Boolean) XposedHelpers.callMethod(param.thisObject, "isExpanded")) {
+                            XposedHelpers.callMethod(param.thisObject, "expand");
+                        }
+                    }
+                }
+            });
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
     }
 
-    private static void updateVolumePanelMode(boolean expandable) {
+    private static void updateVolumePanelMode() {
         if (mVolumePanel == null) return;
 
         View mMoreButton = (View) XposedHelpers.getObjectField(mVolumePanel, "mMoreButton");
         View mDivider = (View) XposedHelpers.getObjectField(mVolumePanel, "mDivider");
 
-        mMoreButton.setVisibility(expandable ? View.VISIBLE : View.GONE);
+        mMoreButton.setVisibility(mExpandable ? View.VISIBLE : View.GONE);
         if (!mMoreButton.hasOnClickListeners()) {
             mMoreButton.setOnClickListener((OnClickListener) mVolumePanel);
         }
-        mDivider.setVisibility(expandable ? View.VISIBLE : View.GONE);
+        mDivider.setVisibility(mExpandable ? View.VISIBLE : View.GONE);
 
-        XposedHelpers.setBooleanField(mVolumePanel, "mShowCombinedVolumes", expandable);
+        XposedHelpers.setBooleanField(mVolumePanel, "mShowCombinedVolumes", mExpandable);
         XposedHelpers.setObjectField(mVolumePanel, "mStreamControls", null);
-        if (DEBUG) log("VolumePanel mode changed to: " + ((expandable) ? "EXPANDABLE" : "SIMPLE"));
+        if (DEBUG) log("VolumePanel mode changed to: " + ((mExpandable) ? "EXPANDABLE" : "SIMPLE"));
     }
 
     private static boolean shouldLinkVolumes() {

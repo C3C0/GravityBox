@@ -199,9 +199,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_MUSIC_VOLUME_STEPS = "pref_music_volume_steps";
     public static final String PREF_KEY_SAFE_MEDIA_VOLUME = "pref_safe_media_volume";
     public static final String PREF_KEY_VOLUME_PANEL_EXPANDABLE = "pref_volume_panel_expandable";
+    public static final String PREF_KEY_VOLUME_PANEL_AUTOEXPAND = "pref_volume_panel_autoexpand";
     public static final String PREF_KEY_VOLUME_ADJUST_MUTE = "pref_volume_adjust_mute";
     public static final String ACTION_PREF_VOLUME_PANEL_MODE_CHANGED = "gravitybox.intent.action.VOLUME_PANEL_MODE_CHANGED";
     public static final String EXTRA_EXPANDABLE = "expandable";
+    public static final String EXTRA_AUTOEXPAND = "autoExpand";
     public static final String EXTRA_MUTED = "muted";
     public static final String PREF_KEY_LINK_VOLUMES = "pref_link_volumes";
     public static final String ACTION_PREF_LINK_VOLUMES_CHANGED = "gravitybox.intent.action.LINK_VOLUMES_CHANGED";
@@ -651,6 +653,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private ListPreference mPrefDataTrafficPosition;
         private ListPreference mPrefDataTrafficSize;
         private CheckBoxPreference mPrefLinkVolumes;
+        private CheckBoxPreference mPrefVolumePanelExpandable;
+        private CheckBoxPreference mPrefVolumePanelAutoexpand;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -777,6 +781,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefSafeMediaVolume = (CheckBoxPreference) findPreference(PREF_KEY_SAFE_MEDIA_VOLUME);
             mPrefMusicVolumeSteps = (CheckBoxPreference) findPreference(PREF_KEY_MUSIC_VOLUME_STEPS);
             mPrefLinkVolumes = (CheckBoxPreference) findPreference(PREF_KEY_LINK_VOLUMES);
+            mPrefVolumePanelExpandable = (CheckBoxPreference) findPreference(PREF_KEY_VOLUME_PANEL_EXPANDABLE);
+            mPrefVolumePanelAutoexpand = (CheckBoxPreference) findPreference(PREF_KEY_VOLUME_PANEL_AUTOEXPAND);
 
             mPrefExpandedDesktop = (ListPreference) findPreference(PREF_KEY_EXPANDED_DESKTOP);
 
@@ -1185,6 +1191,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             if (key == null || key.equals(PREF_KEY_DATA_TRAFFIC_SIZE)) {
                 mPrefDataTrafficSize.setSummary(mPrefDataTrafficSize.getEntry());
             }
+
+            if (key == null || key.equals(PREF_KEY_VOLUME_PANEL_EXPANDABLE)) {
+                mPrefVolumePanelAutoexpand.setEnabled(mPrefVolumePanelExpandable.isChecked());
+            }
         }
 
         @Override
@@ -1321,7 +1331,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_VOLUME_PANEL_EXPANDABLE)) {
                 intent.setAction(ACTION_PREF_VOLUME_PANEL_MODE_CHANGED);
                 intent.putExtra(EXTRA_EXPANDABLE,
-                        prefs.getBoolean(PREF_KEY_VOLUME_PANEL_EXPANDABLE, true));
+                        prefs.getBoolean(PREF_KEY_VOLUME_PANEL_EXPANDABLE, false));
+            } else if (key.equals(PREF_KEY_VOLUME_PANEL_AUTOEXPAND)) {
+                intent.setAction(ACTION_PREF_VOLUME_PANEL_MODE_CHANGED);
+                intent.putExtra(EXTRA_AUTOEXPAND, 
+                        prefs.getBoolean(PREF_KEY_VOLUME_PANEL_AUTOEXPAND, false));
             } else if (key.equals(PREF_KEY_VOLUME_ADJUST_MUTE)) {
                 intent.setAction(ACTION_PREF_VOLUME_PANEL_MODE_CHANGED);
                 intent.putExtra(EXTRA_MUTED, prefs.getBoolean(PREF_KEY_VOLUME_ADJUST_MUTE, false));
