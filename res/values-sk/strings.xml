@@ -632,6 +632,7 @@
     <string name="pref_data_traffic_position_title">Pozícia</string>
     <string name="dt_position_auto">Auto (v strede alebo vpravo, na základe aktuálnej pozície hodín)</string>
     <string name="dt_position_left">Vľavo</string>
+    <string name="dt_position_right">Vpravo</string>
     <string name="pref_data_traffic_size_title">Veľkosť</string>
     <string name="dt_size_normal">Normálna</string>
     <string name="dt_size_smaller">Menšia</string>

@@ -652,6 +652,14 @@ public class ModStatusBar {
             case GravityBoxSettings.DT_POSITION_LEFT:
                 mSbContents.addView(mTrafficMeter, 0);
                 break;
+            case GravityBoxSettings.DT_POSITION_RIGHT:
+                if (mClockInSbContents) {
+                    mSbContents.addView(mTrafficMeter);
+                } else {
+                    mIconArea.addView(mTrafficMeter, 
+                            Build.VERSION.SDK_INT > 16 ? 0 : 1);
+                }
+                break;
         }
     }
 

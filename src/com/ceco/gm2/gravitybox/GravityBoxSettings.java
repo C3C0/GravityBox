@@ -405,6 +405,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_DATA_TRAFFIC_POSITION = "pref_data_traffic_position";
     public static final int DT_POSITION_AUTO = 0;
     public static final int DT_POSITION_LEFT = 1;
+    public static final int DT_POSITION_RIGHT = 2;
     public static final String PREF_KEY_DATA_TRAFFIC_SIZE = "pref_data_traffic_size";
     public static final String ACTION_PREF_DATA_TRAFFIC_CHANGED = 
             "gravitybox.intent.action.DATA_TRAFFIC_CHANGED";
