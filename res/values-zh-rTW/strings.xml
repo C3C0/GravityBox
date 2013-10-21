@@ -663,7 +663,7 @@
     <string name="second_abbr">s</string>
 
     <!-- Disable lockscreen widget limit -->
-    <string name="pref_lockscreen_widget_limit_disable_title">停用小工具限值</string>
+    <string name="pref_lockscreen_widget_limit_disable_title">停用鎖定螢幕小工具限制數量</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">允許無限數量的螢幕鎖定小工具</string>
 
     <!--  RAM Bar -->
@@ -684,5 +684,14 @@
     <string name="pref_lockscreen_battery_arc_title">顯示電池狀態弧線</string>
     <string name="pref_lockscreen_battery_arc_summary">鎖定螢幕狀態下在解鎖環附近顯示當前電量狀態弧線</string>
 
+    <!-- HW Key Actions: toggle torch -->
+    <string name="hwkey_action_torch">切換手電筒</string>
+
+    <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
+    <string name="pref_hwkey_home_longpress_keyguard_title">長按 Home 鍵開啟手電筒</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">當裝置被鎖定時切換手電筒的開關. 如果裝置並沒有支援 Home 鍵喚醒功能，裝置必須在螢幕開啟的狀態下才可切換手電筒開關.</string>
+
+    <!-- Volume panel: Show expanded -->
+    <string name="pref_volume_panel_autoexpand_title">自動展開</string>
 
 </resources>
