@@ -691,6 +691,6 @@
     <string name="pref_lockscreen_battery_arc_summary">解锁环周围绘制显示电池状态弧光</string>
     
     <!-- HW Key Actions: toggle torch -->
-    <string name="hwkey_action_torch">切换按钮</string></string>
+    <string name="hwkey_action_torch">切换按钮</string>
 
 </resources>
