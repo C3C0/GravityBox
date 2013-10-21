@@ -226,6 +226,7 @@
     <string name="pref_ab_values_set">Значения для %s установлено</string>
     <string name="pref_ab_config_saved">Новая конфигурация автояркости сохранена</string>
     <string name="pref_ab_config_cancelled">Конфигурация автояркости НЕ БЫЛА сохранена</string>
+    <string name="pref_ab_button_set">Установить</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Включить поворот экрана блокировки</string>
@@ -632,6 +633,7 @@
     <string name="ongoing_notif_reset_list">Сбросить список</string>
     <string name="ongoing_notif_reset_alert">Вы уверены, что хотите сбросить список? 
         Это очистит список и разблокирует все текущие уведомления.</string>
+    <string name="ongoing_notif_list_empty">(список пуст)</string>
 
     <!-- Quick unlock -->
     <string name="pref_lockscreen_quick_unlock_title">Быстрая разблокировка</string>
@@ -660,9 +662,31 @@
     <string name="dt_size_normal">Обычный</string>
     <string name="dt_size_smaller">Маленький</string>
     <string name="dt_size_smallest">Очень маленький</string>
+    <string name="byte_abbr">B</string>
+    <string name="kilobyte_abbr">KB</string>
+    <string name="megabyte_abbr">MB</string>
+    <string name="second_abbr">s</string>
 
     <!-- Disable lockscreen widget limit -->
     <string name="pref_lockscreen_widget_limit_disable_title">Отключить ограничение виджетов</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">Позволяет получить неограниченное количество виджетов экрана блокировки</string>
 
+    <!--  RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> свободно</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> использовано</string>
+    <string name="pref_rambar_title">Панель памяти текущих задач</string>
+    <string name="rambar_off">выключено</string>
+    <string name="rambar_top">сверху</string>
+    <string name="rambar_bottom">снизу</string>
+
+    <!-- HW Key actions for recents button -->
+    <string name="pref_hwkey_recents_singletap_title">Действие по одиночному касанию</string>
+    <string name="pref_hwkey_recents_longpress_title">Дейтсвие по долгому касанию</string>
+
+    <!-- Lockscreen battery arc -->
+    <string name="pref_lockscreen_battery_arc_title">Статус батареи</string>
+    <string name="pref_lockscreen_battery_arc_summary">Показывать арку батареи, нарисованную вокруг кольца разблокировки</string>
+    
 </resources>
