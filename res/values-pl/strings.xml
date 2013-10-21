@@ -160,6 +160,7 @@
     <string name="pref_ab_values_set">Ustawiono wartości dla %s</string>
     <string name="pref_ab_config_saved">Nowa konfiguracja auto-jasności została zapisana</string>
     <string name="pref_ab_config_cancelled">Konfiguracja auto-jasności NIE została zapisana</string>
+    <string name="pref_ab_button_set">Ustaw</string>
     <string name="pref_lockscreen_rotation_title">Włącz obracanie Ekranu blokady</string>
     <string name="pref_lockscreen_rotation_summary">UWAGA: Może zamienić cele na pierścieniu odblokowania w niektórych urządzeniach, gdy ekran blokady AOSP został zmodyfikowany przez sprzedawcę</string>
     <string name="pref_lockscreen_menu_key_title">Włącz klawisz menu</string>
@@ -427,4 +428,12 @@
     <string name="second_abbr">s</string>
     <string name="pref_lockscreen_widget_limit_disable_title">Wyłączenie limitu widżetów</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">Umożliwia nieograniczoną liczbę widżetów Ekranu Blokady</string>
+    <string name="service_background_processes">%1$s wolne</string>
+    <string name="service_foreground_processes">%1$s w użyciu</string>
+    <string name="pref_rambar_title">Pasek RAM listy ostatnich aplikacji</string>
+    <string name="rambar_off">Wyłączony</string>
+    <string name="rambar_top">Na górze</string>
+    <string name="rambar_bottom">Na dole</string>
+    <string name="pref_hwkey_recents_singletap_title">Akcja kliknięcia klawisza ostatnich aplikacji</string>
+    <string name="pref_hwkey_recents_longpress_title">Akcja przytrzymania klawisza ostatnich aplikacji</string>
 </resources>
