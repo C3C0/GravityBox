@@ -690,4 +690,7 @@
     <string name="pref_lockscreen_battery_arc_title">Show battery arc</string>
     <string name="pref_lockscreen_battery_arc_summary">Shows battery status arc drawn around unlock ring handle</string>
 
+    <!-- HW Key Actions: toggle torch -->
+    <string name="hwkey_action_torch">Toggle torch</string>
+
 </resources>

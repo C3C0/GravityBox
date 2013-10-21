@@ -544,6 +544,8 @@ public class ModHwKeys {
             injectMenuKey();
         } else if (action == GravityBoxSettings.HWKEY_ACTION_EXPANDED_DESKTOP) {
             toggleExpandedDesktop();
+        } else if (action == GravityBoxSettings.HWKEY_ACTION_TORCH) {
+            toggleTorch();
         }
     }
 
@@ -777,5 +779,15 @@ public class ModHwKeys {
                 }
             }
         });
+    }
+
+    private static void toggleTorch() {
+        try {
+            Intent intent = new Intent(mGbContext, TorchService.class);
+            intent.setAction(TorchService.ACTION_TOGGLE_TORCH);
+            mGbContext.startService(intent);
+        } catch (Throwable t) {
+            log("Error toggling Torch: " + t.getMessage());
+        }
     }
 }
