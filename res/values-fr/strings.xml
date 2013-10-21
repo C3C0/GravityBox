@@ -658,6 +658,7 @@
     <string name="pref_data_traffic_position_title">Position</string>
     <string name="dt_position_auto">Auto (centré ou à droite en fonction de la position de l\'horloge)</string>
     <string name="dt_position_left">À gauche</string>
+    <string name="dt_position_right">À droite</string>
     <string name="pref_data_traffic_size_title">Dimension</string>
     <string name="dt_size_normal">Normal</string>
     <string name="dt_size_smaller">Plus petit</string>
@@ -680,5 +681,23 @@
     <string name="rambar_off">Désactivée</string>
     <string name="rambar_top">En haut</string>
     <string name="rambar_bottom">En bas</string>
+
+    <!-- HW Key actions for recents button -->
+    <string name="pref_hwkey_recents_singletap_title">Action appui simple sur touche appli récentes</string>
+    <string name="pref_hwkey_recents_longpress_title">Action appui long sur touche appli récentes</string>
+
+    <!-- Lockscreen battery arc -->
+    <string name="pref_lockscreen_battery_arc_title">Afficher l\'arc de batterie</string>
+    <string name="pref_lockscreen_battery_arc_summary">Affiche un arc pour l\'état de la batterie autour de l\'anneau de déverrouillage</string>
+
+    <!-- HW Key Actions: toggle torch -->
+    <string name="hwkey_action_torch">Commuter la torche</string>
+
+    <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
+    <string name="pref_hwkey_home_longpress_keyguard_title">Torche par appui long sur la touche Home</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">Interrupteur on/off pour allumer la torche lorsque l\'appareil est verrouillé. L\'écran doit être allumé si l\'appareil ne supporte pas nativement la réactivation via la touche Home</string>
+
+    <!-- Volume panel: Show expanded -->
+    <string name="pref_volume_panel_autoexpand_title">Développer automatiquement</string>
 
 </resources>
