@@ -693,4 +693,8 @@
     <!-- HW Key Actions: toggle torch -->
     <string name="hwkey_action_torch">Toggle torch</string>
 
+    <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
+    <string name="pref_hwkey_home_longpress_keyguard_title">Torch on home key long-press</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">Toggles torch on/off when device locked. Screen has to be be turned on if device lacks native wake by home key support.</string>
+
 </resources>

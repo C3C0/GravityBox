@@ -872,6 +872,12 @@
             android:entryValues="@array/hwkey_action_values"
             android:defaultValue="0" />
 
+        <CheckBoxPreference 
+            android:key="pref_hwkey_home_longpress_keyguard"
+            android:title="@string/pref_hwkey_home_longpress_keyguard_title"
+            android:summary="@string/pref_hwkey_home_longpress_keyguard_summary"
+            android:defaultValue="false" />
+
         <ListPreference
             android:key="pref_hwkey_back_longpress"
             android:title="@string/pref_hwkey_back_longpress_title"

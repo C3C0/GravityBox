@@ -80,9 +80,11 @@ public class ModHwKeys {
     private static boolean mIsMenuDoubleTap = false;
     private static boolean mIsBackLongPressed = false;
     private static boolean mIsRecentsLongPressed = false;
+    private static boolean mIsHomeLongPressed = false;
     private static int mMenuLongpressAction = 0;
     private static int mMenuDoubletapAction = 0;
     private static int mHomeLongpressAction = 0;
+    private static int mHomeLongpressActionKeyguard = 0;
     private static int mBackLongpressAction = 0;
     private static int mRecentsSingletapAction = 0;
     private static int mRecentsLongpressAction = 0;
@@ -114,6 +116,7 @@ public class ModHwKeys {
         MENU_LONGPRESS,
         MENU_DOUBLETAP,
         HOME_LONGPRESS,
+        HOME_LONGPRESS_KEYGUARD,
         BACK_LONGPRESS,
         RECENTS_SINGLETAP,
         RECENTS_LONGPRESS
@@ -138,8 +141,18 @@ public class ModHwKeys {
                 mMenuDoubletapAction = value;
                 if (DEBUG) log("Menu double-tap action set to: " + value);
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_HOME_LONGPRESS_CHANGED)) {
-                mHomeLongpressAction = value;
-                if (DEBUG) log("Home long-press action set to: " + value);
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_HWKEY_VALUE)) {
+                    mHomeLongpressAction = value;
+                    if (DEBUG) log("Home long-press action set to: " + value);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_HWKEY_HOME_LONGPRESS_KG)) {
+                    mHomeLongpressActionKeyguard = intent.getBooleanExtra(
+                            GravityBoxSettings.EXTRA_HWKEY_HOME_LONGPRESS_KG, false) ?
+                                    GravityBoxSettings.HWKEY_ACTION_TORCH : 
+                                        GravityBoxSettings.HWKEY_ACTION_DEFAULT;
+                    if (DEBUG) log("Home long-press action while keyguard on set to: " + 
+                                        mHomeLongpressActionKeyguard);
+                }
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_BACK_LONGPRESS_CHANGED)) {
                 mBackLongpressAction = value;
                 if (DEBUG) log("Back long-press action set to: " + value);
@@ -201,6 +214,9 @@ public class ModHwKeys {
                 XposedBridge.log(e);
             }
 
+            mHomeLongpressActionKeyguard = prefs.getBoolean(
+                    GravityBoxSettings.PREF_KEY_HWKEY_HOME_LONGPRESS_KEYGUARD, false) ?
+                            GravityBoxSettings.HWKEY_ACTION_TORCH : GravityBoxSettings.HWKEY_ACTION_DEFAULT;
             mVolumeRockerWakeDisabled = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_VOLUME_ROCKER_WAKE_DISABLE, false);
             mHwKeysEnabled = !prefs.getBoolean(GravityBoxSettings.PREF_KEY_HWKEYS_DISABLE, false);
@@ -222,9 +238,14 @@ public class ModHwKeys {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     KeyEvent event = (KeyEvent) param.args[0];
+                    int keyCode = event.getKeyCode();
+                    boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
+                    boolean keyguardOn = (Boolean) XposedHelpers.callMethod(mPhoneWindowManager, "keyguardOn");
+                    Handler handler = (Handler) XposedHelpers.getObjectField(param.thisObject, "mHandler");
+
                     if (mVolumeRockerWakeDisabled && 
-                            (event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP ||
-                             event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+                            (keyCode == KeyEvent.KEYCODE_VOLUME_UP ||
+                                    keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
                         int policyFlags = (Integer) param.args[1];
                         policyFlags &= ~FLAG_WAKE;
                         policyFlags &= ~FLAG_WAKE_DROPPED;
@@ -232,13 +253,34 @@ public class ModHwKeys {
                         return;
                     }
 
-                    if (event.getKeyCode() == KeyEvent.KEYCODE_HOME) {
-                        if (!mHwKeysEnabled && event.getAction() == KeyEvent.ACTION_UP && 
-                                 event.getRepeatCount() == 0 &&
-                                 (event.getFlags() & KeyEvent.FLAG_FROM_SYSTEM) != 0) {
-                            if (DEBUG) log("HOME KeyEvent coming from HW key and keys disabled. Ignoring.");
-                            param.setResult(0);
-                            return;
+                    if (keyCode == KeyEvent.KEYCODE_HOME) {
+                        if (!down) {
+                            handler.removeCallbacks(mHomeLongPressKeyguard);
+                            if (mIsHomeLongPressed) {
+                                mIsHomeLongPressed = false;
+                                param.setResult(0);
+                                return;
+                            }
+                            if (!mHwKeysEnabled && 
+                                    event.getRepeatCount() == 0 &&
+                                    (event.getFlags() & KeyEvent.FLAG_FROM_SYSTEM) != 0) {
+                               if (DEBUG) log("HOME KeyEvent coming from HW key and keys disabled. Ignoring.");
+                               param.setResult(0);
+                               return;
+                           }
+                        } else if (keyguardOn) {
+                            if (event.getRepeatCount() == 0) {
+                                mIsHomeLongPressed = false;
+                                if (mHomeLongpressActionKeyguard != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
+                                    handler.postDelayed(mHomeLongPressKeyguard, 
+                                            getLongpressTimeoutForAction(mHomeLongpressActionKeyguard));
+                                }
+                            } else {
+                                if (mHomeLongpressActionKeyguard != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
+                                    param.setResult(0);
+                                }
+                                return;
+                            }
                         }
                     }
                 }
@@ -475,6 +517,16 @@ public class ModHwKeys {
         }
     };
 
+    private static Runnable mHomeLongPressKeyguard = new Runnable() {
+
+        @Override
+        public void run() {
+            if (DEBUG) log("mHomeLongPressKeyguard runnable launched");
+            mIsHomeLongPressed = true;
+            performAction(HwKeyTrigger.HOME_LONGPRESS_KEYGUARD);
+        }
+    };
+
     private static int getActionForHwKeyTrigger(HwKeyTrigger keyTrigger) {
         int action = GravityBoxSettings.HWKEY_ACTION_DEFAULT;
 
@@ -484,6 +536,8 @@ public class ModHwKeys {
             action = mMenuDoubletapAction;
         } else if (keyTrigger == HwKeyTrigger.HOME_LONGPRESS) {
             action = mHomeLongpressAction;
+        } else if (keyTrigger == HwKeyTrigger.HOME_LONGPRESS_KEYGUARD) {
+            action = mHomeLongpressActionKeyguard;
         } else if (keyTrigger == HwKeyTrigger.BACK_LONGPRESS) {
             action = mBackLongpressAction;
         } else if (keyTrigger == HwKeyTrigger.RECENTS_SINGLETAP) {
