@@ -53,7 +53,7 @@ public class ModPhone {
     private static final String CLASS_PHONE_UTILS = "com.android.phone.PhoneUtils";
     private static final boolean DEBUG = false;
 
-    private static final int VIBRATE_45_SEC = 28;
+    private static final int VIBRATE_45_SEC = 2828;
 
     private static SensorManager mSensorManager;
     private static boolean mSensorListenerAttached = false;
@@ -316,7 +316,8 @@ public class ModPhone {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     Message msg = (Message) param.args[0];
-                    if (msg.what == VIBRATE_45_SEC) {
+                    if (msg.what == VIBRATE_45_SEC &&
+                            mCallVibrations.contains(GravityBoxSettings.CV_PERIODIC)) {
                         vibrate(70, 0, 0);
                         if (mWakeLock.isHeld()) {
                             mWakeLock.release();
