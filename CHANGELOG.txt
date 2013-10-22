@@ -1,3 +1,28 @@
+Changelog 2.6.4 - 22/10/2013
+--------------------------------------
+- Lockscreen tweaks:
+--- Lockscreen battery arc: shows battery status as an arc drawn around unlock ring handle (Android 4.2+ only)
+- Hardware Key Actions:
+--- added long-press support for Navigation Bar Home key (now supports Hardware Key Actions)
+--- action for toggling Torch on/off
+--- option for toggling Torch on Home HW key long-press while on lockscreen
+--- torch related actions available only for devices with Flash LED support (thanks to @bgcngm)
+- Call Vibrations: prevent unexpected vibrations from occurring on some devices (hopefully)
+- Data monitor: option to set position on the right regardless of clock position
+- Expandable volume panel: option to show panel expanded automatically
+- Added more tolerance to foreign Circle Battery Views
+--- preserves Circle Battery View with circle_battery ID introduced by particular ROM
+--- avoids breaking circle_battery View dependencies that can cause SystemUI crashes
+- Added Arabic translations (thanks to asmb111)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated French translation (thanks to ch-vox)
+- Updated Japanese translations (thanks to WedyDQ10)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Chinese (Simplified) translations (thanks to liveasx)
+- Updated Indonesian translations (thanks to awaaas)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+
 Changelog 2.6.3 - 17/10/2013
 --------------------------------------
 - Recent tasks RAM bar
