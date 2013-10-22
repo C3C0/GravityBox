@@ -24,6 +24,7 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.Context;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.provider.Settings;
 import android.view.View;
 import android.view.ViewGroup;
@@ -114,11 +115,13 @@ public class ModBatteryStyle {
                     ModStatusbarColor.setPercentage(percText);
 
                     // GM2 specific - if there's already view with id "circle_battery", remove it
-                    ImageView exView = (ImageView) vg.findViewById(liparam.res.getIdentifier(
-                            "circle_battery", "id", PACKAGE_NAME));
-                    if (exView != null) {
-                        if (DEBUG) log("circle_battery view found - removing");
-                        vg.removeView(exView);
+                    if (Build.DISPLAY.toLowerCase().contains("gravitymod")) {
+                        ImageView exView = (ImageView) vg.findViewById(liparam.res.getIdentifier(
+                                "circle_battery", "id", PACKAGE_NAME));
+                        if (exView != null) {
+                            if (DEBUG) log("GM2 circle_battery view found - removing");
+                            vg.removeView(exView);
+                        }
                     }
 
                     // inject circle battery view
