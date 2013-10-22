@@ -144,7 +144,7 @@
     <string name="about_xposed_title">Xposed 框架</string>
     <string name="about_xposed_summary">由 rovo89@XDA 編寫。點選此處以拜訪官方的討論串。</string>
     <string name="about_donate_title">捐助</string>
-    <string name="about_donate_summary">若您覺得這個 app 好用的話，請贊助我！也請考慮捐助給編寫出優秀的 Xposed 框架的 rovo89。</string>
+    <string name="about_donate_summary">若您覺得這個應用程式好用的話，請贊助我！也請考慮捐助給編寫出優秀的 Xposed 框架的 rovo89。</string>
 
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">您的 %s 將重新啟動</string>
@@ -641,18 +641,19 @@
     <string name="clock_dow_uppercase">大寫字符</string>
 
     <!-- Statusbar expand policy -->
-    <string name="pref_statusbar_lock_policy_title">狀態列鎖定政策</string>
+    <string name="pref_statusbar_lock_policy_title">鎖定螢幕時的狀態列鎖定政策</string>
     <string name="sbl_policy_default">預設</string>
-    <string name="sbl_policy_unlocked">如果鍵盤保護不安全解除鎖定</string>
-    <string name="sbl_policy_locked">已鎖定</string>
+    <string name="sbl_policy_unlocked">不鎖定</string>
+    <string name="sbl_policy_locked">鎖定</string>
 
     <!-- Data traffic monitor -->
     <string name="pref_cat_data_traffic_title">資料流量監控</string>
     <string name="pref_data_traffic_enable_title">啟用監控</string>
     <string name="pref_data_traffic_enable_summary">當裝置有資料連結時在狀態列顯示資料流量監控</string>
     <string name="pref_data_traffic_position_title">顯示位置</string>
-    <string name="dt_position_auto">自動 (居中或右取決於時鐘的位置)</string>
+    <string name="dt_position_auto">自動 (居中或靠右取決於時鐘的位置)</string>
     <string name="dt_position_left">左</string>
+    <string name="dt_position_right">右</string>
     <string name="pref_data_traffic_size_title">大小</string>
     <string name="dt_size_normal">正常</string>
     <string name="dt_size_smaller">較小</string>
@@ -692,6 +693,6 @@
     <string name="pref_hwkey_home_longpress_keyguard_summary">當裝置被鎖定時切換手電筒的開關. 如果裝置並沒有支援 Home 鍵喚醒功能，裝置必須在螢幕開啟的狀態下才可切換手電筒開關.</string>
 
     <!-- Volume panel: Show expanded -->
-    <string name="pref_volume_panel_autoexpand_title">自動展開</string>
+    <string name="pref_volume_panel_autoexpand_title">自動展開音量面板</string>
 
 </resources>
