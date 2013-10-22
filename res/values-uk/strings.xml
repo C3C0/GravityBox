@@ -228,9 +228,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Дії апаратних кнопок</string>
     <string name="pref_cat_hwkey_actions_summary">Дозволяє призначати дії на апаратні кнопки</string>
-    <string name="pref_hwkey_menu_longpress_title">Довге натискання кнопки меню</string>
-    <string name="pref_hwkey_menu_doubletap_title">Подвійний дотик кнопки меню</string>
-    <string name="pref_hwkey_back_longpress_title">Довге натискання кнопки назад</string>
+    <string name="hwkey_menu_longpress_dialog_title">Довге натискання кнопки меню</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Подвійний дотик кнопки меню</string>
+    <string name="hwkey_back_longpress_dialog_title">Довге натискання кнопки назад</string>
     <string name="hwkey_action_default">За умовчанням</string>
     <string name="hwkey_action_search">Пошук</string>
     <string name="hwkey_action_voice_search">Голосовий пошук</string>

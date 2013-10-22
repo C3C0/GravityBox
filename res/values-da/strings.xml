@@ -222,9 +222,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Funktioner for hardware-taster</string>
     <string name="pref_cat_hwkey_actions_summary">Valg af funktion for hardware-taster</string>
-    <string name="pref_hwkey_menu_longpress_title">Menutast langt-tryk funktion</string>
-    <string name="pref_hwkey_menu_doubletap_title">Menutast dobbelt-tap funktion</string>
-    <string name="pref_hwkey_back_longpress_title">Tilbagetast langt-tryk funktion</string>
+    <string name="hwkey_menu_longpress_dialog_title">Menutast langt-tryk funktion</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Menutast dobbelt-tap funktion</string>
+    <string name="hwkey_back_longpress_dialog_title">Tilbagetast langt-tryk funktion</string>
     <string name="hwkey_action_default">Standard</string>
     <string name="hwkey_action_search">Søgning</string>
     <string name="hwkey_action_voice_search">Stemmestyret søgning</string>

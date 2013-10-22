@@ -261,9 +261,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Fiziksel tuş işlemleri</string>
     <string name="pref_cat_hwkey_actions_summary">Fiziksel tuşlara özel eylem ata</string>
-    <string name="pref_hwkey_menu_longpress_title">Menü tuşu uzun-basma eylemi</string>
-    <string name="pref_hwkey_menu_doubletap_title">Menü tuşu çift-tıklama eylemi</string>
-    <string name="pref_hwkey_back_longpress_title">Geri tuşu uzun-basma eylemi</string>
+    <string name="hwkey_menu_longpress_dialog_title">Menü tuşu uzun-basma eylemi</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Menü tuşu çift-tıklama eylemi</string>
+    <string name="hwkey_back_longpress_dialog_title">Geri tuşu uzun-basma eylemi</string>
     <string name="hwkey_action_default">Varsayılan</string>
     <string name="hwkey_action_search">Arama</string>
     <string name="hwkey_action_voice_search">Sesli Arama</string>
@@ -485,7 +485,7 @@
     <string name="hwkey_action_recent_apps">Son uygulamaları göster</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">Ev tuşu uzun-basma eylemi</string>
+    <string name="hwkey_home_longpress_dialog_title">Ev tuşu uzun-basma eylemi</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">Özel uygulama başlat 1</string>

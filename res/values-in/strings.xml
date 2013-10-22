@@ -261,9 +261,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Aksi tombol fisik</string>
     <string name="pref_cat_hwkey_actions_summary">Membolehkan anda untuk men-set aksi kustom pada tombol fisik</string>
-    <string name="pref_hwkey_menu_longpress_title">Aksi tombol menu ketika ditahan</string>
-    <string name="pref_hwkey_menu_doubletap_title">Aksi tombol menu ketika ditekan dua kali (Double-tap)</string>
-    <string name="pref_hwkey_back_longpress_title">Aksi tombol kembali ketika ditahan</string>
+    <string name="hwkey_menu_longpress_dialog_title">Aksi tombol menu ketika ditahan</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Aksi tombol menu ketika ditekan dua kali (Double-tap)</string>
+    <string name="hwkey_back_longpress_dialog_title">Aksi tombol kembali ketika ditahan</string>
     <string name="hwkey_action_default">Bawaan</string>
     <string name="hwkey_action_search">Pencarian</string>
     <string name="hwkey_action_voice_search">Pencarian Suara</string>
@@ -485,7 +485,7 @@
     <string name="hwkey_action_recent_apps">Tampilkan aplikasi terbaru</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">Aksi ketika tombol Home ditahan</string>
+    <string name="hwkey_home_longpress_dialog_title">Aksi ketika tombol Home ditahan</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">Jalankan aplikasi kustom</string>
@@ -681,7 +681,7 @@
     <string name="rambar_bottom">Bawah</string>
 
     <!-- HW Key actions for recents button -->
-    <string name="pref_hwkey_recents_singletap_title">Aksi ketika tombol Recents ditekan</string>
-    <string name="pref_hwkey_recents_longpress_title">Aksi ketika tombol Recents ditahan</string>
+    <string name="hwkey_recents_singletap_dialog_title">Aksi ketika tombol Recents ditekan</string>
+    <string name="hwkey_recents_longpress_dialog_title">Aksi ketika tombol Recents ditahan</string>
 
 </resources>

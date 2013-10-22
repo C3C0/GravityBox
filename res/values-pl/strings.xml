@@ -178,9 +178,9 @@
     <string name="pref_charging_led_disable_summary">Wyłącza sygnalizację LED podczas ładowania</string>
     <string name="pref_cat_hwkey_actions_title">Działanie przycisków sprzętowych</string>
     <string name="pref_cat_hwkey_actions_summary">Pozwala ustawić niestandardowe działania przycisków sprzętowych</string>
-    <string name="pref_hwkey_menu_longpress_title">Akcja długiego naciśnięcia MENU</string>
-    <string name="pref_hwkey_menu_doubletap_title">Akcja podwójnego przyciśnięcia MENU</string>
-    <string name="pref_hwkey_back_longpress_title">Akcja długiego naciśnięcia BACK</string>
+    <string name="hwkey_menu_longpress_dialog_title">Akcja długiego naciśnięcia MENU</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Akcja podwójnego przyciśnięcia MENU</string>
+    <string name="hwkey_back_longpress_dialog_title">Akcja długiego naciśnięcia BACK</string>
     <string name="hwkey_action_default">Domyślne</string>
     <string name="hwkey_action_search">Szukaj</string>
     <string name="hwkey_action_voice_search">Wyszukiwanie głosowe</string>
@@ -310,7 +310,7 @@
     <string name="pref_brightness_master_switch_title">Włącz ustawienia jasności</string>
     <string name="pref_brightness_master_switch_summary">Należy używać tylko w przypadku, gdy urządzenie obsługuje standardowe funkcje jasności systemu Android. Pozostaw wyłączone w przypadku wystąpienia problemów związanych z jasnością. (wymagany restart)</string>
     <string name="hwkey_action_recent_apps">Pokaż najnowsze aplikacje</string>
-    <string name="pref_hwkey_home_longpress_title">Akcja długiego naciśnięcia HOME</string>
+    <string name="hwkey_home_longpress_dialog_title">Akcja długiego naciśnięcia HOME</string>
     <string name="hwkey_action_custom_app">Uruchom własną aplikację 1</string>
     <string name="pref_hwkey_custom_app_title">Ustaw własną aplikację 1</string>
     <string name="hwkey_action_custom_app2">Uruchom własną aplikację 2</string>
@@ -434,6 +434,6 @@
     <string name="rambar_off">Wyłączony</string>
     <string name="rambar_top">Na górze</string>
     <string name="rambar_bottom">Na dole</string>
-    <string name="pref_hwkey_recents_singletap_title">Akcja kliknięcia klawisza ostatnich aplikacji</string>
-    <string name="pref_hwkey_recents_longpress_title">Akcja przytrzymania klawisza ostatnich aplikacji</string>
+    <string name="hwkey_recents_singletap_dialog_title">Akcja kliknięcia klawisza ostatnich aplikacji</string>
+    <string name="hwkey_recents_longpress_dialog_title">Akcja przytrzymania klawisza ostatnich aplikacji</string>
 </resources>

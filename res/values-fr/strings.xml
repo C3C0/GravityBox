@@ -262,9 +262,9 @@
      <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Actions touches matérielles</string>
     <string name="pref_cat_hwkey_actions_summary">Permet de programmer des actions pour les touches matérielles</string>
-    <string name="pref_hwkey_menu_longpress_title">Appui long touche menu</string>
-    <string name="pref_hwkey_menu_doubletap_title">Double appui touche menu</string>
-    <string name="pref_hwkey_back_longpress_title">Appui long touche retour</string>
+    <string name="hwkey_menu_longpress_dialog_title">Appui long touche menu</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Double appui touche menu</string>
+    <string name="hwkey_back_longpress_dialog_title">Appui long touche retour</string>
     <string name="hwkey_action_default">Par défaut</string>
     <string name="hwkey_action_search">Recherche</string>
     <string name="hwkey_action_voice_search">Recherche vocale</string>
@@ -486,7 +486,7 @@
     <string name="hwkey_action_recent_apps">Afficher les applis récentes</string>
     
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">Appui long touche Home</string>
+    <string name="hwkey_home_longpress_dialog_title">Appui long touche Home</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">Lancer l\'appli personnalisée 1</string>
@@ -683,8 +683,8 @@
     <string name="rambar_bottom">En bas</string>
 
     <!-- HW Key actions for recents button -->
-    <string name="pref_hwkey_recents_singletap_title">Action appui simple sur touche appli récentes</string>
-    <string name="pref_hwkey_recents_longpress_title">Action appui long sur touche appli récentes</string>
+    <string name="hwkey_recents_singletap_dialog_title">Action appui simple sur touche appli récentes</string>
+    <string name="hwkey_recents_longpress_dialog_title">Action appui long sur touche appli récentes</string>
 
     <!-- Lockscreen battery arc -->
     <string name="pref_lockscreen_battery_arc_title">Afficher l\'arc de batterie</string>

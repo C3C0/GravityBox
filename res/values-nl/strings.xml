@@ -257,9 +257,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Hardware key actions</string>
     <string name="pref_cat_hwkey_actions_summary">Allows to set custom actions on hardware keys</string>
-    <string name="pref_hwkey_menu_longpress_title">Menu key long-press action</string>
-    <string name="pref_hwkey_menu_doubletap_title">Menu key double-tap action</string>
-    <string name="pref_hwkey_back_longpress_title">Back key long-press action</string>
+    <string name="hwkey_menu_longpress_dialog_title">Menu key long-press action</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Menu key double-tap action</string>
+    <string name="hwkey_back_longpress_dialog_title">Back key long-press action</string>
     <string name="hwkey_action_default">Default</string>
     <string name="hwkey_action_search">Search</string>
     <string name="hwkey_action_voice_search">Voice search</string>
@@ -485,7 +485,7 @@
     <string name="hwkey_action_recent_apps">Show recent apps</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">Home key long-press action</string>
+    <string name="hwkey_home_longpress_dialog_title">Home key long-press action</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">Launch custom app 1</string>

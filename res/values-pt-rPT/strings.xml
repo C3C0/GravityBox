@@ -247,9 +247,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Ações para teclas físicas</string>
     <string name="pref_cat_hwkey_actions_summary">Permite personalizar ações para as teclas físicas</string>
-    <string name="pref_hwkey_menu_longpress_title">Ação ao manter pressionada tecla Menu</string>
-    <string name="pref_hwkey_menu_doubletap_title">Ação após dupla pressão da tecla Menu</string>
-    <string name="pref_hwkey_back_longpress_title">Ação ao manter pressionada tecla Atrás</string>
+    <string name="hwkey_menu_longpress_dialog_title">Ação ao manter pressionada a tecla Menu</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Ação após dupla pressão da tecla Menu</string>
+    <string name="hwkey_back_longpress_dialog_title">Ação ao manter pressionada a tecla Atrás</string>
     <string name="hwkey_action_default">Por defeito</string>
     <string name="hwkey_action_search">Pesquisa</string>
     <string name="hwkey_action_voice_search">Pesquisa por voz</string>
@@ -471,7 +471,7 @@
     <string name="hwkey_action_recent_apps">Mostrar aplicações recentes</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">Ação ao manter pressionada tecla Casa</string>
+    <string name="hwkey_home_longpress_dialog_title">Ação ao manter pressionada a tecla Casa</string>
 
     <!-- HW Key Action: Launch custom app -->
     <string name="hwkey_action_custom_app">Iniciar aplicação 1</string>
@@ -668,8 +668,8 @@
     <string name="rambar_bottom">Topo inferior</string>
 
     <!-- HW Key actions for recents button -->
-    <string name="pref_hwkey_recents_singletap_title">Ação após pressão da tecla Aplic. recentes</string>
-    <string name="pref_hwkey_recents_longpress_title">Ação ao manter pressionada tecla Aplic. recentes</string>
+    <string name="hwkey_recents_singletap_dialog_title">Ação após pressão da tecla Tarefas recentes</string>
+    <string name="hwkey_recents_longpress_dialog_title">Ação ao manter pressionada a tecla Tarefas recentes</string>
 
     <!-- Lockscreen battery arc -->
     <string name="pref_lockscreen_battery_arc_title">Mostrar arco de bateria</string>
@@ -679,10 +679,21 @@
     <string name="hwkey_action_torch">Comutar lanterna</string>
 
     <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
-    <string name="pref_hwkey_home_longpress_keyguard_title">Lanterna ao manter pressionada tecla Casa</string>
+    <string name="pref_hwkey_home_longpress_keyguard_title">Lanterna ao manter pressionada</string>
     <string name="pref_hwkey_home_longpress_keyguard_summary">Liga/desliga a lanterna quando o dispositivo está bloqueado. O ecrã tem de estar ligado caso o dispositivo não se ligue ao pressionar a tecla Casa.</string>
 
     <!-- Volume panel: Show expanded -->
     <string name="pref_volume_panel_autoexpand_title">Expandir automaticamente</string>
+
+    <!-- HW Key Actions: Preference screen arrangement -->
+    <string name="pref_cat_hwkey_menu_title">Tecla Menu</string>
+    <string name="pref_cat_hwkey_home_title">Tecla Casa</string>
+    <string name="pref_cat_hwkey_back_title">Tecla Atrás</string>
+    <string name="pref_cat_hwkey_recents_title">Tecla Tarefas Recentes</string>
+    <string name="pref_cat_hwkey_volume_title">Teclas de volume</string>
+    <string name="pref_cat_hwkey_actions_others">Outras definições</string>
+    <string name="pref_hwkey_longpress_title">Ação ao manter pressionada</string>
+    <string name="pref_hwkey_singletap_title">Ação após pressão</string>
+    <string name="pref_hwkey_doubletap_title">Ação após dupla pressão</string>
 
 </resources>

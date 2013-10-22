@@ -856,81 +856,123 @@
         android:title="@string/pref_cat_hwkey_actions_title"
         android:summary="@string/pref_cat_hwkey_actions_summary">
 
-        <ListPreference
-            android:key="pref_hwkey_menu_longpress"
-            android:title="@string/pref_hwkey_menu_longpress_title"
-            android:defaultValue="0" />
+        <PreferenceCategory
+            android:key="pref_cat_hwkey_menu"
+            android:title="@string/pref_cat_hwkey_menu_title">
+            
+            <ListPreference
+                android:key="pref_hwkey_menu_longpress"
+                android:title="@string/pref_hwkey_longpress_title"
+                android:dialogTitle="@string/hwkey_menu_longpress_dialog_title"
+                android:defaultValue="0"/>
 
-        <ListPreference
-            android:key="pref_hwkey_menu_doubletap"
-            android:title="@string/pref_hwkey_menu_doubletap_title"
-            android:defaultValue="0" />
+            <ListPreference
+                android:key="pref_hwkey_menu_doubletap"
+                android:title="@string/pref_hwkey_doubletap_title"
+                android:dialogTitle="@string/hwkey_menu_doubletap_dialog_title"
+                android:defaultValue="0"/>
 
-        <ListPreference
-            android:key="pref_hwkey_home_longpress"
-            android:title="@string/pref_hwkey_home_longpress_title"
-            android:defaultValue="0" />
+        </PreferenceCategory>
 
-        <CheckBoxPreference 
-            android:key="pref_hwkey_home_longpress_keyguard"
-            android:title="@string/pref_hwkey_home_longpress_keyguard_title"
-            android:summary="@string/pref_hwkey_home_longpress_keyguard_summary"
-            android:defaultValue="false" />
+        <PreferenceCategory
+            android:key="pref_cat_hwkey_home"
+            android:title="@string/pref_cat_hwkey_home_title">
 
-        <ListPreference
-            android:key="pref_hwkey_back_longpress"
-            android:title="@string/pref_hwkey_back_longpress_title"
-            android:defaultValue="0" />
+            <ListPreference
+                android:key="pref_hwkey_home_longpress"
+                android:title="@string/pref_hwkey_longpress_title"
+                android:dialogTitle="@string/hwkey_home_longpress_dialog_title"
+                android:defaultValue="0"/>
 
-        <ListPreference
-            android:key="pref_hwkey_recents_singletap"
-            android:title="@string/pref_hwkey_recents_singletap_title"
-            android:defaultValue="0" />
+            <CheckBoxPreference
+                android:key="pref_hwkey_home_longpress_keyguard"
+                android:title="@string/pref_hwkey_home_longpress_keyguard_title"
+                android:summary="@string/pref_hwkey_home_longpress_keyguard_summary"
+                android:defaultValue="false" />
 
-        <ListPreference
-            android:key="pref_hwkey_recents_longpress"
-            android:title="@string/pref_hwkey_recents_longpress_title"
-            android:defaultValue="0" />
+        </PreferenceCategory>
 
-        <com.ceco.gm2.gravitybox.preference.AppPickerPreference
-            android:key="pref_hwkey_custom_app"
-            android:title="@string/pref_hwkey_custom_app_title"
-            android:summary="@string/app_picker_none" />
+        <PreferenceCategory
+            android:key="pref_cat_hwkey_back"
+            android:title="@string/pref_cat_hwkey_back_title">
 
-        <com.ceco.gm2.gravitybox.preference.AppPickerPreference
-            android:key="pref_hwkey_custom_app2"
-            android:title="@string/pref_hwkey_custom_app_title2"
-            android:summary="@string/app_picker_none" />
+            <ListPreference
+                android:key="pref_hwkey_back_longpress"
+                android:title="@string/pref_hwkey_longpress_title"
+                android:dialogTitle="@string/hwkey_back_longpress_dialog_title"
+                android:defaultValue="0"/>
 
-        <ListPreference
-            android:key="pref_hwkey_doubletap_speed"
-            android:title="@string/pref_hwkey_doubletap_speed_title"
-            android:summary="@string/pref_hwkey_doubletap_speed_summary"
-            android:entries="@array/hwkey_doubletap_speed_entries"
-            android:entryValues="@array/hwkey_doubletap_speed_values"
-            android:defaultValue="400" />
+        </PreferenceCategory>
 
-        <ListPreference
-            android:key="pref_hwkey_kill_delay"
-            android:title="@string/pref_hwkey_kill_delay_title"
-            android:summary="@string/pref_hwkey_kill_delay_summary"
-            android:entries="@array/hwkey_kill_delay_entries"
-            android:entryValues="@array/hwkey_kill_delay_values"
-            android:defaultValue="1000" />
+        <PreferenceCategory
+            android:key="pref_cat_hwkey_recents"
+            android:title="@string/pref_cat_hwkey_recents_title">
 
-        <ListPreference
-            android:key="pref_vol_key_cursor_control"
-            android:title="@string/vol_key_cursor_control_title"
-            android:summary="@string/vol_key_cursor_control_summary"
-            android:entries="@array/vol_key_cursor_control_entries"
-            android:entryValues="@array/vol_key_cursor_control_values"
-            android:defaultValue="0" />
+            <ListPreference
+                android:key="pref_hwkey_recents_singletap"
+                android:title="@string/pref_hwkey_singletap_title"
+                android:dialogTitle="@string/hwkey_recents_singletap_dialog_title"
+                android:defaultValue="0"/>
+            
+            <ListPreference
+                android:key="pref_hwkey_recents_longpress"
+                android:title="@string/pref_hwkey_longpress_title"
+                android:dialogTitle="@string/hwkey_recents_longpress_dialog_title"
+                android:defaultValue="0"/>
 
-        <CheckBoxPreference
-            android:key="pref_volume_rocker_wake_disable"
-            android:title="@string/pref_volume_rocker_wake_disable_title"
-            android:summary="@string/pref_volume_rocker_wake_disable_summary"
-            android:defaultValue="false" />
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            android:key="pref_cat_hwkey_volume"
+            android:title="@string/pref_cat_hwkey_volume_title">
+
+            <ListPreference
+                android:key="pref_vol_key_cursor_control"
+                android:title="@string/vol_key_cursor_control_title"
+                android:summary="@string/vol_key_cursor_control_summary"
+                android:entries="@array/vol_key_cursor_control_entries"
+                android:entryValues="@array/vol_key_cursor_control_values"
+                android:defaultValue="0" />
+
+            <CheckBoxPreference
+                android:key="pref_volume_rocker_wake_disable"
+                android:title="@string/pref_volume_rocker_wake_disable_title"
+                android:summary="@string/pref_volume_rocker_wake_disable_summary"
+                android:defaultValue="false" />
+
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            android:key="pref_cat_hwkey_actions_others"
+            android:title="@string/pref_cat_hwkey_actions_others">
+
+            <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                android:key="pref_hwkey_custom_app"
+                android:title="@string/pref_hwkey_custom_app_title"
+                android:summary="@string/app_picker_none" />
+
+            <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                android:key="pref_hwkey_custom_app2"
+                android:title="@string/pref_hwkey_custom_app_title2"
+                android:summary="@string/app_picker_none" />
+
+            <ListPreference
+                android:key="pref_hwkey_doubletap_speed"
+                android:title="@string/pref_hwkey_doubletap_speed_title"
+                android:summary="@string/pref_hwkey_doubletap_speed_summary"
+                android:entries="@array/hwkey_doubletap_speed_entries"
+                android:entryValues="@array/hwkey_doubletap_speed_values"
+                android:defaultValue="400" />
+
+            <ListPreference
+                android:key="pref_hwkey_kill_delay"
+                android:title="@string/pref_hwkey_kill_delay_title"
+                android:summary="@string/pref_hwkey_kill_delay_summary"
+                android:entries="@array/hwkey_kill_delay_entries"
+                android:entryValues="@array/hwkey_kill_delay_values"
+                android:defaultValue="1000" />
+
+        </PreferenceCategory>
 
     </PreferenceScreen>
 

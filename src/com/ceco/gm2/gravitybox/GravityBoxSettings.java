@@ -210,17 +210,22 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_LINKED = "linked";
 
     public static final String PREF_CAT_HWKEY_ACTIONS = "pref_cat_hwkey_actions";
+    public static final String PREF_CAT_HWKEY_MENU = "pref_cat_hwkey_menu";
     public static final String PREF_KEY_HWKEY_MENU_LONGPRESS = "pref_hwkey_menu_longpress";
+    public static final String PREF_KEY_HWKEY_MENU_DOUBLETAP = "pref_hwkey_menu_doubletap";
+    public static final String PREF_CAT_HWKEY_HOME = "pref_cat_hwkey_home";
     public static final String PREF_KEY_HWKEY_HOME_LONGPRESS = "pref_hwkey_home_longpress";
     public static final String PREF_KEY_HWKEY_HOME_LONGPRESS_KEYGUARD = "pref_hwkey_home_longpress_keyguard";
-    public static final String PREF_KEY_HWKEY_MENU_DOUBLETAP = "pref_hwkey_menu_doubletap";
+    public static final String PREF_CAT_HWKEY_BACK = "pref_cat_hwkey_back";
     public static final String PREF_KEY_HWKEY_BACK_LONGPRESS = "pref_hwkey_back_longpress";
+    public static final String PREF_CAT_HWKEY_RECENTS = "pref_cat_hwkey_recents";
     public static final String PREF_KEY_HWKEY_RECENTS_SINGLETAP = "pref_hwkey_recents_singletap";
     public static final String PREF_KEY_HWKEY_RECENTS_LONGPRESS = "pref_hwkey_recents_longpress";
     public static final String PREF_KEY_HWKEY_CUSTOM_APP = "pref_hwkey_custom_app";
     public static final String PREF_KEY_HWKEY_CUSTOM_APP2 = "pref_hwkey_custom_app2";
     public static final String PREF_KEY_HWKEY_DOUBLETAP_SPEED = "pref_hwkey_doubletap_speed";
     public static final String PREF_KEY_HWKEY_KILL_DELAY = "pref_hwkey_kill_delay";
+    public static final String PREF_CAT_HWKEY_VOLUME = "pref_cat_hwkey_volume";
     public static final String PREF_KEY_VOLUME_ROCKER_WAKE_DISABLE = "pref_volume_rocker_wake_disable";
     public static final int HWKEY_ACTION_DEFAULT = 0;
     public static final int HWKEY_ACTION_SEARCH = 1;
@@ -580,13 +585,18 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private File notifBgImagePortrait;
         private File notifBgImageLandscape;
         private PreferenceScreen mPrefCatHwKeyActions;
+        private PreferenceCategory mPrefCatHwKeyMenu;
         private ListPreference mPrefHwKeyMenuLongpress;
         private ListPreference mPrefHwKeyMenuDoubletap;
+        private PreferenceCategory mPrefCatHwKeyHome;
         private ListPreference mPrefHwKeyHomeLongpress;
         private CheckBoxPreference mPrefHwKeyHomeLongpressKeyguard;
+        private PreferenceCategory mPrefCatHwKeyBack;
         private ListPreference mPrefHwKeyBackLongpress;
+        private PreferenceCategory mPrefCatHwKeyRecents;
         private ListPreference mPrefHwKeyRecentsSingletap;
         private ListPreference mPrefHwKeyRecentsLongpress;
+        private PreferenceCategory mPrefCatHwKeyVolume;
         private ListPreference mPrefHwKeyDoubletapSpeed;
         private ListPreference mPrefHwKeyKillDelay;
         private ListPreference mPrefPhoneFlip;
@@ -717,15 +727,20 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             notifBgImageLandscape = new File(getActivity().getFilesDir() + "/notifwallpaper_landscape");
 
             mPrefCatHwKeyActions = (PreferenceScreen) findPreference(PREF_CAT_HWKEY_ACTIONS);
+            mPrefCatHwKeyMenu = (PreferenceCategory) findPreference(PREF_CAT_HWKEY_MENU);
             mPrefHwKeyMenuLongpress = (ListPreference) findPreference(PREF_KEY_HWKEY_MENU_LONGPRESS);
             mPrefHwKeyMenuDoubletap = (ListPreference) findPreference(PREF_KEY_HWKEY_MENU_DOUBLETAP);
+            mPrefCatHwKeyHome = (PreferenceCategory) findPreference(PREF_CAT_HWKEY_HOME);
             mPrefHwKeyHomeLongpress = (ListPreference) findPreference(PREF_KEY_HWKEY_HOME_LONGPRESS);
             mPrefHwKeyHomeLongpressKeyguard = (CheckBoxPreference) findPreference(PREF_KEY_HWKEY_HOME_LONGPRESS_KEYGUARD);
+            mPrefCatHwKeyBack = (PreferenceCategory) findPreference(PREF_CAT_HWKEY_BACK);
             mPrefHwKeyBackLongpress = (ListPreference) findPreference(PREF_KEY_HWKEY_BACK_LONGPRESS);
+            mPrefCatHwKeyRecents = (PreferenceCategory) findPreference(PREF_CAT_HWKEY_RECENTS);
             mPrefHwKeyRecentsSingletap = (ListPreference) findPreference(PREF_KEY_HWKEY_RECENTS_SINGLETAP);
             mPrefHwKeyRecentsLongpress = (ListPreference) findPreference(PREF_KEY_HWKEY_RECENTS_LONGPRESS);
             mPrefHwKeyDoubletapSpeed = (ListPreference) findPreference(PREF_KEY_HWKEY_DOUBLETAP_SPEED);
             mPrefHwKeyKillDelay = (ListPreference) findPreference(PREF_KEY_HWKEY_KILL_DELAY);
+            mPrefCatHwKeyVolume = (PreferenceCategory) findPreference(PREF_CAT_HWKEY_VOLUME);
 
             mPrefPhoneFlip = (ListPreference) findPreference(PREF_KEY_PHONE_FLIP);
 
@@ -836,7 +851,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             // Filter preferences according to feature availability 
             if (!Utils.hasFlash(getActivity())) {
-                mPrefCatHwKeyActions.removePreference(mPrefHwKeyHomeLongpressKeyguard);
+                mPrefCatHwKeyHome.removePreference(mPrefHwKeyHomeLongpressKeyguard);
             }
             if (!Utils.hasVibrator(getActivity())) {
                 mPrefCatPhoneTelephony.removePreference(mPrefCallVibrations);
