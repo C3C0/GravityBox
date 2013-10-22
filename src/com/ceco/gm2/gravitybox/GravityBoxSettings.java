@@ -209,6 +209,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String ACTION_PREF_LINK_VOLUMES_CHANGED = "gravitybox.intent.action.LINK_VOLUMES_CHANGED";
     public static final String EXTRA_LINKED = "linked";
 
+    public static final String PREF_CAT_HWKEY_ACTIONS = "pref_cat_hwkey_actions";
     public static final String PREF_KEY_HWKEY_MENU_LONGPRESS = "pref_hwkey_menu_longpress";
     public static final String PREF_KEY_HWKEY_HOME_LONGPRESS = "pref_hwkey_home_longpress";
     public static final String PREF_KEY_HWKEY_HOME_LONGPRESS_KEYGUARD = "pref_hwkey_home_longpress_keyguard";
@@ -578,9 +579,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private File wallpaperTemporary;
         private File notifBgImagePortrait;
         private File notifBgImageLandscape;
+        private PreferenceScreen mPrefCatHwKeyActions;
         private ListPreference mPrefHwKeyMenuLongpress;
         private ListPreference mPrefHwKeyMenuDoubletap;
         private ListPreference mPrefHwKeyHomeLongpress;
+        private CheckBoxPreference mPrefHwKeyHomeLongpressKeyguard;
         private ListPreference mPrefHwKeyBackLongpress;
         private ListPreference mPrefHwKeyRecentsSingletap;
         private ListPreference mPrefHwKeyRecentsLongpress;
@@ -713,9 +716,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             notifBgImagePortrait = new File(getActivity().getFilesDir() + "/notifwallpaper");
             notifBgImageLandscape = new File(getActivity().getFilesDir() + "/notifwallpaper_landscape");
 
+            mPrefCatHwKeyActions = (PreferenceScreen) findPreference(PREF_CAT_HWKEY_ACTIONS);
             mPrefHwKeyMenuLongpress = (ListPreference) findPreference(PREF_KEY_HWKEY_MENU_LONGPRESS);
             mPrefHwKeyMenuDoubletap = (ListPreference) findPreference(PREF_KEY_HWKEY_MENU_DOUBLETAP);
             mPrefHwKeyHomeLongpress = (ListPreference) findPreference(PREF_KEY_HWKEY_HOME_LONGPRESS);
+            mPrefHwKeyHomeLongpressKeyguard = (CheckBoxPreference) findPreference(PREF_KEY_HWKEY_HOME_LONGPRESS_KEYGUARD);
             mPrefHwKeyBackLongpress = (ListPreference) findPreference(PREF_KEY_HWKEY_BACK_LONGPRESS);
             mPrefHwKeyRecentsSingletap = (ListPreference) findPreference(PREF_KEY_HWKEY_RECENTS_SINGLETAP);
             mPrefHwKeyRecentsLongpress = (ListPreference) findPreference(PREF_KEY_HWKEY_RECENTS_LONGPRESS);
@@ -830,6 +835,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             }
 
             // Filter preferences according to feature availability 
+            if (!Utils.hasFlash(getActivity())) {
+                mPrefCatHwKeyActions.removePreference(mPrefHwKeyHomeLongpressKeyguard);
+            }
             if (!Utils.hasVibrator(getActivity())) {
                 mPrefCatPhoneTelephony.removePreference(mPrefCallVibrations);
             }
@@ -941,6 +949,33 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefs.edit().putStringSet(PREF_KEY_QUICK_SETTINGS, qsPrefs).commit();
             mQuickSettings.setEntries(qsEntries.toArray(new CharSequence[qsEntries.size()]));
             mQuickSettings.setEntryValues(qsEntryValues.toArray(new CharSequence[qsEntryValues.size()]));
+
+            // Remove actions for HW keys based on device features
+            mPrefHwKeyMenuLongpress.setEntries(R.array.hwkey_action_entries);
+            mPrefHwKeyMenuLongpress.setEntryValues(R.array.hwkey_action_values);
+            List<CharSequence> actEntries = new ArrayList<CharSequence>(Arrays.asList(
+                    mPrefHwKeyMenuLongpress.getEntries()));
+            List<CharSequence> actEntryValues = new ArrayList<CharSequence>(Arrays.asList(
+                    mPrefHwKeyMenuLongpress.getEntryValues()));
+            if (!Utils.hasFlash(getActivity())) {
+                actEntries.remove(getString(R.string.hwkey_action_torch));
+                actEntryValues.remove("11");
+            }
+            CharSequence[] actionEntries = actEntries.toArray(new CharSequence[actEntries.size()]);
+            CharSequence[] actionEntryValues = actEntryValues.toArray(new CharSequence[actEntryValues.size()]);
+            mPrefHwKeyMenuLongpress.setEntries(actionEntries);
+            mPrefHwKeyMenuLongpress.setEntryValues(actionEntryValues);
+            // other preferences have the exact same entries and entry values
+            mPrefHwKeyMenuDoubletap.setEntries(actionEntries);
+            mPrefHwKeyMenuDoubletap.setEntryValues(actionEntryValues);
+            mPrefHwKeyHomeLongpress.setEntries(actionEntries);
+            mPrefHwKeyHomeLongpress.setEntryValues(actionEntryValues);
+            mPrefHwKeyBackLongpress.setEntries(actionEntries);
+            mPrefHwKeyBackLongpress.setEntryValues(actionEntryValues);
+            mPrefHwKeyRecentsSingletap.setEntries(actionEntries);
+            mPrefHwKeyRecentsSingletap.setEntryValues(actionEntryValues);
+            mPrefHwKeyRecentsLongpress.setEntries(actionEntries);
+            mPrefHwKeyRecentsLongpress.setEntryValues(actionEntryValues);
 
             setDefaultValues();
         }

@@ -859,22 +859,16 @@
         <ListPreference
             android:key="pref_hwkey_menu_longpress"
             android:title="@string/pref_hwkey_menu_longpress_title"
-            android:entries="@array/hwkey_action_entries"
-            android:entryValues="@array/hwkey_action_values"
             android:defaultValue="0" />
 
         <ListPreference
             android:key="pref_hwkey_menu_doubletap"
             android:title="@string/pref_hwkey_menu_doubletap_title"
-            android:entries="@array/hwkey_action_entries"
-            android:entryValues="@array/hwkey_action_values"
             android:defaultValue="0" />
 
         <ListPreference
             android:key="pref_hwkey_home_longpress"
             android:title="@string/pref_hwkey_home_longpress_title"
-            android:entries="@array/hwkey_action_entries"
-            android:entryValues="@array/hwkey_action_values"
             android:defaultValue="0" />
 
         <CheckBoxPreference 
@@ -886,22 +880,16 @@
         <ListPreference
             android:key="pref_hwkey_back_longpress"
             android:title="@string/pref_hwkey_back_longpress_title"
-            android:entries="@array/hwkey_action_entries"
-            android:entryValues="@array/hwkey_action_values"
             android:defaultValue="0" />
 
         <ListPreference
             android:key="pref_hwkey_recents_singletap"
             android:title="@string/pref_hwkey_recents_singletap_title"
-            android:entries="@array/hwkey_action_entries"
-            android:entryValues="@array/hwkey_action_values"
             android:defaultValue="0" />
 
         <ListPreference
             android:key="pref_hwkey_recents_longpress"
             android:title="@string/pref_hwkey_recents_longpress_title"
-            android:entries="@array/hwkey_action_entries"
-            android:entryValues="@array/hwkey_action_values"
             android:defaultValue="0" />
 
         <com.ceco.gm2.gravitybox.preference.AppPickerPreference

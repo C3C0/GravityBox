@@ -643,6 +643,7 @@
     <string name="pref_data_traffic_position_title">Posicionamento</string>
     <string name="dt_position_auto">Automático (centrado ou alinhado à direita, dependendo do posicionamento do relógio)</string>
     <string name="dt_position_left">Alinhado à esquerda</string>
+    <string name="dt_position_right">Alinhado à direita</string>
     <string name="pref_data_traffic_size_title">Tamanho do tipo de letra</string>
     <string name="dt_size_normal">Normal</string>
     <string name="dt_size_smaller">Pequeno</string>
@@ -672,6 +673,16 @@
 
     <!-- Lockscreen battery arc -->
     <string name="pref_lockscreen_battery_arc_title">Mostrar arco de bateria</string>
-    <string name="pref_lockscreen_battery_arc_summary">Permite mostrar o estado da bateria em forma de arco desenhado à volta do anel de desbloqueio</string>
+    <string name="pref_lockscreen_battery_arc_summary">Permite mostrar o estado da bateria em forma de arco desenhado em torno do anel de desbloqueio</string>
+
+    <!-- HW Key Actions: toggle torch -->
+    <string name="hwkey_action_torch">Comutar lanterna</string>
+
+    <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
+    <string name="pref_hwkey_home_longpress_keyguard_title">Lanterna ao manter pressionada tecla Casa</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">Liga/desliga a lanterna quando o dispositivo está bloqueado. O ecrã tem de estar ligado caso o dispositivo não se ligue ao pressionar a tecla Casa.</string>
+
+    <!-- Volume panel: Show expanded -->
+    <string name="pref_volume_panel_autoexpand_title">Expandir automaticamente</string>
 
 </resources>
