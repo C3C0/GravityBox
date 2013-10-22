@@ -658,6 +658,7 @@
     <string name="pref_data_traffic_position_title">Позиция</string>
     <string name="dt_position_auto">Автоматически (в центре или справа в зависимости от позиции часов)</string>
     <string name="dt_position_left">Слева</string>
+    <string name="dt_position_right">Справа</string>
     <string name="pref_data_traffic_size_title">Размер</string>
     <string name="dt_size_normal">Обычный</string>
     <string name="dt_size_smaller">Маленький</string>
@@ -688,5 +689,15 @@
     <!-- Lockscreen battery arc -->
     <string name="pref_lockscreen_battery_arc_title">Статус батареи</string>
     <string name="pref_lockscreen_battery_arc_summary">Показывать арку батареи, нарисованную вокруг кольца разблокировки</string>
+    
+    <!-- HW Key Actions: toggle torch -->
+    <string name="hwkey_action_torch">Включить фонарик</string>
+
+    <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
+    <string name="pref_hwkey_home_longpress_keyguard_title">Фонарик по долгому нажатию Home</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">Включить фонарек при заблокированном устройстве. "кран должен быть включен если устройство не может считывать нажатие кнопки во сне</string>
+
+    <!-- Volume panel: Show expanded -->
+    <string name="pref_volume_panel_autoexpand_title">Расширять автоматически</string>
     
 </resources>
