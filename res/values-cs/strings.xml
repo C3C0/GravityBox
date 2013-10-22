@@ -662,4 +662,19 @@
     <string name="pref_hwkey_recents_singletap_title">Ťuknutí na tlačítko seznamu aplikací</string>
     <string name="pref_hwkey_recents_longpress_title">Dlouhé podržení tlačítka seznamu aplikací</string>
 
+    <!-- Lockscreen battery arc -->
+    <string name="pref_lockscreen_battery_arc_title">Obloukový indikátor stavu baterie</string>
+    <string name="pref_lockscreen_battery_arc_summary">Zobrazí oblouk po obvodu odemykacího prstence, reprezentující stav baterie</string>
+
+    <!-- HW Key Actions: toggle torch -->
+    <string name="hwkey_action_torch">Zapnout/vypnout světlo</string>
+
+    <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
+    <string name="pref_hwkey_home_longpress_keyguard_title">Ovládání světla tlačítkem Domů</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">Zapne/vypne světlo dlouhým podržením tlačítka Domů na obrazovce uzamčení. 
+        Pokud zařízení nemá nativní podporu probuzení tlačítkem Domů, obrazovka musí být během přepínání zapnutá.</string>
+
+    <!-- Volume panel: Show expanded -->
+    <string name="pref_volume_panel_autoexpand_title">Rozšířit automaticky</string>
+
 </resources>
