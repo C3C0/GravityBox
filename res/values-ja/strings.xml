@@ -670,4 +670,14 @@
     <string name="pref_lockscreen_battery_arc_title">バッテリーアークを表示</string>
     <string name="pref_lockscreen_battery_arc_summary">ロック解除リングハンドルの回りにバッテリーアークを表示します。</string>
 
+    <!-- HW Key Actions: toggle torch -->
+    <string name="hwkey_action_torch">トーチトグル</string>
+
+    <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
+    <string name="pref_hwkey_home_longpress_keyguard_title">ホームキー長押しでトーチオン</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">端末をロックしているときにトーチのオンオフをします。ホームキーで画面をオンにする機能がない場合は画面をオンにしないといけません。</string>
+
+    <!-- Volume panel: Show expanded -->
+    <string name="pref_volume_panel_autoexpand_title">自動的に拡張</string>
+    
 </resources>
