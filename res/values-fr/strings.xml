@@ -700,4 +700,15 @@
     <!-- Volume panel: Show expanded -->
     <string name="pref_volume_panel_autoexpand_title">Développer automatiquement</string>
 
+    <!-- HW Key Actions: Preference screen arrangement -->
+    <string name="pref_cat_hwkey_menu_title">Touche menu</string>
+    <string name="pref_cat_hwkey_home_title">Touche home</string>
+    <string name="pref_cat_hwkey_back_title">Touche retour</string>
+    <string name="pref_cat_hwkey_recents_title">Touche appli récentes</string>
+    <string name="pref_cat_hwkey_volume_title">Touches de volume</string>
+    <string name="pref_cat_hwkey_actions_others">Autres paramètres</string>
+    <string name="pref_hwkey_longpress_title">Action appui long</string>
+    <string name="pref_hwkey_singletap_title">Action appui simple</string>
+    <string name="pref_hwkey_doubletap_title">Action appui double</string>
+
 </resources>
