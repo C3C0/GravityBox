@@ -551,12 +551,16 @@ public class ModLockscreen {
         protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
             Canvas canvas = (Canvas) param.args[0];
             if (canvas != null && shouldDrawBatteryArc()) {
-                mArcRect.set(mHandleDrawable.getPositionX() - mHandleDrawable.getWidth()/3,
-                        mHandleDrawable.getPositionY() - mHandleDrawable.getHeight()/3,
-                        mHandleDrawable.getPositionX() + mHandleDrawable.getWidth()/3,
-                        mHandleDrawable.getPositionY() + mHandleDrawable.getHeight()/3);
-                canvas.drawArc(mArcRect, -90, mArcAngle, false, mArcPaint);
-                if (DEBUG_ARC) log("Battery arc onDraw");
+                try {
+                    mHandleDrawable.set(XposedHelpers.getObjectField(param.thisObject, "mHandleDrawable"));
+                    mArcRect.set(mHandleDrawable.getPositionX() - mHandleDrawable.getWidth()/3,
+                            mHandleDrawable.getPositionY() - mHandleDrawable.getHeight()/3,
+                            mHandleDrawable.getPositionX() + mHandleDrawable.getWidth()/3,
+                            mHandleDrawable.getPositionY() + mHandleDrawable.getHeight()/3);
+                    canvas.drawArc(mArcRect, -90, mArcAngle, false, mArcPaint);
+                } catch (Throwable t) {
+                    log("GlowPadView onDraw exception: " + t.getMessage());
+                }
             }
         }
     };
@@ -663,6 +667,10 @@ public class ModLockscreen {
         Object mHd;
 
         public HandleDrawable(Object handleDrawable) {
+            mHd = handleDrawable;
+        }
+
+        public void set(Object handleDrawable) {
             mHd = handleDrawable;
         }
 
