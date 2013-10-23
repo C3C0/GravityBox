@@ -677,4 +677,15 @@
     <!-- Volume panel: Show expanded -->
     <string name="pref_volume_panel_autoexpand_title">Rozšířit automaticky</string>
 
+    <!-- HW Key Actions: Preference screen arrangement -->
+    <string name="pref_cat_hwkey_menu_title">Tlačítko Menu</string>
+    <string name="pref_cat_hwkey_home_title">Tlačítko Domov</string>
+    <string name="pref_cat_hwkey_back_title">Tlačítko Späť</string>
+    <string name="pref_cat_hwkey_recents_title">Tlačítko Spuštěné aplikace</string>
+    <string name="pref_cat_hwkey_volume_title">Tlačítka ovládání hlasitosti</string>
+    <string name="pref_cat_hwkey_actions_others">Další nastavení</string>
+    <string name="pref_hwkey_longpress_title">Akce na dlouhé podržení</string>
+    <string name="pref_hwkey_singletap_title">Akce na ťuknutí</string>
+    <string name="pref_hwkey_doubletap_title">Akce na dvojité ťuknutí</string>
+
 </resources>
