@@ -244,9 +244,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Akcie tlačidiel</string>
     <string name="pref_cat_hwkey_actions_summary">Umožňuje nastavenie akcií pre hardvérové tlačidlá</string>
-    <string name="pref_hwkey_menu_longpress_title">Dlhé podržanie Menu</string>
-    <string name="pref_hwkey_menu_doubletap_title">Dvojité ťuknutie na Menu</string>
-    <string name="pref_hwkey_back_longpress_title">Dlhé podržanie Späť</string>
+    <string name="hwkey_menu_longpress_dialog_title">Dlhé podržanie Menu</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Dvojité ťuknutie na Menu</string>
+    <string name="hwkey_back_longpress_dialog_title">Dlhé podržanie Späť</string>
     <string name="hwkey_action_default">Predvolené</string>
     <string name="hwkey_action_search">Vyhľadávanie</string>
     <string name="hwkey_action_voice_search">Hlasové vyhľadávanie</string>
@@ -464,7 +464,7 @@
     <string name="hwkey_action_recent_apps">Zoznam spustených aplikácií</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">Dlhé podržanie Domov</string>
+    <string name="hwkey_home_longpress_dialog_title">Dlhé podržanie Domov</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">Spustiť aplikáciu 1</string>
@@ -653,8 +653,8 @@
     <string name="rambar_bottom">Zobraziť dole</string>
 
     <!-- HW Key actions for recents button -->
-    <string name="pref_hwkey_recents_singletap_title">Ťuknutie na tlačidlo zoznamu aplikácíí</string>
-    <string name="pref_hwkey_recents_longpress_title">Dlhé podržanie tlačidla zoznamu aplikácií</string>
+    <string name="hwkey_recents_singletap_dialog_title">Ťuknutie na tlačidlo zoznamu aplikácíí</string>
+    <string name="hwkey_recents_longpress_dialog_title">Dlhé podržanie tlačidla zoznamu aplikácií</string>
 
     <!-- Lockscreen battery arc -->
     <string name="pref_lockscreen_battery_arc_title">Oblúkový indikátor stavu batérie</string>

@@ -248,9 +248,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Akce tlačítek</string>
     <string name="pref_cat_hwkey_actions_summary">Umožňuje nastavení akcí pro hardvérová tlačítka</string>
-    <string name="pref_hwkey_menu_longpress_title">Dlouhé podržení Menu</string>
-    <string name="pref_hwkey_menu_doubletap_title">Dvojité klepnutí na Menu</string>
-    <string name="pref_hwkey_back_longpress_title">Dlouhé podržení Zpět</string>
+    <string name="hwkey_menu_longpress_dialog_title">Dlouhé podržení Menu</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Dvojité klepnutí na Menu</string>
+    <string name="hwkey_back_longpress_dialog_title">Dlouhé podržení Zpět</string>
     <string name="hwkey_action_default">Výchozí</string>
     <string name="hwkey_action_search">Vyhledávání</string>
     <string name="hwkey_action_voice_search">Hlasové vyhledávání</string>
@@ -468,7 +468,7 @@
     <string name="hwkey_action_recent_apps">Seznam spuštěných aplikací</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">Dlouhé podržení Domů</string>
+    <string name="hwkey_home_longpress_dialog_title">Dlouhé podržení Domů</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">Spustit aplikaci 1</string>
@@ -659,8 +659,8 @@
     <string name="rambar_bottom">Zobrazit dole</string>
 
     <!-- HW Key actions for recents button -->
-    <string name="pref_hwkey_recents_singletap_title">Ťuknutí na tlačítko seznamu aplikací</string>
-    <string name="pref_hwkey_recents_longpress_title">Dlouhé podržení tlačítka seznamu aplikací</string>
+    <string name="hwkey_recents_singletap_dialog_title">Ťuknutí na tlačítko seznamu aplikací</string>
+    <string name="hwkey_recents_longpress_dialog_title">Dlouhé podržení tlačítka seznamu aplikací</string>
 
     <!-- Lockscreen battery arc -->
     <string name="pref_lockscreen_battery_arc_title">Obloukový indikátor stavu baterie</string>

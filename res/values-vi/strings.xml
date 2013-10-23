@@ -256,9 +256,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Hành động phím cứng</string>
     <string name="pref_cat_hwkey_actions_summary">Cho phép thay đổi hành động khi bấm phím cứng</string>
-    <string name="pref_hwkey_menu_longpress_title">Giữ phím Menu</string>
-    <string name="pref_hwkey_menu_doubletap_title">Bâm đúp phím menu</string>
-    <string name="pref_hwkey_back_longpress_title">Giữ phím back</string>
+    <string name="hwkey_menu_longpress_dialog_title">Giữ phím Menu</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Bâm đúp phím menu</string>
+    <string name="hwkey_back_longpress_dialog_title">Giữ phím back</string>
     <string name="hwkey_action_default">Mặc định</string>
     <string name="hwkey_action_search">Tìm kiếm</string>
     <string name="hwkey_action_voice_search">Tìm kiếm giọng nói</string>
@@ -480,7 +480,7 @@
     <string name="hwkey_action_recent_apps">Hiện các ứng dụng gần đây</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">Hoạt động giữ phím HOME</string>
+    <string name="hwkey_home_longpress_dialog_title">Hoạt động giữ phím HOME</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">Chuyển tới ứng dụng tùy chỉnh 1</string>

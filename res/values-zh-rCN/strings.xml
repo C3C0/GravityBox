@@ -262,9 +262,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">实体按键调整</string>
     <string name="pref_cat_hwkey_actions_summary">可在此为实体按键设置自定的动作</string>
-    <string name="pref_hwkey_menu_longpress_title">菜单键长按动作</string>
-    <string name="pref_hwkey_menu_doubletap_title">菜单键双击动作</string>
-    <string name="pref_hwkey_back_longpress_title">返回键长按动作</string>
+    <string name="hwkey_menu_longpress_dialog_title">菜单键长按动作</string>
+    <string name="hwkey_menu_doubletap_dialog_title">菜单键双击动作</string>
+    <string name="hwkey_back_longpress_dialog_title">返回键长按动作</string>
     <string name="hwkey_action_default">默认</string>
     <string name="hwkey_action_search">搜索</string>
     <string name="hwkey_action_voice_search">语音搜索</string>
@@ -486,7 +486,7 @@
     <string name="hwkey_action_recent_apps">显示最近使用的应用程序</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">长按主页键动作</string>
+    <string name="hwkey_home_longpress_dialog_title">长按主页键动作</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">执行自定义的应用 1</string>
@@ -683,8 +683,8 @@
     <string name="rambar_bottom">底部</string>
     
     <!-- HW Key actions for recents button -->
-    <string name="pref_hwkey_recents_singletap_title">单按最近键行为</string>
-    <string name="pref_hwkey_recents_longpress_title">长按最近键行为</string>
+    <string name="hwkey_recents_singletap_dialog_title">单按最近键行为</string>
+    <string name="hwkey_recents_longpress_dialog_title">长按最近键行为</string>
 
     <!-- Lockscreen battery arc -->
     <string name="pref_lockscreen_battery_arc_title">显示电池弧光</string>

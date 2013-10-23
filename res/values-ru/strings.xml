@@ -262,9 +262,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Действия кнопок</string>
     <string name="pref_cat_hwkey_actions_summary">Позволяет задать свои действия для кнопок телефона</string>
-    <string name="pref_hwkey_menu_longpress_title">Долгое нажатие Меню</string>
-    <string name="pref_hwkey_menu_doubletap_title">Двойное нажатие Меню</string>
-    <string name="pref_hwkey_back_longpress_title">Долгое нажатие Назад</string>
+    <string name="hwkey_menu_longpress_dialog_title">Долгое нажатие Меню</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Двойное нажатие Меню</string>
+    <string name="hwkey_back_longpress_dialog_title">Долгое нажатие Назад</string>
     <string name="hwkey_action_default">Действие по умолчанию</string>
     <string name="hwkey_action_search">Поиск</string>
     <string name="hwkey_action_voice_search">Голосовой поиск</string>
@@ -486,7 +486,7 @@
     <string name="hwkey_action_recent_apps">Показать недавние приложения</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">Действие по долгому нажатию Home</string>
+    <string name="hwkey_home_longpress_dialog_title">Действие по долгому нажатию Home</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">Запустить приложение 1</string>
@@ -683,8 +683,8 @@
     <string name="rambar_bottom">снизу</string>
 
     <!-- HW Key actions for recents button -->
-    <string name="pref_hwkey_recents_singletap_title">Действие по одиночному касанию</string>
-    <string name="pref_hwkey_recents_longpress_title">Дейтсвие по долгому касанию</string>
+    <string name="hwkey_recents_singletap_dialog_title">Действие по одиночному касанию</string>
+    <string name="hwkey_recents_longpress_dialog_title">Дейтсвие по долгому касанию</string>
 
     <!-- Lockscreen battery arc -->
     <string name="pref_lockscreen_battery_arc_title">Статус батареи</string>

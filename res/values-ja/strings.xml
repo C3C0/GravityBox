@@ -242,9 +242,9 @@
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">ハードキーアクション</string>
     <string name="pref_cat_hwkey_actions_summary">ハードキーのアクションを変更します。</string>
-    <string name="pref_hwkey_menu_longpress_title">メニューキー長押し</string>
-    <string name="pref_hwkey_menu_doubletap_title">メニューキーダブルタップ</string>
-    <string name="pref_hwkey_back_longpress_title">戻るキー長押し</string>
+    <string name="hwkey_menu_longpress_dialog_title">メニューキー長押し</string>
+    <string name="hwkey_menu_doubletap_dialog_title">メニューキーダブルタップ</string>
+    <string name="hwkey_back_longpress_dialog_title">戻るキー長押し</string>
     <string name="hwkey_action_default">標準</string>
     <string name="hwkey_action_search">検索</string>
     <string name="hwkey_action_voice_search">音声検索</string>
@@ -470,7 +470,7 @@
     <string name="hwkey_action_recent_apps">最近のアプリを表示</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="pref_hwkey_home_longpress_title">ホームキー長押しアクション</string>
+    <string name="hwkey_home_longpress_dialog_title">ホームキー長押しアクション</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">カスタムアプリ1を起動</string>
@@ -663,8 +663,8 @@
     <string name="rambar_bottom">下に表示</string>
     
     <!-- HW Key actions for recents button -->
-    <string name="pref_hwkey_recents_singletap_title">最近のアプリキータップアクション</string>
-    <string name="pref_hwkey_recents_longpress_title">最近のアプリキー長押しアクション</string>
+    <string name="hwkey_recents_singletap_dialog_title">最近のアプリキータップアクション</string>
+    <string name="hwkey_recents_longpress_dialog_title">最近のアプリキー長押しアクション</string>
     
     <!-- Lockscreen battery arc -->
     <string name="pref_lockscreen_battery_arc_title">バッテリーアークを表示</string>
