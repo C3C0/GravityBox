@@ -188,7 +188,7 @@
     <string name="pref_lockscreen_bg_color_title">Couleur personnalisée</string>
     <string name="pref_lockscreen_bg_color_summary">Permet de définir la couleur d\'arrière-plan personnalisée pour l\'écran de déverrouillage</string>
     <string name="pref_lockscreen_bg_image_title">Image personnalisée</string>
-    <string name="pref_lockscreen_bg_image_summary">Permet de définir une image personnalisée en fond d\écran pour l\'écran de déverrouillage</string>
+    <string name="pref_lockscreen_bg_image_summary">Permet de définir une image personnalisée en fond d\'écran pour l\'écran de déverrouillage</string>
     <string name="lockscreen_background_result_successful">Fond d\'écran modifié</string>
     <string name="lockscreen_background_result_not_successful">Fond d\'écran inchangé</string>
     <string name="pref_cat_lockscreen_other_title">Autre</string>
