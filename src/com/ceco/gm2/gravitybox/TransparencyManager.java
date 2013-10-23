@@ -36,6 +36,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.database.ContentObserver;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.View;
@@ -170,7 +171,10 @@ public class TransparencyManager {
             });
         } else {
             // custom image is set by the theme, let's just apply the alpha if we can.
-            v.getBackground().setAlpha(BackgroundAlphaColorDrawable.floatAlphaToInt(alpha));
+            Drawable bg = v.getBackground();
+            if (bg != null) {
+                bg.setAlpha(BackgroundAlphaColorDrawable.floatAlphaToInt(alpha));
+            }
             return null;
         }
         anim.addListener(new AnimatorListener() {

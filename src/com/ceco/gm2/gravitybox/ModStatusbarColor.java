@@ -658,7 +658,11 @@ public class ModStatusbarColor {
             Intent intent = new Intent(Intent.ACTION_BATTERY_CHANGED);
             intent.putExtra(BatteryManager.EXTRA_LEVEL, mBatteryLevel);
             intent.putExtra(BatteryManager.EXTRA_PLUGGED, mBatteryPlugged);
-            XposedHelpers.callMethod(mBatteryController, "onReceive", mBattery.getContext(), intent);
+            try {
+                XposedHelpers.callMethod(mBatteryController, "onReceive", mBattery.getContext(), intent);
+            } catch (Throwable t) {
+                log("Incompatible battery controller: " + t.getMessage());
+            }
         }
     }
 
