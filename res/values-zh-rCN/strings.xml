@@ -692,5 +692,23 @@
     
     <!-- HW Key Actions: toggle torch -->
     <string name="hwkey_action_torch">切换按钮</string>
+    
+    <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
+    <string name="pref_hwkey_home_longpress_keyguard_title">长按主页键</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">设备锁定时长按切换开/关。如果屏幕已打开设备缺乏本地唤醒主页键的支持。</string>
+
+    <!-- Volume panel: Show expanded -->
+    <string name="pref_volume_panel_autoexpand_title">自动展开</string>
+
+    <!-- HW Key Actions: Preference screen arrangement -->
+    <string name="pref_cat_hwkey_menu_title">菜单键</string>
+    <string name="pref_cat_hwkey_home_title">主页键</string>
+    <string name="pref_cat_hwkey_back_title">返回键</string>
+    <string name="pref_cat_hwkey_recents_title">最近键</string>
+    <string name="pref_cat_hwkey_volume_title">音量键</string>
+    <string name="pref_cat_hwkey_actions_others">其它设置</string>
+    <string name="pref_hwkey_longpress_title">长按动作</string>
+    <string name="pref_hwkey_singletap_title">单按动作</string>
+    <string name="pref_hwkey_doubletap_title">双击动作</string>
 
 </resources>
