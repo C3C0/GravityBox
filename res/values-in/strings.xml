@@ -657,6 +657,7 @@
     <string name="pref_data_traffic_position_title">Posisi</string>
     <string name="dt_position_auto">Otomatis (tengah atau kanan, bergantung posisi jam)</string>
     <string name="dt_position_left">Kiri</string>
+	<string name="dt_position_right">Kanan</string>
     <string name="pref_data_traffic_size_title">Ukuran</string>
     <string name="dt_size_normal">Normal</string>
     <string name="dt_size_smaller">Lebih kecil</string>
@@ -683,5 +684,30 @@
     <!-- HW Key actions for recents button -->
     <string name="hwkey_recents_singletap_dialog_title">Aksi ketika tombol Recents ditekan</string>
     <string name="hwkey_recents_longpress_dialog_title">Aksi ketika tombol Recents ditahan</string>
+
+    <!-- Lockscreen battery arc -->
+    <string name="pref_lockscreen_battery_arc_title">Tunjukkan lengkungan baterai</string>
+    <string name="pref_lockscreen_battery_arc_summary">Tunjukkan lengkungan status baterai di sekitar lingkaran pembuka kunci</string>
+
+    <!-- HW Key Actions: toggle torch -->
+    <string name="hwkey_action_torch">Hidup/Matikan Senter</string>
+
+    <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
+    <string name="pref_hwkey_home_longpress_keyguard_title">Hidupkan senter ketika tombol Home ditahan</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">Hidup/Matikan senter ketika perangkat terkunci. Layar harus dihidupkan terlebih dahulu jika perangkat tidak memiliki fitur untuk menghidupkan layar dengan tombol home.</string>
+
+    <!-- Volume panel: Show expanded -->
+    <string name="pref_volume_panel_autoexpand_title">Membesar secara otomatis</string>
+
+    <!-- HW Key Actions: Preference screen arrangement -->
+    <string name="pref_cat_hwkey_menu_title">Tombol Menu</string>
+    <string name="pref_cat_hwkey_home_title">Tombol Home</string>
+    <string name="pref_cat_hwkey_back_title">Tombol Kembali</string>
+    <string name="pref_cat_hwkey_recents_title">Tombol Recents</string>
+    <string name="pref_cat_hwkey_volume_title">Tombol Volume</string>
+    <string name="pref_cat_hwkey_actions_others">Pengaturan lain</string>
+    <string name="pref_hwkey_longpress_title">Aksi ketika ditahan</string>
+    <string name="pref_hwkey_singletap_title">Aksi ketika ditekan sekali</string>
+    <string name="pref_hwkey_doubletap_title">Aksi ketika ditekan dua kali</string>
 
 </resources>
