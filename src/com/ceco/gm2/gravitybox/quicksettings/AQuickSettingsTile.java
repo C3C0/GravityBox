@@ -15,6 +15,7 @@
 
 package com.ceco.gm2.gravitybox.quicksettings;
 
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedHelpers;
 
 import android.content.Context;
@@ -28,7 +29,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 public abstract class AQuickSettingsTile implements OnClickListener {
-    private static final String PACKAGE_NAME = "com.android.systemui";
+    protected static final String PACKAGE_NAME = "com.android.systemui";
 
     protected Context mContext;
     protected Context mGbContext;
@@ -51,23 +52,31 @@ public abstract class AQuickSettingsTile implements OnClickListener {
         mPanelBar = panelBar;
     }
 
-    public void setupQuickSettingsTile(ViewGroup viewGroup, LayoutInflater inflater) {
+    public void setupQuickSettingsTile(ViewGroup viewGroup, LayoutInflater inflater, XSharedPreferences prefs) {
         int layoutId = mResources.getIdentifier("quick_settings_tile", "layout", PACKAGE_NAME);
         mTile = (FrameLayout) inflater.inflate(layoutId, viewGroup, false);
         onTileCreate();
         viewGroup.addView(mTile);
+        if (prefs != null) {
+            onPreferenceInitialize(prefs);
+        }
         updateResources();
         mTile.setOnClickListener(mOnClick);
         mTile.setOnLongClickListener(mOnLongClick);
         onTilePostCreate();
     }
 
-    protected abstract void onTileCreate();
-
-    protected void onTilePostCreate() {
+    public void setupQuickSettingsTile(ViewGroup viewGroup, LayoutInflater inflater) {
+        setupQuickSettingsTile(viewGroup, inflater, null);
     }
 
+    protected abstract void onTileCreate();
+
+    protected void onTilePostCreate() { };
+
     protected abstract void updateTile();
+
+    protected void onPreferenceInitialize(XSharedPreferences prefs) { };
 
     public void updateResources() {
         if (mTile != null) {

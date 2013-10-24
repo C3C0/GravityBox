@@ -15,9 +15,12 @@
 
 package com.ceco.gm2.gravitybox.quicksettings;
 
+import com.ceco.gm2.gravitybox.BroadcastSubReceiver;
+import com.ceco.gm2.gravitybox.GravityBoxSettings;
 import com.ceco.gm2.gravitybox.PhoneWrapper;
 import com.ceco.gm2.gravitybox.R;
 
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 
 import android.annotation.SuppressLint;
@@ -31,11 +34,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class NetworkModeTile extends AQuickSettingsTile {
+public class NetworkModeTile extends AQuickSettingsTile implements BroadcastSubReceiver {
     private static final String TAG = "GB:NetworkModeTile";
     private static final boolean DEBUG = false;
-
-    public static final String SETTING_NETWORK_MODE_TILE_MODE = "gb_network_mode_tile_mode";
 
     private TextView mTextView;
     private int mNetworkType;
@@ -58,8 +59,6 @@ public class NetworkModeTile extends AQuickSettingsTile {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(
                     Settings.Global.getUriFor(PhoneWrapper.PREFERRED_NETWORK_MODE), false, this);
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(SETTING_NETWORK_MODE_TILE_MODE), false, this);
         }
 
         @SuppressLint("NewApi")
@@ -68,10 +67,8 @@ public class NetworkModeTile extends AQuickSettingsTile {
             ContentResolver cr = mContext.getContentResolver();
             mNetworkType = Settings.Global.getInt(cr, 
                     PhoneWrapper.PREFERRED_NETWORK_MODE, PhoneWrapper.NT_WCDMA_PREFERRED);
-            updateFlags(Settings.System.getInt(cr, SETTING_NETWORK_MODE_TILE_MODE, 0));
 
-            if (DEBUG) log("SettingsObserver onChange; mNetworkType = " + mNetworkType +
-                    "; mAllow3gOnly = " + mAllow3gOnly);
+            if (DEBUG) log("SettingsObserver onChange; mNetworkType = " + mNetworkType);
 
             updateResources();
         }
@@ -136,15 +133,33 @@ public class NetworkModeTile extends AQuickSettingsTile {
         mNetworkType = Settings.Global.getInt(cr, 
                 PhoneWrapper.PREFERRED_NETWORK_MODE, mDefaultNetworkType);
 
-        updateFlags(Settings.System.getInt(cr, SETTING_NETWORK_MODE_TILE_MODE, 0));
-
         SettingsObserver observer = new SettingsObserver(new Handler());
         observer.observe();
+    }
+
+    @Override
+    protected void onPreferenceInitialize(XSharedPreferences prefs) {
+        int value = 0;
+        try {
+            value = Integer.valueOf(prefs.getString(GravityBoxSettings.PREF_KEY_NETWORK_MODE_TILE_MODE, "0"));
+        } catch (NumberFormatException nfe) {
+            log("onPreferenceInitialize: invalid value for network mode preference");
+        }
+        updateFlags(value);
+    }
+
+    @Override
+    public void onBroadcastReceived(Context context, Intent intent) {
+        if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKSETTINGS_CHANGED) &&
+                intent.hasExtra(GravityBoxSettings.EXTRA_NMT_MODE)) {
+            updateFlags(intent.getIntExtra(GravityBoxSettings.EXTRA_NMT_MODE, 0));
+        }
     }
 
     private void updateFlags(int nmMode) {
         mAllow3gOnly = (nmMode == 0) || (nmMode == 2);
         mAllow2g3g = (nmMode < 2);
+        if (DEBUG) log("updateFlags: mAllow3gOnly=" + mAllow3gOnly + "; mAllow2g3g=" + mAllow2g3g);
     }
 
     @Override

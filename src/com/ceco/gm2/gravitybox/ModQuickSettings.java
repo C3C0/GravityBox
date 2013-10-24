@@ -110,9 +110,12 @@ public class ModQuickSettings {
     private static Object mQuickSettings;
     private static WifiManagerWrapper mWifiManager;
     private static Set<String> mOverrideTileKeys;
+    private static XSharedPreferences mPrefs;
 
     private static ArrayList<AQuickSettingsTile> mTiles;
     private static Map<String, View> mAllTileViews;
+
+    private static List<BroadcastSubReceiver> mBroadcastSubReceivers;
 
     static {
         mCustomSystemTileKeys = new ArrayList<String>(Arrays.asList(
@@ -196,37 +199,10 @@ public class ModQuickSettings {
                             GravityBoxSettings.EXTRA_QUICK_PULLDOWN, 
                             GravityBoxSettings.QUICK_PULLDOWN_OFF);
                 }
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_NMT_MODE)) {
-                    Settings.System.putInt(mContext.getContentResolver(),
-                            NetworkModeTile.SETTING_NETWORK_MODE_TILE_MODE,
-                            intent.getIntExtra(GravityBoxSettings.EXTRA_NMT_MODE, 0));
-                }
-            } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKAPP_CHANGED)) {
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_DEFAULT)) {
-                    Settings.System.putString(mContext.getContentResolver(),
-                            QuickAppTile.SETTING_QUICKAPP_DEFAULT,
-                            intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_DEFAULT));
-                }
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT1)) {
-                    Settings.System.putString(mContext.getContentResolver(),
-                            QuickAppTile.SETTING_QUICKAPP_SLOT1,
-                            intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT1));
-                }
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT2)) {
-                    Settings.System.putString(mContext.getContentResolver(),
-                            QuickAppTile.SETTING_QUICKAPP_SLOT2,
-                            intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT2));
-                }
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT3)) {
-                    Settings.System.putString(mContext.getContentResolver(),
-                            QuickAppTile.SETTING_QUICKAPP_SLOT3,
-                            intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT3));
-                }
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT4)) {
-                    Settings.System.putString(mContext.getContentResolver(),
-                            QuickAppTile.SETTING_QUICKAPP_SLOT4,
-                            intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT4));
-                }
+            }
+
+            for (BroadcastSubReceiver bsr : mBroadcastSubReceivers) {
+                bsr.onBroadcastReceived(context, intent);
             }
         }
     };
@@ -356,30 +332,31 @@ public class ModQuickSettings {
                     new ThreadLocal<MethodState>();
             removeNotificationState.set(MethodState.UNKNOWN);
 
-            prefs.reload();
-            String tileKeys = prefs.getString(TileOrderActivity.PREF_KEY_TILE_ORDER, null);
+            mPrefs = prefs;
+            mPrefs.reload();
+            String tileKeys = mPrefs.getString(TileOrderActivity.PREF_KEY_TILE_ORDER, null);
             if (tileKeys != null) {
-                mActiveTileKeys = new ArrayList<String>(Arrays.asList(prefs.getString(
+                mActiveTileKeys = new ArrayList<String>(Arrays.asList(mPrefs.getString(
                         TileOrderActivity.PREF_KEY_TILE_ORDER, "").split(",")));
             }
             if (DEBUG) log("got tile prefs: mActiveTileKeys = " + 
                     (mActiveTileKeys == null ? "null" : mActiveTileKeys.toString()));
-            mOverrideTileKeys = prefs.getStringSet(
+            mOverrideTileKeys = mPrefs.getStringSet(
                     GravityBoxSettings.PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE, new HashSet<String>());
             if (DEBUG) log("got tile override prefs: mOverrideTileKeys = " +
                     (mOverrideTileKeys == null ? "null" : mOverrideTileKeys.toString()));
 
             try {
-                mNumColumns = Integer.valueOf(prefs.getString(
+                mNumColumns = Integer.valueOf(mPrefs.getString(
                         GravityBoxSettings.PREF_KEY_QUICK_SETTINGS_TILES_PER_ROW, "3"));
             } catch (NumberFormatException e) {
                 log("Invalid preference for tiles per row: " + e.getMessage());
             }
 
-            mAutoSwitch = prefs.getBoolean(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS_AUTOSWITCH, false);
+            mAutoSwitch = mPrefs.getBoolean(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS_AUTOSWITCH, false);
 
             try {
-                mQuickPulldown = Integer.valueOf(prefs.getString(
+                mQuickPulldown = Integer.valueOf(mPrefs.getString(
                         GravityBoxSettings.PREF_KEY_QUICK_PULLDOWN, "0"));
             } catch (NumberFormatException e) {
                 log("Invalid preference for quick pulldown: " + e.getMessage());
@@ -501,6 +478,7 @@ public class ModQuickSettings {
                 LayoutInflater inflater = (LayoutInflater) param.args[1];
 
                 mTiles = new ArrayList<AQuickSettingsTile>();
+                mBroadcastSubReceivers = new ArrayList<BroadcastSubReceiver>();
 
                 if (Utils.isMtkDevice()) {
                     WifiTile wt = new WifiTile(mContext, mGbContext, mStatusBar, mPanelBar, mWifiManager);
@@ -524,8 +502,9 @@ public class ModQuickSettings {
 
                 if (!Utils.isWifiOnly(mContext)) {
                     NetworkModeTile nmTile = new NetworkModeTile(mContext, mGbContext, mStatusBar, mPanelBar);
-                    nmTile.setupQuickSettingsTile(mContainerView, inflater);
+                    nmTile.setupQuickSettingsTile(mContainerView, inflater, mPrefs);
                     mTiles.add(nmTile);
+                    mBroadcastSubReceivers.add(nmTile);
                 }
 
                 SyncTile syncTile = new SyncTile(mContext, mGbContext, mStatusBar, mPanelBar);
@@ -555,8 +534,9 @@ public class ModQuickSettings {
                 mTiles.add(qrTile);
 
                 QuickAppTile qAppTile = new QuickAppTile(mContext, mGbContext, mStatusBar, mPanelBar);
-                qAppTile.setupQuickSettingsTile(mContainerView, inflater);
+                qAppTile.setupQuickSettingsTile(mContainerView, inflater, mPrefs);
                 mTiles.add(qAppTile);
+                mBroadcastSubReceivers.add(qAppTile);
 
                 ExpandedDesktopTile edTile = new ExpandedDesktopTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 edTile.setupQuickSettingsTile(mContainerView, inflater);

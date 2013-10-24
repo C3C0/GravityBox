@@ -18,25 +18,25 @@ package com.ceco.gm2.gravitybox.quicksettings;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ceco.gm2.gravitybox.BroadcastSubReceiver;
+import com.ceco.gm2.gravitybox.GravityBoxSettings;
 import com.ceco.gm2.gravitybox.R;
 
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 import android.app.Dialog;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.provider.Settings;
 import android.text.TextUtils.TruncateAt;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -46,7 +46,7 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.TextView;
 
-public class QuickAppTile extends AQuickSettingsTile {
+public class QuickAppTile extends AQuickSettingsTile implements BroadcastSubReceiver {
     private static final String TAG = "GB:QuickAppTile";
     private static final String SEPARATOR = "#C3C0#";
     private static final boolean DEBUG = false;
@@ -60,7 +60,6 @@ public class QuickAppTile extends AQuickSettingsTile {
     private AppInfo mMainApp;
     private List<AppInfo> mAppSlots;
     private PackageManager mPm;
-    private SettingsObserver mSettingsObserver;
     private Dialog mDialog;
     private Handler mHandler;
 
@@ -141,6 +140,7 @@ public class QuickAppTile extends AQuickSettingsTile {
                 mAppIcon = new BitmapDrawable(mResources, scaledIcon);
                 scaledIcon = Bitmap.createScaledBitmap(appIcon, sizePxSmall, sizePxSmall, true);
                 mAppIconSmall = new BitmapDrawable(mResources, scaledIcon);
+                if (DEBUG) log("AppInfo initialized for: " + getAppName());
             } catch (NameNotFoundException e) {
                 log("App not found: " + ((mPackageName == null) ? "NULL" : mPackageName.toString()));
                 reset();
@@ -150,54 +150,6 @@ public class QuickAppTile extends AQuickSettingsTile {
             }
         }
     }
-
-    private final class SettingsObserver extends ContentObserver {
-
-        public SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    SETTING_QUICKAPP_DEFAULT), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    SETTING_QUICKAPP_SLOT1), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    SETTING_QUICKAPP_SLOT2), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    SETTING_QUICKAPP_SLOT3), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    SETTING_QUICKAPP_SLOT4), false, this);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            if (DEBUG) log("SettingsObserver onChange()");
-            String value;
-            AppInfo ai;
-            ContentResolver cr = mContext.getContentResolver();
-
-            value = Settings.System.getString(cr, SETTING_QUICKAPP_DEFAULT);
-            if (mMainApp.getValue() == null || !mMainApp.getValue().equals(value)) {
-                mMainApp.initAppInfo(value);
-            }
-
-            for (int i = 0; i <= 3; i++) {
-                String key = "quick_app_slot" + (i+1);
-                value = Settings.System.getString(cr, key);
-                ai = mAppSlots.get(i);
-                if (ai.getValue() == null || !ai.getValue().equals(value)) {
-                    ai.initAppInfo(value);
-                    if (ai.getValue() == null) {
-                        Settings.System.putString(cr, key, null);
-                    }
-                }
-            }
-
-            updateResources();
-        }
-    };
 
     private Runnable mDismissDialogRunnable = new Runnable() {
 
@@ -294,10 +246,6 @@ public class QuickAppTile extends AQuickSettingsTile {
                 return true;
             }
         };
-
-        mSettingsObserver = new SettingsObserver(mHandler);
-        mSettingsObserver.onChange(true);
-        mSettingsObserver.observe();
     }
 
     @Override
@@ -314,4 +262,53 @@ public class QuickAppTile extends AQuickSettingsTile {
         tv.setText(mLabel);
         tv.setCompoundDrawablesWithIntrinsicBounds(null, mMainApp.getAppIconSmall(), null, null);
     }
+
+    @Override
+    protected void onPreferenceInitialize(XSharedPreferences prefs) {
+        updateMainApp(prefs.getString(GravityBoxSettings.PREF_KEY_QUICKAPP_DEFAULT, null));
+        updateSubApp(0, prefs.getString(GravityBoxSettings.PREF_KEY_QUICKAPP_SLOT1, null));
+        updateSubApp(1, prefs.getString(GravityBoxSettings.PREF_KEY_QUICKAPP_SLOT2, null));
+        updateSubApp(2, prefs.getString(GravityBoxSettings.PREF_KEY_QUICKAPP_SLOT3, null));
+        updateSubApp(3, prefs.getString(GravityBoxSettings.PREF_KEY_QUICKAPP_SLOT4, null));
+    }
+
+    @Override
+    public void onBroadcastReceived(Context context, Intent intent) {
+        if (DEBUG) log("onBroadcastReceived: " + intent.toString());
+
+        if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKAPP_CHANGED)) {
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_DEFAULT)) {
+                updateMainApp(intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_DEFAULT));
+            }
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT1)) {
+                updateSubApp(0, intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT1));
+            }
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT2)) {
+                updateSubApp(1, intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT2));
+            }
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT3)) {
+                updateSubApp(2, intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT3));
+            }
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT4)) {
+                updateSubApp(3, intent.getStringExtra(GravityBoxSettings.EXTRA_QUICKAPP_SLOT4));
+            }
+
+            updateResources();
+        }
+    }
+
+    private void updateMainApp(String value) {
+        if (mMainApp.getValue() == null || !mMainApp.getValue().equals(value)) {
+            mMainApp.initAppInfo(value);
+        }
+    }
+
+    private void updateSubApp(int slot, String value) {
+        AppInfo ai;
+        ai = mAppSlots.get(slot);
+        if (ai.getValue() == null || !ai.getValue().equals(value)) {
+            ai.initAppInfo(value);
+        }
+    }
+
 }
