@@ -15,14 +15,15 @@
 
 package com.ceco.gm2.gravitybox;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.XModuleResources;
-import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
@@ -30,8 +31,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.os.Build;
-import android.os.Handler;
-import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -78,8 +77,8 @@ public class ModStatusbarColor {
     private static TransparencyManager mTransparencyManager;
     private static TrafficMeter mTrafficMeter;
     private static Context mContextPwm;
-    private static SettingsObserverPwm mSettingsObserverPwm;
     private static int[] mTransparencyValuesPwm = new int[4];
+    private static List<BroadcastSubReceiver> mBroadcastSubReceivers;
 
     static {
         mIconManager = new StatusBarIconManager(XModuleResources.createInstance(GravityBox.MODULE_PATH, null));
@@ -114,35 +113,24 @@ public class ModStatusbarColor {
         mTrafficMeter = trafficMeter;
     }
 
-    private static class SettingsObserverPwm extends ContentObserver {
-        public SettingsObserverPwm(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver cr = mContextPwm.getContentResolver();
-            cr.registerContentObserver(Settings.System.getUriFor(
-                    TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LAUNCHER), false, this);
-            cr.registerContentObserver(Settings.System.getUriFor(
-                    TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN), false, this);
-            cr.registerContentObserver(Settings.System.getUriFor(
-                    TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LAUNCHER), false, this);
-            cr.registerContentObserver(Settings.System.getUriFor(
-                    TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LOCKSCREEN), false, this);
-            onChange(true);
-        }
-
+    private static BroadcastReceiver mBroadcastReceiverPwm = new BroadcastReceiver() {
         @Override
-        public void onChange(boolean selfChange) {
-            ContentResolver cr = mContextPwm.getContentResolver();
-            mTransparencyValuesPwm[0] = Settings.System.getInt(cr,
-                    TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LAUNCHER, 0);
-            mTransparencyValuesPwm[1] = Settings.System.getInt(cr,
-                    TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN, 0);
-            mTransparencyValuesPwm[2] = Settings.System.getInt(cr,
-                    TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LAUNCHER, 0);
-            mTransparencyValuesPwm[3] = Settings.System.getInt(cr,
-                    TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LOCKSCREEN, 0);
+        public void onReceive(Context context, Intent intent) {
+            if (DEBUG) log("PhoneWindowManager received broadcast: " + intent.toString());
+            if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_STATUSBAR_COLOR_CHANGED)) {
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_SB_LAUNCHER)) {
+                    mTransparencyValuesPwm[0] = intent.getIntExtra(GravityBoxSettings.EXTRA_TM_SB_LAUNCHER, 0);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_SB_LOCKSCREEN)) {
+                    mTransparencyValuesPwm[1] = intent.getIntExtra(GravityBoxSettings.EXTRA_TM_SB_LOCKSCREEN, 0);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_NB_LAUNCHER)) {
+                    mTransparencyValuesPwm[2] = intent.getIntExtra(GravityBoxSettings.EXTRA_TM_NB_LAUNCHER, 0);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_NB_LOCKSCREEN)) {
+                    mTransparencyValuesPwm[3] = intent.getIntExtra(GravityBoxSettings.EXTRA_TM_NB_LOCKSCREEN, 0);
+                }
+            }
         }
     };
 
@@ -172,22 +160,6 @@ public class ModStatusbarColor {
                     if (DEBUG) log("Icon colors master switch set to: " + mIconColorEnabled);
                     if (!mIconColorEnabled) mIconManager.clearCache();
                     applyIconColors();
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_SB_LAUNCHER)) {
-                    Settings.System.putInt(context.getContentResolver(),
-                            TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LAUNCHER,
-                            intent.getIntExtra(GravityBoxSettings.EXTRA_TM_SB_LAUNCHER, 0));
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_SB_LOCKSCREEN)) {
-                    Settings.System.putInt(context.getContentResolver(),
-                            TransparencyManager.SETTING_STATUS_BAR_ALPHA_CONFIG_LOCKSCREEN,
-                            intent.getIntExtra(GravityBoxSettings.EXTRA_TM_SB_LOCKSCREEN, 0));
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_NB_LAUNCHER)) {
-                    Settings.System.putInt(context.getContentResolver(),
-                            TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LAUNCHER,
-                            intent.getIntExtra(GravityBoxSettings.EXTRA_TM_NB_LAUNCHER, 0));
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_NB_LOCKSCREEN)) {
-                    Settings.System.putInt(context.getContentResolver(),
-                            TransparencyManager.SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN,
-                            intent.getIntExtra(GravityBoxSettings.EXTRA_TM_NB_LOCKSCREEN, 0));
                 } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_COLOR_FOLLOW)) {
                     boolean follow = intent.getBooleanExtra(GravityBoxSettings.EXTRA_SB_COLOR_FOLLOW, false);
                     mIconManager.setFollowStockBatteryColor(follow);
@@ -224,10 +196,14 @@ public class ModStatusbarColor {
                 mRoamingIndicatorsDisabled = intent.getBooleanExtra(
                         GravityBoxSettings.EXTRA_INDICATORS_DISABLED, false);
             }
+
+            for (BroadcastSubReceiver bsr : mBroadcastSubReceivers) {
+                bsr.onBroadcastReceived(context, intent);
+            }
         }
     };
 
-    public static void initZygote() {
+    public static void initZygote(final XSharedPreferences prefs) {
         try {
             final Class<?> phoneWindowManagerClass = XposedHelpers.findClass(CLASS_PHONE_WINDOW_MANAGER, null);
 
@@ -238,11 +214,15 @@ public class ModStatusbarColor {
                 @Override
                 protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
                     if (mContextPwm == null) {
-                        if (DEBUG) log("getSystemDecorRectLw: registering transparency settings observer");
+                        if (DEBUG) log("getSystemDecorRectLw: registering transparency settings receiver");
+                        mTransparencyValuesPwm[0] = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_STATUSBAR_LAUNCHER, 0);
+                        mTransparencyValuesPwm[1] = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_STATUSBAR_LOCKSCREEN, 0);
+                        mTransparencyValuesPwm[2] = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_NAVBAR_LAUNCHER, 0);
+                        mTransparencyValuesPwm[3] = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_NAVBAR_LOCKSCREEN, 0);
                         mContextPwm = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
-                        Handler h = (Handler) XposedHelpers.getObjectField(param.thisObject, "mHandler");
-                        mSettingsObserverPwm = new SettingsObserverPwm(h);
-                        mSettingsObserverPwm.observe();
+                        IntentFilter intentFilter = new IntentFilter();
+                        intentFilter.addAction(GravityBoxSettings.ACTION_PREF_STATUSBAR_COLOR_CHANGED);
+                        mContextPwm.registerReceiver(mBroadcastReceiverPwm, intentFilter);
                     }
 
                     boolean override = false;
@@ -277,6 +257,8 @@ public class ModStatusbarColor {
             final Class<?> batteryControllerClass = XposedHelpers.findClass(CLASS_BATTERY_CONTROLLER, classLoader);
             final Class<?> notifPanelViewClass = Build.VERSION.SDK_INT > 16 ?
                     XposedHelpers.findClass(CLASS_NOTIF_PANEL_VIEW, classLoader) : null;
+
+            mBroadcastSubReceivers = new ArrayList<BroadcastSubReceiver>();
 
             mIconColorEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE, false);
             mSkipBatteryIcon = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_COLOR_SKIP_BATTERY, false);
@@ -326,6 +308,8 @@ public class ModStatusbarColor {
                     mTransparencyManager.setStatusbar(XposedHelpers.getObjectField(param.thisObject, "mStatusBarView"));
                     mTransparencyManager.setNavbar(XposedHelpers.getObjectField(
                             param.thisObject, "mNavigationBarView"));
+                    mTransparencyManager.initPreferences(prefs);
+                    mBroadcastSubReceivers.add(mTransparencyManager);
 
                     mBatteryController = XposedHelpers.getObjectField(param.thisObject, "mBatteryController");
                     prefs.reload();

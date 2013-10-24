@@ -18,6 +18,7 @@ package com.ceco.gm2.gravitybox;
 
 import java.util.List;
 
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 
 import android.animation.Animator;
@@ -30,22 +31,15 @@ import android.app.ActivityManager;
 import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
-import android.database.ContentObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.provider.Settings;
 import android.view.View;
 
-public class TransparencyManager {
-    public static final String SETTING_STATUS_BAR_ALPHA_CONFIG_LAUNCHER = "status_bar_alpha_config_launcher";
-    public static final String SETTING_STATUS_BAR_ALPHA_CONFIG_LOCKSCREEN = "status_bar_alpha_config_lockscreen";
-    public static final String SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LAUNCHER = "navigation_bar_alpha_config_launcher";
-    public static final String SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN = "navigation_bar_alpha_config_lockscreen";
+public class TransparencyManager implements BroadcastSubReceiver {
     private static final boolean DEBUG = false;
 
     public static final float KEYGUARD_ALPHA = 0.44f;
@@ -102,9 +96,6 @@ public class TransparencyManager {
                 update();
             }
         }, intentFilter);
-
-        SettingsObserver settingsObserver = new SettingsObserver(mHandler);
-        settingsObserver.observe();
     }
 
     private void update(boolean force) {
@@ -256,53 +247,46 @@ public class TransparencyManager {
                 && homeInfo.packageName.equals(component.getPackageName())
                 && homeInfo.name.equals(component.getClassName());
     }
+    
+    public void initPreferences(XSharedPreferences prefs) {
+        int value;
 
-    class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LAUNCHER), false,
-                    this);
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN), false,
-                    this);
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(SETTING_STATUS_BAR_ALPHA_CONFIG_LAUNCHER), false,
-                    this);
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(SETTING_STATUS_BAR_ALPHA_CONFIG_LOCKSCREEN), false,
-                    this);
-            updateSettings();
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            updateSettings();
-        }
-    }
-
-    protected void updateSettings() {
-        ContentResolver resolver = mContext.getContentResolver();
-        float value;
-
-        value = Settings.System.getInt(resolver, SETTING_STATUS_BAR_ALPHA_CONFIG_LAUNCHER, 0);
+        value = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_STATUSBAR_LAUNCHER, 0);
         mStatusbarInfo.homeAlpha = 1 - (value / 100f);
 
-        value = Settings.System.getInt(resolver, SETTING_STATUS_BAR_ALPHA_CONFIG_LOCKSCREEN, 0);
+        value = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_STATUSBAR_LOCKSCREEN, 0);
         mStatusbarInfo.keyguardAlpha = 1 - (value / 100f);
 
-        value = Settings.System.getInt(resolver, SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LAUNCHER, 0);
+        value = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_NAVBAR_LAUNCHER, 0);
         mNavbarInfo.homeAlpha = 1 - (value / 100f);
 
-        value = Settings.System.getInt(resolver, SETTING_NAVIGATION_BAR_ALPHA_CONFIG_LOCKSCREEN, 0);
+        value = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_NAVBAR_LOCKSCREEN, 0);
         mNavbarInfo.keyguardAlpha = 1 - (value / 100f);
+    }
 
-        update(true);
+    @Override
+    public void onBroadcastReceived(Context context, Intent intent) {
+        if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_STATUSBAR_COLOR_CHANGED)) {
+            int value;
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_SB_LAUNCHER)) {
+                value = intent.getIntExtra(GravityBoxSettings.EXTRA_TM_SB_LAUNCHER, 0);
+                mStatusbarInfo.homeAlpha = 1 - (value / 100f);
+            }
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_SB_LOCKSCREEN)) {
+                value = intent.getIntExtra(GravityBoxSettings.EXTRA_TM_SB_LOCKSCREEN, 0);
+                mStatusbarInfo.keyguardAlpha = 1 - (value / 100f);
+            }
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_NB_LAUNCHER)) {
+                value = intent.getIntExtra(GravityBoxSettings.EXTRA_TM_NB_LAUNCHER, 0);
+                mNavbarInfo.homeAlpha = 1 - (value / 100f);
+            }
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_TM_NB_LOCKSCREEN)) {
+                value = intent.getIntExtra(GravityBoxSettings.EXTRA_TM_NB_LOCKSCREEN, 0);
+                mNavbarInfo.keyguardAlpha = 1 - (value / 100f);
+            }
+
+            update(true);
+        }
     }
 }
 
