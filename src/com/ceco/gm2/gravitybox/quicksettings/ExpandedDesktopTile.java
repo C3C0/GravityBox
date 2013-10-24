@@ -15,12 +15,17 @@
 
 package com.ceco.gm2.gravitybox.quicksettings;
 
+import com.ceco.gm2.gravitybox.BroadcastSubReceiver;
 import com.ceco.gm2.gravitybox.GravityBoxSettings;
 import com.ceco.gm2.gravitybox.ModExpandedDesktop;
 import com.ceco.gm2.gravitybox.R;
 
+import de.robv.android.xposed.XSharedPreferences;
+import de.robv.android.xposed.XposedBridge;
+
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.database.ContentObserver;
 import android.os.Handler;
 import android.provider.Settings;
@@ -28,13 +33,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class ExpandedDesktopTile extends AQuickSettingsTile {
+public class ExpandedDesktopTile extends AQuickSettingsTile implements BroadcastSubReceiver {
+    private static final String TAG = "GB:ExpandedDesktopTile";
 
     private TextView mTextView;
     private int mMode;
     private boolean mExpanded;
     private Handler mHandler;
     private SettingsObserver mSettingsObserver;
+
+    private static void log(String message) {
+        XposedBridge.log(TAG + ": " + message);
+    }
 
     public ExpandedDesktopTile(Context context, Context gbContext, Object statusBar, Object panelBar) {
         super(context, gbContext, statusBar, panelBar);
@@ -66,8 +76,6 @@ public class ExpandedDesktopTile extends AQuickSettingsTile {
         public void observe() {
             ContentResolver cr = mContext.getContentResolver();
             cr.registerContentObserver(Settings.System.getUriFor(
-                   ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_MODE) , false, this);
-            cr.registerContentObserver(Settings.System.getUriFor(
                    ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE), false, this);
         }
 
@@ -90,8 +98,6 @@ public class ExpandedDesktopTile extends AQuickSettingsTile {
 
     @Override
     protected synchronized void updateTile() {
-        mMode = Settings.System.getInt(mContext.getContentResolver(),
-                ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_MODE, 0);
         mExpanded = (Settings.System.getInt(mContext.getContentResolver(),
                 ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE, 0) == 1)
                 && (mMode > 0);
@@ -108,5 +114,24 @@ public class ExpandedDesktopTile extends AQuickSettingsTile {
 
         mTextView.setText(mLabel);
         mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+    }
+
+    @Override
+    public void onPreferenceInitialize(XSharedPreferences prefs) {
+        mMode = GravityBoxSettings.ED_DISABLED;
+        try {
+            mMode = Integer.valueOf(prefs.getString(GravityBoxSettings.PREF_KEY_EXPANDED_DESKTOP, "0"));
+        } catch (NumberFormatException nfe) {
+            log("Invalid value for PREF_KEY_EXPANDED_DESKTOP preference");
+        }
+    }
+
+    @Override
+    public void onBroadcastReceived(Context context, Intent intent) {
+        if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED) &&
+                intent.hasExtra(GravityBoxSettings.EXTRA_ED_MODE)) {
+            mMode = intent.getIntExtra(GravityBoxSettings.EXTRA_ED_MODE, GravityBoxSettings.ED_DISABLED);
+            updateResources();
+        }
     }
 }

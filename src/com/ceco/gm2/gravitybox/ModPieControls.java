@@ -81,6 +81,7 @@ public class ModPieControls {
     private static int mPieMode;
     private static int mPieSize;
     private static int mPieTriggerSize;
+    private static int mExpandedDesktopMode;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -127,6 +128,10 @@ public class ModPieControls {
                             GravityBoxSettings.EXTRA_PIE_MENU, false);
                     mPieController.setMenuVisibility(mShowMenuItem | mAlwaysShowMenuItem);
                 }
+            } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED)) {
+                mExpandedDesktopMode = intent.getIntExtra(
+                        GravityBoxSettings.EXTRA_ED_MODE, GravityBoxSettings.ED_DISABLED);
+                attachPie();
             }
         }
     };
@@ -233,6 +238,14 @@ public class ModPieControls {
             mPieSize = prefs.getInt(GravityBoxSettings.PREF_KEY_PIE_CONTROL_SIZE, 1000);
             mPieTriggerSize = prefs.getInt(GravityBoxSettings.PREF_KEY_PIE_CONTROL_TRIGGER_SIZE, 5);
 
+            mExpandedDesktopMode = GravityBoxSettings.ED_DISABLED;
+            try {
+                mExpandedDesktopMode = Integer.valueOf(prefs.getString(
+                        GravityBoxSettings.PREF_KEY_EXPANDED_DESKTOP, "0"));
+            } catch (NumberFormatException nfe) {
+                log("Invalid value for PREF_KEY_EXPANDED_DESKTOP preference");
+            }
+
             XposedHelpers.findAndHookMethod(baseStatusBarClass, "start", new XC_MethodHook() {
 
                 @Override
@@ -248,6 +261,7 @@ public class ModPieControls {
 
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_PIE_CHANGED);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED);
                     mContext.registerReceiver(mBroadcastReceiver, intentFilter);
 
                     mSettingsObserver = new PieSettingsObserver(new Handler());
@@ -319,8 +333,6 @@ public class ModPieControls {
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_MODE), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                     ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE), false, this);
         }
 
@@ -341,16 +353,14 @@ public class ModPieControls {
             case PIE_ENABLED_ALWAYS: return true;
             case PIE_ENABLED_ED:
             case PIE_ENABLED_ED_NAVBAR_HIDDEN:
-                final int edMode = Settings.System.getInt(
-                        cr, ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_MODE, 0);
-                if (DEBUG) log("isPieEnabled: SETTING_EXPANDED_DESKTOP_MODE = " + edMode);
+                if (DEBUG) log("isPieEnabled: SETTING_EXPANDED_DESKTOP_MODE = " + mExpandedDesktopMode);
                 final boolean edEnabled = Settings.System.getInt(
                         cr, ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE, 0) == 1;
                 if (DEBUG) log("isPieEnabled: SETTING_EXPANDED_DESKTOP_STATE = " + edEnabled);
                 return edEnabled && (mPieMode == PIE_ENABLED_ED ||
                         (mPieMode == PIE_ENABLED_ED_NAVBAR_HIDDEN 
-                            && (edMode == GravityBoxSettings.ED_NAVBAR ||
-                                edMode == GravityBoxSettings.ED_BOTH)));
+                            && (mExpandedDesktopMode == GravityBoxSettings.ED_NAVBAR ||
+                                    mExpandedDesktopMode == GravityBoxSettings.ED_BOTH)));
             default: return false;
         }
     }

@@ -251,7 +251,7 @@ public class ModPowerMenu {
                     }
 
                     // Add Expanded Desktop action if enabled
-                    if (ExpandedDesktopAction.isExpandedDesktopEnabled(mContext)) {
+                    if (ExpandedDesktopAction.isExpandedDesktopEnabled(prefs)) {
                         if (mExpandedDesktopAction == null) {
                             mExpandedDesktopAction = Proxy.newProxyInstance(classLoader, 
                                     new Class<?>[] { actionClass },
@@ -414,9 +414,14 @@ public class ModPowerMenu {
         public ExpandedDesktopAction() {
         }
 
-        public static boolean isExpandedDesktopEnabled(Context context) {
-            return (Settings.System.getInt(context.getContentResolver(),
-                    ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_MODE, 0) != 0);
+        public static boolean isExpandedDesktopEnabled(XSharedPreferences prefs) {
+            int edMode = GravityBoxSettings.ED_DISABLED;
+            try {
+                edMode = Integer.valueOf(prefs.getString(GravityBoxSettings.PREF_KEY_EXPANDED_DESKTOP, "0"));
+            } catch(NumberFormatException nfe) {
+                log("Invalid value for PREF_KEY_EXPANDED_DESKTOP preference");
+            }
+            return (edMode != GravityBoxSettings.ED_DISABLED);
         }
 
         public static boolean isExpandedDesktopOn(Context context) {

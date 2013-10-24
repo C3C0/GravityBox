@@ -817,8 +817,8 @@ public class ModHwKeys {
             public void run() {
                 try {
                     final ContentResolver resolver = mContext.getContentResolver();
-                    final int edMode = Settings.System.getInt(resolver,
-                            ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_MODE, 0);
+                    final int edMode = Integer.valueOf(mPrefs.getString(
+                            GravityBoxSettings.PREF_KEY_EXPANDED_DESKTOP, "0"));
                     if (edMode == GravityBoxSettings.ED_DISABLED) {
                         Toast.makeText(mContext, mStrExpandedDesktopDisabled, Toast.LENGTH_SHORT).show();
                     } else {

@@ -449,6 +449,7 @@ public class ModQuickSettings {
 
             IntentFilter intentFilter = new IntentFilter(GravityBoxSettings.ACTION_PREF_QUICKSETTINGS_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_QUICKAPP_CHANGED);
+            intentFilter.addAction(GravityBoxSettings.ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED);
             mContext.registerReceiver(mBroadcastReceiver, intentFilter);
         }
     };
@@ -539,8 +540,9 @@ public class ModQuickSettings {
                 mBroadcastSubReceivers.add(qAppTile);
 
                 ExpandedDesktopTile edTile = new ExpandedDesktopTile(mContext, mGbContext, mStatusBar, mPanelBar);
-                edTile.setupQuickSettingsTile(mContainerView, inflater);
+                edTile.setupQuickSettingsTile(mContainerView, inflater, mPrefs);
                 mTiles.add(edTile);
+                mBroadcastSubReceivers.add(edTile);
 
                 ScreenshotTile ssTile = new ScreenshotTile(mContext, mGbContext, mStatusBar, mPanelBar);
                 ssTile.setupQuickSettingsTile(mContainerView, inflater);

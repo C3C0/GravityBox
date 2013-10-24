@@ -60,7 +60,6 @@ public class ModExpandedDesktop {
     private static float mNavbarWidthScaleFactor = 1;
 
     public static final String SETTING_EXPANDED_DESKTOP_STATE = "gravitybox_expanded_desktop_state";
-    public static final String SETTING_EXPANDED_DESKTOP_MODE = "gravitybox_expanded_desktop_mode";
     private static final int SEND_NEW_CONFIGURATION = 18;
 
     private static void log(String message) {
@@ -77,8 +76,6 @@ public class ModExpandedDesktop {
             final ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
                     SETTING_EXPANDED_DESKTOP_STATE), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    SETTING_EXPANDED_DESKTOP_MODE), false, this);
             updateSettings();
         }
 
@@ -96,8 +93,9 @@ public class ModExpandedDesktop {
                     && intent.hasExtra(GravityBoxSettings.EXTRA_ED_MODE)) {
                 final int expandedDesktopMode = intent.getIntExtra(
                         GravityBoxSettings.EXTRA_ED_MODE, GravityBoxSettings.ED_DISABLED);
-                Settings.System.putInt(mContext.getContentResolver(), 
-                        SETTING_EXPANDED_DESKTOP_MODE, expandedDesktopMode);
+                final boolean forceUpdateDisplayMetrics = expandedDesktopMode != mExpandedDesktopMode;
+                mExpandedDesktopMode = expandedDesktopMode;
+                updateSettings(forceUpdateDisplayMetrics);
             } else if (intent.getAction().equals(ModStatusbarColor.ACTION_PHONE_STATUSBAR_VIEW_MADE)) {
                 updateSettings(true);
             } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_NAVBAR_CHANGED)) {
@@ -126,11 +124,9 @@ public class ModExpandedDesktop {
         if (mContext == null || mPhoneWindowManager == null) return;
 
         try {
-            final int expandedDesktopMode = Settings.System.getInt(mContext.getContentResolver(),
-                    SETTING_EXPANDED_DESKTOP_MODE, GravityBoxSettings.ED_DISABLED);
             final boolean expandedDesktop = Settings.System.getInt(mContext.getContentResolver(), 
                     SETTING_EXPANDED_DESKTOP_STATE, 0) == 1;
-            if (expandedDesktopMode == GravityBoxSettings.ED_DISABLED && expandedDesktop) {
+            if (mExpandedDesktopMode == GravityBoxSettings.ED_DISABLED && expandedDesktop) {
                     Settings.System.putInt(mContext.getContentResolver(),
                             SETTING_EXPANDED_DESKTOP_STATE, 0);
                     return;
@@ -139,10 +135,6 @@ public class ModExpandedDesktop {
             boolean updateDisplayMetrics = false | forceUpdateDisplayMetrics;
             if (mExpandedDesktop != expandedDesktop) {
                 mExpandedDesktop = expandedDesktop;
-                updateDisplayMetrics = true;
-            }
-            if (mExpandedDesktopMode != expandedDesktopMode) {
-                mExpandedDesktopMode = expandedDesktopMode;
                 updateDisplayMetrics = true;
             }
 
@@ -215,6 +207,14 @@ public class ModExpandedDesktop {
                         (float) prefs.getInt(GravityBoxSettings.PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE, 100) / 100f;
                 mNavbarWidthScaleFactor = 
                         (float) prefs.getInt(GravityBoxSettings.PREF_KEY_NAVBAR_WIDTH, 100) / 100f;
+            }
+
+            mExpandedDesktopMode = GravityBoxSettings.ED_DISABLED;
+            try {
+                mExpandedDesktopMode = Integer.valueOf(prefs.getString(
+                        GravityBoxSettings.PREF_KEY_EXPANDED_DESKTOP, "0"));
+            } catch (NumberFormatException nfe) {
+                log("Invalid value for PREF_KEY_EXPANDED_DESKTOP preference");
             }
 
             if (Build.VERSION.SDK_INT > 16) {
