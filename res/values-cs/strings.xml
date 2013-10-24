@@ -35,8 +35,8 @@
     <string name="vol_key_cursor_control_title">Pohyb kurzoru tlačítky hlasitosti</string>
     <string name="vol_key_cursor_control_summary">Umožní pohyb kurzoru pomocí tlačítek hlasitosti v textových polích</string>
     <string name="vol_key_cursor_control_off">Vypnuté</string>
-    <string name="vol_key_cursor_control_on">Tlačítko nahoru/dolu pohybuje kurzorem doleva/doprava</string>
-    <string name="vol_key_cursor_control_on_reverse">Tlačítko nahoru/dolu pohybuje kurzorem doprava/doleva</string>
+    <string name="vol_key_cursor_control_on">Tlačítko nahoru/dolů pohybuje kurzorem doleva/doprava</string>
+    <string name="vol_key_cursor_control_on_reverse">Tlačítko nahoru/dolů pohybuje kurzorem doprava/doleva</string>
 
     <string name="recents_clear_all_title">Ukončení aktuálních aplikací</string>
     <string name="recents_clear_all_summary">Zobrazí tlačítko, které umožní ukončení všech aplikací najednou, v seznamu aktuálních aplikací</string>
@@ -48,8 +48,8 @@
     <string name="fix_datetime_crash_summary">Použít v případě, když nastavení datumu a času padá (vyžaduje restart)</string>
 
     <string name="fix_caller_id_phone_title">Opravit identifikátor volajícího</string>
-    <string name="fix_caller_id_phone_summary">Použít v případě, když není číslo volajícího identifikované během přijímání hovoru (vyžaduje restart)</string>
-    <string name="fix_caller_id_phone_alert">Aby se oprava projavila, je potřebné po restartu vymazat a znova přidat kontakty! V Nastavení / Aplikace / Všechny, vyhledejte \"Úložiště kontaktů\" a zvolte vymazání údajů. Ujistěte se nejdříve, že máte zálohu kontaktů.</string>
+    <string name="fix_caller_id_phone_summary">Použít v případě, když není číslo volajícího identifikováno během přijímání hovoru (vyžaduje restart)</string>
+    <string name="fix_caller_id_phone_alert">Aby se oprava projevila, je nutné po restartu vymazat a znova přidat kontakty! V Nastavení / Aplikace / Všechny, vyhledejte \"Úložiště kontaktů\" a zvolte vymazání údajů. Ujistěte se nejdříve, že máte zálohu kontaktů.</string>
 
     <string name="fix_caller_id_mms_title">Opravit identifikátor odesílatele SMS</string>
     <string name="fix_caller_id_mms_summary">Použít v případě kdy dochází při přijetí SMS k vytváření duplicitních vláken konverzací pro ten samý kontakt (vyžaduje restart)</string>
@@ -83,7 +83,7 @@
     <string name="quick_settings_stay_awake_off">Bdění vyp</string>
     <string name="quick_settings_wifi">Wi-Fi</string>
     <string name="quick_settings_wifi_off">Wi-Fi vyp</string>
-    <string name="quick_settings_wifi_not_connected">Nepřipojené</string>
+    <string name="quick_settings_wifi_not_connected">Nepřipojeno</string>
     <string name="quick_settings_wifi_turning_on">Zapíná se&#8230;</string>
 
     <!--  QuickSettings settings -->
@@ -98,7 +98,7 @@
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_gps_alt">GPS (CM styl)</string>
     <string name="qs_tile_mobile_data">Mobilní data</string>
-    <string name="qs_tile_network_mode">Typ síte</string>
+    <string name="qs_tile_network_mode">Typ sítě</string>
     <string name="qs_tile_data_usage">Využití dat</string>
     <string name="qs_tile_audio">Zvukové profily</string>
     <string name="qs_tile_brightness">Jas</string>
@@ -108,7 +108,7 @@
     <string name="qs_tile_wifi_ap">Wi-Fi Přístupový bod</string>
     <string name="qs_tile_torch">Světlo</string>
     <string name="qs_tile_gravitybox">GravityBox</string>
-    <string name="qs_tile_sleep">Uspát</string>
+    <string name="qs_tile_sleep">Uspat</string>
     <string name="qs_tile_quickrecord">Rychlý záznam zvuku</string>
     <string name="qs_tile_volume">Hlasitost</string>
     <string name="qs_tile_expanded_desktop">Rozšířená plocha</string>
@@ -148,8 +148,8 @@
     <string name="about_donate_summary">Přispějte přes PayPal pokud si myslíte, že tato aplikace za to stojí! Zvažte též příspěvek pro rovo89 za jeho excelentní Xposed framework.</string>
 
     <!-- Reboot confirmation -->
-    <string name="reboot_confirm">Váš %s bude restartovaný</string>
-    <string name="reboot_confirm_recovery">Váš %s bude restartovaný do režimu Recovery</string>
+    <string name="reboot_confirm">Váš %s bude restartován</string>
+    <string name="reboot_confirm_recovery">Váš %s bude restartován do režimu Recovery</string>
 
     <!-- CRT effect screen off animation -->
     <string name="crt_off_effect_title">CRT efekt vypnutí obrazovky</string>
@@ -247,7 +247,7 @@
 
     <!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Akce tlačítek</string>
-    <string name="pref_cat_hwkey_actions_summary">Umožňuje nastavení akcí pro hardvérová tlačítka</string>
+    <string name="pref_cat_hwkey_actions_summary">Umožňuje nastavení akcí pro hardwarová tlačítka</string>
     <string name="hwkey_menu_longpress_dialog_title">Dlouhé podržení Menu</string>
     <string name="hwkey_menu_doubletap_dialog_title">Dvojité klepnutí na Menu</string>
     <string name="hwkey_back_longpress_dialog_title">Dlouhé podržení Zpět</string>
@@ -256,11 +256,11 @@
     <string name="hwkey_action_voice_search">Hlasové vyhledávání</string>
     <string name="hwkey_action_prev_app">Přepnout na předcházející aplikaci</string>
     <string name="hwkey_action_kill">Zabít aplikaci v popředí</string>
-    <string name="hwkey_action_sleep">Uspát</string>
+    <string name="hwkey_action_sleep">Uspat</string>
     <string name="pref_hwkey_kill_delay_title">Zpoždění zabití aplikace</string>
-    <string name="pref_hwkey_kill_delay_summary">Vztahuje se na akci zabití aplikace v popředí dlouhým podržením tlačítka. Definuje, jak dlouho musí být tlačítko přidrženo aby došlo k provedení akce.</string>
+    <string name="pref_hwkey_kill_delay_summary">Vztahuje se na akci zabití aplikace v popředí dlouhým podržením tlačítka. Definuje, jak dlouho musí být tlačítko přidrženo, aby došlo k provedení akce.</string>
     <string name="pref_hwkey_doubletap_speed_title">Rychlost dvojitého klepnutí</string>
-    <string name="pref_hwkey_doubletap_speed_summary">Vztahuje se na dvojité klepnutí na Menu. Definuje, jak rychle musí být provedeno dvojité klepnutí aby došlo k provedení akce.</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Vztahuje se na dvojité klepnutí na Menu. Definuje, jak rychle musí být provedeno dvojité klepnutí, aby došlo k provedení akce.</string>
     <string name="app_killed">Aplikace %s zabita</string>
     <string name="nothing_to_kill">Není co zabít</string>
     <string name="no_previous_app_found">Žádná předcházející aplikace</string>
@@ -282,7 +282,7 @@
 
     <!-- QuickSettings tiles per row -->
     <string name="pref_qs_tiles_per_row_title">Počet dlaždic na řádek</string>
-    <string name="pref_qs_tiles_per_row_summary">Definuje počet QuickSettings dlaždic zobrazených na 1 řádek. Velikost dlaždic bude upravená podle potřeby. Aplikovatelné na portrét režim.</string>
+    <string name="pref_qs_tiles_per_row_summary">Definuje počet QuickSettings dlaždic zobrazených na 1 řádek. Velikost dlaždic bude upravena podle potřeby. Aplikovatelné na portrét režim.</string>
 
     <!--  Status bar clock - show day of week -->
     <string name="pref_statusbar_clock_dow_title">Zobrazit den v týdnu</string>
@@ -297,7 +297,7 @@
 
     <!-- Auto-switch QuickSettings -->
     <string name="pref_auto_switch_qs_title">Automatické zobrazení QuickSettings</string>
-    <string name="pref_auto_switch_qs_summary">QuickSettings budou zobrazeny automaticky pokud se v oznamovacím panely nenacházejí žádné notifikace</string>
+    <string name="pref_auto_switch_qs_summary">QuickSettings budou zobrazena automaticky, pokud se v oznamovacím panely nenacházejí žádné notifikace</string>
 
     <!-- Quick pulldown -->
     <string name="pref_quick_pulldown_title">Rychlé zobrazení QuickSettings</string>
@@ -345,12 +345,12 @@
 
     <!-- Disable roaming indicators -->
     <string name="pref_disable_roaming_indicators_title">Vypnout roaming indikátory</string>
-    <string name="pref_disable_roaming_indicators_summary">Pokud vypnuto, R indikátory nebudou zobrazeny během roamingu. Použít s opatrností.</string>
+    <string name="pref_disable_roaming_indicators_summary">Pokud vypnuto, R indikátory nebudou zobrazeny během roamingu. Použít s rozmyslem.</string>
 
     <!-- Battery status in pie controls -->
     <string name="pie_battery_status_charging">Nabíjení (<xliff:g id="percent">%d</xliff:g>%%)</string>
     <string name="pie_battery_status_full">Nabito</string>
-    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% zůstává</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% zbývá</string>
 
     <!-- Phone status in pie controls -->
     <string name="pie_phone_status_no_service">Bez signálu</string>
@@ -378,7 +378,7 @@
 
     <!-- Hide navigation bar for pie -->
     <string name="pref_navbar_disable_title">Skrýt navigační lištu</string>
-    <string name="pref_navbar_disable_summary">Skryje navigační lištu pokud je zapnutý koláč (pro zařízení s navigační lištou, vyžaduje restart)</string>
+    <string name="pref_navbar_disable_summary">Skryje navigační lištu, pokud je zapnutý koláč (pro zařízení s navigační lištou, vyžaduje restart)</string>
 
     <!--  Dithered Holo background -->
     <string name="pref_holo_bg_dither_title">Vyhlazené Holo pozadí</string>
@@ -386,7 +386,7 @@
 
     <!-- Disable hardware keys for pie -->
     <string name="pref_hwkeys_disable_title">Zablokovat HW tlačítka</string>
-    <string name="pref_hwkeys_disable_summary">Zablokuje MENU, ZPĚT, DOMŮ pokud je zapnutý koláč. Akce HW tlačítek budou nadále fungovat (pro zařízení s HW tlačítky)</string>
+    <string name="pref_hwkeys_disable_summary">Zablokuje MENU, ZPĚT, DOMŮ, pokud je zapnutý koláč. Akce HW tlačítek budou nadále fungovat (pro zařízení s HW tlačítky)</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Použít tmavé téma</string>
@@ -522,7 +522,7 @@
     <string name="pref_navbar_height_landscape_summary">Pro horizontální navigační lištu a orientaci na šířku</string>
     <string name="pref_navbar_width_title">Šířka navigační lišty</string>
     <string name="pref_navbar_width_summary">Pro vertikální navigační lištu</string>
-    <string name="pref_navbar_menukey_title">Vždy zobrazit menu tlačítko</string>
+    <string name="pref_navbar_menukey_title">Vždy zobrazit Menu tlačítko</string>
 
     <!-- Screenshot in power menu -->
     <string name="pref_powermenu_screenshot_title">Screenshot v menu napájení</string>
@@ -557,7 +557,7 @@
 
     <!-- Follow stock battery color -->
     <string name="pref_sbcolor_follow_stock_battery_title">Kopírovat barvu stock baterie</string>
-    <string name="pref_sbcolor_follow_stock_battery_summary">Nastaví barvu hodin, procent baterie a kruhového indikátoru podle barvy stock baterie (v případě pokud je vypnuto vlastní vybarvování)</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">Nastaví barvu hodin, procent baterie a kruhového indikátoru podle barvy stock baterie (pokud je vypnuto vlastní vybarvování)</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
     <string name="pref_network_mode_tile_mode_title">Režim dlaždice typu mobilní sítě</string>
@@ -655,7 +655,7 @@
     <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> využitých</string>
     <string name="pref_rambar_title">RAM lišta v seznamu spuštěných aplikací</string>
     <string name="rambar_off">Vypnuta</string>
-    <string name="rambar_top">Zobrazit nahoru</string>
+    <string name="rambar_top">Zobrazit nahoře</string>
     <string name="rambar_bottom">Zobrazit dole</string>
 
     <!-- HW Key actions for recents button -->
@@ -680,7 +680,7 @@
     <!-- HW Key Actions: Preference screen arrangement -->
     <string name="pref_cat_hwkey_menu_title">Tlačítko Menu</string>
     <string name="pref_cat_hwkey_home_title">Tlačítko Domov</string>
-    <string name="pref_cat_hwkey_back_title">Tlačítko Späť</string>
+    <string name="pref_cat_hwkey_back_title">Tlačítko Zpět</string>
     <string name="pref_cat_hwkey_recents_title">Tlačítko Spuštěné aplikace</string>
     <string name="pref_cat_hwkey_volume_title">Tlačítka ovládání hlasitosti</string>
     <string name="pref_cat_hwkey_actions_others">Další nastavení</string>
