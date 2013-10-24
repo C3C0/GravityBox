@@ -711,4 +711,7 @@
     <string name="pref_hwkey_singletap_title">Single-tap action</string>
     <string name="pref_hwkey_doubletap_title">Double-tap action</string>
 
+    <!-- Disable double-tap (e.g. for Home Key on Android 4.3+) -->
+    <string name="pref_hwkey_doubletap_disable_title">Disable double-tap</string>
+
 </resources>

@@ -85,6 +85,8 @@ public class ModHwKeys {
     private static int mMenuDoubletapAction = 0;
     private static int mHomeLongpressAction = 0;
     private static int mHomeLongpressActionKeyguard = 0;
+    private static boolean mHomeDoubletapDisabled;
+    private static int mHomeDoubletapDefaultAction;
     private static int mBackLongpressAction = 0;
     private static int mRecentsSingletapAction = 0;
     private static int mRecentsLongpressAction = 0;
@@ -153,6 +155,20 @@ public class ModHwKeys {
                     if (DEBUG) log("Home long-press action while keyguard on set to: " + 
                                         mHomeLongpressActionKeyguard);
                 }
+            } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_HOME_DOUBLETAP_CHANGED)) {
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_HWKEY_HOME_DOUBLETAP_DISABLE)) {
+                    mHomeDoubletapDisabled = intent.getBooleanExtra(
+                            GravityBoxSettings.EXTRA_HWKEY_HOME_DOUBLETAP_DISABLE, false);
+                    if (Build.VERSION.SDK_INT > 17 && mPhoneWindowManager != null) {
+                        try {
+                            XposedHelpers.setIntField(mPhoneWindowManager, "mDoubleTapOnHomeBehavior",
+                                    mHomeDoubletapDisabled ? 0 : mHomeDoubletapDefaultAction);
+                        } catch (Throwable t) {
+                            log("PhoneWindowManager: Error settings mDoubleTapOnHomeBehavior: " +
+                                    t.getMessage());
+                        }
+                    }
+                }
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_HWKEY_BACK_LONGPRESS_CHANGED)) {
                 mBackLongpressAction = value;
                 if (DEBUG) log("Back long-press action set to: " + value);
@@ -217,6 +233,8 @@ public class ModHwKeys {
             mHomeLongpressActionKeyguard = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_HWKEY_HOME_LONGPRESS_KEYGUARD, false) ?
                             GravityBoxSettings.HWKEY_ACTION_TORCH : GravityBoxSettings.HWKEY_ACTION_DEFAULT;
+            mHomeDoubletapDisabled = prefs.getBoolean(
+                    GravityBoxSettings.PREF_KEY_HWKEY_HOME_DOUBLETAP_DISABLE, false);
             mVolumeRockerWakeDisabled = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_VOLUME_ROCKER_WAKE_DISABLE, false);
             mHwKeysEnabled = !prefs.getBoolean(GravityBoxSettings.PREF_KEY_HWKEYS_DISABLE, false);
@@ -436,6 +454,20 @@ public class ModHwKeys {
                     }
                 });
             }
+
+            if (Build.VERSION.SDK_INT > 17) {
+                XposedHelpers.findAndHookMethod(classPhoneWindowManager, 
+                        "readConfigurationDependentBehaviors", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        mHomeDoubletapDefaultAction = XposedHelpers.getIntField(
+                                param.thisObject, "mDoubleTapOnHomeBehavior");
+                        if (mHomeDoubletapDisabled) {
+                            XposedHelpers.setIntField(param.thisObject, "mDoubleTapOnHomeBehavior", 0);
+                        }
+                    }
+                });
+            }
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
@@ -457,11 +489,12 @@ public class ModHwKeys {
             mStrCustomAppNone = res.getString(R.string.hwkey_action_custom_app_none);
             mStrCustomAppMissing = res.getString(R.string.hwkey_action_custom_app_missing);
             mStrExpandedDesktopDisabled = res.getString(R.string.hwkey_action_expanded_desktop_disabled);
-    
+
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_LONGPRESS_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_DOUBLETAP_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_HOME_LONGPRESS_CHANGED);
+            intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_HOME_DOUBLETAP_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_BACK_LONGPRESS_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_SINGLETAP_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_LONGPRESS_CHANGED);

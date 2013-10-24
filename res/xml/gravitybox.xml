@@ -890,6 +890,11 @@
                 android:summary="@string/pref_hwkey_home_longpress_keyguard_summary"
                 android:defaultValue="false" />
 
+            <CheckBoxPreference
+                android:key="pref_hwkey_home_doubletap_disable"
+                android:title="@string/pref_hwkey_doubletap_disable_title"
+                android:defaultValue="false" />
+
         </PreferenceCategory>
 
         <PreferenceCategory
