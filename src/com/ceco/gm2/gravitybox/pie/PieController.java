@@ -24,13 +24,11 @@ import android.app.ActivityOptions;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.database.ContentObserver;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.hardware.input.InputManager;
@@ -51,7 +49,6 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
-import com.ceco.gm2.gravitybox.GravityBox;
 import com.ceco.gm2.gravitybox.ModPieControls;
 import com.ceco.gm2.gravitybox.R;
 import com.ceco.gm2.gravitybox.pie.PieItem;
@@ -113,6 +110,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
     private int mNavigationIconHints = 0;
     private int mDisabledFlags = 0;
     private boolean mShowMenu = false;
+    private boolean mShowSearch = false;
     private Drawable mBackIcon;
     private Drawable mBackAltIcon;
 
@@ -261,25 +259,6 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         mHandler.sendMessageDelayed(Message.obtain(mHandler, MSG_INJECT_KEY, keycode, 0), 50);
     }
 
-    private final class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    ModPieControls.SETTING_PIE_SEARCH), false, this);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            setupNavigationItems();
-        }
-    }
-
-    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
-
     private BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -353,7 +332,6 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         mPieContainer.addSlice(mSysInfo);
 
         // start listening for changes
-        mSettingsObserver.observe();
         mContext.registerReceiver(mBatteryReceiver,
                 new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
@@ -365,6 +343,8 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
     }
 
     private void setupNavigationItems() {
+        if (mNavigationSlice == null) return;
+
         Resources res = mContext.getResources();
         int minimumImageSize = (int)mGbResources.getDimension(R.dimen.pie_item_size);
 
@@ -378,8 +358,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         mNavigationSlice.addItem(constructItem(2, ButtonType.RECENT,
                 res.getDrawable(res.getIdentifier("ic_sysbar_recent", "drawable", PACKAGE_NAME)),
                 minimumImageSize));
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                ModPieControls.SETTING_PIE_SEARCH, 0) == 1) {
+        if (mShowSearch) {
             mNavigationSlice.addItem(constructItem(1, ButtonType.SEARCH,
                     mGbResources.getDrawable(R.drawable.ic_sysbar_search_side), minimumImageSize));
         }
@@ -506,6 +485,11 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         mShowMenu = showMenu;
     }
 
+    public void setSearchVisibility(boolean showSearch) {
+        mShowSearch = showSearch;
+        setupNavigationItems();
+    }
+
     @Override
     public void onSnap(Position position) {
         if (position == mPosition) {
@@ -518,13 +502,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
             log("onSnap from " + position.name());
         }
 
-        int triggerSlots = Settings.System.getInt(mContext.getContentResolver(),
-                ModPieControls.SETTING_PIE_GRAVITY, Position.BOTTOM.FLAG);
-
-        triggerSlots = triggerSlots & ~mPosition.FLAG | position.FLAG;
-
-        Settings.System.putInt(mContext.getContentResolver(),
-                ModPieControls.SETTING_PIE_GRAVITY, triggerSlots);
+        ModPieControls.onPieSnapped(mPosition.FLAG, position.FLAG);
     }
 
     @Override

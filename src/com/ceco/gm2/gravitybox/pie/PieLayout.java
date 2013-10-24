@@ -17,24 +17,19 @@
 package com.ceco.gm2.gravitybox.pie;
 
 import android.animation.ValueAnimator;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.database.ContentObserver;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
-import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
-import android.provider.Settings;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.ceco.gm2.gravitybox.ModPieControls;
 import com.ceco.gm2.gravitybox.R;
 import com.ceco.gm2.gravitybox.pie.PieController.Position;
 
@@ -246,28 +241,7 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
     }
     private OnSnapListener mOnSnapListener = null;
 
-    private final class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = PieLayout.this.getContext().getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    ModPieControls.SETTING_PIE_SIZE), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    ModPieControls.SETTING_PIE_GRAVITY), false, this);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            getDimensions();
-            setupSnapPoints(getWidth(), getHeight(), true);
-        }
-    }
-    private SettingsObserver mSettingsObserver;
-
-    public PieLayout(Context context, Context gbContext) {
+    public PieLayout(Context context, Context gbContext, int triggerSlots, int pieSize) {
         super(context);
 
         mContext = context;
@@ -281,8 +255,8 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
         getDimensions();
         getColors();
 
-        mTriggerSlots = Settings.System.getInt(mContext.getContentResolver(),
-                ModPieControls.SETTING_PIE_GRAVITY, Position.BOTTOM.FLAG);
+        mTriggerSlots = triggerSlots;
+        mPieScale = (float) pieSize / 1000f;
     }
 
     public void setOnSnapListener(OnSnapListener onSnapListener) {
@@ -290,9 +264,6 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
     }
 
     private void getDimensions() {
-        mPieScale = Settings.System.getFloat(mContext.getContentResolver(),
-                ModPieControls.SETTING_PIE_SIZE, 1f);
-
         final Resources res = getContext().getResources();
 
         mSnapRadius = mGbResources.getDimensionPixelSize(R.dimen.pie_snap_radius) * mPieScale;
@@ -315,12 +286,7 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
         mBackgroundTargetAlpha = mBackgroundPaint.getAlpha();
     }
 
-    private void setupSnapPoints(int width, int height, boolean force) {
-        if (force) {
-            mTriggerSlots = Settings.System.getInt(getContext().getContentResolver(),
-                    ModPieControls.SETTING_PIE_GRAVITY, Position.BOTTOM.FLAG);
-        }
-
+    private void setupSnapPoints(int width, int height) {
         mActiveSnap = null;
         for (Position g : Position.values()) {
             if ((mTriggerSlots & g.FLAG) == 0) {
@@ -340,9 +306,6 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
         setWillNotDraw(false);
         setFocusable(true);
         setOnTouchListener(this);
-
-        mSettingsObserver = new SettingsObserver(new Handler());
-        mSettingsObserver.observe();
     }
 
     @Override
@@ -492,7 +455,7 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
 
         int viewMask = PieDrawable.VISIBLE | mPosition.FLAG;
         if (changed) {
-            setupSnapPoints(right - left, bottom - top, false);
+            setupSnapPoints(right - left, bottom - top);
         }
 
         // we are only doing this, when the layout changed or
@@ -629,5 +592,17 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
 
     public boolean isShowing() {
         return mActive;
+    }
+
+    public void setTriggerSlots(int triggerSlots) {
+        mTriggerSlots = triggerSlots;
+        getDimensions();
+        setupSnapPoints(getWidth(), getHeight());
+    }
+
+    public void setPieSize(int pieSize) {
+        mPieScale = (float) pieSize / 1000f;
+        getDimensions();
+        setupSnapPoints(getWidth(), getHeight());
     }
 }
