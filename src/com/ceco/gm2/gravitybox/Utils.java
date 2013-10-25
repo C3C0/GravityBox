@@ -42,6 +42,7 @@ public class Utils {
     // Device type reference
     private static int mDeviceType = -1;
     private static Boolean mIsMtkDevice = null;
+    private static Boolean mIsXperiaDevice = null;
     private static Boolean mIsWifiOnly = null;
     private static String mDeviceCharacteristics = null;
     
@@ -111,6 +112,13 @@ public class Utils {
 
         mIsMtkDevice = MTK_DEVICES.contains(Build.HARDWARE.toLowerCase());
         return mIsMtkDevice;
+    }
+    
+    public static boolean isXperiaDevice() {
+    	if (mIsXperiaDevice != null) return mIsXperiaDevice;
+    	
+    	mIsXperiaDevice = Build.MANUFACTURER.equalsIgnoreCase("sony");
+    	return mIsXperiaDevice;
     }
 
     public static boolean hasGeminiSupport() {
