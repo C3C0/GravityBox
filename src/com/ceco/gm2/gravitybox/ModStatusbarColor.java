@@ -168,6 +168,11 @@ public class ModStatusbarColor {
                     mSkipBatteryIcon = intent.getBooleanExtra(
                             GravityBoxSettings.EXTRA_SB_COLOR_SKIP_BATTERY, false);
                     applyIconColors();
+                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_SIGNAL_COLOR_MODE)) {
+                    mIconManager.setSignalIconMode(
+                            intent.getIntExtra(GravityBoxSettings.EXTRA_SB_SIGNAL_COLOR_MODE,
+                                    StatusBarIconManager.SI_MODE_GB));
+                    applyIconColors();
                 }
             }
 
@@ -270,6 +275,15 @@ public class ModStatusbarColor {
                             StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
             mIconManager.setFollowStockBatteryColor(prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_STATUSBAR_COLOR_FOLLOW_STOCK_BATTERY, false));
+
+            try {
+                int signalIconMode = Integer.valueOf(prefs.getString(
+                        GravityBoxSettings.PREF_KEY_STATUSBAR_SIGNAL_COLOR_MODE, "0"));
+                mIconManager.setSignalIconMode(signalIconMode);
+            } catch (NumberFormatException nfe) {
+                log("Invalid value for PREF_KEY_STATUSBAR_SIGNAL_COLOR_MODE preference");
+            }
+
             mRoamingIndicatorsDisabled = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_DISABLE_ROAMING_INDICATORS, false);
 
@@ -304,6 +318,8 @@ public class ModStatusbarColor {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                    mIconManager.setSystemUiResources(context.getResources());
+
                     mTransparencyManager = new TransparencyManager(context);
                     mTransparencyManager.setStatusbar(XposedHelpers.getObjectField(param.thisObject, "mStatusBarView"));
                     mTransparencyManager.setNavbar(XposedHelpers.getObjectField(
@@ -412,15 +428,13 @@ public class ModStatusbarColor {
                             mobileTypeId = XposedHelpers.getObjectField(param.thisObject, "mMobileTypeId");
                         }
 
-                        if (XposedHelpers.getBooleanField(param.thisObject, "mWifiVisible")) {
+                        if (XposedHelpers.getBooleanField(param.thisObject, "mWifiVisible") &&
+                                mIconManager.getSignalIconMode() != StatusBarIconManager.SI_MODE_DISABLED) {
                             ImageView wifiIcon = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mWifi");
                             if (wifiIcon != null) {
-                                try {
-                                    int resId = XposedHelpers.getIntField(param.thisObject, "mWifiStrengthId");
-                                    String resName = res.getResourceEntryName(resId);
-                                    Drawable d = mIconManager.getWifiIcon(resName);
-                                    if (d != null) wifiIcon.setImageDrawable(d);
-                                } catch (Resources.NotFoundException e) { }
+                                int resId = XposedHelpers.getIntField(param.thisObject, "mWifiStrengthId");
+                                Drawable d = mIconManager.getWifiIcon(resId);
+                                if (d != null) wifiIcon.setImageDrawable(d);
                             }
                             ImageView wifiActivity = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mWifiActivity");
                             if (wifiActivity != null) {
@@ -437,22 +451,18 @@ public class ModStatusbarColor {
     
                         if (!XposedHelpers.getBooleanField(param.thisObject, "mIsAirplaneMode")) {
                             // for SIM Slot 1
-                            if (XposedHelpers.getBooleanField(param.thisObject, "mMobileVisible")) {
-                                boolean allowChange = false;
+                            if (XposedHelpers.getBooleanField(param.thisObject, "mMobileVisible") &&
+                                    mIconManager.getSignalIconMode() != StatusBarIconManager.SI_MODE_DISABLED) {
                                 ImageView mobile = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobile");
                                 if (mobile != null) {
-                                    try {
-                                        int resId = Utils.isMtkDevice() ? 
-                                                (Integer) XposedHelpers.callMethod(Utils.hasGeminiSupport() ?
-                                                		mobileIconIds[0] : mobileIconId, "getIconId") :
-                                                XposedHelpers.getIntField(param.thisObject, "mMobileStrengthId");
-                                        String resName = res.getResourceEntryName(resId);
-                                        allowChange = resName.contains("blue") | !Utils.isMtkDevice();
-                                        Drawable d = mIconManager.getMobileIcon(resName);
-                                        if (d != null) mobile.setImageDrawable(d);
-                                    } catch (Resources.NotFoundException e) { }
+                                    int resId = Utils.isMtkDevice() ? 
+                                            (Integer) XposedHelpers.callMethod(Utils.hasGeminiSupport() ?
+                                            		mobileIconIds[0] : mobileIconId, "getIconId") :
+                                            XposedHelpers.getIntField(param.thisObject, "mMobileStrengthId");
+                                    Drawable d = mIconManager.getMobileIcon(resId);
+                                    if (d != null) mobile.setImageDrawable(d);
                                 }
-                                if (allowChange) {
+                                if (mIconManager.isMobileIconChangeAllowed()) {
                                     ImageView mobileActivity = 
                                             (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileActivity");
                                     if (mobileActivity != null) {
@@ -499,19 +509,15 @@ public class ModStatusbarColor {
     
                             // for SIM Slot 2
                             if (Utils.hasGeminiSupport() && 
-                                    XposedHelpers.getBooleanField(param.thisObject, "mMobileVisibleGemini")) {
-                                boolean allowChange = false;
+                                    XposedHelpers.getBooleanField(param.thisObject, "mMobileVisibleGemini") &&
+                                    mIconManager.getSignalIconMode() != StatusBarIconManager.SI_MODE_DISABLED) {
                                 ImageView mobile = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileGemini");
                                 if (mobile != null) {
-                                    try {
-                                        int resId = (Integer) XposedHelpers.callMethod(mobileIconIdsGemini[0], "getIconId");
-                                        String resName = res.getResourceEntryName(resId);
-                                        allowChange = resName.contains("blue");
-                                        Drawable d = mIconManager.getMobileIcon(resName);
-                                        if (d != null) mobile.setImageDrawable(d);
-                                    } catch (Resources.NotFoundException e) { }
+                                    int resId = (Integer) XposedHelpers.callMethod(mobileIconIdsGemini[0], "getIconId");
+                                    Drawable d = mIconManager.getMobileIcon(resId);
+                                    if (d != null) mobile.setImageDrawable(d);
                                 }
-                                if (allowChange) {
+                                if (mIconManager.isMobileIconChangeAllowed()) {
                                     ImageView mobileActivity = 
                                             (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileActivityGemini");
                                     if (mobileActivity != null) {

@@ -35,7 +35,12 @@ public class StatusBarIconManager {
     private static final boolean DEBUG = false;
     public static final int DEFAULT_DATA_ACTIVITY_COLOR = Color.WHITE;
 
+    public static final int SI_MODE_GB = 0;
+    public static final int SI_MODE_STOCK = 1;
+    public static final int SI_MODE_DISABLED = 2;
+
     private Resources mResources;
+    private Resources mSystemUiRes;
     private int mIconColor;
     private int mDataActivityColor;
     private Map<String, Integer> mWifiIconIds;
@@ -46,6 +51,8 @@ public class StatusBarIconManager {
     private Integer mDefaultClockColor;
     private Integer mDefaultBatteryPercentageColor;
     private boolean mFollowStockBatteryColor;
+    private int mSignalIconMode;
+    private boolean mAllowMobileIconChange;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -56,6 +63,8 @@ public class StatusBarIconManager {
         mIconColor = getDefaultIconColor();
         mDataActivityColor = DEFAULT_DATA_ACTIVITY_COLOR;
         mFollowStockBatteryColor = false;
+        mSignalIconMode = SI_MODE_GB;
+        mAllowMobileIconChange = true;
 
         Map<String, Integer> tmpMap = new HashMap<String, Integer>();
         tmpMap.put("stat_sys_wifi_signal_0", R.drawable.stat_sys_wifi_signal_0);
@@ -138,6 +147,19 @@ public class StatusBarIconManager {
         } catch (Throwable t) {
             log("Error initializing stock battery color: " + t.getMessage());
         }
+    }
+
+    public void setSystemUiResources(Resources res) {
+        mSystemUiRes = res;
+    }
+
+    public void setSignalIconMode(int mode) {
+        mSignalIconMode = mode;
+        clearCache();
+    }
+
+    public int getSignalIconMode() {
+        return mSignalIconMode;
     }
 
     public void setFollowStockBatteryColor(boolean follow) {
@@ -223,34 +245,87 @@ public class StatusBarIconManager {
         if (DEBUG) log("setCachedDrawable('" + key + "') - storing to cache");
     }
 
-    public Drawable getWifiIcon(String key) {
-        Drawable cd = getCachedDrawable(key);
-        if (cd != null) return cd;
+    public Drawable getWifiIcon(int resId) {
+        Drawable cd;
+        String key;
 
-        if (mWifiIconIds.containsKey(key)) {
-            Drawable d = mResources.getDrawable(mWifiIconIds.get(key)).mutate();
-            d = applyColorFilter(d);
-            setCachedDrawable(key, d);
-            return d;
+        try {
+            key = mSystemUiRes.getResourceEntryName(resId);
+        } catch (Resources.NotFoundException nfe) {
+            return null;
         }
 
-        if (DEBUG) log("getWifiIcon: no drawable for key: " + key);
-        return null;
+        switch(mSignalIconMode) {
+            case SI_MODE_GB:
+                cd = getCachedDrawable(key);
+                if (cd != null) return cd;
+                if (mWifiIconIds.containsKey(key)) {
+                    Drawable d = mResources.getDrawable(mWifiIconIds.get(key)).mutate();
+                    d = applyColorFilter(d);
+                    setCachedDrawable(key, d);
+                    return d;
+                }
+                if (DEBUG) log("getWifiIcon: no drawable for key: " + key);
+                return null;
+
+            case SI_MODE_STOCK:
+                cd = getCachedDrawable(key);
+                if (cd != null) return cd;
+                Drawable d = mSystemUiRes.getDrawable(resId).mutate();
+                d = applyColorFilter(d);
+                setCachedDrawable(key, d);
+                return d;
+
+            case SI_MODE_DISABLED:
+            default:
+                return null;
+        }
     }
 
-    public Drawable getMobileIcon(String key) {
-        Drawable cd = getCachedDrawable(key);
-        if (cd != null) return cd;
+    public Drawable getMobileIcon(int resId) {
+        Drawable cd;
+        String key;
 
-        if (mMobileIconIds.containsKey(key)) {
-            Drawable d = mResources.getDrawable(mMobileIconIds.get(key)).mutate();
-            d = applyColorFilter(d);
-            setCachedDrawable(key, d);
-            return d;
+        try {
+            key = mSystemUiRes.getResourceEntryName(resId);
+        } catch (Resources.NotFoundException nfe) {
+            return null;
         }
 
-        if (DEBUG) log("getMobileIcon: no drawable for key: " + key);
-        return null;
+        mAllowMobileIconChange = key.contains("blue") || !Utils.isMtkDevice();
+        if (!mAllowMobileIconChange) {
+            return null;
+        }
+
+        switch(mSignalIconMode) {
+            case SI_MODE_GB:
+                cd = getCachedDrawable(key);
+                if (cd != null) return cd;
+                if (mMobileIconIds.containsKey(key)) {
+                    Drawable d = mResources.getDrawable(mMobileIconIds.get(key)).mutate();
+                    d = applyColorFilter(d);
+                    setCachedDrawable(key, d);
+                    return d;
+                }
+                if (DEBUG) log("getMobileIcon: no drawable for key: " + key);
+                return null;
+
+            case SI_MODE_STOCK:
+                cd = getCachedDrawable(key);
+                if (cd != null) return cd;
+                Drawable d = mSystemUiRes.getDrawable(resId).mutate();
+                d = applyColorFilter(d);
+                setCachedDrawable(key, d);
+                return d;
+
+            case SI_MODE_DISABLED:
+            default:
+                return null;
+        }
+    }
+
+    public boolean isMobileIconChangeAllowed() {
+        return mAllowMobileIconChange;
     }
 
     public Drawable getBatteryIcon(int level, boolean plugged) {
