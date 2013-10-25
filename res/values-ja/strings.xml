@@ -694,4 +694,10 @@
     <!-- Disable double-tap (e.g. for Home Key on Android 4.3+) -->
     <string name="pref_hwkey_doubletap_disable_title">ダブルタップを無効化</string>
     
+    <!-- Color mode for statusbar signal icons -->
+    <string name="pref_statusbar_signal_color_mode_title">単色モード</string>
+    <string name="signal_color_mode_gb">GravityBoxアイコンを使用 (電波強度対応)</string>
+    <string name="signal_color_mode_stock">標準アイコンを使用(信号強度非対応)</string>
+    <string name="signal_color_mode_disabled">色を適用しない</string>
+    
 </resources>
