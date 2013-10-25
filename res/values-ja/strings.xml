@@ -680,4 +680,18 @@
     <!-- Volume panel: Show expanded -->
     <string name="pref_volume_panel_autoexpand_title">自動的に拡張</string>
     
+    <!-- HW Key Actions: Preference screen arrangement -->
+    <string name="pref_cat_hwkey_menu_title">メニューキー</string>
+    <string name="pref_cat_hwkey_home_title">ホームキー</string>
+    <string name="pref_cat_hwkey_back_title">バックキー</string>
+    <string name="pref_cat_hwkey_recents_title">最近のアプリキー</string>
+    <string name="pref_cat_hwkey_volume_title">音量キー</string>
+    <string name="pref_cat_hwkey_actions_others">その他の設定</string>
+    <string name="pref_hwkey_longpress_title">長押しアクション</string>
+    <string name="pref_hwkey_singletap_title">タップアクション</string>
+    <string name="pref_hwkey_doubletap_title">ダブルタップアクション</string>
+
+    <!-- Disable double-tap (e.g. for Home Key on Android 4.3+) -->
+    <string name="pref_hwkey_doubletap_disable_title">ダブルタップを無効化</string>
+    
 </resources>
