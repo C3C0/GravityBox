@@ -117,7 +117,8 @@ public class Utils {
     public static boolean isXperiaDevice() {
         if (mIsXperiaDevice != null) return mIsXperiaDevice;
 
-        mIsXperiaDevice = Build.MANUFACTURER.equalsIgnoreCase("sony");
+        mIsXperiaDevice = Build.MANUFACTURER.equalsIgnoreCase("sony")
+                && !isMtkDevice();
         return mIsXperiaDevice;
     }
 
