@@ -241,11 +241,16 @@ public class ModVolumePanel {
         View mMoreButton = (View) XposedHelpers.getObjectField(mVolumePanel, "mMoreButton");
         View mDivider = (View) XposedHelpers.getObjectField(mVolumePanel, "mDivider");
 
-        mMoreButton.setVisibility(mExpandable ? View.VISIBLE : View.GONE);
-        if (!mMoreButton.hasOnClickListeners()) {
-            mMoreButton.setOnClickListener((OnClickListener) mVolumePanel);
+        if (mMoreButton != null) {
+        	mMoreButton.setVisibility(mExpandable ? View.VISIBLE : View.GONE);
+        	if (!mMoreButton.hasOnClickListeners()) {
+        		mMoreButton.setOnClickListener((OnClickListener) mVolumePanel);
+        	}
         }
-        mDivider.setVisibility(mExpandable ? View.VISIBLE : View.GONE);
+
+        if (mDivider != null) {
+        	mDivider.setVisibility(mExpandable ? View.VISIBLE : View.GONE);
+        }
 
         XposedHelpers.setBooleanField(mVolumePanel, "mShowCombinedVolumes", mExpandable);
         XposedHelpers.setObjectField(mVolumePanel, "mStreamControls", null);
