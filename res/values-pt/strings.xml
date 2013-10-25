@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">GravityBox</string>
 
@@ -10,8 +10,8 @@
     <string name="battery_style_percent_stock">Texto de porcentagem com icone padrão</string>
     <string name="battery_style_none">Nenhum</string>
 
-    <string name="vol_music_controls_title">Teclas de Volume trocam de faixa</string>
-    <string name="vol_music_controls_summary">Talcas de volume trocam de faixa após uma longa pressionada com a tela desligada</string>
+    <string name="vol_music_controls_title">Teclas de volume trocam de faixa</string>
+    <string name="vol_music_controls_summary">Teclas de volume trocam de faixa após uma longa pressionada com a tela desligada</string>
 
     <string name="low_battery_warning_policy_title">Aviso de baixa bateria</string>
     <string name="low_battery_warning_full">Sons e \"Pop-up\"</string>
@@ -19,35 +19,35 @@
     <string name="low_battery_warning_sound">Somente sons</string>
     <string name="low_battery_warning_off">Desligado</string>
 
-    <string name="reboot_required">Mudanças serão aplicadas após reiniciar o celular.</string>
+    <string name="reboot_required">Mudanças serão aplicadas após reiniciar o dispositivo.</string>
 
     <string name="signal_icon_autohide_title">Esconder automaticamente os icones de sinal</string>
     <string name="signal_icon_autohide_summary">Esconder o icone de sinal para o slot SIM escolhido quando este não estiver inserido. Desabilita notificações de \"SIM não inserido\"</string>
     <string name="sim_slot_1">Esconder automaticamente SIM Slot 1</string>
     <string name="sim_slot_2">Esconder automaticamente SIM Slot 2</string>
     <string name="sim_disable_notifications">Desabilitar notificações</string>
-    <string name="sim_disable_notifications_summary">Notificações \"SIM não inseirdo\" desabilitadas</string>
+    <string name="sim_disable_notifications_summary">Notificações \"SIM não inserido\" desabilitadas</string>
 
     <string name="poweroff_advanced_title">Menu de Desligar avançado</string>
     <string name="poweroff_advanced_summary">Adiciona opções para reiniciar em modo de recuperação ao menu de desligar</string>
     <string name="poweroff_recovery">Recuperação</string>
     <string name="poweroff_bootloader">Bootloader</string>
 
-    <string name="vol_key_cursor_control_title">Tecla de volume controla cursor</string>
+    <string name="vol_key_cursor_control_title">Teclas de volume controlam cursor</string>
     <string name="vol_key_cursor_control_summary">As teclas de volume controlam o cursor em campos de texto</string>
     <string name="vol_key_cursor_control_off">Desabilitado</string>
-    <string name="vol_key_cursor_control_on">Teclas de Volume Cima/Baixo movem o cursor esquerda/direita</string>
-    <string name="vol_key_cursor_control_on_reverse">Volume cima/baixo movem o cursor direita/esquerda</string>
+    <string name="vol_key_cursor_control_on">Teclas de volume +/- movem o cursor para a esquerda/direita</string>
+    <string name="vol_key_cursor_control_on_reverse">Teclas de volume +/- movem o cursor para a direita/esquerda</string>
 
     <string name="recents_clear_all_title">Limpar todas as tarefas recentes</string>
-    <string name="recents_clear_all_summary">Habilitar o botão de limpar tudas as tarefas recentes de uma vez na janela de tarefas recentes</string>
+    <string name="recents_clear_all_summary">Habilitar o botão de limpar todas as tarefas recentes de uma vez na janela de tarefas recentes</string>
 
     <string name="fix_datetime_crash_title">Ajustar erro de Data&amp;Hora</string>
     <string name="fix_datetime_crash_summary">Habilitar esta opção caso esteja tendo problema ao acessar a opção de Data&amp;Hora nas configurações (necessário reiniciar)</string>
 
     <string name="fix_caller_id_phone_title">Corrigir contatos em ligação</string>
     <string name="fix_caller_id_phone_summary">Habilitar caso um contato não seja reconhecido quando recebendo uma ligação (necessário reiniciar)</string>
-    <string name="fix_caller_id_phone_alert">Após reiniciar, você deve limpar e readicionar seus contatos para ter efeito! Para tal, vá em Ajustes / Aplicações / Todos. Para limpar os dados do Provedor de Contatos.</string>
+    <string name="fix_caller_id_phone_alert">Após reiniciar, você deve limpar e readicionar seus contatos para ter efeito! Para tal, vá em \"Ajustes / Aplicativos / Todos\" para limpar os dados do Armazenamento de contatos.</string>
 
     <string name="fix_caller_id_mms_title">Corrigir contatos em mensagem</string>
     <string name="fix_caller_id_mms_summary">Habilitar caso tenha problemas de conversas divididas em varios tópicos do mesmo contato (necessário reiniciar)</string>
@@ -108,12 +108,12 @@
     <string name="fix_dev_opts_summary">Desbloqueia as configurações avançadas de desenvolvedor nas configurações (necessário reiniciar)</string>
 
     <!-- Main preference categories -->
-    <string name="pref_cat_statusbar_title">Ajustes na Barra de Status</string>
-    <string name="pref_cat_statusbar_summary">Contém diversos ajustes para a barra de status</string>
+    <string name="pref_cat_statusbar_title">Ajustes da Barra de Status</string>
+    <string name="pref_cat_statusbar_summary">Contém diversos ajustes relacionados com a Barra de status</string>
     <string name="pref_cat_misc_title">Ajustes diversos</string>
     <string name="pref_cat_misc_summary">Contém todos os ajustes que não são classificados numa categoria específica</string>
-    <string name="pref_cat_fixes_title">Ajustes Gerais</string>
-    <string name="pref_cat_fixes_summary">Contém correções gerais para MTK6589. Use somente se necessário!.</string>
+    <string name="pref_cat_fixes_title">Ajustes gerais</string>
+    <string name="pref_cat_fixes_summary">Contém correções gerais para MTK6589. Use somente se necessário!</string>
 
     <!-- About -->
     <string name="pref_cat_about_title">Sobre</string>
