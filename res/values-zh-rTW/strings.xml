@@ -694,5 +694,25 @@
 
     <!-- Volume panel: Show expanded -->
     <string name="pref_volume_panel_autoexpand_title">自動展開音量面板</string>
+    
+    <!-- HW Key Actions: Preference screen arrangement -->
+    <string name="pref_cat_hwkey_menu_title">選單鍵</string>
+    <string name="pref_cat_hwkey_home_title">Home 鍵</string>
+    <string name="pref_cat_hwkey_back_title">返回鍵</string>
+    <string name="pref_cat_hwkey_recents_title">近期鍵</string>
+    <string name="pref_cat_hwkey_volume_title">音量鍵</string>
+    <string name="pref_cat_hwkey_actions_others">其他設定</string>
+    <string name="pref_hwkey_longpress_title">長按操作</string>
+    <string name="pref_hwkey_singletap_title">單擊操作</string>
+    <string name="pref_hwkey_doubletap_title">雙擊操作</string>
+
+    <!-- Disable double-tap (e.g. for Home Key on Android 4.3+) -->
+    <string name="pref_hwkey_doubletap_disable_title">停用雙擊操作</string>
+
+    <!-- Color mode for statusbar signal icons -->
+    <string name="pref_statusbar_signal_color_mode_title">訊號顏色模式</string>
+    <string name="signal_color_mode_gb">使用 GravityBox 圖示 (有支援訊號等級)</string>
+    <string name="signal_color_mode_stock">使用預設圖示 (沒有支援訊號等級)</string>
+    <string name="signal_color_mode_disabled">不要套用顏色</string>
 
 </resources>
