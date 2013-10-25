@@ -318,8 +318,11 @@ public class ModLockscreen {
                         String app = prefs.getString(
                                 GravityBoxSettings.PREF_KEY_LOCKSCREEN_TARGETS_APP[i], null);
                         if (app != null) {
-                            appInfoList.add(getAppInfo(context, app));
-                            if (DEBUG) log("appInfoList.add: " + app);
+                            AppInfo appInfo = getAppInfo(context, app);
+                            if (appInfo != null) {
+                                appInfoList.add(appInfo);
+                                if (DEBUG) log("appInfoList.add: " + app);
+                            }
                         }
                     }
 
@@ -640,7 +643,7 @@ public class ModLockscreen {
             if (DEBUG) log("AppInfo: storing to cache for " + app);
             return appInfo;
         } catch (Throwable t) {
-            XposedBridge.log(t);
+            log("Error getting app info for " + app + "! Error: " + t.getMessage());
             return null;
         }
     }
