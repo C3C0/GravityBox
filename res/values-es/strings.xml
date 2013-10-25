@@ -125,8 +125,8 @@
     <string name="fix_dev_opts_summary">Habilita las opciones avanzadas de desarrolador (requiere reinicio)</string>
 	
 	<!-- Main preference categories -->
-    <string name="pref_cat_statusbar_title">Personalización de la barra de estado</string>
-    <string name="pref_cat_statusbar_summary">Personalizaciones varias de la barra de estado</string>
+    <string name="pref_cat_statusbar_title">Ajustes de la barra de estado</string>
+    <string name="pref_cat_statusbar_summary">Contiene diversos ajustes relacionados a la barra de estado</string>
     <string name="pref_cat_misc_title">Personalizaciones varias</string>
     <string name="pref_cat_misc_summary">Personalizaciones que no tienen cabida en otras categorias</string>
     <string name="pref_cat_fixes_title">Parches generales</string>
@@ -158,8 +158,8 @@
     <string name="dual_sim_ringer_summary">Permite configurar el tono de llamada y de notificación para cada SIM por separado</string>
 	
 	<!--  Lockscreen tweaks -->
-    <string name="pref_cat_lockscreen_title">Configuración de la pantalla de bloqueo</string>
-    <string name="pref_cat_lockscreen_summary">Configuraciones varias de la pantalla de bloqueo</string>
+    <string name="pref_cat_lockscreen_title">Ajustes de la pantalla de bloqueo</string>
+    <string name="pref_cat_lockscreen_summary">Contiene diversos ajustes relacionados con la pantalla de bloqueo</string>
     <string name="pref_cat_lockscreen_background_title">Color de fondo de la pantalla de bloqueo</string>
     <string name="pref_lockscreen_background_title">Color de fondo</string>
     <string name="lockscreen_bg_default">Imagen de fondo por defecto</string>
@@ -176,15 +176,15 @@
     <string name="pref_lockscreen_maximize_widgets_summary">Cuando está habilitado, los Widgets de la pantalla de bloqueo serán maximizados por defecto</string>
 	
 	<!--  Power tweaks category -->
-    <string name="pref_cat_power_title">Opciones de energía</string>
-    <string name="pref_cat_power_summary">Contiene varias opciones relacionadas con el uso de la energía</string>
+    <string name="pref_cat_power_title">Ajustes de energía</string>
+    <string name="pref_cat_power_summary">Contiene diversos ajustes relacionados con el uso de la energía</string>
 	
 	<!--  Low battery LED flashing -->
     <string name="pref_flashing_led_disable_title">Deshabilitar el parpadeo del LED de notificaciones</string>
     <string name="pref_flashing_led_disable_summary">Deshabilita el LED de notificaciones cuando queda poca carga en la batería y no se está cargando</string>
 	
 	<!-- Display tweaks category -->
-	<string name="pref_cat_display_title">Mostrar ajustes</string>
+	<string name="pref_cat_display_title">Ajustes de visualización</string>
     <string name="pref_cat_display_summary">Contiene diversos ajustes de visualización</string>
 	
 	<!-- Minimum brightness level -->
@@ -241,19 +241,19 @@
 	<!-- Hardware key actions -->
     <string name="pref_cat_hwkey_actions_title">Acciones teclas de hardware</string>
     <string name="pref_cat_hwkey_actions_summary">Permite configurar acciones personalizadas en las teclas de hardware</string>
-    <string name="hwkey_menu_longpress_dialog_title">Menú tecla larga pulsación</string>
-    <string name="hwkey_menu_doubletap_dialog_title">Menú tecla de acción doble toque</string>
-    <string name="hwkey_back_longpress_dialog_title">Acccion larga pulsación en tecla atras</string>
+    <string name="hwkey_menu_longpress_dialog_title">Acción para pulsación larga en la tecla Menú</string>
+    <string name="hwkey_menu_doubletap_dialog_title">Acción para doble pulsación en la tecla Menú</string>
+    <string name="hwkey_back_longpress_dialog_title">Acción para pulsación larga en la tecla Atras</string>
     <string name="hwkey_action_default">Por defecto</string>
     <string name="hwkey_action_search">Buscar</string>
     <string name="hwkey_action_voice_search">Búsqueda por voz</string>
     <string name="hwkey_action_prev_app">Cambiar a la aplicación anterior</string>
     <string name="hwkey_action_kill">Matar aplicación en primer plano</string>
     <string name="hwkey_action_sleep">Ir a dormir</string>
-    <string name="pref_hwkey_kill_delay_title">retraso en matar app con larga pulsación</string>
+    <string name="pref_hwkey_kill_delay_title">Retraso en matar app con pulsación larga</string>
     <string name="pref_hwkey_kill_delay_summary">Aplica para matar la acción aplicación en primer plano. Definido por cuánto retraso para matar la app</string>
     <string name="pref_hwkey_doubletap_speed_title">Velocidad de doble pulsación</string>
-    <string name="pref_hwkey_doubletap_speed_summary">Se aplica a Menú tecla de acción doble toque. Define cómo debe ser aprovechado teclas de acceso rápido para activar la doble pulsación</string>
+    <string name="pref_hwkey_doubletap_speed_summary">Se aplica a la acción doble pulsación en la tecla Menú. Define cómo debe ser aprovechado teclas de acceso rápido para activar la doble pulsación</string>
     <string name="app_killed">%s matada</string>
     <string name="nothing_to_kill">"No hay nada para matar"</string>
     <string name="no_previous_app_found">Aplicación previa no encontrada</string>
@@ -307,8 +307,8 @@
     <string name="quick_pulldown_left">Izquierda</string>
 	
 	<!-- Disable volume rocker wake -->
-    <string name="pref_volume_rocker_wake_disable_title">Desactivar despertar con teclas de volumen</string>
-    <string name="pref_volume_rocker_wake_disable_summary">Para dispositivos como Jiayu G3, G4, donde las teclas de volumen encienden la pantalla</string>
+    <string name="pref_volume_rocker_wake_disable_title">Desactivar despertar</string>
+    <string name="pref_volume_rocker_wake_disable_summary">Para dispositivos donde las teclas de volumen encienden la pantalla</string>
 	
 	<!-- Statusbar colors category -->
     <string name="pref_cat_statusbar_colors_title">Colores de la barra de estado</string>
@@ -386,7 +386,7 @@
 	
 	<!-- Disable hardware keys for pie -->
     <string name="pref_hwkeys_disable_title">Deshabilitar teclas de hardware</string>
-    <string name="pref_hwkeys_disable_summary">Deshabilitados botones MENU, BACK, HOME mientras que los controles PIE están habilitados. Acciones con los botones de hardware seguirán funcionando.</string>
+    <string name="pref_hwkeys_disable_summary">Deshabilitadas las teclas Menú, Atras, Home mientras que los controles PIE están habilitados. Acciones con las teclas de hardware seguirán funcionando.</string>
 	
 	<!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Usar Dark theme Holo</string>
@@ -469,7 +469,7 @@
     <string name="hwkey_action_recent_apps">Mostrar apps recientes</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="hwkey_home_longpress_dialog_title">Acción para pulsación larga boton HOME</string>
+    <string name="hwkey_home_longpress_dialog_title">Acción para pulsación larga en la tecla Home</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">Ejecutar app personalizada 1</string>
@@ -512,8 +512,8 @@
     <string name="hwkey_action_expanded_desktop_disabled">El escritorio expandido está desactivado</string>
 
     <!-- Navigation bar tweaks category -->
-    <string name="pref_cat_navigation_bar_title">Ajustes barra de notificación</string>
-    <string name="pref_cat_navigation_bar_summary">Continene ajustes relacionados a la barra de notificación</string>
+    <string name="pref_cat_navigation_bar_title">Ajustes de la barra de notificación</string>
+    <string name="pref_cat_navigation_bar_summary">Contiene diversos ajustes relacionados a la barra de notificación</string>
     <string name="pref_navbar_override_title">Ignorar ajustes del sistema por defecto</string>
     <string name="pref_navbar_override_summary">Switch principal de ajustes de barra de notificación (requiere reiniciar)</string>
     <string name="pref_navbar_enable_title">Habilitar barra de navegación</string>
@@ -582,6 +582,24 @@
     <string name="pie_controls_enabled_always">Siempre</string>
     <string name="pie_controls_enabled_expanded">Cuando el escritorio expandido este activado</string>
     <string name="pie_controls_enabled_expanded_navbar">Cuando el escritorio expandido oculte la barra de navegación</string>
+
+    <!-- HW Key actions for recents button -->
+    <string name="hwkey_recents_singletap_dialog_title">Acción para pulsación individual en la tecla Multitarea</string>
+    <string name="hwkey_recents_longpress_dialog_title">Acción para pulsación larga en la tecla Multitarea</string>
+
+    <!-- HW Key Actions: Preference screen arrangement -->
+    <string name="pref_cat_hwkey_menu_title">Tecla Menú</string>
+    <string name="pref_cat_hwkey_home_title">Tecla Home</string>
+    <string name="pref_cat_hwkey_back_title">Tecla atras</string>
+    <string name="pref_cat_hwkey_recents_title">Tecla Multitarea</string>
+    <string name="pref_cat_hwkey_volume_title">Teclas de volumen</string>
+    <string name="pref_cat_hwkey_actions_others">Otros ajustes</string>
+    <string name="pref_hwkey_longpress_title">Acción para pulsación larga</string>
+    <string name="pref_hwkey_singletap_title">Acción para pulsación individual</string>
+    <string name="pref_hwkey_doubletap_title">Acción para doble pulsación</string>
+
+     <!-- Disable double-tap (e.g. for Home Key on Android 4.3+) -->
+    <string name="pref_hwkey_doubletap_disable_title">Deshabilitar doble pulsación</string>
 
  </resources>   
  
