@@ -700,4 +700,24 @@
     <!-- Volume panel: Show expanded -->
     <string name="pref_volume_panel_autoexpand_title">Расширять автоматически</string>
     
+	<!-- HW Key Actions: Preference screen arrangement -->
+    <string name="pref_cat_hwkey_menu_title">Кнопка Меню</string>
+    <string name="pref_cat_hwkey_home_title">Кнопка Домой</string>
+    <string name="pref_cat_hwkey_back_title">Кнопка Назад</string>
+    <string name="pref_cat_hwkey_recents_title">Кнопка Недавние</string>
+    <string name="pref_cat_hwkey_volume_title">Кнопки громкости</string>
+    <string name="pref_cat_hwkey_actions_others">Другие настройки</string>
+    <string name="pref_hwkey_longpress_title">Действие по долгому нажатию</string>
+    <string name="pref_hwkey_singletap_title">Дейтсвие по одному нажатию</string>
+    <string name="pref_hwkey_doubletap_title">Действие по двойному касанию</string>
+
+    <!-- Disable double-tap (e.g. for Home Key on Android 4.3+) -->
+    <string name="pref_hwkey_doubletap_disable_title">Отключить двойное касание</string>
+
+    <!-- Color mode for statusbar signal icons -->
+    <string name="pref_statusbar_signal_color_mode_title">Режим цвета сигнала</string>
+    <string name="signal_color_mode_gb">Использовать иконки GB (с поддержкой уровня)</string>
+    <string name="signal_color_mode_stock">Использовать станд. иконки (без поддержки уровня)</string>
+    <string name="signal_color_mode_disabled">Не применять цвет</string>
+
 </resources>
