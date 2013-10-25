@@ -1,3 +1,33 @@
+Changelog 2.6.5 - 26/10/2013
+--------------------------------------
+- Hardware Key Actions menu rearranged (thanks to bgcngm)
+- Option to disable Home double-tap on Android 4.3+
+- Option to set signal icon coloring mode
+--- Mode 1: Use GravityBox Icons (colored, with signal level support)
+--- Mode 2: Use stock icons (colored, without signal level support)
+--- Mode 3: Do not apply color (not colored - leaves stock icons intact)
+- Prevent soft reboots on Motorola devices occurring when using screenshot related GB functions
+- Prevent System UI crashes on some Xperia devices
+- Improved compatibility with Xperia devices (thanks to MohammadAG)
+--- fixed mobile data toggling
+--- prevent errors in VolumePanel mod caused by incompatibility
+- Lockscreen Battery Arc positioning issues fixed
+- Avoid using Settings.System storage for storing some GB related data
+--- This means GB now fully supports resetting all the settings upon clearing GB app data or uninstalling
+- Added MT8377 to the list of supported MTK devices (thanks to bgcngm)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Chinese (Simplified) translations (thanks to liveasx)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+- Updated Japanese translations (thanks to WedyDQ10)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Portuguese (BR) translation (thanks to bgcngm)
+- Updated Spanish translation (thanks to bgcngm)
+- Updated French translation (thanks to ch-vox)
+- Updated German translations (thanks to samsonbear)
+- Updated Czech translations (thanks to mp3comanche)
+- Updated Indonesian translations (thanks to awaaas)
+- Updated Japanese translations (thanks to WedyDQ10)
+
 Changelog 2.6.4 - 22/10/2013
 --------------------------------------
 - Lockscreen tweaks:
