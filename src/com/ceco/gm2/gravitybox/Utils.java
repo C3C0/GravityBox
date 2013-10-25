@@ -115,10 +115,10 @@ public class Utils {
     }
     
     public static boolean isXperiaDevice() {
-    	if (mIsXperiaDevice != null) return mIsXperiaDevice;
-    	
-    	mIsXperiaDevice = Build.MANUFACTURER.equalsIgnoreCase("sony");
-    	return mIsXperiaDevice;
+        if (mIsXperiaDevice != null) return mIsXperiaDevice;
+
+        mIsXperiaDevice = Build.MANUFACTURER.equalsIgnoreCase("sony");
+        return mIsXperiaDevice;
     }
 
     public static boolean hasGeminiSupport() {
@@ -134,7 +134,7 @@ public class Utils {
 
         try {
             ConnectivityManager cm = (ConnectivityManager) con.getSystemService(
-        	    Context.CONNECTIVITY_SERVICE);
+                    Context.CONNECTIVITY_SERVICE);
             mIsWifiOnly = (cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE) == null);
             return mIsWifiOnly;
         } catch (Throwable t) {

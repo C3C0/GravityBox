@@ -32,7 +32,7 @@ public class ConnectivityServiceWrapper {
     public static final String ACTION_SET_MOBILE_DATA_ENABLED = 
             "gravitybox.intent.action.SET_MOBILE_DATA_ENABLED";
     public static final String ACTION_XPERIA_MOBILE_DATA_TOGGLE =
-    		"com.android.phone.intent.ACTION_DATA_TRAFFIC_SWITCH";
+            "com.android.phone.intent.ACTION_DATA_TRAFFIC_SWITCH";
     public static final String EXTRA_ENABLED = "enabled";
 
     private static Object mConnectivityService;
@@ -67,13 +67,13 @@ public class ConnectivityServiceWrapper {
                     Context context = (Context) XposedHelpers.getObjectField(
                             param.thisObject, "mContext");
                     if (context == null && param.args.length != 0) {
-                    	context = (Context) param.args[0];
+                        context = (Context) param.args[0];
                     }
                     
                     if (context != null) {
-	                    IntentFilter intentFilter = new IntentFilter();
-	                    intentFilter.addAction(ACTION_SET_MOBILE_DATA_ENABLED);
-	                    context.registerReceiver(mBroadcastReceiver, intentFilter);
+                        IntentFilter intentFilter = new IntentFilter();
+                        intentFilter.addAction(ACTION_SET_MOBILE_DATA_ENABLED);
+                        context.registerReceiver(mBroadcastReceiver, intentFilter);
                     }
                 }
             });

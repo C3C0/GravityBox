@@ -424,7 +424,7 @@ public class ModQuickSettings {
                             // let the original method finish its work
                         } else {
                             if (DEBUG) log("animateCollapsePanels: all notifications removed " +
-                            		"but showing QuickSettings - do nothing");
+                                    "but showing QuickSettings - do nothing");
                             param.setResult(null);
                         }
                     }
@@ -845,17 +845,17 @@ public class ModQuickSettings {
                                        (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
                                 final boolean mobileDataEnabled = 
                                         (Boolean) XposedHelpers.callMethod(cm, "getMobileDataEnabled");
-                                
-                                if (Utils.isXperiaDevice()) {
-                                	if (!mobileDataEnabled && mStatusBar != null) {
-                                		XposedHelpers.callMethod(mStatusBar, "animateCollapsePanels");
-                                	}
 
-                                	Intent i = new Intent(ConnectivityServiceWrapper.ACTION_XPERIA_MOBILE_DATA_TOGGLE);
-                                	mContext.sendBroadcast(i);
-                                	return;
+                                if (Utils.isXperiaDevice()) {
+                                    if (!mobileDataEnabled && mStatusBar != null) {
+                                        XposedHelpers.callMethod(mStatusBar, "animateCollapsePanels");
+                                    }
+
+                                    Intent i = new Intent(ConnectivityServiceWrapper.ACTION_XPERIA_MOBILE_DATA_TOGGLE);
+                                    mContext.sendBroadcast(i);
+                                    return;
                                 }
-                                
+
                                 Intent intent = new Intent(ConnectivityServiceWrapper.ACTION_SET_MOBILE_DATA_ENABLED);
                                 intent.putExtra(ConnectivityServiceWrapper.EXTRA_ENABLED, !mobileDataEnabled);
                                 mContext.sendBroadcast(intent);
