@@ -192,16 +192,26 @@ public class ModHwKeys {
                     intent.hasExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE)) {
                 mHwKeysEnabled = !intent.getBooleanExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE, false);
             } else if (action.equals(ACTION_SCREENSHOT) && mPhoneWindowManager != null) {
-                XposedHelpers.callMethod(mPhoneWindowManager, "takeScreenshot");
+                try {
+                    XposedHelpers.callMethod(mPhoneWindowManager, "takeScreenshot");
+                } catch (Throwable t) {
+                    log("Error executing PhoneWindowManager.takeScreenshot(): " + t.getMessage());
+                }
             } else if (action.equals(GravityBoxSettings.ACTION_PREF_DISPLAY_ALLOW_ALL_ROTATIONS_CHANGED)) {
                 final boolean allowAllRotations = intent.getBooleanExtra(
                         GravityBoxSettings.EXTRA_ALLOW_ALL_ROTATIONS, false);
-                if (mPhoneWindowManager != null) {
+                try {
                     XposedHelpers.setIntField(mPhoneWindowManager, "mAllowAllRotations",
                             allowAllRotations ? 1 : 0);
+                } catch (Throwable t) {
+                    log("Error settings PhoneWindowManager.mAllowAllRotations: " + t.getMessage());
                 }
             } else if (action.equals(ACTION_SHOW_POWER_MENU) && mPhoneWindowManager != null) {
-                XposedHelpers.callMethod(mPhoneWindowManager, "showGlobalActionsDialog");
+                try {
+                    XposedHelpers.callMethod(mPhoneWindowManager, "showGlobalActionsDialog");
+                } catch (Throwable t) {
+                    log("Error executing PhoneWindowManager.showGlobalActionsDialog(): " + t.getMessage());
+                }
             }
         }
     };
