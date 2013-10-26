@@ -78,6 +78,10 @@
     <string name="quick_settings_expanded_desktop_expanded">展開中</string>
     <string name="quick_settings_stay_awake_on">常時点灯オン</string>
     <string name="quick_settings_stay_awake_off">常時点灯オフ</string>
+    <string name="quick_settings_wifi">Wi-Fi</string>
+    <string name="quick_settings_wifi_off">Wi-Fiオフ</string>
+    <string name="quick_settings_wifi_not_connected">未接続</string>
+    <string name="quick_settings_wifi_turning_on">オンにしています...</string> 
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">ステータスバークイック設定タイル</string>
@@ -86,6 +90,7 @@
     <string name="qs_tile_airplane_mode">機内モード</string>
     <string name="qs_tile_battery">バッテリー状態</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (CMスタイル)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_gps_alt">GPS (CMスタイル)</string>
@@ -114,7 +119,7 @@
 
     <!--  Statusbar background color -->
     <string name="statusbar_bgcolor_title">ステータスバー背景色</string>
-    <string name="statusbar_bgcolor_summary">ステータスバーの背景色と透過度を設定します。</string>
+    <string name="statusbar_bgcolor_summary">ステータスバーの背景色を設定します。</string>
 
     <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">スピーチ設定の表示</string>
@@ -642,6 +647,7 @@
     <string name="pref_data_traffic_position_title">位置</string>
     <string name="dt_position_auto">自動(時計の位置に従う)</string>
     <string name="dt_position_left">左</string>
+    <string name="dt_position_right">右</string>
     <string name="pref_data_traffic_size_title">サイズ</string>
     <string name="dt_size_normal">中</string>
     <string name="dt_size_smaller">小</string>
@@ -678,7 +684,7 @@
     <string name="pref_hwkey_home_longpress_keyguard_summary">端末をロックしているときにトーチのオンオフをします。ホームキーで画面をオンにする機能がない場合は画面をオンにしないといけません。</string>
 
     <!-- Volume panel: Show expanded -->
-    <string name="pref_volume_panel_autoexpand_title">自動的に拡張</string>
+    <string name="pref_volume_panel_autoexpand_title">自動的に展開</string>
     
     <!-- HW Key Actions: Preference screen arrangement -->
     <string name="pref_cat_hwkey_menu_title">メニューキー</string>
