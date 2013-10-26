@@ -569,6 +569,24 @@
             android:title="@string/pref_navbar_enable_title"
             android:summary="@string/pref_navbar_enable_summary" />
 
+        <PreferenceScreen 
+            android:key="pref_cat_navbar_launcher"
+            android:title="@string/pref_cat_navbar_launcher_title">
+
+            <CheckBoxPreference 
+                android:key="pref_navbar_launcher_enable"
+                android:title="@string/pref_navbar_launcher_enable_title"
+                android:defaultValue="false" />
+
+            <com.ceco.gm2.gravitybox.preference.AppPickerPreference
+                android:key="pref_navbar_launcher_longpress"
+                android:title="@string/pref_navbar_launcher_longpress_title"
+                android:summary="@string/app_picker_none" />
+
+            <!-- Application slots will be generated dynamically at runtime -->
+
+        </PreferenceScreen>
+
         <com.ceco.gm2.gravitybox.preference.SeekBarPreference
             android:key="pref_navbar_height"
             android:title="@string/pref_navbar_height_title"

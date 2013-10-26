@@ -720,4 +720,10 @@
     <string name="signal_color_mode_stock">Use stock icons (without signal level support)</string>
     <string name="signal_color_mode_disabled">Do not apply color</string>
 
+    <!-- Navigation bar application launcher -->
+    <string name="pref_cat_navbar_launcher_title">Application launcher</string>
+    <string name="pref_navbar_launcher_enable_title">Enable application launcher</string>
+    <string name="pref_navbar_launcher_slot_title">Application slot %d</string>
+    <string name="pref_navbar_launcher_longpress_title">Application on long-press</string>
+
 </resources>
