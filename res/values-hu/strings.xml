@@ -403,7 +403,7 @@
 
     <!-- Disable hardware keys for pie -->
     <string name="pref_hwkeys_disable_title">Hardver gombok letiltása</string>
-    <string name="pref_hwkeys_disable_summary">Letiltja a MENU, BACK, HOME gombokat, ha a Pie Vezérlők engedélyezve vannak. A HW gombok műveletei működni fognak. (HW gombokkal ellátot eszközök esetén)</string>
+    <string name="pref_hwkeys_disable_summary">Letiltja a MENÜ, VISSZA, KEZDŐLAP gombokat, ha a Pie Vezérlők engedélyezve vannak. A HW gombok műveletei működni fognak. (HW gombokkal ellátot eszközök esetén)</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Holo Sötét téma használata</string>
@@ -486,7 +486,7 @@
     <string name="hwkey_action_recent_apps">Nemrég használt alkalmazások megjelenítése</string>
 
     <!-- HW Key Action: Home long-press -->
-    <string name="hwkey_home_longpress_dialog_title">Home gomb hosszú érintés művelete</string>
+    <string name="hwkey_home_longpress_dialog_title">Kezdőlap gomb hosszú érintés művelete</string>
 
     <!-- HW Key Action: Launch cutom app -->
     <string name="hwkey_action_custom_app">Egyéni alkalmazás 1 indítása</string>
@@ -658,6 +658,7 @@
     <string name="pref_data_traffic_position_title">Pozíció</string>
     <string name="dt_position_auto">Automatikus (középen vagy jobbra az óra pozíciójától függően)</string>
     <string name="dt_position_left">Balra</string>
+	<string name="dt_position_right">Jobbra</string>
     <string name="pref_data_traffic_size_title">Méret</string>
     <string name="dt_size_normal">Normál</string>
     <string name="dt_size_smaller">Kisebb</string>
@@ -680,5 +681,43 @@
     <string name="rambar_off">Kikapcsolva</string>
     <string name="rambar_top">Fent</string>
     <string name="rambar_bottom">Lent</string>
+	
+    <!-- HW Key actions for recents button -->
+    <string name="hwkey_recents_singletap_dialog_title">Nemrég használt alkalmazások gomb egyszeri érintés művelete</string>
+    <string name="hwkey_recents_longpress_dialog_title">Nemrég használt alkalmazások gomb hosszú érintés művelete</string>
+	
+    <!-- Lockscreen battery arc -->
+    <string name="pref_lockscreen_battery_arc_title">Akkumlátor körív mutatása</string>
+    <string name="pref_lockscreen_battery_arc_summary">Mutatja az akkumlátor állapot körívet a feloldó kör körül.</string>
+
+    <!-- HW Key Actions: toggle torch -->
+    <string name="hwkey_action_torch">Zseblámpa ki-bekapcsolása</string>
+
+    <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
+    <string name="pref_hwkey_home_longpress_keyguard_title">Zseblámpa bekapcsolása a kezdőlap gomb hosszú érintésével</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">Be-kikapcsolja a zseblámpát zárolt eszköznél. A képernyőnek bekapcsolva kell lennie, ha az eszközből gyárilag hiányzik az ébresztés kezdőlap gomb segítségével funkció.</string>
+
+    <!-- Volume panel: Show expanded -->
+    <string name="pref_volume_panel_autoexpand_title">Automatikus bővített panel</string>
+
+    <!-- HW Key Actions: Preference screen arrangement -->
+    <string name="pref_cat_hwkey_menu_title">Menü gomb</string>
+    <string name="pref_cat_hwkey_home_title">Kezdőlap gomb</string>
+    <string name="pref_cat_hwkey_back_title">Vissza gomb</string>
+    <string name="pref_cat_hwkey_recents_title">Nemrég használt alkalmazások gomb</string>
+    <string name="pref_cat_hwkey_volume_title">Hangerő gombok</string>
+    <string name="pref_cat_hwkey_actions_others">Egyéb beállítások</string>
+    <string name="pref_hwkey_longpress_title">Hosszú érintés művelete</string>
+    <string name="pref_hwkey_singletap_title">Egyszeri érintés művelete</string>
+    <string name="pref_hwkey_doubletap_title">Dupla érintés művelete</string>
+
+    <!-- Disable double-tap (e.g. for Home Key on Android 4.3+) -->
+    <string name="pref_hwkey_doubletap_disable_title">Dupla érintés letiltása</string>
+
+    <!-- Color mode for statusbar signal icons -->
+    <string name="pref_statusbar_signal_color_mode_title">Jelszint ikon színezés mód</string>
+    <string name="signal_color_mode_gb">Használja a GravityBox ikonokat (jelerősség szint támogatással)</string>
+    <string name="signal_color_mode_stock">Használja a gyári ikonokat (jelerősség szint támogatás nélkül)</string>
+    <string name="signal_color_mode_disabled">Nem alkalmaz színezést</string>
 	
 </resources>
