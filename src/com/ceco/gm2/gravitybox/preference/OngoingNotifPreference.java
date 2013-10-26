@@ -181,7 +181,11 @@ public class OngoingNotifPreference extends DialogPreference
                     }
                 }
 
-                mIcon = res.getDrawable(mIconId);
+                try {
+                    mIcon = res.getDrawable(mIconId);
+                } catch (Resources.NotFoundException nfe) {
+                    //
+                }
             }
 
             return mIcon;
