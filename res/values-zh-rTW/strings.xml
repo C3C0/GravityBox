@@ -715,4 +715,13 @@
     <string name="signal_color_mode_stock">使用預設圖示 (沒有支援訊號等級)</string>
     <string name="signal_color_mode_disabled">不要套用顏色</string>
 
+    <!-- Application launcher -->
+    <string name="pref_cat_app_launcher_title">應用程式啟動器</string>
+    <string name="pref_cat_app_launcher_summary">對話框允許最多8個應用程式分配到硬體按鍵操作上或是做為額外的海苔條按鍵</string>
+    <string name="pref_app_launcher_slot_title">應用程式槽 %d</string>
+    <string name="app_launcher_no_apps">沒有應用程式被分配. 使用 GravityBox / 程式啟動器選單來分配應用程式.</string>
+
+    <!-- Navigation bar app launcher key -->
+    <string name="pref_navbar_launcher_enable_title">顯示程式啟動器按鍵</string>
+
 </resources>
