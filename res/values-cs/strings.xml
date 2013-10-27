@@ -383,9 +383,9 @@
     <string name="pref_holo_bg_dither_title">Vyhlazené Holo pozadí</string>
     <string name="pref_holo_bg_dither_summary">Nahradí standardní Holo pozadí vyhlazeným obrázkem za účelem eliminace pruhů barevného přechodu (vyžaduje restart)</string>
 
-    <!-- Disable hardware keys for pie -->
-    <string name="pref_hwkeys_disable_title">Zablokovat HW tlačítka</string>
-    <string name="pref_hwkeys_disable_summary">Zablokuje MENU, ZPĚT, DOMŮ, pokud je zapnutý koláč. Akce HW tlačítek budou nadále fungovat (pro zařízení s HW tlačítky)</string>
+    <!-- Disable navigation keys for pie -->
+    <string name="pref_hwkeys_disable_title">Zablokovat navigační tlačítka</string>
+    <string name="pref_hwkeys_disable_summary">Zablokuje ťuknutí na tlačítka pokud je zapnutý koláč</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Použít tmavé téma</string>

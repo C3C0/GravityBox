@@ -47,6 +47,7 @@ public class ModNavigationBar {
     private static int mRecentsSingletapAction = 0;
     private static int mRecentsLongpressAction = 0;
     private static int mHomeLongpressAction = 0;
+    private static boolean mHwKeysEnabled;
 
     // Application launcher key
     private static boolean mAppLauncherEnabled;
@@ -102,6 +103,10 @@ public class ModNavigationBar {
                     GravityBoxSettings.ACTION_PREF_HWKEY_HOME_LONGPRESS_CHANGED)) {
                 mHomeLongpressAction = intent.getIntExtra(GravityBoxSettings.EXTRA_HWKEY_VALUE, 0);
                 updateHomeKeyLongpressSupport();
+            } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_PIE_CHANGED) && 
+                    intent.hasExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE)) {
+                mHwKeysEnabled = !intent.getBooleanExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE, false);
+                updateRecentsKeyCode();
             }
         }
     };
@@ -126,6 +131,7 @@ public class ModNavigationBar {
 
             mAppLauncherEnabled = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_NAVBAR_LAUNCHER_ENABLE, false);
+            mHwKeysEnabled = !prefs.getBoolean(GravityBoxSettings.PREF_KEY_HWKEYS_DISABLE, false);
 
             XposedBridge.hookAllConstructors(navbarViewClass, new XC_MethodHook() {
                 @Override
@@ -145,6 +151,7 @@ public class ModNavigationBar {
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_SINGLETAP_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_LONGPRESS_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_HOME_LONGPRESS_CHANGED);
+                    intentFilter.addAction(GravityBoxSettings.ACTION_PREF_PIE_CHANGED);
                     context.registerReceiver(mBroadcastReceiver, intentFilter);
                     if (DEBUG) log("NavigationBarView constructed; Broadcast receiver registered");
                 }
@@ -292,7 +299,9 @@ public class ModNavigationBar {
     }
 
     private static boolean recentsKeyHasAction() {
-        return (mRecentsSingletapAction != 0 || mRecentsLongpressAction != 0);
+        return (mRecentsSingletapAction != 0 ||
+                mRecentsLongpressAction != 0 ||
+                !mHwKeysEnabled);
     }
 
     private static void updateHomeKeyLongpressSupport() {
@@ -323,7 +332,7 @@ public class ModNavigationBar {
     private static View.OnClickListener mAppKeyOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (mAppLauncher != null) {
+            if (mAppLauncher != null && mHwKeysEnabled) {
                 mAppLauncher.showDialog();
             }
         }

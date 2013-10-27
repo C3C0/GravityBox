@@ -404,11 +404,18 @@ public class ModHwKeys {
                     }
 
                     if (keyCode == KeyEvent.KEYCODE_APP_SWITCH) {
-                        if (!hasAction(HwKey.RECENTS)) return;
+                        if (!hasAction(HwKey.RECENTS) && mHwKeysEnabled) return;
 
                         if (!down) {
                             mHandler.removeCallbacks(mRecentsLongPress);
                             if (!mIsRecentsLongPressed) {
+                                if (!mHwKeysEnabled &&
+                                        event.getRepeatCount() == 0 && 
+                                        ((event.getFlags() & KeyEvent.FLAG_FROM_SYSTEM) != 0)) {
+                                    if (DEBUG) log("APP_SWITCH KeyEvent coming from HW key and keys disabled. Ignoring.");
+                                    param.setResult(-1);
+                                    return;
+                                }
                                 if (mRecentsSingletapAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
                                     performAction(HwKeyTrigger.RECENTS_SINGLETAP);
                                 } else {

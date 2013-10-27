@@ -400,9 +400,9 @@
     <string name="pref_holo_bg_dither_title">Dithered Holo background</string>
     <string name="pref_holo_bg_dither_summary">Replaces standard Holo background with dithered one to suppress color banding (requires reboot)</string>
 
-    <!-- Disable hardware keys for pie -->
-    <string name="pref_hwkeys_disable_title">Disable hardware keys</string>
-    <string name="pref_hwkeys_disable_summary">Disables MENU, BACK, HOME while Pie Controls are enabled. HW keys actions will still work. (for devices having HW keys)</string>
+    <!-- Disable navigation keys for pie -->
+    <string name="pref_hwkeys_disable_title">Disable navigation keys</string>
+    <string name="pref_hwkeys_disable_summary">Disables single-tap on keys while Pie Controls are enabled</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Use Holo Dark theme</string>
