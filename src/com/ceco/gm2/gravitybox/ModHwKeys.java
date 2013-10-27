@@ -95,6 +95,7 @@ public class ModHwKeys {
     private static boolean mVolumeRockerWakeDisabled = false;
     private static boolean mHwKeysEnabled = true;
     private static XSharedPreferences mPrefs;
+    private static AppLauncher mAppLauncher;
 
     private static List<String> mKillIgnoreList = new ArrayList<String>(Arrays.asList(
             "com.android.systemui",
@@ -500,6 +501,8 @@ public class ModHwKeys {
             mStrCustomAppMissing = res.getString(R.string.hwkey_action_custom_app_missing);
             mStrExpandedDesktopDisabled = res.getString(R.string.hwkey_action_expanded_desktop_disabled);
 
+            mAppLauncher = new AppLauncher(mContext, mPrefs);
+
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_LONGPRESS_CHANGED);
             intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_MENU_DOUBLETAP_CHANGED);
@@ -643,6 +646,8 @@ public class ModHwKeys {
             toggleExpandedDesktop();
         } else if (action == GravityBoxSettings.HWKEY_ACTION_TORCH) {
             toggleTorch();
+        } else if (action == GravityBoxSettings.HWKEY_ACTION_APP_LAUNCHER) {
+            showAppLauncher();
         }
     }
 
@@ -886,5 +891,17 @@ public class ModHwKeys {
         } catch (Throwable t) {
             log("Error toggling Torch: " + t.getMessage());
         }
+    }
+
+    private static void showAppLauncher() {
+        Handler handler = (Handler) XposedHelpers.getObjectField(mPhoneWindowManager, "mHandler");
+        if (handler == null || mAppLauncher == null) return;
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                mAppLauncher.showDialog();
+            }
+        });
     }
 }

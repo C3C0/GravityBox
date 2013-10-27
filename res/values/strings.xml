@@ -729,4 +729,7 @@
     <!-- Navigation bar app launcher key -->
     <string name="pref_navbar_launcher_enable_title">Show app launcher key</string>
 
+    <!-- HW Key Actions: application launcher -->
+    <string name="hwkey_action_app_launcher">Show application launcher</string>
+
 </resources>
