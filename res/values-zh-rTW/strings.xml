@@ -367,7 +367,6 @@
     <!-- Pie Controls settings -->
     <string name="pie_control_title">Pie 控制</string>
     <string name="pie_control_enable_title">啟用 Pie 控制</string>
-    <string name="pie_control_search_title">顯示搜尋按鍵</string>
     <string name="pie_control_size_title">導航鍵大小</string>
     <string name="pie_control_trigger_positions_title">觸發位置</string>
     <string name="pie_control_trigger_left">螢幕左邊緣</string>

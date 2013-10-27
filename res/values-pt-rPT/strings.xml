@@ -362,7 +362,6 @@
     <!-- Pie Controls settings -->
     <string name="pie_control_title">Controlos Pie</string>
     <string name="pie_control_enable_title">Ativar controlos Pie</string>
-    <string name="pie_control_search_title">Mostrar botão Pesquisa</string>
     <string name="pie_control_size_title">Dimensão dos botões de navegação</string>
     <string name="pie_control_trigger_positions_title">Posições de ativação</string>
     <string name="pie_control_trigger_left">Borda esquerda do ecrã</string>

@@ -356,7 +356,6 @@
     <!-- Pie Controls settings -->
     <string name="pie_control_title">Koláč</string>
     <string name="pie_control_enable_title">Zapnúť koláč</string>
-    <string name="pie_control_search_title">Povoliť tlačidlo hľadania</string>
     <string name="pie_control_size_title">Veľkosť koláča</string>
     <string name="pie_control_trigger_positions_title">Pozície koláča</string>
     <string name="pie_control_trigger_left">Ľavý okraj obrazovky</string>

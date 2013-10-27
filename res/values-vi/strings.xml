@@ -371,7 +371,6 @@
     <!-- Pie Controls settings -->
     <string name="pie_control_title">Điều khiển Pie</string>
     <string name="pie_control_enable_title">Cho phép</string>
-    <string name="pie_control_search_title">Hiện nút bấm tìm kiếm</string>
     <string name="pie_control_size_title">Kích thước khóa chuyển hướng</string>
     <string name="pie_control_trigger_positions_title">Vị trí kích hoạt</string>
     <string name="pie_control_trigger_left">Viền màn hình trái</string>

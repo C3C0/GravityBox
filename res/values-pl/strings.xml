@@ -249,7 +249,6 @@
     <string name="pie_phone_status_emergency_only">Tylko połączenia alarmowe</string>
     <string name="pie_control_title">Interfejs Kontroli Pie</string>
     <string name="pie_control_enable_title">Włącz interfejs kontroli Pie</string>
-    <string name="pie_control_search_title">Pokaż przycisk wyszukiwania</string>
     <string name="pie_control_size_title">Wielkość klawisza nawigacji</string>
     <string name="pie_control_trigger_positions_title">Pozycja aktywnej strefy</string>
     <string name="pie_control_trigger_left">Lewy margines ekranu</string>

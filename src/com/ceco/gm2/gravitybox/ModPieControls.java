@@ -97,9 +97,10 @@ public class ModPieControls {
                     mPieMode = intent.getIntExtra(GravityBoxSettings.EXTRA_PIE_ENABLE, 0);
                     attachPie();
                 }
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_SEARCH)) {
-                    mPieController.setSearchVisibility(intent.getBooleanExtra(
-                            GravityBoxSettings.EXTRA_PIE_SEARCH, false));
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_CUSTOM_KEY_MODE)) {
+                    mPieController.setCustomKeyMode(intent.getIntExtra(
+                            GravityBoxSettings.EXTRA_PIE_CUSTOM_KEY_MODE,
+                            GravityBoxSettings.PIE_CUSTOM_KEY_OFF));
                     attachPie();
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_TRIGGERS)) {
@@ -255,8 +256,16 @@ public class ModPieControls {
                     mGbContext = mContext.createPackageContext(GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
                     mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
                     mPieController = new PieController(mContext, mGbContext);
-                    mPieController.setSearchVisibility(prefs.getBoolean(
-                            GravityBoxSettings.PREF_KEY_PIE_CONTROL_SEARCH, false));
+
+                    int customKeyMode = GravityBoxSettings.PIE_CUSTOM_KEY_OFF;
+                    try {
+                        customKeyMode = Integer.valueOf(prefs.getString(
+                            GravityBoxSettings.PREF_KEY_PIE_CONTROL_CUSTOM_KEY, "0"));
+                    } catch (NumberFormatException nfe) {
+                        log("Invalid value for PREF_KEY_PIE_CONTROL_CUSTOM_KEY preference");
+                    }
+                    mPieController.setCustomKeyMode(customKeyMode);
+
                     mPieController.attachTo(param.thisObject);
 
                     IntentFilter intentFilter = new IntentFilter();

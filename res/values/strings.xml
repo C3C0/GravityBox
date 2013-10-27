@@ -377,7 +377,6 @@
     <!-- Pie Controls settings -->
     <string name="pie_control_title">Pie controls</string>
     <string name="pie_control_enable_title">Enable pie controls</string>
-    <string name="pie_control_search_title">Show search button</string>
     <string name="pie_control_size_title">Navigation key size</string>
     <string name="pie_control_trigger_positions_title">Trigger positions</string>
     <string name="pie_control_trigger_left">Left screen border</string>
@@ -731,5 +730,11 @@
 
     <!-- HW Key Actions: application launcher -->
     <string name="hwkey_action_app_launcher">Show application launcher</string>
+
+    <!-- Pie custom key -->
+    <string name="pref_pie_control_custom_key_title">Show custom key</string>
+    <string name="pie_custom_key_off">Disabled</string>
+    <string name="pie_custom_key_search">Search</string>
+    <string name="pie_custom_key_app_launcher">Application launcher</string>
 
 </resources>

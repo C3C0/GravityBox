@@ -49,6 +49,9 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
+import com.ceco.gm2.gravitybox.AppLauncher;
+import com.ceco.gm2.gravitybox.GravityBox;
+import com.ceco.gm2.gravitybox.GravityBoxSettings;
 import com.ceco.gm2.gravitybox.ModPieControls;
 import com.ceco.gm2.gravitybox.R;
 import com.ceco.gm2.gravitybox.pie.PieItem;
@@ -58,6 +61,7 @@ import com.ceco.gm2.gravitybox.pie.PieLayout.PieSlice;
 import com.ceco.gm2.gravitybox.pie.PieSliceContainer;
 import com.ceco.gm2.gravitybox.pie.PieSysInfo;
 
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.XposedHelpers.ClassNotFoundError;
@@ -79,7 +83,8 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         HOME,
         RECENT,
         MENU,
-        SEARCH
+        SEARCH,
+        APP_LAUNCHER
     };
 
     public static final float EMPTY_ANGLE = 10;
@@ -91,6 +96,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
     private Context mGbContext;
     private Resources mGbResources;
     private PieLayout mPieContainer;
+    private AppLauncher mAppLauncher;
     /**
      * This is only needed for #toggleRecentApps()
      */
@@ -110,7 +116,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
     private int mNavigationIconHints = 0;
     private int mDisabledFlags = 0;
     private boolean mShowMenu = false;
-    private boolean mShowSearch = false;
+    private int mCustomKeyMode = GravityBoxSettings.PIE_CUSTOM_KEY_OFF;
     private Drawable mBackIcon;
     private Drawable mBackAltIcon;
 
@@ -358,9 +364,12 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         mNavigationSlice.addItem(constructItem(2, ButtonType.RECENT,
                 res.getDrawable(res.getIdentifier("ic_sysbar_recent", "drawable", PACKAGE_NAME)),
                 minimumImageSize));
-        if (mShowSearch) {
+        if (mCustomKeyMode == GravityBoxSettings.PIE_CUSTOM_KEY_SEARCH) {
             mNavigationSlice.addItem(constructItem(1, ButtonType.SEARCH,
                     mGbResources.getDrawable(R.drawable.ic_sysbar_search_side), minimumImageSize));
+        } else if (mCustomKeyMode == GravityBoxSettings.PIE_CUSTOM_KEY_APP_LAUNCHER) {
+            mNavigationSlice.addItem(constructItem(1, ButtonType.APP_LAUNCHER,
+                    mGbResources.getDrawable(R.drawable.ic_sysbar_apps), minimumImageSize));
         }
 
         mMenuButton = constructItem(1, ButtonType.MENU,
@@ -472,6 +481,8 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         if (item != null) item.show(!disableRecent);
         item = findItem(ButtonType.SEARCH);
         if (item != null) item.show(!disableRecent && !disableSearch);
+        item = findItem(ButtonType.APP_LAUNCHER);
+        if (item != null) item.show(!disableRecent);
         setMenuVisibility(mShowMenu);
     }
 
@@ -485,8 +496,8 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         mShowMenu = showMenu;
     }
 
-    public void setSearchVisibility(boolean showSearch) {
-        mShowSearch = showSearch;
+    public void setCustomKeyMode(int mode) {
+        mCustomKeyMode = mode;
         setupNavigationItems();
     }
 
@@ -544,6 +555,9 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
             case SEARCH:
                 launchAssistAction();
                 break;
+            case APP_LAUNCHER:
+                showAppLauncher();
+                break;
         }
     }
 
@@ -576,6 +590,21 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
             } catch (ActivityNotFoundException ignored) {
                 // fall through
             }
+        }
+    }
+
+    private void showAppLauncher() {
+        if (mAppLauncher == null) {
+            try {
+                mAppLauncher = new AppLauncher(mContext, 
+                        new XSharedPreferences(GravityBox.PACKAGE_NAME));
+            } catch (Throwable t) {
+                log ("Error creating app launcher: " + t.getMessage());
+            }
+        }
+
+        if (mAppLauncher != null) {
+            mAppLauncher.showDialog();
         }
     }
 

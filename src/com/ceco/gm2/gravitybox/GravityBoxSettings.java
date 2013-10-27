@@ -290,15 +290,18 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_BG_ALPHA = "bgAlpha";
 
     public static final String PREF_KEY_PIE_CONTROL_ENABLE = "pref_pie_control_enable2";
-    public static final String PREF_KEY_PIE_CONTROL_SEARCH = "pref_pie_control_search";
+    public static final String PREF_KEY_PIE_CONTROL_CUSTOM_KEY = "pref_pie_control_custom_key";
     public static final String PREF_KEY_PIE_CONTROL_MENU = "pref_pie_control_menu";
     public static final String PREF_KEY_PIE_CONTROL_TRIGGERS = "pref_pie_control_trigger_positions";
     public static final String PREF_KEY_PIE_CONTROL_TRIGGER_SIZE = "pref_pie_control_trigger_size";
     public static final String PREF_KEY_PIE_CONTROL_SIZE = "pref_pie_control_size";
     public static final String PREF_KEY_HWKEYS_DISABLE = "pref_hwkeys_disable";
+    public static final int PIE_CUSTOM_KEY_OFF = 0;
+    public static final int PIE_CUSTOM_KEY_SEARCH = 1;
+    public static final int PIE_CUSTOM_KEY_APP_LAUNCHER = 2;
     public static final String ACTION_PREF_PIE_CHANGED = "gravitybox.intent.action.PREF_PIE_CHANGED";
     public static final String EXTRA_PIE_ENABLE = "pieEnable";
-    public static final String EXTRA_PIE_SEARCH = "pieSearch";
+    public static final String EXTRA_PIE_CUSTOM_KEY_MODE = "pieCustomKeyMode";
     public static final String EXTRA_PIE_MENU = "pieMenu";
     public static final String EXTRA_PIE_TRIGGERS = "pieTriggers";
     public static final String EXTRA_PIE_TRIGGER_SIZE = "pieTriggerSize";
@@ -689,6 +692,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private PreferenceScreen mPrefCatAppLauncher;
         private CheckBoxPreference mPrefNavbarLauncherEnable;
         private AppPickerPreference[] mPrefAppLauncherSlot;
+        private ListPreference mPrefPieCustomKey;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -797,6 +801,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             mPrefPieEnabled = (ListPreference) findPreference(PREF_KEY_PIE_CONTROL_ENABLE);
             mPrefPieHwKeysDisabled = (CheckBoxPreference) findPreference(PREF_KEY_HWKEYS_DISABLE);
+            mPrefPieCustomKey = (ListPreference) findPreference(PREF_KEY_PIE_CONTROL_CUSTOM_KEY);
 
             mPrefGbThemeDark = (CheckBoxPreference) findPreference(PREF_KEY_GB_THEME_DARK);
             File file = new File(getActivity().getFilesDir() + "/" + FILE_THEME_DARK_FLAG);
@@ -874,6 +879,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 appPref.setKey(PREF_KEY_APP_LAUNCHER_SLOT.get(i));
                 appPref.setTitle(String.format(
                         getActivity().getString(R.string.pref_app_launcher_slot_title), i + 1));
+                appPref.setDialogTitle(appPref.getTitle());
                 appPref.setDefaultSummary(getActivity().getString(R.string.app_picker_none));
                 appPref.setSummary(getActivity().getString(R.string.app_picker_none));
                 mPrefAppLauncherSlot[i] = appPref;
@@ -1293,6 +1299,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             if (key == null || key.equals(PREF_KEY_STATUSBAR_SIGNAL_COLOR_MODE)) {
                 mPrefSbSignalColorMode.setSummary(mPrefSbSignalColorMode.getEntry());
             }
+
+            if (key == null || key.equals(PREF_KEY_PIE_CONTROL_CUSTOM_KEY)) {
+                mPrefPieCustomKey.setSummary(mPrefPieCustomKey.getEntry());
+            }
         }
 
         @Override
@@ -1474,9 +1484,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 if (mode == 0) {
                     intent.putExtra(EXTRA_PIE_HWKEYS_DISABLE, false);
                 }
-            } else if (key.equals(PREF_KEY_PIE_CONTROL_SEARCH)) {
+            } else if (key.equals(PREF_KEY_PIE_CONTROL_CUSTOM_KEY)) {
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
-                intent.putExtra(EXTRA_PIE_SEARCH, prefs.getBoolean(PREF_KEY_PIE_CONTROL_SEARCH, false));
+                intent.putExtra(EXTRA_PIE_CUSTOM_KEY_MODE, Integer.valueOf( 
+                        prefs.getString(PREF_KEY_PIE_CONTROL_CUSTOM_KEY, "0")));
             } else if (key.equals(PREF_KEY_PIE_CONTROL_MENU)) {
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
                 intent.putExtra(EXTRA_PIE_MENU, prefs.getBoolean(PREF_KEY_PIE_CONTROL_MENU, false));

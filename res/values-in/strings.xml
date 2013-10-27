@@ -376,7 +376,6 @@
     <!-- Pie Controls settings -->
     <string name="pie_control_title">Kontrol Pie</string>
     <string name="pie_control_enable_title">Hidupkan kontrol Pie</string>
-    <string name="pie_control_search_title">Tampilkan tombol pencarian</string>
     <string name="pie_control_size_title">Ukuran tombol navigasi</string>
     <string name="pie_control_trigger_positions_title">Posisi pemicu</string>
     <string name="pie_control_trigger_left">Batas kiri layar</string>

@@ -377,7 +377,6 @@
     <!-- Pie Controls settings -->
     <string name="pie_control_title">Веерное меню</string>
     <string name="pie_control_enable_title">Включить веерное меню</string>
-    <string name="pie_control_search_title">Включить кнопку поиска</string>
     <string name="pie_control_size_title">Размер навигационных кнопок</string>
     <string name="pie_control_trigger_positions_title">Позиция переключателей</string>
     <string name="pie_control_trigger_left">Левая граница</string>
