@@ -716,4 +716,10 @@
     <!-- HW Key Actions: application launcher -->
     <string name="hwkey_action_app_launcher">Mostrar lançador de aplicações</string>
 
+    <!-- Pie custom key -->
+    <string name="pref_pie_control_custom_key_title">Mostrar botão personalizado</string>
+    <string name="pie_custom_key_off">Desativado</string>
+    <string name="pie_custom_key_search">Pesquisa</string>
+    <string name="pie_custom_key_app_launcher">Lançador de aplicações</string>
+
 </resources>
