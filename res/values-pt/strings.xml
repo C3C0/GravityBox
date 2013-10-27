@@ -362,7 +362,6 @@
     <!-- Pie Controls settings -->
     <string name="pie_control_title">Controles Pie</string>
     <string name="pie_control_enable_title">Ativar controles Pie</string>
-    <string name="pie_control_search_title">Exibir botão Pesquisa</string>
     <string name="pie_control_size_title">Dimensão dos botões de navegação</string>
     <string name="pie_control_trigger_positions_title">Posições de ativação</string>
     <string name="pie_control_trigger_left">Borda esquerda do ecrã</string>
@@ -712,9 +711,15 @@
     <string name="app_launcher_no_apps">No apps assigned. Use GravityBox / Application launcher menu to assign apps.</string>
 
     <!-- Navigation bar app launcher key -->
-    <string name="pref_navbar_launcher_enable_title">Show app launcher key</string>
+    <string name="pref_navbar_launcher_enable_title">Exibir botão Lançador aplicativos</string>
 
     <!-- HW Key Actions: application launcher -->
-    <string name="hwkey_action_app_launcher">Show application launcher</string>
+    <string name="hwkey_action_app_launcher">Exibir lançador de aplicativos</string>
+
+    <!-- Pie custom key -->
+    <string name="pref_pie_control_custom_key_title">Exibir botão customizado</string>
+    <string name="pie_custom_key_off">Desabilitado</string>
+    <string name="pie_custom_key_search">Pesquisa</string>
+    <string name="pie_custom_key_app_launcher">Lançador de aplicativos</string>
 
 </resources>
