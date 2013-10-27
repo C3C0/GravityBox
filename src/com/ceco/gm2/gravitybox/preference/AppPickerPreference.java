@@ -147,6 +147,10 @@ public class AppPickerPreference extends DialogPreference implements OnItemClick
         }
     } 
 
+    public void setDefaultSummary(String summary) {
+        mDefaultSummaryText = summary;
+    }
+
     private void setData() {
         mAsyncTask = new AsyncTask<Void,Void,Void>() {
             @Override

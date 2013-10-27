@@ -367,21 +367,13 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE = "pref_navbar_height_landscape";
     public static final String PREF_KEY_NAVBAR_WIDTH = "pref_navbar_width";
     public static final String PREF_KEY_NAVBAR_MENUKEY = "pref_navbar_menukey";
-    public static final String PREF_CAT_KEY_NABAR_LAUNCHER = "pref_cat_navbar_launcher";
     public static final String PREF_KEY_NAVBAR_LAUNCHER_ENABLE = "pref_navbar_launcher_enable";
-    public static final String PREF_KEY_NAVBAR_LAUNCHER_LONGPRESS = "pref_navbar_launcher_longpress";
-    public static final List<String> PREF_KEY_NAVBAR_LAUNCHER_SLOT = new ArrayList<String>(Arrays.asList(
-        "pref_navbar_launcher_slot0", "pref_navbar_launcher_slot1", "pref_navbar_launcher_slot2",
-        "pref_navbar_launcher_slot3", "pref_navbar_launcher_slot4", "pref_navbar_launcher_slot5",
-        "pref_navbar_launcher_slot6", "pref_navbar_launcher_slot7"));
     public static final String ACTION_PREF_NAVBAR_CHANGED = "gravitybox.intent.action.ACTION_NAVBAR_CHANGED";
     public static final String EXTRA_NAVBAR_HEIGHT = "navbarHeight";
     public static final String EXTRA_NAVBAR_HEIGHT_LANDSCAPE = "navbarHeightLandscape";
     public static final String EXTRA_NAVBAR_WIDTH = "navbarWidth";
     public static final String EXTRA_NAVBAR_MENUKEY = "navbarMenukey";
     public static final String EXTRA_NAVBAR_LAUNCHER_ENABLE = "navbarLauncherEnable";
-    public static final String EXTRA_NAVBAR_LAUNCHER_SLOT = "navbarLauncherSlot";
-    public static final String EXTRA_NAVBAR_LAUNCHER_APP = "navbarLauncherApp";
 
     public static final String PREF_KEY_LOCKSCREEN_TARGETS_ENABLE = "pref_lockscreen_ring_targets_enable";
     public static final String PREF_KEY_LOCKSCREEN_TARGETS_APP[] = new String[] {
@@ -438,7 +430,15 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_DT_ENABLE = "dtEnable";
     public static final String EXTRA_DT_POSITION = "dtPosition";
     public static final String EXTRA_DT_SIZE = "dtSize";
-     
+
+    public static final String PREF_CAT_KEY_APP_LAUNCHER = "pref_cat_app_launcher";
+    public static final List<String> PREF_KEY_APP_LAUNCHER_SLOT = new ArrayList<String>(Arrays.asList(
+            "pref_app_launcher_slot0", "pref_app_launcher_slot1", "pref_app_launcher_slot2",
+            "pref_app_launcher_slot3", "pref_app_launcher_slot4", "pref_app_launcher_slot5",
+            "pref_app_launcher_slot6", "pref_app_launcher_slot7"));
+    public static final String ACTION_PREF_APP_LAUNCHER_CHANGED = "gravitybox.intent.action.APP_LAUNCHER_CHANGED";
+    public static final String EXTRA_APP_LAUNCHER_SLOT = "appLauncherSlot";
+    public static final String EXTRA_APP_LAUNCHER_APP = "appLauncherApp";
 
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
@@ -685,10 +685,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefVolumePanelExpandable;
         private CheckBoxPreference mPrefVolumePanelAutoexpand;
         private CheckBoxPreference mPrefHomeDoubletapDisable;
-        private PreferenceScreen mPrefCatNavbarLauncher;
+        private PreferenceScreen mPrefCatAppLauncher;
         private CheckBoxPreference mPrefNavbarLauncherEnable;
-        private AppPickerPreference mPrefNavbarLauncherLongpress;
-        private AppPickerPreference[] mPrefNavbarLauncherSlot;
+        private AppPickerPreference[] mPrefAppLauncherSlot;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -834,19 +833,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefNavbarHeightLandscape = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE);
             mPrefNavbarWidth = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_WIDTH);
             mPrefNavbarMenukey = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_MENUKEY);
-            mPrefCatNavbarLauncher = (PreferenceScreen) findPreference(PREF_CAT_KEY_NABAR_LAUNCHER);
             mPrefNavbarLauncherEnable = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_LAUNCHER_ENABLE);
-            mPrefNavbarLauncherLongpress = (AppPickerPreference) findPreference(PREF_KEY_NAVBAR_LAUNCHER_LONGPRESS);
-            mPrefNavbarLauncherSlot = new AppPickerPreference[PREF_KEY_NAVBAR_LAUNCHER_SLOT.size()];
-            for (int i = 0; i < mPrefNavbarLauncherSlot.length; i++) {
-                AppPickerPreference appPref = new AppPickerPreference(getActivity(), null);
-                appPref.setKey(PREF_KEY_NAVBAR_LAUNCHER_SLOT.get(i));
-                appPref.setTitle(String.format(
-                        getActivity().getString(R.string.pref_navbar_launcher_slot_title), i + 1));
-                appPref.setSummary(getActivity().getString(R.string.app_picker_none));
-                mPrefNavbarLauncherSlot[i] = appPref;
-                mPrefCatNavbarLauncher.addPreference(mPrefNavbarLauncherSlot[i]);
-            }
 
             mPrefLockscreenTargetsApp = new AppPickerPreference[5];
             for (int i=0; i<=4; i++) {
@@ -878,6 +865,19 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefSbLockPolicy = (ListPreference) findPreference(PREF_KEY_STATUSBAR_LOCK_POLICY);
             mPrefDataTrafficPosition = (ListPreference) findPreference(PREF_KEY_DATA_TRAFFIC_POSITION);
             mPrefDataTrafficSize = (ListPreference) findPreference(PREF_KEY_DATA_TRAFFIC_SIZE);
+
+            mPrefCatAppLauncher = (PreferenceScreen) findPreference(PREF_CAT_KEY_APP_LAUNCHER);
+            mPrefAppLauncherSlot = new AppPickerPreference[PREF_KEY_APP_LAUNCHER_SLOT.size()];
+            for (int i = 0; i < mPrefAppLauncherSlot.length; i++) {
+                AppPickerPreference appPref = new AppPickerPreference(getActivity(), null);
+                appPref.setKey(PREF_KEY_APP_LAUNCHER_SLOT.get(i));
+                appPref.setTitle(String.format(
+                        getActivity().getString(R.string.pref_app_launcher_slot_title), i + 1));
+                appPref.setDefaultSummary(getActivity().getString(R.string.app_picker_none));
+                appPref.setSummary(getActivity().getString(R.string.app_picker_none));
+                mPrefAppLauncherSlot[i] = appPref;
+                mPrefCatAppLauncher.addPreference(mPrefAppLauncherSlot[i]);
+            }
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
@@ -1233,7 +1233,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefNavbarHeightLandscape.setEnabled(override && mPrefNavbarEnable.isChecked());
                 mPrefNavbarWidth.setEnabled(override && mPrefNavbarEnable.isChecked());
                 mPrefNavbarMenukey.setEnabled(override && mPrefNavbarEnable.isChecked());
-                mPrefCatNavbarLauncher.setEnabled(override && mPrefNavbarEnable.isChecked());
+                mPrefNavbarLauncherEnable.setEnabled(override && mPrefNavbarEnable.isChecked());
             }
 
             if (key == null || key.equals(PREF_KEY_LOCKSCREEN_TARGETS_ENABLE)) {
@@ -1291,16 +1291,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             if (key == null || key.equals(PREF_KEY_STATUSBAR_SIGNAL_COLOR_MODE)) {
                 mPrefSbSignalColorMode.setSummary(mPrefSbSignalColorMode.getEntry());
-            }
-
-            if (key == null || key.equals(PREF_KEY_NAVBAR_LAUNCHER_ENABLE)) {
-                final int prefCount = mPrefCatNavbarLauncher.getPreferenceCount();
-                for (int i = 0; i < prefCount; i++) {
-                    final Preference p = mPrefCatNavbarLauncher.getPreference(i);
-                    if (!p.getKey().equals(PREF_KEY_NAVBAR_LAUNCHER_ENABLE)) {
-                        p.setEnabled(mPrefNavbarLauncherEnable.isChecked());
-                    }
-                }
             }
         }
 
@@ -1548,16 +1538,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 intent.setAction(ACTION_PREF_NAVBAR_CHANGED);
                 intent.putExtra(EXTRA_NAVBAR_LAUNCHER_ENABLE,
                         prefs.getBoolean(PREF_KEY_NAVBAR_LAUNCHER_ENABLE, false));
-            } else if (key.equals(PREF_KEY_NAVBAR_LAUNCHER_LONGPRESS)) {
-                intent.setAction(ACTION_PREF_NAVBAR_CHANGED);
-                intent.putExtra(EXTRA_NAVBAR_LAUNCHER_SLOT, -1);
-                intent.putExtra(EXTRA_NAVBAR_LAUNCHER_APP,
-                        prefs.getString(PREF_KEY_NAVBAR_LAUNCHER_LONGPRESS, null));
-            } else if (PREF_KEY_NAVBAR_LAUNCHER_SLOT.contains(key)) {
-                intent.setAction(ACTION_PREF_NAVBAR_CHANGED);
-                intent.putExtra(EXTRA_NAVBAR_LAUNCHER_SLOT,
-                        PREF_KEY_NAVBAR_LAUNCHER_SLOT.indexOf(key));
-                intent.putExtra(EXTRA_NAVBAR_LAUNCHER_APP, prefs.getString(key, null));
+            } else if (PREF_KEY_APP_LAUNCHER_SLOT.contains(key)) {
+                intent.setAction(ACTION_PREF_APP_LAUNCHER_CHANGED);
+                intent.putExtra(EXTRA_APP_LAUNCHER_SLOT,
+                        PREF_KEY_APP_LAUNCHER_SLOT.indexOf(key));
+                intent.putExtra(EXTRA_APP_LAUNCHER_APP, prefs.getString(key, null));
             } else if (key.equals(PREF_KEY_STATUSBAR_BRIGHTNESS)) {
                 intent.setAction(ACTION_PREF_STATUSBAR_BRIGHTNESS_CHANGED);
                 intent.putExtra(EXTRA_SB_BRIGHTNESS, prefs.getBoolean(PREF_KEY_STATUSBAR_BRIGHTNESS, false));
