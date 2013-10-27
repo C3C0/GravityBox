@@ -39,7 +39,7 @@
     <string name="vol_key_cursor_control_on">Teclas de volume +/- movem o cursor para a esquerda/direita</string>
     <string name="vol_key_cursor_control_on_reverse">Teclas de volume +/- movem o cursor para a direita/esquerda</string>
 
-    <string name="recents_clear_all_title">Limpar todas as tarefas recentes</string>
+    <string name="recents_clear_all_title">Limpar todas as aplicações recentes</string>
 
     <string name="fix_datetime_crash_title">Corrigir problema nas definições de data e hora</string>
     <string name="fix_datetime_crash_summary">Selecionar caso tenha problemas ao aceder à configuração de data e hora nas definições do telefone (necessário reiniciar)</string>
@@ -94,7 +94,7 @@
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_gps_alt">GPS (estilo CM)</string>
-    <string name="qs_tile_mobile_data">Dados 3G</string>
+    <string name="qs_tile_mobile_data">Dados móveis</string>
     <string name="qs_tile_network_mode">Modo de Rede</string>
     <string name="qs_tile_data_usage">Utilização de dados</string>
     <string name="qs_tile_audio">Perfis de áudio</string>
@@ -519,7 +519,7 @@
     <string name="pref_navbar_override_title">Ignorar predefinições de sistema</string>
     <string name="pref_navbar_override_summary">Ativação global dos ajustes da Barra de Navegação (necessário reiniciar)</string>
     <string name="pref_navbar_enable_title">Ativar Barra de Navegação</string>
-    <string name="pref_navbar_enable_summary">Necessário reiniciar</string>
+    <string name="pref_navbar_enable_summary">Permite ativar Barra de Navegação (necessário reiniciar)</string>
     <string name="pref_navbar_height_title">Altura da Barra de Navegação</string>
     <string name="pref_navbar_height_summary">Aplicável à barra horizontal e orientação de ecrã vertical</string>
     <string name="pref_navbar_height_landscape_summary">Aplicável à barra horizontal e orientação de ecrã horizontal</string>
@@ -662,14 +662,14 @@
     <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> livres</string>
     <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
     <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> utiliz.</string>
-    <string name="pref_rambar_title">Indicação RAM nas tarefas recentes</string>
+    <string name="pref_rambar_title">Indicação RAM nas aplicações recentes</string>
     <string name="rambar_off">Desativada</string>
     <string name="rambar_top">Topo superior</string>
     <string name="rambar_bottom">Topo inferior</string>
 
     <!-- HW Key actions for recents button -->
-    <string name="hwkey_recents_singletap_dialog_title">Ação após pressão da tecla Tarefas recentes</string>
-    <string name="hwkey_recents_longpress_dialog_title">Ação ao manter pressionada a tecla Tarefas recentes</string>
+    <string name="hwkey_recents_singletap_dialog_title">Ação após pressão da tecla Aplicações recentes</string>
+    <string name="hwkey_recents_longpress_dialog_title">Ação ao manter pressionada a tecla Aplicações recentes</string>
 
     <!-- Lockscreen battery arc -->
     <string name="pref_lockscreen_battery_arc_title">Mostrar arco de bateria</string>
@@ -689,7 +689,7 @@
     <string name="pref_cat_hwkey_menu_title">Tecla Menu</string>
     <string name="pref_cat_hwkey_home_title">Tecla Casa</string>
     <string name="pref_cat_hwkey_back_title">Tecla Atrás</string>
-    <string name="pref_cat_hwkey_recents_title">Tecla Tarefas Recentes</string>
+    <string name="pref_cat_hwkey_recents_title">Tecla Aplicações Recentes</string>
     <string name="pref_cat_hwkey_volume_title">Teclas de volume</string>
     <string name="pref_cat_hwkey_actions_others">Outras definições</string>
     <string name="pref_hwkey_longpress_title">Ação ao manter pressionada</string>
@@ -704,5 +704,17 @@
     <string name="signal_color_mode_gb">Aplicar com indicadores do GravityBox (com indicação do nível de sinal)</string>
     <string name="signal_color_mode_stock">Aplicar com indicadores padrão (sem indicação do nível de sinal)</string>
     <string name="signal_color_mode_disabled">Não aplicar coloração</string>
+
+    <!-- Application launcher -->
+    <string name="pref_cat_app_launcher_title">Lançador de aplicações</string>
+    <string name="pref_cat_app_launcher_summary">Permite definir até 8 aplicações como ações para as teclas físicas ou para mostrar em botão adicional na Barra de Navegação</string>
+    <string name="pref_app_launcher_slot_title">Aplicação posição %d</string>
+    <string name="app_launcher_no_apps">Nenhuma aplicação definida. Aceda a \"GravityBox / Lançador de aplicações\" para definir aplicações.</string>
+
+    <!-- Navigation bar app launcher key -->
+    <string name="pref_navbar_launcher_enable_title">Mostrar botão Lançador aplicações</string>
+
+    <!-- HW Key Actions: application launcher -->
+    <string name="hwkey_action_app_launcher">Mostrar lançador de aplicações</string>
 
 </resources>
