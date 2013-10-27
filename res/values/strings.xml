@@ -134,7 +134,7 @@
 
     <!--  Statusbar background color -->
     <string name="statusbar_bgcolor_title">Statusbar background color</string>
-    <string name="statusbar_bgcolor_summary">Allows to set statusbar background color and transparency</string>
+    <string name="statusbar_bgcolor_summary">Allows to set statusbar background color</string>
 
     <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">Fix speech settings</string>
