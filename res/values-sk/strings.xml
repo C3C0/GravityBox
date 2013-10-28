@@ -681,4 +681,46 @@
     <string name="pref_hwkey_singletap_title">Akcia na ťuknutie</string>
     <string name="pref_hwkey_doubletap_title">Akcia na dvojité ťuknutie</string>
 
+    <!-- Disable double-tap (e.g. for Home Key on Android 4.3+) -->
+    <string name="pref_hwkey_doubletap_disable_title">Vypnúť dvojité ťuknutie</string>
+
+    <!-- Color mode for statusbar signal icons -->
+    <string name="pref_statusbar_signal_color_mode_title">Režim vyfarbovania signálu</string>
+    <string name="signal_color_mode_gb">Použiť GravityBox ikony (s podporou úrovne signálu)</string>
+    <string name="signal_color_mode_stock">Použiť originál ikony (bez podpory úrovne signálu)</string>
+    <string name="signal_color_mode_disabled">Nevyfarbovať</string>
+
+    <!-- Application launcher -->
+    <string name="pref_cat_app_launcher_title">Spúšťač aplikácií</string>
+    <string name="pref_cat_app_launcher_summary">Dialóg s aplikáciami, ktorý môže byť aktivovaný na akciu tlačidla, alebo cez dodatočné tlačidlo navigačnej lišty, alebo z koláča</string>
+    <string name="pref_app_launcher_slot_title">Aplikácia %d</string>
+    <string name="app_launcher_no_apps">Nie sú priradené žiadne aplikácie. Použite GravityBox / Spúšťač aplikácií pre priradenie aplikácií.</string>
+
+    <!-- Navigation bar app launcher key -->
+    <string name="pref_navbar_launcher_enable_title">Tlačidlo spúštača aplikácií</string>
+
+    <!-- HW Key Actions: application launcher -->
+    <string name="hwkey_action_app_launcher">Zobraziť spúšťač aplikácií</string>
+
+    <!-- Pie custom key -->
+    <string name="pref_pie_control_custom_key_title">Voliteľné tlačidlo</string>
+    <string name="pie_custom_key_off">Vypnuté</string>
+    <string name="pie_custom_key_search">Hľadať</string>
+    <string name="pie_custom_key_app_launcher">Spúšťač aplikácií</string>
+
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">Farby koláča</string>
+    <string name="pref_pie_color_bg_title">Farba pozadia</string>
+    <string name="pref_pie_color_fg_title">Farba ikon</string>
+    <string name="pref_pie_color_outline_title">Farba okraja</string>
+    <string name="pref_pie_color_selected_title">Farba aktívneho tlačidla</string>
+    <string name="pref_pie_color_text_title">Farba textu</string>
+    <string name="pref_pie_color_reset_title">Resetovať farby</string>
+
+    <!-- Custom unknown caller photo -->
+    <string name="pref_caller_unknown_photo_enable_title">Povoliť foto neznámeho čísla</string>
+    <string name="pref_caller_unknown_photo_title">Nastaviť foto neznámeho čísla</string>
+    <string name="caller_unknown_photo_result_successful">Foto nastavené</string>
+    <string name="caller_unkown_photo_result_not_successful">Foto nebolo nastavené</string>
+
 </resources>
