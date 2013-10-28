@@ -737,4 +737,13 @@
     <string name="pie_custom_key_search">Search</string>
     <string name="pie_custom_key_app_launcher">Application launcher</string>
 
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">Pie colors</string>
+    <string name="pref_pie_color_bg_title">Background color</string>
+    <string name="pref_pie_color_fg_title">Foreground color</string>
+    <string name="pref_pie_color_outline_title">Outline color</string>
+    <string name="pref_pie_color_selected_title">Key selected color</string>
+    <string name="pref_pie_color_text_title">Text color</string>
+    <string name="pref_pie_color_reset_title">Reset colors</string>
+
 </resources>

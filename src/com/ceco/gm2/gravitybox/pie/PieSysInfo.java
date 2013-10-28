@@ -77,15 +77,13 @@ public class PieSysInfo extends PieSliceContainer implements ValueAnimator.Anima
         mContext = context;
         mGbResources = gbContext.getResources();
 
-        int textColor = mGbResources.getColor(R.color.pie_text_color);
-
-        mClockPaint.setColor(textColor);
         mClockPaint.setAntiAlias(true);
         mClockPaint.setTypeface(Typeface.create("sans-serif-light", Typeface.BOLD));
 
-        mInfoPaint.setColor(textColor);
         mInfoPaint.setAntiAlias(true);
         mInfoPaint.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+
+        setColor(controller.getColorInfo());
     }
 
     @Override
@@ -244,5 +242,10 @@ public class PieSysInfo extends PieSliceContainer implements ValueAnimator.Anima
         mTimeFormatString = format;
         mTimeFormat = new SimpleDateFormat(formatBuilder.toString().trim());
         return mTimeFormat;
+    }
+
+    public void setColor(PieController.ColorInfo colorInfo) {
+        mClockPaint.setColor(colorInfo.textColor);
+        mInfoPaint.setColor(colorInfo.textColor);
     }
 }

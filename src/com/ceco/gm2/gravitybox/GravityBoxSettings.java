@@ -60,6 +60,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -296,6 +297,12 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_PIE_CONTROL_TRIGGER_SIZE = "pref_pie_control_trigger_size";
     public static final String PREF_KEY_PIE_CONTROL_SIZE = "pref_pie_control_size";
     public static final String PREF_KEY_HWKEYS_DISABLE = "pref_hwkeys_disable";
+    public static final String PREF_KEY_PIE_COLOR_BG = "pref_pie_color_bg";
+    public static final String PREF_KEY_PIE_COLOR_FG = "pref_pie_color_fg";
+    public static final String PREF_KEY_PIE_COLOR_OUTLINE = "pref_pie_color_outline";
+    public static final String PREF_KEY_PIE_COLOR_SELECTED = "pref_pie_color_selected";
+    public static final String PREF_KEY_PIE_COLOR_TEXT = "pref_pie_color_text";
+    public static final String PREF_KEY_PIE_COLOR_RESET = "pref_pie_color_reset";
     public static final int PIE_CUSTOM_KEY_OFF = 0;
     public static final int PIE_CUSTOM_KEY_SEARCH = 1;
     public static final int PIE_CUSTOM_KEY_APP_LAUNCHER = 2;
@@ -307,6 +314,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String EXTRA_PIE_TRIGGER_SIZE = "pieTriggerSize";
     public static final String EXTRA_PIE_SIZE = "pieSize";
     public static final String EXTRA_PIE_HWKEYS_DISABLE = "hwKeysDisable";
+    public static final String EXTRA_PIE_COLOR_BG = "pieColorBg";
+    public static final String EXTRA_PIE_COLOR_FG = "pieColorFg";
+    public static final String EXTRA_PIE_COLOR_OUTLINE = "pieColorOutline";
+    public static final String EXTRA_PIE_COLOR_SELECTED = "pieColorSelected";
+    public static final String EXTRA_PIE_COLOR_TEXT = "pieColorText";
 
     public static final String PREF_KEY_BUTTON_BACKLIGHT_MODE = "pref_button_backlight_mode";
     public static final String PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS = "pref_button_backlight_notifications";
@@ -643,7 +655,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefDisableRoamingIndicators;
         private ListPreference mPrefButtonBacklightMode;
         private ListPreference mPrefPieEnabled;
+        private ListPreference mPrefPieCustomKey;
         private CheckBoxPreference mPrefPieHwKeysDisabled;
+        private ColorPickerPreference mPrefPieColorBg;
+        private ColorPickerPreference mPrefPieColorFg;
+        private ColorPickerPreference mPrefPieColorOutline;
+        private ColorPickerPreference mPrefPieColorSelected;
+        private ColorPickerPreference mPrefPieColorText;
+        private Preference mPrefPieColorReset;
         private CheckBoxPreference mPrefGbThemeDark;
         private ListPreference mPrefRecentClear;
         private ListPreference mPrefRambar;
@@ -692,7 +711,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private PreferenceScreen mPrefCatAppLauncher;
         private CheckBoxPreference mPrefNavbarLauncherEnable;
         private AppPickerPreference[] mPrefAppLauncherSlot;
-        private ListPreference mPrefPieCustomKey;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -802,6 +820,12 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefPieEnabled = (ListPreference) findPreference(PREF_KEY_PIE_CONTROL_ENABLE);
             mPrefPieHwKeysDisabled = (CheckBoxPreference) findPreference(PREF_KEY_HWKEYS_DISABLE);
             mPrefPieCustomKey = (ListPreference) findPreference(PREF_KEY_PIE_CONTROL_CUSTOM_KEY);
+            mPrefPieColorBg = (ColorPickerPreference) findPreference(PREF_KEY_PIE_COLOR_BG);
+            mPrefPieColorFg = (ColorPickerPreference) findPreference(PREF_KEY_PIE_COLOR_FG);
+            mPrefPieColorOutline = (ColorPickerPreference) findPreference(PREF_KEY_PIE_COLOR_OUTLINE);
+            mPrefPieColorSelected = (ColorPickerPreference) findPreference(PREF_KEY_PIE_COLOR_SELECTED);
+            mPrefPieColorText = (ColorPickerPreference) findPreference(PREF_KEY_PIE_COLOR_TEXT);
+            mPrefPieColorReset = (Preference) findPreference(PREF_KEY_PIE_COLOR_RESET);
 
             mPrefGbThemeDark = (CheckBoxPreference) findPreference(PREF_KEY_GB_THEME_DARK);
             File file = new File(getActivity().getFilesDir() + "/" + FILE_THEME_DARK_FLAG);
@@ -1506,6 +1530,26 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             } else if (key.equals(PREF_KEY_HWKEYS_DISABLE)) {
                 intent.setAction(ACTION_PREF_PIE_CHANGED);
                 intent.putExtra(EXTRA_PIE_HWKEYS_DISABLE, prefs.getBoolean(PREF_KEY_HWKEYS_DISABLE, false));
+            } else if (key.equals(PREF_KEY_PIE_COLOR_BG)) {
+                intent.setAction(ACTION_PREF_PIE_CHANGED);
+                intent.putExtra(EXTRA_PIE_COLOR_BG, prefs.getInt(PREF_KEY_PIE_COLOR_BG, 
+                        getResources().getColor(R.color.pie_background_color)));
+            } else if (key.equals(PREF_KEY_PIE_COLOR_FG)) {
+                intent.setAction(ACTION_PREF_PIE_CHANGED);
+                intent.putExtra(EXTRA_PIE_COLOR_FG, prefs.getInt(PREF_KEY_PIE_COLOR_FG, 
+                        getResources().getColor(R.color.pie_foreground_color)));
+            } else if (key.equals(PREF_KEY_PIE_COLOR_OUTLINE)) {
+                intent.setAction(ACTION_PREF_PIE_CHANGED);
+                intent.putExtra(EXTRA_PIE_COLOR_OUTLINE, prefs.getInt(PREF_KEY_PIE_COLOR_OUTLINE, 
+                        getResources().getColor(R.color.pie_outline_color)));
+            } else if (key.equals(PREF_KEY_PIE_COLOR_SELECTED)) {
+                intent.setAction(ACTION_PREF_PIE_CHANGED);
+                intent.putExtra(EXTRA_PIE_COLOR_SELECTED, prefs.getInt(PREF_KEY_PIE_COLOR_SELECTED, 
+                        getResources().getColor(R.color.pie_selected_color)));
+            } else if (key.equals(PREF_KEY_PIE_COLOR_TEXT)) {
+                intent.setAction(ACTION_PREF_PIE_CHANGED);
+                intent.putExtra(EXTRA_PIE_COLOR_TEXT, prefs.getInt(PREF_KEY_PIE_COLOR_TEXT, 
+                        getResources().getColor(R.color.pie_text_color)));
             } else if (key.equals(PREF_KEY_BUTTON_BACKLIGHT_MODE)) {
                 intent.setAction(ACTION_PREF_BUTTON_BACKLIGHT_CHANGED);
                 intent.putExtra(EXTRA_BB_MODE, prefs.getString(
@@ -1652,6 +1696,25 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 getActivity().recreate();
             } else if (pref == mPrefQsTileOrder) {
                 intent = new Intent(getActivity(), TileOrderActivity.class);
+            } else if (pref == mPrefPieColorReset) {
+                final Resources res = getResources();
+                final int bgColor = res.getColor(R.color.pie_background_color);
+                final int fgColor = res.getColor(R.color.pie_foreground_color);
+                final int outlineColor = res.getColor(R.color.pie_outline_color);
+                final int selectedColor = res.getColor(R.color.pie_selected_color);
+                final int textColor = res.getColor(R.color.pie_text_color);
+                mPrefPieColorBg.setValue(bgColor);
+                mPrefPieColorFg.setValue(fgColor);
+                mPrefPieColorOutline.setValue(outlineColor);
+                mPrefPieColorSelected.setValue(selectedColor);
+                mPrefPieColorText.setValue(textColor);
+                Intent pieIntent = new Intent(ACTION_PREF_PIE_CHANGED);
+                pieIntent.putExtra(EXTRA_PIE_COLOR_BG, bgColor);
+                pieIntent.putExtra(EXTRA_PIE_COLOR_FG, fgColor);
+                pieIntent.putExtra(EXTRA_PIE_COLOR_OUTLINE, outlineColor);
+                pieIntent.putExtra(EXTRA_PIE_COLOR_SELECTED, selectedColor);
+                pieIntent.putExtra(EXTRA_PIE_COLOR_TEXT, textColor);
+                getActivity().sendBroadcast(pieIntent);
             }
             
             if (intent != null) {

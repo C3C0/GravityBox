@@ -30,6 +30,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Point;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.hardware.input.InputManager;
 import android.os.BatteryManager;
@@ -281,7 +282,16 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         }
     };
 
-    public PieController(Context context, Context gbContext) {
+    final class ColorInfo {
+        int bgColor;
+        int fgColor;
+        int selectedColor;
+        int outlineColor;
+        int textColor;
+    }
+    private ColorInfo mColorInfo;
+
+    public PieController(Context context, Context gbContext, XSharedPreferences prefs) {
         mContext = context;
         mGbContext = gbContext;
         mGbResources = gbContext.getResources();
@@ -304,6 +314,20 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         } catch (ClassNotFoundError e) {
             XposedBridge.log(e);
         }
+
+        mColorInfo = new ColorInfo();
+        mColorInfo.bgColor = prefs.getInt(GravityBoxSettings.PREF_KEY_PIE_COLOR_BG, 
+                mGbResources.getColor(R.color.pie_background_color));
+        mColorInfo.selectedColor = prefs.getInt(GravityBoxSettings.PREF_KEY_PIE_COLOR_SELECTED,
+                mGbResources.getColor(R.color.pie_selected_color));
+        mColorInfo.outlineColor = prefs.getInt(GravityBoxSettings.PREF_KEY_PIE_COLOR_OUTLINE,
+                mGbResources.getColor(R.color.pie_outline_color));
+        mColorInfo.fgColor = prefs.getInt(GravityBoxSettings.PREF_KEY_PIE_COLOR_FG,
+                mGbResources.getColor(R.color.pie_foreground_color));
+        mColorInfo.textColor = prefs.getInt(GravityBoxSettings.PREF_KEY_PIE_COLOR_TEXT,
+                mGbResources.getColor(R.color.pie_text_color));
+
+        updateColors();
     }
 
     public void attachTo(Object statusBar) {
@@ -388,7 +412,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
         view.setMinimumHeight(minimumImageSize);
         LayoutParams lp = new LayoutParams(minimumImageSize, minimumImageSize);
         view.setLayoutParams(lp);
-        PieItem item = new PieItem(mContext, mGbContext, mPieContainer, 0, width, type, view);
+        PieItem item = new PieItem(mContext, mGbContext, mPieContainer, 0, width, type, view, mColorInfo);
         item.setOnClickListener(this);
         return item;
     }
@@ -636,5 +660,57 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
             return mGbResources.getString(R.string.pie_battery_status_charging, mBatteryLevel);
         }
         return mGbResources.getString(R.string.pie_battery_status_discharging, mBatteryLevel);
+    }
+
+    public ColorInfo getColorInfo() {
+        return mColorInfo;
+    }
+
+    public void setBackgroundColor(int color) {
+        mColorInfo.bgColor = color;
+        updateColors();
+    }
+
+    public void setForegroundColor(int color) {
+        mColorInfo.fgColor = color;
+        updateColors();
+
+    }
+
+    public void setSelectedColor(int color) {
+        mColorInfo.selectedColor = color;
+        updateColors();
+    }
+
+    public void setOutlineColor(int color) {
+        mColorInfo.outlineColor = color;
+        updateColors();
+    }
+
+    public void setTextColor(int color) {
+        mColorInfo.textColor = color;
+        updateColors();
+    }
+
+    private void updateColors() {
+        if (mBackIcon != null) {
+            mBackIcon.setColorFilter(null);
+            mBackIcon.setColorFilter(mColorInfo.fgColor, Mode.SRC_ATOP);
+        }
+
+        if (mBackAltIcon != null) {
+            mBackAltIcon.setColorFilter(null);
+            mBackAltIcon.setColorFilter(mColorInfo.fgColor, Mode.SRC_ATOP);
+        }
+
+        if (mNavigationSlice != null) {
+            for (PieItem pi : mNavigationSlice.getItems()) {
+                pi.setColor(mColorInfo);
+            }
+        }
+
+        if (mSysInfo != null) {
+            mSysInfo.setColor(mColorInfo);
+        }
     }
 }

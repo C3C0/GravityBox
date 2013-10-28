@@ -101,7 +101,6 @@ public class ModPieControls {
                     mPieController.setCustomKeyMode(intent.getIntExtra(
                             GravityBoxSettings.EXTRA_PIE_CUSTOM_KEY_MODE,
                             GravityBoxSettings.PIE_CUSTOM_KEY_OFF));
-                    attachPie();
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_TRIGGERS)) {
                     String[] triggers = intent.getStringArrayExtra(
@@ -128,6 +127,26 @@ public class ModPieControls {
                     mAlwaysShowMenuItem = intent.getBooleanExtra(
                             GravityBoxSettings.EXTRA_PIE_MENU, false);
                     mPieController.setMenuVisibility(mShowMenuItem | mAlwaysShowMenuItem);
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_COLOR_BG)) {
+                    mPieController.setBackgroundColor(intent.getIntExtra(GravityBoxSettings.EXTRA_PIE_COLOR_BG,
+                            mGbContext.getResources().getColor(R.color.pie_background_color)));
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_COLOR_FG)) {
+                    mPieController.setForegroundColor(intent.getIntExtra(GravityBoxSettings.EXTRA_PIE_COLOR_FG,
+                            mGbContext.getResources().getColor(R.color.pie_foreground_color)));
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_COLOR_OUTLINE)) {
+                    mPieController.setOutlineColor(intent.getIntExtra(GravityBoxSettings.EXTRA_PIE_COLOR_OUTLINE,
+                            mGbContext.getResources().getColor(R.color.pie_outline_color)));
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_COLOR_SELECTED)) {
+                    mPieController.setSelectedColor(intent.getIntExtra(GravityBoxSettings.EXTRA_PIE_COLOR_SELECTED,
+                            mGbContext.getResources().getColor(R.color.pie_selected_color)));
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_COLOR_TEXT)) {
+                    mPieController.setTextColor(intent.getIntExtra(GravityBoxSettings.EXTRA_PIE_COLOR_TEXT,
+                            mGbContext.getResources().getColor(R.color.pie_text_color)));
                 }
             } else if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED)) {
                 mExpandedDesktopMode = intent.getIntExtra(
@@ -255,7 +274,7 @@ public class ModPieControls {
                     mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                     mGbContext = mContext.createPackageContext(GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
                     mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-                    mPieController = new PieController(mContext, mGbContext);
+                    mPieController = new PieController(mContext, mGbContext, prefs);
 
                     int customKeyMode = GravityBoxSettings.PIE_CUSTOM_KEY_OFF;
                     try {

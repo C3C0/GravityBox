@@ -146,6 +146,14 @@ public class ColorPickerPreference
 		}
 	}
 
+	public void setValue(int color) {
+	    if (isPersistent()) {
+	        persistInt(color);
+	    }
+	    mValue = color;
+	    setPreviewColor();
+	}
+
 	public boolean onPreferenceClick(Preference preference) {
 		showDialog(null);
 		return false;

@@ -77,7 +77,8 @@ public class PieItem extends PieLayout.PieDrawable {
      */ 
     public final static int SELECTED = 0x100;
 
-    public PieItem(Context context, Context gbContext, PieLayout parent, int flags, int width, Object tag, View view) {
+    public PieItem(Context context, Context gbContext, PieLayout parent, int flags, int width, 
+            Object tag, View view, PieController.ColorInfo colorInfo) {
         mContext = context;
         mGbResources = gbContext.getResources();
         mView = view;
@@ -86,16 +87,13 @@ public class PieItem extends PieLayout.PieDrawable {
         this.width = width;
         this.flags = flags | PieDrawable.VISIBLE | PieDrawable.DISPLAY_ALL;
 
-        mBackgroundPaint.setColor(mGbResources.getColor(R.color.pie_background_color));
         mBackgroundPaint.setAntiAlias(true);
-        mSelectedPaint.setColor(mGbResources.getColor(R.color.pie_selected_color));
         mSelectedPaint.setAntiAlias(true);
-        mOutlinePaint.setColor(mGbResources.getColor(R.color.pie_outline_color));
         mOutlinePaint.setAntiAlias(true);
         mOutlinePaint.setStyle(Style.STROKE);
         mOutlinePaint.setStrokeWidth(mGbResources.getDimensionPixelSize(R.dimen.pie_outline));
 
-        setColor(mGbResources.getColor(R.color.pie_foreground_color));
+        setColor(colorInfo);
     }
 
     public void setGap(float gap) {
@@ -136,12 +134,16 @@ public class PieItem extends PieLayout.PieDrawable {
         }
     }
 
-    public void setColor(int color) {
+    public void setColor(PieController.ColorInfo colorInfo) {
+        mBackgroundPaint.setColor(colorInfo.bgColor);
+        mSelectedPaint.setColor(colorInfo.selectedColor);
+        mOutlinePaint.setColor(colorInfo.outlineColor);
+
         if (mView instanceof ImageView) {
             ImageView imageView = (ImageView)mView;
             Drawable drawable = imageView.getDrawable();
             if (drawable != null) {
-                drawable.setColorFilter(color, Mode.SRC_ATOP);
+                drawable.setColorFilter(colorInfo.fgColor, Mode.SRC_ATOP);
                 imageView.setImageDrawable(drawable);
             }
         }

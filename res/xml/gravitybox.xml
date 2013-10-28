@@ -427,6 +427,47 @@
                     android:summary="@string/pref_hwkeys_disable_summary"
                     android:defaultValue="false" />
 
+            <PreferenceCategory
+                android:key="pref_cat_pie_colors"
+                android:title="@string/pref_cat_pie_colors_title">
+
+                <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                    android:key="pref_pie_color_bg"
+                    android:title="@string/pref_pie_color_bg_title"
+                    android:defaultValue="@color/pie_background_color"
+                    alphaSlider="true" />
+    
+                <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                    android:key="pref_pie_color_fg"
+                    android:title="@string/pref_pie_color_fg_title"
+                    android:defaultValue="@color/pie_foreground_color"
+                    alphaSlider="false" />
+    
+                <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                    android:key="pref_pie_color_outline"
+                    android:title="@string/pref_pie_color_outline_title"
+                    android:defaultValue="@color/pie_outline_color"
+                    alphaSlider="true" />
+    
+                <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                    android:key="pref_pie_color_selected"
+                    android:title="@string/pref_pie_color_selected_title"
+                    android:defaultValue="@color/pie_selected_color"
+                    alphaSlider="true" />
+    
+                <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                    android:key="pref_pie_color_text"
+                    android:title="@string/pref_pie_color_text_title"
+                    android:defaultValue="@color/pie_text_color"
+                    alphaSlider="false" />
+
+                <Preference
+                    android:key="pref_pie_color_reset"
+                    android:title="@string/pref_pie_color_reset_title"
+                    android:persistent="false" />
+
+            </PreferenceCategory>
+
         </PreferenceScreen>
 
         <PreferenceScreen
