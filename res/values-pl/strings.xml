@@ -249,6 +249,7 @@
     <string name="pie_phone_status_emergency_only">Tylko połączenia alarmowe</string>
     <string name="pie_control_title">Interfejs Kontroli Pie</string>
     <string name="pie_control_enable_title">Włącz interfejs kontroli Pie</string>
+    <string name="pie_control_search_title">Pokaż przycisk wyszukiwania</string>
     <string name="pie_control_size_title">Wielkość klawisza nawigacji</string>
     <string name="pie_control_trigger_positions_title">Pozycja aktywnej strefy</string>
     <string name="pie_control_trigger_left">Lewy margines ekranu</string>
@@ -417,6 +418,7 @@
     <string name="pref_data_traffic_position_title">Pozycja</string>
     <string name="dt_position_auto">Automatycznie (centralnie lub po prawej w zależności od położenia zegara)</string>
     <string name="dt_position_left">Po lewej</string>
+    <string name="dt_position_right">Po prawej</string>
     <string name="pref_data_traffic_size_title">Rozmiar</string>
     <string name="dt_size_normal">Normalny</string>
     <string name="dt_size_smaller">Mniejszy</string>
@@ -435,4 +437,24 @@
     <string name="rambar_bottom">Na dole</string>
     <string name="hwkey_recents_singletap_dialog_title">Akcja kliknięcia klawisza ostatnich aplikacji</string>
     <string name="hwkey_recents_longpress_dialog_title">Akcja przytrzymania klawisza ostatnich aplikacji</string>
+    <string name="pref_lockscreen_battery_arc_title">Pokaż wskaźnik stanu baterii</string>
+    <string name="pref_lockscreen_battery_arc_summary">Pokazuje stan baterii w kształcie łuku wokół przycisku pierścienia odblokowania</string>
+    <string name="hwkey_action_torch">Przełącz latarkę</string>
+    <string name="pref_hwkey_home_longpress_keyguard_title">Latarka przy długim nac. HOME</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">Umożliwia przełączanie latarki klawiszem HOME gdy urządzenie jest zablokowane. Ekran musi być włączony, jeśli urządzenie nie posiada natywnego wsparcia dla wybudzania klawiszem HOME.</string>
+    <string name="pref_volume_panel_autoexpand_title">Rozszerz automatycznie panel głośności</string>
+    <string name="pref_cat_hwkey_menu_title">Klawisz MENU</string>
+    <string name="pref_cat_hwkey_home_title">Klawisz HOME</string>
+    <string name="pref_cat_hwkey_back_title">Klawisz BACK</string>
+    <string name="pref_cat_hwkey_recents_title">Klawisz ostatnich aplikacji</string>
+    <string name="pref_cat_hwkey_volume_title">Klawisze głośności</string>
+    <string name="pref_cat_hwkey_actions_others">Inne ustawienia</string>
+    <string name="pref_hwkey_longpress_title">Akcja długiego naciśnięcia</string>
+    <string name="pref_hwkey_singletap_title">Akcja pojedynczego kliknięcia</string>
+    <string name="pref_hwkey_doubletap_title">Akcja podwójnego kliknięcia</string>
+    <string name="pref_hwkey_doubletap_disable_title">Wyłącz podwójne kliknięcie</string>
+    <string name="pref_statusbar_signal_color_mode_title">Tryb koloru wskaźnika sygnału</string>
+    <string name="signal_color_mode_gb">Użyj ikon GravityBox (z obsługą poziomu sygnału)</string>
+    <string name="signal_color_mode_stock">Użyj standardowych ikon (bez obsługi poziomu sygnału)</string>
+    <string name="signal_color_mode_disabled">Nie stosuj koloru</string>
 </resources>
