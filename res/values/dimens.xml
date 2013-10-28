@@ -46,4 +46,8 @@
     <!-- height of an expanded list item in edit playlist mode -->
     <dimen name="expanded_height">128dip</dimen>
 
+    <!-- Caller picture dimensions -->
+    <dimen name="caller_id_photo_width">180dp</dimen>
+    <dimen name="caller_id_photo_height">320dp</dimen>
+
 </resources>

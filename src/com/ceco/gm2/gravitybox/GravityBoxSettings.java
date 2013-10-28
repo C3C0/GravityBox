@@ -110,6 +110,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
     public static final String PREF_CAT_KEY_PHONE = "pref_cat_phone";
     public static final String PREF_KEY_CALLER_FULLSCREEN_PHOTO = "pref_caller_fullscreen_photo";
+    public static final String PREF_KEY_CALLER_UNKNOWN_PHOTO_ENABLE = "pref_caller_unknown_photo_enable";
+    public static final String PREF_KEY_CALLER_UNKNOWN_PHOTO = "pref_caller_unknown_photo";
     public static final String PREF_KEY_ROAMING_WARNING_DISABLE = "pref_roaming_warning_disable";
     public static final String PREF_KEY_NATIONAL_ROAMING = "pref_national_roaming";
     public static final String PREF_CAT_KEY_FIXES = "pref_cat_fixes";
@@ -164,7 +166,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String LOCKSCREEN_BG_DEFAULT = "default";
     public static final String LOCKSCREEN_BG_COLOR = "color";
     public static final String LOCKSCREEN_BG_IMAGE = "image";
-    private static final int LOCKSCREEN_BACKGROUND = 1024;
 
     public static final String PREF_KEY_LOCKSCREEN_BATTERY_ARC = "pref_lockscreen_battery_arc";
     public static final String PREF_KEY_LOCKSCREEN_MAXIMIZE_WIDGETS = "pref_lockscreen_maximize_widgets";
@@ -282,8 +283,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String NOTIF_BG_IMAGE = "image";
     public static final String NOTIF_BG_COLOR_MODE_OVERLAY = "overlay";
     public static final String NOTIF_BG_COLOR_MODE_UNDERLAY = "underlay";
-    private static final int NOTIF_BG_IMAGE_PORTRAIT = 1025;
-    private static final int NOTIF_BG_IMAGE_LANDSCAPE = 1026;
     public static final String ACTION_NOTIF_BACKGROUND_CHANGED = "gravitybox.intent.action.NOTIF_BACKGROUND_CHANGED";
     public static final String EXTRA_BG_TYPE = "bgType";
     public static final String EXTRA_BG_COLOR = "bgColor";
@@ -455,6 +454,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String ACTION_PREF_APP_LAUNCHER_CHANGED = "gravitybox.intent.action.APP_LAUNCHER_CHANGED";
     public static final String EXTRA_APP_LAUNCHER_SLOT = "appLauncherSlot";
     public static final String EXTRA_APP_LAUNCHER_APP = "appLauncherApp";
+
+    private static final int REQ_LOCKSCREEN_BACKGROUND = 1024;
+    private static final int REQ_NOTIF_BG_IMAGE_PORTRAIT = 1025;
+    private static final int REQ_NOTIF_BG_IMAGE_LANDSCAPE = 1026;
+    private static final int REQ_CALLER_PHOTO = 1027;
 
     private static final List<String> rebootKeys = new ArrayList<String>(Arrays.asList(
             PREF_KEY_FIX_DATETIME_CRASH,
@@ -711,6 +715,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private PreferenceScreen mPrefCatAppLauncher;
         private CheckBoxPreference mPrefNavbarLauncherEnable;
         private AppPickerPreference[] mPrefAppLauncherSlot;
+        private File callerPhotoFile;
+        private CheckBoxPreference mPrefCallerUnknownPhotoEnable;
+        private Preference mPrefCallerUnknownPhoto;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -768,6 +775,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             wallpaperTemporary = new File(getActivity().getCacheDir() + "/lockwallpaper.tmp");
             notifBgImagePortrait = new File(getActivity().getFilesDir() + "/notifwallpaper");
             notifBgImageLandscape = new File(getActivity().getFilesDir() + "/notifwallpaper_landscape");
+            callerPhotoFile = new File(getActivity().getFilesDir() + "/caller_photo");
 
             mPrefCatHwKeyActions = (PreferenceScreen) findPreference(PREF_CAT_HWKEY_ACTIONS);
             mPrefCatHwKeyMenu = (PreferenceCategory) findPreference(PREF_CAT_HWKEY_MENU);
@@ -884,6 +892,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             mPrefCatPhoneMobileData = (PreferenceCategory) findPreference(PREF_CAT_KEY_PHONE_MOBILE_DATA);
             mPrefMobileDataSlow2gDisable = (CheckBoxPreference) findPreference(PREF_KEY_MOBILE_DATA_SLOW2G_DISABLE);
             mPrefCallVibrations = (MultiSelectListPreference) findPreference(PREF_KEY_CALL_VIBRATIONS);
+            mPrefCallerUnknownPhotoEnable = (CheckBoxPreference) findPreference(PREF_KEY_CALLER_UNKNOWN_PHOTO_ENABLE);
+            mPrefCallerUnknownPhoto = (Preference) findPreference(PREF_KEY_CALLER_UNKNOWN_PHOTO);
 
             mPrefNetworkModeTileMode = (ListPreference) findPreference(PREF_KEY_NETWORK_MODE_TILE_MODE);
             mPrefQsTileBehaviourOverride = 
@@ -1327,6 +1337,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             if (key == null || key.equals(PREF_KEY_PIE_CONTROL_CUSTOM_KEY)) {
                 mPrefPieCustomKey.setSummary(mPrefPieCustomKey.getEntry());
             }
+
+            if (key == null || key.equals(PREF_KEY_CALLER_UNKNOWN_PHOTO_ENABLE)) {
+                mPrefCallerUnknownPhoto.setEnabled(mPrefCallerUnknownPhotoEnable.isChecked());
+            }
         }
 
         @Override
@@ -1715,8 +1729,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 pieIntent.putExtra(EXTRA_PIE_COLOR_SELECTED, selectedColor);
                 pieIntent.putExtra(EXTRA_PIE_COLOR_TEXT, textColor);
                 getActivity().sendBroadcast(pieIntent);
+            } else if (pref == mPrefCallerUnknownPhoto) {
+                setCustomCallerImage();
+                return true;
             }
-            
+
             if (intent != null) {
                 try {
                     startActivity(intent);
@@ -1781,7 +1798,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 wallpaperTemporary.setWritable(true, false);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(wallpaperTemporary));
                 intent.putExtra("return-data", false);
-                getActivity().startActivityFromFragment(this, intent, LOCKSCREEN_BACKGROUND);
+                getActivity().startActivityFromFragment(this, intent, REQ_LOCKSCREEN_BACKGROUND);
             } catch (Exception e) {
                 Toast.makeText(getActivity(), getString(
                         R.string.lockscreen_background_result_not_successful),
@@ -1817,7 +1834,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 wallpaperTemporary.createNewFile();
                 wallpaperTemporary.setWritable(true, false);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(wallpaperTemporary));
-                startActivityForResult(intent, NOTIF_BG_IMAGE_PORTRAIT);
+                startActivityForResult(intent, REQ_NOTIF_BG_IMAGE_PORTRAIT);
             } catch (Exception e) {
                 Toast.makeText(getActivity(), getString(
                         R.string.lockscreen_background_result_not_successful),
@@ -1853,7 +1870,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 wallpaperTemporary.createNewFile();
                 wallpaperTemporary.setWritable(true, false);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(wallpaperTemporary));
-                startActivityForResult(intent, NOTIF_BG_IMAGE_LANDSCAPE);
+                startActivityForResult(intent, REQ_NOTIF_BG_IMAGE_LANDSCAPE);
             } catch (Exception e) {
                 Toast.makeText(getActivity(), getString(
                         R.string.lockscreen_background_result_not_successful),
@@ -1862,9 +1879,38 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             }
         }
 
+        private void setCustomCallerImage() {
+            int width = getResources().getDimensionPixelSize(R.dimen.caller_id_photo_width);
+            int height = getResources().getDimensionPixelSize(R.dimen.caller_id_photo_height);
+            Intent intent = new Intent(Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            intent.putExtra("crop", "true");
+            boolean isPortrait = getResources()
+                    .getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+            intent.putExtra("aspectX", isPortrait ? width : height);
+            intent.putExtra("aspectY", isPortrait ? height : width);
+            intent.putExtra("outputX", isPortrait ? width : height);
+            intent.putExtra("outputY", isPortrait ? height : width);
+            intent.putExtra("scale", true);
+            intent.putExtra("scaleUpIfNeeded", true);
+            intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
+            try {
+                wallpaperTemporary.createNewFile();
+                wallpaperTemporary.setWritable(true, false);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(wallpaperTemporary));
+                startActivityForResult(intent, REQ_CALLER_PHOTO);
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), getString(
+                        R.string.caller_unkown_photo_result_not_successful),
+                        Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
+
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (requestCode == LOCKSCREEN_BACKGROUND) {
+            if (requestCode == REQ_LOCKSCREEN_BACKGROUND) {
                 if (resultCode == Activity.RESULT_OK) {
                     if (wallpaperTemporary.exists()) {
                         wallpaperTemporary.renameTo(wallpaperImage);
@@ -1881,7 +1927,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                             R.string.lockscreen_background_result_not_successful),
                             Toast.LENGTH_SHORT).show();
                 }
-            } else if (requestCode == NOTIF_BG_IMAGE_PORTRAIT) {
+            } else if (requestCode == REQ_NOTIF_BG_IMAGE_PORTRAIT) {
                 if (resultCode == Activity.RESULT_OK) {
                     if (wallpaperTemporary.exists()) {
                         wallpaperTemporary.renameTo(notifBgImagePortrait);
@@ -1900,7 +1946,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 }
                 Intent intent = new Intent(ACTION_NOTIF_BACKGROUND_CHANGED);
                 getActivity().sendBroadcast(intent);
-            } else if (requestCode == NOTIF_BG_IMAGE_LANDSCAPE) {
+            } else if (requestCode == REQ_NOTIF_BG_IMAGE_LANDSCAPE) {
                 if (resultCode == Activity.RESULT_OK) {
                     if (wallpaperTemporary.exists()) {
                         wallpaperTemporary.renameTo(notifBgImageLandscape);
@@ -1919,6 +1965,23 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 }
                 Intent intent = new Intent(ACTION_NOTIF_BACKGROUND_CHANGED);
                 getActivity().sendBroadcast(intent);
+            } else if (requestCode == REQ_CALLER_PHOTO) {
+                if (resultCode == Activity.RESULT_OK) {
+                    if (wallpaperTemporary.exists()) {
+                        wallpaperTemporary.renameTo(callerPhotoFile);
+                    }
+                    callerPhotoFile.setReadable(true, false);
+                    Toast.makeText(getActivity(), getString(
+                            R.string.caller_unknown_photo_result_successful), 
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    if (wallpaperTemporary.exists()) {
+                        wallpaperTemporary.delete();
+                    }
+                    Toast.makeText(getActivity(), getString(
+                            R.string.caller_unkown_photo_result_not_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }

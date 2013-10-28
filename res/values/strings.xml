@@ -746,4 +746,10 @@
     <string name="pref_pie_color_text_title">Text color</string>
     <string name="pref_pie_color_reset_title">Reset colors</string>
 
+    <!-- Custom unknown caller photo -->
+    <string name="pref_caller_unknown_photo_enable_title">Enable unknown caller photo</string>
+    <string name="pref_caller_unknown_photo_title">Set unknown caller photo</string>
+    <string name="caller_unknown_photo_result_successful">Photo changed</string>
+    <string name="caller_unkown_photo_result_not_successful">Photo not changed</string>
+
 </resources>

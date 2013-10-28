@@ -15,10 +15,17 @@
 
 package com.ceco.gm2.gravitybox;
 
+import java.io.File;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
@@ -54,8 +61,8 @@ public class ModCallCard {
         if (DEBUG) XposedBridge.log(TAG + ": init");
 
         try {
-            Class<?> callCardClass = XposedHelpers.findClass(CLASS_CALLCARD, classLoader);
-            Class<?> inCallTouchUiClass = XposedHelpers.findClass(CLASS_IN_CALL_TOUCH_UI, classLoader);
+            final Class<?> callCardClass = XposedHelpers.findClass(CLASS_CALLCARD, classLoader);
+            final Class<?> inCallTouchUiClass = XposedHelpers.findClass(CLASS_IN_CALL_TOUCH_UI, classLoader);
 
             XposedHelpers.findAndHookMethod(callCardClass, "updateCallInfoLayout", phoneConstStateClass,
                     new XC_MethodHook() {
@@ -122,6 +129,35 @@ public class ModCallCard {
                             incomingCallWidget.setBackgroundColor(Color.TRANSPARENT);
                         } else if (Build.DISPLAY.toLowerCase().contains("gravitymod")) {
                             incomingCallWidget.setBackgroundColor(Color.BLACK);
+                        }
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(callCardClass, "showImage",
+                    ImageView.class, int.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (!prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_CALLER_UNKNOWN_PHOTO_ENABLE, false) ||
+                            param.args[0] == null) return;
+
+                    final ImageView iv = (ImageView) param.args[0];
+                    final Context context = iv.getContext();
+                    final int resId = context.getResources().getIdentifier(
+                            "picture_unknown", "drawable", PACKAGE_NAME);
+
+                    if (resId == (Integer) param.args[1]) {
+                        Context gbContext = context.createPackageContext(GravityBox.PACKAGE_NAME, 0);
+                        final String path = gbContext.getFilesDir() + "/caller_photo";
+                        File f = new File(path);
+                        if (f.exists()) {
+                            Bitmap b = BitmapFactory.decodeFile(path);
+                            if (b != null) {
+                                XposedHelpers.callStaticMethod(callCardClass, "showImage", iv, b);
+                                param.setResult(null);
+                                return;
+                            }
                         }
                     }
                 }
