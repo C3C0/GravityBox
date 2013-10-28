@@ -81,7 +81,7 @@
     <string name="quick_settings_wifi">Wi-Fi</string>
     <string name="quick_settings_wifi_off">Wi-Fi desativado</string>
     <string name="quick_settings_wifi_not_connected">Não conectado</string>
-    <string name="quick_settings_wifi_turning_on">Ligando...</string>
+    <string name="quick_settings_wifi_turning_on">Ligando&#8230;</string>
 
     <!-- QuickSettings settings -->
     <string name="quick_settings_title">Configurações rápidas na Barra de Status</string>
@@ -385,9 +385,9 @@
     <string name="pref_holo_bg_dither_title">Dithered Holo background</string>
     <string name="pref_holo_bg_dither_summary">Replaces standard Holo background with dithered one to suppress color banding (requires reboot)</string>
 
-    <!-- Disable hardware keys for pie -->
-    <string name="pref_hwkeys_disable_title">Disable hardware keys</string>
-    <string name="pref_hwkeys_disable_summary">Disables MENU, BACK, HOME while Pie Controls are enabled. HW keys actions will still work. (for devices having HW keys)</string>
+    <!-- Disable navigation keys for pie -->
+    <string name="pref_hwkeys_disable_title">Disable navigation keys</string>
+    <string name="pref_hwkeys_disable_summary">Disables single-tap on keys while Pie Controls are enabled</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Use Holo Dark theme</string>
@@ -721,5 +721,20 @@
     <string name="pie_custom_key_off">Desabilitado</string>
     <string name="pie_custom_key_search">Pesquisa</string>
     <string name="pie_custom_key_app_launcher">Lançador de aplicativos</string>
+
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">Pie colors</string>
+    <string name="pref_pie_color_bg_title">Background color</string>
+    <string name="pref_pie_color_fg_title">Foreground color</string>
+    <string name="pref_pie_color_outline_title">Outline color</string>
+    <string name="pref_pie_color_selected_title">Key selected color</string>
+    <string name="pref_pie_color_text_title">Text color</string>
+    <string name="pref_pie_color_reset_title">Reset colors</string>
+
+    <!-- Custom unknown caller photo -->
+    <string name="pref_caller_unknown_photo_enable_title">Enable unknown caller photo</string>
+    <string name="pref_caller_unknown_photo_title">Set unknown caller photo</string>
+    <string name="caller_unknown_photo_result_successful">Photo changed</string>
+    <string name="caller_unkown_photo_result_not_successful">Photo not changed</string>
 
 </resources>
