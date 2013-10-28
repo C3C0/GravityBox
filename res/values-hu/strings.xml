@@ -134,7 +134,7 @@
 
     <!--  Statusbar background color -->
     <string name="statusbar_bgcolor_title">Állapotsáv háttérszín</string>
-    <string name="statusbar_bgcolor_summary">Lehetővé teszi, hogy beállíthassa az Állapotsáv háttérszínét és átlátszóságát</string>
+    <string name="statusbar_bgcolor_summary">Lehetővé teszi az Állapotsáv háttérszínének a beállítását</string>
 
     <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">Javítja a beszéd beállításokat</string>
@@ -718,5 +718,23 @@
     <string name="signal_color_mode_gb">Használja a GravityBox ikonokat (jelerősség szint támogatással)</string>
     <string name="signal_color_mode_stock">Használja a gyári ikonokat (jelerősség szint támogatás nélkül)</string>
     <string name="signal_color_mode_disabled">Nem alkalmaz színezést</string>
+	
+	<!-- Application launcher -->
+    <string name="pref_cat_app_launcher_title">Alkalmazás Indító</string>
+    <string name="pref_cat_app_launcher_summary">Alkalmazás ablak 8 beállítható applikációval, melynek a megjelenítése hozzárendelhető hardver gomb művelethez vagy egy külön navigációs sáv gombhoz</string>
+    <string name="pref_app_launcher_slot_title">Alkalmazás hely %d</string>
+    <string name="app_launcher_no_apps">Nincs beállítva alkalmazás. Applikációk hozzárendeléséhez használja a GravityBox / Alkalmazás Indító menüt. </string>
+
+    <!-- Navigation bar app launcher key -->
+    <string name="pref_navbar_launcher_enable_title">Alkalmazás Indító gomb mutatása</string>
+
+    <!-- HW Key Actions: application launcher -->
+    <string name="hwkey_action_app_launcher">Alkalmazás Indító megjelenítése</string>
+
+    <!-- Pie custom key -->
+    <string name="pref_pie_control_custom_key_title">Egyéni gomb mutatása</string>
+    <string name="pie_custom_key_off">Letiltva</string>
+    <string name="pie_custom_key_search">Keresés</string>
+    <string name="pie_custom_key_app_launcher">Alkalmazás Indító</string>
 	
 </resources>
