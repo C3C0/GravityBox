@@ -372,29 +372,31 @@ public class ModPieControls {
         }
     }
 
-    private static boolean isPieEnabled() {
-        final ContentResolver cr = mContext.getContentResolver();
-        if (DEBUG) log("isPieEnabled: mPieMode = " + mPieMode);
+    public static boolean isPieEnabled(Context context, int pieMode, int expandedDesktopMode) {
+        if (context == null) return false;
 
-        switch(mPieMode) {
+        final ContentResolver cr = context.getContentResolver();
+        if (DEBUG) log("isPieEnabled: mPieMode = " + pieMode);
+
+        switch(pieMode) {
             case PIE_DISABLED: return false;
             case PIE_ENABLED_ALWAYS: return true;
             case PIE_ENABLED_ED:
             case PIE_ENABLED_ED_NAVBAR_HIDDEN:
-                if (DEBUG) log("isPieEnabled: SETTING_EXPANDED_DESKTOP_MODE = " + mExpandedDesktopMode);
+                if (DEBUG) log("isPieEnabled: SETTING_EXPANDED_DESKTOP_MODE = " + expandedDesktopMode);
                 final boolean edEnabled = Settings.System.getInt(
                         cr, ModExpandedDesktop.SETTING_EXPANDED_DESKTOP_STATE, 0) == 1;
                 if (DEBUG) log("isPieEnabled: SETTING_EXPANDED_DESKTOP_STATE = " + edEnabled);
-                return edEnabled && (mPieMode == PIE_ENABLED_ED ||
-                        (mPieMode == PIE_ENABLED_ED_NAVBAR_HIDDEN 
-                            && (mExpandedDesktopMode == GravityBoxSettings.ED_NAVBAR ||
-                                    mExpandedDesktopMode == GravityBoxSettings.ED_BOTH)));
+                return edEnabled && (pieMode == PIE_ENABLED_ED ||
+                        (pieMode == PIE_ENABLED_ED_NAVBAR_HIDDEN 
+                            && (expandedDesktopMode == GravityBoxSettings.ED_NAVBAR ||
+                                    expandedDesktopMode == GravityBoxSettings.ED_BOTH)));
             default: return false;
         }
     }
 
     private static void attachPie() {
-        if (isPieEnabled()) {
+        if (isPieEnabled(mContext, mPieMode, mExpandedDesktopMode)) {
 
             // Create our container, if it does not exist already
             if (mPieContainer == null) {
