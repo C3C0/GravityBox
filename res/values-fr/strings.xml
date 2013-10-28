@@ -737,4 +737,13 @@
     <string name="pie_custom_key_search">Rechercher</string>
     <string name="pie_custom_key_app_launcher">Lanceur d\'applications</string>
 
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">Couleurs touches flottantes</string>
+    <string name="pref_pie_color_bg_title">Couleur arrière-plan</string>
+    <string name="pref_pie_color_fg_title">Couleur premier plan</string>
+    <string name="pref_pie_color_outline_title">Couleur du contour</string>
+    <string name="pref_pie_color_selected_title">Couleur de la touche sélectionnée</string>
+    <string name="pref_pie_color_text_title">Couleur du texte</string>
+    <string name="pref_pie_color_reset_title">Réinitialiser les couleurs</string>
+
 </resources>
