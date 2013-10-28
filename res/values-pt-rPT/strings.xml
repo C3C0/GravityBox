@@ -45,11 +45,11 @@
     <string name="fix_datetime_crash_summary">Selecionar caso tenha problemas ao aceder à configuração de data e hora nas definições do telefone (necessário reiniciar)</string>
 
     <string name="fix_caller_id_phone_title">Corrigir problema na identificação de contatos na aplicação de telefone</string>
-    <string name="fix_caller_id_phone_summary">Selecionar caso um contacto não seja reconhecido quando recebe uma chamada (necessário reiniciar)</string>
+    <string name="fix_caller_id_phone_summary">Selecionar caso um contato não seja reconhecido quando recebe uma chamada (necessário reiniciar)</string>
     <string name="fix_caller_id_phone_alert">Após reiniciar o telefone, deve limpar e readicionar os seus contatos para que a alteração possa ter efeito! Para isso, aceda a \"Definições / Aplicações / Todas\" para limpar os dados do Armazenamento de contatos.</string>
 
     <string name="fix_caller_id_mms_title">Corrigir problema na aplicação de mensagens</string>
-    <string name="fix_caller_id_mms_summary">Selecionar caso obtenha conversações divididas em varios tópicos para o mesmo contacto (necessário reiniciar)</string>
+    <string name="fix_caller_id_mms_summary">Selecionar caso obtenha conversações divididas em varios tópicos para o mesmo contato (necessário reiniciar)</string>
     <string name="fix_caller_id_mms_alert">Após reiniciar o telefone, deve limpar todas as conversações divididas para que a alteração possa ter efeito!</string>
 
     <string name="fix_calendar_title">Corrigir problema na aplicação de calendário</string>
@@ -57,8 +57,8 @@
 
     <string name="important">Importante</string>
 
-    <string name="caller_fullscreen_photo_title">Imagem do contacto em ecrã completo</string>
-    <string name="caller_fullscreen_photo_summary">Mostra a imagem do contacto em ecrã completo quando recebe uma chamada</string>
+    <string name="caller_fullscreen_photo_title">Imagem do contato em ecrã completo</string>
+    <string name="caller_fullscreen_photo_summary">Mostra a imagem do contato em ecrã completo quando recebe uma chamada</string>
 
     <!-- QuickSettings strings -->
     <string name="quick_settings_sync_on">Sinc. ativada</string>
@@ -81,7 +81,7 @@
     <string name="quick_settings_wifi">Wi-Fi</string>
     <string name="quick_settings_wifi_off">Wi-Fi desativado</string>
     <string name="quick_settings_wifi_not_connected">Não ligado</string>
-    <string name="quick_settings_wifi_turning_on">A ligar...</string>
+    <string name="quick_settings_wifi_turning_on">A ligar&#8230;</string>
 
     <!-- QuickSettings settings -->
     <string name="quick_settings_title">Definições rápidas na Barra de Status</string>
@@ -385,9 +385,9 @@
     <string name="pref_holo_bg_dither_title">Fundo pontilhado</string>
     <string name="pref_holo_bg_dither_summary">Substituir o fundo do tema padrão por um pontilhado por forma a evitar o efeito de bandas de cores (necessário reiniciar)</string>
 
-    <!-- Disable hardware keys for pie -->
-    <string name="pref_hwkeys_disable_title">Desativar teclas físicas</string>
-    <string name="pref_hwkeys_disable_summary">Desativa as teclas de Menu, Atrás e Casa quando os controlos Pie estão ativados. As teclas físicas continuam a funcionar (para dispositivos com teclas físicas)</string>
+    <!-- Disable navigation keys for pie -->
+    <string name="pref_hwkeys_disable_title">Desativar botões de navegação</string>
+    <string name="pref_hwkeys_disable_summary">Desativa as ações de toque nos botões da Barra de Navegação quando os controlos Pie estiverem ativados</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Utilizar tema escuro</string>
@@ -721,5 +721,20 @@
     <string name="pie_custom_key_off">Desativado</string>
     <string name="pie_custom_key_search">Pesquisa</string>
     <string name="pie_custom_key_app_launcher">Lançador de aplicações</string>
+
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">Coloração dos controlos Pie</string>
+    <string name="pref_pie_color_bg_title">Cor de segundo plano</string>
+    <string name="pref_pie_color_fg_title">Cor de primeiro plano</string>
+    <string name="pref_pie_color_outline_title">Cor do rebordo</string>
+    <string name="pref_pie_color_selected_title">Cor do botão quando pressionado</string>
+    <string name="pref_pie_color_text_title">Cor do texto</string>
+    <string name="pref_pie_color_reset_title">Repor cores pré-definidas</string>
+
+    <!-- Custom unknown caller photo -->
+    <string name="pref_caller_unknown_photo_enable_title">Ativar imagem de contato desconhecido</string>
+    <string name="pref_caller_unknown_photo_title">Definir imagem de contato desconhecido</string>
+    <string name="caller_unknown_photo_result_successful">Imagem alterada</string>
+    <string name="caller_unkown_photo_result_not_successful">Imagem não alterada</string>
 
 </resources>
