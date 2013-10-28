@@ -96,7 +96,7 @@
     <string name="quick_settings_wifi">Wi-Fi</string>
     <string name="quick_settings_wifi_off">Wi-Fi off</string>
     <string name="quick_settings_wifi_not_connected">Not connected</string>
-    <string name="quick_settings_wifi_turning_on">Turning on...</string>
+    <string name="quick_settings_wifi_turning_on">Turning on&#8230;</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">Statusbar QuickSettings tiles</string>
