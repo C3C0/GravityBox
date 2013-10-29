@@ -751,5 +751,9 @@
     <string name="pref_caller_unknown_photo_title">Définir la photo pour appelant non identifié</string>
     <string name="caller_unknown_photo_result_successful">Photo changée</string>
     <string name="caller_unkown_photo_result_not_successful">Photo non changée</string>
+
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">Il se pourrait que votre écran ne supporte pas de valeurs inférieures à 20. Si votre écran ne s\'allume pas,
+        maintenez la touche Volume+ enfoncée au moins 7 secondes pour réinitialiser la luminosité, règlez-la ensuite à une valeur supérieure</string>
  
 </resources>
