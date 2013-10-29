@@ -81,7 +81,7 @@
     <string name="quick_settings_wifi">Wi-Fi</string>
     <string name="quick_settings_wifi_off">Wi-Fiオフ</string>
     <string name="quick_settings_wifi_not_connected">未接続</string>
-    <string name="quick_settings_wifi_turning_on">オンにしています...</string> 
+    <string name="quick_settings_wifi_turning_on">オンにしています&#8230;</string> 
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">ステータスバークイック設定タイル</string>
@@ -704,5 +704,43 @@
     <string name="signal_color_mode_gb">GravityBoxアイコンを使用 (電波強度対応)</string>
     <string name="signal_color_mode_stock">標準アイコンを使用(信号強度非対応)</string>
     <string name="signal_color_mode_disabled">色を適用しない</string>
+    
+    <!-- Application launcher -->
+    <string name="pref_cat_app_launcher_title">アプリランチャー/string>
+    <string name="pref_cat_app_launcher_summary">HWキーアクションやナビバーのボタンとして使える、アプリを8個まで登録できるダイアログです。</string>
+    <string name="pref_app_launcher_slot_title">アプリスロット %d</string>
+    <string name="app_launcher_no_apps">アプリが登録されていません。GravityBox / アプリランチャーで登録してください。</string>
+
+    <!-- Navigation bar app launcher key -->
+    <string name="pref_navbar_launcher_enable_title">アプリランチャーキー</string>
+
+    <!-- HW Key Actions: application launcher -->
+    <string name="hwkey_action_app_launcher">アプリランチャーを表示</string>
+
+    <!-- Pie custom key -->
+    <string name="pref_pie_control_custom_key_title">カスタムキーの表示</string>
+    <string name="pie_custom_key_off">無効</string>
+    <string name="pie_custom_key_search">検索</string>
+    <string name="pie_custom_key_app_launcher">アプリランチャー</string>
+
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">パイの色</string>
+    <string name="pref_pie_color_bg_title">背景色</string>
+    <string name="pref_pie_color_fg_title">前景色</string>
+    <string name="pref_pie_color_outline_title">アウトラインの色</string>
+    <string name="pref_pie_color_selected_title">選択したキーの色</string>
+    <string name="pref_pie_color_text_title">文字色</string>
+    <string name="pref_pie_color_reset_title">色の初期化</string>
+
+    <!-- Custom unknown caller photo -->
+    <string name="pref_caller_unknown_photo_enable_title"><不明な発信者画像を有効化/string>
+    <string name="pref_caller_unknown_photo_title">不明な発信者用の画像をセット</string>
+    <string name="caller_unknown_photo_result_successful">変更しました。</string>
+    <string name="caller_unkown_photo_result_not_successful">変更しませんでした。</string>
+
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">20以下の明るさに対応していない画面です。 画面が点灯しなくなった場合、
+         音量上キーを7秒以上押し続けると明るさを初期化できるので最低値を修正してください。</string>
+
     
 </resources>
