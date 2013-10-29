@@ -719,4 +719,41 @@
     <string name="signal_color_mode_stock">Использовать станд. иконки (без поддержки уровня)</string>
     <string name="signal_color_mode_disabled">Не применять цвет</string>
 
+    <!-- Application launcher -->
+    <string name="pref_cat_app_launcher_title">Запуск приложений</string>
+    <string name="pref_cat_app_launcher_summary">Диалог, позволяющий выбрать до 8 приложений, которые можно назначить для действий кнопок или поместить на панель навигации</string>
+    <string name="pref_app_launcher_slot_title">Слот приложения %d</string>
+    <string name="app_launcher_no_apps">Приложения не выбраны. Используйте GravityBox / Запуск приложений для выбора приложений.</string>
+
+    <!-- Navigation bar app launcher key -->
+    <string name="pref_navbar_launcher_enable_title">Показывать кнопку запуска приложения</string>
+
+    <!-- HW Key Actions: application launcher -->
+    <string name="hwkey_action_app_launcher">Запустить приложение</string>
+
+    <!-- Pie custom key -->
+    <string name="pref_pie_control_custom_key_title">Показать пользовательскую кнопку</string>
+    <string name="pie_custom_key_off">Отключено</string>
+    <string name="pie_custom_key_search">Поиск</string>
+    <string name="pie_custom_key_app_launcher">Запуск приложений</string>
+
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">Цвет веерного меню</string>
+    <string name="pref_pie_color_bg_title">Цвет фона</string>
+    <string name="pref_pie_color_fg_title">Цвет переднего плана</string>
+    <string name="pref_pie_color_outline_title">Цвет контура</string>
+    <string name="pref_pie_color_selected_title">Цвет выбранной кнопки</string>
+    <string name="pref_pie_color_text_title">Цвет текста</string>
+    <string name="pref_pie_color_reset_title">Сбросить цвета</string>
+
+    <!-- Custom unknown caller photo -->
+    <string name="pref_caller_unknown_photo_enable_title">Включить фото неизвестного звонящего</string>
+    <string name="pref_caller_unknown_photo_title">Задать фото</string>
+    <string name="caller_unknown_photo_result_successful">Фото изменено</string>
+    <string name="caller_unkown_photo_result_not_successful">Фото не изменено</string>
+
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">Ваш экран может не поддерживать значения меньше 20. Если ваш экран не засветится,
+        зажмите кнопку Громкость+ как минимум на 7 секунд для сброса яркости и затем исправьте значение яркости на большее.</string>
+    
 </resources>
