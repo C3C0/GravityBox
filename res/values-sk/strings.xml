@@ -723,4 +723,8 @@
     <string name="caller_unknown_photo_result_successful">Foto nastavené</string>
     <string name="caller_unkown_photo_result_not_successful">Foto nebolo nastavené</string>
 
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">Vaša obrazovka nemusí podporovať hodnoty jasu nižšie ako 20. Ak sa obrazovka nerozsvieti,
+        držte tlačidlo Hlasitosť+ po dobu 7 sekúnd pre rozsvietenie obrazovky. Následne zmeňte nastavenie minimálneho jasu na vyššiu hodnotu.</string>
+
 </resources>
