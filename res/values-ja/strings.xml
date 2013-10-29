@@ -706,7 +706,7 @@
     <string name="signal_color_mode_disabled">色を適用しない</string>
     
     <!-- Application launcher -->
-    <string name="pref_cat_app_launcher_title">アプリランチャー/string>
+    <string name="pref_cat_app_launcher_title">アプリランチャー</string>
     <string name="pref_cat_app_launcher_summary">HWキーアクションやナビバーのボタンとして使える、アプリを8個まで登録できるダイアログです。</string>
     <string name="pref_app_launcher_slot_title">アプリスロット %d</string>
     <string name="app_launcher_no_apps">アプリが登録されていません。GravityBox / アプリランチャーで登録してください。</string>
@@ -733,7 +733,7 @@
     <string name="pref_pie_color_reset_title">色の初期化</string>
 
     <!-- Custom unknown caller photo -->
-    <string name="pref_caller_unknown_photo_enable_title"><不明な発信者画像を有効化/string>
+    <string name="pref_caller_unknown_photo_enable_title">不明な発信者画像を有効化</string>
     <string name="pref_caller_unknown_photo_title">不明な発信者用の画像をセット</string>
     <string name="caller_unknown_photo_result_successful">変更しました。</string>
     <string name="caller_unkown_photo_result_not_successful">変更しませんでした。</string>
@@ -742,5 +742,4 @@
     <string name="screen_brightness_min_warning">20以下の明るさに対応していない画面です。 画面が点灯しなくなった場合、
          音量上キーを7秒以上押し続けると明るさを初期化できるので最低値を修正してください。</string>
 
-    
 </resources>
