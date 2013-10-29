@@ -1,3 +1,34 @@
+Changelog 2.6.6 - 29/10/2013
+--------------------------------------
+- Introducing Application Launcher
+--- special dialog that allows defining and launching of as many as 8 apps
+--- supports several ways of activation:
+------ via dedicated navigation bar key (Navigation bar tweaks / Show app launcher key)
+------ by mapping to hardware/virtual key (Hardware Key Actions)
+------ from Pie (Statusbar tweaks / Pie controls / Show custom key)
+- Hardware key actions:
+--- New action to show Application Launcher
+- Pie controls:
+--- Custom key that can have either Search or Application launcher function
+--- Added support for disabling also recents key and app launcher key when Pie active
+--- Option to disable navigation keys will disable them only in case Pie is REALLY active
+--- Pie colors: options for setting custom colors to all the pie elements
+- Phone tweaks
+--- Option to set custom image for unknown caller
+- Implemented recovery from blank screen situation caused by minimum brightness set too low
+--- When screen can't be lit up, holding Volume+ for 7 seconds will reset brightness to manual mode with level set to 100 (device must be awaken, e.g. by power key first)
+--- Warning dialog will pop-up every time new value is set below 20
+- Fixed crash in Ongoing notifications blocker (when notification icon can't be obtained)
+- Updated French translation (thanks to ch-vox)
+- Updated Hungarian translations (thanks to benjoe1)
+- Updated Japanese translations (thanks to WedyDQ10)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Portuguese (BR) translation (thanks to bgcngm)
+- Updated German translations (thanks to samsonbear)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+
 Changelog 2.6.5 - 26/10/2013
 --------------------------------------
 - Hardware Key Actions menu rearranged (thanks to bgcngm)
