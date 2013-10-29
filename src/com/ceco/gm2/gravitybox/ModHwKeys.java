@@ -34,6 +34,7 @@ import android.content.res.Resources;
 import android.hardware.input.InputManager;
 import android.os.Build;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.Process;
 import android.os.SystemClock;
@@ -295,6 +296,16 @@ public class ModHwKeys {
                     boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
                     boolean keyguardOn = (Boolean) XposedHelpers.callMethod(mPhoneWindowManager, "keyguardOn");
                     Handler handler = (Handler) XposedHelpers.getObjectField(param.thisObject, "mHandler");
+
+                    if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+                        if (!down) {
+                            handler.removeCallbacks(mResetBrightnessRunnable);
+                        } else {
+                            if (event.getRepeatCount() == 0) {
+                                handler.postDelayed(mResetBrightnessRunnable, 7000);
+                            }
+                        }
+                    }
 
                     if (mVolumeRockerWakeDisabled && 
                             (keyCode == KeyEvent.KEYCODE_VOLUME_UP ||
@@ -607,6 +618,32 @@ public class ModHwKeys {
             if (DEBUG) log("mHomeLongPressKeyguard runnable launched");
             mIsHomeLongPressed = true;
             performAction(HwKeyTrigger.HOME_LONGPRESS_KEYGUARD);
+        }
+    };
+
+    private static Runnable mResetBrightnessRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                Class<?> classSm = XposedHelpers.findClass("android.os.ServiceManager", null);
+                Class<?> classIpm = XposedHelpers.findClass("android.os.IPowerManager.Stub", null);
+                IBinder b = (IBinder) XposedHelpers.callStaticMethod(
+                        classSm, "getService", Context.POWER_SERVICE);
+                Object power = XposedHelpers.callStaticMethod(classIpm, "asInterface", b);
+                if (power != null) {
+                    Settings.System.putInt(mContext.getContentResolver(),
+                            Settings.System.SCREEN_BRIGHTNESS_MODE, 0);
+                    final String bcMethod = Build.VERSION.SDK_INT > 16 ?
+                            "setTemporaryScreenBrightnessSettingOverride" : "setBacklightBrightness";
+                    XposedHelpers.callMethod(power, bcMethod, 100);
+                    Settings.System.putInt(mContext.getContentResolver(),
+                            Settings.System.SCREEN_BRIGHTNESS, 100);
+                    if (DEBUG) log("Screen brightness reset to manual with level set to 100");
+                }
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+            }
         }
     };
 

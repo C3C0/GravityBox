@@ -752,4 +752,8 @@
     <string name="caller_unknown_photo_result_successful">Photo changed</string>
     <string name="caller_unkown_photo_result_not_successful">Photo not changed</string>
 
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">Your screen might not support values lower than 20. If your screen doesn\'t light up,
+        hold Volume+ key for at least 7 seconds to reset brightness and then adjust minimum brightness to use higher values.</string>
+
 </resources>

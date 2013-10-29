@@ -1663,6 +1663,16 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mDialog.show();
             }
 
+            if (key.equals(PREF_KEY_BRIGHTNESS_MIN) &&
+                    prefs.getInt(PREF_KEY_BRIGHTNESS_MIN, 20) < 20) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.important);
+                builder.setMessage(R.string.screen_brightness_min_warning);
+                builder.setPositiveButton(android.R.string.ok, null);
+                mDialog = builder.create();
+                mDialog.show();
+            }
+
             if (rebootKeys.contains(key))
                 Toast.makeText(getActivity(), getString(R.string.reboot_required), Toast.LENGTH_SHORT).show();
         }
