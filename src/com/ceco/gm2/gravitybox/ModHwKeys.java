@@ -104,7 +104,8 @@ public class ModHwKeys {
             "com.android.systemui",
             "com.mediatek.bluetooth",
             "android.process.acore",
-            "com.google.process.gapps"
+            "com.google.process.gapps",
+            "com.android.smspush"
     ));
 
     private static void log(String message) {
