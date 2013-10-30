@@ -39,6 +39,7 @@ public class ModNavigationBar {
 
     private static final String CLASS_NAVBAR_VIEW = "com.android.systemui.statusbar.phone.NavigationBarView";
     private static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
+    private static final String CLASS_KEY_BUTTON_VIEW = "com.android.systemui.statusbar.policy.KeyButtonView";
 
     private static boolean mAlwaysShowMenukey;
     private static Object mNavigationBarView;
@@ -51,11 +52,10 @@ public class ModNavigationBar {
 
     // Application launcher key
     private static boolean mAppLauncherEnabled;
-    private static KeyButtonView mAppKey0;
-    private static KeyButtonView mAppKey90;
     private static Resources mResources;
     private static Context mGbContext;
     private static AppLauncher mAppLauncher;
+    private static NavbarViewInfo[] mNavbarViewInfo = new NavbarViewInfo[2];
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -64,6 +64,13 @@ public class ModNavigationBar {
     static class HomeKeyInfo {
         public ImageView homeKey;
         public boolean supportsLongPressDefault;
+    }
+
+    static class NavbarViewInfo {
+        ViewGroup navButtons;
+        View originalView;
+        KeyButtonView appLauncherView;
+        int position;
     }
 
     private static BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
@@ -212,41 +219,48 @@ public class ModNavigationBar {
                     vRot = (ViewGroup) ((ViewGroup) param.thisObject).findViewById(
                             mResources.getIdentifier("rot0", "id", PACKAGE_NAME));
                     if (vRot != null) {
-                        navButtons = (ViewGroup) vRot.findViewById(
-                                mResources.getIdentifier("nav_buttons", "id", PACKAGE_NAME));
-                        mAppKey0 = new KeyButtonView(context);
+                        KeyButtonView appKey = new KeyButtonView(context);
                         lp = new LinearLayout.LayoutParams(
                                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40,
                                         mResources.getDisplayMetrics()),
                                         LinearLayout.LayoutParams.MATCH_PARENT);
                         lp.weight = 0;
-                        mAppKey0.setLayoutParams(lp);
-                        mAppKey0.setScaleType(ScaleType.FIT_CENTER);
-                        mAppKey0.setClickable(true);
-                        mAppKey0.setImageDrawable(gbRes.getDrawable(R.drawable.ic_sysbar_apps));
-                        mAppKey0.setOnClickListener(mAppKeyOnClickListener);
-                        navButtons.removeViewAt(0);
-                        navButtons.addView(mAppKey0, 0);
+                        appKey.setLayoutParams(lp);
+                        appKey.setScaleType(ScaleType.FIT_CENTER);
+                        appKey.setClickable(true);
+                        appKey.setImageDrawable(gbRes.getDrawable(R.drawable.ic_sysbar_apps));
+                        appKey.setOnClickListener(mAppKeyOnClickListener);
+                        navButtons = (ViewGroup) vRot.findViewById(
+                                mResources.getIdentifier("nav_buttons", "id", PACKAGE_NAME));
+                        log("navButtonsWidth=" + vRot.getWidth() + "; navButtonsHeight=" + vRot.getHeight());
+                        prepareNavbarViewInfo(navButtons, 0, appKey);
                     }
 
                     // insert app key in rot90 view
                     vRot = (ViewGroup) ((ViewGroup) param.thisObject).findViewById(
                             mResources.getIdentifier("rot90", "id", PACKAGE_NAME));
                     if (vRot != null) {
+                        KeyButtonView appKey = new KeyButtonView(context);
+                        if (Utils.isPhoneUI(context)) {
+                            lp = new LinearLayout.LayoutParams(
+                                            LinearLayout.LayoutParams.MATCH_PARENT,
+                                            (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40,
+                                                    mResources.getDisplayMetrics()));
+                        } else {
+                            lp = new LinearLayout.LayoutParams(
+                                    (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40,
+                                            mResources.getDisplayMetrics()), 
+                                                LinearLayout.LayoutParams.MATCH_PARENT);
+                        }
+                        lp.weight = 0;
+                        appKey.setLayoutParams(lp);
+                        appKey.setClickable(true);
+                        appKey.setImageDrawable(gbRes.getDrawable(R.drawable.ic_sysbar_apps));
+                        appKey.setOnClickListener(mAppKeyOnClickListener);
                         navButtons = (ViewGroup) vRot.findViewById(
                                 mResources.getIdentifier("nav_buttons", "id", PACKAGE_NAME));
-                        mAppKey90 = new KeyButtonView(context);
-                        lp = new LinearLayout.LayoutParams(
-                                        LinearLayout.LayoutParams.MATCH_PARENT,
-                                        (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40,
-                                                mResources.getDisplayMetrics()));
-                        lp.weight = 0;
-                        mAppKey90.setLayoutParams(lp);
-                        mAppKey90.setClickable(true);
-                        mAppKey90.setImageDrawable(gbRes.getDrawable(R.drawable.ic_sysbar_apps));
-                        mAppKey90.setOnClickListener(mAppKeyOnClickListener);
-                        navButtons.removeViewAt(navButtons.getChildCount() - 1);
-                        navButtons.addView(mAppKey90);
+                        log("navButtonsWidth=" + vRot.getWidth() + "; navButtonsHeight=" + vRot.getHeight());
+                        prepareNavbarViewInfo(navButtons, 1, appKey);
                     }
 
                     setAppKeyVisibility(mAppLauncherEnabled);
@@ -283,6 +297,51 @@ public class ModNavigationBar {
         }
     }
 
+    private static void prepareNavbarViewInfo(ViewGroup navButtons, int index, KeyButtonView appView) {
+        try {
+            mNavbarViewInfo[index] = new NavbarViewInfo();
+            mNavbarViewInfo[index].navButtons = navButtons;
+            mNavbarViewInfo[index].appLauncherView = appView;
+
+            int searchPosition = index == 0 ? 0 : navButtons.getChildCount()-1;
+            View v = navButtons.getChildAt(searchPosition);
+            if (v.getId() == -1 && !v.getClass().getName().equals(CLASS_KEY_BUTTON_VIEW)) {
+                mNavbarViewInfo[index].originalView = v;
+            } else {
+                searchPosition = searchPosition == 0 ? navButtons.getChildCount()-1 : 0;
+                v = navButtons.getChildAt(searchPosition);
+                if (v.getId() == -1 && !v.getClass().getName().equals(CLASS_KEY_BUTTON_VIEW)) {
+                    mNavbarViewInfo[index].originalView = v;
+                }
+            }
+            mNavbarViewInfo[index].position = searchPosition;
+        } catch (Throwable t) {
+            log("Error preparing NavbarViewInfo: " + t.getMessage());
+        }
+    }
+
+    private static void setAppKeyVisibility(boolean visible) {
+        try {
+            for (int i = 0; i <= 1; i++) {
+                if (mNavbarViewInfo[i].originalView != null) {
+                    mNavbarViewInfo[i].navButtons.removeViewAt(mNavbarViewInfo[i].position);
+                    mNavbarViewInfo[i].navButtons.addView(visible ?
+                            mNavbarViewInfo[i].appLauncherView : mNavbarViewInfo[i].originalView,
+                            mNavbarViewInfo[i].position);
+                } else {
+                    if (visible) {
+                        mNavbarViewInfo[i].navButtons.addView(mNavbarViewInfo[i].appLauncherView,
+                                mNavbarViewInfo[i].position);
+                    } else {
+                        mNavbarViewInfo[i].navButtons.removeView(mNavbarViewInfo[i].appLauncherView);
+                    }
+                }
+            }
+        } catch (Throwable t) {
+            log("Error setting app key visibility: " + t.getMessage());
+        }
+    }
+
     private static void updateRecentsKeyCode() {
         if (mRecentsKeys == null) return;
 
@@ -316,16 +375,6 @@ public class ModNavigationBar {
             }
         } catch (Throwable t) {
             XposedBridge.log(t);
-        }
-    }
-
-    private static void setAppKeyVisibility(boolean visible) {
-        final int visibility = visible ? View.VISIBLE : View.INVISIBLE;
-        if (mAppKey0 != null) {
-            mAppKey0.setVisibility(visibility);
-        }
-        if (mAppKey90 != null) {
-            mAppKey90.setVisibility(visibility);
         }
     }
 
