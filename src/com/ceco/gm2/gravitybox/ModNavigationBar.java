@@ -232,7 +232,6 @@ public class ModNavigationBar {
                         appKey.setOnClickListener(mAppKeyOnClickListener);
                         navButtons = (ViewGroup) vRot.findViewById(
                                 mResources.getIdentifier("nav_buttons", "id", PACKAGE_NAME));
-                        log("navButtonsWidth=" + vRot.getWidth() + "; navButtonsHeight=" + vRot.getHeight());
                         prepareNavbarViewInfo(navButtons, 0, appKey);
                     }
 
@@ -259,7 +258,6 @@ public class ModNavigationBar {
                         appKey.setOnClickListener(mAppKeyOnClickListener);
                         navButtons = (ViewGroup) vRot.findViewById(
                                 mResources.getIdentifier("nav_buttons", "id", PACKAGE_NAME));
-                        log("navButtonsWidth=" + vRot.getWidth() + "; navButtonsHeight=" + vRot.getHeight());
                         prepareNavbarViewInfo(navButtons, 1, appKey);
                     }
 
