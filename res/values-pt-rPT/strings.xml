@@ -127,7 +127,7 @@
 
     <!-- Advanced developer options -->
     <string name="fix_dev_opts_title">Desbloquear opções de programador avançadas</string>
-    <string name="fix_dev_opts_summary">Desbloqueia as opções de programador avançadas nas definições do telefone (necessário reiniciar)</string>
+    <string name="fix_dev_opts_summary">Desbloqueia as opções de programador avançadas nas definições (necessário reiniciar)</string>
 
     <!-- Main preference categories -->
     <string name="pref_cat_statusbar_title">Ajustes da Barra de Status</string>
@@ -736,5 +736,9 @@
     <string name="pref_caller_unknown_photo_title">Definir imagem de contato desconhecido</string>
     <string name="caller_unknown_photo_result_successful">Imagem alterada</string>
     <string name="caller_unkown_photo_result_not_successful">Imagem não alterada</string>
+
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">O ecrã poderá não suportar valores de brilho inferiores a 20. Caso o ecrã não se ligue após a alteração,
+        mantenha a tecla de volume + pressionada durante pelo menos 7 segundos para repor o valor pré-definido e poder reajustar o nível de brilho mínimo para um valor superior.</string>
 
 </resources>

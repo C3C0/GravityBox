@@ -193,25 +193,25 @@
     <string name="pref_cat_display_summary">Contém diversos ajustes relacionados com a tela</string>
 
     <!-- Minimum brightness level -->
-    <string name="pref_brightness_min_title">Minimum brightness level</string>
-    <string name="pref_brightness_min_summary">Allows to set minimum brightness level. Applies to manual brightness setting. (requires reboot)</string>
+    <string name="pref_brightness_min_title">Nível de brilho mínimo</string>
+    <string name="pref_brightness_min_summary">Permite definir o nível de brilho mínimo, aplicável apenas ao modo manual (necessário reiniciar)</string>
 
     <!--  Autobrightness levels -->
-    <string name="pref_ab_title">Autobrightness levels</string>
-    <string name="pref_ab_summary">Allows to set ambient light levels and corresponding LCD backlight values</string>
-    <string name="level">Level</string>
-    <string name="pref_ab_lux_max_label">Lux max</string>
-    <string name="pref_ab_brighness_label">Brightness (%d &#8211; 255)</string>
-    <string name="pref_ab_number_error_general">Specified number is not valid</string>
-    <string name="pref_ab_brightness_too_low">It is not recommended to set brightness below %d</string>
-    <string name="pref_ab_brightness_too_high">Brightness cannot be greater than 255</string>
-    <string name="pref_ab_number_error_negative">Values cannot be lower or equal to zero</string>
-    <string name="pref_ab_number_not_ascending">Values on lower levels cannot be greater than values on higher levels</string>
-    <string name="pref_ab_number_not_descending">Values on higher levels cannot be smaller than values on lower levels</string>
-    <string name="pref_ab_values_set">Values for %s set</string>
-    <string name="pref_ab_config_saved">New autobrightness configuration saved</string>
-    <string name="pref_ab_config_cancelled">Autobrightness configuration was NOT saved</string>
-    <string name="pref_ab_button_set">Set</string>
+    <string name="pref_ab_title">Níveis de brilho automático</string>
+    <string name="pref_ab_summary">Permite ajustar os níveis de luz ambiente e os correspondentes valores para o brilho da tela</string>
+    <string name="level">Nível</string>
+    <string name="pref_ab_lux_max_label">Lux máx.</string>
+    <string name="pref_ab_brighness_label">Brilho (%d &#8211; 255)</string>
+    <string name="pref_ab_number_error_general">Valor especificado inválido</string>
+    <string name="pref_ab_brightness_too_low">Não é aconselhável um valor inferior a %d</string>
+    <string name="pref_ab_brightness_too_high">O valor não pode ser superior a 255</string>
+    <string name="pref_ab_number_error_negative">O valor não pode ser negativo</string>
+    <string name="pref_ab_number_not_ascending">O valor do patamar inferior não pode ser maior que o do patamar superior</string>
+    <string name="pref_ab_number_not_descending">O valor do patamar superior não pode ser menor que o do patamar inferior</string>
+    <string name="pref_ab_values_set">Valores de %s definidos</string>
+    <string name="pref_ab_config_saved">Nova configuração de níveis de brilho automático gravada</string>
+    <string name="pref_ab_config_cancelled">Configuração de níveis de brilho automático não gravada</string>
+    <string name="pref_ab_button_set">Definir</string>
 
     <!-- Lockscreen rotation -->
     <string name="pref_lockscreen_rotation_title">Enable lockscreen rotation</string>
@@ -229,8 +229,8 @@
     <string name="pref_statusbar_center_clock_title">Centrar relógio</string>
 
     <!-- Media tweaks category -->
-    <string name="pref_cat_media_title">Media tweaks</string>
-    <string name="pref_cat_media_summary">Contains various tweaks for media and audio system</string>
+    <string name="pref_cat_media_title">Ajustes multimédia</string>
+    <string name="pref_cat_media_summary">Contém diversos ajustes relacionados com multimédia</string>
 
     <!-- More music volume steps -->
     <string name="pref_music_volume_steps_title">More music volume steps</string>
@@ -736,5 +736,9 @@
     <string name="pref_caller_unknown_photo_title">Set unknown caller photo</string>
     <string name="caller_unknown_photo_result_successful">Photo changed</string>
     <string name="caller_unkown_photo_result_not_successful">Photo not changed</string>
+
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">Your screen might not support values lower than 20. If your screen doesn\'t light up,
+        hold Volume+ key for at least 7 seconds to reset brightness and then adjust minimum brightness to use higher values.</string>
 
 </resources>
