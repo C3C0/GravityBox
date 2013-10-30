@@ -716,11 +716,39 @@
 
     <!-- Application launcher -->
     <string name="pref_cat_app_launcher_title">應用程式啟動器</string>
-    <string name="pref_cat_app_launcher_summary">對話框允許最多8個應用程式分配到硬體按鍵操作上或是做為額外的海苔條按鍵</string>
+    <string name="pref_cat_app_launcher_summary">對話框允許最多 8 個應用程式分配到硬體按鍵操作上或是做為額外的海苔條按鍵</string>
     <string name="pref_app_launcher_slot_title">應用程式槽 %d</string>
     <string name="app_launcher_no_apps">沒有應用程式被分配. 使用 GravityBox / 程式啟動器選單來分配應用程式.</string>
 
     <!-- Navigation bar app launcher key -->
     <string name="pref_navbar_launcher_enable_title">顯示程式啟動器按鍵</string>
+
+    <!-- HW Key Actions: application launcher -->
+    <string name="hwkey_action_app_launcher">顯示應用程式啟動器</string>
+
+    <!-- Pie custom key -->
+    <string name="pref_pie_control_custom_key_title">顯示自訂按鍵</string>
+    <string name="pie_custom_key_off">停用</string>
+    <string name="pie_custom_key_search">搜尋</string>
+    <string name="pie_custom_key_app_launcher">應用程式啟動器</string>
+
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">Pie 控制顏色</string>
+    <string name="pref_pie_color_bg_title">背景顏色</string>
+    <string name="pref_pie_color_fg_title">前景顏色</string>
+    <string name="pref_pie_color_outline_title">邊框顏色</string>
+    <string name="pref_pie_color_selected_title">按鍵選中顏色</string>
+    <string name="pref_pie_color_text_title">文字顏色</string>
+    <string name="pref_pie_color_reset_title">重設顏色</string>
+
+    <!-- Custom unknown caller photo -->
+    <string name="pref_caller_unknown_photo_enable_title">Ena啟用未知來電撥號者照片o</string>
+    <string name="pref_caller_unknown_photo_title">設定未知來電撥號者</string>
+    <string name="caller_unknown_photo_result_successful">照片已更改</string>
+    <string name="caller_unkown_photo_result_not_successful">照片未更改</string>
+
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">您的裝置可能不支援低於 20 的數值，如果您的裝置螢幕亮不起來，您可以按住音量鍵 + 至少 7 秒，然後將會還原亮度，並請設定較高的數值.</string>
+
 
 </resources>
