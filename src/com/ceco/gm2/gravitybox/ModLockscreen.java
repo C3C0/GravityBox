@@ -625,7 +625,7 @@ public class ModLockscreen {
 
             String[] splitValue = app.split(AppPickerPreference.SEPARATOR);
             ComponentName cn = new ComponentName(splitValue[0], splitValue[1]);
-            Intent i = new Intent();
+            Intent i = new Intent(Intent.ACTION_MAIN);
             i.setComponent(cn);
             appInfo.intent = i;
 

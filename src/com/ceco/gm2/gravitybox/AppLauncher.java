@@ -223,6 +223,7 @@ public class AppLauncher {
     };
 
     private void startActivity(Context context, Intent intent) {
+        intent.setAction(Intent.ACTION_MAIN);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
     }

@@ -106,7 +106,7 @@ public class QuickAppTile extends AQuickSettingsTile implements BroadcastSubRece
         public Intent getIntent() {
             if (mPackageName == null || mClassName == null) return null;
 
-            Intent i = new Intent();
+            Intent i = new Intent(Intent.ACTION_MAIN);
             i.setClassName(mPackageName, mClassName);
             return i;
         }
