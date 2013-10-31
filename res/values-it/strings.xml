@@ -714,7 +714,7 @@
 
     <!-- Minimum screen brightness warning -->
     <string name="screen_brightness_min_warning">Il tuo schermo potrebbe non supportare valori inferiori a 20. Se il tuo schermo non si accende, 
-        tieni premuto il tasto Volume+ per almeno 7 secondi per resettare l'impostazione luminosità e poi reimposta la luminosità con un valore superiore.</string>
+        tieni premuto il tasto Volume+ per almeno 7 secondi per resettare l\'impostazione luminosità e poi reimposta la luminosità con un valore superiore.</string>
 
 
 </resources>
