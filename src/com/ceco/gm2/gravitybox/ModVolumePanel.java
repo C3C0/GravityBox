@@ -71,7 +71,7 @@ public class ModVolumePanel {
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_EXPANDABLE_FULLY)) {
                     mExpandFully = intent.getBooleanExtra(
-                            GravityBoxSettings.PREF_KEY_VOLUME_PANEL_FULLY_EXPANDABLE, false);
+                            GravityBoxSettings.EXTRA_EXPANDABLE_FULLY, false);
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_AUTOEXPAND)) {
                     mAutoExpand = intent.getBooleanExtra(GravityBoxSettings.EXTRA_AUTOEXPAND, false);
