@@ -742,7 +742,7 @@
     <string name="pref_pie_color_reset_title">重設顏色</string>
 
     <!-- Custom unknown caller photo -->
-    <string name="pref_caller_unknown_photo_enable_title">Ena啟用未知來電撥號者照片o</string>
+    <string name="pref_caller_unknown_photo_enable_title">啟用未知來電撥號者照片</string>
     <string name="pref_caller_unknown_photo_title">設定未知來電撥號者</string>
     <string name="caller_unknown_photo_result_successful">照片已更改</string>
     <string name="caller_unkown_photo_result_not_successful">照片未更改</string>
