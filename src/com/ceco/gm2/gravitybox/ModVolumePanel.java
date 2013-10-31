@@ -165,6 +165,19 @@ public class ModVolumePanel {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     hideNotificationSliderIfLinked();
+                    
+                    if (!mExpandFully)
+                        return;
+                    View mMoreButton = (View) XposedHelpers.getObjectField(mVolumePanel, "mMoreButton");
+                    View mDivider = (View) XposedHelpers.getObjectField(mVolumePanel, "mDivider");
+                    
+                    if (mMoreButton != null) {
+                        mMoreButton.setVisibility(View.GONE);
+                    }
+                    
+                    if (mDivider != null) {
+                    	mDivider.setVisibility(View.GONE);
+                    }
                 }
             });
 
@@ -224,24 +237,6 @@ public class ModVolumePanel {
                 protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
                     if (mVolumeAdjustMuted) {
                         param.setResult(null);
-                    }
-                }
-            });
-            
-            XposedHelpers.findAndHookMethod(classVolumePanel, "expand", new XC_MethodHook() {
-                @Override
-                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    if (!mExpandFully)
-                        return;
-                    View mMoreButton = (View) XposedHelpers.getObjectField(mVolumePanel, "mMoreButton");
-                    View mDivider = (View) XposedHelpers.getObjectField(mVolumePanel, "mDivider");
-                    
-                    if (mMoreButton != null) {
-                        mMoreButton.setVisibility(View.GONE);
-                    }
-                    
-                    if (mDivider != null) {
-                    	mDivider.setVisibility(View.GONE);
                     }
                 }
             });
