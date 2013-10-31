@@ -631,4 +631,90 @@
     <string name="pref_lockscreen_widget_limit_disable_title">Disabilita limitazione widget</string>
     <string name="pref_lockscreen_widget_limit_disable_summary">Consenti numero illimitato widget in lockscreen</string>
 
+<!-- RAM Bar -->
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> liberi</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> usati</string>
+    <string name="pref_rambar_title">Memoria Applicazioni recenti</string>
+    <string name="rambar_off">Spento</string>
+    <string name="rambar_top">In alto</string>
+    <string name="rambar_bottom">In basso</string>
+
+    <!-- HW Key actions for recents button -->
+    <string name="hwkey_recents_singletap_dialog_title">Azione pressione breve</string>
+    <string name="hwkey_recents_longpress_dialog_title">Azione pressione lunga</string>
+
+    <!-- Lockscreen battery arc -->
+    <string name="pref_lockscreen_battery_arc_title">Mostra Arco batteria</string>
+    <string name="pref_lockscreen_battery_arc_summary">Mostra arco stato batteria disegnato nell\'anello di sblocco schermo</string>
+
+    <!-- HW Key Actions: toggle torch -->
+    <string name="hwkey_action_torch">Torcia attiva/disattiva</string>
+
+    <!-- HW Key Actions: toggle torch on home key long-press while on lockscreen -->
+    <string name="pref_hwkey_home_longpress_keyguard_title">Torcia su pressione lunga tasto home</string>
+    <string name="pref_hwkey_home_longpress_keyguard_summary">Torcia on/off se telefono bloccato. Lo schermo deve essere acceso se il telefono non supporta nativamente lo sblocco usando il tasto home.</string>
+
+    <!-- Volume panel: Show expanded -->
+    <string name="pref_volume_panel_autoexpand_title">Espandi automaticamente</string>
+
+    <!-- HW Key Actions: Preference screen arrangement -->
+    <string name="pref_cat_hwkey_menu_title">Tatso Menu</string>
+    <string name="pref_cat_hwkey_home_title">Tasto Home</string>
+    <string name="pref_cat_hwkey_back_title">Tasto Indietro</string>
+    <string name="pref_cat_hwkey_recents_title">Tasto Recenti</string>
+    <string name="pref_cat_hwkey_volume_title">Tasti volume</string>
+    <string name="pref_cat_hwkey_actions_others">Altre impostazioni</string>
+    <string name="pref_hwkey_longpress_title">Azione pressione lunga</string>
+    <string name="pref_hwkey_singletap_title">Azione pressione corta</string>
+    <string name="pref_hwkey_doubletap_title">Azione doppio tap</string>
+
+    <!-- Disable double-tap (e.g. for Home Key on Android 4.3+) -->
+    <string name="pref_hwkey_doubletap_disable_title">Disabilita doppio tap</string>
+
+    <!-- Color mode for statusbar signal icons -->
+    <string name="pref_statusbar_signal_color_mode_title">Colori icona segnale</string>
+    <string name="signal_color_mode_gb">Usa icone GravityBox (con supporto del segnale)</string>
+    <string name="signal_color_mode_stock">Usa icona stock (senza supporto del segnale)</string>
+    <string name="signal_color_mode_disabled">Non applicare colore</string>
+
+    <!-- Application launcher -->
+    <string name="pref_cat_app_launcher_title">Avvio applicazioni</string>
+    <string name="pref_cat_app_launcher_summary">Consente di definire fino a 8 app che possono essere assegnate a azioni tasti hardware or usate come barra di navigazione aggiuntiva</string>
+    <string name="pref_app_launcher_slot_title">Application slot %d</string>
+    <string name="app_launcher_no_apps">Nessuna app assegnata. Usa GravityBox / Menu Launcher Applicazioni per assegnare le applicazioni.</string>
+
+    <!-- Navigation bar app launcher key -->
+    <string name="pref_navbar_launcher_enable_title">Mostra Tasto Avvio Applicazioni</string>
+
+    <!-- HW Key Actions: application launcher -->
+    <string name="hwkey_action_app_launcher">Mostra Launcher app</string>
+
+    <!-- Pie custom key -->
+    <string name="pref_pie_control_custom_key_title">Mostra tasti personalizzati</string>
+    <string name="pie_custom_key_off">Disabilitato</string>
+    <string name="pie_custom_key_search">Cerca</string>
+    <string name="pie_custom_key_app_launcher">Launcher app</string>
+
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">Colori Pie</string>
+    <string name="pref_pie_color_bg_title">Colore sfondo</string>
+    <string name="pref_pie_color_fg_title">Colore primo piano</string>
+    <string name="pref_pie_color_outline_title">Colore sottolineatura</string>
+    <string name="pref_pie_color_selected_title">Key selected color</string>
+    <string name="pref_pie_color_text_title">Colore testo</string>
+    <string name="pref_pie_color_reset_title">Reset colori</string>
+
+    <!-- Custom unknown caller photo -->
+    <string name="pref_caller_unknown_photo_enable_title">Abilita foto per chiamante sconosciuto</string>
+    <string name="pref_caller_unknown_photo_title">Imposta foto chiamante sconosciuto</string>
+    <string name="caller_unknown_photo_result_successful">Foto cambiata</string>
+    <string name="caller_unkown_photo_result_not_successful">Foto non cambiata</string>
+
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">Il tuo schermo potrebbe non supportare valori inferiori a 20. Se il tuo schermo non si accende, 
+        tieni premuto il tasto Volume+ per almeno 7 secondi per resettare l'impostazione luminosità e poi reimposta la luminosità con un valore superiore.</string>
+
+
 </resources>
