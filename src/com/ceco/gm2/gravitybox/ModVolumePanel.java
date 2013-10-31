@@ -205,6 +205,22 @@ public class ModVolumePanel {
                     }
                 }
             });
+            
+            XposedHelpers.findAndHookMethod(classVolumePanel, "expand", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    View mMoreButton = (View) XposedHelpers.getObjectField(mVolumePanel, "mMoreButton");
+                    View mDivider = (View) XposedHelpers.getObjectField(mVolumePanel, "mDivider");
+                    
+                    if (mMoreButton != null) {
+                        mMoreButton.setVisibility(View.GONE);
+                    }
+                    
+                    if (mDivider != null) {
+                    	mDivider.setVisibility(View.GONE);
+                    }
+                }
+            });
 
             XposedBridge.hookAllConstructors(classAudioService, new XC_MethodHook() {
 
