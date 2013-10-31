@@ -119,6 +119,20 @@ public class ModVolumePanel {
                     context.registerReceiver(mBrodcastReceiver, intentFilter);
                 }
             });
+            
+            if (Utils.isXperiaDevice()) {
+                try {
+                    XposedHelpers.findAndHookMethod(classVolumePanel, "inflateUi", new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                            mVoiceCapable = XposedHelpers.getBooleanField(param.thisObject, "mVoiceCapable");
+                            updateVolumePanelMode();
+                        }
+                    });
+                } catch (Throwable t) {
+                    if (DEBUG) log("We might want to fix our Xperia detection...");
+                }
+            }
 
             XposedHelpers.findAndHookMethod(classVolumePanel, "createSliders", new XC_MethodHook() {
                 @Override
