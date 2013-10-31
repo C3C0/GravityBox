@@ -894,11 +894,13 @@
             android:key="pref_volume_panel_expandable"
             android:title="@string/pref_volume_panel_expandable_title"
             android:summary="@string/pref_volume_panel_expandable_summary"
-            android:defaultValue="false" /><CheckBoxPreference
-            android:defaultValue="false"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="pref_volume_panel_expand_fully"
+            android:title="@string/pref_volume_panel_expandable_fully_title"
             android:summary="@string/pref_volume_panel_expandable_fully_summary"
-            android:title="@string/pref_volume_panel_expandable_fully_title" />
+            android:defaultValue="false" />
 
         <CheckBoxPreference
             android:defaultValue="false"
