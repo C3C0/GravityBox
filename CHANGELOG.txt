@@ -1,3 +1,15 @@
+Changelog 2.6.7 - 31/10/2013
+--------------------------------------
+- Fixed SystemUI crash on tablet devices
+- Improved navigation bar app key layout injection
+--- fixes navbar keys layout on Xperia and other non-AOSP devices
+--- navbar layout is modified only in case app key is enabled
+- Fixed app launcher not launching some apps correctly (e.g. RootExplorer)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Portuguese (BR) translation (thanks to bgcngm)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Ukrainian translations (thanks to egor4yk90) 
+
 Changelog 2.6.6 - 29/10/2013
 --------------------------------------
 - Introducing Application Launcher
