@@ -106,7 +106,9 @@ public class ModPieControls {
                     String[] triggers = intent.getStringArrayExtra(
                             GravityBoxSettings.EXTRA_PIE_TRIGGERS);
                     mPieTriggerSlots = getTriggerSlotsFromArray(triggers);
-                    mPieContainer.setTriggerSlots(mPieTriggerSlots);
+                    if (mPieContainer != null) {
+                        mPieContainer.setTriggerSlots(mPieTriggerSlots);
+                    }
                     attachPie();
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_TRIGGER_SIZE)) {
@@ -115,7 +117,9 @@ public class ModPieControls {
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_SIZE)) {
                     mPieSize = intent.getIntExtra(GravityBoxSettings.EXTRA_PIE_SIZE, 1000);
-                    mPieContainer.setPieSize(mPieSize);
+                    if (mPieContainer != null) {
+                        mPieContainer.setPieSize(mPieSize);
+                    }
                     attachPie();
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_PIE_HWKEYS_DISABLE)) {
