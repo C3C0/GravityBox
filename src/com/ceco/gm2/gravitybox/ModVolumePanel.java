@@ -52,6 +52,7 @@ public class ModVolumePanel {
     private static boolean mVolumeAdjustMuted;
     private static boolean mVoiceCapable;
     private static boolean mExpandable;
+    private static boolean mExpandFully;
     private static boolean mAutoExpand;
 
     private static void log(String message) {
@@ -67,6 +68,10 @@ public class ModVolumePanel {
                     mExpandable = intent.getBooleanExtra(
                             GravityBoxSettings.EXTRA_EXPANDABLE, false);
                     updateVolumePanelMode();
+                }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_EXPANDABLE_FULLY)) {
+                    mExpandFully = intent.getBooleanExtra(
+                            GravityBoxSettings.EXTRA_EXPANDABLE_FULLY, false);
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_AUTOEXPAND)) {
                     mAutoExpand = intent.getBooleanExtra(GravityBoxSettings.EXTRA_AUTOEXPAND, false);
@@ -103,6 +108,9 @@ public class ModVolumePanel {
 
                     mExpandable = prefs.getBoolean(
                             GravityBoxSettings.PREF_KEY_VOLUME_PANEL_EXPANDABLE, false);
+                    mExpandFully = prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_VOLUME_PANEL_FULLY_EXPANDABLE, false);
+
                     updateVolumePanelMode();
 
                     mAutoExpand = prefs.getBoolean(GravityBoxSettings.PREF_KEY_VOLUME_PANEL_AUTOEXPAND, false);
@@ -157,6 +165,19 @@ public class ModVolumePanel {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     hideNotificationSliderIfLinked();
+                    
+                    if (!mExpandFully)
+                        return;
+                    View mMoreButton = (View) XposedHelpers.getObjectField(mVolumePanel, "mMoreButton");
+                    View mDivider = (View) XposedHelpers.getObjectField(mVolumePanel, "mDivider");
+                    
+                    if (mMoreButton != null) {
+                        mMoreButton.setVisibility(View.GONE);
+                    }
+                    
+                    if (mDivider != null) {
+                    	mDivider.setVisibility(View.GONE);
+                    }
                 }
             });
 
