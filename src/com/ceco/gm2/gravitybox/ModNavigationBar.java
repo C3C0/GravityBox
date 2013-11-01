@@ -71,6 +71,7 @@ public class ModNavigationBar {
         View originalView;
         KeyButtonView appLauncherView;
         int position;
+        boolean visible;
     }
 
     private static BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
@@ -261,7 +262,7 @@ public class ModNavigationBar {
             XposedHelpers.findAndHookMethod(navbarViewClass, "setDisabledFlags",
                     int.class, boolean.class, new XC_MethodHook() {
                 @Override
-                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     boolean visible = mAppLauncherEnabled;
                     View v = (View) XposedHelpers.callMethod(param.thisObject, "getRecentsButton");
                     if (v != null) {
@@ -346,6 +347,8 @@ public class ModNavigationBar {
     private static void setAppKeyVisibility(boolean visible) {
         try {
             for (int i = 0; i <= 1; i++) {
+                if (mNavbarViewInfo[i].visible == visible) continue;
+
                 if (mNavbarViewInfo[i].originalView != null) {
                     mNavbarViewInfo[i].navButtons.removeViewAt(mNavbarViewInfo[i].position);
                     mNavbarViewInfo[i].navButtons.addView(visible ?
@@ -359,6 +362,9 @@ public class ModNavigationBar {
                         mNavbarViewInfo[i].navButtons.removeView(mNavbarViewInfo[i].appLauncherView);
                     }
                 }
+                mNavbarViewInfo[i].visible = visible;
+                mNavbarViewInfo[i].navButtons.requestLayout();
+                if (DEBUG) log("setAppKeyVisibility: visible=" + visible);
             }
         } catch (Throwable t) {
             log("Error setting app key visibility: " + t.getMessage());
