@@ -1,3 +1,7 @@
+Changelog 2.6.9 - 03/11/2013
+--------------------------------------
+- Fixed battery percent text issue introduced in v2.6.8
+
 Changelog 2.6.8 - 02/11/2013
 --------------------------------------
 - Fixed SystemUI crash when changing Pie properties while Pie is not active
