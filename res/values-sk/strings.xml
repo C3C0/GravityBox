@@ -727,4 +727,8 @@
     <string name="screen_brightness_min_warning">Vaša obrazovka nemusí podporovať hodnoty jasu nižšie ako 20. Ak sa obrazovka nerozsvieti,
         držte tlačidlo Hlasitosť+ po dobu 7 sekúnd pre rozsvietenie obrazovky. Následne zmeňte nastavenie minimálneho jasu na vyššiu hodnotu.</string>
 
+    <!-- Fully expandable volume panel -->
+    <string name="pref_volume_panel_expandable_fully_title">Plná dĺžka posuvníkov</string>
+    <string name="pref_volume_panel_expandable_fully_summary">Umožní posuvníkom využiť celú dĺžku panelu nastavenia hlasitosti</string>
+
 </resources>
