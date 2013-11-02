@@ -307,6 +307,10 @@
     <string name="pref_volume_panel_expandable_title">Panel volume yang bisa dibuka</string>
     <string name="pref_volume_panel_expandable_summary">Menghidupkan panel volume yang bisa dibuka dengan kemampuan untuk men-set volume-volume dengan alur yang berbeda</string>
 
+    <!-- Fully expandable volume panel -->
+    <string name="pref_volume_panel_expandable_fully_title">Panel volume yang bisa dibuka secara penuh</string>
+    <string name="pref_volume_panel_expandable_fully_summary">Membolehkan panel volume untuk menggunakan seluruh tempat yang disediakan</string>
+
     <!-- Link ringtone & notifications volumes -->
     <string name="pref_link_volumes_title">Gabungkan alur ringtone &amp; notifikasi</string>
     <string name="pref_link_volumes_summary">Ketika dimatikan, alur volume untuk ringtone dan notifikasi bisa di set secara independen</string>
@@ -399,9 +403,9 @@
     <string name="pref_holo_bg_dither_title">Latar belakang Holo dithered</string>
     <string name="pref_holo_bg_dither_summary">Ganti latar belakang standar Holo dengan versi yang dithered untuk mengurangi pita warna (requires reboot)</string>
 
-    <!-- Disable hardware keys for pie -->
-    <string name="pref_hwkeys_disable_title">Matikan tombol fisik</string>
-    <string name="pref_hwkeys_disable_summary">Matikan tombol MENU, BACK, HOME ketika kontrol Pie diaktifkan. Aksi tombol akan tetap bekerja. (untuk perangkat dengan tombol fisik)</string>
+    <!-- Disable navigation keys for pie -->
+    <string name="pref_hwkeys_disable_title">Matikan tombol navigasi</string>
+    <string name="pref_hwkeys_disable_summary">Mematikan aksi tombol navigasi saat ditekan sekali ketika kontrol Pie diaktifkan.</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Gunakan tema Holo Dark</string>
@@ -681,7 +685,7 @@
     <string name="rambar_bottom">Bawah</string>
 
     <!-- HW Key actions for recents button -->
-    <string name="hwkey_recents_singletap_dialog_title">Aksi ketika tombol Recents ditekan</string>
+    <string name="hwkey_recents_singletap_dialog_title">Aksi ketika tombol Recents ditekan sekali</string>
     <string name="hwkey_recents_longpress_dialog_title">Aksi ketika tombol Recents ditahan</string>
 
     <!-- Lockscreen battery arc -->
@@ -708,5 +712,51 @@
     <string name="pref_hwkey_longpress_title">Aksi ketika ditahan</string>
     <string name="pref_hwkey_singletap_title">Aksi ketika ditekan sekali</string>
     <string name="pref_hwkey_doubletap_title">Aksi ketika ditekan dua kali</string>
+
+    <!-- Disable double-tap (e.g. for Home Key on Android 4.3+) -->
+    <string name="pref_hwkey_doubletap_disable_title">Matikan double-tap</string>
+
+    <!-- Color mode for statusbar signal icons -->
+    <string name="pref_statusbar_signal_color_mode_title">Mode pewarnaan sinyal</string>
+    <string name="signal_color_mode_gb">Gunakan ikon GravityBox (dengan dukungan level sinyal)</string>
+    <string name="signal_color_mode_stock">Gunakan ikon bawaan (Tanpa dukungan level sinyal)</string>
+    <string name="signal_color_mode_disabled">Jangan terapkan warna</string>
+
+    <!-- Application launcher -->
+    <string name="pref_cat_app_launcher_title">Launcher aplikasi</string>
+    <string name="pref_cat_app_launcher_summary">Dialog yang memperbolehkan pengguna menetapkan sampai 8 aplikasi yang bisa ditetapkan sebagai aksi tombol fisik atau tombol tambahan di navbar.</string>
+    <string name="pref_app_launcher_slot_title">Aplikasi slot %d</string>
+    <string name="app_launcher_no_apps">Tidak ada aplikasi yang ditetapkan. Gunakan GravityBox / menu Launcher Aplikasi untuk menetapkan aplikasi.</string>
+
+    <!-- Navigation bar app launcher key -->
+    <string name="pref_navbar_launcher_enable_title">Tunjukkan tombol Launcher Aplikasi</string>
+
+    <!-- HW Key Actions: application launcher -->
+    <string name="hwkey_action_app_launcher">Tunjukkan Launcher Aplikasi</string>
+
+    <!-- Pie custom key -->
+    <string name="pref_pie_control_custom_key_title">Tunjukkan tombol kustom</string>
+    <string name="pie_custom_key_off">Matikan</string>
+    <string name="pie_custom_key_search">Pencarian</string>
+    <string name="pie_custom_key_app_launcher">launcher Aplikasi</string>
+
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">Warna Pie</string>
+    <string name="pref_pie_color_bg_title">Warna latar belakang</string>
+    <string name="pref_pie_color_fg_title">Warna latar depan</string>
+    <string name="pref_pie_color_outline_title">Warna garis</string>
+    <string name="pref_pie_color_selected_title">Warna tombol terpilih</string>
+    <string name="pref_pie_color_text_title">Warna teks</string>
+    <string name="pref_pie_color_reset_title">Reset warna</string>
+
+    <!-- Custom unknown caller photo -->
+    <string name="pref_caller_unknown_photo_enable_title">Hidupkan foto pemanggil tak dikenal</string>
+    <string name="pref_caller_unknown_photo_title">Tetapkan foto pemanggil tak dikenal</string>
+    <string name="caller_unknown_photo_result_successful">Foto diganti</string>
+    <string name="caller_unkown_photo_result_not_successful">Foto tidak diganti</string>
+
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">Layar anda mungkin tidak mendukung nilai kurang dari 20. Jika layar anda tidak hidup,
+        tahan tombol volume + setidaknya selama 7 detik untuk mereset kecerahan lalu atur nilai yang lebih tinggi.</string>
 
 </resources>
