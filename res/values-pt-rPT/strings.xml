@@ -233,8 +233,8 @@
     <string name="pref_cat_media_summary">Contém vários ajustes relacionados com multimédia</string>
 
     <!-- More music volume steps -->
-    <string name="pref_music_volume_steps_title">Mais passos de volume</string>
-    <string name="pref_music_volume_steps_summary">Permite controlo mais fino do volume ao adicionar mais passos (necessário reiniciar)</string>
+    <string name="pref_music_volume_steps_title">Níveis de volume adicionais</string>
+    <string name="pref_music_volume_steps_summary">Permite um controlo mais fino do volume ao adicionar mais níveis (necessário reiniciar)</string>
 
     <!-- Safe headset media volume -->
     <string name="pref_safe_media_volume_title">Volume de segurança para mãos-livres</string>
@@ -293,6 +293,10 @@
     <string name="pref_volume_panel_expandable_title">Painel de volume expandido</string>
     <string name="pref_volume_panel_expandable_summary">Ativa painel de volume expandido com possibilidade de controlar o volume de diferentes fontes</string>
 
+    <!-- Fully expandable volume panel -->
+    <string name="pref_volume_panel_expandable_fully_title">Painel totalmente expandido</string>
+    <string name="pref_volume_panel_expandable_fully_summary">Quando ativado, o painel de volume ocupa todo o espaço disponível no ecrã</string>
+
     <!-- Link ringtone & notifications volumes -->
     <string name="pref_link_volumes_title">Volumes de toque e notificações interligados</string>
     <string name="pref_link_volumes_summary">Quando desativado, os volumes de toque e notificações podem ser controlados de forma independente</string>
@@ -346,8 +350,8 @@
     <string name="color_fill_underlay">Por trás</string>
 
     <!-- Disable roaming indicators -->
-    <string name="pref_disable_roaming_indicators_title">Desativar indicadores de roaming</string>
-    <string name="pref_disable_roaming_indicators_summary">Quando selecionado, o indicador R não será visível em roaming (usar com cautela)</string>
+    <string name="pref_disable_roaming_indicators_title">Desativar indicadores de deslocamento</string>
+    <string name="pref_disable_roaming_indicators_summary">Quando selecionado, o indicador R não será visível quando em deslocamento (usar com cautela)</string>
 
     <!-- Battery status in pie controls -->
     <string name="pie_battery_status_charging">A carregar (<xliff:g id="percent">%d</xliff:g>%%)</string>
@@ -404,8 +408,8 @@
     <string name="pref_recent_clear_margin_top_title">Ajustar margem superior</string>
 
     <!-- Disable roaming warnings -->
-    <string name="pref_roaming_warning_disable_title">Desativar avisos de roaming</string>
-    <string name="pref_roaming_warning_disable_summary">Desativa os avisos de roaming aquando do envio de mensagens ou realização de chamadas em roaming</string>
+    <string name="pref_roaming_warning_disable_title">Desativar avisos de deslocamento</string>
+    <string name="pref_roaming_warning_disable_summary">Desativa os avisos aquando do envio de mensagens ou realização de chamadas em deslocamento</string>
 
     <!-- AppPickerPreference -->
     <string name="app_picker_search">Pesquisa</string>
@@ -489,8 +493,8 @@
     <string name="gb_startup_error">Estrutura de sistema do GravityBox não responde. A sair.</string>
 
     <!-- National data roaming -->
-    <string name="pref_national_roaming_title">Roaming de dados nacionais</string>
-    <string name="pref_national_roaming_summary">Permite o estabelecimento de ligação de dados durante roaming em território nacional</string>
+    <string name="pref_national_roaming_title">Deslocamento de dados nacionais</string>
+    <string name="pref_national_roaming_summary">Permite o estabelecimento de ligação de dados quando em deslocamento em território nacional</string>
 
     <!-- Expanded Desktop -->
     <string name="pref_expanded_desktop_title">Modo ambiente de trabalho expandido</string>
