@@ -249,7 +249,6 @@
     <string name="pie_phone_status_emergency_only">Tylko połączenia alarmowe</string>
     <string name="pie_control_title">Interfejs Kontroli Pie</string>
     <string name="pie_control_enable_title">Włącz interfejs kontroli Pie</string>
-    <string name="pie_control_search_title">Pokaż przycisk wyszukiwania</string>
     <string name="pie_control_size_title">Wielkość klawisza nawigacji</string>
     <string name="pie_control_trigger_positions_title">Pozycja aktywnej strefy</string>
     <string name="pie_control_trigger_left">Lewy margines ekranu</string>
@@ -457,4 +456,26 @@
     <string name="signal_color_mode_gb">Użyj ikon GravityBox (z obsługą poziomu sygnału)</string>
     <string name="signal_color_mode_stock">Użyj standardowych ikon (bez obsługi poziomu sygnału)</string>
     <string name="signal_color_mode_disabled">Nie stosuj koloru</string>
+    <string name="pref_cat_app_launcher_title">Uruchamianie aplikacji</string>
+    <string name="pref_cat_app_launcher_summary">Dialog pozwala na zdefiniowanie do 8 aplikacji, które mogą być przypisane jako akcje klawiszy sprzętowych lub użyte jako dodatkowe przyciski paska nawigacyjnego</string>
+    <string name="pref_app_launcher_slot_title">Slot aplikacji %d</string>
+    <string name="app_launcher_no_apps">Brak przypisanych aplikacji. Użyj GravityBox / menu Uruchamiania aplikacji aby przypisać aplikacje.</string>
+    <string name="pref_navbar_launcher_enable_title">Pokaż przycisk uruchamiania aplikacji</string>
+    <string name="hwkey_action_app_launcher">Pokaż starter aplikacji</string>
+    <string name="pref_pie_control_custom_key_title">Pokaż opcjonalny przycisk</string>
+    <string name="pie_custom_key_off">Wyłączone</string>
+    <string name="pie_custom_key_search">Przycisk wyszukiwania</string>
+    <string name="pie_custom_key_app_launcher">Starter aplikacji</string>
+    <string name="pref_cat_pie_colors_title">Kolory Pie</string>
+    <string name="pref_pie_color_bg_title">Kolor tła</string>
+    <string name="pref_pie_color_fg_title">Kolor pierwszoplanowy</string>
+    <string name="pref_pie_color_outline_title">Kolor konturu</string>
+    <string name="pref_pie_color_selected_title">Kolor wybranego przycisku</string>
+    <string name="pref_pie_color_text_title">Kolor tekstu</string>
+    <string name="pref_pie_color_reset_title">Resetuj kolory</string>
+    <string name="pref_caller_unknown_photo_enable_title">Zdjęcie nieznanego dzwoniącego</string>
+    <string name="pref_caller_unknown_photo_title">Ustaw zdjęcie dla nieznanego dzwoniącego</string>
+    <string name="caller_unknown_photo_result_successful">Zdjęcie zostało zmienione</string>
+    <string name="caller_unkown_photo_result_not_successful">Zdjęcie nie zostało zmienione</string>
+    <string name="screen_brightness_min_warning">"Ekran może nie obsługiwać wartości niższych niż 20. Jeśli ekran nie zapala się, przytrzymaj przycisk VOLUME+ przez co najmniej 7 sekund aby zrestetować jasność, a następnie ustaw wyższą wartość minimalnej jasności."</string>
 </resources>
