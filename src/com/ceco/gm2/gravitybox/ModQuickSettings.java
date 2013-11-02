@@ -59,6 +59,7 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -66,6 +67,7 @@ import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -270,43 +272,98 @@ public class ModQuickSettings {
         XposedHelpers.callMethod(mContainerView, "updateResources");
     }
 
+    private static TextView findTileTextView(ViewGroup viewGroup) {
+        if (viewGroup == null) return null;
+
+        TextView textView = null;
+        final int childCount = viewGroup.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childView = viewGroup.getChildAt(i);
+            if (childView instanceof ViewGroup) {
+                textView = findTileTextView((ViewGroup) childView);
+            } else if (childView instanceof TextView) {
+                textView = (TextView) childView;
+            }
+            if (textView != null) {
+                break;
+            }
+        }
+
+        return textView;
+    }
+
     private static void updateTileLayout(FrameLayout container, int orientation) {
         if (container == null) return;
 
         int tileCount = container.getChildCount();
         int textSize = 12;
 
+        final Resources res = container.getResources();
+        int imgMarginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                27, res.getDisplayMetrics());
+        int imgMarginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                17, res.getDisplayMetrics());
+        final int imgResId = res.getIdentifier("image", "id", PACKAGE_NAME);
+        final int rssiImgResId = res.getIdentifier("rssi_image", "id", PACKAGE_NAME);
+
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             switch (mNumColumns) {
-                case 4: textSize = 10; break;
-                case 5: textSize = 8; break;
+                case 4: 
+                    textSize = 10;
+                    imgMarginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                            17, res.getDisplayMetrics());
+                    imgMarginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                            10, res.getDisplayMetrics());
+                    break;
+                case 5:
+                    imgMarginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                            10, res.getDisplayMetrics());
+                    imgMarginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                            5, res.getDisplayMetrics());
+                    textSize = 8; 
+                    break;
                 case 3:
-                default: textSize = 12;
+                default:
+                    textSize = 12;
+                    break;
             }
         }
 
         for(int i = 0; i < tileCount; i++) {
             ViewGroup viewGroup = (ViewGroup) mContainerView.getChildAt(i);
             if (viewGroup != null) {
-                int childCount = viewGroup.getChildCount();
-                for(int j = 0; j < childCount; j++) {
-                    View childView = viewGroup.getChildAt(j);
-                    TextView targetView = null;
-                    if (childView instanceof ViewGroup) {
-                        int innerChildCount = ((ViewGroup) childView).getChildCount();
-                        for (int k = 0; k < innerChildCount; k++) {
-                            View innerChildView = ((ViewGroup) childView).getChildAt(k); 
-                            if (innerChildView instanceof TextView) {
-                                targetView = (TextView) innerChildView;
+                TextView textView = findTileTextView(viewGroup);
+                if (textView != null) {
+                    textView.setTextSize(1, textSize);
+                    textView.setSingleLine(false);
+                    textView.setAllCaps(true);
+                }
+
+                // adjust layout in case it's AOSP 4.3 tile
+                if (Build.VERSION.SDK_INT > 17 && imgResId != 0 && rssiImgResId != 0) {
+                    ImageView img = (ImageView) viewGroup.findViewById(imgResId);
+                    if (img != null) {
+                        // basic tile
+                        if (img.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+                            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) img.getLayoutParams();
+                            lp.topMargin = imgMarginTop;
+                            lp.bottomMargin = imgMarginBottom;
+                            img.setLayoutParams(lp);
+                            img.requestLayout();
+                        }
+                    } else {
+                        // RSSI special tile
+                        img = (ImageView) viewGroup.findViewById(rssiImgResId);
+                        if (img != null && img.getParent() instanceof FrameLayout) {
+                            FrameLayout fl = (FrameLayout) img.getParent();
+                            if (fl.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+                                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fl.getLayoutParams();
+                                lp.topMargin = imgMarginTop;
+                                lp.bottomMargin = imgMarginBottom;
+                                fl.setLayoutParams(lp);
+                                fl.requestLayout();
                             }
                         }
-                    } else if (childView instanceof TextView) {
-                        targetView = (TextView) childView;
-                    }
-                    if (targetView != null) {
-                        targetView.setTextSize(1, textSize);
-                        targetView.setSingleLine(false);
-                        targetView.setAllCaps(true);
                     }
                 }
             }
