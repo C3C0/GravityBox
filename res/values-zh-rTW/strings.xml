@@ -194,21 +194,21 @@
     <string name="pref_cat_display_summary">包含各種顯示相關的校正選項</string>
 
     <!-- Minimum brightness level -->
-    <string name="pref_brightness_min_title">最低亮度層級</string>
-    <string name="pref_brightness_min_summary">可以設定最低的亮度層級。在手動設定亮度時適用。（需要重新啟動）</string>
+    <string name="pref_brightness_min_title">最低亮度等級</string>
+    <string name="pref_brightness_min_summary">可以設定最低的亮度等級。在手動設定亮度時適用。（需要重新啟動）</string>
 
     <!--  Autobrightness levels -->
-    <string name="pref_ab_title">自動亮度層級</string>
-    <string name="pref_ab_summary">可以設定環境的亮度層級與相對應的 LCD 背光值</string>
+    <string name="pref_ab_title">自動亮度等級</string>
+    <string name="pref_ab_summary">可以設定環境的亮度等級與相對應的 LCD 背光值</string>
     <string name="level">等級</string>
     <string name="pref_ab_lux_max_label">最大照度（lux）</string>
     <string name="pref_ab_brighness_label">亮度（%d – 255）</string>
-    <string name="pref_ab_number_error_general">指定的值不被接受</string>
+    <string name="pref_ab_number_error_general">指定的數值不被接受</string>
     <string name="pref_ab_brightness_too_low">不建議將亮度設為 %d 以下</string>
     <string name="pref_ab_brightness_too_high">亮度無法大於 255</string>
-    <string name="pref_ab_number_error_negative">值無法低於 0</string>
-    <string name="pref_ab_number_not_ascending">較低層級的值無法大於較高層級的值</string>
-    <string name="pref_ab_number_not_descending">較高層級的值無法小於較低層級的值</string>
+    <string name="pref_ab_number_error_negative">數值無法低於 0</string>
+    <string name="pref_ab_number_not_ascending">較低等級數值無法大於較高等級的數值</string>
+    <string name="pref_ab_number_not_descending">較高等級數值無法小於較低等級的數值</string>
     <string name="pref_ab_values_set">已設定%s 的數值</string>
     <string name="pref_ab_config_saved">已儲存新的自動亮度組態</string>
     <string name="pref_ab_config_cancelled">"尚未"儲存新的自動亮度組態</string>
@@ -297,6 +297,11 @@
     <!-- Expandable volume panel -->
     <string name="pref_volume_panel_expandable_title">可擴展音量面板</string>
     <string name="pref_volume_panel_expandable_summary">啟用此選項使您可以調整不同串流的音量</string>
+    
+    
+    <!-- Fully expandable volume panel -->
+    <string name="pref_volume_panel_expandable_fully_title">完全擴展音量調節面板</string>
+    <string name="pref_volume_panel_expandable_fully_summary">允許音量調節面板使用所有可提供的空間</string>
 
     <!-- Link ringtone & notifications volumes -->
     <string name="pref_link_volumes_title">將鈴聲音量與通知音量連結</string>
@@ -490,7 +495,7 @@
 
     <!-- GravityBox settings startup handling -->
     <string name="gb_startup_progress">正在等待 GravityBox 系統框架回應&#8230;</string>
-    <string name="gb_startup_error">GravityBox 系統框架沒有回應，正在退出中.</string>
+    <string name="gb_startup_error">GravityBox 系統框架沒有回應，正在退出.</string>
 
     <!-- National data roaming -->
     <string name="pref_national_roaming_title">國內資料漫遊</string>
@@ -636,8 +641,8 @@
     <!-- Clock Day Of Week style -->
     <string name="clock_dow_disabled">停用</string>
     <string name="clock_dow_standard">標準</string>
-    <string name="clock_dow_lowercase">小寫字符</string>
-    <string name="clock_dow_uppercase">大寫字符</string>
+    <string name="clock_dow_lowercase">小寫字符(僅英文有效)</string>
+    <string name="clock_dow_uppercase">大寫字符(僅英文有效)</string>
 
     <!-- Statusbar expand policy -->
     <string name="pref_statusbar_lock_policy_title">鎖定螢幕時的狀態列鎖定政策</string>
@@ -671,7 +676,7 @@
     <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> 空閒</string>
     <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
     <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> 已使用</string>
-    <string name="pref_rambar_title">最近執行的任務 RAM 欄</string>
+    <string name="pref_rambar_title">RAM 使用狀況欄</string>
     <string name="rambar_off">關閉</string>
     <string name="rambar_top">頂部</string>
     <string name="rambar_bottom">按鍵</string>
@@ -681,8 +686,8 @@
     <string name="hwkey_recents_longpress_dialog_title">近期按鍵長按操作</string>
 
     <!-- Lockscreen battery arc -->
-    <string name="pref_lockscreen_battery_arc_title">顯示電池狀態弧線</string>
-    <string name="pref_lockscreen_battery_arc_summary">鎖定螢幕狀態下在解鎖環附近顯示當前電量狀態弧線</string>
+    <string name="pref_lockscreen_battery_arc_title">顯示電池狀態圓弧</string>
+    <string name="pref_lockscreen_battery_arc_summary">鎖定螢幕狀態下在解鎖環附近顯示當前電量狀態圓弧</string>
 
     <!-- HW Key Actions: toggle torch -->
     <string name="hwkey_action_torch">切換手電筒</string>
