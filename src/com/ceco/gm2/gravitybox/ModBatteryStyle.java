@@ -15,6 +15,8 @@
 
 package com.ceco.gm2.gravitybox;
 
+import java.util.ArrayList;
+
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.Context;
@@ -33,10 +35,12 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
+import de.robv.android.xposed.callbacks.XCallback;
 
 public class ModBatteryStyle {
     private static final String TAG = "GB:ModBatteryStyle";
     public static final String PACKAGE_NAME = "com.android.systemui";
+    public static final String CLASS_PHONE_STATUSBAR = "com.android.systemui.statusbar.phone.PhoneStatusBar";
     public static final String CLASS_BATTERY_CONTROLLER = 
             "com.android.systemui.statusbar.policy.BatteryController";
     private static final boolean DEBUG = false;
@@ -152,7 +156,34 @@ public class ModBatteryStyle {
         if (DEBUG) log("init");
 
         try {
+            Class<?> phoneStatusBarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
             Class<?> batteryControllerClass = XposedHelpers.findClass(CLASS_BATTERY_CONTROLLER, classLoader);
+
+            XposedHelpers.findAndHookMethod(phoneStatusBarClass, "makeStatusBarView", 
+                    new XC_MethodHook(XCallback.PRIORITY_HIGHEST) {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    final Object batteryController = 
+                            XposedHelpers.getObjectField(param.thisObject, "mBatteryController");
+                    if (mPercentText != null && batteryController != null) {
+                        // add percent text only in case there is no label with "percentage" tag present
+                        @SuppressWarnings("unchecked")
+                        ArrayList<TextView> mLabelViews = 
+                            (ArrayList<TextView>) XposedHelpers.getObjectField(batteryController, "mLabelViews");
+                        boolean percentTextExists = false;
+                        for (TextView tv : mLabelViews) {
+                            if ("percentage".equals(tv.getTag())) {
+                                percentTextExists = true;
+                                break;
+                            }
+                        }
+                        if (!percentTextExists) {
+                            XposedHelpers.callMethod(batteryController, "addLabelView", mPercentText);
+                            if (DEBUG) log("BatteryController.addLabelView(percText)");
+                        }
+                    }
+                }
+            });
 
             XposedBridge.hookAllConstructors(batteryControllerClass, new XC_MethodHook() {
 
@@ -182,6 +213,14 @@ public class ModBatteryStyle {
 
                     updateBatteryStyle();
                     if (DEBUG) log("BatteryController constructed");
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(batteryControllerClass, "onReceive", 
+                    Context.class, Intent.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    updateBatteryStyle();
                 }
             });
         }
