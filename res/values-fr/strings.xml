@@ -308,6 +308,10 @@
     <string name="pref_volume_panel_expandable_title">Panneau de volume extensible</string>
     <string name="pref_volume_panel_expandable_summary">Active le panneau de volume extensible avec la possibilité de régler les volumes pour différents flux sonores</string>
 
+    <!-- Fully expandable volume panel -->
+    <string name="pref_volume_panel_expandable_fully_title">Panneau de volume maximisé</string>
+    <string name="pref_volume_panel_expandable_fully_summary">Permet d\'utiliser tout l\'espace à l\'écran pour le panneau de volume</string>
+
     <!-- Link ringtone & notifications volumes -->
     <string name="pref_link_volumes_title">Volumes sonnerie &amp; notifications liés</string>
     <string name="pref_link_volumes_summary">Si désactivé, les volumes de la sonnerie et des notifications peuvent être réglés indépendamment</string>
