@@ -1,3 +1,19 @@
+Changelog 2.6.8 - 02/11/2013
+--------------------------------------
+- Fixed SystemUI crash when changing Pie properties while Pie is not active
+- Fixed glitch (buttons disappearing) in navigation bar introduced by app launcher key
+- Fixed volume panel expansion on Xperia devices (thanks to MohammadAG)
+- Improved navigation bar app launcher key layout for non-AOSP devices (Xperia)
+- Added option to make the panel fully expand to take up all the wasted space (thanks to MohammadAG)
+- Improved and simplified battery style tweaks (potentially eliminates phantom circle battery/percentage on some ROMs)
+- QuickSettings tiles: improved tiles layout for Android 4.3 (thanks daniil1410 for testing)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Italian translations (thanks to pitone02)
+- Updated French translation (thanks to ch-vox)
+- Updated Indonesian translations (thanks to awaaas)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+
 Changelog 2.6.7 - 31/10/2013
 --------------------------------------
 - Fixed SystemUI crash on tablet devices
