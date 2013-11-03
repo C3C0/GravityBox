@@ -295,7 +295,11 @@
 
     <!-- Expandable volume panel -->
     <string name="pref_volume_panel_expandable_title">音量パネルを展開可能にする</string>
-    <string name="pref_volume_panel_expandable_summary">様々な音量を調整できる音量パネルを展開できるようにします。</string>
+    <string name="pref_volume_panel_expandable_summary">音量パネルを展開して様々な音量を調整できるようにします。</string>
+
+    <!-- Fully expandable volume panel -->
+    <string name="pref_volume_panel_expandable_fully_title">音量パネルを完全に展開する</string>
+    <string name="pref_volume_panel_expandable_fully_summary">音量パネルを空きスペースいっぱいに展開するようにします。</string>
 
     <!-- Link ringtone & notifications volumes -->
     <string name="pref_link_volumes_title">着信音と通知音の音量をリンクする</string>
