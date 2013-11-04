@@ -26,7 +26,7 @@
     <string name="poweroff_recovery">Recovery</string>
     <string name="poweroff_bootloader">Bootloader</string>
     <string name="vol_key_cursor_control_title">Kotroluj kursor przyciskiem głośności</string>
-    <string name="vol_key_cursor_control_summary">Pozwala przesuwać kursor przyciskami głośności w polach tekstowych</string>
+    <string name="vol_key_cursor_control_summary">Pozwala przesuwać przyciskami głośności kursor w polach tekstowych</string>
     <string name="vol_key_cursor_control_off">Wyłącz</string>
     <string name="vol_key_cursor_control_on">Głośność góra/dół porusza w lewo/prawo</string>
     <string name="vol_key_cursor_control_on_reverse">Głośność góra/dół porusza w prawo/lewo</string>
@@ -209,6 +209,8 @@
     <string name="pref_statusbar_clock_dow_title">Pokaż dzień tygodnia</string>
     <string name="pref_volume_panel_expandable_title">Rozszerzony panel głośności</string>
     <string name="pref_volume_panel_expandable_summary">Uaktywnia rozszerzony panel głośności z możliwością ustawienia głośności dla różnych źródeł</string>
+    <string name="pref_volume_panel_expandable_fully_title">W pełni rozszerzalny panel głośności</string>
+    <string name="pref_volume_panel_expandable_fully_summary">Pozwala by panel głośności zajął całe przewidziane miejsce</string>
     <string name="pref_link_volumes_title">Połączone ust. głośności dzwonka i powiadomień</string>
     <string name="pref_link_volumes_summary">Po wyłączeniu głośność dzwonka i powiadomień można ustawiać niezależnie</string>
     <string name="pref_auto_switch_qs_title">Autom. Szybkie Ustawienia</string>
@@ -308,7 +310,7 @@
     <string name="pref_cat_brightness_title">Ustawienia jasności</string>
     <string name="pref_brightness_master_switch_title">Włącz ustawienia jasności</string>
     <string name="pref_brightness_master_switch_summary">Należy używać tylko w przypadku, gdy urządzenie obsługuje standardowe funkcje jasności systemu Android. Pozostaw wyłączone w przypadku wystąpienia problemów związanych z jasnością. (wymagany restart)</string>
-    <string name="hwkey_action_recent_apps">Pokaż najnowsze aplikacje</string>
+    <string name="hwkey_action_recent_apps">Pokaż ostatnie aplikacje</string>
     <string name="hwkey_home_longpress_dialog_title">Akcja długiego naciśnięcia HOME</string>
     <string name="hwkey_action_custom_app">Uruchom własną aplikację 1</string>
     <string name="pref_hwkey_custom_app_title">Ustaw własną aplikację 1</string>
@@ -347,8 +349,8 @@
     <string name="pref_navbar_width_summary">Dotyczy orientacji poziomej</string>
     <string name="pref_navbar_menukey_title">Zawsze pokazuj klawisz menu</string>
     <string name="pref_powermenu_screenshot_title">Zrzut ekranu w menu zasilania</string>
-    <string name="pref_cat_lockscreen_ring_settings_title">Cele Ekranu Blokady</string>
-    <string name="pref_lockscreen_ring_targets_enable_title">Włącz Cele Ekranu blokady</string>
+    <string name="pref_cat_lockscreen_ring_settings_title">Ustawienia Pierścienia Odblokowania</string>
+    <string name="pref_lockscreen_ring_targets_enable_title">Włącz Cele Ekranu Blokady</string>
     <string name="pref_lockscreen_ring_targets_enable_summary">Główny wyłącznik Celów Ekranu Blokady</string>
     <string name="pref_lockscreen_ring_targets_app_title">Aplikacja docelowa %s</string>
     <string name="pref_lockscreen_ring_vertical_offset_title">Pionowe przesunięcie pierścienia</string>
@@ -477,5 +479,5 @@
     <string name="pref_caller_unknown_photo_title">Ustaw zdjęcie dla nieznanego dzwoniącego</string>
     <string name="caller_unknown_photo_result_successful">Zdjęcie zostało zmienione</string>
     <string name="caller_unkown_photo_result_not_successful">Zdjęcie nie zostało zmienione</string>
-    <string name="screen_brightness_min_warning">"Ekran może nie obsługiwać wartości niższych niż 20. Jeśli ekran nie zapala się, przytrzymaj przycisk VOLUME+ przez co najmniej 7 sekund aby zrestetować jasność, a następnie ustaw wyższą wartość minimalnej jasności."</string>
+    <string name="screen_brightness_min_warning">Ekran może nie obsługiwać wartości niższych niż 20. Jeśli ekran nie zapala się, przytrzymaj przycisk VOLUME+ przez co najmniej 7 sekund aby zrestetować jasność, a następnie ustaw wyższą wartość minimalnej jasności.</string>
 </resources>
