@@ -28,12 +28,13 @@ import de.robv.android.xposed.XposedHelpers;
 
 public class FixMmsWakelock {
     public static final String PACKAGE_NAME = "com.android.mms";
+    public static final String ALT_PACKAGE_NAME = "com.lenovo.ideafriend";
     private static final String TAG = "GB:FixMmsWakelock";
-    private static final String CLASS_MMS_RECEIVER = "com.android.mms.transaction.MmsSystemEventReceiver";
-    private static final String CLASS_SMS_RECEIVER = "com.android.mms.transaction.SmsReceiver";
-    private static final String CLASS_CB_MNOTIF = "com.android.mms.transaction.CBMessagingNotification";
-    private static final String CLASS_MNOTIF = "com.android.mms.transaction.MessagingNotification";
-    private static final String CLASS_NOTIF_PROFILE = "com.android.mms.transaction.MessagingNotification$NotificationProfile";
+    private static String CLASS_MMS_RECEIVER = "com.android.mms.transaction.MmsSystemEventReceiver";
+    private static String CLASS_SMS_RECEIVER = "com.android.mms.transaction.SmsReceiver";
+    private static String CLASS_CB_MNOTIF = "com.android.mms.transaction.CBMessagingNotification";
+    private static String CLASS_MNOTIF = "com.android.mms.transaction.MessagingNotification";
+    private static String CLASS_NOTIF_PROFILE = "com.android.mms.transaction.MessagingNotification$NotificationProfile";
     private static final boolean DEBUG = false;
 
     private static Unhook mSmsPmHook = null;
@@ -47,7 +48,16 @@ public class FixMmsWakelock {
         XposedBridge.log(TAG + ": " + message);
     }
 
-    public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
+    public static void init(final XSharedPreferences prefs, final ClassLoader classLoader, String appUri) {
+        if (DEBUG) log("init (" + appUri + ")");
+
+        if (appUri.equals(ALT_PACKAGE_NAME)) {
+            CLASS_MMS_RECEIVER = "com.lenovo.ideafriend.mms.android.transaction.MmsSystemEventReceiver";
+            CLASS_SMS_RECEIVER = "com.lenovo.ideafriend.mms.android.transaction.SmsReceiver";
+            CLASS_CB_MNOTIF = "com.lenovo.ideafriend.mms.android.transaction.CBMessagingNotification";
+            CLASS_MNOTIF = "com.lenovo.ideafriend.mms.android.transaction.MessagingNotification";
+        }
+
         try {
             final Class<?> mmsReceiverClass = XposedHelpers.findClass(CLASS_MMS_RECEIVER, classLoader);
             XposedHelpers.findAndHookMethod(mmsReceiverClass,

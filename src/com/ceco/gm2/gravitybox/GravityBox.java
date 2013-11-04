@@ -122,9 +122,12 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
                 ModSignalIconHide.init(prefs, lpparam.classLoader);
             }
 
-            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALLER_ID_MMS, false) &&
-                    lpparam.packageName.equals(FixCallerIdMms.PACKAGE_NAME)) {
-                FixCallerIdMms.init(prefs, lpparam.classLoader);
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALLER_ID_MMS, false)) {
+                if (lpparam.packageName.equals(FixCallerIdMms.PACKAGE_NAME)) {
+                    FixCallerIdMms.init(prefs, lpparam.classLoader, FixCallerIdMms.PACKAGE_NAME);
+                } else if (lpparam.packageName.equals(FixCallerIdMms.ALT_PACKAGE_NAME)) {
+                    FixCallerIdMms.init(prefs, lpparam.classLoader, FixCallerIdMms.ALT_PACKAGE_NAME);
+                }
             }
 
             if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_CALENDAR, false) &&
@@ -147,9 +150,12 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
                 FixDevOptions.init(prefs, lpparam.classLoader);
             }
 
-            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_MMS_WAKELOCK, false) && 
-                    lpparam.packageName.equals(FixMmsWakelock.PACKAGE_NAME)) {
-                FixMmsWakelock.init(prefs, lpparam.classLoader);
+            if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_FIX_MMS_WAKELOCK, false)) { 
+                if (lpparam.packageName.equals(FixMmsWakelock.PACKAGE_NAME)) {
+                    FixMmsWakelock.init(prefs, lpparam.classLoader, FixMmsWakelock.PACKAGE_NAME);
+                } else if (lpparam.packageName.equals(FixMmsWakelock.ALT_PACKAGE_NAME)) {
+                    FixMmsWakelock.init(prefs, lpparam.classLoader, FixMmsWakelock.ALT_PACKAGE_NAME);
+                }
             }
 
             if (lpparam.packageName.equals(ModAudioSettings.PACKAGE_NAME)) {

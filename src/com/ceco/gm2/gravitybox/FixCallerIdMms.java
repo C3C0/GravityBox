@@ -25,13 +25,22 @@ import de.robv.android.xposed.XposedHelpers;
 
 public class FixCallerIdMms {
     public static final String PACKAGE_NAME = "com.android.mms";
-    public static final String TAG = "GB:FixCallerIdMms";
-    public static final String CLASS_CONTACTS_CACHE = "com.android.mms.data.Contact$ContactsCache";
+    public static final String ALT_PACKAGE_NAME = "com.lenovo.ideafriend";
+    private static final String TAG = "GB:FixCallerIdMms";
+    private static String CLASS_CONTACTS_CACHE = "com.android.mms.data.Contact$ContactsCache";
     private static final int STATIC_KEY_BUFFER_MAXIMUM_LENGTH = 5;
     private static final boolean DEBUG = false;
 
-    public static void init(final XSharedPreferences prefs, ClassLoader classLoader) {
-        XposedBridge.log(TAG + ": init");
+    private static void log(String message) {
+        XposedBridge.log(TAG + ": " + message);
+    }
+
+    public static void init(final XSharedPreferences prefs, ClassLoader classLoader, String appUri) {
+        if (DEBUG) log("init (" + appUri + ")");
+
+        if (appUri.equals(ALT_PACKAGE_NAME)) {
+            CLASS_CONTACTS_CACHE = "com.lenovo.ideafriend.mms.android.data.Contact$ContactsCache";
+        }
 
         try {
             final Class<?> contactsCacheClass = XposedHelpers.findClass(CLASS_CONTACTS_CACHE, classLoader);
@@ -62,9 +71,7 @@ public class FixCallerIdMms {
                             if (resultCount > 0) {
                                 retVal = keyBuffer.toString();
                             }
-                            if (DEBUG) {
-                                XposedBridge.log(TAG + ": key(" + phoneNumber + "); retVal='" + retVal + "'");
-                            }
+                            if (DEBUG) log("key(" + phoneNumber + "); retVal='" + retVal + "'");
                             return retVal;
                         }
             });
@@ -76,10 +83,8 @@ public class FixCallerIdMms {
                     String key = (String) param.getResult();
                     if (key.length() > STATIC_KEY_BUFFER_MAXIMUM_LENGTH)
                         key = key.substring(0, key.length() - 1);
-                    if (DEBUG) {
-                        XposedBridge.log(TAG + ": getKey(): original retVal='" + param.getResult() + "'; " +
-                                "new retVal='" + key + "'");
-                    }
+                    if (DEBUG) log("getKey(): original retVal='" + param.getResult() + "'; " +
+                        "new retVal='" + key + "'");
                     param.setResult(key);
                 }
             });
