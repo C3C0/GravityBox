@@ -151,7 +151,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_CRT_OFF_EFFECT = "pref_crt_off_effect";
     public static final String PREF_KEY_UNPLUG_TURNS_ON_SCREEN = "pref_unplug_turns_on_screen";
     public static final String PREF_KEY_ENGINEERING_MODE = "pref_engineering_mode";
-    public static final String APP_MESSAGING = "com.android.mms";
+    public static final String STOCK_APP_MESSAGING = "com.android.mms";
+    public static final String ALT_APP_MESSAGING = "com.lenovo.ideafriend";
     public static final String APP_ENGINEERING_MODE = "com.mediatek.engineermode";
     public static final String APP_ENGINEERING_MODE_CLASS = "com.mediatek.engineermode.EngineerMode";
     public static final String PREF_KEY_DUAL_SIM_RINGER = "pref_dual_sim_ringer";
@@ -942,8 +943,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefCatMedia.removePreference(mPrefLinkVolumes);
                 mPrefCatFixes.removePreference(mPrefFixCallerIDPhone);
             }
-            if (!isAppInstalled(APP_MESSAGING)) {
+            if (!isAppInstalled(STOCK_APP_MESSAGING)) {
                 mPrefCatPhone.removePreference(mPrefCatPhoneMessaging);
+            }
+            if (!isAppInstalled(STOCK_APP_MESSAGING) && !isAppInstalled(ALT_APP_MESSAGING)) {
                 mPrefCatFixes.removePreference(mPrefFixCallerIDMms);
                 mPrefCatFixes.removePreference(mPrefFixMmsWakelock);
             }
