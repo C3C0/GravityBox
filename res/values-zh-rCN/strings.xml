@@ -306,7 +306,11 @@
     
     <!-- Expandable volume panel -->
     <string name="pref_volume_panel_expandable_title">可扩展音量面板</string>
-    <string name="pref_volume_panel_expandable_summary">启用此选项使您可以调整不同流的音量</string>
+    <string name="pref_volume_panel_expandable_summary">启用此选项使你可以调整不同的音量</string>
+	
+	<!-- Fully expandable volume panel -->
+    <string name="pref_volume_panel_expandable_fully_title">完整的可扩展音量面板</string>
+    <string name="pref_volume_panel_expandable_fully_summary">允许音量面板采取了所有空间提供</string>
 
     <!-- Link ringtone & notifications volumes -->
     <string name="pref_link_volumes_title">合并铃声音量与通知音量</string>
@@ -718,5 +722,42 @@
     <string name="signal_color_mode_gb">使用GravityBox图标 (有信号等级)</string>
     <string name="signal_color_mode_stock">使用stock图标 (无信号等级)</string>
     <string name="signal_color_mode_disabled">不使用颜色</string>
+	
+	<!-- Application launcher -->
+    <string name="pref_cat_app_launcher_title">应用启动器</string>
+    <string name="pref_cat_app_launcher_summary">对话框允许定义最多8个应用程序，可以分配硬件按键或作为额外的虚拟键</string>
+    <string name="pref_app_launcher_slot_title">应用程序槽 %d</string>
+    <string name="app_launcher_no_apps">没有应用程序被分配。使用GravityBox/应用启动器来分配应用程序。</string>
+
+    <!-- Navigation bar app launcher key -->
+    <string name="pref_navbar_launcher_enable_title">显示应用程序按键</string>
+
+    <!-- HW Key Actions: application launcher -->
+    <string name="hwkey_action_app_launcher">显示应用启动器</string>
+
+    <!-- Pie custom key -->
+    <string name="pref_pie_control_custom_key_title">显示自定义按键</string>
+    <string name="pie_custom_key_off">关闭</string>
+    <string name="pie_custom_key_search">搜索</string>
+    <string name="pie_custom_key_app_launcher">应用启动器</string>
+
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">Pie 颜色</string>
+    <string name="pref_pie_color_bg_title">背景颜色</string>
+    <string name="pref_pie_color_fg_title">前景颜色</string>
+    <string name="pref_pie_color_outline_title">边框颜色</string>
+    <string name="pref_pie_color_selected_title">按键选中颜色</string>
+    <string name="pref_pie_color_text_title">文字颜色</string>
+    <string name="pref_pie_color_reset_title">重设颜色</string>
+
+    <!-- Custom unknown caller photo -->
+    <string name="pref_caller_unknown_photo_enable_title">开启未知来电者照片</string>
+    <string name="pref_caller_unknown_photo_title">设置未知来电照片</string>
+    <string name="caller_unknown_photo_result_successful">照片已更改</string>
+    <string name="caller_unkown_photo_result_not_successful">照片未更改</string>
+
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">您的屏幕可能不支持低于20的值。如果您的屏幕亮不起来，
+	按住音量+ 键至少7秒钟将会还原亮度，调整亮度使用更大的值。</string>
 
 </resources>
