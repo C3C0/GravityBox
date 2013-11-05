@@ -307,7 +307,7 @@
     <!-- Expandable volume panel -->
     <string name="pref_volume_panel_expandable_title">可扩展音量面板</string>
     <string name="pref_volume_panel_expandable_summary">启用此选项使你可以调整不同流的音量</string>
-	
+
 	<!-- Fully expandable volume panel -->
     <string name="pref_volume_panel_expandable_fully_title">完整的可扩展音量面板</string>
     <string name="pref_volume_panel_expandable_fully_summary">允许音量面板占用所有提供的空间</string>
@@ -727,6 +727,7 @@
     <string name="pref_cat_app_launcher_title">应用启动器</string>
     <string name="pref_cat_app_launcher_summary">对话框允许定义最多8个应用程序，可以分配硬件按键或作为额外的虚拟键</string>
     <string name="pref_app_launcher_slot_title">应用程序槽 %d</string>
+
     <string name="app_launcher_no_apps">没有应用程序被分配。使用GravityBox/应用启动器来分配应用程序</string>
 
     <!-- Navigation bar app launcher key -->
