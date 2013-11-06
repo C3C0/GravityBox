@@ -37,7 +37,7 @@
     <string name="reboot_required">重新启动以后设置才会启用</string>
 
     <string name="signal_icon_autohide_title">自动隐藏信号强度图标</string>
-    <string name="signal_icon_autohide_summary">当SIM卡未插入时，自动隐藏指定SIM卡的信号强度图标，并停用“SIM卡未插入”通知</string>
+    <string name="signal_icon_autohide_summary">当SIM卡未插入时自动隐藏指定SIM卡的信号强度图标，并停用“SIM卡未插入”通知</string>
     <string name="sim_slot_1">自动隐藏SIM卡1</string>
     <string name="sim_slot_2">自动隐藏SIM卡2</string>
     <string name="sim_disable_notifications">禁用通知</string>
@@ -295,7 +295,7 @@
     
     <!--  Solid black Holo background -->
     <string name="pref_holo_bg_solid_black_title">纯黑色背景</string>
-    <string name="pref_holo_bg_solid_black_summary">在默认的Holo系统主题内使用纯黑色的背景，而不是黑-灰色的渐变（需要重新启动）</string>
+    <string name="pref_holo_bg_solid_black_summary">在默认的Holo系统主题内使用纯黑色的背景而不是黑-灰色的渐变（需要重新启动）</string>
     
     <!-- QuickSettings tiles per row -->
     <string name="pref_qs_tiles_per_row_title">每行方块数</string>
@@ -366,7 +366,7 @@
 
     <!-- Disable roaming indicators -->
     <string name="pref_disable_roaming_indicators_title">禁用漫游指示</string>
-    <string name="pref_disable_roaming_indicators_summary">禁用时，漫游指示器上（R）不可见，请小心使用</string>
+    <string name="pref_disable_roaming_indicators_summary">禁用后漫游指示器上（R）不可见，请小心使用</string>
 
     <!-- Battery status in pie controls -->
     <string name="pie_battery_status_charging">充电中:（<xliff:g id="percent">%d</xliff:g>%%）</string>
@@ -454,7 +454,7 @@
     <string name="pref_cat_clock_settings_title">时钟设置</string>
 
     <!-- Clock: hide am/pm -->
-    <string name="pref_clock_ampm_hide_title">隐藏 AM/PM</string>
+    <string name="pref_clock_ampm_hide_title">隐藏 上午/下午</string>
 
     <!-- Clock: hide clock -->
     <string name="pref_clock_hide_title">隐藏时钟</string>
@@ -505,7 +505,7 @@
 
     <!-- GravityBox settings startup handling -->
     <string name="gb_startup_progress">等待GravityBox系统框架的响应&#8230;</string>
-    <string name="gb_startup_error">GravityBoy系统框架未响应，退出中...</string>
+    <string name="gb_startup_error">GravityBoy系统框架未响应  退出中...</string>
 
     <!-- National data roaming -->
     <string name="pref_national_roaming_title">国内数据漫游</string>
@@ -558,7 +558,7 @@
 
     <!-- Statusbar brightness control -->
     <string name="pref_statusbar_brightness_title">启用亮度控制</string>
-    <string name="pref_statusbar_brightness_summary">启用状态栏调整亮度</string>
+    <string name="pref_statusbar_brightness_summary">启用状态栏调整亮度（需要禁用自动亮度）</string>
 
     <!-- Phone tweaks categories -->
     <string name="pref_cat_phone_telephony_title">电话</string>
@@ -577,7 +577,7 @@
     <string name="pref_mobile_data_slow2g_disable_summary">当在快速设置中为SIM卡启用2G移动数据时，禁用低速数据警告</string>
 
     <!-- Follow stock battery color -->
-    <string name="pref_sbcolor_follow_stock_battery_title">跟随原生电池颜色</string>
+    <string name="pref_sbcolor_follow_stock_battery_title">跟随原厂电池颜色</string>
     <string name="pref_sbcolor_follow_stock_battery_summary">使状态栏时钟、百分比和圆形电池使用原生电池图标的颜色。当图标颜色关闭时有效</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
@@ -606,8 +606,8 @@
     <string name="pie_controls_enabled_expanded_navbar">当扩展桌面隐藏虚拟键时</string>
 
     <!-- Icon coloring: preserve stock battery icon -->
-    <string name="pref_statusbar_color_skip_battery_title">保留原生电池图标</string>
-    <string name="pref_statusbar_color_skip_battery_summary">使用它以防止原生电池图标被替换第三方电池图标</string>
+    <string name="pref_statusbar_color_skip_battery_title">保留原厂电池图标</string>
+    <string name="pref_statusbar_color_skip_battery_summary">使用它以防止原厂电池图标被替换第三方电池图标</string>
 
     <!-- Unplug turns on screen -->
     <string name="pref_unplug_turns_on_screen_title">拔下电源线开启屏幕</string>
@@ -719,8 +719,8 @@
 
     <!-- Color mode for statusbar signal icons -->
     <string name="pref_statusbar_signal_color_mode_title">信号色彩模式</string>
-    <string name="signal_color_mode_gb">使用GravityBox图标(有信号等级)</string>
-    <string name="signal_color_mode_stock">使用默认图标(无信号等级)</string>
+    <string name="signal_color_mode_gb">使用GravityBox图标（有信号等级）</string>
+    <string name="signal_color_mode_stock">使用原厂图标（无信号等级）</string>
     <string name="signal_color_mode_disabled">不使用颜色</string>
 	
 	<!-- Application launcher -->
@@ -728,7 +728,7 @@
     <string name="pref_cat_app_launcher_summary">对话框允许定义最多8个应用程序，可以分配硬件按键或作为额外的虚拟键</string>
     <string name="pref_app_launcher_slot_title">应用程序槽 %d</string>
 
-    <string name="app_launcher_no_apps">没有应用程序被分配。使用GravityBox/应用启动器来分配应用程序</string>
+    <string name="app_launcher_no_apps">没有应用程序被分配，使用GravityBox/应用启动器来分配应用程序</string>
 
     <!-- Navigation bar app launcher key -->
     <string name="pref_navbar_launcher_enable_title">显示应用程序按键</string>
