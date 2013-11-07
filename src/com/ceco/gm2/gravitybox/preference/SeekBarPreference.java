@@ -23,11 +23,13 @@ import android.preference.Preference;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-public class SeekBarPreference extends Preference implements OnSeekBarChangeListener {
+public class SeekBarPreference extends Preference 
+                               implements OnSeekBarChangeListener, View.OnClickListener {
 
     private int mMinimum = 0;
     private int mMaximum = 100;
@@ -38,6 +40,8 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
 
     private TextView mMonitorBox;
     private SeekBar mBar;
+    private ImageButton mBtnPlus;
+    private ImageButton mBtnMinus;
 
     private int mValue;
     private boolean mTracking = false;
@@ -66,6 +70,10 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
         mBar.setMax(mMaximum - mMinimum);
         mBar.setOnSeekBarChangeListener(this);
         mBar.setProgress(mValue - mMinimum);
+        mBtnPlus = (ImageButton) layout.findViewById(R.id.btnPlus);
+        mBtnPlus.setOnClickListener(this);
+        mBtnMinus = (ImageButton) layout.findViewById(R.id.btnMinus);
+        mBtnMinus.setOnClickListener(this);
         setMonitorBoxText();
         return layout;
     }
@@ -127,5 +135,14 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
     public void onStopTrackingTouch(SeekBar seekBar) {
         mTracking = false;
         onProgressChanged(seekBar, seekBar.getProgress(), true);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mBtnPlus && ((mValue+mInterval) <= mMaximum)) {
+            setValue(mValue+mInterval);
+        } else if (v == mBtnMinus && ((mValue-mInterval) >= mMinimum)) {
+            setValue(mValue-mInterval);
+        }
     }
 }
