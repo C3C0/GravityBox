@@ -107,6 +107,7 @@ public class ColorPickerDialog
 				}
 			}
 		});
+		setHexValueEnabled(true);
 		
 		((LinearLayout) mOldColor.getParent()).setPadding(
 			Math.round(mColorPicker.getDrawingOffset()), 
