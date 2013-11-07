@@ -101,8 +101,9 @@ public class ModBatteryStyle {
                         final int bptResId = liparam.res.getIdentifier(
                                 bptId, "id", PACKAGE_NAME);
                         if (bptResId != 0) {
-                            mPercentText = (TextView) vg.findViewById(bptResId);
-                            if (mPercentText != null) {
+                            View v = vg.findViewById(bptResId);
+                            if (v != null && v instanceof TextView) {
+                                mPercentText = (TextView) v;
                                 mPercentText.setTag("percentage");
                                 if (DEBUG) log("Battery percent text found as: " + bptId);
                                 break;
