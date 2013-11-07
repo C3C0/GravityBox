@@ -195,7 +195,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
                     if (x < gracePeriod) {
                         initialY = y;
                     }
-                    if (initialY - y < sDistance && y - initialY < sDistance) {
+                    if (initialY - y < (sDistance*3) && y - initialY < (sDistance*3)) {
                         if (x - initialX <= sDistance) {
                             return false;
                         }
@@ -203,7 +203,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
                     }
                     break;
                 case BOTTOM:
-                    if (initialX - x < sDistance && x - initialX < sDistance) {
+                    if (initialX - x < (sDistance*3) && x - initialX < (sDistance*3)) {
                         if (initialY - y <= sDistance) {
                             return false;
                         }
@@ -211,7 +211,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
                     }
                     break;
                 case TOP:
-                    if (initialX - x < sDistance && x - initialX < sDistance) {
+                    if (initialX - x < (sDistance*3) && x - initialX < (sDistance*3)) {
                         if (y - initialY <= sDistance) {
                             return false;
                         }
@@ -222,7 +222,7 @@ public class PieController implements PieLayout.OnSnapListener, PieItem.PieOnCli
                     if (x > gracePeriod) {
                         initialY = y;
                     }
-                    if (initialY - y < sDistance && y - initialY < sDistance) {
+                    if (initialY - y < (sDistance*3) && y - initialY < (sDistance*3)) {
                         if (initialX - x <= sDistance) {
                             return false;
                         }
