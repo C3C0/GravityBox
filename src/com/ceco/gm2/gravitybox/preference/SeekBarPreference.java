@@ -19,6 +19,7 @@ import com.ceco.gm2.gravitybox.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Handler;
 import android.preference.Preference;
 import android.util.AttributeSet;
 import android.view.View;
@@ -30,6 +31,8 @@ import android.widget.TextView;
 
 public class SeekBarPreference extends Preference 
                                implements OnSeekBarChangeListener, View.OnClickListener {
+
+    private static final int RAPID_PRESS_TIMEOUT = 600;
 
     private int mMinimum = 0;
     private int mMaximum = 100;
@@ -44,7 +47,18 @@ public class SeekBarPreference extends Preference
     private ImageButton mBtnMinus;
 
     private int mValue;
+    private int mTmpValue;
     private boolean mTracking = false;
+    private boolean mRapidlyPressing = false;
+    private Handler mHandler;
+
+    private Runnable mRapidPressTimeout = new Runnable() {
+        @Override
+        public void run() {
+            mRapidlyPressing = false;
+            setValue(mTmpValue);
+        }
+    };
 
     public SeekBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -57,6 +71,8 @@ public class SeekBarPreference extends Preference
             mMonitorBoxEnabled = attrs.getAttributeBooleanValue(null, "monitorBoxEnabled", false);
             mMonitorBoxUnit = attrs.getAttributeValue(null, "monitorBoxUnit");
         }
+
+        mHandler = new Handler();
     }
 
     @Override
@@ -139,10 +155,21 @@ public class SeekBarPreference extends Preference
 
     @Override
     public void onClick(View v) {
-        if (v == mBtnPlus && ((mValue+mInterval) <= mMaximum)) {
-            setValue(mValue+mInterval);
-        } else if (v == mBtnMinus && ((mValue-mInterval) >= mMinimum)) {
-            setValue(mValue-mInterval);
+        if (mRapidlyPressing) {
+            mHandler.removeCallbacks(mRapidPressTimeout);
+        } else {
+            mRapidlyPressing = true;
+            mTmpValue = mValue;
         }
+        mHandler.postDelayed(mRapidPressTimeout, RAPID_PRESS_TIMEOUT);
+
+        if (v == mBtnPlus && ((mTmpValue+mInterval) <= mMaximum)) {
+            mTmpValue += mInterval;
+        } else if (v == mBtnMinus && ((mTmpValue-mInterval) >= mMinimum)) {
+            mTmpValue -= mInterval;
+        }
+
+        mBar.setProgress(mTmpValue - mMinimum);
+        setMonitorBoxText(mTmpValue);
     }
 }
