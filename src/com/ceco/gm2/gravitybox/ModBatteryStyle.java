@@ -115,7 +115,7 @@ public class ModBatteryStyle {
                         LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(
                             LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
                         mPercentText.setLayoutParams(lParams);
-                        mPercentText.setPadding(4, 0, 0, 0);
+                        mPercentText.setPadding(6, 0, 0, 0);
                         mPercentText.setTextSize(1, 16);
                         mPercentText.setTextColor(vg.getContext().getResources().getColor(
                                 android.R.color.holo_blue_dark));
