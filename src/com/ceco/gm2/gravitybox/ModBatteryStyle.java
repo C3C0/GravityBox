@@ -85,7 +85,9 @@ public class ModBatteryStyle {
 
     public static void initResources(XSharedPreferences prefs, InitPackageResourcesParam resparam) {
         try {
-            String layout = Utils.hasGeminiSupport() ? "gemini_super_status_bar" : "super_status_bar";
+            final String layout = Utils.hasGeminiSupport() ? "gemini_super_status_bar" : "super_status_bar";
+            final String[] batteryPercentTextIds = new String[] { "percentage", "battery_text" };
+
             resparam.res.hookLayout(PACKAGE_NAME, "layout", layout, new XC_LayoutInflated() {
 
                 @Override
@@ -95,8 +97,18 @@ public class ModBatteryStyle {
                             liparam.res.getIdentifier("signal_battery_cluster", "id", PACKAGE_NAME));
 
                     // inject percent text if it doesn't exist
-                    mPercentText = (TextView) vg.findViewById(liparam.res.getIdentifier(
-                            "percentage", "id", PACKAGE_NAME));
+                    for (String bptId : batteryPercentTextIds) {
+                        final int bptResId = liparam.res.getIdentifier(
+                                bptId, "id", PACKAGE_NAME);
+                        if (bptResId != 0) {
+                            mPercentText = (TextView) vg.findViewById(bptResId);
+                            if (mPercentText != null) {
+                                mPercentText.setTag("percentage");
+                                if (DEBUG) log("Battery percent text found as: " + bptId);
+                                break;
+                            }
+                        }
+                    }
                     if (mPercentText == null) {
                         mPercentText = new TextView(vg.getContext());
                         mPercentText.setTag("percentage");
@@ -110,8 +122,6 @@ public class ModBatteryStyle {
                         mPercentText.setVisibility(View.GONE);
                         vg.addView(mPercentText);
                         if (DEBUG) log("Battery percent text injected");
-                    } else {
-                        mPercentText.setTag("percentage");
                     }
                     ModStatusbarColor.setPercentage(mPercentText);
 
