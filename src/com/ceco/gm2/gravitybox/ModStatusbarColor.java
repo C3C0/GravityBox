@@ -80,7 +80,7 @@ public class ModStatusbarColor {
     private static TransparencyManager mTransparencyManager;
     private static TrafficMeter mTrafficMeter;
     private static Context mContextPwm;
-    private static int[] mTransparencyValuesPwm = new int[4];
+    private static int[] mTransparencyValuesPwm = new int[] { 0, 0, 0, 0};
     private static List<BroadcastSubReceiver> mBroadcastSubReceivers;
     private static Unhook mDisplayContentHook;
     private static Object mPhoneWindowManager;
@@ -230,8 +230,11 @@ public class ModStatusbarColor {
                         if (DEBUG) log("getSystemDecorRectLw: registering transparency settings receiver");
                         mTransparencyValuesPwm[0] = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_STATUSBAR_LAUNCHER, 0);
                         mTransparencyValuesPwm[1] = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_STATUSBAR_LOCKSCREEN, 0);
-                        mTransparencyValuesPwm[2] = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_NAVBAR_LAUNCHER, 0);
-                        mTransparencyValuesPwm[3] = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_NAVBAR_LOCKSCREEN, 0);
+                        if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_OVERRIDE, false)
+                                && prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_ENABLE, false)) {
+                            mTransparencyValuesPwm[2] = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_NAVBAR_LAUNCHER, 0);
+                            mTransparencyValuesPwm[3] = prefs.getInt(GravityBoxSettings.PREF_KEY_TM_NAVBAR_LOCKSCREEN, 0);
+                        }
                         mPhoneWindowManager = param.thisObject;
                         mContextPwm = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                         IntentFilter intentFilter = new IntentFilter();
@@ -517,8 +520,10 @@ public class ModStatusbarColor {
 
                     mTransparencyManager = new TransparencyManager(context);
                     mTransparencyManager.setStatusbar(XposedHelpers.getObjectField(param.thisObject, "mStatusBarView"));
-                    mTransparencyManager.setNavbar(XposedHelpers.getObjectField(
-                            param.thisObject, "mNavigationBarView"));
+                    if (prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_OVERRIDE, false)) {
+                        mTransparencyManager.setNavbar(XposedHelpers.getObjectField(
+                                param.thisObject, "mNavigationBarView"));
+                    }
                     mTransparencyManager.initPreferences(prefs);
                     mBroadcastSubReceivers.add(mTransparencyManager);
 

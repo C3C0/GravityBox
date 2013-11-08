@@ -378,6 +378,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String ACTION_PREF_SAFE_MEDIA_VOLUME_CHANGED = "gravitybox.intent.action.SAFE_MEDIA_VOLUME_CHANGED";
     public static final String EXTRA_SAFE_MEDIA_VOLUME_ENABLED = "enabled";
 
+    public static final String PREF_CAT_KEY_NAVBAR_KEYS = "pref_cat_navbar_keys";
+    public static final String PREF_CAT_KEY_NAVBAR_COLOR = "pref_cat_navbar_color";
+    public static final String PREF_CAT_KEY_NAVBAR_DIMEN = "pref_cat_navbar_dimen";
     public static final String PREF_KEY_NAVBAR_OVERRIDE = "pref_navbar_override";
     public static final String PREF_KEY_NAVBAR_ENABLE = "pref_navbar_enable";
     public static final String PREF_KEY_NAVBAR_HEIGHT = "pref_navbar_height";
@@ -685,11 +688,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private PreferenceScreen mPrefCatMedia;
         private CheckBoxPreference mPrefSafeMediaVolume;
         private ListPreference mPrefExpandedDesktop;
+        private PreferenceCategory mPrefCatNavbarKeys;
+        private PreferenceCategory mPrefCatNavbarColor;
+        private PreferenceCategory mPrefCatNavbarDimen;
         private CheckBoxPreference mPrefNavbarEnable;
-        private SeekBarPreference mPrefNavbarHeight;
-        private SeekBarPreference mPrefNavbarHeightLandscape;
-        private SeekBarPreference mPrefNavbarWidth;
-        private CheckBoxPreference mPrefNavbarMenukey;
         private CheckBoxPreference mPrefMusicVolumeSteps;
         private AppPickerPreference[] mPrefLockscreenTargetsApp;
         private SeekBarPreference mPrefLockscreenTargetsVerticalOffset;
@@ -716,7 +718,6 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private CheckBoxPreference mPrefVolumePanelAutoexpand;
         private CheckBoxPreference mPrefHomeDoubletapDisable;
         private PreferenceScreen mPrefCatAppLauncher;
-        private CheckBoxPreference mPrefNavbarLauncherEnable;
         private AppPickerPreference[] mPrefAppLauncherSlot;
         private File callerPhotoFile;
         private CheckBoxPreference mPrefCallerUnknownPhotoEnable;
@@ -870,12 +871,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             mPrefExpandedDesktop = (ListPreference) findPreference(PREF_KEY_EXPANDED_DESKTOP);
 
+            mPrefCatNavbarKeys = (PreferenceCategory) findPreference(PREF_CAT_KEY_NAVBAR_KEYS);
+            mPrefCatNavbarColor = (PreferenceCategory) findPreference(PREF_CAT_KEY_NAVBAR_COLOR);
+            mPrefCatNavbarDimen = (PreferenceCategory) findPreference(PREF_CAT_KEY_NAVBAR_DIMEN);
             mPrefNavbarEnable = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_ENABLE);
-            mPrefNavbarHeight = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_HEIGHT);
-            mPrefNavbarHeightLandscape = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_HEIGHT_LANDSCAPE);
-            mPrefNavbarWidth = (SeekBarPreference) findPreference(PREF_KEY_NAVBAR_WIDTH);
-            mPrefNavbarMenukey = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_MENUKEY);
-            mPrefNavbarLauncherEnable = (CheckBoxPreference) findPreference(PREF_KEY_NAVBAR_LAUNCHER_ENABLE);
 
             mPrefLockscreenTargetsApp = new AppPickerPreference[5];
             for (int i=0; i<=4; i++) {
@@ -1274,11 +1273,9 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                     || key.equals(PREF_KEY_NAVBAR_ENABLE)) {
                 final boolean override = mPrefs.getBoolean(PREF_KEY_NAVBAR_OVERRIDE, false);
                 mPrefNavbarEnable.setEnabled(override);
-                mPrefNavbarHeight.setEnabled(override && mPrefNavbarEnable.isChecked());
-                mPrefNavbarHeightLandscape.setEnabled(override && mPrefNavbarEnable.isChecked());
-                mPrefNavbarWidth.setEnabled(override && mPrefNavbarEnable.isChecked());
-                mPrefNavbarMenukey.setEnabled(override && mPrefNavbarEnable.isChecked());
-                mPrefNavbarLauncherEnable.setEnabled(override && mPrefNavbarEnable.isChecked());
+                mPrefCatNavbarKeys.setEnabled(override && mPrefNavbarEnable.isChecked());
+                mPrefCatNavbarColor.setEnabled(override && mPrefNavbarEnable.isChecked());
+                mPrefCatNavbarDimen.setEnabled(override && mPrefNavbarEnable.isChecked());
             }
 
             if (key == null || key.equals(PREF_KEY_LOCKSCREEN_TARGETS_ENABLE)) {

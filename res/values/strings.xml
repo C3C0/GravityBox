@@ -466,8 +466,8 @@
     <string name="pref_cat_transparency_manager_title">Transparency management</string>
     <string name="pref_tm_statusbar_launcher_title">Statusbar transparency for launcher</string>
     <string name="pref_tm_statusbar_lockscreen_title">Statusbar transparency for lockscreen</string>
-    <string name="pref_tm_navbar_launcher_title">Navbar transparency for launcher</string>
-    <string name="pref_tm_navbar_lockscreen_title">Navbar transparency for lockscreen</string>
+    <string name="pref_tm_navbar_launcher_title">Transparency for launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Transparency for lockscreen</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Hide alarm icon</string>
@@ -759,5 +759,11 @@
     <!-- Minimum screen brightness warning -->
     <string name="screen_brightness_min_warning">Your screen might not support values lower than 20. If your screen doesn\'t light up,
         hold Volume+ key for at least 7 seconds to reset brightness and then adjust minimum brightness to use higher values.</string>
+
+    <!-- Navbar tweaks categories -->
+    <string name="pref_cat_navbar_general_title">General</string>
+    <string name="pref_cat_navbar_keys_title">Navigation keys</string>
+    <string name="pref_cat_navbar_color_title">Color and transparency</string>
+    <string name="pref_cat_navbar_dimen_title">Dimensions</string>
 
 </resources>

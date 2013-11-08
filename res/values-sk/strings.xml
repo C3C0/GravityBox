@@ -441,8 +441,8 @@
     <string name="pref_cat_transparency_manager_title">Nastavenia priehľadnosti</string>
     <string name="pref_tm_statusbar_launcher_title">Stavového riadku pre launcher</string>
     <string name="pref_tm_statusbar_lockscreen_title">Stavového riadku pre lockscreen</string>
-    <string name="pref_tm_navbar_launcher_title">Navigačnej lišty pre launcher</string>
-    <string name="pref_tm_navbar_lockscreen_title">Navigačnej lišty pre lockscreen</string>
+    <string name="pref_tm_navbar_launcher_title">Priehľadnosť pre launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Priehľadnosť pre lockscreen</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Skryť ikonu alarmu</string>
@@ -730,5 +730,11 @@
     <!-- Fully expandable volume panel -->
     <string name="pref_volume_panel_expandable_fully_title">Plná dĺžka posuvníkov</string>
     <string name="pref_volume_panel_expandable_fully_summary">Umožní posuvníkom využiť celú dĺžku panelu nastavenia hlasitosti</string>
+
+    <!-- Navbar tweaks categories -->
+    <string name="pref_cat_navbar_general_title">Všeobecné</string>
+    <string name="pref_cat_navbar_keys_title">Navigačné tlačidlá</string>
+    <string name="pref_cat_navbar_color_title">Farba a priehľadnosť</string>
+    <string name="pref_cat_navbar_dimen_title">Rozmery</string>
 
 </resources>
