@@ -630,8 +630,8 @@
     <!-- Clock Day Of Week style -->
     <string name="clock_dow_disabled">Desativado</string>
     <string name="clock_dow_standard">Padrão</string>
-    <string name="clock_dow_lowercase">Maiúsculas</string>
-    <string name="clock_dow_uppercase">Minúsculas</string>
+    <string name="clock_dow_lowercase">Minúsculas</string>
+    <string name="clock_dow_uppercase">Maiúsculas</string>
 
     <!-- Statusbar expand policy -->
     <string name="pref_statusbar_lock_policy_title">Política de bloqueio da Barra de Status</string>
