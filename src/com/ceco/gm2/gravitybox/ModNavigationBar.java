@@ -20,6 +20,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
@@ -245,6 +248,16 @@ public class ModNavigationBar {
                     setAppKeyVisibility(mAppLauncherEnabled);
                     updateRecentsKeyCode();
                     updateHomeKeyLongpressSupport();
+
+                    // Set background
+                    final View thisView = (View) param.thisObject;
+                    final Drawable bg = thisView.getBackground();
+                    int color = Color.BLACK;
+                    if (bg != null && (bg instanceof ColorDrawable)) {
+                        color = ((ColorDrawable) bg).getColor();
+                    }
+                    BackgroundAlphaColorDrawable newBg = new BackgroundAlphaColorDrawable(color);
+                    thisView.setBackground(newBg);
                 }
             });
 
