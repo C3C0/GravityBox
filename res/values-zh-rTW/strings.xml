@@ -456,8 +456,8 @@
     <string name="pref_cat_transparency_manager_title">透明度調整</string>
     <string name="pref_tm_statusbar_launcher_title">桌面啟動器下的狀態列透明度</string>
     <string name="pref_tm_statusbar_lockscreen_title">鎖定畫面時的狀態列透明度</string>
-    <string name="pref_tm_navbar_launcher_title">桌面啟動器下的海苔條透明度</string>
-    <string name="pref_tm_navbar_lockscreen_title">鎖定畫面時的海苔條透明度</string>
+    <string name="pref_tm_navbar_launcher_title">桌面啟動器透明度</string>
+    <string name="pref_tm_navbar_lockscreen_title">鎖定螢幕透明度</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">隱藏時鐘圖示</string>
@@ -625,7 +625,7 @@
     <string name="pref_qs_tile_order_summary">可讓的 QuickSettings 瓷貼重新排序</string>
 
     <!-- Ongoing notifications -->
-    <string name="pref_ongoing_notifications_title">運行中的程式通知封鎖器</string>
+    <string name="pref_ongoing_notifications_title">運行中的程式通知封鎖</string>
     <string name="pref_ongoing_notifications_summary">允許封鎖已選擇的運行中的通知</string>
     <string name="ongoing_notif_info">該清單將為每個正在運行中的通知自動植入封鎖程序.
         然後，您可以決定是否封鎖運行中的通知下一次出現。請謹慎使用.</string>
@@ -682,8 +682,8 @@
     <string name="rambar_bottom">按鍵</string>
     
     <!-- HW Key actions for recents button -->
-    <string name="hwkey_recents_singletap_dialog_title">近期按鍵單擊操作</string>
-    <string name="hwkey_recents_longpress_dialog_title">近期按鍵長按操作</string>
+    <string name="hwkey_recents_singletap_dialog_title">近期鍵單擊操作</string>
+    <string name="hwkey_recents_longpress_dialog_title">近期鍵長按操作</string>
 
     <!-- Lockscreen battery arc -->
     <string name="pref_lockscreen_battery_arc_title">顯示電池狀態圓弧</string>
@@ -755,5 +755,10 @@
     <!-- Minimum screen brightness warning -->
     <string name="screen_brightness_min_warning">您的裝置可能不支援低於 20 的數值，如果您的裝置螢幕亮不起來，您可以按住音量鍵 + 至少 7 秒，然後將會還原亮度，並請設定較高的數值.</string>
 
+    <!-- Navbar tweaks categories -->
+    <string name="pref_cat_navbar_general_title">一般</string>
+    <string name="pref_cat_navbar_keys_title">海苔條按鍵</string>
+    <string name="pref_cat_navbar_color_title">顏色與透明度</string>
+    <string name="pref_cat_navbar_dimen_title">尺寸</string>
 
 </resources>
