@@ -307,7 +307,7 @@
     <!-- Expandable volume panel -->
     <string name="pref_volume_panel_expandable_title">可扩展音量面板</string>
     <string name="pref_volume_panel_expandable_summary">启用此选项使你可以调整不同流的音量</string>
-
+	
 	<!-- Fully expandable volume panel -->
     <string name="pref_volume_panel_expandable_fully_title">完整的可扩展音量面板</string>
     <string name="pref_volume_panel_expandable_fully_summary">允许音量面板占用所有提供的空间</string>
@@ -577,8 +577,8 @@
     <string name="pref_mobile_data_slow2g_disable_summary">当在快速设置中为SIM卡启用2G移动数据时，禁用低速数据警告</string>
 
     <!-- Follow stock battery color -->
-    <string name="pref_sbcolor_follow_stock_battery_title">跟随原厂电池颜色</string>
-    <string name="pref_sbcolor_follow_stock_battery_summary">使状态栏时钟、百分比和圆形电池使用原生电池图标的颜色。当图标颜色关闭时有效</string>
+    <string name="pref_sbcolor_follow_stock_battery_title">保持原厂电池颜色</string>
+    <string name="pref_sbcolor_follow_stock_battery_summary">使状态栏时钟、百分比和圆形电池使用原厂电池图标的颜色。当图标颜色关闭时有效</string>
 
     <!-- Network mode tile mode (2G/2G+3G/3G or 2G/2G+3G) -->
     <string name="pref_network_mode_tile_mode_title">网络模式</string>
@@ -606,8 +606,8 @@
     <string name="pie_controls_enabled_expanded_navbar">当扩展桌面隐藏虚拟键时</string>
 
     <!-- Icon coloring: preserve stock battery icon -->
-    <string name="pref_statusbar_color_skip_battery_title">保留原厂电池图标</string>
-    <string name="pref_statusbar_color_skip_battery_summary">使用它以防止原厂电池图标被替换第三方电池图标</string>
+    <string name="pref_statusbar_color_skip_battery_title">保持原厂电池图标</string>
+    <string name="pref_statusbar_color_skip_battery_summary">使用它以防止原厂电池图标被替换为第三方电池图标</string>
 
     <!-- Unplug turns on screen -->
     <string name="pref_unplug_turns_on_screen_title">拔下电源线开启屏幕</string>
@@ -727,7 +727,6 @@
     <string name="pref_cat_app_launcher_title">应用启动器</string>
     <string name="pref_cat_app_launcher_summary">对话框允许定义最多8个应用程序，可以分配硬件按键或作为额外的虚拟键</string>
     <string name="pref_app_launcher_slot_title">应用程序槽 %d</string>
-
     <string name="app_launcher_no_apps">没有应用程序被分配，使用GravityBox/应用启动器来分配应用程序</string>
 
     <!-- Navigation bar app launcher key -->
@@ -759,6 +758,12 @@
 
     <!-- Minimum screen brightness warning -->
     <string name="screen_brightness_min_warning">您的屏幕可能不支持低于20的值。如果您的屏幕亮不起来，
-	按住音量+ 键至少7秒钟将会还原亮度，调整亮度使用更大的值</string>
+	按住音量+ 键至少7秒钟将会还原亮度，调整亮度请使用更大的值</string>
+	
+	<!-- Navbar tweaks categories -->
+    <string name="pref_cat_navbar_general_title">普通</string>
+    <string name="pref_cat_navbar_keys_title">虚拟按键</string>
+    <string name="pref_cat_navbar_color_title">颜色和透明度</string>
+    <string name="pref_cat_navbar_dimen_title">大小</string>
 
 </resources>
