@@ -29,4 +29,8 @@
     <!-- TouchInterceptor -->
     <color name="dragndrop_background">@android:color/holo_blue_light</color>
 
+    <!-- Navigation key default colors -->
+    <color name="navbar_key_color">#e8ffffff</color>
+    <color name="navbar_key_glow_color">#40ffffff</color>
+
 </resources>

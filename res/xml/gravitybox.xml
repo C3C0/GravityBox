@@ -608,6 +608,18 @@
                 android:title="@string/pref_navbar_launcher_enable_title"
                 android:defaultValue="false" />
 
+            <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                android:key="pref_navbar_key_color"
+                android:title="@string/pref_navbar_key_color_title"
+                android:defaultValue="@color/navbar_key_color"
+                alphaSlider="true" />
+
+            <net.margaritov.preference.colorpicker.ColorPickerPreference 
+                android:key="pref_navbar_key_glow_color"
+                android:title="@string/pref_navbar_key_glow_color_title"
+                android:defaultValue="@color/navbar_key_glow_color"
+                alphaSlider="true" />
+
         </PreferenceCategory>
 
         <PreferenceCategory

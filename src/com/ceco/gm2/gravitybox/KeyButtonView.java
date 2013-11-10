@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.Canvas;
+import android.graphics.PorterDuff;
 import android.graphics.RectF;
 import android.os.SystemClock;
 import android.view.HapticFeedbackConstants;
@@ -230,6 +231,12 @@ public class KeyButtonView extends ImageView {
                             (int) Math.floor(childBounds.top),
                             (int) Math.ceil(childBounds.right),
                             (int) Math.ceil(childBounds.bottom));
+        }
+    }
+
+    public void setGlowColor(int color) {
+        if (mGlowBG != null) {
+            mGlowBG.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         }
     }
 }
