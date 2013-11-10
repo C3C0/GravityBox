@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
-import android.content.res.XModuleResources;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
@@ -86,7 +85,6 @@ public class ModStatusbarColor {
     private static Object mPhoneWindowManager;
 
     static {
-        mIconManager = new StatusBarIconManager(XModuleResources.createInstance(GravityBox.MODULE_PATH, null));
         mIconColorEnabled = false;
         mSkipBatteryIcon = false;
         mBatteryLevel = 0;
@@ -144,7 +142,8 @@ public class ModStatusbarColor {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (DEBUG) log("received broadcast: " + intent.toString());
-            if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_STATUSBAR_COLOR_CHANGED)) {
+            if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_STATUSBAR_COLOR_CHANGED)
+                    && mIconManager != null) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_BG_COLOR)) {
                     int bgColor = intent.getIntExtra(GravityBoxSettings.EXTRA_SB_BG_COLOR, Color.BLACK);
                     setStatusbarBgColor(bgColor);
@@ -465,22 +464,6 @@ public class ModStatusbarColor {
 
             mIconColorEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE, false);
             mSkipBatteryIcon = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_COLOR_SKIP_BATTERY, false);
-            mIconManager.setIconColor(
-                    prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR,
-                            mIconManager.getDefaultIconColor()));
-            mIconManager.setDataActivityColor(
-                    prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR, 
-                            StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
-            mIconManager.setFollowStockBatteryColor(prefs.getBoolean(
-                    GravityBoxSettings.PREF_KEY_STATUSBAR_COLOR_FOLLOW_STOCK_BATTERY, false));
-
-            try {
-                int signalIconMode = Integer.valueOf(prefs.getString(
-                        GravityBoxSettings.PREF_KEY_STATUSBAR_SIGNAL_COLOR_MODE, "0"));
-                mIconManager.setSignalIconMode(signalIconMode);
-            } catch (NumberFormatException nfe) {
-                log("Invalid value for PREF_KEY_STATUSBAR_SIGNAL_COLOR_MODE preference");
-            }
 
             mRoamingIndicatorsDisabled = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_DISABLE_ROAMING_INDICATORS, false);
@@ -497,6 +480,26 @@ public class ModStatusbarColor {
                     intentFilter.addAction(GravityBoxSettings.ACTION_DISABLE_ROAMING_INDICATORS_CHANGED);
                     mPanelBar.getContext().registerReceiver(mBroadcastReceiver, intentFilter);
 
+                    Context gbContext = mPanelBar.getContext().createPackageContext(GravityBox.PACKAGE_NAME,
+                            Context.CONTEXT_IGNORE_SECURITY);
+                    mIconManager = new StatusBarIconManager(gbContext.getResources(), 
+                            mPanelBar.getContext().getResources());
+                    mIconManager.setIconColor(
+                            prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR,
+                                    mIconManager.getDefaultIconColor()));
+                    mIconManager.setDataActivityColor(
+                            prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR, 
+                                    StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
+                    mIconManager.setFollowStockBatteryColor(prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_STATUSBAR_COLOR_FOLLOW_STOCK_BATTERY, false));
+
+                    try {
+                        int signalIconMode = Integer.valueOf(prefs.getString(
+                                GravityBoxSettings.PREF_KEY_STATUSBAR_SIGNAL_COLOR_MODE, "0"));
+                        mIconManager.setSignalIconMode(signalIconMode);
+                    } catch (NumberFormatException nfe) {
+                        log("Invalid value for PREF_KEY_STATUSBAR_SIGNAL_COLOR_MODE preference");
+                    }
                     mIconManager.initStockBatteryColor(mPanelBar.getContext());
                 }
             });
@@ -516,7 +519,6 @@ public class ModStatusbarColor {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
-                    mIconManager.setSystemUiResources(context.getResources());
 
                     mTransparencyManager = new TransparencyManager(context);
                     mTransparencyManager.setStatusbar(XposedHelpers.getObjectField(param.thisObject, "mStatusBarView"));
@@ -594,7 +596,8 @@ public class ModStatusbarColor {
                     if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
                         mBatteryLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
                         mBatteryPlugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) != 0;
-                        if (mIconColorEnabled && !mSkipBatteryIcon && mBattery != null) {
+                        if (mIconColorEnabled && !mSkipBatteryIcon && mBattery != null
+                                && mIconManager != null) {
                             Drawable d = mIconManager.getBatteryIcon(mBatteryLevel, mBatteryPlugged);
                             if (d != null) mBattery.setImageDrawable(d);
                         }
@@ -610,7 +613,7 @@ public class ModStatusbarColor {
 
                     Resources res = ((LinearLayout) param.thisObject).getContext().getResources();
 
-                    if (mIconColorEnabled) {
+                    if (mIconColorEnabled && mIconManager != null) {
                         Object mobileIconId = null;
                         Object[] mobileIconIds = null, mobileIconIdsGemini = null;
                         Object mobileActivityId = null, mobileActivityIdGemini = null;
@@ -818,6 +821,8 @@ public class ModStatusbarColor {
     }
 
     private static void applyIconColors() {
+        if (mIconManager == null) return;
+
         if (mSignalClusterView != null) {
             XposedHelpers.callMethod(mSignalClusterView, "apply");
         }

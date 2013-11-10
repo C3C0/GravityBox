@@ -58,8 +58,9 @@ public class StatusBarIconManager {
         XposedBridge.log(TAG + ": " + message);
     }
 
-    public StatusBarIconManager(Resources res) {
+    public StatusBarIconManager(Resources res, Resources sysUiRes) {
         mResources = res;
+        mSystemUiRes = sysUiRes;
         mIconColor = getDefaultIconColor();
         mDataActivityColor = DEFAULT_DATA_ACTIVITY_COLOR;
         mFollowStockBatteryColor = false;
@@ -147,10 +148,6 @@ public class StatusBarIconManager {
         } catch (Throwable t) {
             log("Error initializing stock battery color: " + t.getMessage());
         }
-    }
-
-    public void setSystemUiResources(Resources res) {
-        mSystemUiRes = res;
     }
 
     public void setSignalIconMode(int mode) {
