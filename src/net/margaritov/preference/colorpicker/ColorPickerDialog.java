@@ -97,7 +97,9 @@ public class ColorPickerDialog
 					if (s.length() > 5 || s.length() < 10) {
 						try {
 							int c = ColorPickerPreference.convertToColorInt(s.toString());
+							mHexInternalTextChange = true;
 							mColorPicker.setColor(c, true);
+							mHexInternalTextChange = false;
 							mHexVal.setTextColor(mHexDefaultTextColor);
 						} catch (NumberFormatException e) {
 							mHexVal.setTextColor(Color.RED);
@@ -163,6 +165,8 @@ public class ColorPickerDialog
 	}
 
 	private void updateHexValue(int color) {
+	        if (mHexInternalTextChange) return;
+
 		mHexInternalTextChange = true;
 		if (getAlphaSliderVisible())
 			mHexVal.setText(ColorPickerPreference.convertToARGB(color));
