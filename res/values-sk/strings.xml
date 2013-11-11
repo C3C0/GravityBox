@@ -737,4 +737,13 @@
     <string name="pref_cat_navbar_color_title">Farba a priehľadnosť</string>
     <string name="pref_cat_navbar_dimen_title">Rozmery</string>
 
+    <!-- Navigation bar colors -->
+    <string name="pref_navbar_key_color_title">Farba tlačidiel</string>
+    <string name="pref_navbar_key_glow_color_title">Efekt tlačidiel</string>
+    <string name="pref_navbar_bg_color_title">Farba pozadia lišty</string>
+
+    <!-- Disable lockscreen shade -->
+    <string name="pref_lockscreen_shade_disable_title">Vypnúť zatmavenie</string>
+    <string name="pref_lockscreen_shade_disable_summary">Vypne zatmavenie obrazovky uzamknutia</string>
+
 </resources>
