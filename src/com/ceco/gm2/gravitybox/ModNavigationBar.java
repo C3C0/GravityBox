@@ -20,9 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -46,7 +44,7 @@ public class ModNavigationBar {
     private static final String CLASS_KEY_BUTTON_VIEW = "com.android.systemui.statusbar.policy.KeyButtonView";
 
     private static boolean mAlwaysShowMenukey;
-    private static Object mNavigationBarView;
+    private static View mNavigationBarView;
     private static Object[] mRecentsKeys;
     private static HomeKeyInfo[] mHomeKeys;
     private static int mRecentsSingletapAction = 0;
@@ -60,10 +58,14 @@ public class ModNavigationBar {
     private static Context mGbContext;
     private static AppLauncher mAppLauncher;
     private static NavbarViewInfo[] mNavbarViewInfo = new NavbarViewInfo[2];
+
+    // Colors
     private static int mKeyDefaultColor = 0xe8ffffff;
     private static int mKeyDefaultGlowColor = 0x40ffffff;
+    private static int mNavbarDefaultBgColor = 0xff000000;
     private static int mKeyColor;
     private static int mKeyGlowColor;
+    private static int mNavbarBgColor;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -117,6 +119,11 @@ public class ModNavigationBar {
                             GravityBoxSettings.EXTRA_NAVBAR_KEY_GLOW_COLOR, mKeyDefaultGlowColor);
                     setKeyColor();
                 }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_NAVBAR_BG_COLOR)) {
+                    mNavbarBgColor = intent.getIntExtra(
+                            GravityBoxSettings.EXTRA_NAVBAR_BG_COLOR, mNavbarDefaultBgColor);
+                    setNavbarBgColor();
+                }
             } else if (intent.getAction().equals(
                     GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_SINGLETAP_CHANGED)) {
                 mRecentsSingletapAction = intent.getIntExtra(GravityBoxSettings.EXTRA_HWKEY_VALUE, 0);
@@ -166,16 +173,22 @@ public class ModNavigationBar {
                     if (context == null) return;
 
                     mResources = context.getResources();
+
                     mGbContext = context.createPackageContext(
                             GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
-                    mKeyDefaultColor = mGbContext.getResources().getColor(R.color.navbar_key_color);
+                    final Resources res = mGbContext.getResources();
+                    mKeyDefaultColor = res.getColor(R.color.navbar_key_color);
                     mKeyColor = prefs.getInt(GravityBoxSettings.PREF_KEY_NAVBAR_KEY_COLOR, mKeyDefaultColor);
+                    mKeyDefaultGlowColor = res.getColor(R.color.navbar_key_glow_color);
                     mKeyGlowColor = prefs.getInt(
                             GravityBoxSettings.PREF_KEY_NAVBAR_KEY_GLOW_COLOR, mKeyDefaultGlowColor);
+                    mNavbarDefaultBgColor = res.getColor(R.color.navbar_bg_color);
+                    mNavbarBgColor = prefs.getInt(
+                            GravityBoxSettings.PREF_KEY_NAVBAR_BG_COLOR, mNavbarDefaultBgColor);
 
                     mAppLauncher = new AppLauncher(context, prefs);
 
-                    mNavigationBarView = param.thisObject;
+                    mNavigationBarView = (View) param.thisObject;
                     IntentFilter intentFilter = new IntentFilter();
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_NAVBAR_CHANGED);
                     intentFilter.addAction(GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_SINGLETAP_CHANGED);
@@ -267,16 +280,7 @@ public class ModNavigationBar {
                     setAppKeyVisibility(mAppLauncherEnabled);
                     updateRecentsKeyCode();
                     updateHomeKeyLongpressSupport();
-
-                    // Set background
-                    final View thisView = (View) param.thisObject;
-                    final Drawable bg = thisView.getBackground();
-                    int color = Color.BLACK;
-                    if (bg != null && (bg instanceof ColorDrawable)) {
-                        color = ((ColorDrawable) bg).getColor();
-                    }
-                    BackgroundAlphaColorDrawable newBg = new BackgroundAlphaColorDrawable(color);
-                    thisView.setBackground(newBg);
+                    setNavbarBgColor();
                 }
             });
 
@@ -479,6 +483,19 @@ public class ModNavigationBar {
                         ((KeyButtonView) imgv).setGlowColor(mKeyGlowColor);
                     }
                 }
+            }
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
+    }
+
+    private static void setNavbarBgColor() {
+        try {
+            if (!(mNavigationBarView.getBackground() instanceof BackgroundAlphaColorDrawable)) {
+                BackgroundAlphaColorDrawable colorDrawable = new BackgroundAlphaColorDrawable(mNavbarBgColor);
+                mNavigationBarView.setBackground(colorDrawable);
+            } else {
+                ((BackgroundAlphaColorDrawable) mNavigationBarView.getBackground()).setBgColor(mNavbarBgColor);
             }
         } catch (Throwable t) {
             XposedBridge.log(t);

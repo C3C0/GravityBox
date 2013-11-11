@@ -766,8 +766,9 @@
     <string name="pref_cat_navbar_color_title">Color and transparency</string>
     <string name="pref_cat_navbar_dimen_title">Dimensions</string>
 
-    <!-- Navigation key color -->
+    <!-- Navigation bar colors -->
     <string name="pref_navbar_key_color_title">Navigation key color</string>
     <string name="pref_navbar_key_glow_color_title">Navigation key glow color</string>
+    <string name="pref_navbar_bg_color_title">Navigation bar background color</string>
 
 </resources>
