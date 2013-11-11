@@ -103,6 +103,12 @@
                 android:summary="@string/pref_lockscreen_bg_image_summary"
                 android:order="3" />
 
+            <CheckBoxPreference
+                android:key="pref_lockscreen_shade_disable"
+                android:title="@string/pref_lockscreen_shade_disable_title"
+                android:summary="@string/pref_lockscreen_shade_disable_summary"
+                android:defaultValue="false" />
+
         </PreferenceCategory>
 
         <PreferenceCategory
