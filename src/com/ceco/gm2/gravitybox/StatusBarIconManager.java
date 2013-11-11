@@ -46,6 +46,7 @@ public class StatusBarIconManager {
     private Map<String, Integer> mWifiIconIds;
     private Map<String, Integer> mMobileIconIds;
     private Map<String, Integer> mBatteryIconIds;
+    private Map<String, Integer> mBasicIconIds;
     private Map<String, SoftReference<Drawable>> mIconCache;
     private Integer mStockBatteryColor;
     private Integer mDefaultClockColor;
@@ -120,6 +121,15 @@ public class StatusBarIconManager {
         tmpMap.put("stat_sys_battery_charge_anim90", R.drawable.stat_sys_battery_charge_anim85);
         tmpMap.put("stat_sys_battery_charge_anim100", R.drawable.stat_sys_battery_charge_anim100);
         mBatteryIconIds = Collections.unmodifiableMap(tmpMap);
+
+        tmpMap = new HashMap<String, Integer>();
+        tmpMap.put("stat_sys_data_bluetooth", R.drawable.stat_sys_data_bluetooth);
+        tmpMap.put("stat_sys_data_bluetooth_connected", R.drawable.stat_sys_data_bluetooth_connected);
+        tmpMap.put("stat_sys_alarm", null);
+        tmpMap.put("stat_sys_ringer_vibrate", null);
+        tmpMap.put("stat_sys_headset_with_mic", null);
+        tmpMap.put("stat_sys_headset_without_mic", null);
+        mBasicIconIds = Collections.unmodifiableMap(tmpMap);
 
         mIconCache = new HashMap<String, SoftReference<Drawable>>();
     }
@@ -214,9 +224,15 @@ public class StatusBarIconManager {
         mDataActivityColor = color;
     }
 
-    public Drawable applyColorFilter(Drawable drawable) {
-        drawable.setColorFilter(mIconColor, PorterDuff.Mode.SRC_IN);
+    public Drawable applyColorFilter(Drawable drawable, PorterDuff.Mode mode) {
+        if (drawable != null) {
+            drawable.setColorFilter(mIconColor, mode);
+        }
         return drawable;
+    }
+
+    public Drawable applyColorFilter(Drawable drawable) {
+        return applyColorFilter(drawable, PorterDuff.Mode.SRC_IN);
     }
 
     public Drawable applyDataActivityColorFilter(Drawable drawable) {
@@ -364,5 +380,32 @@ public class StatusBarIconManager {
         }
 
         return key;
+    }
+
+    public Drawable getBasicIcon(int resId) {
+        if (resId == 0) return null;
+
+        try {
+            String key = mSystemUiRes.getResourceEntryName(resId);
+            Drawable d = getCachedDrawable(key);
+            if (d != null) return d;
+            if (mBasicIconIds.containsKey(key)) {
+                if (mBasicIconIds.get(key) != null) {
+                    d = mResources.getDrawable(mBasicIconIds.get(key)).mutate();
+                    d = applyColorFilter(d);
+                } else {
+                    d = mSystemUiRes.getDrawable(resId).mutate();
+                    d = applyColorFilter(d, PorterDuff.Mode.SRC_ATOP);
+                }
+                setCachedDrawable(key, d);
+                if (DEBUG) log("getBasicIcon: returning drawable for key: " + key);
+                return d;
+            }
+            if (DEBUG) log("getBasicIcon: no record for key: " + key);
+            return null;
+        } catch (Throwable t) {
+            log("getBasicIcon: " + t.getMessage());
+            return null;
+        }
     }
 }
