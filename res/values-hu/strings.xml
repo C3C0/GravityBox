@@ -158,7 +158,7 @@
     <string name="about_xposed_title">Xposed framework</string>
     <string name="about_xposed_summary">Fejlesztette rovo89@XDA. Érintse meg a hivatalos fórum meglátogatásához.</string>
     <string name="about_donate_title">Felajánlás</string>
-    <string name="about_donate_summary">Adományozzon a részemre, ha úgy gondolja, hogy ez a program megéri az árát! Valamint fontolja meg, hogy adományozzon rovo89-nek is a kitűnő Xposed framework-ért.</string>
+    <string name="about_donate_summary">Érintse meg a program fejlesztésének PayPal-en keresztüli adományozással történő támogatásához</string>
 
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">A telefon újra fog indulni.</string>
@@ -308,6 +308,10 @@
     <string name="pref_volume_panel_expandable_title">Bővített hangerő panel</string>
     <string name="pref_volume_panel_expandable_summary">Engedélyezi a bővített hangerő panelt a különböző hangfolyamokhoz tartozó értékek külön beállítási lehetőségével</string>
 
+	<!-- Fully expandable volume panel -->
+    <string name="pref_volume_panel_expandable_fully_title">Teljes bővített hangerő panel</string>
+    <string name="pref_volume_panel_expandable_fully_summary">Lehetővé teszi, hogy a hangerő panel a teljes rendelkezésre álló helyet kitöltse</string>
+	
     <!-- Link ringtone & notifications volumes -->
     <string name="pref_link_volumes_title">Csengőhang és figyelmeztető hangok értékei</string>
     <string name="pref_link_volumes_summary">Amikor ki van kapcsolva, a csengőhang és a figyelmeztető hangok értékei egymástól függetlenül állíthatóak</string>
@@ -401,8 +405,8 @@
     <string name="pref_holo_bg_dither_summary">Lecseréli a szabvány Holo hátteret nagyobb színmélységű típusra a színátmenetek folyamatosságának megtörése ellen (újraindítás szükséges)</string>
 
     <!-- Disable navigation keys for pie -->
-    <string name="pref_hwkeys_disable_title">Navigációs gombok letiltása</string>
-    <string name="pref_hwkeys_disable_summary">Letiltja a gombok egyszeri érintését, ha a Pie Vezérlők engedélyezve vannak</string>
+    <string name="pref_hwkeys_disable_title">Navigációs hardver gombok letiltása</string>
+    <string name="pref_hwkeys_disable_summary">Letiltja a hardver gombok egyszeri érintését, ha a Pie Vezérlők engedélyezve vannak</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">Holo Sötét téma használata</string>
@@ -462,8 +466,8 @@
     <string name="pref_cat_transparency_manager_title">Átlátszóság menedzsment</string>
     <string name="pref_tm_statusbar_launcher_title">Állapotsáv átlátszóság launcher-nél</string>
     <string name="pref_tm_statusbar_lockscreen_title">Állapotsáv átlátszóság zárképernyőnél</string>
-    <string name="pref_tm_navbar_launcher_title">Nav.sáv átlátszóság launcher-nél</string>
-    <string name="pref_tm_navbar_lockscreen_title">Nav.sáv átlátszóság zárképernyőnél </string>
+    <string name="pref_tm_navbar_launcher_title">Indító átlátszósága</string>
+    <string name="pref_tm_navbar_lockscreen_title">Zárképernyő átlátszósága</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Ébresztő ikon elrejtése</string>
@@ -751,5 +755,24 @@
     <string name="pref_caller_unknown_photo_title">Ismeretlen hívó fotó beállítása</string>
     <string name="caller_unknown_photo_result_successful">Fotó megváltoztatva</string>
     <string name="caller_unkown_photo_result_not_successful">Fotó nincs megváltoztatva</string>
+	
+	<!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">Lehetséges, hogy a képernyő nem támogatja a 20 alatt beállított értéket. Ha a képernyő nem világít, 
+	tartsa  nyomva a hangerő + gombot legalább 7 másodpercig a fényerő beállítások alaphelyzetbe állításához, és utána állítsa be a fényerőt magasabb értékre.</string>
+
+	<!-- Navbar tweaks categories -->
+    <string name="pref_cat_navbar_general_title">Általános</string>
+    <string name="pref_cat_navbar_keys_title">Navigációs gombok</string>
+    <string name="pref_cat_navbar_color_title">Szín és átlátszóság</string>
+    <string name="pref_cat_navbar_dimen_title">Méret</string>
+	
+	<!-- Navigation bar colors -->
+    <string name="pref_navbar_key_color_title">Navigációs gomb színe</string>
+    <string name="pref_navbar_key_glow_color_title">Aktív navigációs gomb színe</string>
+    <string name="pref_navbar_bg_color_title">Navigációs sáv háttérének színe</string>
+
+    <!-- Disable lockscreen shade -->
+    <string name="pref_lockscreen_shade_disable_title">Zárképernyő árnyékolás letiltása</string>
+    <string name="pref_lockscreen_shade_disable_summary">Eltávolítja a sötét árnyalatot a zárképernyőről</string>
 	
 </resources>
