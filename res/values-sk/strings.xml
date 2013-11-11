@@ -140,8 +140,8 @@
     <string name="about_gb_summary">Naprogramoval C3C076@XDA. Dotykom otvoríte oficiálnu stránku.</string>
     <string name="about_xposed_title">Xposed framework</string>
     <string name="about_xposed_summary">Naprogramoval rovo89@XDA. Dotykom otvoríte oficiálnu stránku.</string>
-    <string name="about_donate_title">Prispieť</string>
-    <string name="about_donate_summary">Prispejte cez PayPal ak si myslíte, že táto aplikácia za to stojí! Zvážte tiež príspevok pre rovo89 za jeho excelentný Xposed framework.</string>
+    <string name="about_donate_title">Podporiť vývoj</string>
+    <string name="about_donate_summary">Dotykom podporíte vývoj aplikácie venovaním príspevku ľubovoľnej hodnoty cez PayPal</string>
 
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">Váš %s bude reštartovaný.</string>
