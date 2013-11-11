@@ -3,9 +3,9 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="lib" path="/XposedLibrary/XposedBridgeApi.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="/MasterKeyDualFix/lib/core-classes.jar"/>
+	<classpathentry kind="lib" path="ext/core-classes.jar"/>
+	<classpathentry kind="lib" path="ext/XposedBridgeApi.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
