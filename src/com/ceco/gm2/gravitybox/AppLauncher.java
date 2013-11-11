@@ -156,6 +156,7 @@ public class AppLauncher {
             int appCount = 0;
             boolean appRow1Visible = false;
             boolean appRow2Visible = false;
+            TextView lastVisible = null;
             for (AppInfo ai : mAppSlots) {
                 TextView tv = (TextView) mAppView.findViewById(ai.getResId());
                 if (ai.getValue() == null) {
@@ -171,6 +172,7 @@ public class AppLauncher {
                 tv.setClickable(true);
                 tv.setOnClickListener(mAppOnClick);
                 tv.setVisibility(View.VISIBLE);
+                lastVisible = tv;
 
                 appRow1Visible |= ai.getResId() == R.id.quickapp1 || ai.getResId() == R.id.quickapp2 || 
                         ai.getResId() == R.id.quickapp3 || ai.getResId() == R.id.quickapp4;
@@ -183,16 +185,16 @@ public class AppLauncher {
             if (appCount == 0) {
                 Toast.makeText(mContext, mGbContext.getString(R.string.app_launcher_no_apps),
                         Toast.LENGTH_LONG).show();
-                return;
+            } else if (appCount == 1) {
+                mAppOnClick.onClick(lastVisible);
+            } else {
+                appRow1.setVisibility(appRow1Visible ? View.VISIBLE : View.GONE);
+                appRow2.setVisibility(appRow2Visible ? View.VISIBLE : View.GONE);
+                separator.setVisibility(appRow1Visible && appRow2Visible ?
+                        View.VISIBLE : View.GONE);
+                mDialog.show();
+                mHandler.postDelayed(mDismissAppDialogRunnable, 4000);
             }
-
-            appRow1.setVisibility(appRow1Visible ? View.VISIBLE : View.GONE);
-            appRow2.setVisibility(appRow2Visible ? View.VISIBLE : View.GONE);
-            separator.setVisibility(appRow1Visible && appRow2Visible ?
-                    View.VISIBLE : View.GONE);
-
-            mDialog.show();
-            mHandler.postDelayed(mDismissAppDialogRunnable, 4000);
         } catch (Throwable t) {
             log("Error opening app launcher dialog: " + t.getMessage());
         }
