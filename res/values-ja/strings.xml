@@ -752,7 +752,13 @@
     <string name="pref_cat_navbar_color_title">色と透過度</string>
     <string name="pref_cat_navbar_dimen_title">サイズ</string>
     
-    <!-- Navigation key color -->
+    <!-- Navigation bar color -->
     <string name="pref_navbar_key_color_title">ナビキーの色</string>
     <string name="pref_navbar_key_glow_color_title">ナビキーのグロー色</string>
+    <string name="pref_navbar_bg_color_title">ナビバーの背景色</string>
+
+    <!-- Disable lockscreen shade -->
+    <string name="pref_lockscreen_shade_disable_title">ロック画面シェードを無効化</string>
+    <string name="pref_lockscreen_shade_disable_summary">ロック画面のシェードをなくします。</string>
+    
 </resources>
