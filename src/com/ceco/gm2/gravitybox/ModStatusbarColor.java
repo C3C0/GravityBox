@@ -60,7 +60,7 @@ public class ModStatusbarColor {
     private static final String CLASS_WINDOW_MANAGER_SERVICE = "com.android.server.wm.WindowManagerService";
     private static final String CLASS_STATUSBAR_ICON_VIEW = "com.android.systemui.statusbar.StatusBarIconView";
     private static final String CLASS_STATUSBAR_ICON = "com.android.internal.statusbar.StatusBarIcon";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
 
     public static final String ACTION_PHONE_STATUSBAR_VIEW_MADE = "gravitybox.intent.action.PHONE_STATUSBAR_VIEW_MADE";
 
@@ -283,12 +283,6 @@ public class ModStatusbarColor {
                                 & (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)) != 0) {
                         if (attrs.type == WindowManager.LayoutParams.TYPE_WALLPAPER) {
-                            pf.left = df.left = cf.left = Build.VERSION.SDK_INT > 17 ?
-                                    XposedHelpers.getIntField(param.thisObject, "mOverscanScreenLeft") :
-                                    XposedHelpers.getIntField(param.thisObject, "mUnrestrictedScreenLeft");
-                            pf.right = df.right = cf.right = pf.left + Build.VERSION.SDK_INT > 17 ?
-                                    XposedHelpers.getIntField(param.thisObject, "mOverscanScreenWidth") :
-                                    XposedHelpers.getIntField(param.thisObject, "mUnrestrictedScreenWidth");
                             pf.top = df.top = cf.top = Build.VERSION.SDK_INT > 17 ?
                                     XposedHelpers.getIntField(param.thisObject, "mOverscanScreenTop") :
                                     XposedHelpers.getIntField(param.thisObject, "mUnrestrictedScreenTop");
