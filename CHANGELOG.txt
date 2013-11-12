@@ -1,3 +1,38 @@
+Changelog 2.7.0 - 12/11/2013
+--------------------------------------
+- Improved transparency management:
+--- Wallpaper now correctly scales behind navbar when it has transparency set. Works for majority of launchers, including Google Experience Launcher (KitKat)
+--- Support for animated transitions between transparent/non-transparent states
+- Statusbar Icon Colors:
+--- Improved icon quality (fixed blurriness)
+--- Support for coloring bluetooth, alarm, ringer vibrate, headset icons
+- Navigation Bar Tweaks:
+--- Reorganized menu
+--- Options for navigation bar colors (key color, glow color, navbar background color)
+- Lockscreen:
+--- Option for disabling lockscreen shade (removes dark tint from lockscreen)
+--- Hide statusbar clock support added for common 3rd party widgets (Chronus, DashClock, DeskClock)
+- Pie: improved sensitivity by being less strict about swiping direction
+- Improved detection of existing battery percent text (fixes double percent on some devices)
+- Improved determination of Circle Battery size (fixes circle being too small on some devices)
+- Increased Circle Battery left margin
+- Application launcher: run app immediately when it's the one and only app in the list
+- Updated Master Key Vulnerabilities patch (thanks to bgcngm and tungstwenty)
+- GravityBox Settings improvements:
+--- Enabled color hex value editor for all color pickers
+--- Added fine-tuning up/down buttons for sliders
+- Added Greek translations (thanks to vagosofron)
+- Updated French translation (thanks to ch-vox)
+- Updated Japanese translations (thanks to WedyDQ10)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Chinese (Simplified) translations (thanks to liveasx)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Italian translations (thanks to pitone02)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Portuguese (BR) translation (thanks to bgcngm)
+- Updated Hungarian translations (thanks to benjoe1)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+
 Changelog 2.6.9 - 03/11/2013
 --------------------------------------
 - Fixed battery percent text issue introduced in v2.6.8
