@@ -1,3 +1,7 @@
+Changelog 2.7.1 - 12/11/2013
+--------------------------------------
+- Fixed wallpaper scrolling when navbar transparency is on
+
 Changelog 2.7.0 - 12/11/2013
 --------------------------------------
 - Improved transparency management:
