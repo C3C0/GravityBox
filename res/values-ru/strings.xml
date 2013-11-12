@@ -314,7 +314,7 @@
     
     <!-- Link ringtone & notifications volumes -->
     <string name="pref_link_volumes_title">Связать громкость рингтона и уведомлений</string>
-    <string name="pref_link_volumes_summary">Когда отключено, громкость уведомлений и ренгтона можно задавать независимо</string>
+    <string name="pref_link_volumes_summary">Когда отключено, громкость уведомлений и рингтона можно задавать независимо</string>
 
     <!-- Auto-switch QuickSettings -->
     <string name="pref_auto_switch_qs_title">Автовключение быстрых настроек</string>
@@ -615,7 +615,7 @@
 
     <!-- Mute volume adjust sound -->
     <string name="pref_volume_adjust_mute_title">Откл. звук рег. громкости</string>
-    <string name="pref_volume_adjust_mute_summary">Отключает звук, проигрываемы при регулеровке громкости</string>
+    <string name="pref_volume_adjust_mute_summary">Отключает звук, проигрываемы при регулировке громкости</string>
 
     <!-- Call vibrations -->
     <string name="pref_call_vibrations_title">Вибрация звонка</string>
