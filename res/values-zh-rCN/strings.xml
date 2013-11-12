@@ -154,11 +154,11 @@
 
     <!-- About -->
     <string name="pref_cat_about_title">关于</string>
-    <string name="about_gb_summary">由C3C076@XDA编写，点击此处以进入官方讨论链接</string>
+    <string name="about_gb_summary">由C3C076@XDA编写，点击这里进入官方讨论链接</string>
     <string name="about_xposed_title">Xposed 框架</string>
-    <string name="about_xposed_summary">由rovo89@XDA编写，点击此处以进入官方讨论链接</string>
+    <string name="about_xposed_summary">由rovo89@XDA编写，点击这里进入官方讨论链接</string>
     <string name="about_donate_title">捐助</string>
-    <string name="about_donate_summary">若您觉得这个程序好用的话请捐助我！也请考虑捐助给rovo89编写出优秀的Xposed框架作者</string>
+    <string name="about_donate_summary">支持开发，点击这里进入PayPal捐赠</string>
 
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">您的%s将重新启动</string>
