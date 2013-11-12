@@ -158,7 +158,7 @@
     <string name="about_xposed_title">Xposed framework</string>
     <string name="about_xposed_summary">Encodé par rovo89@XDA. Touchez pour accéder au fil de discussion officiel</string>
     <string name="about_donate_title">Donations</string>
-    <string name="about_donate_summary">Faîtes un don si vous pensez que cette application en vaut la peine ! Faîtes également un don à rovo89 pour son excellent Xposed framework</string>
+    <string name="about_donate_summary">Touchez ce lien pour faire un don via Paypal et soutenir le développement</string>
 
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">Votre %s va redémarrer</string>
