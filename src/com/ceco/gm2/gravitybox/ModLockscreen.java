@@ -18,11 +18,15 @@ package com.ceco.gm2.gravitybox;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.List;
 
 import com.ceco.gm2.gravitybox.preference.AppPickerPreference;
 
 import android.app.Activity;
+import android.appwidget.AppWidgetHostView;
+import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -79,6 +83,7 @@ public class ModLockscreen {
     private static final String CLASS_KG_UPDATE_MONITOR_BATTERY_STATUS =
             "com.android.internal.policy.impl.keyguard.KeyguardUpdateMonitor.BatteryStatus";
     private static final String CLASS_KG_VIEW_BASE = "com.android.internal.policy.impl.keyguard.KeyguardViewBase";
+    private static final String CLASS_KG_WIDGET_PAGER = "com.android.internal.policy.impl.keyguard.KeyguardWidgetPager";
     private static final boolean DEBUG = false;
     private static final boolean DEBUG_ARC = false;
 
@@ -86,6 +91,13 @@ public class ModLockscreen {
     private static final int STATUSBAR_DISABLE_NOTIFICATION_TICKER = 0x00080000;
     private static final int STATUSBAR_DISABLE_EXPAND = 0x00010000;
     private static final int STATUSBAR_DISABLE_SEARCH = 0x02000000;
+    private static final int STATUSBAR_DISABLE_CLOCK = 0x00800000;
+
+    private static final List<String> CLOCK_WIDGETS = new ArrayList<String>(Arrays.asList(
+            "com.android.deskclock",
+            "com.dvtonder.chronus",
+            "net.nurik.roman.dashclock"
+    ));
 
     private static XSharedPreferences mPrefs;
     private static Hashtable<String, AppInfo> mAppInfoCache = new Hashtable<String, AppInfo>();
@@ -121,6 +133,7 @@ public class ModLockscreen {
             final Class<?> kgUpdateMonitorClass = XposedHelpers.findClass(CLASS_KG_UPDATE_MONITOR, null);
             final Class<?> kgUpdateMonitorCbClass = XposedHelpers.findClass(CLASS_KG_UPDATE_MONITOR_CB, null);
             final Class<?> kgViewBaseClass = XposedHelpers.findClass(CLASS_KG_VIEW_BASE, null);
+            final Class<?> kgWidgetPagerClass = XposedHelpers.findClass(CLASS_KG_WIDGET_PAGER, null);
 
             boolean enableMenuKey = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_LOCKSCREEN_MENU_KEY, false);
@@ -548,6 +561,26 @@ public class ModLockscreen {
                     if (mPrefs.getBoolean(GravityBoxSettings.PREF_KEY_LOCKSCREEN_SHADE_DISABLE, false)) {
                         ((View) param.thisObject).setBackground(null);
                         param.setResult(null);
+                    }
+                }
+            });
+
+            XposedHelpers.findAndHookMethod(kgWidgetPagerClass, "onPageSwitched",
+                    View.class, int.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    if (param.args[0] instanceof ViewGroup) {
+                        final ViewGroup vg = (ViewGroup) param.args[0];
+                        if (vg.getChildAt(0) instanceof AppWidgetHostView) {
+                            final AppWidgetProviderInfo info = 
+                                    ((AppWidgetHostView) vg.getChildAt(0)).getAppWidgetInfo();
+                            final String widgetPackage = info.provider.getPackageName();
+                            if (DEBUG) log("onPageSwitched: widget package = " + widgetPackage);
+                            if (CLOCK_WIDGETS.contains(widgetPackage)) {
+                                final View v = (View) param.thisObject; 
+                                v.setSystemUiVisibility(v.getSystemUiVisibility() | STATUSBAR_DISABLE_CLOCK);
+                            }
+                        }
                     }
                 }
             });
