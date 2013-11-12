@@ -308,6 +308,10 @@
     <string name="pref_volume_panel_expandable_title">Расширяемая звуковая панель</string>
     <string name="pref_volume_panel_expandable_summary">Включает расширяемую звуковую панель, на которой можно менять звук для разных потоков</string>
 
+    <!-- Fully expandable volume panel -->
+    <string name="pref_volume_panel_expandable_fully_title">Полностью расширяемая панель громкости</string>
+    <string name="pref_volume_panel_expandable_fully_summary">Позволяет ползунку громкости занимать все доступное пространство</string>
+    
     <!-- Link ringtone & notifications volumes -->
     <string name="pref_link_volumes_title">Связать громкость рингтона и уведомлений</string>
     <string name="pref_link_volumes_summary">Когда отключено, громкость уведомлений и ренгтона можно задавать независимо</string>
@@ -755,5 +759,20 @@
     <!-- Minimum screen brightness warning -->
     <string name="screen_brightness_min_warning">Ваш экран может не поддерживать значения меньше 20. Если ваш экран не засветится,
         зажмите кнопку Громкость+ как минимум на 7 секунд для сброса яркости и затем исправьте значение яркости на большее.</string>
+    
+    <!-- Navbar tweaks categories -->
+    <string name="pref_cat_navbar_general_title">Общие</string>
+    <string name="pref_cat_navbar_keys_title">Кнопки навигации</string>
+    <string name="pref_cat_navbar_color_title">Цвет и прозрачность</string>
+    <string name="pref_cat_navbar_dimen_title">Размеры</string>
+
+    <!-- Navigation bar colors -->
+    <string name="pref_navbar_key_color_title">Цыет кнопок навигации</string>
+    <string name="pref_navbar_key_glow_color_title">Цвет тени кнопок навигации</string>
+    <string name="pref_navbar_bg_color_title">Цвет фона панели навигации</string>
+
+    <!-- Disable lockscreen shade -->
+    <string name="pref_lockscreen_shade_disable_title">Отключить тень экрана блокировки</string>
+    <string name="pref_lockscreen_shade_disable_summary">Удаляет темный оттенок с экрана блокировки</string>
     
 </resources>
