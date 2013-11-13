@@ -144,7 +144,7 @@
     <string name="about_xposed_title">Xposed 框架</string>
     <string name="about_xposed_summary">由 rovo89@XDA 編寫。點選此處以拜訪官方的討論串。</string>
     <string name="about_donate_title">捐助</string>
-    <string name="about_donate_summary">若您覺得這個應用程式好用的話，請贊助我！也請考慮捐助給編寫出優秀的 Xposed 框架的 rovo89。</string>
+    <string name="about_donate_summary">如果您覺得這個程式寫得不錯，您可以按下這個按鈕利用 PayPal 來捐贈我</string>
 
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">您的 %s 將重新啟動</string>
@@ -760,5 +760,15 @@
     <string name="pref_cat_navbar_keys_title">海苔條按鍵</string>
     <string name="pref_cat_navbar_color_title">顏色與透明度</string>
     <string name="pref_cat_navbar_dimen_title">尺寸</string>
+    
+    
+    <!-- Navigation bar colors -->
+    <string name="pref_navbar_key_color_title">海苔條顏色</string>
+    <string name="pref_navbar_key_glow_color_title">海苔條光暈顏色</string>
+    <string name="pref_navbar_bg_color_title">海苔條背景顏色</string>
+
+    <!-- Disable lockscreen shade -->
+    <string name="pref_lockscreen_shade_disable_title">停用鎖定螢幕的陰影</string>
+    <string name="pref_lockscreen_shade_disable_summary">移除螢幕鎖定畫面深色色調</string>
 
 </resources>
