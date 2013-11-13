@@ -26,6 +26,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.os.Build;
@@ -832,14 +833,24 @@ public class ModStatusbarColor {
 
     private static void setStatusbarBgColor(int color) {
         if (mPanelBar != null) {
-            if (!(mPanelBar.getBackground() instanceof BackgroundAlphaColorDrawable)) {
-                BackgroundAlphaColorDrawable colorDrawable = new BackgroundAlphaColorDrawable(color);
-                mPanelBar.setBackground(colorDrawable);
-                if (DEBUG) log("statusbar view backround replaced with BackgroundAlphaColorDrawable");
+            if (Utils.isXperiaDevice()) {
+                if (!(mPanelBar.getBackground() instanceof ColorDrawable)) {
+                    ColorDrawable colorDrawable = new ColorDrawable(color);
+                    mPanelBar.setBackground(colorDrawable);
+                    if (DEBUG) log("statusbar view backround replaced with ColorDrawable");
+                } else {
+                    ((ColorDrawable) mPanelBar.getBackground()).setColor(color);
+                }
             } else {
-                ((BackgroundAlphaColorDrawable) mPanelBar.getBackground()).setBgColor(color);
-                if (DEBUG) log("statusbar background color set to: " + color);
+                if (!(mPanelBar.getBackground() instanceof BackgroundAlphaColorDrawable)) {
+                    BackgroundAlphaColorDrawable colorDrawable = new BackgroundAlphaColorDrawable(color);
+                    mPanelBar.setBackground(colorDrawable);
+                    if (DEBUG) log("statusbar view backround replaced with BackgroundAlphaColorDrawable");
+                } else {
+                    ((BackgroundAlphaColorDrawable) mPanelBar.getBackground()).setBgColor(color);
+                }
             }
+            if (DEBUG) log("statusbar background color set to: " + color);
         }
     }
 

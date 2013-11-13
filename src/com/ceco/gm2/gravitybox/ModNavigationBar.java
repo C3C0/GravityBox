@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -491,11 +492,20 @@ public class ModNavigationBar {
 
     private static void setNavbarBgColor() {
         try {
-            if (!(mNavigationBarView.getBackground() instanceof BackgroundAlphaColorDrawable)) {
-                BackgroundAlphaColorDrawable colorDrawable = new BackgroundAlphaColorDrawable(mNavbarBgColor);
-                mNavigationBarView.setBackground(colorDrawable);
+            if (Utils.isXperiaDevice()) {
+                if (!(mNavigationBarView.getBackground() instanceof ColorDrawable)) {
+                    ColorDrawable colorDrawable = new ColorDrawable(mNavbarBgColor);
+                    mNavigationBarView.setBackground(colorDrawable);
+                } else {
+                    ((ColorDrawable) mNavigationBarView.getBackground()).setColor(mNavbarBgColor);
+                }
             } else {
-                ((BackgroundAlphaColorDrawable) mNavigationBarView.getBackground()).setBgColor(mNavbarBgColor);
+                if (!(mNavigationBarView.getBackground() instanceof BackgroundAlphaColorDrawable)) {
+                    BackgroundAlphaColorDrawable colorDrawable = new BackgroundAlphaColorDrawable(mNavbarBgColor);
+                    mNavigationBarView.setBackground(colorDrawable);
+                } else {
+                    ((BackgroundAlphaColorDrawable) mNavigationBarView.getBackground()).setBgColor(mNavbarBgColor);
+                }
             }
         } catch (Throwable t) {
             XposedBridge.log(t);
