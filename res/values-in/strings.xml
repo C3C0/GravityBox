@@ -105,6 +105,7 @@
     <string name="qs_tile_airplane_mode">Mode pesawat terbang</string>
     <string name="qs_tile_battery">Status baterai</string>
     <string name="qs_tile_wifi">Wi-Fi</string>
+    <string name="qs_tile_wifi_alt">Wi-Fi (CM style)</string>
     <string name="qs_tile_bluetooth">Bluetooth</string>
     <string name="qs_tile_gps">GPS</string>
     <string name="qs_tile_gps_alt">GPS (CM style)</string>
@@ -133,7 +134,7 @@
 
     <!--  Statusbar background color -->
     <string name="statusbar_bgcolor_title">Warna latar Statusbar</string>
-    <string name="statusbar_bgcolor_summary">Membolehkan untuk men-set warna latar dan transparansi statusbar</string>
+    <string name="statusbar_bgcolor_summary">Membolehkan untuk men-set warna latar statusbar</string>
 
     <!--  Fix speech settings -->
     <string name="fix_tts_settings_title">Perbaiki setting Bicara</string>
@@ -157,7 +158,7 @@
     <string name="about_xposed_title">Xposed framework</string>
     <string name="about_xposed_summary">Pembuatan kode oleh rovo89@XDA. Sentuh untuk mengunjungi topik resmi.</string>
     <string name="about_donate_title">Donasi</string>
-    <string name="about_donate_summary">Donasilah kepada saya jika anda pikir aplikasi ini pantas! Dan juga pertimbangkan untuk donasi ke rovo89 untuk Xposed framework-nya yang hebat.</string>
+    <string name="about_donate_summary">Sentuh untuk mendukung pengembangan melalui donasi lewat PayPal.</string>
 
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">%s anda akan reboot</string>
@@ -465,8 +466,8 @@
     <string name="pref_cat_transparency_manager_title">Manajemen transparansi</string>
     <string name="pref_tm_statusbar_launcher_title">Transparansi statusbar untuk launcher</string>
     <string name="pref_tm_statusbar_lockscreen_title">Transparansi statusbar untuk lockscreen</string>
-    <string name="pref_tm_navbar_launcher_title">Transparansi Navbar untuk launcher</string>
-    <string name="pref_tm_navbar_lockscreen_title">Transparansi Navbar untuk lockscreen</string>
+    <string name="pref_tm_navbar_launcher_title">Transparansi untuk launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Transparansi untuk lockscreen</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Sembunyikan ikon alarm</string>
@@ -758,5 +759,20 @@
     <!-- Minimum screen brightness warning -->
     <string name="screen_brightness_min_warning">Layar anda mungkin tidak mendukung nilai kurang dari 20. Jika layar anda tidak hidup,
         tahan tombol volume + setidaknya selama 7 detik untuk mereset kecerahan lalu atur nilai yang lebih tinggi.</string>
+
+    <!-- Navbar tweaks categories -->
+    <string name="pref_cat_navbar_general_title">Umum</string>
+    <string name="pref_cat_navbar_keys_title">Tombol navigasi</string>
+    <string name="pref_cat_navbar_color_title">Warna dan transparansi</string>
+    <string name="pref_cat_navbar_dimen_title">Ukuran</string>
+
+    <!-- Navigation bar colors -->
+    <string name="pref_navbar_key_color_title">Warna tombol navigasi</string>
+    <string name="pref_navbar_key_glow_color_title">Warna tombol navigasi ketika menyala</string>
+    <string name="pref_navbar_bg_color_title">Warna latar Navbar</string>
+
+    <!-- Disable lockscreen shade -->
+    <string name="pref_lockscreen_shade_disable_title">Matikan bayangan lockscreen</string>
+    <string name="pref_lockscreen_shade_disable_summary">Menghapus warna gelap dari lockscreen</string>
 
 </resources>
