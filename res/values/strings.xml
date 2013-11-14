@@ -464,10 +464,11 @@
 
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Transparency management</string>
-    <string name="pref_tm_statusbar_launcher_title">Statusbar transparency for launcher</string>
-    <string name="pref_tm_statusbar_lockscreen_title">Statusbar transparency for lockscreen</string>
-    <string name="pref_tm_navbar_launcher_title">Transparency for launcher</string>
-    <string name="pref_tm_navbar_lockscreen_title">Transparency for lockscreen</string>
+    <string name="pref_cat_transparency_manager_summary">Manages transparency for statusbar and navigation bar</string>
+    <string name="pref_tm_statusbar_launcher_title">Statusbar for launcher</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Statusbar for lockscreen</string>
+    <string name="pref_tm_navbar_launcher_title">Navbar for launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Navbar for lockscreen</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Hide alarm icon</string>
@@ -763,7 +764,7 @@
     <!-- Navbar tweaks categories -->
     <string name="pref_cat_navbar_general_title">General</string>
     <string name="pref_cat_navbar_keys_title">Navigation keys</string>
-    <string name="pref_cat_navbar_color_title">Color and transparency</string>
+    <string name="pref_cat_navbar_color_title">Colors</string>
     <string name="pref_cat_navbar_dimen_title">Dimensions</string>
 
     <!-- Navigation bar colors -->
@@ -774,5 +775,13 @@
     <!-- Disable lockscreen shade -->
     <string name="pref_lockscreen_shade_disable_title">Disable lockscreen shade</string>
     <string name="pref_lockscreen_shade_disable_summary">Removes dark tint from lockscreen</string>
+
+    <!-- Transparency manager mode -->
+    <string name="pref_tm_mode_title">Transparency manager mode</string>
+    <string name="pref_tm_mode_summary">Requires reboot</string>
+    <string name="tm_mode_disabled">Disabled</string>
+    <string name="tm_mode_statusbar">Statusbar</string>
+    <string name="tm_mode_navbar">Navigation bar</string>
+    <string name="tm_mode_full">Both</string>
 
 </resources>

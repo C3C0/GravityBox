@@ -443,10 +443,11 @@
 
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Nastavení průhlednosti</string>
-    <string name="pref_tm_statusbar_launcher_title">Stavového řádku pro launcher</string>
-    <string name="pref_tm_statusbar_lockscreen_title">Stavového řádku pro lockscreen</string>
-    <string name="pref_tm_navbar_launcher_title">Průhlednost pro launcher</string>
-    <string name="pref_tm_navbar_lockscreen_title">Průhlednost pro lockscreen</string>
+    <string name="pref_cat_transparency_manager_summary">Umožňuje nastavení úrovně průhlednosti pro stavový řádek a navigační lištu</string>
+    <string name="pref_tm_statusbar_launcher_title">Stavový řádek pro launcher</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Stavový řádek pro lockscreen</string>
+    <string name="pref_tm_navbar_launcher_title">Navigační lišta pro launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Navigační lišta pro lockscreen</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Skrýt ikonu alarmu</string>
@@ -740,7 +741,7 @@
     <!-- Navbar tweaks categories -->
     <string name="pref_cat_navbar_general_title">Obecné</string>
     <string name="pref_cat_navbar_keys_title">Navigační tlačítka</string>
-    <string name="pref_cat_navbar_color_title">Barva a průhlednost</string>
+    <string name="pref_cat_navbar_color_title">Barvy</string>
     <string name="pref_cat_navbar_dimen_title">Rozměry</string>
 
     <!-- Navigation bar colors -->
@@ -751,5 +752,13 @@
     <!-- Disable lockscreen shade -->
     <string name="pref_lockscreen_shade_disable_title">Vypnout zatmavení</string>
     <string name="pref_lockscreen_shade_disable_summary">Vypne zatmavení obrazovky uzamčení</string>
+
+    <!-- Transparency manager mode -->
+    <string name="pref_tm_mode_title">Režim průhlednosti</string>
+    <string name="pref_tm_mode_summary">Vyžaduje restart</string>
+    <string name="tm_mode_disabled">Vypnutý</string>
+    <string name="tm_mode_statusbar">Stavový řádek</string>
+    <string name="tm_mode_navbar">Navigační lišta</string>
+    <string name="tm_mode_full">Stavový řádek i navigační lišta</string>
 
 </resources>

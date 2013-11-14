@@ -139,6 +139,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_STATUSBAR_CLOCK_HIDE = "pref_clock_hide";
     public static final String PREF_KEY_STATUSBAR_CLOCK_LINK = "pref_clock_link_app";
     public static final String PREF_KEY_ALARM_ICON_HIDE = "pref_alarm_icon_hide";
+    public static final String PREF_KEY_TM_MODE = "pref_tm_mode";
     public static final String PREF_KEY_TM_STATUSBAR_LAUNCHER = "pref_tm_statusbar_launcher";
     public static final String PREF_KEY_TM_STATUSBAR_LOCKSCREEN = "pref_tm_statusbar_lockscreen";
     public static final String PREF_KEY_TM_NAVBAR_LAUNCHER = "pref_tm_navbar_launcher";
@@ -490,7 +491,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             PREF_KEY_NAVBAR_OVERRIDE,
             PREF_KEY_NAVBAR_ENABLE,
             PREF_KEY_QS_TILE_BEHAVIOUR_OVERRIDE,
-            PREF_KEY_UNPLUG_TURNS_ON_SCREEN
+            PREF_KEY_UNPLUG_TURNS_ON_SCREEN,
+            PREF_KEY_TM_MODE
     ));
 
     private static final class SystemProperties {
@@ -729,6 +731,10 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private File callerPhotoFile;
         private CheckBoxPreference mPrefCallerUnknownPhotoEnable;
         private Preference mPrefCallerUnknownPhoto;
+        private SeekBarPreference mPrefTmSbLauncher;
+        private SeekBarPreference mPrefTmSbLockscreen;
+        private SeekBarPreference mPrefTmNbLauncher;
+        private SeekBarPreference mPrefTmNbLockscreen;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -929,6 +935,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefAppLauncherSlot[i] = appPref;
                 mPrefCatAppLauncher.addPreference(mPrefAppLauncherSlot[i]);
             }
+
+            mPrefTmSbLauncher = (SeekBarPreference) findPreference(PREF_KEY_TM_STATUSBAR_LAUNCHER);
+            mPrefTmSbLockscreen = (SeekBarPreference) findPreference(PREF_KEY_TM_STATUSBAR_LOCKSCREEN);
+            mPrefTmNbLauncher = (SeekBarPreference) findPreference(PREF_KEY_TM_NAVBAR_LAUNCHER);
+            mPrefTmNbLockscreen = (SeekBarPreference) findPreference(PREF_KEY_TM_NAVBAR_LOCKSCREEN);
 
             // Remove Phone specific preferences on Tablet devices
             if (sSystemProperties.isTablet) {
@@ -1349,6 +1360,14 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             if (key == null || key.equals(PREF_KEY_CALLER_UNKNOWN_PHOTO_ENABLE)) {
                 mPrefCallerUnknownPhoto.setEnabled(mPrefCallerUnknownPhotoEnable.isChecked());
+            }
+
+            if (key == null || key.equals(PREF_KEY_TM_MODE)) {
+                final int tmMode = Integer.valueOf(mPrefs.getString(PREF_KEY_TM_MODE, "3"));
+                mPrefTmSbLauncher.setEnabled((tmMode & TransparencyManager.MODE_STATUSBAR) != 0);
+                mPrefTmSbLockscreen.setEnabled((tmMode & TransparencyManager.MODE_STATUSBAR) != 0);
+                mPrefTmNbLauncher.setEnabled((tmMode & TransparencyManager.MODE_NAVBAR) != 0);
+                mPrefTmNbLockscreen.setEnabled((tmMode & TransparencyManager.MODE_NAVBAR) != 0);
             }
         }
 

@@ -307,30 +307,6 @@
 
         </PreferenceScreen>
 
-        <PreferenceScreen 
-            android:key="pref_cat_transparency_manager"
-            android:title="@string/pref_cat_transparency_manager_title">
-
-            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-                android:key="pref_tm_statusbar_launcher"
-                android:title="@string/pref_tm_statusbar_launcher_title"
-                minimum="0"
-                maximum="100"
-                interval="1"
-                monitorBoxEnabled="true"
-                monitorBoxUnit="%" />
-
-            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-                android:key="pref_tm_statusbar_lockscreen"
-                android:title="@string/pref_tm_statusbar_lockscreen_title"
-                minimum="0"
-                maximum="100"
-                interval="1"
-                monitorBoxEnabled="true"
-                monitorBoxUnit="%" />
-
-        </PreferenceScreen>
-
         <PreferenceScreen
             android:key="pref_cat_notification_drawer_style"
             android:title="@string/pref_cat_notification_drawer_style_title" >
@@ -620,24 +596,6 @@
             android:key="pref_cat_navbar_color"
             android:title="@string/pref_cat_navbar_color_title">
 
-            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-                android:key="pref_tm_navbar_launcher"
-                android:title="@string/pref_tm_navbar_launcher_title"
-                minimum="0"
-                maximum="100"
-                interval="1"
-                monitorBoxEnabled="true"
-                monitorBoxUnit="%" />
-
-            <com.ceco.gm2.gravitybox.preference.SeekBarPreference
-                android:key="pref_tm_navbar_lockscreen"
-                android:title="@string/pref_tm_navbar_lockscreen_title"
-                minimum="0"
-                maximum="100"
-                interval="1"
-                monitorBoxEnabled="true"
-                monitorBoxUnit="%" />
-
             <net.margaritov.preference.colorpicker.ColorPickerPreference 
                 android:key="pref_navbar_key_color"
                 android:title="@string/pref_navbar_key_color_title"
@@ -696,6 +654,57 @@
                 android:defaultValue="100" />
 
         </PreferenceCategory>
+
+    </PreferenceScreen>
+
+    <PreferenceScreen 
+        android:key="pref_cat_transparency_manager"
+        android:title="@string/pref_cat_transparency_manager_title"
+        android:summary="@string/pref_cat_transparency_manager_summary">
+
+        <ListPreference
+            android:key="pref_tm_mode" 
+            android:title="@string/pref_tm_mode_title"
+            android:summary="@string/pref_tm_mode_summary"
+            android:entries="@array/tm_mode_entries"
+            android:entryValues="@array/tm_mode_values"
+            android:defaultValue="3" />
+
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+            android:key="pref_tm_statusbar_launcher"
+            android:title="@string/pref_tm_statusbar_launcher_title"
+            minimum="0"
+            maximum="100"
+            interval="1"
+            monitorBoxEnabled="true"
+            monitorBoxUnit="%" />
+
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+            android:key="pref_tm_statusbar_lockscreen"
+            android:title="@string/pref_tm_statusbar_lockscreen_title"
+            minimum="0"
+            maximum="100"
+            interval="1"
+            monitorBoxEnabled="true"
+            monitorBoxUnit="%" />
+
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+            android:key="pref_tm_navbar_launcher"
+            android:title="@string/pref_tm_navbar_launcher_title"
+            minimum="0"
+            maximum="100"
+            interval="1"
+            monitorBoxEnabled="true"
+            monitorBoxUnit="%" />
+
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+            android:key="pref_tm_navbar_lockscreen"
+            android:title="@string/pref_tm_navbar_lockscreen_title"
+            minimum="0"
+            maximum="100"
+            interval="1"
+            monitorBoxEnabled="true"
+            monitorBoxUnit="%" />
 
     </PreferenceScreen>
 

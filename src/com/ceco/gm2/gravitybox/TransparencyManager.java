@@ -40,11 +40,13 @@ import android.os.Handler;
 import android.view.View;
 
 public class TransparencyManager implements BroadcastSubReceiver {
+    private static final String TAG = "GB:TransparencyManager";
     private static final boolean DEBUG = false;
 
-    public static final float KEYGUARD_ALPHA = 0.44f;
-
-    private static final String TAG = "GB:TransparencyManager";
+    public static final int MODE_DISABLED = 0;
+    public static final int MODE_STATUSBAR = 1;
+    public static final int MODE_NAVBAR = 2;
+    public static final int MODE_FULL = 3;
 
     Object mNavbar;
     Object mStatusbar;
@@ -62,6 +64,8 @@ public class TransparencyManager implements BroadcastSubReceiver {
     KeyguardManager km;
     ActivityManager am;
 
+    int mMode = MODE_DISABLED;
+
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
     }
@@ -71,7 +75,6 @@ public class TransparencyManager implements BroadcastSubReceiver {
         int color;
         float keyguardAlpha;
         float homeAlpha;
-        boolean tempDisable;
     }
 
     private final Runnable updateTransparencyRunnable = new Runnable() {
@@ -81,8 +84,9 @@ public class TransparencyManager implements BroadcastSubReceiver {
         }
     };
 
-    public TransparencyManager(Context context) {
+    public TransparencyManager(Context context, int mode) {
         mContext = context;
+        mMode = mode;
 
         km = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
         am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
@@ -98,13 +102,31 @@ public class TransparencyManager implements BroadcastSubReceiver {
         }, intentFilter);
     }
 
+    public static boolean isStatusbarEnabled(int mode) {
+        return ((mode & MODE_STATUSBAR) != 0);
+    }
+
+    public boolean isStatusbarEnabled() {
+        return isStatusbarEnabled(mMode);
+    }
+
+    public static boolean isNavbarEnabled(int mode) {
+        return ((mode & MODE_NAVBAR) != 0);
+    }
+
+    public boolean isNavbarEnabled() {
+        return isNavbarEnabled(mMode);
+    }
+
     private void update(boolean force) {
         mHandler.removeCallbacks(updateTransparencyRunnable);
         if (force || 
-                mStatusbarInfo.homeAlpha != 1 || 
-                mStatusbarInfo.keyguardAlpha != 1 ||
-                mNavbarInfo.homeAlpha != 1 ||
-                mNavbarInfo.keyguardAlpha != 1) {
+                (isStatusbarEnabled() && 
+                        (mStatusbarInfo.homeAlpha != 1 || 
+                         mStatusbarInfo.keyguardAlpha != 1 )) ||
+                (isNavbarEnabled() &&
+                        (mNavbarInfo.homeAlpha != 1 ||
+                         mNavbarInfo.keyguardAlpha != 1))) {
             if (DEBUG) log("Updating transparency");
             mHandler.postDelayed(updateTransparencyRunnable, 100);
         }
@@ -122,14 +144,6 @@ public class TransparencyManager implements BroadcastSubReceiver {
         mStatusbar = s;
     }
 
-    public void setTempDisableStatusbarState(boolean state) {
-        mStatusbarInfo.tempDisable = state;
-    }
-
-    public void setTempNavbarState(boolean state) {
-        mNavbarInfo.tempDisable = state;
-    }
-
     private ValueAnimator createAnimation(final SomeInfo info, View v) {
         if (info.anim != null) {
             info.anim.cancel();
@@ -138,9 +152,7 @@ public class TransparencyManager implements BroadcastSubReceiver {
 
         float a = 1;
 
-        if (info.tempDisable) {
-            info.tempDisable = false;
-        } else if (mIsKeyguardShowing) {
+        if (mIsKeyguardShowing) {
             a = info.keyguardAlpha;
         } else if (mIsHomeShowing) {
             a = info.homeAlpha;
@@ -193,20 +205,23 @@ public class TransparencyManager implements BroadcastSubReceiver {
         mIsHomeShowing = isLauncherShowing();
 
         ValueAnimator navAnim = null, sbAnim = null;
-        if (mNavbar != null) {
+        if ((mMode & MODE_NAVBAR) != 0 && mNavbar != null) {
             navAnim = createAnimation(mNavbarInfo, (View)mNavbar);
         }
-        if (mStatusbar != null) {
+        if ((mMode & MODE_STATUSBAR) != 0 && mStatusbar != null) {
             sbAnim = createAnimation(mStatusbarInfo, (View)mStatusbar);
         }
         if (navAnim != null && sbAnim != null) {
+            if (DEBUG) log("Updating transparency for statusbar & navbar");
             AnimatorSet set = new AnimatorSet();
             set.playTogether(navAnim, sbAnim);
             set.start();
         } else {
             if(navAnim != null) {
+                if (DEBUG) log("Updating transparency for navbar");
                 navAnim.start();
             } else if(sbAnim != null) {
+                if (DEBUG) log("Updating transparency for statusbar");
                 sbAnim.start();
             }
         }
