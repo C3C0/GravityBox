@@ -770,6 +770,24 @@ public class ModStatusbarColor {
                         }
                     }
 
+                    // Airplane mode icon
+                    try {
+                        ImageView airplaneModeIcon = Utils.hasGeminiSupport() ?
+                                (ImageView) XposedHelpers.getObjectField(param.thisObject, "mFlightMode") :
+                                    (ImageView) XposedHelpers.getObjectField(param.thisObject, "mAirplane");
+                        if (airplaneModeIcon != null) {
+                            Drawable d = airplaneModeIcon.getDrawable();
+                            if (mIconColorEnabled) {
+                                d = mIconManager.applyColorFilter(d);
+                            } else if (d != null) {
+                                d.setColorFilter(null);
+                            }
+                            airplaneModeIcon.setImageDrawable(d);
+                        }
+                    } catch (Throwable t) {
+                        log("Error setting airplane mode icon: " + t.getMessage());
+                    }
+
                     if (Utils.isMtkDevice() && mRoamingIndicatorsDisabled) {
                         ImageView mobileRoam;
                         mobileRoam = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileRoam");
