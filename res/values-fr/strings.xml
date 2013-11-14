@@ -786,10 +786,10 @@
     <string name="tm_mode_navbar">Barre de navigation</string>
     <string name="tm_mode_full">Les deux</string>
 
-+    <!-- Secondary signal icon color for MTK Dual SIMs -->
- +    <string name="pref_statusbar_icon_color_secondary_title">Couleur signal secondaire</string>
- +    <string name="pref_statusbar_icon_color_secondary_summary">Remplace l\'icône orange par défaut du signal</string>
- +    <string name="pref_statusbar_data_activity_color_secondary_title">Couleur activité de données secondaire</string>
- +    <string name="pref_statusbar_data_activity_color_secondary_summary">Définit la couleur des indicateurs d\'activité de données secondaire</string>
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">Couleur signal secondaire</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">Remplace l\'icône orange par défaut du signal</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">Couleur activité de données secondaire</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">Définit la couleur des indicateurs d\'activité de données secondaire</string>
 
 </resources>
