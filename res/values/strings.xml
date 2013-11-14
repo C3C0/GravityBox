@@ -786,4 +786,10 @@
     <string name="tm_mode_navbar">Navigation bar</string>
     <string name="tm_mode_full">Both</string>
 
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">Secondary signal color</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">Overrides stock orange signal icon</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">Secondary data activity color</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">Sets color for secondary data activity indicators</string>
+
 </resources>

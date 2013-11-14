@@ -763,4 +763,10 @@
     <string name="tm_mode_navbar">Navigační lišta</string>
     <string name="tm_mode_full">Stavový řádek i navigační lišta</string>
 
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">Barva sekundárního signálu</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">Nahradí původní oranžovou verzi ikony signálu</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">Sekundární indikátor datové aktivity</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">Nastaví barvu pro sekundární indikátor datové aktivity</string>
+
 </resources>

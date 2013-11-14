@@ -158,11 +158,23 @@ public class ModStatusbarColor {
                             GravityBoxSettings.EXTRA_SB_ICON_COLOR, mIconManager.getDefaultIconColor());
                     mIconManager.setIconColor(iconColor);
                     applyIconColors();
+                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR_SECONDARY)) {
+                    int iconColor = intent.getIntExtra(
+                            GravityBoxSettings.EXTRA_SB_ICON_COLOR_SECONDARY, 
+                            mIconManager.getDefaultIconColor());
+                    mIconManager.setIconColor(1, iconColor);
+                    applyIconColors();
                 } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR)) {
                     int daColor = intent.getIntExtra(
                             GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR, 
                             StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR);
                     mIconManager.setDataActivityColor(daColor);
+                    applyIconColors();
+                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR_SECONDARY)) {
+                    int daColor = intent.getIntExtra(
+                            GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR_SECONDARY, 
+                            StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR);
+                    mIconManager.setDataActivityColor(1, daColor);
                     applyIconColors();
                 } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR_ENABLE)) {
                     mIconColorEnabled = intent.getBooleanExtra(
@@ -495,8 +507,14 @@ public class ModStatusbarColor {
                     mIconManager.setIconColor(
                             prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR,
                                     mIconManager.getDefaultIconColor()));
+                    mIconManager.setIconColor(1,
+                            prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR_SECONDARY,
+                                    mIconManager.getDefaultIconColor()));
                     mIconManager.setDataActivityColor(
                             prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR, 
+                                    StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
+                    mIconManager.setDataActivityColor(1,
+                            prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR_SECONDARY, 
                                     StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
                     mIconManager.setFollowStockBatteryColor(prefs.getBoolean(
                             GravityBoxSettings.PREF_KEY_STATUSBAR_COLOR_FOLLOW_STOCK_BATTERY, false));
@@ -738,17 +756,17 @@ public class ModStatusbarColor {
                                 ImageView mobile = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileGemini");
                                 if (mobile != null) {
                                     int resId = (Integer) XposedHelpers.callMethod(mobileIconIdsGemini[0], "getIconId");
-                                    Drawable d = mIconManager.getMobileIcon(resId);
+                                    Drawable d = mIconManager.getMobileIcon(1, resId);
                                     if (d != null) mobile.setImageDrawable(d);
                                 }
-                                if (mIconManager.isMobileIconChangeAllowed()) {
+                                if (mIconManager.isMobileIconChangeAllowed(1)) {
                                     ImageView mobileActivity = 
                                             (ImageView) XposedHelpers.getObjectField(param.thisObject, "mMobileActivityGemini");
                                     if (mobileActivity != null) {
                                         try {
                                             int resId = (Integer) XposedHelpers.callMethod(mobileActivityIdGemini, "getIconId");
                                             Drawable d = res.getDrawable(resId).mutate();
-                                            d = mIconManager.applyDataActivityColorFilter(d);
+                                            d = mIconManager.applyDataActivityColorFilter(1, d);
                                             mobileActivity.setImageDrawable(d);
                                         } catch (Resources.NotFoundException e) { 
                                             mobileActivity.setImageDrawable(null);
@@ -759,7 +777,7 @@ public class ModStatusbarColor {
                                         try {
                                             int resId = (Integer) XposedHelpers.callMethod(mobileTypeIdGemini, "getIconId");
                                             Drawable d = res.getDrawable(resId).mutate();
-                                            d = mIconManager.applyColorFilter(d);
+                                            d = mIconManager.applyColorFilter(1, d);
                                             mobileType.setImageDrawable(d);
                                         } catch (Resources.NotFoundException e) { 
                                             mobileType.setImageDrawable(null);
@@ -771,7 +789,7 @@ public class ModStatusbarColor {
                                             try {
                                                 int resId = XposedHelpers.getIntField(param.thisObject, "mRoamingGeminiId");
                                                 Drawable d = res.getDrawable(resId).mutate();
-                                                d = mIconManager.applyColorFilter(d);
+                                                d = mIconManager.applyColorFilter(1, d);
                                                 mobileRoam.setImageDrawable(d);
                                             } catch (Resources.NotFoundException e) { 
                                                 mobileRoam.setImageDrawable(null);
