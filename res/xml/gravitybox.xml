@@ -596,22 +596,31 @@
             android:key="pref_cat_navbar_color"
             android:title="@string/pref_cat_navbar_color_title">
 
+            <CheckBoxPreference 
+                android:key="pref_navbar_color_enable"
+                android:title="@string/pref_navbar_color_enable_title"
+                android:summary="@string/pref_navbar_color_enable_summary"
+                android:defaultValue="false" />
+
             <net.margaritov.preference.colorpicker.ColorPickerPreference 
                 android:key="pref_navbar_key_color"
                 android:title="@string/pref_navbar_key_color_title"
                 android:defaultValue="@color/navbar_key_color"
+                android:dependency="pref_navbar_color_enable"
                 alphaSlider="true" />
 
             <net.margaritov.preference.colorpicker.ColorPickerPreference 
                 android:key="pref_navbar_key_glow_color"
                 android:title="@string/pref_navbar_key_glow_color_title"
                 android:defaultValue="@color/navbar_key_glow_color"
+                android:dependency="pref_navbar_color_enable"
                 alphaSlider="true" />
 
             <net.margaritov.preference.colorpicker.ColorPickerPreference 
                 android:key="pref_navbar_bg_color"
                 android:title="@string/pref_navbar_bg_color_title"
                 android:defaultValue="@color/navbar_bg_color"
+                android:dependency="pref_navbar_color_enable"
                 alphaSlider="false" />
 
         </PreferenceCategory>

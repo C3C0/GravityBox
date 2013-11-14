@@ -745,6 +745,8 @@
     <string name="pref_cat_navbar_dimen_title">Rozměry</string>
 
     <!-- Navigation bar colors -->
+    <string name="pref_navbar_color_enable_title">Povolit barvy</string>
+    <string name="pref_navbar_color_enable_summary">Může vyžadovat restart po deaktivaci</string>
     <string name="pref_navbar_key_color_title">Barva tlačítek</string>
     <string name="pref_navbar_key_glow_color_title">Efekt tlačítek</string>
     <string name="pref_navbar_bg_color_title">Barva pozadí lišty</string>

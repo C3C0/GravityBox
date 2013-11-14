@@ -61,12 +61,14 @@ public class ModNavigationBar {
     private static NavbarViewInfo[] mNavbarViewInfo = new NavbarViewInfo[2];
 
     // Colors
+    private static boolean mNavbarColorsEnabled;
     private static int mKeyDefaultColor = 0xe8ffffff;
     private static int mKeyDefaultGlowColor = 0x40ffffff;
     private static int mNavbarDefaultBgColor = 0xff000000;
     private static int mKeyColor;
     private static int mKeyGlowColor;
     private static int mNavbarBgColor;
+    private static Integer mNavbarBgColorOriginal;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -125,6 +127,12 @@ public class ModNavigationBar {
                             GravityBoxSettings.EXTRA_NAVBAR_BG_COLOR, mNavbarDefaultBgColor);
                     setNavbarBgColor();
                 }
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_NAVBAR_COLOR_ENABLE)) {
+                    mNavbarColorsEnabled = intent.getBooleanExtra(
+                            GravityBoxSettings.EXTRA_NAVBAR_COLOR_ENABLE, false);
+                    setNavbarBgColor();
+                    setKeyColor();
+                }
             } else if (intent.getAction().equals(
                     GravityBoxSettings.ACTION_PREF_HWKEY_RECENTS_SINGLETAP_CHANGED)) {
                 mRecentsSingletapAction = intent.getIntExtra(GravityBoxSettings.EXTRA_HWKEY_VALUE, 0);
@@ -178,6 +186,7 @@ public class ModNavigationBar {
                     mGbContext = context.createPackageContext(
                             GravityBox.PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY);
                     final Resources res = mGbContext.getResources();
+                    mNavbarColorsEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_NAVBAR_COLOR_ENABLE, false);
                     mKeyDefaultColor = res.getColor(R.color.navbar_key_color);
                     mKeyColor = prefs.getInt(GravityBoxSettings.PREF_KEY_NAVBAR_KEY_COLOR, mKeyDefaultColor);
                     mKeyDefaultGlowColor = res.getColor(R.color.navbar_key_glow_color);
@@ -313,10 +322,12 @@ public class ModNavigationBar {
                     int.class, boolean.class, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    final int navigationIconHints = XposedHelpers.getIntField(
-                            param.thisObject, "mNavigationIconHints");
-                    if ((Integer) param.args[0] != navigationIconHints || (Boolean)param.args[1]) {
-                        setKeyColor();
+                    if (mNavbarColorsEnabled) {
+                        final int navigationIconHints = XposedHelpers.getIntField(
+                                param.thisObject, "mNavigationIconHints");
+                        if ((Integer) param.args[0] != navigationIconHints || (Boolean)param.args[1]) {
+                            setKeyColor();
+                        }
                     }
                 }
             });
@@ -474,11 +485,19 @@ public class ModNavigationBar {
             for (int i = 0; i < childCount; i++) {
                 if (navButtons.getChildAt(i) instanceof ImageView) {
                     ImageView imgv = (ImageView)navButtons.getChildAt(i);
-                    imgv.setColorFilter(mKeyColor, PorterDuff.Mode.SRC_ATOP);
+                    if (mNavbarColorsEnabled) {
+                        imgv.setColorFilter(mKeyColor, PorterDuff.Mode.SRC_ATOP);
+                    } else {
+                        imgv.clearColorFilter();
+                    }
                     if (imgv.getClass().getName().equals(CLASS_KEY_BUTTON_VIEW)) {
                         Drawable d = (Drawable) XposedHelpers.getObjectField(imgv, "mGlowBG");
                         if (d != null) {
-                            d.setColorFilter(mKeyGlowColor, PorterDuff.Mode.SRC_ATOP);
+                            if (mNavbarColorsEnabled) {
+                                d.setColorFilter(mKeyGlowColor, PorterDuff.Mode.SRC_ATOP);
+                            } else {
+                                d.clearColorFilter();
+                            }
                         }
                     } else if (imgv instanceof KeyButtonView) {
                         ((KeyButtonView) imgv).setGlowColor(mKeyGlowColor);
@@ -492,19 +511,33 @@ public class ModNavigationBar {
 
     private static void setNavbarBgColor() {
         try {
-            if (Utils.isXperiaDevice()) {
-                if (!(mNavigationBarView.getBackground() instanceof ColorDrawable)) {
-                    ColorDrawable colorDrawable = new ColorDrawable(mNavbarBgColor);
-                    mNavigationBarView.setBackground(colorDrawable);
-                } else {
-                    ((ColorDrawable) mNavigationBarView.getBackground()).setColor(mNavbarBgColor);
+            if (!mNavbarColorsEnabled) {
+                if (mNavbarBgColorOriginal != null) {
+                    ColorDrawable cd = new ColorDrawable(mNavbarBgColorOriginal);
+                    mNavigationBarView.setBackground(cd);
+                    if (DEBUG) log("Restored navbar background original color");
                 }
             } else {
-                if (!(mNavigationBarView.getBackground() instanceof BackgroundAlphaColorDrawable)) {
-                    BackgroundAlphaColorDrawable colorDrawable = new BackgroundAlphaColorDrawable(mNavbarBgColor);
-                    mNavigationBarView.setBackground(colorDrawable);
+                if (mNavbarBgColorOriginal == null && 
+                        (mNavigationBarView.getBackground() instanceof ColorDrawable)) {
+                    mNavbarBgColorOriginal = 
+                            ((ColorDrawable) mNavigationBarView.getBackground()).getColor();
+                    if (DEBUG) log("Saved navbar background original color");
+                }
+                if (Utils.isXperiaDevice()) {
+                    if (!(mNavigationBarView.getBackground() instanceof ColorDrawable)) {
+                        ColorDrawable colorDrawable = new ColorDrawable(mNavbarBgColor);
+                        mNavigationBarView.setBackground(colorDrawable);
+                    } else {
+                        ((ColorDrawable) mNavigationBarView.getBackground()).setColor(mNavbarBgColor);
+                    }
                 } else {
-                    ((BackgroundAlphaColorDrawable) mNavigationBarView.getBackground()).setBgColor(mNavbarBgColor);
+                    if (!(mNavigationBarView.getBackground() instanceof BackgroundAlphaColorDrawable)) {
+                        BackgroundAlphaColorDrawable colorDrawable = new BackgroundAlphaColorDrawable(mNavbarBgColor);
+                        mNavigationBarView.setBackground(colorDrawable);
+                    } else {
+                        ((BackgroundAlphaColorDrawable) mNavigationBarView.getBackground()).setBgColor(mNavbarBgColor);
+                    }
                 }
             }
         } catch (Throwable t) {
