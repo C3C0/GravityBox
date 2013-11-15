@@ -739,6 +739,8 @@
     <string name="pref_cat_navbar_dimen_title">Rozmery</string>
 
     <!-- Navigation bar colors -->
+    <string name="pref_navbar_color_enable_title">Povoliť farby</string>
+    <string name="pref_navbar_color_enable_summary">Môže vyžadovať reštart po deaktivácii</string>
     <string name="pref_navbar_key_color_title">Farba tlačidiel</string>
     <string name="pref_navbar_key_glow_color_title">Efekt tlačidiel</string>
     <string name="pref_navbar_bg_color_title">Farba pozadia lišty</string>
@@ -754,5 +756,11 @@
     <string name="tm_mode_statusbar">Stavový riadok</string>
     <string name="tm_mode_navbar">Navigačná lišta</string>
     <string name="tm_mode_full">Stavový riadok aj navigačná lišta</string>
+
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">Farba sekundárneho signálu</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">Nahradí pôvodnú oranžovú verziu ikony signálu</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">Sekundárny indikátor dátovej aktivity</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">Nastaví farbu pre sekundárny indikátor dátovej aktivity</string>
 
 </resources>

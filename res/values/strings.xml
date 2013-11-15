@@ -768,6 +768,8 @@
     <string name="pref_cat_navbar_dimen_title">Dimensions</string>
 
     <!-- Navigation bar colors -->
+    <string name="pref_navbar_color_enable_title">Enable navbar colors</string>
+    <string name="pref_navbar_color_enable_summary">May require reboot after disabling</string>
     <string name="pref_navbar_key_color_title">Navigation key color</string>
     <string name="pref_navbar_key_glow_color_title">Navigation key glow color</string>
     <string name="pref_navbar_bg_color_title">Navigation bar background color</string>
@@ -783,5 +785,11 @@
     <string name="tm_mode_statusbar">Statusbar</string>
     <string name="tm_mode_navbar">Navigation bar</string>
     <string name="tm_mode_full">Both</string>
+
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">Secondary signal color</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">Overrides stock orange signal icon</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">Secondary data activity color</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">Sets color for secondary data activity indicators</string>
 
 </resources>

@@ -464,10 +464,11 @@
     
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Gestion de la transparence</string>
-    <string name="pref_tm_statusbar_launcher_title">Barre d\'état : lanceur</string>
-    <string name="pref_tm_statusbar_lockscreen_title">Barre d\'état : écran de déverrouillage</string>
-    <string name="pref_tm_navbar_launcher_title">Transparence pour le lanceur</string>
-    <string name="pref_tm_navbar_lockscreen_title">Transparence pour l\'écran de déverrouillage</string>
+    <string name="pref_cat_transparency_manager_summary">Gère la transparence de la barre d\'état et de la barre de navigation</string>
+    <string name="pref_tm_statusbar_launcher_title">Barre d\'état du lanceur</string>
+    <string name="pref_tm_statusbar_lockscreen_title">Barre d\'état de l\'écran de déverrouillage</string>
+    <string name="pref_tm_navbar_launcher_title">Barre de navigation du lanceur</string>
+    <string name="pref_tm_navbar_lockscreen_title">Barre de navigation de l\'écran de déverrouillage</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Masquer l\'icône de l\'alarme</string>
@@ -763,10 +764,12 @@
     <!-- Navbar tweaks categories -->
     <string name="pref_cat_navbar_general_title">Général</string>
     <string name="pref_cat_navbar_keys_title">Touche de navigation</string>
-    <string name="pref_cat_navbar_color_title">Couleur et transparence</string>
+    <string name="pref_cat_navbar_color_title">Couleurs</string>
     <string name="pref_cat_navbar_dimen_title">Dimensions</string>
 
     <!-- Navigation bar colors -->
+    <string name="pref_navbar_color_enable_title">Activer les couleurs barre de navigation</string>
+    <string name="pref_navbar_color_enable_summary">Peut nécessiter un redémarrage après désactivation</string>
     <string name="pref_navbar_key_color_title">Couleur touche de navigation</string>
     <string name="pref_navbar_key_glow_color_title">Couleur brillance touche de navigation</string>
     <string name="pref_navbar_bg_color_title">Couleur de fond barre de navigation</string>
@@ -775,4 +778,18 @@
     <string name="pref_lockscreen_shade_disable_title">Désactiver le voile sur écran de déverrouillage</string>
     <string name="pref_lockscreen_shade_disable_summary">Supprime la tinte sombre de l\'écran de déverrouillage</string>
  
+    <!-- Transparency manager mode -->
+    <string name="pref_tm_mode_title">Mode de gestion de la transparence</string>
+    <string name="pref_tm_mode_summary">Nécessite un redémarrage</string>
+    <string name="tm_mode_disabled">Désactivé</string>
+    <string name="tm_mode_statusbar">Barre d\'état</string>
+    <string name="tm_mode_navbar">Barre de navigation</string>
+    <string name="tm_mode_full">Les deux</string>
+
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">Couleur signal secondaire</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">Remplace l\'icône orange par défaut du signal</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">Couleur activité de données secondaire</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">Définit la couleur des indicateurs d\'activité de données secondaire</string>
+
 </resources>
