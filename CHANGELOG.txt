@@ -26,6 +26,7 @@ Changelog 2.7.2 - 15/11/2013
 - Updated Ukrainian translations (thanks to egor4yk90)
 - Updated French translation (thanks to ch-vox)
 - Updated Japanese translations (thanks to WedyDQ10)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
 
 Changelog 2.7.1 - 12/11/2013
 --------------------------------------
