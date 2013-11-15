@@ -96,7 +96,8 @@ public class ModLockscreen {
     private static final List<String> CLOCK_WIDGETS = new ArrayList<String>(Arrays.asList(
             "com.android.deskclock",
             "com.dvtonder.chronus",
-            "net.nurik.roman.dashclock"
+            "net.nurik.roman.dashclock",
+            "com.roymam.android.notificationswidget"
     ));
 
     private static XSharedPreferences mPrefs;
