@@ -770,7 +770,7 @@
     <!-- Navigation bar colors -->
     <string name="pref_navbar_color_enable_title">Включить цвета панели навигации</string>
     <string name="pref_navbar_color_enable_summary">Может потребоваться перезагрузка после отключения</string>
-    <string name="pref_navbar_key_color_title">Цыет кнопок навигации</string>
+    <string name="pref_navbar_key_color_title">Цвет кнопок навигации</string>
     <string name="pref_navbar_key_glow_color_title">Цвет тени кнопок навигации</string>
     <string name="pref_navbar_bg_color_title">Цвет фона панели навигации</string>
 
@@ -788,7 +788,7 @@
 
     <!-- Secondary signal icon color for MTK Dual SIMs -->
     <string name="pref_statusbar_icon_color_secondary_title">Цвет вторичного значка сигнала</string>
-    <string name="pref_statusbar_icon_color_secondary_summary">Заменяет станлартный оранжевый цвет значка</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">Заменяет стандартный оранжевый цвет значка</string>
     <string name="pref_statusbar_data_activity_color_secondary_title">Цвет активности данных</string>
     <string name="pref_statusbar_data_activity_color_secondary_summary">Задает увет для индикатора активности данных</string>
     
