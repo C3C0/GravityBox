@@ -464,6 +464,7 @@
 
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Управление прозрачностью</string>
+    <string name="pref_cat_transparency_manager_summary">Управляет прозрачностью статусбара и панели навигации</string>
     <string name="pref_tm_statusbar_launcher_title">Статусбар для ланчера</string>
     <string name="pref_tm_statusbar_lockscreen_title">Статусбара для экрана блокировки</string>
     <string name="pref_tm_navbar_launcher_title">Панель навиг. для ланчера</string>
@@ -767,12 +768,28 @@
     <string name="pref_cat_navbar_dimen_title">Размеры</string>
 
     <!-- Navigation bar colors -->
-    <string name="pref_navbar_key_color_title">Цыет кнопок навигации</string>
+    <string name="pref_navbar_color_enable_title">Включить цвета панели навигации</string>
+    <string name="pref_navbar_color_enable_summary">Может потребоваться перезагрузка после отключения</string>
+    <string name="pref_navbar_key_color_title">Цвет кнопок навигации</string>
     <string name="pref_navbar_key_glow_color_title">Цвет тени кнопок навигации</string>
     <string name="pref_navbar_bg_color_title">Цвет фона панели навигации</string>
 
     <!-- Disable lockscreen shade -->
     <string name="pref_lockscreen_shade_disable_title">Отключить тень экрана блокировки</string>
     <string name="pref_lockscreen_shade_disable_summary">Удаляет темный оттенок с экрана блокировки</string>
+    
+     <!-- Transparency manager mode -->
+    <string name="pref_tm_mode_title">Режим настройки прозрачности</string>
+    <string name="pref_tm_mode_summary">Необходима перезагрузка</string>
+    <string name="tm_mode_disabled">Отключено</string>
+    <string name="tm_mode_statusbar">Статусбар</string>
+    <string name="tm_mode_navbar">Панель навигации</string>
+    <string name="tm_mode_full">Оба</string>
+
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">Цвет вторичного значка сигнала</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">Заменяет стандартный оранжевый цвет значка</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">Цвет активности данных</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">Задает увет для индикатора активности данных</string>
     
 </resources>
