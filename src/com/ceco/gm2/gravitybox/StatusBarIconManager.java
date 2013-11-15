@@ -130,9 +130,9 @@ public class StatusBarIconManager {
         tmpMap = new HashMap<String, Integer>();
         tmpMap.put("stat_sys_data_bluetooth", R.drawable.stat_sys_data_bluetooth);
         tmpMap.put("stat_sys_data_bluetooth_connected", R.drawable.stat_sys_data_bluetooth_connected);
-        tmpMap.put("stat_sys_alarm", null);
-        tmpMap.put("stat_sys_ringer_vibrate", null);
-        tmpMap.put("stat_sys_ringer_silent", null);
+        tmpMap.put("stat_sys_alarm", R.drawable.stat_sys_alarm);
+        tmpMap.put("stat_sys_ringer_vibrate", R.drawable.stat_sys_ringer_vibrate);
+        tmpMap.put("stat_sys_ringer_silent", R.drawable.stat_sys_ringer_silent);
         tmpMap.put("stat_sys_headset_with_mic", null);
         tmpMap.put("stat_sys_headset_without_mic", null);
         mBasicIconIds = Collections.unmodifiableMap(tmpMap);
