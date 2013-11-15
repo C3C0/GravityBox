@@ -268,7 +268,7 @@ public class ModStatusbarColor {
     
                 XposedHelpers.findAndHookMethod(phoneWindowManagerClass, "layoutWindowLw",
                         CLASS_POLICY_WINDOW_STATE, WindowManager.LayoutParams.class, 
-                        CLASS_POLICY_WINDOW_STATE, new XC_MethodHook() {
+                        CLASS_POLICY_WINDOW_STATE, new XC_MethodHook(XC_MethodHook.PRIORITY_LOWEST) {
                     @Override
                     protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                         final boolean isDefaultDisplay = Build.VERSION.SDK_INT > 16 ?
@@ -276,38 +276,34 @@ public class ModStatusbarColor {
                         if (!isNavbarTransparencyEnabled() || !isDefaultDisplay) return; 
     
                         final WindowManager.LayoutParams attrs = (WindowManager.LayoutParams) param.args[1];
-                        final int fl = attrs.flags;
-                        final int sysUiFl = (Integer) XposedHelpers.callMethod(param.args[0], "getSystemUiVisibility");
-                        final Rect pf = (Rect) XposedHelpers.getObjectField(param.thisObject, "mTmpParentFrame");
-                        final Rect df = (Rect) XposedHelpers.getObjectField(param.thisObject, "mTmpDisplayFrame");
-                        final Rect cf = (Rect) XposedHelpers.getObjectField(param.thisObject, "mTmpContentFrame");
-                        final Rect vf = (Rect) XposedHelpers.getObjectField(param.thisObject, "mTmpVisibleFrame");
-                        final Rect of = Build.VERSION.SDK_INT > 17 ?
+                        if (attrs.type == WindowManager.LayoutParams.TYPE_WALLPAPER) {
+                            final int fl = attrs.flags;
+                            final int sysUiFl = (Integer) XposedHelpers.callMethod(param.args[0], "getSystemUiVisibility");
+                            final Rect pf = (Rect) XposedHelpers.getObjectField(param.thisObject, "mTmpParentFrame");
+                            final Rect df = (Rect) XposedHelpers.getObjectField(param.thisObject, "mTmpDisplayFrame");
+                            final Rect cf = (Rect) XposedHelpers.getObjectField(param.thisObject, "mTmpContentFrame");
+                            final Rect vf = (Rect) XposedHelpers.getObjectField(param.thisObject, "mTmpVisibleFrame");
+                            final Rect of = Build.VERSION.SDK_INT > 17 ?
                                 (Rect) XposedHelpers.getObjectField(param.thisObject, "mTmpOverscanFrame") : null;
-    
-                        if ((fl & WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN) != 0 || (sysUiFl
-                                    & (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                               | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)) != 0) {
-                            if (attrs.type == WindowManager.LayoutParams.TYPE_WALLPAPER) {
-                                pf.top = df.top = cf.top = Build.VERSION.SDK_INT > 17 ?
-                                        XposedHelpers.getIntField(param.thisObject, "mOverscanScreenTop") :
-                                        XposedHelpers.getIntField(param.thisObject, "mUnrestrictedScreenTop");
-                                pf.bottom = df.bottom = cf.bottom = pf.top + Build.VERSION.SDK_INT > 17 ? 
-                                        XposedHelpers.getIntField(param.thisObject, "mOverscanScreenHeight") :
-                                        XposedHelpers.getIntField(param.thisObject, "mUnrestrictedScreenHeight");
-                                if (Build.VERSION.SDK_INT > 17) {
-                                    of.set(pf);
-                                }
-                                XposedHelpers.callMethod(param.thisObject, "applyStableConstraints",
-                                        sysUiFl, fl, cf);
-                                vf.set(cf);
-                                if (Build.VERSION.SDK_INT > 17) {
-                                    XposedHelpers.callMethod(param.args[0], "computeFrameLw", pf, df, of, cf, vf);
-                                } else {
-                                    XposedHelpers.callMethod(param.args[0], "computeFrameLw", pf, df, cf, vf);
-                                }
-                                if (DEBUG) log("layoutWindowLw recomputing frame");
+
+                            pf.top = df.top = cf.top = vf.top = 
+                                    XposedHelpers.getIntField(param.thisObject, "mUnrestrictedScreenTop");
+                            pf.bottom = df.bottom = cf.bottom = vf.bottom = pf.top + 
+                                    XposedHelpers.getIntField(param.thisObject, "mUnrestrictedScreenHeight");
+
+                            if (Build.VERSION.SDK_INT > 17) {
+                                of.set(pf);
                             }
+
+                            XposedHelpers.callMethod(param.thisObject, "applyStableConstraints",
+                                    sysUiFl, fl, cf);
+                            if (Build.VERSION.SDK_INT > 17) {
+                                XposedHelpers.callMethod(param.args[0], "computeFrameLw", pf, df, of, cf, vf);
+                            } else {
+                                XposedHelpers.callMethod(param.args[0], "computeFrameLw", pf, df, cf, vf);
+                            }
+
+                            if (DEBUG) log("layoutWindowLw recomputing frame");
                         }
                     }
                 });
