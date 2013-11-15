@@ -1,3 +1,32 @@
+Changelog 2.7.2 - 15/11/2013
+--------------------------------------
+- Statusbar icon coloring improvements:
+--- added original signal icons from KitKat
+--- added "partially-connected" state signal icons created from original KK icons
+--- added xxhdpi high-res signal icons
+--- fixed bluetooth icon shape
+--- added support for coloring airplane mode icon
+--- added option for secondary signal icon color that overrides default MTK orange icon (MTK Dual SIMs only)
+--- added option for secondary data activity color (MTK Dual SIMs only)
+- Transparency management improvements
+--- improved compatibility with Xperia devices
+--- statusbar and navbar settings grouped and moved to the root of the settings hierarchy
+--- navbar transparency settings made independent of navbar tweaks
+--- option to set transparency manager mode:
+------ disabled - completely disables transparency related functions
+------ statusbar - applies transparency to statusbar only
+------ navigation bar - applies transparency to navbar only
+------ both - applies transparency to both
+--- improved navbar transparency handling (theoretically, may improve compatibility with Android 4.3)
+- Option for enabling/disabling navigation bar colors
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Indonesian translations (thanks to awaaas)
+- Updated Italian translations (thanks to pitone02)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Ukrainian translations (thanks to egor4yk90)
+- Updated French translation (thanks to ch-vox)
+- Updated Japanese translations (thanks to WedyDQ10)
+
 Changelog 2.7.1 - 12/11/2013
 --------------------------------------
 - Fixed wallpaper scrolling when navbar transparency is on
