@@ -753,6 +753,8 @@
     <string name="pref_cat_navbar_dimen_title">サイズ</string>
     
     <!-- Navigation bar color -->
+    <string name="pref_navbar_color_enable_title">ナビバーの色を有効化</string>
+    <string name="pref_navbar_color_enable_summary">無効化後は再起動が必要です。</string>
     <string name="pref_navbar_key_color_title">ナビキーの色</string>
     <string name="pref_navbar_key_glow_color_title">ナビキーのグロー色</string>
     <string name="pref_navbar_bg_color_title">ナビバーの背景色</string>
@@ -760,5 +762,19 @@
     <!-- Disable lockscreen shade -->
     <string name="pref_lockscreen_shade_disable_title">ロック画面シェードを無効化</string>
     <string name="pref_lockscreen_shade_disable_summary">ロック画面のシェードをなくします。</string>
+    
+    <!-- Transparency manager mode -->
+    <string name="pref_tm_mode_title">透過処理モード</string>
+    <string name="pref_tm_mode_summary">再起動が必要です。</string>
+    <string name="tm_mode_disabled">無効</string>
+    <string name="tm_mode_statusbar">ステータスバー</string>
+    <string name="tm_mode_navbar">ナビバー</string>
+    <string name="tm_mode_full">両方</string>
+
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">セカンダリ電波アイコン色</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">オレンジの電波アイコンを上書きします。</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">セカンダリデータ通信色</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">セカンダリデータ通信アクティビティの色を設定します。</string>
     
 </resources>
