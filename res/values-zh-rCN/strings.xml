@@ -60,7 +60,7 @@
     <string name="fix_datetime_crash_summary">当您进入日期与时间设置发生错误时，启用这个选项（需要重新启动）</string>
 
     <string name="fix_caller_id_phone_title">修正通话的来电显示</string>
-    <string name="fix_caller_id_phone_summary">若您来电画面上显示的联系人与您的通讯录不合，启用这个选项（需要重新启动）</string>
+    <string name="fix_caller_id_phone_summary">若您来电画面上显示的联系人与您的通讯录不符，启用这个选项（需要重新启动）</string>
     <string name="fix_caller_id_phone_alert">为了让更改生效，您应该在重新启动后清除并重新添加所有联系人（使用 设置/应用程序/全部，找到“联系人存储”，清除数据）</string>
 
     <string name="fix_caller_id_mms_title">修正短信的来电显示</string>
@@ -96,7 +96,7 @@
     <string name="quick_settings_wifi">Wi-Fi</string>
     <string name="quick_settings_wifi_off">Wi-Fi 关闭</string>
     <string name="quick_settings_wifi_not_connected">未连接</string>
-    <string name="quick_settings_wifi_turning_on">正在打开…</string>
+    <string name="quick_settings_wifi_turning_on">正在打开&#8230;</string>
 
     <!--  QuickSettings settings -->
     <string name="quick_settings_title">状态栏快速设置</string>
@@ -150,7 +150,7 @@
     <string name="pref_cat_misc_title">杂项调整</string>
     <string name="pref_cat_misc_summary">包含所有不属于特定类别的调整选项</string>
     <string name="pref_cat_fixes_title">通用修正</string>
-    <string name="pref_cat_fixes_summary">包含MTK6589的通用修正，请只在有需要时使用</string>
+    <string name="pref_cat_fixes_summary">包含MTK6589的通用修正，请在有需要时使用</string>
 
     <!-- About -->
     <string name="pref_cat_about_title">关于</string>
@@ -184,7 +184,7 @@
     <string name="pref_lockscreen_background_title">背景风格</string>
     <string name="lockscreen_bg_default">默认壁纸</string>
     <string name="lockscreen_bg_color">纯色</string>
-    <string name="lockscreen_bg_image">自定义图案</string>
+    <string name="lockscreen_bg_image">自定义图像</string>
     <string name="pref_lockscreen_bg_color_title">设置自定义颜色</string>
     <string name="pref_lockscreen_bg_color_summary">可以为锁屏画面设置自定义的背景颜色</string>
     <string name="pref_lockscreen_bg_image_title">设置自定义图像</string>
@@ -237,7 +237,7 @@
     <string name="pref_lockscreen_menu_key_summary">使菜单键在锁定画面时可以用来快速地解锁装置（需要重新启动）</string>
 
     <!-- Fix messaging wakelock -->
-    <string name="pref_mms_fix_wakelock_title">修正短信的唤醒锁</string>
+    <string name="pref_mms_fix_wakelock_title">修正短信唤醒锁</string>
     <string name="pref_mms_fix_wakelock_summary">避免在收到新短信时唤醒屏幕（需要重新启动）</string>
 
     <!-- Statusbar center clock -->
@@ -275,7 +275,7 @@
     <string name="pref_hwkey_kill_delay_summary">适用于“结束正在使用的应用程序”动作，定义按键需要按下持续多久才会触发动作</string>
     <string name="pref_hwkey_doubletap_speed_title">双击速度</string>
     <string name="pref_hwkey_doubletap_speed_summary">适用于菜单键的双击动作，定义按键需要在多少时间内连续按两下才会触发动作</string>
-    <string name="app_killed">%s 应用程序程序已结束</string>
+    <string name="app_killed">%s应用程序程序已结束</string>
     <string name="nothing_to_kill">无应用程序可结束</string>
     <string name="no_previous_app_found">找不到上一个应用程序</string>
 
@@ -404,9 +404,9 @@
     <string name="pref_holo_bg_dither_title">优化Holo背景</string>
     <string name="pref_holo_bg_dither_summary">使用优化过的Holo背景以消除色带（需要重新启动）</string>
 
-    <!-- Disable hardware keys for pie -->
+    <!-- Disable navigation keys for pie -->
     <string name="pref_hwkeys_disable_title">禁用实体按键</string>
-    <string name="pref_hwkeys_disable_summary">当虚拟键启用时将会禁用菜单键、返回键与主页键功能，但是实体按键功能仍可使用（对于实体按键的设备）</string>
+    <string name="pref_hwkeys_disable_summary">当Pie Controls虚拟键启用时将会禁用实体按键功能（对于有实体按键的设备）</string>
 
     <!-- Option for GB dark theme -->
     <string name="pref_gb_theme_dark_title">使用Holo黑色背景主题</string>
@@ -464,6 +464,7 @@
 
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">透明度调整</string>
+	<string name="pref_cat_transparency_manager_summary">管理状态栏和虚拟键透明度</string>
     <string name="pref_tm_statusbar_launcher_title">启动器下的状态栏透明度</string>
     <string name="pref_tm_statusbar_lockscreen_title">锁屏画面时的状态栏透明度</string>
     <string name="pref_tm_navbar_launcher_title">启动器下的虚拟键透明度</string>
@@ -505,7 +506,7 @@
 
     <!-- GravityBox settings startup handling -->
     <string name="gb_startup_progress">等待GravityBox系统框架的响应&#8230;</string>
-    <string name="gb_startup_error">GravityBoy系统框架未响应  退出中...</string>
+    <string name="gb_startup_error">GravityBoy系统框架未响应  退出中&#8230;</string>
 
     <!-- National data roaming -->
     <string name="pref_national_roaming_title">国内数据漫游</string>
@@ -533,7 +534,7 @@
 
     <!-- Navigation bar tweaks category -->
     <string name="pref_cat_navigation_bar_title">虚拟键调整</string>
-    <string name="pref_cat_navigation_bar_summary">包含各种关于虚拟键的调整</string>
+    <string name="pref_cat_navigation_bar_summary">包含各种关于虚拟键的调整选项</string>
     <string name="pref_navbar_override_title">覆盖系统默认值</string>
     <string name="pref_navbar_override_summary">虚拟键调整的总开关（需要重新启动）</string>
     <string name="pref_navbar_enable_title">启用虚拟键</string>
@@ -629,14 +630,14 @@
     <string name="pref_qs_tile_order_summary">允许快速设置方块重新排序</string>
 
     <!-- Ongoing notifications -->
-    <string name="pref_ongoing_notifications_title">进行中通知阻拦器</string>
-    <string name="pref_ongoing_notifications_summary">允许阻拦选定的进行中通知</string>
+    <string name="pref_ongoing_notifications_title">进行中通拦截器</string>
+    <string name="pref_ongoing_notifications_summary">允许拦截选定进行中的通知</string>
     <string name="ongoing_notif_info">在每个进行中通知发生时，此列表会被填充
-        您可以决定在下次发生时是否阻拦进行中通知。小心使用</string>
+        您可以决定在下次发生时是否拦截进行中的通知。请小心使用</string>
     <string name="ongoing_notif_reset_list">重置列表</string>
     <string name="ongoing_notif_reset_alert">是否确实要重置列表？
         这将清空当前列表，并且解除所有之前被阻拦的进行中通知</string>
-    <string name="ongoing_notif_list_empty">(列表为空)</string>
+    <string name="ongoing_notif_list_empty">（列表为空）</string>
 
     <!-- Quick unlock -->
     <string name="pref_lockscreen_quick_unlock_title">快速解锁</string>
@@ -679,7 +680,7 @@
     <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
     <string name="service_background_processes">空闲:<xliff:g id="memory">%1$s</xliff:g></string>
     <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
-    <string name="service_foreground_processes">已用:<xliff:g id="memory">%1$s</xliff:g></string>
+    <string name="service_foreground_processes">可用:<xliff:g id="memory">%1$s</xliff:g></string>
     <string name="pref_rambar_title">最近任务内存栏</string>
     <string name="rambar_off">关闭</string>
     <string name="rambar_top">置顶</string>
@@ -767,12 +768,28 @@
     <string name="pref_cat_navbar_dimen_title">大小</string>
     
     <!-- Navigation bar colors -->
+	<string name="pref_navbar_color_enable_title">启用虚拟按键颜色</string>
+    <string name="pref_navbar_color_enable_summary">停用后可能需要重启</string>
     <string name="pref_navbar_key_color_title">虚拟按键颜色</string>
     <string name="pref_navbar_key_glow_color_title">虚拟按键发光颜色</string>
     <string name="pref_navbar_bg_color_title">虚拟按键背景颜色</string>
     
     <!-- Disable lockscreen shade -->
     <string name="pref_lockscreen_shade_disable_title">禁用锁屏阴影</string>
-    <string name="pref_lockscreen_shade_disable_summary">锁屏后删除暗色调</string>
+    <string name="pref_lockscreen_shade_disable_summary">锁屏后移除暗色调</string>
+	
+	<!-- Transparency manager mode -->
+    <string name="pref_tm_mode_title">透明度管理模式</string>
+    <string name="pref_tm_mode_summary">需要重新启动</string>
+    <string name="tm_mode_disabled">禁用</string>
+    <string name="tm_mode_statusbar">状态栏</string>
+    <string name="tm_mode_navbar">虚拟按键</string>
+    <string name="tm_mode_full">两者</string>
+
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">第二个信号颜色</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">覆盖原厂橙色信号图标</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">第二个数据活动颜色</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">设置为辅助数据活动的指示颜色</string>
 
 </resources>
