@@ -89,6 +89,7 @@ public class ModStatusbarColor {
     private static Unhook mDisplayContentHook;
     private static Object mPhoneWindowManager;
     private static Object mPhoneStatusBar;
+    private static boolean mWifiIconLayoutUpdated;
 
     static {
         mIconColorEnabled = false;
@@ -96,6 +97,7 @@ public class ModStatusbarColor {
         mBatteryLevel = 0;
         mBatteryPlugged = false;
         mRoamingIndicatorsDisabled = false;
+        mWifiIconLayoutUpdated = false;
     }
 
     private static void log(String message) {
@@ -670,6 +672,13 @@ public class ModStatusbarColor {
                                 mIconManager.getSignalIconMode() != StatusBarIconManager.SI_MODE_DISABLED) {
                             ImageView wifiIcon = (ImageView) XposedHelpers.getObjectField(param.thisObject, "mWifi");
                             if (wifiIcon != null) {
+                                if (!mWifiIconLayoutUpdated) {
+                                    final int pTop = 
+                                        Math.round(wifiIcon.getContext().getResources().getDisplayMetrics().density * 1);
+                                    wifiIcon.setPadding(wifiIcon.getPaddingLeft(), pTop, wifiIcon.getPaddingRight(),
+                                            wifiIcon.getPaddingBottom());
+                                    mWifiIconLayoutUpdated = true;
+                                }
                                 int resId = XposedHelpers.getIntField(param.thisObject, "mWifiStrengthId");
                                 Drawable d = mIconManager.getWifiIcon(resId);
                                 if (d != null) wifiIcon.setImageDrawable(d);

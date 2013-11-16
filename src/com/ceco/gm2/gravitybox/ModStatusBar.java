@@ -382,6 +382,24 @@ public class ModStatusBar {
                     updateTrafficMeterPosition();
                     mTrafficMeter.setTrafficMeterEnabled(prefs.getBoolean(
                             GravityBoxSettings.PREF_KEY_DATA_TRAFFIC_ENABLE, false));
+
+                    // MTK Dual SIMs: reduce space between wifi and signal icons
+                    if (Utils.hasGeminiSupport()) {
+                        final int scvResId = liparam.res.getIdentifier("signal_cluster", "id", PACKAGE_NAME);
+                        if (scvResId != 0) {
+                            final View scView = liparam.view.findViewById(scvResId);
+                            if (scView != null) {
+                                final int spacerResId = liparam.res.getIdentifier("spacer", "id", PACKAGE_NAME);
+                                final View spacer = scView.findViewById(spacerResId);
+                                if (spacer != null &&
+                                        (spacer.getLayoutParams() instanceof LinearLayout.LayoutParams)) {
+                                    final int spacerSize = (int) spacer.getContext()
+                                            .getResources().getDisplayMetrics().density * 6;
+                                    spacer.setLayoutParams(new LinearLayout.LayoutParams(size, size));
+                                }
+                            }
+                        }
+                    }
                 }
             });
         } catch (Throwable t) {
