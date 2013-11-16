@@ -869,12 +869,17 @@ public class ModStatusbarColor {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     if (mIconColorEnabled && mIconManager != null) {
-                        final int iconId = XposedHelpers.getIntField(param.args[0], "iconId");
-                        Drawable d = mIconManager.getBasicIcon(iconId);
-                        if (d != null) {
-                            ((ImageView)param.thisObject).setTag("GBColoredView");
-                            param.setResult(d);
-                            return;
+                        final String iconPackage = 
+                                (String) XposedHelpers.getObjectField(param.args[0], "iconPackage");
+                        if (DEBUG) log("statusbarIconView.getIcon: iconPackage=" + iconPackage);
+                        if (iconPackage == null || iconPackage.equals(PACKAGE_NAME)) {
+                            final int iconId = XposedHelpers.getIntField(param.args[0], "iconId");
+                            Drawable d = mIconManager.getBasicIcon(iconId);
+                            if (d != null) {
+                                ((ImageView)param.thisObject).setTag("GBColoredView");
+                                param.setResult(d);
+                                return;
+                            }
                         }
                     }
                 }
@@ -975,11 +980,15 @@ public class ModStatusbarColor {
                     } else if (mIconColorEnabled) {
                         final Object sbIcon = XposedHelpers.getObjectField(v, "mIcon");
                         if (sbIcon != null) {
-                            final int resId = XposedHelpers.getIntField(sbIcon, "iconId");
-                            Drawable d = mIconManager.getBasicIcon(resId);
-                            if (d != null) {
-                                v.setImageDrawable(d);
-                                v.setTag("GBColoredView");
+                            final String iconPackage =
+                                    (String) XposedHelpers.getObjectField(sbIcon, "iconPackage");
+                            if (iconPackage == null || iconPackage.equals(PACKAGE_NAME)) {
+                                final int resId = XposedHelpers.getIntField(sbIcon, "iconId");
+                                Drawable d = mIconManager.getBasicIcon(resId);
+                                if (d != null) {
+                                    v.setImageDrawable(d);
+                                    v.setTag("GBColoredView");
+                                }
                             }
                         }
                     }
