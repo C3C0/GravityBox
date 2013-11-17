@@ -78,7 +78,7 @@ public class ModStatusBar {
     private static ViewGroup mIconArea;
     private static ViewGroup mRootView;
     private static LinearLayout mLayoutClock;
-    private static TextView mClock;
+    private static StatusbarClock mClock;
     private static TextView mClockExpanded;
     private static Object mPhoneStatusBar;
     private static Object mStatusBarView;
@@ -87,7 +87,6 @@ public class ModStatusBar {
     private static int mAnimPushDownIn;
     private static int mAnimFadeIn;
     private static boolean mClockCentered = false;
-    private static int mClockOriginalPaddingLeft;
     private static int mClockShowDow = GravityBoxSettings.DOW_DISABLED;
     private static boolean mAmPmHide = false;
     private static boolean mClockHide = false;
@@ -129,13 +128,13 @@ public class ModStatusBar {
                     mClockShowDow = intent.getIntExtra(GravityBoxSettings.EXTRA_CLOCK_DOW,
                             GravityBoxSettings.DOW_DISABLED);
                     if (mClock != null) {
-                        XposedHelpers.callMethod(mClock, "updateClock");
+                        XposedHelpers.callMethod(mClock.getView(), "updateClock");
                     }
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_AMPM_HIDE)) {
                     mAmPmHide = intent.getBooleanExtra(GravityBoxSettings.EXTRA_AMPM_HIDE, false);
                     if (mClock != null) {
-                        XposedHelpers.callMethod(mClock, "updateClock");
+                        XposedHelpers.callMethod(mClock.getView(), "updateClock");
                     }
                     if (mClockExpanded != null) {
                         XposedHelpers.callMethod(mClockExpanded, "updateClock");
@@ -144,7 +143,7 @@ public class ModStatusBar {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_CLOCK_HIDE)) {
                     mClockHide = intent.getBooleanExtra(GravityBoxSettings.EXTRA_CLOCK_HIDE, false);
                     if (mClock != null) {
-                        mClock.setVisibility(mClockHide ? View.GONE : View.VISIBLE);
+                        mClock.getView().setVisibility(mClockHide ? View.GONE : View.VISIBLE);
                     }
                 }
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_CLOCK_LINK)) {
@@ -253,21 +252,21 @@ public class ModStatusBar {
                                     "status_bar_contents", "id", PACKAGE_NAME)) : mIconArea;
 
                     // find statusbar clock
-                    mClock = (TextView) mIconArea.findViewById(
+                    TextView clock = (TextView) mIconArea.findViewById(
                             liparam.res.getIdentifier("clock", "id", PACKAGE_NAME));
                     // the second attempt
-                    if (mClock == null) {
-                        mClock = (TextView) mSbContents.findViewById(
+                    if (clock == null) {
+                        clock = (TextView) mSbContents.findViewById(
                                 liparam.res.getIdentifier("clock", "id", PACKAGE_NAME));
-                        mClockInSbContents = mClock != null;
+                        mClockInSbContents = clock != null;
                     }
-                    if (mClock != null) {
-                        ModStatusbarColor.setClock(mClock);
+                    if (clock != null) {
+                        mClock = new StatusbarClock(clock);
+                        ModStatusbarColor.registerIconManagerListener(mClock);
                         // use this additional field to identify the instance of Clock that resides in status bar
-                        XposedHelpers.setAdditionalInstanceField(mClock, "sbClock", true);
-                        mClockOriginalPaddingLeft = mClock.getPaddingLeft();
+                        XposedHelpers.setAdditionalInstanceField(mClock.getView(), "sbClock", true);
                         if (mClockHide) {
-                            mClock.setVisibility(View.GONE);
+                            mClock.getView().setVisibility(View.GONE);
                         }
                     }
 
@@ -299,7 +298,7 @@ public class ModStatusBar {
                     if (DEBUG) log("mLayoutClock injected");
 
                     if (mClock != null) {
-                        XposedHelpers.findAndHookMethod(mClock.getClass(), "getSmallTime", new XC_MethodHook() {
+                        XposedHelpers.findAndHookMethod(mClock.getView().getClass(), "getSmallTime", new XC_MethodHook() {
                             @Override
                             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                                 // is this a status bar Clock instance?
@@ -320,7 +319,7 @@ public class ModStatusBar {
                                     if (DEBUG) log("AM/PM removed. New clockText: '" + clockText + "'");
                                     amPmIndex = -1;
                                 } else if (!mAmPmHide 
-                                            && !DateFormat.is24HourFormat(mClock.getContext()) 
+                                            && !DateFormat.is24HourFormat(mClock.getView().getContext()) 
                                             && amPmIndex == -1) {
                                     // insert AM/PM if missing
                                     clockText += " " + amPm;
@@ -378,7 +377,7 @@ public class ModStatusBar {
                         log("Invalid preference value for PREF_KEY_DATA_TRAFFIC_SIZE");
                     }
                     mTrafficMeter.setTextSize(1, size);
-                    ModStatusbarColor.setTrafficMeter(mTrafficMeter);
+                    ModStatusbarColor.registerIconManagerListener(mTrafficMeter);
                     updateTrafficMeterPosition();
                     mTrafficMeter.setTrafficMeterEnabled(prefs.getBoolean(
                             GravityBoxSettings.PREF_KEY_DATA_TRAFFIC_ENABLE, false));
@@ -395,7 +394,7 @@ public class ModStatusBar {
                                         (spacer.getLayoutParams() instanceof LinearLayout.LayoutParams)) {
                                     final int spacerSize = (int) spacer.getContext()
                                             .getResources().getDisplayMetrics().density * 6;
-                                    spacer.setLayoutParams(new LinearLayout.LayoutParams(size, size));
+                                    spacer.setLayoutParams(new LinearLayout.LayoutParams(spacerSize, spacerSize));
                                 }
                             }
                         }
@@ -492,7 +491,7 @@ public class ModStatusBar {
                     if (mClock == null) return;
 
                     boolean visible = (Boolean) param.args[0] && !mClockHide;
-                    mClock.setVisibility(visible ? View.VISIBLE : View.GONE);
+                    mClock.getView().setVisibility(visible ? View.VISIBLE : View.GONE);
                 }
             });
 
@@ -618,27 +617,27 @@ public class ModStatusBar {
         }
 
         if (center) {
-            mClock.setGravity(Gravity.CENTER);
-            mClock.setLayoutParams(new LinearLayout.LayoutParams(
+            mClock.getView().setGravity(Gravity.CENTER);
+            mClock.getView().setLayoutParams(new LinearLayout.LayoutParams(
                     LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-            mClock.setPadding(0, 0, 0, 0);
+            mClock.getView().setPadding(0, 0, 0, 0);
             if (mClockInSbContents) {
-                mSbContents.removeView(mClock);
+                mSbContents.removeView(mClock.getView());
             } else {
-                mIconArea.removeView(mClock);
+                mIconArea.removeView(mClock.getView());
             }
-            mLayoutClock.addView(mClock);
+            mLayoutClock.addView(mClock.getView());
             if (DEBUG) log("Clock set to center position");
         } else {
-            mClock.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
-            mClock.setLayoutParams(new LinearLayout.LayoutParams(
+            mClock.getView().setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+            mClock.getView().setLayoutParams(new LinearLayout.LayoutParams(
                     LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
-            mClock.setPadding(mClockOriginalPaddingLeft, 0, 0, 0);
-            mLayoutClock.removeView(mClock);
+            mClock.resetOriginalPaddingLeft();
+            mLayoutClock.removeView(mClock.getView());
             if (mClockInSbContents) {
-                mSbContents.addView(mClock);
+                mSbContents.addView(mClock.getView());
             } else {
-                mIconArea.addView(mClock);
+                mIconArea.addView(mClock.getView());
             }
             if (DEBUG) log("Clock set to normal position");
         }

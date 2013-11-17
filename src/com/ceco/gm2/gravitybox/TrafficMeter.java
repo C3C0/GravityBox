@@ -30,9 +30,12 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import com.ceco.gm2.gravitybox.StatusBarIconManager.ColorInfo;
+import com.ceco.gm2.gravitybox.StatusBarIconManager.IconManagerListener;
+
 import de.robv.android.xposed.XposedBridge;
 
-public class TrafficMeter extends TextView {
+public class TrafficMeter extends TextView implements IconManagerListener {
     public static final String TAG = "GB:TrafficMeter";
     private static final boolean DEBUG = false;
 
@@ -262,5 +265,15 @@ public class TrafficMeter extends TextView {
 
     public int getTrafficMeterPosition() {
         return mPosition;
+    }
+
+    @Override
+    public void onIconManagerStatusChanged(int flags, ColorInfo colorInfo) {
+        if ((flags & StatusBarIconManager.FLAG_ICON_COLOR_CHANGED) != 0) {
+            setTextColor(colorInfo.coloringEnabled ?
+                    colorInfo.iconColor[0] : colorInfo.defaultIconColor);
+        } else if ((flags & StatusBarIconManager.FLAG_LOW_PROFILE_CHANGED) != 0) {
+            setAlpha(colorInfo.lowProfile ? 0 : 1);
+        }
     }
 }

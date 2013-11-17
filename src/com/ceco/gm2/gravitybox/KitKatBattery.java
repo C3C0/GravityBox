@@ -17,6 +17,9 @@
 
 package com.ceco.gm2.gravitybox;
 
+import com.ceco.gm2.gravitybox.StatusBarIconManager.ColorInfo;
+import com.ceco.gm2.gravitybox.StatusBarIconManager.IconManagerListener;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -34,7 +37,7 @@ import android.os.BatteryManager;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class KitKatBattery extends View {
+public class KitKatBattery extends View implements IconManagerListener {
     public static final String TAG = "GB:KitKatBattery";
 
     public static final boolean SINGLE_DIGIT_PERCENT = false;
@@ -311,6 +314,14 @@ public class KitKatBattery extends View {
                     x,
                     y,
                     mTextPaint);
+        }
+    }
+
+    @Override
+    public void onIconManagerStatusChanged(int flags, ColorInfo colorInfo) {
+        if ((flags & StatusBarIconManager.FLAG_ICON_COLOR_CHANGED) != 0) {
+            setColor(colorInfo.coloringEnabled ?
+                    colorInfo.iconColor[0] : colorInfo.defaultIconColor);
         }
     }
 }

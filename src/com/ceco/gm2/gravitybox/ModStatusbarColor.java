@@ -18,6 +18,9 @@ package com.ceco.gm2.gravitybox;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ceco.gm2.gravitybox.StatusBarIconManager.ColorInfo;
+import com.ceco.gm2.gravitybox.StatusBarIconManager.IconManagerListener;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -36,7 +39,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodHook.Unhook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -68,12 +70,6 @@ public class ModStatusbarColor {
     private static View mPanelBar;
     private static StatusBarIconManager mIconManager;
     private static Object mSignalClusterView;
-    private static boolean mIconColorEnabled;
-    private static boolean mSkipBatteryIcon;
-    private static TextView mClock;
-    private static CmCircleBattery mCircleBattery;
-    private static KitKatBattery mKitKatBattery;
-    private static TextView mPercentage;
     private static ImageView mBattery;
     private static int mBatteryLevel;
     private static boolean mBatteryPlugged;
@@ -82,7 +78,6 @@ public class ModStatusbarColor {
     private static NotificationWallpaper mNotificationWallpaper;
     private static boolean mRoamingIndicatorsDisabled;
     private static TransparencyManager mTransparencyManager;
-    private static TrafficMeter mTrafficMeter;
     private static Context mContextPwm;
     private static int[] mTransparencyValuesPwm = new int[] { 0, 0, 0, 0};
     private static int mTransparencyModePwm = TransparencyManager.MODE_FULL;
@@ -93,8 +88,6 @@ public class ModStatusbarColor {
     private static boolean mWifiIconLayoutUpdated;
 
     static {
-        mIconColorEnabled = false;
-        mSkipBatteryIcon = false;
         mBatteryLevel = 0;
         mBatteryPlugged = false;
         mRoamingIndicatorsDisabled = false;
@@ -105,28 +98,14 @@ public class ModStatusbarColor {
         XposedBridge.log(TAG + ": " + message);
     }
 
-    public static void setClock(TextView clock) {
-        mClock = clock;
-    }
-
-    public static void setCircleBattery(CmCircleBattery circleBattery) {
-        mCircleBattery = circleBattery;
-    }
-
-    public static void setKitKatBattery(KitKatBattery kitKatBattery) {
-        mKitKatBattery = kitKatBattery;
-    }
-
-    public static void setPercentage(TextView percentage) {
-        mPercentage = percentage;
-    }
-
     public static void setBattery(ImageView battery) {
         mBattery = battery;
     }
 
-    public static void setTrafficMeter(TrafficMeter trafficMeter) {
-        mTrafficMeter = trafficMeter;
+    public static void registerIconManagerListener(IconManagerListener listener) {
+        if (mIconManager != null) {
+            mIconManager.registerListener(listener);
+        }
     }
 
     private static BroadcastReceiver mBroadcastReceiverPwm = new BroadcastReceiver() {
@@ -155,53 +134,10 @@ public class ModStatusbarColor {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (DEBUG) log("received broadcast: " + intent.toString());
-            if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_STATUSBAR_COLOR_CHANGED)
-                    && mIconManager != null) {
+            if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_STATUSBAR_COLOR_CHANGED)) {
                 if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_BG_COLOR)) {
                     int bgColor = intent.getIntExtra(GravityBoxSettings.EXTRA_SB_BG_COLOR, Color.BLACK);
                     setStatusbarBgColor(bgColor);
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR)) {
-                    int iconColor = intent.getIntExtra(
-                            GravityBoxSettings.EXTRA_SB_ICON_COLOR, mIconManager.getDefaultIconColor());
-                    mIconManager.setIconColor(iconColor);
-                    applyIconColors();
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR_SECONDARY)) {
-                    int iconColor = intent.getIntExtra(
-                            GravityBoxSettings.EXTRA_SB_ICON_COLOR_SECONDARY, 
-                            mIconManager.getDefaultIconColor());
-                    mIconManager.setIconColor(1, iconColor);
-                    applyIconColors();
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR)) {
-                    int daColor = intent.getIntExtra(
-                            GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR, 
-                            StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR);
-                    mIconManager.setDataActivityColor(daColor);
-                    applyIconColors();
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR_SECONDARY)) {
-                    int daColor = intent.getIntExtra(
-                            GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR_SECONDARY, 
-                            StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR);
-                    mIconManager.setDataActivityColor(1, daColor);
-                    applyIconColors();
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR_ENABLE)) {
-                    mIconColorEnabled = intent.getBooleanExtra(
-                            GravityBoxSettings.EXTRA_SB_ICON_COLOR_ENABLE, false);
-                    if (DEBUG) log("Icon colors master switch set to: " + mIconColorEnabled);
-                    if (!mIconColorEnabled) mIconManager.clearCache();
-                    applyIconColors();
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_COLOR_FOLLOW)) {
-                    boolean follow = intent.getBooleanExtra(GravityBoxSettings.EXTRA_SB_COLOR_FOLLOW, false);
-                    mIconManager.setFollowStockBatteryColor(follow);
-                    applyIconColors();
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_COLOR_SKIP_BATTERY)) {
-                    mSkipBatteryIcon = intent.getBooleanExtra(
-                            GravityBoxSettings.EXTRA_SB_COLOR_SKIP_BATTERY, false);
-                    applyIconColors();
-                } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_SIGNAL_COLOR_MODE)) {
-                    mIconManager.setSignalIconMode(
-                            intent.getIntExtra(GravityBoxSettings.EXTRA_SB_SIGNAL_COLOR_MODE,
-                                    StatusBarIconManager.SI_MODE_GB));
-                    applyIconColors();
                 }
             }
 
@@ -485,9 +421,6 @@ public class ModStatusbarColor {
 
             mBroadcastSubReceivers = new ArrayList<BroadcastSubReceiver>();
 
-            mIconColorEnabled = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE, false);
-            mSkipBatteryIcon = prefs.getBoolean(GravityBoxSettings.PREF_KEY_STATUSBAR_COLOR_SKIP_BATTERY, false);
-
             mRoamingIndicatorsDisabled = prefs.getBoolean(
                     GravityBoxSettings.PREF_KEY_DISABLE_ROAMING_INDICATORS, false);
 
@@ -505,8 +438,7 @@ public class ModStatusbarColor {
 
                     Context gbContext = mPanelBar.getContext().createPackageContext(GravityBox.PACKAGE_NAME,
                             Context.CONTEXT_IGNORE_SECURITY);
-                    mIconManager = new StatusBarIconManager(gbContext.getResources(), 
-                            mPanelBar.getContext().getResources());
+                    mIconManager = new StatusBarIconManager(mPanelBar.getContext(), gbContext);
                     mIconManager.setIconColor(
                             prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR,
                                     mIconManager.getDefaultIconColor()));
@@ -521,7 +453,6 @@ public class ModStatusbarColor {
                                     StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
                     mIconManager.setFollowStockBatteryColor(prefs.getBoolean(
                             GravityBoxSettings.PREF_KEY_STATUSBAR_COLOR_FOLLOW_STOCK_BATTERY, false));
-
                     try {
                         int signalIconMode = Integer.valueOf(prefs.getString(
                                 GravityBoxSettings.PREF_KEY_STATUSBAR_SIGNAL_COLOR_MODE, "0"));
@@ -529,7 +460,11 @@ public class ModStatusbarColor {
                     } catch (NumberFormatException nfe) {
                         log("Invalid value for PREF_KEY_STATUSBAR_SIGNAL_COLOR_MODE preference");
                     }
-                    mIconManager.initStockBatteryColor(mPanelBar.getContext());
+                    mIconManager.setSkipBatteryIcon(prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_STATUSBAR_COLOR_SKIP_BATTERY, false));
+                    mIconManager.setColoringEnabled(prefs.getBoolean(
+                            GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE, false));
+                    mBroadcastSubReceivers.add(mIconManager);
                 }
             });
 
@@ -568,7 +503,10 @@ public class ModStatusbarColor {
                     mBatteryController = XposedHelpers.getObjectField(param.thisObject, "mBatteryController");
                     int bgColor = prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_BGCOLOR, Color.BLACK);
                     setStatusbarBgColor(bgColor);
-                    applyIconColors();
+                    if (mIconManager != null) {
+                        mIconManager.registerListener(mIconManagerListener);
+                        mIconManager.refreshState();
+                    }
 
                     Intent i = new Intent(ACTION_PHONE_STATUSBAR_VIEW_MADE);
                     context.sendBroadcast(i);
@@ -610,14 +548,8 @@ public class ModStatusbarColor {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     final boolean lightsOut = (Boolean) param.args[0];
-                    if (mCircleBattery != null) {
-                        mCircleBattery.setLowProfile(lightsOut);
-                    }
-                    if (mPercentage != null) {
-                        mPercentage.setAlpha(lightsOut ? 0.5f : 1);
-                    }
-                    if (mTrafficMeter != null) {
-                        mTrafficMeter.setAlpha(lightsOut ? 0 : 1);
+                    if (mIconManager != null) {
+                        mIconManager.setLowProfile(lightsOut);
                     }
                 }
             });
@@ -638,8 +570,8 @@ public class ModStatusbarColor {
                         } else {
                             mBatteryPlugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) != 0;
                         }
-                        if (mIconColorEnabled && !mSkipBatteryIcon && mBattery != null
-                                && mIconManager != null) {
+                        if (mIconManager != null && mIconManager.isColoringEnabled() && 
+                                !mIconManager.shouldSkipBatteryIcon() && mBattery != null) {
                             Drawable d = mIconManager.getBatteryIcon(mBatteryLevel, mBatteryPlugged);
                             if (d != null) mBattery.setImageDrawable(d);
                         }
@@ -655,7 +587,7 @@ public class ModStatusbarColor {
 
                     Resources res = ((LinearLayout) param.thisObject).getContext().getResources();
 
-                    if (mIconColorEnabled && mIconManager != null) {
+                    if (mIconManager != null && mIconManager.isColoringEnabled()) {
                         Object mobileIconId = null;
                         Object[] mobileIconIds = null, mobileIconIdsGemini = null;
                         Object mobileActivityId = null, mobileActivityIdGemini = null;
@@ -809,24 +741,24 @@ public class ModStatusbarColor {
                                 }
                             }
                         }
-                    }
 
-                    // Airplane mode icon
-                    try {
-                        ImageView airplaneModeIcon = Utils.hasGeminiSupport() ?
-                                (ImageView) XposedHelpers.getObjectField(param.thisObject, "mFlightMode") :
-                                    (ImageView) XposedHelpers.getObjectField(param.thisObject, "mAirplane");
-                        if (airplaneModeIcon != null) {
-                            Drawable d = airplaneModeIcon.getDrawable();
-                            if (mIconColorEnabled) {
-                                d = mIconManager.applyColorFilter(d);
-                            } else if (d != null) {
-                                d.setColorFilter(null);
+                        // Airplane mode icon
+                        try {
+                            ImageView airplaneModeIcon = Utils.hasGeminiSupport() ?
+                                    (ImageView) XposedHelpers.getObjectField(param.thisObject, "mFlightMode") :
+                                        (ImageView) XposedHelpers.getObjectField(param.thisObject, "mAirplane");
+                            if (airplaneModeIcon != null) {
+                                Drawable d = airplaneModeIcon.getDrawable();
+                                if (mIconManager.isColoringEnabled()) {
+                                    d = mIconManager.applyColorFilter(d);
+                                } else if (d != null) {
+                                    d.setColorFilter(null);
+                                }
+                                airplaneModeIcon.setImageDrawable(d);
                             }
-                            airplaneModeIcon.setImageDrawable(d);
+                        } catch (Throwable t) {
+                            log("Error setting airplane mode icon: " + t.getMessage());
                         }
-                    } catch (Throwable t) {
-                        log("Error setting airplane mode icon: " + t.getMessage());
                     }
 
                     if (Utils.isMtkDevice() && mRoamingIndicatorsDisabled) {
@@ -873,7 +805,7 @@ public class ModStatusbarColor {
                     CLASS_STATUSBAR_ICON, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    if (mIconColorEnabled && mIconManager != null) {
+                    if (mIconManager != null && mIconManager.isColoringEnabled()) {
                         final String iconPackage = 
                                 (String) XposedHelpers.getObjectField(param.args[0], "iconPackage");
                         if (DEBUG) log("statusbarIconView.getIcon: iconPackage=" + iconPackage);
@@ -881,7 +813,6 @@ public class ModStatusbarColor {
                             final int iconId = XposedHelpers.getIntField(param.args[0], "iconId");
                             Drawable d = mIconManager.getBasicIcon(iconId);
                             if (d != null) {
-                                ((ImageView)param.thisObject).setTag("GBColoredView");
                                 param.setResult(d);
                                 return;
                             }
@@ -918,93 +849,75 @@ public class ModStatusbarColor {
         }
     }
 
-    private static void applyIconColors() {
-        if (mIconManager == null) return;
+    private static IconManagerListener mIconManagerListener = new IconManagerListener() {
+        @Override
+        public void onIconManagerStatusChanged(int flags, ColorInfo colorInfo) {
+            if ((flags & StatusBarIconManager.FLAG_ICON_COLOR_CHANGED) != 0) {
+                updateSignalCluster();
+                updateBattery();
+                updateStatusIcons();
+            } else if ((flags & (StatusBarIconManager.FLAG_DATA_ACTIVITY_COLOR_CHANGED |
+                    StatusBarIconManager.FLAG_ICON_COLOR_SECONDARY_CHANGED |
+                    StatusBarIconManager.FLAG_SIGNAL_ICON_MODE_CHANGED)) != 0) {
+                updateSignalCluster();
+            } else if ((flags & StatusBarIconManager.FLAG_SKIP_BATTERY_ICON_CHANGED) != 0) {
+                updateBattery();
+            }
+        }
+    };
 
+    private static void updateSignalCluster() {
         try {
             if (mSignalClusterView != null) {
                 XposedHelpers.callMethod(mSignalClusterView, "apply");
             }
-    
-            if (mClock != null) {
-                if (mIconManager.getDefaultClockColor() == null) {
-                    mIconManager.setDefaultClockColor(mClock.getCurrentTextColor());
-                }
-                mClock.setTextColor(mIconColorEnabled ? 
-                        mIconManager.getIconColor() : mIconManager.getClockColor());
-            }
-    
-            if (mCircleBattery != null) {
-                mCircleBattery.setColor(mIconColorEnabled ?
-                        mIconManager.getIconColor() : mIconManager.getDefaultIconColor());
-            }
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
+    }
 
-            if (mKitKatBattery != null) {
-                mKitKatBattery.setColor(mIconColorEnabled ?
-                        mIconManager.getIconColor() : mIconManager.getDefaultIconColor());
+    private static void updateBattery() {
+        if (mBatteryController != null && mBattery != null) {
+            Intent intent = new Intent(Intent.ACTION_BATTERY_CHANGED);
+            intent.putExtra(BatteryManager.EXTRA_LEVEL, mBatteryLevel);
+            if (Build.VERSION.SDK_INT > 17) {
+                intent.putExtra(BatteryManager.EXTRA_STATUS, mBatteryPlugged ? 
+                        BatteryManager.BATTERY_STATUS_CHARGING :
+                            BatteryManager.BATTERY_STATUS_UNKNOWN);
+            } else {
+                intent.putExtra(BatteryManager.EXTRA_PLUGGED, mBatteryPlugged ? 1 : 0);
             }
+            try {
+                XposedHelpers.callMethod(mBatteryController, "onReceive", mBattery.getContext(), intent);
+            } catch (Throwable t) {
+                log("Incompatible battery controller: " + t.getMessage());
+            }
+        }
+    }
 
-            if (mTrafficMeter != null) {
-                mTrafficMeter.setTextColor(mIconColorEnabled ?
-                        mIconManager.getIconColor() : mIconManager.getDefaultIconColor());
-            }
-    
-            if (mPercentage != null) {
-                if (mIconManager.getDefaultBatteryPercentageColor() == null) {
-                    mIconManager.setDefaultBatteryPercentageColor(mPercentage.getCurrentTextColor());
+    private static void updateStatusIcons() {
+        if (mPhoneStatusBar == null) return;
+        try {
+            ViewGroup vg = (ViewGroup) XposedHelpers.getObjectField(mPhoneStatusBar, "mStatusIcons");
+            final int childCount = vg.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                if (!vg.getChildAt(i).getClass().getName().equals(CLASS_STATUSBAR_ICON_VIEW)) {
+                    continue;
                 }
-                mPercentage.setTextColor(mIconColorEnabled ? 
-                        mIconManager.getIconColor() : mIconManager.getBatteryPercentageColor());
-            }
-    
-            if (mBatteryController != null && mBattery != null) {
-                Intent intent = new Intent(Intent.ACTION_BATTERY_CHANGED);
-                intent.putExtra(BatteryManager.EXTRA_LEVEL, mBatteryLevel);
-                if (Build.VERSION.SDK_INT > 17) {
-                    intent.putExtra(BatteryManager.EXTRA_STATUS, mBatteryPlugged ? 
-                            BatteryManager.BATTERY_STATUS_CHARGING :
-                                BatteryManager.BATTERY_STATUS_UNKNOWN);
-                } else {
-                    intent.putExtra(BatteryManager.EXTRA_PLUGGED, mBatteryPlugged ? 1 : 0);
-                }
-                try {
-                    XposedHelpers.callMethod(mBatteryController, "onReceive", mBattery.getContext(), intent);
-                } catch (Throwable t) {
-                    log("Incompatible battery controller: " + t.getMessage());
-                }
-            }
-    
-            if (mPhoneStatusBar != null) {
-                ViewGroup vg = (ViewGroup) XposedHelpers.getObjectField(mPhoneStatusBar, "mStatusIcons");
-                final int childCount = vg.getChildCount();
-                for (int i = 0; i < childCount; i++) {
-                    if (!vg.getChildAt(i).getClass().getName().equals(CLASS_STATUSBAR_ICON_VIEW)) {
-                        continue;
-                    }
-                    ImageView v = (ImageView) vg.getChildAt(i);
-                    if (!mIconColorEnabled && "GBColoredView".equals(v.getTag())) {
-                        Drawable d = v.getDrawable();
+                ImageView v = (ImageView) vg.getChildAt(i);
+                final Object sbIcon = XposedHelpers.getObjectField(v, "mIcon");
+                if (sbIcon != null) {
+                    final String iconPackage =
+                            (String) XposedHelpers.getObjectField(sbIcon, "iconPackage");
+                    if (iconPackage == null || iconPackage.equals(PACKAGE_NAME)) {
+                        final int resId = XposedHelpers.getIntField(sbIcon, "iconId");
+                        Drawable d = mIconManager.getBasicIcon(resId);
                         if (d != null) {
-                            d.setColorFilter(null);
-                        }
-                    } else if (mIconColorEnabled) {
-                        final Object sbIcon = XposedHelpers.getObjectField(v, "mIcon");
-                        if (sbIcon != null) {
-                            final String iconPackage =
-                                    (String) XposedHelpers.getObjectField(sbIcon, "iconPackage");
-                            if (iconPackage == null || iconPackage.equals(PACKAGE_NAME)) {
-                                final int resId = XposedHelpers.getIntField(sbIcon, "iconId");
-                                Drawable d = mIconManager.getBasicIcon(resId);
-                                if (d != null) {
-                                    v.setImageDrawable(d);
-                                    v.setTag("GBColoredView");
-                                }
-                            }
+                            v.setImageDrawable(d);
                         }
                     }
                 }
             }
-
         } catch (Throwable t) {
             XposedBridge.log(t);
         }

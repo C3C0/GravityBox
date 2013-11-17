@@ -16,13 +16,16 @@
 package com.ceco.gm2.gravitybox;
 
 import java.lang.ref.SoftReference;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import de.robv.android.xposed.XposedBridge;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,7 +33,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 
-public class StatusBarIconManager {
+public class StatusBarIconManager implements BroadcastSubReceiver {
     private static final String TAG = "GB:StatusBarIconManager";
     private static final boolean DEBUG = false;
     public static final int DEFAULT_DATA_ACTIVITY_COLOR = Color.WHITE;
@@ -39,34 +42,53 @@ public class StatusBarIconManager {
     public static final int SI_MODE_STOCK = 1;
     public static final int SI_MODE_DISABLED = 2;
 
-    private Resources mResources;
+    public static final int FLAG_COLORING_ENABLED_CHANGED = 1 << 0;
+    public static final int FLAG_SKIP_BATTERY_ICON_CHANGED = 1 << 1;
+    public static final int FLAG_SIGNAL_ICON_MODE_CHANGED = 1 << 2;
+    public static final int FLAG_FOLLOW_STOCK_BATTERY_COLOR_CHANGED = 1 << 3;
+    public static final int FLAG_ICON_COLOR_CHANGED = 1 << 4;
+    public static final int FLAG_ICON_COLOR_SECONDARY_CHANGED = 1 << 5;
+    public static final int FLAG_DATA_ACTIVITY_COLOR_CHANGED = 1 << 6;
+    public static final int FLAG_LOW_PROFILE_CHANGED = 1 << 7;
+    private static final int FLAG_ALL = 0xFF;
+
+    private Context mContext;
+    private Resources mGbResources;
     private Resources mSystemUiRes;
-    private int[] mIconColor;
-    private int[] mDataActivityColor;
     private Map<String, Integer> mWifiIconIds;
     private Map<String, Integer> mMobileIconIds;
     private Map<String, Integer> mBatteryIconIds;
     private Map<String, Integer> mBasicIconIds;
     private Map<String, SoftReference<Drawable>> mIconCache;
-    private Integer mStockBatteryColor;
-    private Integer mDefaultClockColor;
-    private Integer mDefaultBatteryPercentageColor;
-    private boolean mFollowStockBatteryColor;
-    private int mSignalIconMode;
     private boolean[] mAllowMobileIconChange;
+    private ColorInfo mColorInfo;
+    private List<IconManagerListener> mListeners;
+
+    public interface IconManagerListener {
+        void onIconManagerStatusChanged(int flags, ColorInfo colorInfo);
+    }
+
+    static class ColorInfo {
+        boolean coloringEnabled;
+        int defaultIconColor;
+        int[] iconColor;
+        int defaultDataActivityColor;
+        int[] dataActivityColor;
+        Integer stockBatteryColor;
+        int signalIconMode;
+        boolean skipBatteryIcon;
+        boolean followStockBatteryColor;
+        boolean lowProfile;
+    }
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
     }
 
-    public StatusBarIconManager(Resources res, Resources sysUiRes) {
-        mResources = res;
-        mSystemUiRes = sysUiRes;
-        mIconColor = new int[2];
-        mIconColor[0] = mIconColor[1] = getDefaultIconColor();
-        mDataActivityColor = new int[] { DEFAULT_DATA_ACTIVITY_COLOR, DEFAULT_DATA_ACTIVITY_COLOR };
-        mFollowStockBatteryColor = false;
-        mSignalIconMode = SI_MODE_GB;
+    public StatusBarIconManager(Context context, Context gbContext) {
+        mContext = context;
+        mSystemUiRes = mContext.getResources();
+        mGbResources = gbContext.getResources();
         mAllowMobileIconChange = new boolean[] { true, true };
 
         Map<String, Integer> tmpMap = new HashMap<String, Integer>();
@@ -138,83 +160,159 @@ public class StatusBarIconManager {
         mBasicIconIds = Collections.unmodifiableMap(tmpMap);
 
         mIconCache = new HashMap<String, SoftReference<Drawable>>();
+
+        initColorInfo();
+
+        mListeners = new ArrayList<IconManagerListener>();
     }
 
-    public int getDefaultIconColor() {
-        if (mFollowStockBatteryColor && mStockBatteryColor != null) {
-            return mStockBatteryColor;
-        } else {
-            return mResources.getColor(android.R.color.holo_blue_dark);
-        }
+    private void initColorInfo() {
+        mColorInfo = new ColorInfo();
+        mColorInfo.coloringEnabled = false;
+        mColorInfo.defaultIconColor = getDefaultIconColor();
+        mColorInfo.iconColor = new int[2];
+        mColorInfo.defaultDataActivityColor = DEFAULT_DATA_ACTIVITY_COLOR;
+        mColorInfo.dataActivityColor = new int[2];
+        mColorInfo.followStockBatteryColor = false;
+        mColorInfo.signalIconMode = SI_MODE_GB;
+        mColorInfo.lowProfile = false;
+        initStockBatteryColor();
     }
 
-    public void initStockBatteryColor(Context context) {
+    private void initStockBatteryColor() {
         try {
-            final Resources res = context.getResources();
-            final int resId = res.getIdentifier(
+            final int resId = mSystemUiRes.getIdentifier(
                     "stat_sys_battery_100", "drawable", "com.android.systemui");
             if (resId != 0) {
-                final Bitmap b = BitmapFactory.decodeResource(res, resId);
+                final Bitmap b = BitmapFactory.decodeResource(mSystemUiRes, resId);
                 final int x = b.getWidth() / 2;
                 final int y = b.getHeight() / 2;
-                mStockBatteryColor = b.getPixel(x, y);
+                mColorInfo.stockBatteryColor = b.getPixel(x, y);
             }
             if (DEBUG) log("mStockBatteryColor = " + 
-                    ((mStockBatteryColor != null ) ? Integer.toHexString(mStockBatteryColor) : "NULL"));
+                    ((mColorInfo.stockBatteryColor != null ) ? 
+                            Integer.toHexString(mColorInfo.stockBatteryColor) : "NULL"));
         } catch (Throwable t) {
             log("Error initializing stock battery color: " + t.getMessage());
         }
     }
 
-    public void setSignalIconMode(int mode) {
-        mSignalIconMode = mode;
-        clearCache();
-    }
-
-    public int getSignalIconMode() {
-        return mSignalIconMode;
-    }
-
-    public void setFollowStockBatteryColor(boolean follow) {
-        mFollowStockBatteryColor = follow;
-    }
-
-    public void setDefaultClockColor(int color) {
-        mDefaultClockColor = color;
-    }
-
-    public Integer getDefaultClockColor() {
-        return mDefaultClockColor;
-    }
-
-    public int getClockColor() {
-        if (mFollowStockBatteryColor && mStockBatteryColor != null) {
-            return mStockBatteryColor;
-        } else {
-            return (mDefaultClockColor != null ?
-                    mDefaultClockColor : getDefaultIconColor());
+    @Override
+    public void onBroadcastReceived(Context context, Intent intent) {
+        if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_STATUSBAR_COLOR_CHANGED)) {
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR)) {
+                setIconColor(intent.getIntExtra(
+                        GravityBoxSettings.EXTRA_SB_ICON_COLOR, getDefaultIconColor()));
+            } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR_SECONDARY)) {
+                setIconColor(1, intent.getIntExtra(
+                        GravityBoxSettings.EXTRA_SB_ICON_COLOR_SECONDARY, 
+                        getDefaultIconColor()));
+            } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR)) {
+                setDataActivityColor(intent.getIntExtra(
+                        GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR, 
+                        StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
+            } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR_SECONDARY)) {
+                setDataActivityColor(1, intent.getIntExtra(
+                        GravityBoxSettings.EXTRA_SB_DATA_ACTIVITY_COLOR_SECONDARY, 
+                        StatusBarIconManager.DEFAULT_DATA_ACTIVITY_COLOR));
+            } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR_ENABLE)) {
+                setColoringEnabled(intent.getBooleanExtra(
+                        GravityBoxSettings.EXTRA_SB_ICON_COLOR_ENABLE, false));
+                if (DEBUG) log("Icon colors master switch set to: " + isColoringEnabled());
+            } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_COLOR_FOLLOW)) {
+                setFollowStockBatteryColor(intent.getBooleanExtra(
+                        GravityBoxSettings.EXTRA_SB_COLOR_FOLLOW, false));
+            } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_COLOR_SKIP_BATTERY)) {
+                setSkipBatteryIcon(intent.getBooleanExtra(
+                        GravityBoxSettings.EXTRA_SB_COLOR_SKIP_BATTERY, false));
+            } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_SIGNAL_COLOR_MODE)) {
+                setSignalIconMode(intent.getIntExtra(
+                        GravityBoxSettings.EXTRA_SB_SIGNAL_COLOR_MODE,
+                        StatusBarIconManager.SI_MODE_GB));
+            }
         }
     }
 
-    public void setDefaultBatteryPercentageColor(int color) {
-        mDefaultBatteryPercentageColor = color;
+    public void registerListener(IconManagerListener listener) {
+        if (!mListeners.contains(listener)) {
+            mListeners.add(listener);
+        }
     }
 
-    public Integer getDefaultBatteryPercentageColor() {
-        return mDefaultBatteryPercentageColor;
+    private void notifyListeners(int flags) {
+        for (IconManagerListener listener : mListeners) {
+            listener.onIconManagerStatusChanged(flags, mColorInfo);
+        }
     }
 
-    public int getBatteryPercentageColor() {
-        if (mFollowStockBatteryColor && mStockBatteryColor != null) {
-            return mStockBatteryColor;
+    public void refreshState() {
+        notifyListeners(FLAG_ALL);
+    }
+
+    public void setColoringEnabled(boolean enabled) {
+        if (mColorInfo.coloringEnabled != enabled) {
+            mColorInfo.coloringEnabled = enabled;
+            clearCache();
+            notifyListeners(FLAG_COLORING_ENABLED_CHANGED | FLAG_ICON_COLOR_CHANGED);
+        }
+    }
+
+    public boolean isColoringEnabled() {
+        return mColorInfo.coloringEnabled;
+    }
+
+    public void setLowProfile(boolean lowProfile) {
+        if (mColorInfo.lowProfile != lowProfile) {
+            mColorInfo.lowProfile = lowProfile;
+            notifyListeners(FLAG_LOW_PROFILE_CHANGED);
+        }
+    }
+
+    public void setSkipBatteryIcon(boolean skip) {
+        if (mColorInfo.skipBatteryIcon != skip) {
+            mColorInfo.skipBatteryIcon = skip;
+            notifyListeners(FLAG_SKIP_BATTERY_ICON_CHANGED);
+        }
+    }
+
+    public boolean shouldSkipBatteryIcon() {
+        return mColorInfo.skipBatteryIcon;
+    }
+
+    public int getDefaultIconColor() {
+        if (mColorInfo.followStockBatteryColor && mColorInfo.stockBatteryColor != null) {
+            return mColorInfo.stockBatteryColor;
         } else {
-            return (mDefaultBatteryPercentageColor != null ?
-                    mDefaultBatteryPercentageColor : getDefaultIconColor());
+            return mGbResources.getColor(android.R.color.holo_blue_dark);
+        }
+    }
+
+    public void setSignalIconMode(int mode) {
+        if (mColorInfo.signalIconMode != mode) {
+            mColorInfo.signalIconMode = mode;
+            clearCache();
+            notifyListeners(FLAG_SIGNAL_ICON_MODE_CHANGED);
+        }
+    }
+
+    public int getSignalIconMode() {
+        return mColorInfo.signalIconMode;
+    }
+
+    public void setFollowStockBatteryColor(boolean follow) {
+        if (mColorInfo.followStockBatteryColor != follow) {
+            mColorInfo.followStockBatteryColor = follow;
+            mColorInfo.defaultIconColor = getDefaultIconColor();
+            int flags = FLAG_FOLLOW_STOCK_BATTERY_COLOR_CHANGED;
+            if (!mColorInfo.coloringEnabled) {
+                flags |= FLAG_ICON_COLOR_CHANGED;
+            }
+            notifyListeners(flags);
         }
     }
 
     public int getIconColor(int index) {
-        return mIconColor[index];
+        return mColorInfo.iconColor[index];
     }
 
     public int getIconColor() {
@@ -222,12 +320,16 @@ public class StatusBarIconManager {
     }
 
     public int getDataActivityColor(int index) {
-        return mDataActivityColor[index];
+        return mColorInfo.dataActivityColor[index];
     }
 
     public void setIconColor(int index, int color) {
-        mIconColor[index] = color;
-        clearCache();
+        if (mColorInfo.iconColor[index] != color) {
+            mColorInfo.iconColor[index] = color;
+            clearCache();
+            notifyListeners(index == 0 ?
+                    FLAG_ICON_COLOR_CHANGED : FLAG_ICON_COLOR_SECONDARY_CHANGED);
+        }
     }
 
     public void setIconColor(int color) {
@@ -235,7 +337,10 @@ public class StatusBarIconManager {
     }
 
     public void setDataActivityColor(int index, int color) {
-        mDataActivityColor[index] = color;
+        if (mColorInfo.dataActivityColor[index] != color) {
+            mColorInfo.dataActivityColor[index] = color;
+            notifyListeners(FLAG_DATA_ACTIVITY_COLOR_CHANGED);
+        }
     }
 
     public void setDataActivityColor(int color) {
@@ -244,7 +349,7 @@ public class StatusBarIconManager {
 
     public Drawable applyColorFilter(int index, Drawable drawable, PorterDuff.Mode mode) {
         if (drawable != null) {
-            drawable.setColorFilter(mIconColor[index], mode);
+            drawable.setColorFilter(mColorInfo.iconColor[index], mode);
         }
         return drawable;
     }
@@ -262,7 +367,7 @@ public class StatusBarIconManager {
     }
 
     public Drawable applyDataActivityColorFilter(int index, Drawable drawable) {
-        drawable.setColorFilter(mDataActivityColor[index], PorterDuff.Mode.SRC_IN);
+        drawable.setColorFilter(mColorInfo.dataActivityColor[index], PorterDuff.Mode.SRC_IN);
         return drawable;
     }
 
@@ -298,12 +403,12 @@ public class StatusBarIconManager {
             return null;
         }
 
-        switch(mSignalIconMode) {
+        switch(mColorInfo.signalIconMode) {
             case SI_MODE_GB:
                 cd = getCachedDrawable(key);
                 if (cd != null) return cd;
                 if (mWifiIconIds.containsKey(key)) {
-                    Drawable d = mResources.getDrawable(mWifiIconIds.get(key)).mutate();
+                    Drawable d = mGbResources.getDrawable(mWifiIconIds.get(key)).mutate();
                     d = applyColorFilter(d);
                     setCachedDrawable(key, d);
                     return d;
@@ -342,12 +447,12 @@ public class StatusBarIconManager {
             return null;
         }
 
-        switch(mSignalIconMode) {
+        switch(mColorInfo.signalIconMode) {
             case SI_MODE_GB:
                 cd = getCachedDrawable(key);
                 if (cd != null) return cd;
                 if (mMobileIconIds.containsKey(key)) {
-                    Drawable d = mResources.getDrawable(mMobileIconIds.get(key)).mutate();
+                    Drawable d = mGbResources.getDrawable(mMobileIconIds.get(key)).mutate();
                     d = applyColorFilter(index, d);
                     setCachedDrawable(key, d);
                     return d;
@@ -388,7 +493,7 @@ public class StatusBarIconManager {
         if (cd != null) return cd;
 
         if (mBatteryIconIds.containsKey(key)) {
-            Drawable d = mResources.getDrawable(mBatteryIconIds.get(key)).mutate();
+            Drawable d = mGbResources.getDrawable(mBatteryIconIds.get(key)).mutate();
             d = applyColorFilter(d);
             setCachedDrawable(key, d);
             return d;
@@ -427,11 +532,16 @@ public class StatusBarIconManager {
 
         try {
             String key = mSystemUiRes.getResourceEntryName(resId);
-            Drawable d = getCachedDrawable(key);
-            if (d != null) return d;
-            if (mBasicIconIds.containsKey(key)) {
+            if (!mBasicIconIds.containsKey(key)) {
+                if (DEBUG) log("getBasicIcon: no record for key: " + key);
+                return null;
+            }
+
+            if (mColorInfo.coloringEnabled) {
+                Drawable d = getCachedDrawable(key);
+                if (d != null) return d;
                 if (mBasicIconIds.get(key) != null) {
-                    d = mResources.getDrawable(mBasicIconIds.get(key)).mutate();
+                    d = mGbResources.getDrawable(mBasicIconIds.get(key)).mutate();
                     d = applyColorFilter(d);
                 } else {
                     d = mSystemUiRes.getDrawable(resId).mutate();
@@ -440,9 +550,9 @@ public class StatusBarIconManager {
                 setCachedDrawable(key, d);
                 if (DEBUG) log("getBasicIcon: returning drawable for key: " + key);
                 return d;
+            } else {
+                return mSystemUiRes.getDrawable(resId);
             }
-            if (DEBUG) log("getBasicIcon: no record for key: " + key);
-            return null;
         } catch (Throwable t) {
             log("getBasicIcon: " + t.getMessage());
             return null;

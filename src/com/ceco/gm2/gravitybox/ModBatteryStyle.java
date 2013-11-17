@@ -54,7 +54,7 @@ public class ModBatteryStyle {
     private static int mBatteryStyle;
     private static boolean mBatteryPercentTextEnabled;
     private static boolean mMtkPercentTextEnabled;
-    private static TextView mPercentText;
+    private static StatusbarBatteryPercentage mPercentText;
     private static CmCircleBattery mCircleBattery;
     private static ImageView mStockBattery;
     private static KitKatBattery mKitKatBattery;
@@ -106,28 +106,29 @@ public class ModBatteryStyle {
                         if (bptResId != 0) {
                             View v = vg.findViewById(bptResId);
                             if (v != null && v instanceof TextView) {
-                                mPercentText = (TextView) v;
-                                mPercentText.setTag("percentage");
+                                mPercentText = new StatusbarBatteryPercentage((TextView) v);
+                                mPercentText.getView().setTag("percentage");
                                 if (DEBUG) log("Battery percent text found as: " + bptId);
                                 break;
                             }
                         }
                     }
                     if (mPercentText == null) {
-                        mPercentText = new TextView(vg.getContext());
-                        mPercentText.setTag("percentage");
+                        TextView percentTextView = new TextView(vg.getContext());
+                        percentTextView.setTag("percentage");
                         LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(
                             LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-                        mPercentText.setLayoutParams(lParams);
-                        mPercentText.setPadding(6, 0, 0, 0);
-                        mPercentText.setTextSize(1, 16);
-                        mPercentText.setTextColor(vg.getContext().getResources().getColor(
+                        percentTextView.setLayoutParams(lParams);
+                        percentTextView.setPadding(6, 0, 0, 0);
+                        percentTextView.setTextSize(1, 16);
+                        percentTextView.setTextColor(vg.getContext().getResources().getColor(
                                 android.R.color.holo_blue_dark));
-                        mPercentText.setVisibility(View.GONE);
-                        vg.addView(mPercentText);
+                        percentTextView.setVisibility(View.GONE);
+                        mPercentText = new StatusbarBatteryPercentage(percentTextView);
+                        vg.addView(mPercentText.getView());
                         if (DEBUG) log("Battery percent text injected");
                     }
-                    ModStatusbarColor.setPercentage(mPercentText);
+                    ModStatusbarColor.registerIconManagerListener(mPercentText);
 
                     // GM2 specific - if there's already view with id "circle_battery", remove it
                     if (Build.DISPLAY.toLowerCase().contains("gravitymod")) {
@@ -147,7 +148,7 @@ public class ModBatteryStyle {
                     mCircleBattery.setLayoutParams(lParams);
                     mCircleBattery.setPadding(4, 0, 0, 0);
                     mCircleBattery.setVisibility(View.GONE);
-                    ModStatusbarColor.setCircleBattery(mCircleBattery);
+                    ModStatusbarColor.registerIconManagerListener(mCircleBattery);
                     vg.addView(mCircleBattery);
                     if (DEBUG) log("CmCircleBattery injected");
 
@@ -165,7 +166,7 @@ public class ModBatteryStyle {
                     lParams.bottomMargin = Utils.hasGeminiSupport() ? 3 : 2;
                     mKitKatBattery.setLayoutParams(lParams);
                     mKitKatBattery.setVisibility(View.GONE);
-                    ModStatusbarColor.setKitKatBattery(mKitKatBattery);
+                    ModStatusbarColor.registerIconManagerListener(mKitKatBattery);
                     vg.addView(mKitKatBattery);
 
                     // find battery
@@ -209,7 +210,8 @@ public class ModBatteryStyle {
                             }
                         }
                         if (!percentTextExists) {
-                            XposedHelpers.callMethod(batteryController, "addLabelView", mPercentText);
+                            XposedHelpers.callMethod(batteryController, "addLabelView", 
+                                    mPercentText.getView());
                             if (DEBUG) log("BatteryController.addLabelView(percText)");
                         }
                     }
@@ -280,8 +282,9 @@ public class ModBatteryStyle {
             }
 
             if (mPercentText != null) {
-                mPercentText.setVisibility(((mBatteryPercentTextEnabled || mMtkPercentTextEnabled) ?
-                                View.VISIBLE : View.GONE));
+                mPercentText.getView().setVisibility(
+                        (mBatteryPercentTextEnabled || mMtkPercentTextEnabled) ?
+                                View.VISIBLE : View.GONE);
             }
         } catch (Throwable t) {
             XposedBridge.log(t);
