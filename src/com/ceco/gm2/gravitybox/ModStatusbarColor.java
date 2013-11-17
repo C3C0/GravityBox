@@ -72,6 +72,7 @@ public class ModStatusbarColor {
     private static boolean mSkipBatteryIcon;
     private static TextView mClock;
     private static CmCircleBattery mCircleBattery;
+    private static KitKatBattery mKitKatBattery;
     private static TextView mPercentage;
     private static ImageView mBattery;
     private static int mBatteryLevel;
@@ -110,6 +111,10 @@ public class ModStatusbarColor {
 
     public static void setCircleBattery(CmCircleBattery circleBattery) {
         mCircleBattery = circleBattery;
+    }
+
+    public static void setKitKatBattery(KitKatBattery kitKatBattery) {
+        mKitKatBattery = kitKatBattery;
     }
 
     public static void setPercentage(TextView percentage) {
@@ -933,7 +938,12 @@ public class ModStatusbarColor {
                 mCircleBattery.setColor(mIconColorEnabled ?
                         mIconManager.getIconColor() : mIconManager.getDefaultIconColor());
             }
-    
+
+            if (mKitKatBattery != null) {
+                mKitKatBattery.setColor(mIconColorEnabled ?
+                        mIconManager.getIconColor() : mIconManager.getDefaultIconColor());
+            }
+
             if (mTrafficMeter != null) {
                 mTrafficMeter.setTextColor(mIconColorEnabled ?
                         mIconManager.getIconColor() : mIconManager.getDefaultIconColor());

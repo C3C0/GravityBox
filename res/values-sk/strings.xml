@@ -5,7 +5,10 @@
 
     <string name="battery_style_title">Štýl indikátora batérie</string>	
     <string name="battery_style_stock">Základný</string>
-    <string name="battery_style_circle">Kruhový s percentami</string>
+    <string name="battery_style_circle">Kruhový</string>
+    <string name="battery_style_circle_percent">Kruhový s percentami</string>
+    <string name="battery_style_kitkat">KitKat</string>
+    <string name="battery_style_kitkat_percent">KitKat s percentami</string>
     <string name="battery_style_percent">Percentuálny text stavu batérie</string>
     <string name="battery_style_none">Žiadny</string>
 

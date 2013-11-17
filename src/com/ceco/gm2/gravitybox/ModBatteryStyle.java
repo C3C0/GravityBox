@@ -17,6 +17,7 @@ package com.ceco.gm2.gravitybox;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.Context;
@@ -56,6 +57,7 @@ public class ModBatteryStyle {
     private static TextView mPercentText;
     private static CmCircleBattery mCircleBattery;
     private static ImageView mStockBattery;
+    private static KitKatBattery mKitKatBattery;
 
     private static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -90,6 +92,7 @@ public class ModBatteryStyle {
 
             resparam.res.hookLayout(PACKAGE_NAME, "layout", layout, new XC_LayoutInflated() {
 
+                @SuppressLint("NewApi")
                 @Override
                 public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
 
@@ -148,6 +151,23 @@ public class ModBatteryStyle {
                     vg.addView(mCircleBattery);
                     if (DEBUG) log("CmCircleBattery injected");
 
+                    // inject KitKat battery view
+                    mKitKatBattery = new KitKatBattery(vg.getContext());
+                    mKitKatBattery.setTag("kitkat_battery");
+                    final float density = liparam.res.getDisplayMetrics().density;
+                    lParams = new LinearLayout.LayoutParams((int)(density * 10.5f), 
+                            (int)(density * 16));
+                    if (Build.VERSION.SDK_INT > 16) {
+                        lParams.setMarginStart((int)(density * 4));
+                    } else {
+                        lParams.leftMargin = Math.round(density * 4);
+                    }
+                    lParams.bottomMargin = Utils.hasGeminiSupport() ? 3 : 2;
+                    mKitKatBattery.setLayoutParams(lParams);
+                    mKitKatBattery.setVisibility(View.GONE);
+                    ModStatusbarColor.setKitKatBattery(mKitKatBattery);
+                    vg.addView(mKitKatBattery);
+
                     // find battery
                     mStockBattery = (ImageView) vg.findViewById(
                             liparam.res.getIdentifier("battery", "id", PACKAGE_NAME));
@@ -205,10 +225,6 @@ public class ModBatteryStyle {
                             GravityBoxSettings.PREF_KEY_BATTERY_STYLE, "1"));
                     mBatteryPercentTextEnabled = prefs.getBoolean(
                             GravityBoxSettings.PREF_KEY_BATTERY_PERCENT_TEXT, false);
-                    // handle obsolete settings
-                    if (mBatteryStyle == 4) {
-                        mBatteryStyle = GravityBoxSettings.BATTERY_STYLE_STOCK;
-                    }
 
                     Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                     mMtkPercentTextEnabled = Utils.isMtkDevice() ?
@@ -251,8 +267,16 @@ public class ModBatteryStyle {
                 mCircleBattery.setVisibility((mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE ||
                         mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE_PERCENT) ?
                                 View.VISIBLE : View.GONE);
-                ((CmCircleBattery)mCircleBattery).setPercentage(
+                mCircleBattery.setPercentage(
                         mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_CIRCLE_PERCENT);
+            }
+
+            if (mKitKatBattery != null) {
+                mKitKatBattery.setVisibility((mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_KITKAT ||
+                        mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_KITKAT_PERCENT) ?
+                                View.VISIBLE : View.GONE);
+                mKitKatBattery.setShowPercent(
+                        mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_KITKAT_PERCENT);
             }
 
             if (mPercentText != null) {
