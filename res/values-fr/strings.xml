@@ -22,6 +22,8 @@
     <string name="battery_style_stock">Indicateur par défaut</string>
     <string name="battery_style_circle">Batterie circulaire</string>
     <string name="battery_style_circle_percent">Batterie circulaire et pourcentage</string>
+    <string name="battery_style_kitkat">Batterie KitKat</string>
+    <string name="battery_style_kitkat_percent">Batterie KitKat avec pourcentage</string>
     <string name="battery_style_percent">Batterie avec pourcentage</string>
     <string name="battery_style_none">Aucun</string>
 
