@@ -21,7 +21,9 @@
     <string name="battery_style_title">电量指示器风格</string>	
     <string name="battery_style_stock">原厂电量指示器</string>
     <string name="battery_style_circle">圆形电量图案</string>
-    <string name="battery_style_circle_percent">圆形电量图案（包含百分比）</string>
+    <string name="battery_style_circle_percent">圆形电量图案含百分比</string>
+    <string name="battery_style_kitkat">KitKat电量图案</string>
+    <string name="battery_style_kitkat_percent">KitKat电量图案含百分比</string>
     <string name="battery_style_percent">电量百分比文字</string>
     <string name="battery_style_none">无</string>
 
