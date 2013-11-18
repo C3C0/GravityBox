@@ -12,6 +12,7 @@ Changelog 2.7.3 - 18/11/2013
 - Updated Chinese (Traditional) translations (thanks to Eric850130)
 - Updated Polish translations (thanks to xtrem007)
 - Updated Hungarian translations (thanks to benjoe1)
+- Updated Italian translations (thanks to pitone02)
 
 Changelog 2.7.2 - 15/11/2013
 --------------------------------------
