@@ -730,4 +730,20 @@
     <!-- Disable lockscreen shade -->
     <string name="pref_lockscreen_shade_disable_title">Disattiva ombreggiatura lockcreen</string>
     <string name="pref_lockscreen_shade_disable_summary">Rimuovi tinte scure nel lockscreen</string>
+    
+        <!-- Transparency manager mode -->
+    <string name="pref_tm_mode_title">Gestore trasparenze</string>
+    <string name="pref_tm_mode_summary">Richiede riavvio</string>
+    <string name="tm_mode_disabled">Disabilitato</string>
+    <string name="tm_mode_statusbar">Statusbar</string>
+    <string name="tm_mode_navbar">Barra di navigazione</string>
+    <string name="tm_mode_full">Entrambe</string>
+
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">Colore segnale sim2</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">Sovrascrivi colore icona arancione standard</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">Colore icona dati sim2</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">Imposta colore icone dati sim2</string>
+
+
 </resources>
