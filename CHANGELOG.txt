@@ -1,3 +1,18 @@
+Changelog 2.7.3 - 18/11/2013
+--------------------------------------
+- New battery style: KitKat battery with or without percentage and coloring support
+- Adjusted WiFi icon alignment
+- Reduced space between WiFi and mobile signal icons on MTK Dual SIMs
+- Fixed undesired replacement of icons coming from other packages than SystemUI (e.g. Play store icon replaced with BT icon)
+- Fixed statusbar icons not returning to stock after coloring is turned off
+- Updated French translation (thanks to ch-vox)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Chinese (Simplified) translations (thanks to liveasx)
+- Updated Japanese translations (thanks to WedyDQ10)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated Polish translations (thanks to xtrem007)
+- Updated Hungarian translations (thanks to benjoe1)
+
 Changelog 2.7.2 - 15/11/2013
 --------------------------------------
 - Statusbar icon coloring improvements:
