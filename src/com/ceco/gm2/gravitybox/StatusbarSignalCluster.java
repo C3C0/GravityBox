@@ -32,7 +32,6 @@ public class StatusbarSignalCluster implements BroadcastSubReceiver {
     protected LinearLayout mView;
     protected StatusBarIconManager mIconManager;
     protected Resources mResources;
-    protected boolean mWifiIconLayoutUpdated;
 
     protected static void log(String message) {
         XposedBridge.log(TAG + ": " + message);
@@ -50,7 +49,6 @@ public class StatusbarSignalCluster implements BroadcastSubReceiver {
         mView = view;
         mIconManager = iconManager;
         mResources = mView.getResources();
-        mWifiIconLayoutUpdated = false;
 
         if (mView != null) {
             try {
@@ -103,13 +101,6 @@ public class StatusbarSignalCluster implements BroadcastSubReceiver {
                     mIconManager.getSignalIconMode() != StatusBarIconManager.SI_MODE_DISABLED) {
                 ImageView wifiIcon = (ImageView) XposedHelpers.getObjectField(mView, "mWifi");
                 if (wifiIcon != null) {
-                    if (!mWifiIconLayoutUpdated) {
-                        final int pTop = 
-                            Math.round(wifiIcon.getContext().getResources().getDisplayMetrics().density * 1);
-                        wifiIcon.setPadding(wifiIcon.getPaddingLeft(), pTop, wifiIcon.getPaddingRight(),
-                                wifiIcon.getPaddingBottom());
-                        mWifiIconLayoutUpdated = true;
-                    }
                     int resId = XposedHelpers.getIntField(mView, "mWifiStrengthId");
                     Drawable d = mIconManager.getWifiIcon(resId);
                     if (d != null) wifiIcon.setImageDrawable(d);

@@ -163,7 +163,9 @@ public class ModBatteryStyle {
                     } else {
                         lParams.leftMargin = Math.round(density * 4);
                     }
-                    lParams.bottomMargin = Utils.hasGeminiSupport() ? 3 : 2;
+                    if (Utils.hasGeminiSupport()) {
+                        lParams.bottomMargin = 2;
+                    }
                     mKitKatBattery.setLayoutParams(lParams);
                     mKitKatBattery.setVisibility(View.GONE);
                     ModStatusbarColor.registerIconManagerListener(mKitKatBattery);
