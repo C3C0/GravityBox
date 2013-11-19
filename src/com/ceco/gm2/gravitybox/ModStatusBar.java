@@ -27,6 +27,7 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
+import de.robv.android.xposed.callbacks.XC_LayoutInflated.LayoutInflatedParam;
 import android.app.Notification;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -224,7 +225,23 @@ public class ModStatusBar {
 
     public static void initResources(final XSharedPreferences prefs, final InitPackageResourcesParam resparam) {
         try {
-            String layout = Utils.hasGeminiSupport() ? "gemini_super_status_bar" : "super_status_bar";
+            // Before anything else, let's make sure we're not dealing with a Lenovo device
+            // Lenovo is known for doing some deep customizations into UI, so let's just check
+            // if is possible to hook a specific layout and work with it in that case
+            String layout = "lenovo_gemini_super_status_bar";
+            try{
+                resparam.res.hookLayout(PACKAGE_NAME, "layout", layout, new XC_LayoutInflated() {
+
+                    @Override
+                    public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
+                        if (DEBUG) log("Lenovo custom layout found");
+                    }
+                });
+            } catch (Throwable t) {
+                // Specific layout not found, so let's work with standard layout 
+                layout = Utils.hasGeminiSupport() ? "gemini_super_status_bar" : "super_status_bar";
+            } 
+
             resparam.res.hookLayout(PACKAGE_NAME, "layout", layout, new XC_LayoutInflated() {
 
                 @Override
