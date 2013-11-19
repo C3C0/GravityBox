@@ -117,7 +117,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
 
         // MTK Specific
         if (Utils.isMtkDevice()) {
-            if (Utils.hasGeminiSupport() &&
+            if (Utils.hasGeminiSupport() && !Utils.isMt6572Device() &&
                     lpparam.packageName.equals(ModSignalIconHide.PACKAGE_NAME)) {
                 ModSignalIconHide.init(prefs, lpparam.classLoader);
             }

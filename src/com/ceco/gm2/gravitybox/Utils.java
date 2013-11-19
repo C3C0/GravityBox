@@ -113,7 +113,11 @@ public class Utils {
         mIsMtkDevice = MTK_DEVICES.contains(Build.HARDWARE.toLowerCase());
         return mIsMtkDevice;
     }
-    
+
+    public static boolean isMt6572Device() {
+        return (Build.HARDWARE.toLowerCase().contains("mt6572"));
+    }
+
     public static boolean isXperiaDevice() {
         if (mIsXperiaDevice != null) return mIsXperiaDevice;
 

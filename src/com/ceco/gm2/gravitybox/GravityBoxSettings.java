@@ -1014,6 +1014,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                     mPrefCatStatusbarColors.removePreference(mPrefSbDaColorSecondary);
                 }
 
+                // Remove preferences not needed for MT6572
+                if (Utils.isMt6572Device()) {
+                    mPrefCatStatusbar.removePreference(mSignalIconAutohide);
+                }
+
                 // Remove preferences not needed for ZTE V987
                 if (Build.MODEL.contains("V987") && Build.DISPLAY.contains("ZTE-CN-9B18D-P188F04")) {
                     mPrefCatFixes.removePreference(mPrefFixDateTimeCrash);
