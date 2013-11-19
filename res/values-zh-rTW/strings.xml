@@ -7,6 +7,8 @@
     <string name="battery_style_stock">預設電量指示器</string>
     <string name="battery_style_circle">圓形電量指示器</string>
     <string name="battery_style_circle_percent">圓形電量指示器(包含電量百分比)</string>
+    <string name="battery_style_kitkat">KitKat 電量指示器</string>
+    <string name="battery_style_kitkat_percent">KitKat 電量指示器(包含電量百分比)</string>
     <string name="battery_style_percent">電量百分比文字</string>
     <string name="battery_style_none">無</string>
 
