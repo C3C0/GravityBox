@@ -7,6 +7,8 @@
     <string name="battery_style_stock">Standard Akkuanzeige</string>
     <string name="battery_style_circle">Runde Akkuanzeige</string>
     <string name="battery_style_circle_percent">Runde Akkuanzeige mit Prozentwert</string>
+	<string name="battery_style_kitkat">KitKat Akkuanzeige</string>
+    <string name="battery_style_kitkat_percent">KitKat Akkuanzeige mit Prozentwert</string>
     <string name="battery_style_percent">Nur Prozentwert</string>
     <string name="battery_style_none">Keine Anzeige</string>
 
@@ -143,7 +145,7 @@
     <string name="about_xposed_title">Xposed Framework</string>
     <string name="about_xposed_summary">Programmiert von rovo89@XDA. Berühren, um den offiziellen Foreneintrag zu öffnen.</string>
     <string name="about_donate_title">Spenden</string>
-    <string name="about_donate_summary">Bitte an mich Spenden, falls dir die App gefällt! Erwäge es auch an rovo89 für sein exzellentes Xposed Framework zu spenden.</string>
+    <string name="about_donate_summary">Berühren, um die Entwicklung zu unterstützen, indem Sie per PayPal spenden</string>
 
     <!-- Reboot confirmation -->
     <string name="reboot_confirm">%s wird neu gestartet.</string>
@@ -445,10 +447,11 @@
 
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">Transparenz Einstellungen</string>
+	<string name="pref_cat_transparency_manager_summary">Regelt die Transparenz der Status- und Navigationsleiste</string>
     <string name="pref_tm_statusbar_launcher_title">Statusleisten Transparenz für den Launcher</string>
     <string name="pref_tm_statusbar_lockscreen_title">Statusleisten Transparenz für den Sperrbildschirm</string>
-    <string name="pref_tm_navbar_launcher_title">Navigationsleisten Transparenz für den Launcher</string>
-    <string name="pref_tm_navbar_lockscreen_title">Navigationsleisten Transparenz für den Sperrbildschirm</string>
+    <string name="pref_tm_navbar_launcher_title">Transparenz für den Launcher</string>
+    <string name="pref_tm_navbar_lockscreen_title">Transparenz für den Sperrbildschirm</string>
 
     <!-- Hide alarm icon -->
     <string name="pref_alarm_icon_hide_title">Verstecke Wecker Icon</string>
@@ -669,8 +672,8 @@
     <string name="hwkey_recents_longpress_dialog_title">Recents key long-press action</string>
 
     <!-- Lockscreen battery arc -->
-    <string name="pref_lockscreen_battery_arc_title">Show battery arc</string>
-    <string name="pref_lockscreen_battery_arc_summary">Shows battery status arc drawn around unlock ring handle</string>
+    <string name="pref_lockscreen_battery_arc_title">Zeige Akku-Bogen</string>
+    <string name="pref_lockscreen_battery_arc_summary">Zeigt einen Akkustatus-Bogen, der um den Entsperr-Ring angeordnet ist</string>
 
     <!-- HW Key Actions: toggle torch -->
     <string name="hwkey_action_torch">Toggle torch</string>
@@ -700,7 +703,7 @@
     <string name="pref_statusbar_signal_color_mode_title">Signal color mode</string>
     <string name="signal_color_mode_gb">Use GravityBox icons (with signal level support)</string>
     <string name="signal_color_mode_stock">Use stock icons (without signal level support)</string>
-    <string name="signal_color_mode_disabled">Do not apply color</string>
+    <string name="signal_color_mode_disabled">Farbe nicht anwenden</string>
 
     <!-- Application launcher -->
     <string name="pref_cat_app_launcher_title">App-Launcher</string>
@@ -720,4 +723,53 @@
     <string name="pie_custom_key_search">Suchen</string>
     <string name="pie_custom_key_app_launcher">App-Launcher</string>
 
+    <!-- Pie colors -->
+    <string name="pref_cat_pie_colors_title">Pie-Farben</string>
+    <string name="pref_pie_color_bg_title">Hintergrundfarbe</string>
+    <string name="pref_pie_color_fg_title">Vordergrundfarbe</string>
+    <string name="pref_pie_color_outline_title">Konturfarbe</string>
+    <string name="pref_pie_color_selected_title">Key selected color</string>
+    <string name="pref_pie_color_text_title">Textfarbe</string>
+    <string name="pref_pie_color_reset_title">Farben zurücksetzen</string>
+
+    <!-- Custom unknown caller photo -->
+    <string name="pref_caller_unknown_photo_enable_title">Aktiviere Bild unbekannter Anrufer</string>
+    <string name="pref_caller_unknown_photo_title">Bild unbekannter Anrufer einstellen</string>
+    <string name="caller_unknown_photo_result_successful">Bild geändert</string>
+    <string name="caller_unkown_photo_result_not_successful">Bild nicht geändert</string>
+
+    <!-- Minimum screen brightness warning -->
+    <string name="screen_brightness_min_warning">Ihr Bildschirm unterstützt möglicherweise keine Werte, die kleiner als 20 sind. Falls Ihr Bildschirm nicht aufleuchtet, halten Sie die Lautstärke+ Taste für wenigstens 7 Sekunden gedrückt, um die Helligkeit zurückzusetzen. Anschließend können Sie minimale Helligkeit einstellen, um höhere Werte zu verwenden.</string>
+
+	<!-- Navbar tweaks categories -->
+    <string name="pref_cat_navbar_general_title">Allgemein</string>
+    <string name="pref_cat_navbar_keys_title">Navigationstasten</string>
+    <string name="pref_cat_navbar_color_title">Farben</string>
+    <string name="pref_cat_navbar_dimen_title">Abmessungen</string>
+ 
+    <!-- Navigation bar colors -->
+    <string name="pref_navbar_color_enable_title">Aktiviere farbige Navigationsleiste</string>
+    <string name="pref_navbar_color_enable_summary">Erfordert nach Deaktivierung eventuell einen Neustart</string>
+    <string name="pref_navbar_key_color_title">Farbe der Navigationstaste</string>
+    <string name="pref_navbar_key_glow_color_title">Leuchtfarbe der Navigationstaste</string>
+    <string name="pref_navbar_bg_color_title">Hintergrundfarbe der Navigationsleiste</string>
+
+    <!-- Disable lockscreen shade -->
+    <string name="pref_lockscreen_shade_disable_title">Deaktiviert Sperrbildschirm-Schattierung</string>
+    <string name="pref_lockscreen_shade_disable_summary">Entfernt dunkle Tönung vom Sperrbildschirm</string>
+	
+	<!-- Transparency manager mode -->
+    <string name="pref_tm_mode_title">Transparenz-Manager-Modus</string>
+    <string name="pref_tm_mode_summary">Erfordert Neustart</string>
+    <string name="tm_mode_disabled">Deaktiviert</string>
+    <string name="tm_mode_statusbar">Statusleiste</string>
+    <string name="tm_mode_navbar">Navigationsleiste</string>
+    <string name="tm_mode_full">Beide</string>
+ 
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">Secondary signal color</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">Overrides stock orange signal icon</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">Secondary data activity color</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">Sets color for secondary data activity indicators</string>
+	
 </resources>
