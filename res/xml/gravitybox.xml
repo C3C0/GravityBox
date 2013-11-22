@@ -286,6 +286,15 @@
                 android:summary="@string/pref_statusbar_icon_color_summary"
                 android:defaultValue="@integer/COLOR_HOLO_BLUE_LIGHT" />
 
+            <ListPreference
+                android:key="pref_status_icon_style" 
+                android:title="@string/pref_status_icon_style_title"
+                android:summary="@string/pref_status_icon_style_summary"
+                android:entries="@array/status_icon_style_entries"
+                android:entryValues="@array/status_icon_style_values"
+                android:dependency="pref_statusbar_icon_color_enable"
+                android:defaultValue="0" />
+
             <net.margaritov.preference.colorpicker.ColorPickerPreference 
                 android:key="pref_statusbar_icon_color_secondary"
                 android:title="@string/pref_statusbar_icon_color_secondary_title" 

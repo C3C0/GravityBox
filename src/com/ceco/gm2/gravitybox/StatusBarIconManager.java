@@ -42,6 +42,9 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
     public static final int SI_MODE_STOCK = 1;
     public static final int SI_MODE_DISABLED = 2;
 
+    public static final int JELLYBEAN = 0;
+    public static final int KITKAT = 1;
+
     public static final int FLAG_COLORING_ENABLED_CHANGED = 1 << 0;
     public static final int FLAG_SKIP_BATTERY_ICON_CHANGED = 1 << 1;
     public static final int FLAG_SIGNAL_ICON_MODE_CHANGED = 1 << 2;
@@ -50,7 +53,8 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
     public static final int FLAG_ICON_COLOR_SECONDARY_CHANGED = 1 << 5;
     public static final int FLAG_DATA_ACTIVITY_COLOR_CHANGED = 1 << 6;
     public static final int FLAG_LOW_PROFILE_CHANGED = 1 << 7;
-    private static final int FLAG_ALL = 0xFF;
+    public static final int FLAG_ICON_STYLE_CHANGED = 1 << 8;
+    private static final int FLAG_ALL = 0x1FF;
 
     private Context mContext;
     private Resources mGbResources;
@@ -58,7 +62,7 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
     private Map<String, Integer> mWifiIconIds;
     private Map<String, Integer> mMobileIconIds;
     private Map<String, Integer> mBatteryIconIds;
-    private Map<String, Integer> mBasicIconIds;
+    private Map<String, Integer[]> mBasicIconIds;
     private Map<String, SoftReference<Drawable>> mIconCache;
     private boolean[] mAllowMobileIconChange;
     private ColorInfo mColorInfo;
@@ -79,6 +83,7 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
         boolean skipBatteryIcon;
         boolean followStockBatteryColor;
         boolean lowProfile;
+        int iconStyle;
     }
 
     private static void log(String message) {
@@ -149,15 +154,23 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
         tmpMap.put("stat_sys_battery_charge_anim100", R.drawable.stat_sys_battery_charge_anim100);
         mBatteryIconIds = Collections.unmodifiableMap(tmpMap);
 
-        tmpMap = new HashMap<String, Integer>();
-        tmpMap.put("stat_sys_data_bluetooth", R.drawable.stat_sys_data_bluetooth);
-        tmpMap.put("stat_sys_data_bluetooth_connected", R.drawable.stat_sys_data_bluetooth_connected);
-        tmpMap.put("stat_sys_alarm", R.drawable.stat_sys_alarm);
-        tmpMap.put("stat_sys_ringer_vibrate", R.drawable.stat_sys_ringer_vibrate);
-        tmpMap.put("stat_sys_ringer_silent", R.drawable.stat_sys_ringer_silent);
-        tmpMap.put("stat_sys_headset_with_mic", null);
-        tmpMap.put("stat_sys_headset_without_mic", null);
-        mBasicIconIds = Collections.unmodifiableMap(tmpMap);
+        Map<String, Integer[]> basicIconMap = new HashMap<String, Integer[]>();
+        basicIconMap.put("stat_sys_data_bluetooth", new Integer[] 
+                { R.drawable.stat_sys_data_bluetooth, R.drawable.stat_sys_data_bluetooth });
+        basicIconMap.put("stat_sys_data_bluetooth_connected", new Integer[] {
+                R.drawable.stat_sys_data_bluetooth_connected, 
+                R.drawable.stat_sys_data_bluetooth_connected });
+        basicIconMap.put("stat_sys_alarm", new Integer[] {
+                null, R.drawable.stat_sys_alarm_kk });
+        basicIconMap.put("stat_sys_ringer_vibrate", new Integer[] { 
+                null, R.drawable.stat_sys_ringer_vibrate_kk });
+        basicIconMap.put("stat_sys_ringer_silent", new Integer[] {
+                R.drawable.stat_sys_ringer_silent_jb, R.drawable.stat_sys_ringer_silent_kk });
+        basicIconMap.put("stat_sys_headset_with_mic", new Integer[] {
+                R.drawable.stat_sys_headset_with_mic_jb, null });
+        basicIconMap.put("stat_sys_headset_without_mic", new Integer[] {
+                R.drawable.stat_sys_headset_without_mic_jb, null });
+        mBasicIconIds = Collections.unmodifiableMap(basicIconMap);
 
         mIconCache = new HashMap<String, SoftReference<Drawable>>();
 
@@ -176,6 +189,7 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
         mColorInfo.followStockBatteryColor = false;
         mColorInfo.signalIconMode = SI_MODE_GB;
         mColorInfo.lowProfile = false;
+        mColorInfo.iconStyle = JELLYBEAN;
         initStockBatteryColor();
     }
 
@@ -203,6 +217,8 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
             if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR)) {
                 setIconColor(intent.getIntExtra(
                         GravityBoxSettings.EXTRA_SB_ICON_COLOR, getDefaultIconColor()));
+            } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_STYLE)) {
+                setIconStyle(intent.getIntExtra(GravityBoxSettings.EXTRA_SB_ICON_STYLE, 0));
             } else if (intent.hasExtra(GravityBoxSettings.EXTRA_SB_ICON_COLOR_SECONDARY)) {
                 setIconColor(1, intent.getIntExtra(
                         GravityBoxSettings.EXTRA_SB_ICON_COLOR_SECONDARY, 
@@ -345,6 +361,15 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
 
     public void setDataActivityColor(int color) {
         setDataActivityColor(0, color);
+    }
+
+    public void setIconStyle(int style) {
+        if((style == JELLYBEAN || style == KITKAT) &&
+                mColorInfo.iconStyle != style) {
+            mColorInfo.iconStyle = style;
+            clearCache();
+            notifyListeners(FLAG_ICON_STYLE_CHANGED);
+        }
     }
 
     public Drawable applyColorFilter(int index, Drawable drawable, PorterDuff.Mode mode) {
@@ -540,8 +565,8 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
             if (mColorInfo.coloringEnabled) {
                 Drawable d = getCachedDrawable(key);
                 if (d != null) return d;
-                if (mBasicIconIds.get(key) != null) {
-                    d = mGbResources.getDrawable(mBasicIconIds.get(key)).mutate();
+                if (mBasicIconIds.get(key)[mColorInfo.iconStyle] != null) {
+                    d = mGbResources.getDrawable(mBasicIconIds.get(key)[mColorInfo.iconStyle]).mutate();
                     d = applyColorFilter(d);
                 } else {
                     d = mSystemUiRes.getDrawable(resId).mutate();

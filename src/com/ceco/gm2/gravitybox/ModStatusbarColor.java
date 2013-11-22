@@ -429,6 +429,13 @@ public class ModStatusbarColor {
                     mIconManager.setIconColor(
                             prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR,
                                     mIconManager.getDefaultIconColor()));
+                    try {
+                        int iconStyle = Integer.valueOf(
+                                prefs.getString(GravityBoxSettings.PREF_KEY_STATUS_ICON_STYLE, "0"));
+                        mIconManager.setIconStyle(iconStyle);
+                    } catch(NumberFormatException nfe) {
+                        log("Invalid value for PREF_KEY_STATUS_ICON_STYLE preference");
+                    }
                     mIconManager.setIconColor(1,
                             prefs.getInt(GravityBoxSettings.PREF_KEY_STATUSBAR_ICON_COLOR_SECONDARY,
                                     mIconManager.getDefaultIconColor()));
@@ -658,6 +665,8 @@ public class ModStatusbarColor {
                 updateSignalCluster();
             } else if ((flags & StatusBarIconManager.FLAG_SKIP_BATTERY_ICON_CHANGED) != 0) {
                 updateBattery();
+            } else if ((flags & StatusBarIconManager.FLAG_ICON_STYLE_CHANGED) != 0) {
+                updateStatusIcons();
             }
         }
     };
