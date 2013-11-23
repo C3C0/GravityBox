@@ -99,6 +99,7 @@ public class ModHwKeys {
     private static AppLauncher mAppLauncher;
     private static int mPieMode;
     private static int mExpandedDesktopMode;
+    private static boolean mMenuKeyPressed;
 
     private static List<String> mKillIgnoreList = new ArrayList<String>(Arrays.asList(
             "com.android.systemui",
@@ -369,25 +370,32 @@ public class ModHwKeys {
                             "; isInjected=" + (((Integer)param.args[2] & 0x01000000) != 0) +
                             "; fromSystem=" + isFromSystem);
 
-                    if (keyCode == KeyEvent.KEYCODE_MENU) {
-                        if (!hasAction(HwKey.MENU) && areHwKeysEnabled()) return;
+                    if (keyCode == KeyEvent.KEYCODE_MENU && isFromSystem &&
+                        (hasAction(HwKey.MENU) || !areHwKeysEnabled())) {
 
                         if (!down) {
+                            mMenuKeyPressed = false;
                             mHandler.removeCallbacks(mMenuLongPress);
                             if (mIsMenuLongPressed) {
                                 mIsMenuLongPressed = false;
                                 param.setResult(-1);
                                 return;
                             }
-                            if (!areHwKeysEnabled() &&
-                                    event.getRepeatCount() == 0 && 
-                                    ((event.getFlags() & KeyEvent.FLAG_FROM_SYSTEM) != 0)) {
-                                if (DEBUG) log("MENU KeyEvent coming from HW key and keys disabled. Ignoring.");
-                                param.setResult(-1);
-                                return;
+                            if (event.getRepeatCount() == 0) {
+                                if (!areHwKeysEnabled()) {
+                                    if (DEBUG) log("MENU KeyEvent coming from HW key and keys disabled. Ignoring.");
+                                    param.setResult(-1);
+                                    return;
+                                } else if (mIsMenuDoubleTap) {
+                                    // we are still waiting for double-tap
+                                    if (DEBUG) log("MENU doubletap pending. Ignoring.");
+                                    param.setResult(-1);
+                                    return;
+                                }
                             }
                         } else {
                             if (event.getRepeatCount() == 0) {
+                                mMenuKeyPressed = true;
                                 if (mIsMenuDoubleTap) {
                                     performAction(HwKeyTrigger.MENU_DOUBLETAP);
                                     mHandler.removeCallbacks(mMenuDoubleTapReset);
@@ -591,8 +599,14 @@ public class ModHwKeys {
 
         @Override
         public void run() {
-            if (DEBUG) log("menu key double tap timed out");
             mIsMenuDoubleTap = false;
+            // doubletap timed out and since we blocked default MENU key action while waiting for doubletap
+            // let's inject it now additionally, but only in case it's not still pressed as we might still be waiting
+            // for long-press action
+            if (!mMenuKeyPressed) {
+                if (DEBUG) log("MENU key double tap timed out and key not pressed; injecting MENU key");
+                injectKey(KeyEvent.KEYCODE_MENU);
+            }
         }
     };
 
