@@ -800,4 +800,7 @@
     <string name="icon_style_jb">JellyBean</string>
     <string name="icon_style_kk">KitKat</string>
 
+    <!-- HW Key Actions: Back double-tap -->
+    <string name="hwkey_back_doubletap_dialog_title">Back key double-tap action</string>
+
 </resources>

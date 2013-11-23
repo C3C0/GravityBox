@@ -1058,6 +1058,12 @@
                 android:dialogTitle="@string/hwkey_back_longpress_dialog_title"
                 android:defaultValue="0"/>
 
+            <ListPreference
+                android:key="pref_hwkey_back_doubletap"
+                android:title="@string/pref_hwkey_doubletap_title"
+                android:dialogTitle="@string/hwkey_back_doubletap_dialog_title"
+                android:defaultValue="0"/>
+
         </PreferenceCategory>
 
         <PreferenceCategory
