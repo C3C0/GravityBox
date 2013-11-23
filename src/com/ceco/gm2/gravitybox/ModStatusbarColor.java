@@ -655,12 +655,16 @@ public class ModStatusbarColor {
     private static IconManagerListener mIconManagerListener = new IconManagerListener() {
         @Override
         public void onIconManagerStatusChanged(int flags, ColorInfo colorInfo) {
-            if ((flags & StatusBarIconManager.FLAG_ICON_COLOR_CHANGED) != 0) {
+            final boolean updateBattery = (flags & 
+                    (StatusBarIconManager.FLAG_ICON_COLOR_CHANGED |
+                            StatusBarIconManager.FLAG_SKIP_BATTERY_ICON_CHANGED)) != 0;
+            final boolean updateStatusIcons = (flags & 
+                    (StatusBarIconManager.FLAG_ICON_COLOR_CHANGED |
+                            StatusBarIconManager.FLAG_ICON_STYLE_CHANGED)) != 0;
+            if (updateBattery) {
                 updateBattery();
-                updateStatusIcons();
-            } else if ((flags & StatusBarIconManager.FLAG_SKIP_BATTERY_ICON_CHANGED) != 0) {
-                updateBattery();
-            } else if ((flags & StatusBarIconManager.FLAG_ICON_STYLE_CHANGED) != 0) {
+            }
+            if (updateStatusIcons) {
                 updateStatusIcons();
             }
         }
