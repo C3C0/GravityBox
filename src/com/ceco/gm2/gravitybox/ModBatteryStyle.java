@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.provider.Settings;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -35,7 +36,6 @@ import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
-import de.robv.android.xposed.callbacks.XC_LayoutInflated.LayoutInflatedParam;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 import de.robv.android.xposed.callbacks.XCallback;
 
@@ -161,6 +161,7 @@ public class ModBatteryStyle {
                     mCircleBattery.setTag("circle_battery");
                     LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(
                             LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                    lParams.gravity = Gravity.CENTER_VERTICAL;
                     mCircleBattery.setLayoutParams(lParams);
                     mCircleBattery.setPadding(4, 0, 0, 0);
                     mCircleBattery.setVisibility(View.GONE);
