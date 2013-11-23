@@ -794,4 +794,11 @@
     <string name="pref_statusbar_data_activity_color_secondary_title">Couleur activité de données secondaire</string>
     <string name="pref_statusbar_data_activity_color_secondary_summary">Définit la couleur des indicateurs d\'activité de données secondaire</string>
 
+    <!-- Status icon style -->
+    <string name="pref_status_icon_style_title">Style icône d\'état</string>
+    <string name="pref_status_icon_style_summary">S\'applique aux icônes d\'état telles que silencieux, vibreur, alarme, etc</string>
+    <string name="icon_style_jb">JellyBean</string>
+    <string name="icon_style_kk">KitKat</string>
+
+ 
 </resources>
