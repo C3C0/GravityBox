@@ -18,13 +18,16 @@ package com.ceco.gm2.gravitybox;
 
 import java.io.File;
 
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -36,10 +39,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
-class NotificationWallpaper extends FrameLayout {
-
+class NotificationWallpaper extends FrameLayout implements BroadcastSubReceiver {
+    private static final String PACKAGE_NAME = "com.android.systemui";
     private static final String TAG = "GB:NotificationWallpaper";
 
+    private FrameLayout mNotificationPanelView;
     private ImageView mNotificationWallpaperImage;
     private String mNotifBgImagePathPortrait;
     private String mNotifBgImagePathLandscape;
@@ -50,9 +54,10 @@ class NotificationWallpaper extends FrameLayout {
     private Context mContext;
     Bitmap mBitmapWallpaper = null;
 
-    public NotificationWallpaper(Context context) {
-        super(context);
-        mContext = context;
+    public NotificationWallpaper(FrameLayout container, XSharedPreferences prefs) {
+        super(container.getContext());
+        mNotificationPanelView = container;
+        mContext = mNotificationPanelView.getContext();
 
         try {
             Context gbContext = mContext.createPackageContext(GravityBox.PACKAGE_NAME, 0);
@@ -67,6 +72,23 @@ class NotificationWallpaper extends FrameLayout {
         mBgType = GravityBoxSettings.NOTIF_BG_DEFAULT;
         mColorMode = GravityBoxSettings.NOTIF_BG_COLOR_MODE_OVERLAY;
         mAlpha = 0.6f;
+
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT);
+        setLayoutParams(lp);
+        setType(prefs.getString(
+                GravityBoxSettings.PREF_KEY_NOTIF_BACKGROUND,
+                GravityBoxSettings.NOTIF_BG_DEFAULT));
+        setColor(prefs.getInt(
+                GravityBoxSettings.PREF_KEY_NOTIF_COLOR, Color.BLACK));
+        setColorMode(prefs.getString(
+                GravityBoxSettings.PREF_KEY_NOTIF_COLOR_MODE,
+                GravityBoxSettings.NOTIF_BG_COLOR_MODE_OVERLAY));
+        setAlpha(prefs.getInt(
+                GravityBoxSettings.PREF_KEY_NOTIF_BACKGROUND_ALPHA, 60));
+        mNotificationPanelView.addView(this);
+        updateNotificationPanelBackground();
     }
 
     public String getType() {
@@ -109,7 +131,19 @@ class NotificationWallpaper extends FrameLayout {
         mAlpha = (float)alpha / (float)100;
     }
 
-    public void updateNotificationWallpaper() {
+    public void updateNotificationPanelBackground() {
+        mNotificationPanelView.setBackgroundResource(0);
+        mNotificationPanelView.setBackgroundResource(
+                mNotificationPanelView.getResources().getIdentifier(
+                        "notification_panel_bg", "drawable", PACKAGE_NAME));
+        Drawable background = mNotificationPanelView.getBackground();
+        background.setAlpha(mAlpha == 0 ? 255 : 
+            (int)(1-mAlpha * 255));
+
+        updateNotificationWallpaper();
+    }
+
+    private void updateNotificationWallpaper() {
         if (mNotificationWallpaperImage != null) {
             removeView(mNotificationWallpaperImage);
             mNotificationWallpaperImage = null;
@@ -184,5 +218,23 @@ class NotificationWallpaper extends FrameLayout {
         super.onConfigurationChanged(newConfig);
             updateNotificationWallpaper();
     }
-}
 
+    @Override
+    public void onBroadcastReceived(Context context, Intent intent) {
+        if (intent.getAction().equals(GravityBoxSettings.ACTION_NOTIF_BACKGROUND_CHANGED)) {
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_TYPE)) {
+                setType(intent.getStringExtra(GravityBoxSettings.EXTRA_BG_TYPE));
+            }
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_COLOR)) {
+                setColor(intent.getIntExtra(GravityBoxSettings.EXTRA_BG_COLOR, Color.BLACK));
+            }
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_ALPHA)) {
+                setAlpha(intent.getIntExtra(GravityBoxSettings.EXTRA_BG_ALPHA, 60));
+            }
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_COLOR_MODE)) {
+                setColorMode(intent.getStringExtra(GravityBoxSettings.EXTRA_BG_COLOR_MODE));
+            }
+            updateNotificationPanelBackground();
+        }
+    }
+}

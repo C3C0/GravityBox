@@ -72,8 +72,6 @@ public class ModStatusbarColor {
     private static int mBatteryLevel;
     private static boolean mBatteryPlugged;
     private static Object mBatteryController;
-    private static FrameLayout mNotificationPanelView;
-    private static NotificationWallpaper mNotificationWallpaper;
     private static TransparencyManager mTransparencyManager;
     private static Context mContextPwm;
     private static int[] mTransparencyValuesPwm = new int[] { 0, 0, 0, 0};
@@ -134,27 +132,6 @@ public class ModStatusbarColor {
                     int bgColor = intent.getIntExtra(GravityBoxSettings.EXTRA_SB_BG_COLOR, Color.BLACK);
                     setStatusbarBgColor(bgColor);
                 }
-            }
-
-            if (intent.getAction().equals(GravityBoxSettings.ACTION_NOTIF_BACKGROUND_CHANGED) &&
-                    mNotificationWallpaper != null) {
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_TYPE)) {
-                    mNotificationWallpaper.setType(
-                            intent.getStringExtra(GravityBoxSettings.EXTRA_BG_TYPE));
-                }
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_COLOR)) {
-                    mNotificationWallpaper.setColor(
-                            intent.getIntExtra(GravityBoxSettings.EXTRA_BG_COLOR, Color.BLACK));
-                }
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_ALPHA)) {
-                    mNotificationWallpaper.setAlpha(
-                            intent.getIntExtra(GravityBoxSettings.EXTRA_BG_ALPHA, 60));
-                }
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_BG_COLOR_MODE)) {
-                    mNotificationWallpaper.setColorMode(
-                            intent.getStringExtra(GravityBoxSettings.EXTRA_BG_COLOR_MODE));
-                }
-                updateNotificationPanelBackground();
             }
 
             for (BroadcastSubReceiver bsr : mBroadcastSubReceivers) {
@@ -581,25 +558,9 @@ public class ModStatusbarColor {
     
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                        mNotificationPanelView = (FrameLayout) param.thisObject;
-    
-                        mNotificationWallpaper = new NotificationWallpaper(mNotificationPanelView.getContext());
-                        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
-                                FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.MATCH_PARENT);
-                        mNotificationWallpaper.setLayoutParams(lp);
-                        mNotificationWallpaper.setType(prefs.getString(
-                                GravityBoxSettings.PREF_KEY_NOTIF_BACKGROUND,
-                                GravityBoxSettings.NOTIF_BG_DEFAULT));
-                        mNotificationWallpaper.setColor(prefs.getInt(
-                                GravityBoxSettings.PREF_KEY_NOTIF_COLOR, Color.BLACK));
-                        mNotificationWallpaper.setColorMode(prefs.getString(
-                                GravityBoxSettings.PREF_KEY_NOTIF_COLOR_MODE,
-                                GravityBoxSettings.NOTIF_BG_COLOR_MODE_OVERLAY));
-                        mNotificationWallpaper.setAlpha(prefs.getInt(
-                                GravityBoxSettings.PREF_KEY_NOTIF_BACKGROUND_ALPHA, 60));
-                        mNotificationPanelView.addView(mNotificationWallpaper);
-                        updateNotificationPanelBackground();
+                        NotificationWallpaper nw = 
+                                new NotificationWallpaper((FrameLayout) param.thisObject, prefs);
+                        mBroadcastSubReceivers.add(nw);
                     }
                 });
             }
@@ -715,20 +676,5 @@ public class ModStatusbarColor {
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
-    }
-
-    private static void updateNotificationPanelBackground() {
-        if (mNotificationPanelView == null || mNotificationWallpaper == null) return;
-
-        mNotificationPanelView.setBackgroundResource(0);
-        mNotificationPanelView.setBackgroundResource(
-                mNotificationPanelView.getResources().getIdentifier(
-                        "notification_panel_bg", "drawable", PACKAGE_NAME));
-        Drawable background = mNotificationPanelView.getBackground();
-        float alpha = mNotificationWallpaper.getAlpha();
-        background.setAlpha(alpha == 0 ? 255 : 
-            (int)(1-alpha * 255));
-
-        mNotificationWallpaper.updateNotificationWallpaper();
     }
 }
