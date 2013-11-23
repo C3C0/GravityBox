@@ -656,13 +656,8 @@ public class ModStatusbarColor {
         @Override
         public void onIconManagerStatusChanged(int flags, ColorInfo colorInfo) {
             if ((flags & StatusBarIconManager.FLAG_ICON_COLOR_CHANGED) != 0) {
-                updateSignalCluster();
                 updateBattery();
                 updateStatusIcons();
-            } else if ((flags & (StatusBarIconManager.FLAG_DATA_ACTIVITY_COLOR_CHANGED |
-                    StatusBarIconManager.FLAG_ICON_COLOR_SECONDARY_CHANGED |
-                    StatusBarIconManager.FLAG_SIGNAL_ICON_MODE_CHANGED)) != 0) {
-                updateSignalCluster();
             } else if ((flags & StatusBarIconManager.FLAG_SKIP_BATTERY_ICON_CHANGED) != 0) {
                 updateBattery();
             } else if ((flags & StatusBarIconManager.FLAG_ICON_STYLE_CHANGED) != 0) {
@@ -670,16 +665,6 @@ public class ModStatusbarColor {
             }
         }
     };
-
-    private static void updateSignalCluster() {
-        try {
-            if (mSignalCluster != null) {
-                mSignalCluster.update();
-            }
-        } catch (Throwable t) {
-            XposedBridge.log(t);
-        }
-    }
 
     private static void updateBattery() {
         if (mBatteryController != null && mBattery != null) {

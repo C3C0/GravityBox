@@ -15,6 +15,9 @@
 
 package com.ceco.gm2.gravitybox;
 
+import com.ceco.gm2.gravitybox.StatusBarIconManager.ColorInfo;
+import com.ceco.gm2.gravitybox.StatusBarIconManager.IconManagerListener;
+
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
@@ -26,7 +29,7 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class StatusbarSignalCluster implements BroadcastSubReceiver {
+public class StatusbarSignalCluster implements BroadcastSubReceiver, IconManagerListener {
     public static final String TAG = "GB:StatusbarSignalCluster";
 
     protected LinearLayout mView;
@@ -64,6 +67,8 @@ public class StatusbarSignalCluster implements BroadcastSubReceiver {
                 log("Error hooking apply() method: " + t.getMessage());
             }
         }
+
+        mIconManager.registerListener(this);
     }
 
     @Override
@@ -71,7 +76,7 @@ public class StatusbarSignalCluster implements BroadcastSubReceiver {
 
     public void initPreferences(XSharedPreferences prefs) { }
 
-    public void update() {
+    private void update() {
         if (mView != null) {
             try {
                 XposedHelpers.callMethod(mView, "apply");
@@ -179,6 +184,16 @@ public class StatusbarSignalCluster implements BroadcastSubReceiver {
             }
         } catch (Throwable t) {
             XposedBridge.log(t);
+        }
+    }
+
+    @Override
+    public void onIconManagerStatusChanged(int flags, ColorInfo colorInfo) {
+        if ((flags & (StatusBarIconManager.FLAG_ICON_COLOR_CHANGED |
+                StatusBarIconManager.FLAG_DATA_ACTIVITY_COLOR_CHANGED |
+                StatusBarIconManager.FLAG_ICON_COLOR_SECONDARY_CHANGED |
+                StatusBarIconManager.FLAG_SIGNAL_ICON_MODE_CHANGED)) != 0) {
+            update();
         }
     }
 }
