@@ -787,6 +787,10 @@ public class ModHwKeys {
             toggleTorch();
         } else if (action == GravityBoxSettings.HWKEY_ACTION_APP_LAUNCHER) {
             showAppLauncher();
+        } else if (action == GravityBoxSettings.HWKEY_ACTION_HOME) {
+            injectKey(KeyEvent.KEYCODE_HOME);
+        } else if (action == GravityBoxSettings.HWKEY_ACTION_BACK) {
+            injectKey(KeyEvent.KEYCODE_BACK);
         }
     }
 

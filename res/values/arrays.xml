@@ -224,6 +224,8 @@
         <item>@string/hwkey_action_custom_app</item>
         <item>@string/hwkey_action_custom_app2</item>
         <item>@string/hwkey_action_menu</item>
+        <item>@string/hwkey_action_home</item>
+        <item>@string/hwkey_action_back</item>
         <item>@string/hwkey_action_expanded_desktop</item>
         <item>@string/hwkey_action_torch</item>
     </string-array>
@@ -240,6 +242,8 @@
         <item>7</item>
         <item>8</item>
         <item>9</item>
+        <item>13</item>
+        <item>14</item>
         <item>10</item>
         <item>11</item>
     </string-array>
