@@ -775,12 +775,6 @@
     <!-- Disable lockscreen shade -->
     <string name="pref_lockscreen_shade_disable_title">停用鎖定螢幕的陰影</string>
     <string name="pref_lockscreen_shade_disable_summary">移除螢幕鎖定畫面深色色調</string>
-
-    <!-- Secondary signal icon color for MTK Dual SIMs -->
-    <string name="pref_statusbar_icon_color_secondary_title">輔助訊號顏色</string>
-    <string name="pref_statusbar_icon_color_secondary_summary">覆蓋預設橘色訊號圖示</string>
-    <string name="pref_statusbar_data_activity_color_secondary_title">輔助資料連接活動顏色</string>
-    <string name="pref_statusbar_data_activity_color_secondary_summary">設定輔助資料連接指示服顏色</string>
     
     <!-- Transparency manager mode -->
     <string name="pref_tm_mode_title">透明度管理器模式</string>
@@ -789,5 +783,17 @@
     <string name="tm_mode_statusbar">狀態列</string>
     <string name="tm_mode_navbar">海苔條</string>
     <string name="tm_mode_full">兩者</string>
+    
+    <!-- Secondary signal icon color for MTK Dual SIMs -->
+    <string name="pref_statusbar_icon_color_secondary_title">輔助訊號顏色</string>
+    <string name="pref_statusbar_icon_color_secondary_summary">覆蓋預設橘色訊號圖示</string>
+    <string name="pref_statusbar_data_activity_color_secondary_title">輔助資料連接活動顏色</string>
+    <string name="pref_statusbar_data_activity_color_secondary_summary">設定輔助資料連接指示符顏色</string>
+ 
+    <!-- Status icon style -->
+    <string name="pref_status_icon_style_title">狀態列圖示風格</string>
+    <string name="pref_status_icon_style_summary">套用於無聲，震動，報警等狀態圖示.</string>
+    <string name="icon_style_jb">JellyBean</string>
+    <string name="icon_style_kk">KitKat</string>
  
 </resources>
