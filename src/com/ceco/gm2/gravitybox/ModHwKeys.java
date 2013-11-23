@@ -297,6 +297,8 @@ public class ModHwKeys {
                     boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
                     boolean keyguardOn = (Boolean) XposedHelpers.callMethod(mPhoneWindowManager, "keyguardOn");
                     Handler handler = (Handler) XposedHelpers.getObjectField(param.thisObject, "mHandler");
+                    if (DEBUG) log("interceptKeyBeforeQueueing: keyCode=" + keyCode +
+                            "; action=" + event.getAction());
 
                     if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
                         if (!down) {
@@ -361,8 +363,11 @@ public class ModHwKeys {
                     KeyEvent event = (KeyEvent) param.args[1];
                     int keyCode = event.getKeyCode();
                     boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
+                    boolean isFromSystem = (event.getFlags() & KeyEvent.FLAG_FROM_SYSTEM) != 0;
                     Handler mHandler = (Handler) XposedHelpers.getObjectField(param.thisObject, "mHandler");
-                    if (DEBUG) log("keyCode=" + keyCode);
+                    if (DEBUG) log("interceptKeyBeforeDispatching: keyCode=" + keyCode +
+                            "; isInjected=" + (((Integer)param.args[2] & 0x01000000) != 0) +
+                            "; fromSystem=" + isFromSystem);
 
                     if (keyCode == KeyEvent.KEYCODE_MENU) {
                         if (!hasAction(HwKey.MENU) && areHwKeysEnabled()) return;
@@ -370,6 +375,7 @@ public class ModHwKeys {
                         if (!down) {
                             mHandler.removeCallbacks(mMenuLongPress);
                             if (mIsMenuLongPressed) {
+                                mIsMenuLongPressed = false;
                                 param.setResult(-1);
                                 return;
                             }
@@ -409,21 +415,19 @@ public class ModHwKeys {
                         }
                     }
 
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        if (!hasAction(HwKey.BACK) && areHwKeysEnabled()) return;
+                    if (keyCode == KeyEvent.KEYCODE_BACK && isFromSystem &&
+                            (hasAction(HwKey.BACK) || !areHwKeysEnabled())) {
 
                         if (!down) {
                             mHandler.removeCallbacks(mBackLongPress);
                             if (mIsBackLongPressed) {
-                                param.setResult(-1);
-                                return;
-                            }
-                            if (!areHwKeysEnabled() &&
-                                    event.getRepeatCount() == 0 && 
-                                    ((event.getFlags() & KeyEvent.FLAG_FROM_SYSTEM) != 0)) {
+                                mIsBackLongPressed = false;
+                            } else if (areHwKeysEnabled()) {
+                                // inject BACK key event as it was previously eaten by us
+                                if (DEBUG) log("Triggering original DOWN/UP events for BACK key");
+                                injectKey(KeyEvent.KEYCODE_BACK);
+                            } else {
                                 if (DEBUG) log("BACK KeyEvent coming from HW key and keys disabled. Ignoring.");
-                                param.setResult(-1);
-                                return;
                             }
                         } else {
                             if (event.getRepeatCount() == 0) {
@@ -432,11 +436,10 @@ public class ModHwKeys {
                                     mHandler.postDelayed(mBackLongPress, 
                                             getLongpressTimeoutForAction(mBackLongpressAction));
                                 }
-                            } else {
-                                param.setResult(-1);
-                                return;
                             }
                         }
+                        param.setResult(-1);
+                        return;
                     }
 
                     if (keyCode == KeyEvent.KEYCODE_APP_SWITCH) {
@@ -458,6 +461,7 @@ public class ModHwKeys {
                                     toggleRecentApps();
                                 }
                             }
+                            mIsRecentsLongPressed = false;
                         } else {
                             if (event.getRepeatCount() == 0) {
                                 mIsRecentsLongPressed = false;
@@ -716,7 +720,7 @@ public class ModHwKeys {
                     || action == GravityBoxSettings.HWKEY_ACTION_CUSTOM_APP2) {
             launchCustomApp(action);
         } else if (action == GravityBoxSettings.HWKEY_ACTION_MENU) {
-            injectMenuKey();
+            injectKey(KeyEvent.KEYCODE_MENU);
         } else if (action == GravityBoxSettings.HWKEY_ACTION_EXPANDED_DESKTOP) {
             toggleExpandedDesktop();
         } else if (action == GravityBoxSettings.HWKEY_ACTION_TORCH) {
@@ -907,7 +911,7 @@ public class ModHwKeys {
         );
     }
 
-    private static void injectMenuKey() {
+    private static void injectKey(final int keyCode) {
         Handler handler = (Handler) XposedHelpers.getObjectField(mPhoneWindowManager, "mHandler");
         if (handler == null) return;
 
@@ -920,10 +924,10 @@ public class ModHwKeys {
                             mContext.getSystemService(Context.INPUT_SERVICE);
                     XposedHelpers.callMethod(inputManager, "injectInputEvent",
                             new KeyEvent(eventTime - 50, eventTime - 50, KeyEvent.ACTION_DOWN, 
-                                    KeyEvent.KEYCODE_MENU, 0), 0);
+                                    keyCode, 0), 0);
                     XposedHelpers.callMethod(inputManager, "injectInputEvent",
                             new KeyEvent(eventTime - 50, eventTime - 25, KeyEvent.ACTION_UP, 
-                                    KeyEvent.KEYCODE_MENU, 0), 0);
+                                    keyCode, 0), 0);
                 } catch (Throwable t) {
                         XposedBridge.log(t);
                 }
