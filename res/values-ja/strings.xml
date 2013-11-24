@@ -783,4 +783,11 @@
     <string name="pref_status_icon_style_title">ステータスアイコンスタイル</string>
     <string name="pref_status_icon_style_summary">マナーモードやアラーム等のアイコンのスタイルを変更します。</string>
     
+    <!-- HW Key Actions: Back double-tap -->
+    <string name="hwkey_back_doubletap_dialog_title">バックキーダブルタップ</string>
+
+    <!-- HW Key Actions: Home and Back actions -->
+    <string name="hwkey_action_home">ホーム</string>
+    <string name="hwkey_action_back">戻る</string>
+    
 </resources>
