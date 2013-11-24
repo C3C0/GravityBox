@@ -15,13 +15,12 @@
 
 package com.ceco.gm2.gravitybox;
 
-import java.util.ArrayList;
-
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.Context;
 import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.view.Gravity;
@@ -37,7 +36,6 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResourcesParam;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
-import de.robv.android.xposed.callbacks.XCallback;
 
 public class ModBatteryStyle {
     private static final String TAG = "GB:ModBatteryStyle";
@@ -77,11 +75,11 @@ public class ModBatteryStyle {
                     mBatteryPercentTextEnabled = intent.getBooleanExtra("batteryPercent", false);
                     if (DEBUG) log("mBatteryPercentText changed to: " + mBatteryPercentTextEnabled);
                 }
-                updateBatteryStyle();
+                updateBatteryStyle(null);
             } else if (intent.getAction().equals(ACTION_MTK_BATTERY_PERCENTAGE_SWITCH)) {
                 mMtkPercentTextEnabled = intent.getIntExtra(EXTRA_MTK_BATTERY_PERCENTAGE_STATE, 0) == 1;
                 if (DEBUG) log("mMtkPercentText changed to: " + mMtkPercentTextEnabled);
-                updateBatteryStyle();
+                updateBatteryStyle(null);
             }
         }
     };
@@ -207,35 +205,7 @@ public class ModBatteryStyle {
         if (DEBUG) log("init");
 
         try {
-            Class<?> phoneStatusBarClass = XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
             Class<?> batteryControllerClass = XposedHelpers.findClass(CLASS_BATTERY_CONTROLLER, classLoader);
-
-            XposedHelpers.findAndHookMethod(phoneStatusBarClass, "makeStatusBarView", 
-                    new XC_MethodHook(XCallback.PRIORITY_HIGHEST) {
-                @Override
-                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    final Object batteryController = 
-                            XposedHelpers.getObjectField(param.thisObject, "mBatteryController");
-                    if (mPercentText != null && batteryController != null) {
-                        // add percent text only in case there is no label with "percentage" tag present
-                        @SuppressWarnings("unchecked")
-                        ArrayList<TextView> mLabelViews = 
-                            (ArrayList<TextView>) XposedHelpers.getObjectField(batteryController, "mLabelViews");
-                        boolean percentTextExists = false;
-                        for (TextView tv : mLabelViews) {
-                            if ("percentage".equals(tv.getTag())) {
-                                percentTextExists = true;
-                                break;
-                            }
-                        }
-                        if (!percentTextExists) {
-                            XposedHelpers.callMethod(batteryController, "addLabelView", 
-                                    mPercentText.getView());
-                            if (DEBUG) log("BatteryController.addLabelView(percText)");
-                        }
-                    }
-                }
-            });
 
             XposedBridge.hookAllConstructors(batteryControllerClass, new XC_MethodHook() {
 
@@ -247,7 +217,7 @@ public class ModBatteryStyle {
                     mBatteryPercentTextEnabled = prefs.getBoolean(
                             GravityBoxSettings.PREF_KEY_BATTERY_PERCENT_TEXT, false);
 
-                    Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                    Context context = (Context) param.args[0];
                     mMtkPercentTextEnabled = Utils.isMtkDevice() ?
                             Settings.Secure.getInt(context.getContentResolver(), 
                                     SETTING_MTK_BATTERY_PERCENTAGE, 0) == 1 : false;
@@ -259,7 +229,7 @@ public class ModBatteryStyle {
                     }
                     context.registerReceiver(mBroadcastReceiver, intentFilter);
 
-                    updateBatteryStyle();
+                    updateBatteryStyle(null);
                     if (DEBUG) log("BatteryController constructed");
                 }
             });
@@ -268,7 +238,12 @@ public class ModBatteryStyle {
                     Context.class, Intent.class, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    updateBatteryStyle();
+                    Integer level = null;
+                    Intent intent = (Intent) param.args[1];
+                    if (intent != null) {
+                        level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+                    }
+                    updateBatteryStyle(level);
                 }
             });
         }
@@ -277,7 +252,7 @@ public class ModBatteryStyle {
         }
     }
 
-    private static void updateBatteryStyle() {
+    private static void updateBatteryStyle(Integer level) {
         try {
             if (mStockBattery != null) {
                 mStockBattery.setVisibility((mBatteryStyle == GravityBoxSettings.BATTERY_STYLE_STOCK) ?
@@ -301,6 +276,9 @@ public class ModBatteryStyle {
             }
 
             if (mPercentText != null) {
+                if (level != null) {
+                    mPercentText.getView().setText(level + "%");
+                }
                 mPercentText.getView().setVisibility(
                         (mBatteryPercentTextEnabled || mMtkPercentTextEnabled) ?
                                 View.VISIBLE : View.GONE);
