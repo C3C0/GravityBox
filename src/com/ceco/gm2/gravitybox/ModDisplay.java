@@ -87,7 +87,7 @@ public class ModDisplay {
                     mButtonBacklightMode = intent.getStringExtra(GravityBoxSettings.EXTRA_BB_MODE);
                     updateButtonBacklight();
                 }
-                if (intent.hasExtra(GravityBoxSettings.EXTRA_BB_NOTIF)) {
+                if (intent.hasExtra(GravityBoxSettings.EXTRA_BB_NOTIF) && Build.VERSION.SDK_INT < 19) {
                     mButtonBacklightNotif = intent.getBooleanExtra(GravityBoxSettings.EXTRA_BB_NOTIF, false);
                     if (!mButtonBacklightNotif) {
                         mPendingNotif = false;
@@ -108,20 +108,24 @@ public class ModDisplay {
     private static void updateButtonBacklight(boolean isScreenOn) {
         if (mLight == null || mPendingNotif) return;
 
-        Integer color = null;
-        if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)) {
-            color = isScreenOn ? 0xff6e6e6e : 0;
-        } else if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_DISABLE)) {
-            color = 0;
-        } else if (!isScreenOn) {
-            color = 0;
-        }
-
-        if (color != null) {
-            Object ls = XposedHelpers.getSurroundingThis(mLight);
-            int np = XposedHelpers.getIntField(ls, "mNativePointer");
-            XposedHelpers.callMethod(ls, "setLight_native",
-                    np, LIGHT_ID_BUTTONS, color, 0, 0, 0, 0);
+        try {
+            Integer color = null;
+            if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_ALWAYS_ON)) {
+                color = isScreenOn ? 0xff6e6e6e : 0;
+            } else if (mButtonBacklightMode.equals(GravityBoxSettings.BB_MODE_DISABLE)) {
+                color = 0;
+            } else if (!isScreenOn) {
+                color = 0;
+            }
+    
+            if (color != null) {
+                Object ls = XposedHelpers.getSurroundingThis(mLight);
+                int np = XposedHelpers.getIntField(ls, "mNativePointer");
+                XposedHelpers.callMethod(ls, "setLight_native",
+                        np, LIGHT_ID_BUTTONS, color, 0, 0, 0, 0);
+            }
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 
@@ -176,7 +180,8 @@ public class ModDisplay {
             mButtonBacklightMode = prefs.getString(
                     GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_MODE, GravityBoxSettings.BB_MODE_DEFAULT);
             mButtonBacklightNotif = prefs.getBoolean(
-                    GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS, false);
+                    GravityBoxSettings.PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS, false) &&
+                    Build.VERSION.SDK_INT < 19;
             
             if (brightnessSettingsEnabled && classDisplayPowerController != null) {
                 int brightnessMin = prefs.getInt(GravityBoxSettings.PREF_KEY_BRIGHTNESS_MIN, 20);
@@ -270,7 +275,6 @@ public class ModDisplay {
 
                 @Override
                 protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
-                    if (mHandler == null) mHandler = new Handler();
                     if (mLight == null) mLight = param.thisObject;
                     int id = XposedHelpers.getIntField(param.thisObject, "mId");
                     if (DEBUG) log("lightId=" + id + "; color=" + param.args[0] + 
@@ -299,6 +303,7 @@ public class ModDisplay {
                     }
 
                     if (mButtonBacklightNotif) {
+                        if (mHandler == null) mHandler = new Handler();
                         if (id == LIGHT_ID_NOTIFICATIONS || id == LIGHT_ID_ATTENTION) {
                             if ((Integer)param.args[0] != 0) {
                                 if (!mPendingNotif) {

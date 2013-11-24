@@ -690,6 +690,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private ListPreference mPrefNotifColorMode;
         private CheckBoxPreference mPrefDisableRoamingIndicators;
         private ListPreference mPrefButtonBacklightMode;
+        private CheckBoxPreference mPrefButtonBacklightNotif;
         private ListPreference mPrefPieEnabled;
         private ListPreference mPrefPieCustomKey;
         private CheckBoxPreference mPrefPieHwKeysDisabled;
@@ -865,6 +866,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             mPrefDisableRoamingIndicators = (CheckBoxPreference) findPreference(PREF_KEY_DISABLE_ROAMING_INDICATORS);
             mPrefButtonBacklightMode = (ListPreference) findPreference(PREF_KEY_BUTTON_BACKLIGHT_MODE);
+            mPrefButtonBacklightNotif = (CheckBoxPreference) findPreference(PREF_KEY_BUTTON_BACKLIGHT_NOTIFICATIONS);
 
             mPrefPieEnabled = (ListPreference) findPreference(PREF_KEY_PIE_CONTROL_ENABLE);
             mPrefPieHwKeysDisabled = (CheckBoxPreference) findPreference(PREF_KEY_HWKEYS_DISABLE);
@@ -1060,6 +1062,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             // Remove preferences not compatible with KitKat
             if (Build.VERSION.SDK_INT > 18) {
                 getPreferenceScreen().removePreference(mPrefCatTransparencyManager);
+                mPrefCatDisplay.removePreference(mPrefButtonBacklightNotif);
             }
 
             // Remove more music volume steps option if necessary
