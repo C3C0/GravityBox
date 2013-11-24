@@ -341,7 +341,7 @@ public class ModQuickSettings {
 
                 // adjust layout in case it's AOSP 4.3 tile
                 if (Build.VERSION.SDK_INT > 17 && imgResId != 0 && rssiImgResId != 0) {
-                    ImageView img = (ImageView) viewGroup.findViewById(imgResId);
+                    View img = viewGroup.findViewById(imgResId);
                     if (img != null) {
                         // basic tile
                         if (img.getLayoutParams() instanceof LinearLayout.LayoutParams) {
@@ -353,7 +353,7 @@ public class ModQuickSettings {
                         }
                     } else {
                         // RSSI special tile
-                        img = (ImageView) viewGroup.findViewById(rssiImgResId);
+                        img = viewGroup.findViewById(rssiImgResId);
                         if (img != null && img.getParent() instanceof FrameLayout) {
                             FrameLayout fl = (FrameLayout) img.getParent();
                             if (fl.getLayoutParams() instanceof LinearLayout.LayoutParams) {
