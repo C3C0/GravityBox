@@ -628,7 +628,8 @@ public class ModExpandedDesktop {
     }
 
     private static void updateDisplayMetrics(Object windowManager) {
-        if (windowManager == null || Build.VERSION.SDK_INT < 17) return;
+        if (windowManager == null || Build.VERSION.SDK_INT < 17
+                || Build.VERSION.SDK_INT > 18) return;
 
         final long origId = Binder.clearCallingIdentity();
         boolean changed = false;
