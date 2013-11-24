@@ -1,3 +1,11 @@
+Changelog 2.7.5 - 24/11/2013
+--------------------------------------
+- Fixed misbehaviour of MENU key in some apps when double-tap is enabled
+- Improved compatibility with KitKat:
+--- disabled statusbar BG coloring
+--- disabled "Follow stock battery" option
+--- improved QuickSettings compatibility
+
 Changelog 2.7.4 - 24/11/2013
 --------------------------------------
 - Initial support for KitKat [EXPERIMENTAL]
