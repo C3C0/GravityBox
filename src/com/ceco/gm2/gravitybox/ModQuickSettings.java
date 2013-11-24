@@ -88,6 +88,7 @@ public class ModQuickSettings {
     private static final String CLASS_QS_MODEL = "com.android.systemui.statusbar.phone.QuickSettingsModel";
     private static final String CLASS_QS_MODEL_RCB = "com.android.systemui.statusbar.phone.QuickSettingsModel$RefreshCallback";
     private static final String CLASS_QS_MODEL_STATE = "com.android.systemui.statusbar.phone.QuickSettingsModel.State";
+    private static final String CLASS_ROTATION_LOCK_CTRL = "com.android.systemui.statusbar.policy.RotationLockController";
     private static final boolean DEBUG = false;
 
     private static final float STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_RIGHT = 0.15f;
@@ -955,13 +956,19 @@ public class ModQuickSettings {
         }
 
         try {
-            XposedHelpers.findAndHookMethod(classQsModel, "addRotationLockTile",
-                    CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
+            final XC_MethodHook addRotationLockTileHook = new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
                     ((View)param.args[0]).setTag(mAospTileTags.get("auto_rotate_textview"));
                 }
-            });
+            };
+            if (Build.VERSION.SDK_INT > 18) {
+                XposedHelpers.findAndHookMethod(classQsModel, "addRotationLockTile",
+                        CLASS_QS_TILEVIEW, CLASS_ROTATION_LOCK_CTRL, CLASS_QS_MODEL_RCB, addRotationLockTileHook);
+            } else {
+                XposedHelpers.findAndHookMethod(classQsModel, "addRotationLockTile",
+                        CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, addRotationLockTileHook);
+            }
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
