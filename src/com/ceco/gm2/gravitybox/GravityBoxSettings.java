@@ -146,6 +146,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_STATUSBAR_CLOCK_HIDE = "pref_clock_hide";
     public static final String PREF_KEY_STATUSBAR_CLOCK_LINK = "pref_clock_link_app";
     public static final String PREF_KEY_ALARM_ICON_HIDE = "pref_alarm_icon_hide";
+    public static final String PREF_CAT_KEY_TRANSPARENCY_MANAGER = "pref_cat_transparency_manager";
     public static final String PREF_KEY_TM_MODE = "pref_tm_mode";
     public static final String PREF_KEY_TM_STATUSBAR_LAUNCHER = "pref_tm_statusbar_launcher";
     public static final String PREF_KEY_TM_STATUSBAR_LOCKSCREEN = "pref_tm_statusbar_lockscreen";
@@ -755,6 +756,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private PreferenceScreen mPrefCatStatusbarColors;
         private ColorPickerPreference mPrefSbIconColorSecondary;
         private ColorPickerPreference mPrefSbDaColorSecondary;
+        private PreferenceScreen mPrefCatTransparencyManager;
 
         @SuppressWarnings("deprecation")
         @Override
@@ -958,6 +960,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefCatAppLauncher.addPreference(mPrefAppLauncherSlot[i]);
             }
 
+            mPrefCatTransparencyManager = (PreferenceScreen) findPreference(PREF_CAT_KEY_TRANSPARENCY_MANAGER);
             mPrefTmSbLauncher = (SeekBarPreference) findPreference(PREF_KEY_TM_STATUSBAR_LAUNCHER);
             mPrefTmSbLockscreen = (SeekBarPreference) findPreference(PREF_KEY_TM_STATUSBAR_LOCKSCREEN);
             mPrefTmNbLauncher = (SeekBarPreference) findPreference(PREF_KEY_TM_NAVBAR_LAUNCHER);
@@ -1052,6 +1055,11 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             // Remove preferences not compatible with Android < 4.3+
             if (Build.VERSION.SDK_INT < 18) {
                 mPrefCatHwKeyHome.removePreference(mPrefHomeDoubletapDisable);
+            }
+
+            // Remove preferences not compatible with KitKat
+            if (Build.VERSION.SDK_INT > 18) {
+                getPreferenceScreen().removePreference(mPrefCatTransparencyManager);
             }
 
             // Remove more music volume steps option if necessary

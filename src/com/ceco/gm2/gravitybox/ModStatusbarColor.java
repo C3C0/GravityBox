@@ -153,7 +153,7 @@ public class ModStatusbarColor {
                 //
             }
 
-            if (mTransparencyModePwm != TransparencyManager.MODE_DISABLED) {
+            if (mTransparencyModePwm != TransparencyManager.MODE_DISABLED && Build.VERSION.SDK_INT < 19) {
                 if (DEBUG) log("replacing getSystemDecorRectLw method");
                 XposedHelpers.findAndHookMethod(phoneWindowManagerClass,
                         "getSystemDecorRectLw", Rect.class, new XC_MethodReplacement() {
@@ -466,7 +466,7 @@ public class ModStatusbarColor {
                     } catch (NumberFormatException nfe) {
                         log("Invalid value for PREF_KEY_TM_MODE preference");
                     }
-                    if (tmMode != TransparencyManager.MODE_DISABLED) {
+                    if (tmMode != TransparencyManager.MODE_DISABLED && Build.VERSION.SDK_INT < 19) {
                         mTransparencyManager = new TransparencyManager(context, tmMode);
                         mTransparencyManager.setStatusbar(XposedHelpers.getObjectField(param.thisObject, "mStatusBarView"));
                         mTransparencyManager.setNavbar(XposedHelpers.getObjectField(param.thisObject, "mNavigationBarView"));
