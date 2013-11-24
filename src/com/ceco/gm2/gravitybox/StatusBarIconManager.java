@@ -467,9 +467,8 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
             return null;
         }
 
-        mAllowMobileIconChange[index] = !Utils.isMtkDevice();
-        mAllowMobileIconChange[index] |= (index == 0) ? 
-                key.contains("blue") : key.contains("orange");
+        mAllowMobileIconChange[index] = !Utils.isMtkDevice() ||
+                key.contains("blue") || key.contains("orange");
         if (!mAllowMobileIconChange[index]) {
             return null;
         }
