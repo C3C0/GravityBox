@@ -418,6 +418,7 @@ public class ModHwKeys {
                                     if (mMenuDoubletapAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
                                         mIsMenuDoubleTap = true;
                                         mHandler.postDelayed(mMenuDoubleTapReset, mDoubletapSpeed);
+                                        param.setResult(-1);
                                     }
                                     if (mMenuLongpressAction != GravityBoxSettings.HWKEY_ACTION_DEFAULT) {
                                         mHandler.postDelayed(mMenuLongPress, 
