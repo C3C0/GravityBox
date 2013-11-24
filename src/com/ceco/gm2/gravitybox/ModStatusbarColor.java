@@ -517,16 +517,18 @@ public class ModStatusbarColor {
                 }
             });
 
-            XposedHelpers.findAndHookMethod(phoneStatusbarClass, "setStatusBarLowProfile",
-                    boolean.class, new XC_MethodHook() {
-                @Override
-                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    final boolean lightsOut = (Boolean) param.args[0];
-                    if (mIconManager != null) {
-                        mIconManager.setLowProfile(lightsOut);
+            if (Build.VERSION.SDK_INT < 19) {
+                XposedHelpers.findAndHookMethod(phoneStatusbarClass, "setStatusBarLowProfile",
+                        boolean.class, new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                        final boolean lightsOut = (Boolean) param.args[0];
+                        if (mIconManager != null) {
+                            mIconManager.setLowProfile(lightsOut);
+                        }
                     }
-                }
-            });
+                });
+            }
 
             XposedHelpers.findAndHookMethod(batteryControllerClass, "onReceive",
                     Context.class, Intent.class, new XC_MethodHook(XCallback.PRIORITY_HIGHEST) {
