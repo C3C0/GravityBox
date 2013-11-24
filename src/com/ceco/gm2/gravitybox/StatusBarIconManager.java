@@ -32,6 +32,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 public class StatusBarIconManager implements BroadcastSubReceiver {
     private static final String TAG = "GB:StatusBarIconManager";
@@ -316,7 +317,8 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
     }
 
     public void setFollowStockBatteryColor(boolean follow) {
-        if (mColorInfo.followStockBatteryColor != follow) {
+        if (Build.VERSION.SDK_INT < 19 &&
+                mColorInfo.followStockBatteryColor != follow) {
             mColorInfo.followStockBatteryColor = follow;
             mColorInfo.defaultIconColor = getDefaultIconColor();
             int flags = FLAG_FOLLOW_STOCK_BATTERY_COLOR_CHANGED;

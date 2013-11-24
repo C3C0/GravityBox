@@ -667,6 +667,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         private ListPreference mPrefHwKeyDoubletapSpeed;
         private ListPreference mPrefHwKeyKillDelay;
         private ListPreference mPrefPhoneFlip;
+        private CheckBoxPreference mPrefSbFollowStockBattery;
         private CheckBoxPreference mPrefSbIconColorEnable;
         private ColorPickerPreference mPrefSbIconColor;
         private ColorPickerPreference mPrefSbDaColor;
@@ -837,6 +838,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
 
             mPrefPhoneFlip = (ListPreference) findPreference(PREF_KEY_PHONE_FLIP);
 
+            mPrefSbFollowStockBattery = (CheckBoxPreference) findPreference(PREF_KEY_STATUSBAR_COLOR_FOLLOW_STOCK_BATTERY);
             mPrefSbIconColorEnable = (CheckBoxPreference) findPreference(PREF_KEY_STATUSBAR_ICON_COLOR_ENABLE);
             mPrefSbIconColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_ICON_COLOR);
             mPrefSbDaColor = (ColorPickerPreference) findPreference(PREF_KEY_STATUSBAR_DATA_ACTIVITY_COLOR);
@@ -1063,6 +1065,8 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
             if (Build.VERSION.SDK_INT > 18) {
                 getPreferenceScreen().removePreference(mPrefCatTransparencyManager);
                 mPrefCatDisplay.removePreference(mPrefButtonBacklightNotif);
+                mPrefCatStatusbarColors.removePreference(mPrefSbFollowStockBattery);
+                mPrefCatStatusbarColors.removePreference(mStatusbarBgColor);
             }
 
             // Remove more music volume steps option if necessary
