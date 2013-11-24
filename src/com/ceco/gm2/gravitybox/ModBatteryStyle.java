@@ -57,7 +57,7 @@ public class ModBatteryStyle {
     private static boolean mMtkPercentTextEnabled;
     private static StatusbarBatteryPercentage mPercentText;
     private static CmCircleBattery mCircleBattery;
-    private static ImageView mStockBattery;
+    private static View mStockBattery;
     private static KitKatBattery mKitKatBattery;
 
     private static void log(String message) {
@@ -189,7 +189,7 @@ public class ModBatteryStyle {
                     vg.addView(mKitKatBattery);
 
                     // find battery
-                    mStockBattery = (ImageView) vg.findViewById(
+                    mStockBattery = vg.findViewById(
                             liparam.res.getIdentifier("battery", "id", PACKAGE_NAME));
                     if (mStockBattery != null) {
                         mStockBattery.setTag("stock_battery");

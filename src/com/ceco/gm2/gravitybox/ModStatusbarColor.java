@@ -68,7 +68,7 @@ public class ModStatusbarColor {
 
     private static View mPanelBar;
     private static StatusBarIconManager mIconManager;
-    private static ImageView mBattery;
+    private static View mBattery;
     private static int mBatteryLevel;
     private static boolean mBatteryPlugged;
     private static Object mBatteryController;
@@ -91,7 +91,7 @@ public class ModStatusbarColor {
         XposedBridge.log(TAG + ": " + message);
     }
 
-    public static void setBattery(ImageView battery) {
+    public static void setBattery(View battery) {
         mBattery = battery;
     }
 
@@ -545,9 +545,12 @@ public class ModStatusbarColor {
                             mBatteryPlugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) != 0;
                         }
                         if (mIconManager != null && mIconManager.isColoringEnabled() && 
-                                !mIconManager.shouldSkipBatteryIcon() && mBattery != null) {
+                                !mIconManager.shouldSkipBatteryIcon() && mBattery != null &&
+                                (mBattery instanceof ImageView)) {
                             Drawable d = mIconManager.getBatteryIcon(mBatteryLevel, mBatteryPlugged);
-                            if (d != null) mBattery.setImageDrawable(d);
+                            if (d != null) {
+                                ((ImageView)mBattery).setImageDrawable(d);
+                            }
                         }
                     }
                 }
