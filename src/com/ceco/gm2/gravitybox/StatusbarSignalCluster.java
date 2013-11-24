@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -112,15 +113,17 @@ public class StatusbarSignalCluster implements BroadcastSubReceiver, IconManager
                     Drawable d = mIconManager.getWifiIcon(resId);
                     if (d != null) wifiIcon.setImageDrawable(d);
                 }
-                ImageView wifiActivity = (ImageView) XposedHelpers.getObjectField(mView, "mWifiActivity");
-                if (wifiActivity != null) {
-                    try {
-                        int resId = XposedHelpers.getIntField(mView, "mWifiActivityId");
-                        Drawable d = mResources.getDrawable(resId).mutate();
-                        d = mIconManager.applyDataActivityColorFilter(d);
-                        wifiActivity.setImageDrawable(d);
-                    } catch (Resources.NotFoundException e) {
-                        wifiActivity.setImageDrawable(null);
+                if (Build.VERSION.SDK_INT < 19) {
+                    ImageView wifiActivity = (ImageView) XposedHelpers.getObjectField(mView, "mWifiActivity");
+                    if (wifiActivity != null) {
+                        try {
+                            int resId = XposedHelpers.getIntField(mView, "mWifiActivityId");
+                            Drawable d = mResources.getDrawable(resId).mutate();
+                            d = mIconManager.applyDataActivityColorFilter(d);
+                            wifiActivity.setImageDrawable(d);
+                        } catch (Resources.NotFoundException e) {
+                            wifiActivity.setImageDrawable(null);
+                        }
                     }
                 }
             }
@@ -140,16 +143,18 @@ public class StatusbarSignalCluster implements BroadcastSubReceiver, IconManager
                     if (d != null) mobile.setImageDrawable(d);
                 }
                 if (mIconManager.isMobileIconChangeAllowed()) {
-                    ImageView mobileActivity = 
-                            (ImageView) XposedHelpers.getObjectField(mView, "mMobileActivity");
-                    if (mobileActivity != null) {
-                        try {
-                            int resId = XposedHelpers.getIntField(mView, "mMobileActivityId");
-                            Drawable d = mResources.getDrawable(resId).mutate();
-                            d = mIconManager.applyDataActivityColorFilter(d);
-                            mobileActivity.setImageDrawable(d);
-                        } catch (Resources.NotFoundException e) { 
-                            mobileActivity.setImageDrawable(null);
+                    if (Build.VERSION.SDK_INT < 19) {
+                        ImageView mobileActivity = 
+                                (ImageView) XposedHelpers.getObjectField(mView, "mMobileActivity");
+                        if (mobileActivity != null) {
+                            try {
+                                int resId = XposedHelpers.getIntField(mView, "mMobileActivityId");
+                                Drawable d = mResources.getDrawable(resId).mutate();
+                                d = mIconManager.applyDataActivityColorFilter(d);
+                                mobileActivity.setImageDrawable(d);
+                            } catch (Resources.NotFoundException e) { 
+                                mobileActivity.setImageDrawable(null);
+                            }
                         }
                     }
                     ImageView mobileType = (ImageView) XposedHelpers.getObjectField(mView, "mMobileType");
