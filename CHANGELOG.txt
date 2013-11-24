@@ -1,3 +1,25 @@
+Changelog 2.7.4 - 24/11/2013
+--------------------------------------
+- Initial support for KitKat [EXPERIMENTAL]
+- Added support for MT6582 (thanks to bgcngm)
+- Improved compatibility with Lenovo devices (thanks to bgcngm)
+- Improved support for MT6572 devices
+- Fixed Circle Battery not being vertically centered on some devices
+- Status bar icon coloring:
+--- improved icon layout and alignment
+--- added option for choosing status icon style (JellyBean or KitKat style)
+- Hardware Key Actions:
+--- improved handling of Back long-press
+--- improved handling of Menu double-tap
+--- added Back key double-tap support
+--- added Go Home and Go Back actions
+- New GravityBox icon (thanks to Jerber)
+- Updated French translation (thanks to ch-vox)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated German translations (thanks to samsonbear)
+- Updated Indonesian translations (thanks to awaaas)
+- Updated Japanese translations (thanks to WedyDQ10)
+
 Changelog 2.7.3 - 18/11/2013
 --------------------------------------
 - New battery style: KitKat battery with or without percentage and coloring support
