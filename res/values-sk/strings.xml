@@ -766,4 +766,17 @@
     <string name="pref_statusbar_data_activity_color_secondary_title">Sekundárny indikátor dátovej aktivity</string>
     <string name="pref_statusbar_data_activity_color_secondary_summary">Nastaví farbu pre sekundárny indikátor dátovej aktivity</string>
 
+    <!-- Status icon style -->
+    <string name="pref_status_icon_style_title">Štýl stavových ikon</string>
+    <string name="pref_status_icon_style_summary">Platí pre stavové ikony ako ikona vypnutého zvonenia, vibrovania, budíka, atď.</string>
+    <string name="icon_style_jb">JellyBean</string>
+    <string name="icon_style_kk">KitKat</string>
+
+    <!-- HW Key Actions: Back double-tap -->
+    <string name="hwkey_back_doubletap_dialog_title">Dvojité ťuknutie na Späť</string>
+
+    <!-- HW Key Actions: Home and Back actions -->
+    <string name="hwkey_action_home">Domov</string>
+    <string name="hwkey_action_back">Späť</string>
+
 </resources>
