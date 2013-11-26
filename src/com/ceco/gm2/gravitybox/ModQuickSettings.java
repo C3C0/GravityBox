@@ -89,6 +89,7 @@ public class ModQuickSettings {
     private static final String CLASS_QS_MODEL_RCB = "com.android.systemui.statusbar.phone.QuickSettingsModel$RefreshCallback";
     private static final String CLASS_QS_MODEL_STATE = "com.android.systemui.statusbar.phone.QuickSettingsModel.State";
     private static final String CLASS_ROTATION_LOCK_CTRL = "com.android.systemui.statusbar.policy.RotationLockController";
+    private static final String CLASS_ROTATION_POLICY = "com.android.internal.view.RotationPolicy";
     private static final boolean DEBUG = false;
 
     private static final float STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_RIGHT = 0.15f;
@@ -466,6 +467,32 @@ public class ModQuickSettings {
             // tag AOSP QS views for future identification
             if (!Utils.isMtkDevice()) {
                 tagAospTileViews(classLoader);
+            }
+
+            if (Build.VERSION.SDK_INT > 18) {
+                final Class<?> rlControllerClass = XposedHelpers.findClass(CLASS_ROTATION_LOCK_CTRL, classLoader);
+                XposedHelpers.findAndHookMethod(rlControllerClass, "isRotationLockAffordanceVisible", 
+                        new XC_MethodReplacement() {
+                        @Override
+                        protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                            return mActiveTileKeys != null ? 
+                                    mActiveTileKeys.contains("auto_rotate_textview") :
+                                    XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
+                        }
+                });
+                final Class<?> rlPolicyClass = XposedHelpers.findClass(CLASS_ROTATION_POLICY, null);
+                XposedHelpers.findAndHookMethod(rlPolicyClass, "isRotationLockToggleSupported",
+                        Context.class, new XC_MethodReplacement() {
+                        @Override
+                        protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                            try {
+                                return XposedHelpers.callStaticMethod(rlPolicyClass, "isRotationSupported", param.args[0]);
+                            } catch (Throwable t) {
+                                XposedBridge.log(t);
+                                return XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
+                            }
+                        }
+                });
             }
 
             XposedHelpers.findAndHookMethod(phoneStatusBarClass, "removeNotification", IBinder.class, new XC_MethodHook() {
@@ -984,16 +1011,6 @@ public class ModQuickSettings {
             if (Build.VERSION.SDK_INT > 18) {
                 XposedHelpers.findAndHookMethod(classQsModel, "addRotationLockTile",
                         CLASS_QS_TILEVIEW, CLASS_ROTATION_LOCK_CTRL, CLASS_QS_MODEL_RCB, addRotationLockTileHook);
-                final Class<?> rlControllerClass = XposedHelpers.findClass(CLASS_ROTATION_LOCK_CTRL, classLoader);
-                XposedHelpers.findAndHookMethod(rlControllerClass, "isRotationLockAffordanceVisible", 
-                        new XC_MethodReplacement() {
-                        @Override
-                        protected Object replaceHookedMethod(MethodHookParam param2) throws Throwable {
-                            return mActiveTileKeys != null ? 
-                                    mActiveTileKeys.contains("auto_rotate_textview") :
-                                    XposedBridge.invokeOriginalMethod(param2.method, param2.thisObject, param2.args);
-                        }
-                });
             } else {
                 XposedHelpers.findAndHookMethod(classQsModel, "addRotationLockTile",
                         CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, addRotationLockTileHook);
