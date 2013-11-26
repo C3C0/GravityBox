@@ -1,3 +1,22 @@
+Changelog 2.7.6 - 26/11/2013
+--------------------------------------
+- Secondary signal icon color overrides stock orange signal icon independently of SIM Slot (MTK Dual SIMs)
+- Adjusted app launcher layout for HDPI devices 
+- KitKat compatibility improvements:
+--- support for rotation lock tile
+--- support for location (stock GPS) tile
+--- option to choose QS tile style (JellyBean or KitKat)
+--- white colors for statusbar elements by default on KitKat when statusbar coloring is off
+--- fixed battery style options
+--- option to adjust bottom margin of RAM bar and clear all recents button 
+--- disabled phone and messaging tweaks (require rework)
+- Updated Portuguese (PT) translation (thanks to bgcngm)
+- Updated Japanese translations (thanks to WedyDQ10)
+- Updated Italian translations (thanks to pitone02)
+- Updated Russian translations (thanks to smb.roman AKA romashko)
+- Updated Chinese (Traditional) translations (thanks to Eric850130)
+- Updated French translation (thanks to ch-vox)
+
 Changelog 2.7.5 - 24/11/2013
 --------------------------------------
 - Fixed misbehaviour of MENU key in some apps when double-tap is enabled
