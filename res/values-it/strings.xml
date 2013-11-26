@@ -745,5 +745,17 @@
     <string name="pref_statusbar_data_activity_color_secondary_title">Colore icona dati sim2</string>
     <string name="pref_statusbar_data_activity_color_secondary_summary">Imposta colore icone dati sim2</string>
 
+    <!-- Status icon style -->
+    <string name="pref_status_icon_style_title">Stile icona profilo audio</string>
+    <string name="pref_status_icon_style_summary">Si applica a Silenzioso, Vibrazione, Allarme, ecc</string>
+    <string name="icon_style_jb">JellyBean</string>
+    <string name="icon_style_kk">KitKat</string>
+
+    <!-- HW Key Actions: Back double-tap -->
+    <string name="hwkey_back_doubletap_dialog_title">Azione doppio tocco al tasto Indietro</string>
+
+    <!-- HW Key Actions: Home and Back actions -->
+    <string name="hwkey_action_home">Vai a schermata Home</string>
+    <string name="hwkey_action_back">Torna indietro</string>
 
 </resources>
