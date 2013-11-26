@@ -15,7 +15,6 @@
 
 package com.ceco.gm2.gravitybox.quicksettings;
 
-import com.ceco.gm2.gravitybox.BroadcastSubReceiver;
 import com.ceco.gm2.gravitybox.GravityBoxSettings;
 import com.ceco.gm2.gravitybox.ModExpandedDesktop;
 import com.ceco.gm2.gravitybox.R;
@@ -27,13 +26,15 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.ContentObserver;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class ExpandedDesktopTile extends AQuickSettingsTile implements BroadcastSubReceiver {
+public class ExpandedDesktopTile extends AQuickSettingsTile {
     private static final String TAG = "GB:ExpandedDesktopTile";
 
     private TextView mTextView;
@@ -113,7 +114,13 @@ public class ExpandedDesktopTile extends AQuickSettingsTile implements Broadcast
         }
 
         mTextView.setText(mLabel);
-        mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        if (mTileStyle == KITKAT) {
+            Drawable d = mGbResources.getDrawable(mDrawableId).mutate();
+            d.setColorFilter(mExpanded ? KK_COLOR_ON : KK_COLOR_OFF, PorterDuff.Mode.SRC_ATOP);
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
+        } else {
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        }
     }
 
     @Override
@@ -128,6 +135,8 @@ public class ExpandedDesktopTile extends AQuickSettingsTile implements Broadcast
 
     @Override
     public void onBroadcastReceived(Context context, Intent intent) {
+        super.onBroadcastReceived(context, intent);
+
         if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_EXPANDED_DESKTOP_MODE_CHANGED) &&
                 intent.hasExtra(GravityBoxSettings.EXTRA_ED_MODE)) {
             mMode = intent.getIntExtra(GravityBoxSettings.EXTRA_ED_MODE, GravityBoxSettings.ED_DISABLED);

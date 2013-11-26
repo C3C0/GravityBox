@@ -190,6 +190,14 @@
                 android:entryValues="@array/qs_tiles_per_row_values"
                 android:defaultValue="3" />
 
+            <ListPreference
+                android:key="pref_qs_tile_style" 
+                android:title="@string/pref_qs_tile_style_title"
+                android:summary="@string/pref_qs_tile_style_summary"
+                android:entries="@array/status_icon_style_entries"
+                android:entryValues="@array/status_icon_style_values"
+                android:defaultValue="0" />
+
             <MultiSelectListPreference 
                 android:key="pref_qs_tile_behaviour_override"
                 android:title="@string/pref_qs_tile_behaviour_override_title"

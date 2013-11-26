@@ -18,7 +18,6 @@ package com.ceco.gm2.gravitybox.quicksettings;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ceco.gm2.gravitybox.BroadcastSubReceiver;
 import com.ceco.gm2.gravitybox.GravityBoxSettings;
 import com.ceco.gm2.gravitybox.R;
 
@@ -46,7 +45,7 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.TextView;
 
-public class QuickAppTile extends AQuickSettingsTile implements BroadcastSubReceiver {
+public class QuickAppTile extends AQuickSettingsTile {
     private static final String TAG = "GB:QuickAppTile";
     private static final String SEPARATOR = "#C3C0#";
     private static final boolean DEBUG = false;
@@ -274,6 +273,7 @@ public class QuickAppTile extends AQuickSettingsTile implements BroadcastSubRece
 
     @Override
     public void onBroadcastReceived(Context context, Intent intent) {
+        super.onBroadcastReceived(context, intent);
         if (DEBUG) log("onBroadcastReceived: " + intent.toString());
 
         if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKAPP_CHANGED)) {

@@ -15,7 +15,6 @@
 
 package com.ceco.gm2.gravitybox.quicksettings;
 
-import com.ceco.gm2.gravitybox.BroadcastSubReceiver;
 import com.ceco.gm2.gravitybox.GravityBoxSettings;
 import com.ceco.gm2.gravitybox.PhoneWrapper;
 import com.ceco.gm2.gravitybox.R;
@@ -28,13 +27,15 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.ContentObserver;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class NetworkModeTile extends AQuickSettingsTile implements BroadcastSubReceiver {
+public class NetworkModeTile extends AQuickSettingsTile {
     private static final String TAG = "GB:NetworkModeTile";
     private static final boolean DEBUG = false;
 
@@ -150,6 +151,8 @@ public class NetworkModeTile extends AQuickSettingsTile implements BroadcastSubR
 
     @Override
     public void onBroadcastReceived(Context context, Intent intent) {
+        super.onBroadcastReceived(context, intent);
+
         if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKSETTINGS_CHANGED) &&
                 intent.hasExtra(GravityBoxSettings.EXTRA_NMT_MODE)) {
             updateFlags(intent.getIntExtra(GravityBoxSettings.EXTRA_NMT_MODE, 0));
@@ -188,7 +191,13 @@ public class NetworkModeTile extends AQuickSettingsTile implements BroadcastSubR
         }
 
         mTextView.setText(mLabel);
-        mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        if (mTileStyle == KITKAT) {
+            Drawable d = mGbResources.getDrawable(mDrawableId).mutate();
+            d.setColorFilter(KK_COLOR_ON, PorterDuff.Mode.SRC_ATOP);
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
+        } else {
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        }
     }
 
     private boolean hasLte() {

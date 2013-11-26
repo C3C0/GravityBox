@@ -26,6 +26,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -149,7 +151,14 @@ public class RingerModeTile extends AQuickSettingsTile {
         }
 
         mTextView.setText(mLabel);
-        mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        if (mTileStyle == KITKAT) {
+            Drawable d = mGbResources.getDrawable(mDrawableId).mutate();
+            d.setColorFilter(mDrawableId == R.drawable.ic_qs_ring_off ?
+                    KK_COLOR_OFF : KK_COLOR_ON, PorterDuff.Mode.SRC_ATOP);
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
+        } else {
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        }
     }
 
     protected void toggleState() {

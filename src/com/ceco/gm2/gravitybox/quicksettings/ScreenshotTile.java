@@ -20,6 +20,8 @@ import com.ceco.gm2.gravitybox.R;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +61,12 @@ public class ScreenshotTile extends AQuickSettingsTile {
         mDrawableId = R.drawable.ic_qs_screenshot;
         mLabel = mGbContext.getString(R.string.qs_tile_screenshot);
         mTextView.setText(mLabel);
-        mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        if (mTileStyle == KITKAT) {
+            Drawable d = mGbResources.getDrawable(mDrawableId).mutate();
+            d.setColorFilter(KK_COLOR_ON, PorterDuff.Mode.SRC_ATOP);
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
+        } else {
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        }
     }
 }

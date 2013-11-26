@@ -22,6 +22,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -123,6 +125,12 @@ public class GpsTile extends AQuickSettingsTile {
         }
 
         mTextView.setText(mLabel);
-        mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        if (mTileStyle == KITKAT) {
+            Drawable d = mGbResources.getDrawable(mDrawableId).mutate();
+            d.setColorFilter(mGpsEnabled ? KK_COLOR_ON : KK_COLOR_OFF, PorterDuff.Mode.SRC_ATOP);
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
+        } else {
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        }
     }
 }

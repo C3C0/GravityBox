@@ -15,12 +15,16 @@
 
 package com.ceco.gm2.gravitybox.quicksettings;
 
+import com.ceco.gm2.gravitybox.BroadcastSubReceiver;
+import com.ceco.gm2.gravitybox.GravityBoxSettings;
+
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedHelpers;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,8 +32,13 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-public abstract class AQuickSettingsTile implements OnClickListener {
+public abstract class AQuickSettingsTile implements OnClickListener, BroadcastSubReceiver {
     protected static final String PACKAGE_NAME = "com.android.systemui";
+
+    public static final int JELLYBEAN = 0;
+    public static final int KITKAT = 1;
+    public static final int KK_COLOR_ON = Color.WHITE;
+    public static final int KK_COLOR_OFF = Color.parseColor("#404040");
 
     protected Context mContext;
     protected Context mGbContext;
@@ -42,6 +51,7 @@ public abstract class AQuickSettingsTile implements OnClickListener {
     protected String mLabel;
     protected Object mStatusBar;
     protected Object mPanelBar;
+    protected int mTileStyle;
 
     public AQuickSettingsTile(Context context, Context gbContext, Object statusBar, Object panelBar) {
         mContext = context;
@@ -50,6 +60,7 @@ public abstract class AQuickSettingsTile implements OnClickListener {
         mGbResources = mGbContext.getResources();
         mStatusBar = statusBar;
         mPanelBar = panelBar;
+        mTileStyle = JELLYBEAN;
     }
 
     public void setupQuickSettingsTile(ViewGroup viewGroup, LayoutInflater inflater, XSharedPreferences prefs) {
@@ -66,17 +77,30 @@ public abstract class AQuickSettingsTile implements OnClickListener {
         onTilePostCreate();
     }
 
-    public void setupQuickSettingsTile(ViewGroup viewGroup, LayoutInflater inflater) {
-        setupQuickSettingsTile(viewGroup, inflater, null);
-    }
-
     protected abstract void onTileCreate();
 
     protected void onTilePostCreate() { };
 
     protected abstract void updateTile();
 
-    protected void onPreferenceInitialize(XSharedPreferences prefs) { };
+    protected void onPreferenceInitialize(XSharedPreferences prefs) {
+        try {
+            mTileStyle = Integer.valueOf(
+                    prefs.getString(GravityBoxSettings.PREF_KEY_QUICK_SETTINGS_TILE_STYLE, "0"));
+        } catch (NumberFormatException nfe) {
+            //
+        }
+    }
+
+    @Override
+    public void onBroadcastReceived(Context context, Intent intent) {
+        if (intent.getAction().equals(GravityBoxSettings.ACTION_PREF_QUICKSETTINGS_CHANGED)) {
+            if (intent.hasExtra(GravityBoxSettings.EXTRA_QS_TILE_STYLE)) {
+                mTileStyle = intent.getIntExtra(GravityBoxSettings.EXTRA_QS_TILE_STYLE, JELLYBEAN);
+                updateResources();
+            }
+        }
+    }
 
     public void updateResources() {
         if (mTile != null) {

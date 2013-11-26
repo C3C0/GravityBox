@@ -20,6 +20,8 @@ import com.ceco.gm2.gravitybox.R;
 import de.robv.android.xposed.XposedHelpers;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +65,12 @@ public class VolumeTile extends AQuickSettingsTile {
     protected synchronized void updateTile() {
         TextView tv = (TextView) mTile.findViewById(R.id.volume_tileview);
         tv.setText(mLabel);
-        tv.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        if (mTileStyle == KITKAT) {
+            Drawable d = mGbResources.getDrawable(mDrawableId).mutate();
+            d.setColorFilter(KK_COLOR_ON, PorterDuff.Mode.SRC_ATOP);
+            tv.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
+        } else {
+            tv.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        }
     }
 }

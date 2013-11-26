@@ -32,6 +32,8 @@ import de.robv.android.xposed.XposedHelpers;
 
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -110,7 +112,16 @@ public class WifiTile extends AQuickSettingsTile implements WifiStateChangeListe
     @Override
     protected synchronized void updateTile() {
         mTextView.setText(mLabel);
-        mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        if (mTileStyle == KITKAT && (mDrawableId == R.drawable.ic_qs_wifi_full_1 ||
+                mDrawableId == R.drawable.ic_qs_wifi_full_2 ||
+                mDrawableId == R.drawable.ic_qs_wifi_full_3 ||
+                        mDrawableId == R.drawable.ic_qs_wifi_full_4)) {
+            Drawable d = mGbResources.getDrawable(mDrawableId).mutate();
+            d.setColorFilter(KK_COLOR_ON, PorterDuff.Mode.SRC_ATOP);
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
+        } else {
+            mTextView.setCompoundDrawablesWithIntrinsicBounds(0, mDrawableId, 0, 0);
+        }
     }
 
     private void prepareDrawableMap() {
