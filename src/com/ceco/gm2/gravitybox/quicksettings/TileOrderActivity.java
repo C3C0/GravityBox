@@ -33,6 +33,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,10 +78,12 @@ public class TileOrderActivity extends ListActivity {
 
         String[] allTileKeys = Utils.isMtkDevice() ? 
                 mResources.getStringArray(R.array.qs_tile_values) :
-                    mResources.getStringArray(R.array.qs_tile_aosp_values);
+                    mResources.getStringArray(Build.VERSION.SDK_INT > 18 ?
+                            R.array.qs_tile_aosp_values_kk : R.array.qs_tile_aosp_values);
         String[] allTileNames = Utils.isMtkDevice() ?
                 mResources.getStringArray(R.array.qs_tile_entries) :
-                    mResources.getStringArray(R.array.qs_tile_aosp_entries);
+                    mResources.getStringArray(Build.VERSION.SDK_INT > 18 ? 
+                            R.array.qs_tile_aosp_entries_kk : R.array.qs_tile_aosp_entries);
         mTileTexts = new HashMap<String, String>();
         for (int i = 0; i < allTileKeys.length; i++) {
             mTileTexts.put(allTileKeys[i], allTileNames[i]);
