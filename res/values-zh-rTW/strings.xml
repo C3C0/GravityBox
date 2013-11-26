@@ -795,5 +795,16 @@
     <string name="pref_status_icon_style_summary">套用於無聲，震動，報警等狀態圖示.</string>
     <string name="icon_style_jb">JellyBean</string>
     <string name="icon_style_kk">KitKat</string>
+    
+    <!-- HW Key Actions: Back double-tap -->
+    <string name="hwkey_back_doubletap_dialog_title">返回鍵雙擊操作</string>
+
+    <!-- HW Key Actions: Home and Back actions -->
+    <string name="hwkey_action_home">前往桌面</string>
+    <string name="hwkey_action_back">返回</string>
+
+    <!-- QS Tile Style -->
+    <string name="pref_qs_tile_style_title">瓷貼風格</string>
+    <string name="pref_qs_tile_style_summary">僅適用於 GravityBox 所推出的瓷貼 (不支援系統預設的瓷貼)</string>
  
 </resources>
