@@ -1178,7 +1178,17 @@
                 android:key="pref_recent_clear_margin_top"
                 android:title="@string/pref_recent_clear_margin_top_title"
                 minimum="0"
-                maximum="30"
+                maximum="40"
+                interval="5"
+                monitorBoxEnabled="true"
+                monitorBoxUnit="px"
+                android:defaultValue="0" />
+
+        <com.ceco.gm2.gravitybox.preference.SeekBarPreference
+                android:key="pref_recent_clear_margin_bottom"
+                android:title="@string/pref_recent_clear_margin_bottom_title"
+                minimum="0"
+                maximum="40"
                 interval="5"
                 monitorBoxEnabled="true"
                 monitorBoxUnit="px"

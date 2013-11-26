@@ -105,6 +105,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
     public static final String PREF_KEY_RECENTS_CLEAR_ALL = "pref_recents_clear_all2";
     public static final String PREF_KEY_RAMBAR = "pref_rambar";
     public static final String PREF_KEY_RECENTS_CLEAR_MARGIN_TOP = "pref_recent_clear_margin_top";
+    public static final String PREF_KEY_RECENTS_CLEAR_MARGIN_BOTTOM = "pref_recent_clear_margin_bottom";
     public static final int RECENT_CLEAR_OFF = 0;
     public static final int RECENT_CLEAR_TOP_LEFT = 51;
     public static final int RECENT_CLEAR_TOP_RIGHT = 53;

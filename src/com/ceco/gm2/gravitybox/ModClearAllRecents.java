@@ -245,14 +245,18 @@ public class ModClearAllRecents {
             FrameLayout.LayoutParams lparams = 
                     (FrameLayout.LayoutParams) mRecentsClearButton.getLayoutParams();
             lparams.gravity = gravity;
-            if ((gravity & Gravity.TOP) != 0) {
+            if (gravity == 51 || gravity == 53) {
                 int marginTop = (int) TypedValue.applyDimension(
                         TypedValue.COMPLEX_UNIT_DIP, 
                         mPrefs.getInt(GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_MARGIN_TOP, 0), 
                         mRecentsClearButton.getResources().getDisplayMetrics());
                 lparams.setMargins(0, marginTop, 0, 0);
             } else {
-                lparams.setMargins(0, 0, 0, 0);
+                int marginBottom = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, 
+                        mPrefs.getInt(GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_MARGIN_BOTTOM, 0), 
+                        mRecentsClearButton.getResources().getDisplayMetrics());
+                lparams.setMargins(0, 0, 0, marginBottom);
             }
             mRecentsClearButton.setLayoutParams(lparams);
             mRecentsClearButton.setVisibility(View.VISIBLE);
@@ -316,6 +320,9 @@ public class ModClearAllRecents {
             final int marginTop = rbOnTop ? (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
                     mPrefs.getInt(GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_MARGIN_TOP, 0), 
                     mRamUsageBar.getResources().getDisplayMetrics()) : 0;
+            final int marginBottom = !rbOnTop ? (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
+                    mPrefs.getInt(GravityBoxSettings.PREF_KEY_RECENTS_CLEAR_MARGIN_BOTTOM, 0), 
+                    mRamUsageBar.getResources().getDisplayMetrics()) : 0;
 
             FrameLayout.LayoutParams flp = (FrameLayout.LayoutParams) mRamUsageBar.getLayoutParams();
             flp.gravity = rbGravity;
@@ -323,7 +330,7 @@ public class ModClearAllRecents {
                 sibling && caOnLeft ? mClearAllRecentsSizePx : mRamUsageBarHorizontalMargin, 
                 rbOnTop ? (mRamUsageBarVerticalMargin + marginTop) : 0, 
                 sibling && !caOnLeft ? mClearAllRecentsSizePx : mRamUsageBarHorizontalMargin, 
-                rbOnTop ? 0 : mRamUsageBarVerticalMargin
+                rbOnTop ? 0 : (mRamUsageBarVerticalMargin + marginBottom)
             );
             mRamUsageBar.setLayoutParams(flp);
             mRamUsageBar.setVisibility(View.VISIBLE);
