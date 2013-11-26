@@ -300,7 +300,8 @@ public class StatusBarIconManager implements BroadcastSubReceiver {
         if (mColorInfo.followStockBatteryColor && mColorInfo.stockBatteryColor != null) {
             return mColorInfo.stockBatteryColor;
         } else {
-            return mGbResources.getColor(android.R.color.holo_blue_dark);
+            return (Build.VERSION.SDK_INT > 18 ? Color.WHITE :
+                mGbResources.getColor(android.R.color.holo_blue_dark));
         }
     }
 

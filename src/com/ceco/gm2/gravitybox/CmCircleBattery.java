@@ -34,6 +34,7 @@ import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -171,8 +172,9 @@ public class CmCircleBattery extends ImageView implements IconManagerListener {
         mPaintSystem = new Paint(mPaintFont);
         mPaintRed = new Paint(mPaintFont);
 
-        mPaintFont.setColor(res.getColor(android.R.color.holo_blue_dark));
-        mPaintSystem.setColor(res.getColor(android.R.color.holo_blue_dark));
+        mPaintFont.setColor(Build.VERSION.SDK_INT > 18 ? Color.WHITE : 
+            res.getColor(android.R.color.holo_blue_dark));
+        mPaintSystem.setColor(mPaintFont.getColor());
         // could not find the darker definition anywhere in resources
         // do not want to use static 0x404040 color value. would break theming.
         mPaintGray.setColor(res.getColor(android.R.color.darker_gray));
