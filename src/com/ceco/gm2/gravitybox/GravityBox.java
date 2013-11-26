@@ -78,7 +78,6 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         // Common
         ModVolumeKeySkipTrack.init(prefs);
         ModVolKeyCursor.initZygote(prefs);
-        ModCallCard.initZygote();
         ModStatusbarColor.initZygote(prefs);
         PhoneWrapper.initZygote(prefs);
         ModLowBatteryWarning.initZygote(prefs);
@@ -87,8 +86,9 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
         ModHwKeys.initZygote(prefs);
         if (Build.VERSION.SDK_INT < 19) {
             PatchMasterKey.initZygote();
+            ModCallCard.initZygote();
+            ModPhone.initZygote(prefs);
         }
-        ModPhone.initZygote(prefs);
         ModExpandedDesktop.initZygote(prefs);
         ConnectivityServiceWrapper.initZygote();
     }
@@ -195,7 +195,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
             ModPowerMenu.init(prefs, lpparam.classLoader);
         }
 
-        if (lpparam.packageName.equals(ModCallCard.PACKAGE_NAME)) {
+        if (Build.VERSION.SDK_INT < 19 && lpparam.packageName.equals(ModCallCard.PACKAGE_NAME)) {
             ModCallCard.init(prefs, lpparam.classLoader);
         }
 
@@ -211,7 +211,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
             ModStatusBar.init(prefs, lpparam.classLoader);
         }
 
-        if (lpparam.packageName.equals(ModPhone.PACKAGE_NAME) &&
+        if (Build.VERSION.SDK_INT < 19 && lpparam.packageName.equals(ModPhone.PACKAGE_NAME) &&
                 Utils.hasTelephonySupport()) {
             ModPhone.init(prefs, lpparam.classLoader);
         }
@@ -233,7 +233,7 @@ public class GravityBox implements IXposedHookZygoteInit, IXposedHookInitPackage
             ModNavigationBar.init(prefs, lpparam.classLoader);
         }
 
-        if (lpparam.packageName.equals(ModMms.PACKAGE_NAME)) {
+        if (Build.VERSION.SDK_INT < 19 && lpparam.packageName.equals(ModMms.PACKAGE_NAME)) {
             ModMms.init(prefs, lpparam.classLoader);
         }
 

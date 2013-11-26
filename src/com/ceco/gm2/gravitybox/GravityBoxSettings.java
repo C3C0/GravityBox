@@ -1069,6 +1069,7 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
                 mPrefCatDisplay.removePreference(mPrefButtonBacklightNotif);
                 mPrefCatStatusbarColors.removePreference(mPrefSbFollowStockBattery);
                 mPrefCatStatusbarColors.removePreference(mStatusbarBgColor);
+                getPreferenceScreen().removePreference(mPrefCatPhone);
             }
 
             // Remove more music volume steps option if necessary
