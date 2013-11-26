@@ -167,6 +167,7 @@ public class ModQuickSettings {
         tmpMap.put("battery_textview", 7);
         tmpMap.put("airplane_mode_textview", 8);
         tmpMap.put("bluetooth_textview", 9);
+        tmpMap.put("gps_textview", 10);
         mAospTileTags = Collections.unmodifiableMap(tmpMap);
 
         mAllTileViews = new HashMap<String, View>();
@@ -238,39 +239,43 @@ public class ModQuickSettings {
             return;
         }
 
-        final List<View> dynamicTiles = new ArrayList<View>();
-
-        final int tileCount = mContainerView.getChildCount();
-        for(int i = tileCount - 1; i >= 0; i--) {
-            View view = mContainerView.getChildAt(i);
-            final String key = getTileKey(view);
-            if (key != null) {
-                if (!mAllTileViews.containsKey(key)) {
-                    mAllTileViews.put(key, view);
+        try {
+            final List<View> dynamicTiles = new ArrayList<View>();
+    
+            final int tileCount = mContainerView.getChildCount();
+            for(int i = tileCount - 1; i >= 0; i--) {
+                View view = mContainerView.getChildAt(i);
+                final String key = getTileKey(view);
+                if (key != null) {
+                    if (!mAllTileViews.containsKey(key)) {
+                        mAllTileViews.put(key, view);
+                    }
+                    mContainerView.removeView(view);
+                } else if (view != null) {
+                    // found tile that's not in our custom list
+                    // might be dynamic tile (e.g. alarm) or some ROM specific tile?
+                    // remove it and store it so it could be added in the end
+                    dynamicTiles.add(view);
+                    mContainerView.removeView(view);
                 }
-                mContainerView.removeView(view);
-            } else if (view != null) {
-                // found tile that's not in our custom list
-                // might be dynamic tile (e.g. alarm) or some ROM specific tile?
-                // remove it and store it so it could be added in the end
-                dynamicTiles.add(view);
-                mContainerView.removeView(view);
             }
-        }
-
-        for (String key : mActiveTileKeys) {
-            if (mAllTileViews.containsKey(key)) {
-                mContainerView.addView(mAllTileViews.get(key));
+    
+            for (String key : mActiveTileKeys) {
+                if (mAllTileViews.containsKey(key)) {
+                    mContainerView.addView(mAllTileViews.get(key));
+                }
             }
+    
+            // add tiles from dynamic list as last (e.g. alarm tile we previously removed)
+            for (View v : dynamicTiles) {
+                mContainerView.addView(v);
+            }
+    
+            // trigger layout refresh
+            XposedHelpers.callMethod(mContainerView, "updateResources");
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
-
-        // add tiles from dynamic list as last (e.g. alarm tile we previously removed)
-        for (View v : dynamicTiles) {
-            mContainerView.addView(v);
-        }
-
-        // trigger layout refresh
-        XposedHelpers.callMethod(mContainerView, "updateResources");
     }
 
     private static TextView findTileTextView(ViewGroup viewGroup) {
@@ -296,78 +301,91 @@ public class ModQuickSettings {
     private static void updateTileLayout(FrameLayout container, int orientation) {
         if (container == null) return;
 
-        int tileCount = container.getChildCount();
-        int textSize = 12;
+        try {
+            int textSize = 12;
+            final Resources res = container.getResources();
 
-        final Resources res = container.getResources();
-        int imgMarginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                27, res.getDisplayMetrics());
-        int imgMarginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                17, res.getDisplayMetrics());
-        final int imgResId = res.getIdentifier("image", "id", PACKAGE_NAME);
-        final int rssiImgResId = res.getIdentifier("rssi_image", "id", PACKAGE_NAME);
-
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            switch (mNumColumns) {
-                case 4: 
-                    textSize = 10;
-                    imgMarginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                            17, res.getDisplayMetrics());
-                    imgMarginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                            10, res.getDisplayMetrics());
-                    break;
-                case 5:
-                    imgMarginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                            10, res.getDisplayMetrics());
-                    imgMarginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                            5, res.getDisplayMetrics());
-                    textSize = 8; 
-                    break;
-                case 3:
-                default:
-                    textSize = 12;
-                    break;
+            int imgMarginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                    27, res.getDisplayMetrics());
+            int imgMarginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                    17, res.getDisplayMetrics());
+            try {
+                imgMarginTop = res.getDimensionPixelSize(
+                        res.getIdentifier("qs_tile_margin_above_icon", "dimen", PACKAGE_NAME));
+                imgMarginBottom = res.getDimensionPixelSize(
+                        res.getIdentifier("qs_tile_margin_below_icon", "dimen", PACKAGE_NAME));
+            } catch (Resources.NotFoundException rnfe) {
+                //
             }
-        }
 
-        for(int i = 0; i < tileCount; i++) {
-            ViewGroup viewGroup = (ViewGroup) mContainerView.getChildAt(i);
-            if (viewGroup != null) {
-                TextView textView = findTileTextView(viewGroup);
-                if (textView != null) {
-                    textView.setTextSize(1, textSize);
-                    textView.setSingleLine(false);
-                    textView.setAllCaps(true);
+            final int imgResId = res.getIdentifier("image", "id", PACKAGE_NAME);
+            final int rssiImgResId = res.getIdentifier("rssi_image", "id", PACKAGE_NAME);
+
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                switch (mNumColumns) {
+                    case 4: 
+                        textSize = 10;
+                        imgMarginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                                17, res.getDisplayMetrics());
+                        imgMarginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                                11, res.getDisplayMetrics());
+                        break;
+                    case 5:
+                        imgMarginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                                10, res.getDisplayMetrics());
+                        imgMarginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                                5, res.getDisplayMetrics());
+                        textSize = 8; 
+                        break;
+                    case 3:
+                    default:
+                        textSize = 12;
+                        break;
                 }
+            }
 
-                // adjust layout in case it's AOSP 4.3 tile
-                if (Build.VERSION.SDK_INT > 17 && imgResId != 0 && rssiImgResId != 0) {
-                    View img = viewGroup.findViewById(imgResId);
-                    if (img != null) {
-                        // basic tile
-                        if (img.getLayoutParams() instanceof LinearLayout.LayoutParams) {
-                            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) img.getLayoutParams();
-                            lp.topMargin = imgMarginTop;
-                            lp.bottomMargin = imgMarginBottom;
-                            img.setLayoutParams(lp);
-                            img.requestLayout();
-                        }
-                    } else {
-                        // RSSI special tile
-                        img = viewGroup.findViewById(rssiImgResId);
-                        if (img != null && img.getParent() instanceof FrameLayout) {
-                            FrameLayout fl = (FrameLayout) img.getParent();
-                            if (fl.getLayoutParams() instanceof LinearLayout.LayoutParams) {
-                                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fl.getLayoutParams();
+            final int tileCount = container.getChildCount();
+            for(int i = 0; i < tileCount; i++) {
+                ViewGroup viewGroup = (ViewGroup) mContainerView.getChildAt(i);
+                if (viewGroup != null) {
+                    TextView textView = findTileTextView(viewGroup);
+                    if (textView != null) {
+                        textView.setTextSize(1, textSize);
+                        textView.setSingleLine(false);
+                        textView.setAllCaps(true);
+                    }
+    
+                    // adjust layout in case it's AOSP 4.3+ tile
+                    if (Build.VERSION.SDK_INT > 17 && imgResId != 0 && rssiImgResId != 0) {
+                        View img = viewGroup.findViewById(imgResId);
+                        if (img != null) {
+                            // basic tile
+                            if (img.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+                                ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) img.getLayoutParams();
                                 lp.topMargin = imgMarginTop;
                                 lp.bottomMargin = imgMarginBottom;
-                                fl.setLayoutParams(lp);
-                                fl.requestLayout();
+                                img.setLayoutParams(lp);
+                                img.requestLayout();
+                            }
+                        } else {
+                            // RSSI special tile
+                            img = viewGroup.findViewById(rssiImgResId);
+                            if (img != null && img.getParent() instanceof FrameLayout) {
+                                FrameLayout fl = (FrameLayout) img.getParent();
+                                if (fl.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+                                    ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) fl.getLayoutParams();
+                                    lp.topMargin = imgMarginTop;
+                                    lp.bottomMargin = imgMarginBottom;
+                                    fl.setLayoutParams(lp);
+                                    fl.requestLayout();
+                                }
                             }
                         }
                     }
                 }
             }
+        } catch (Throwable t) {
+            XposedBridge.log(t);
         }
     }
 
@@ -965,6 +983,16 @@ public class ModQuickSettings {
             if (Build.VERSION.SDK_INT > 18) {
                 XposedHelpers.findAndHookMethod(classQsModel, "addRotationLockTile",
                         CLASS_QS_TILEVIEW, CLASS_ROTATION_LOCK_CTRL, CLASS_QS_MODEL_RCB, addRotationLockTileHook);
+                final Class<?> rlControllerClass = XposedHelpers.findClass(CLASS_ROTATION_LOCK_CTRL, classLoader);
+                XposedHelpers.findAndHookMethod(rlControllerClass, "isRotationLockAffordanceVisible", 
+                        new XC_MethodReplacement() {
+                        @Override
+                        protected Object replaceHookedMethod(MethodHookParam param2) throws Throwable {
+                            return mActiveTileKeys != null ? 
+                                    mActiveTileKeys.contains("auto_rotate_textview") :
+                                    XposedBridge.invokeOriginalMethod(param2.method, param2.thisObject, param2.args);
+                        }
+                });
             } else {
                 XposedHelpers.findAndHookMethod(classQsModel, "addRotationLockTile",
                         CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, addRotationLockTileHook);
@@ -1047,6 +1075,20 @@ public class ModQuickSettings {
             });
         } catch (Throwable t) {
             XposedBridge.log(t);
+        }
+
+        if (Build.VERSION.SDK_INT > 18) {
+            try {
+                XposedHelpers.findAndHookMethod(classQsModel, "addLocationTile",
+                        CLASS_QS_TILEVIEW, CLASS_QS_MODEL_RCB, new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                        ((View)param.args[0]).setTag(mAospTileTags.get("gps_textview"));
+                    }
+                });
+            } catch (Throwable t) {
+                XposedBridge.log(t);
+            }
         }
     }
 }

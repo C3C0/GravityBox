@@ -1168,13 +1168,17 @@ public class GravityBoxSettings extends Activity implements GravityBoxResultRece
         }
 
         private void setDefaultValues() {
-            if (mPrefs.getStringSet(PREF_KEY_QUICK_SETTINGS, null) == null) {
+            if (mPrefs.getStringSet(PREF_KEY_QUICK_SETTINGS, null) == null ||
+                    (Build.VERSION.SDK_INT > 18 && !mPrefs.getBoolean("qs_tiles_kitkat_set", false))) {
                 Editor e = mPrefs.edit();
                 String[] values = getResources().getStringArray(
-                        Utils.isMtkDevice() ? R.array.qs_tile_values : R.array.qs_tile_aosp_values);
+                        Utils.isMtkDevice() ? R.array.qs_tile_values : 
+                            Build.VERSION.SDK_INT > 18 ? 
+                                    R.array.qs_tile_aosp_values_kk : R.array.qs_tile_aosp_values);
                 Set<String> defVal = new HashSet<String>(Arrays.asList(values));
                 e.putStringSet(PREF_KEY_QUICK_SETTINGS, defVal);
                 e.putString(TileOrderActivity.PREF_KEY_TILE_ORDER, Utils.join(values, ","));
+                e.putBoolean("qs_tiles_kitkat_set", true);
                 e.commit();
                 mQuickSettings.setValues(defVal);
             }
