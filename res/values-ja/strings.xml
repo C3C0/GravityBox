@@ -790,4 +790,11 @@
     <string name="hwkey_action_home">ホーム</string>
     <string name="hwkey_action_back">戻る</string>
     
+    <!-- QS Tile Style -->
+    <string name="pref_qs_tile_style_title">タイルのスタイル</string>
+    <string name="pref_qs_tile_style_summary">GravityBoxで追加したタイルにのみ適用されます。(標準タイルは変更されません)</string>
+
+    <!-- Clear all recents bottom margin -->
+    <string name="pref_recent_clear_margin_bottom_title">ボタン下の余白を調整</string>
+    
 </resources>
