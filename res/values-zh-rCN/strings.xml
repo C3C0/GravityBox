@@ -18,13 +18,13 @@
 
     <string name="app_name">GravityBox</string>
 
-    <string name="battery_style_title">电量图标风格</string>	
+    <string name="battery_style_title">电量图标风格</string>        
     <string name="battery_style_stock">原厂电量图标</string>
     <string name="battery_style_circle">圆形电量图标</string>
     <string name="battery_style_circle_percent">圆形电量图标含百分比</string>
     <string name="battery_style_kitkat">KitKat电量图标</string>
     <string name="battery_style_kitkat_percent">KitKat电量图标含百分比</string>
-    <string name="battery_style_percent">电量百分比文字</string>
+    <string name="battery_style_percent">电量百分比</string>
     <string name="battery_style_none">无</string>
 
     <string name="vol_music_controls_title">音量键跳过歌曲</string>
@@ -39,7 +39,7 @@
     <string name="reboot_required">重新启动以后设置才会启用</string>
 
     <string name="signal_icon_autohide_title">自动隐藏信号强度图标</string>
-    <string name="signal_icon_autohide_summary">当SIM卡未插入时自动隐藏指定SIM卡的信号强度图标，并停用“SIM卡未插入”通知</string>
+    <string name="signal_icon_autohide_summary">当SIM卡未插入时自动隐藏指定SIM卡的信号强度图标并停用“SIM卡未插入”通知</string>
     <string name="sim_slot_1">自动隐藏SIM卡1</string>
     <string name="sim_slot_2">自动隐藏SIM卡2</string>
     <string name="sim_disable_notifications">禁用通知</string>
@@ -309,8 +309,8 @@
     <!-- Expandable volume panel -->
     <string name="pref_volume_panel_expandable_title">可扩展音量面板</string>
     <string name="pref_volume_panel_expandable_summary">启用此选项使你可以调整不同的媒体音量</string>
-	
-	<!-- Fully expandable volume panel -->
+        
+        <!-- Fully expandable volume panel -->
     <string name="pref_volume_panel_expandable_fully_title">完整的可扩展音量面板</string>
     <string name="pref_volume_panel_expandable_fully_summary">允许音量面板占用所有提供的空间</string>
 
@@ -381,7 +381,7 @@
     <string name="pie_phone_status_emergency_only">仅限紧急呼叫</string>
 
     <!-- Pie Controls settings -->
-    <string name="pie_control_title">虚拟键调整</string>
+    <string name="pie_control_title">Pie Controls虚拟键</string>
     <string name="pie_control_enable_title">启用Pie Controls虚拟键</string>
     <string name="pie_control_size_title">虚拟键大小</string>
     <string name="pie_control_trigger_positions_title">触发位置</string>
@@ -466,7 +466,7 @@
 
     <!-- Transparency management -->
     <string name="pref_cat_transparency_manager_title">透明度调整</string>
-	<string name="pref_cat_transparency_manager_summary">管理状态栏和虚拟键透明度</string>
+        <string name="pref_cat_transparency_manager_summary">管理状态栏和虚拟键透明度</string>
     <string name="pref_tm_statusbar_launcher_title">启动器下的状态栏透明度</string>
     <string name="pref_tm_statusbar_lockscreen_title">锁屏画面时的状态栏透明度</string>
     <string name="pref_tm_navbar_launcher_title">启动器下的虚拟键透明度</string>
@@ -725,8 +725,8 @@
     <string name="signal_color_mode_gb">使用GravityBox图标（有信号等级）</string>
     <string name="signal_color_mode_stock">使用原厂图标（无信号等级）</string>
     <string name="signal_color_mode_disabled">不使用颜色</string>
-	
-	<!-- Application launcher -->
+        
+        <!-- Application launcher -->
     <string name="pref_cat_app_launcher_title">应用启动器</string>
     <string name="pref_cat_app_launcher_summary">对话框允许定义最多8个应用程序，可以分配硬件按键或作为额外的虚拟键</string>
     <string name="pref_app_launcher_slot_title">应用程序槽 %d</string>
@@ -761,8 +761,8 @@
 
     <!-- Minimum screen brightness warning -->
     <string name="screen_brightness_min_warning">您的屏幕可能不支持低于20的值。如果您的屏幕亮不起来，
-	按住 音量+ 键至少7秒钟将会还原亮度，调整亮度请使用更大的值</string>
-	
+        按住 音量+ 键至少7秒钟将会还原亮度，调整亮度请使用更大的值</string>
+        
     <!-- Navbar tweaks categories -->
     <string name="pref_cat_navbar_general_title">普通</string>
     <string name="pref_cat_navbar_keys_title">虚拟按键</string>
@@ -812,6 +812,6 @@
     <string name="pref_qs_tile_style_summary">仅适用于由GravityBox修改标题(不影响原厂标题)</string>
 
     <!-- Clear all recents bottom margin -->
-    <string name="pref_recent_clear_margin_bottom_title">底部边距调整</string>
+    <string name="pref_recent_clear_margin_bottom_title">调整底部边距</string>
 
 </resources>
